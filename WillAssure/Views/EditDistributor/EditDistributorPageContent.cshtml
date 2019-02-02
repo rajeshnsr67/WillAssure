@@ -1,0 +1,171 @@
+﻿@model WillAssure.Models.DistributorFormModel
+@{
+    ViewBag.Title = "EditDistributorPageContent";
+}
+
+
+
+@*Main Content*@
+<div class="content-wrapper">
+    <div class="container-fluid">
+
+        <div class="row pt-2 pb-2">
+
+            <div class="col-sm-3">
+                <div class="btn-group float-sm-right">
+
+                    <div class="dropdown-menu">
+                        <a href="javaScript:void();" class="dropdown-item">Action</a>
+                        <a href="javaScript:void();" class="dropdown-item">Another action</a>
+                        <a href="javaScript:void();" class="dropdown-item">Something else here</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="javaScript:void();" class="dropdown-item">Separated link</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Breadcrumb-->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header"><i class="fa fa-table"></i>Registered User Data</div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="default-datatable" class="table table-bordered">
+                                <thead>
+                                    <tr class="ui-widget-header">
+                                        <th>Comp Id</th>
+                                        <th>Company Name</th>
+                                        <th>Owner Name</th>
+                                        <th>Owner MobileNo</th>
+                                        <th>Address1</th>
+                                        <th>Address2</th>
+                                        <th>City</th>
+                                        <th>State</th>
+                                        <th>Pin</th>
+                                        <th>GST NO</th>
+                                        <th>Identity Proof</th>
+                                        <th>IdentityProof Value</th>
+                                        <th>AltIdentity Proof</th>
+                                        <th>AltIdentity ProofValue</th>
+                                        <th>contact Person</th>
+                                        <th>contact MobileNo</th>
+                                        <th>contact MailId</th>
+                                        <th>bankName</th>
+                                        <th>Branch</th>
+                                        <th>accountNumber</th>
+                                        <th>IFSCCode</th>
+                                        <th>accountName</th>
+                                        <th>Referred By</th>
+                                        <th>leadgeneratedBy</th>
+                                        <th>leadconvertedBy</th>
+                                        <th>relationshipManager</th>
+                                        <th>leadStatus</th>
+                                        <th>leadRemark</th>
+                                        <th>Action</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody id="DistributorFormData"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- End Row-->
+
+
+
+    </div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+@*end*@
+
+
+
+
+<script>
+
+    $(document).ready(function () {
+
+        $.ajax({
+
+            type: "POST",
+            url:"@Url.Action("BindDistributorFormData", "EditDistributor")",
+            success: function (data) {
+                $('#DistributorFormData').append(data);
+            }
+        });
+
+
+    });
+
+
+</script>
+
+<script>
+
+
+    function Edit(id) {
+
+
+        var id = id;
+
+
+
+            $.ajax({
+
+            type: "POST",
+            url: "@Url.Action("UpdateDistributorForm", "EditDistributor")",
+            data: {  "send": "" + id + ""   },
+            success: function (data) {
+                alert(data);
+
+                var NestId = data
+                var url = "/UpdateDistributor/UpdateDistributorIndex?NestId=" + NestId;
+                window.location.href = url;
+
+
+            }
+
+
+
+        });
+
+    }
+
+
+    function Delete(id) {
+
+        var id = id;
+        alert(id);
+
+
+        $.ajax({
+
+            type: "POST",
+            url: "@Url.Action("DeleteDistributorFormRecords", "EditDistributor")",
+            data: {  "send": "" + id + ""   },
+            success: function (data) {
+                $('#DistributorFormData').append(data);
+                location.reload();
+            }
+
+
+
+        });
+    }
+
+</script>
+

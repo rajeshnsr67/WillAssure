@@ -1,0 +1,168 @@
+﻿
+@{
+    ViewBag.Title = "EditTestatorPageContent";
+}
+
+
+
+
+@*Main Content*@
+<div class="content-wrapper">
+    <div class="container-fluid">
+
+        <div class="row pt-2 pb-2">
+
+            <div class="col-sm-3">
+                <div class="btn-group float-sm-right">
+
+                    <div class="dropdown-menu">
+                        <a href="javaScript:void();" class="dropdown-item">Action</a>
+                        <a href="javaScript:void();" class="dropdown-item">Another action</a>
+                        <a href="javaScript:void();" class="dropdown-item">Something else here</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="javaScript:void();" class="dropdown-item">Separated link</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Breadcrumb-->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header"><i class="fa fa-table"></i>Registered User Data</div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="default-datatable" class="table table-bordered">
+                                <thead>
+                                    <tr class="ui-widget-header">
+                                        <th>tId</th>
+                                        <th>First_Name</th>
+                                        <th>Last_Name</th>
+                                        <th>Middle_Name</th>
+                                        <th>DOB</th>
+                                        <th>Occupation</th>
+                                        <th>Mobile</th>
+                                        <th>Email</th>
+                                        <th>maritalStatus</th>
+                                        <th>Religion</th>
+                                        <th>Identity_Proof</th>
+                                        <th>Identity_proof_Value</th>
+                                        <th>Alt_Identity_Proof</th>
+                                        <th>Alt_Identity_proof_Value</th>
+                                        <th>Gender</th>
+                                        <th>Address1</th>
+                                        <th>Address2</th>
+                                        <th>Address3</th>
+                                        <th>City</th>
+                                        <th>State</th>
+                                        <th>Country</th>
+                                        <th>Pin</th>
+                                        <th>active</th>
+                                    
+                                        <th>Action</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody id="TestatorFormData"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- End Row-->
+
+
+
+    </div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+@*end*@
+
+
+
+
+<script>
+
+    $(document).ready(function () {
+
+        $.ajax({
+
+            type: "POST",
+            url:"@Url.Action("BindTestatorFormData", "EditTestator")",
+            success: function (data) {
+                $('#TestatorFormData').append(data);
+            }
+        });
+
+
+    });
+
+
+</script>
+
+<script>
+
+
+    function Edit(id) {
+
+
+        var id = id;
+
+
+
+            $.ajax({
+
+            type: "POST",
+            url: "@Url.Action("UpdateTestatorForm", "EditTestator")",
+            data: {  "send": "" + id + ""   },
+            success: function (data) {
+                alert(data);
+
+                var NestId = data
+                var url = "/UpdateTestators/UpdateTestatorsIndex?NestId=" + NestId;
+                window.location.href = url;
+
+
+            }
+
+
+
+        });
+
+    }
+
+
+    function Delete(id) {
+
+        var id = id;
+        alert(id);
+
+
+        $.ajax({
+
+            type: "POST",
+            url: "@Url.Action("DeleteTestatorFormRecords", "EditTestator")",
+            data: {  "send": "" + id + ""   },
+            success: function (data) {
+                $('#TestatorFormData').append(data);
+                location.reload();
+            }
+
+
+
+        });
+    }
+
+</script>
+

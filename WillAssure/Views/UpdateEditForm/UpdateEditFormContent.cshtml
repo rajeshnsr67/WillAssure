@@ -1,0 +1,365 @@
+﻿@model WillAssure.Models.UserFormModel
+@{
+    ViewBag.Title = "UpdateEditFormContent";
+}
+
+
+@*Main Content*@
+<div class="content-wrapper">
+    <div class="container-fluid">
+
+        <div class="row pt-2 pb-2">
+
+            <div class="col-sm-3">
+                <div class="btn-group float-sm-right">
+
+                    <div class="dropdown-menu">
+                        <a href="javaScript:void();" class="dropdown-item">Action</a>
+                        <a href="javaScript:void();" class="dropdown-item">Another action</a>
+                        <a href="javaScript:void();" class="dropdown-item">Something else here</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="javaScript:void();" class="dropdown-item">Separated link</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Breadcrumb-->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title text-primary">Add Users Registration</div>
+                        <hr>
+                        <form action="@Url.Action("GetUserFormData", "UsersForm")">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="input-1">First Name</label>
+
+                                        @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", @id = "txtfirstname", @placeholder = "Enter Your First Name", @autocomplete = "off" })
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="input-1">Last Name</label>
+
+                                        @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", @id = "txtLastName", @placeholder = "Enter Your Last Name", @autocomplete = "off" })
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="input-1">Middle Name</label>
+                                        @Html.TextBoxFor(m => m.MiddleName, new { @class = "form-control", @id = "txtMiddleName", @placeholder = "Enter Your Middle Name", @autocomplete = "off" })
+                                    </div>
+                                </div>
+
+
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="input-5">Date Of Birth</label>
+                                        @Html.TextBoxFor(m => m.Dob, new { @type = "date", @class = "form-control", @id = "txtDob", @placeholder = "Select Your Date Of Birth", @autocomplete = "off" })
+                                    </div>
+                                </div>
+
+
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="input-3">Mobile</label>
+                                        @Html.TextBoxFor(m => m.Mobile, new { @class = "form-control", @id = "txtmobile", @placeholder = "Enter Your Mobile Number", @autocomplete = "off" })
+                                    </div>
+                                </div>
+
+
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="input-3">Email</label>
+                                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @id = "txtEmail", @placeholder = "Enter Your Email", @autocomplete = "off" })
+                                    </div>
+                                </div>
+
+
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="input-3">Address 1</label>
+                                        @Html.TextAreaFor(m => m.Address1, new { @class = "form-control", @id = "txtaddress1", @placeholder = "Enter Your Address 1", @autocomplete = "off" })
+                                    </div>
+                                </div>
+
+
+
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="input-3">Address 2</label>
+                                        @Html.TextAreaFor(m => m.Address2, new { @class = "form-control", @id = "txtaddress2", @placeholder = "Enter Your Address 2", @autocomplete = "off" })
+                                    </div>
+                                </div>
+
+
+
+                                <div class="col-sm-6">
+
+                                    <div class="form-group">
+                                        <label for="input-3">Address 3</label>
+                                        @Html.TextAreaFor(m => m.Address3, new { @class = "form-control", @id = "txtaddress3", @placeholder = "Enter Your Address 3", @autocomplete = "off" })
+                                    </div>
+                                </div>
+
+
+
+
+
+
+
+                                <div class="col-sm-6">
+
+                                    <div class="form-group">
+                                        <label for="input-1">State</label>
+
+                                        <select id="ddlstate" class="form-control">
+                                            <option value="0">--Select State--</option>
+                                        </select>
+                                        @Html.HiddenFor(m => m.stateid, new { id = "stateid" })
+                                        @Html.HiddenFor(m => m.statetext, new { id = "statetext" })
+                                    </div>
+                                </div>
+
+
+                                <div class="col-sm-6">
+
+                                    <div class="form-group">
+                                        <label for="input-1">City</label>
+                                        <select id="ddlcity" class="form-control">
+                                            <option value="0">--Select City--</option>
+                                        </select>
+                                        @Html.HiddenFor(m => m.cityid, new { id = "cityid" })
+                                        @Html.HiddenFor(m => m.citytext, new { id = "citytext" })
+
+                                    </div>
+
+                                </div>
+
+
+
+
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="input-3">Pin</label>
+                                        @Html.TextBoxFor(m => m.Pin, new { @class = "form-control", @id = "txtPin", @placeholder = "Enter Your Pin", @autocomplete = "off" })
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="input-3">Login Id</label>
+                                        @Html.TextBoxFor(m => m.UserId, new { @class = "form-control", @id = "txtUserId", @placeholder = "Enter Your UserId", @autocomplete = "off" })
+                                    </div>
+                                </div>
+
+
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="input-3">User Password</label>
+                                        @Html.TextBoxFor(m => m.UserPassword, new { @type = "password", @class = "form-control", @id = "txtUserPassword", @placeholder = "Enter Your User Password", @autocomplete = "off" })
+                                    </div>
+                                </div>
+
+
+
+
+
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="input-3">Designation</label>
+                                        @Html.TextBoxFor(m => m.Designation, new { @class = "form-control", @id = "txtDesignation", @placeholder = "Enter Designation", @autocomplete = "off" })
+                                    </div>
+                                </div>
+
+
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="input-3">Role</label>
+                                        @Html.DropDownListFor(x => x.rid, new SelectListItem[]{
+                                       new SelectListItem() {Text = "--Select--", Value="0"},
+                                       new SelectListItem() {Text = "Admin", Value="1"},
+                                       new SelectListItem() {Text = "Distributor", Value="2"},
+                                       new SelectListItem() {Text = "Employee", Value="3"},
+                                       new SelectListItem() {Text = "Testator", Value="4"}} , new { @class="form-control" })
+                                    </div>
+                                </div>
+
+
+
+
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="input-3">Status</label>
+                                        @Html.DropDownListFor(x => x.Active, new SelectListItem[]{
+                                       new SelectListItem() {Text = "--Select--", Value="0"},
+                                       new SelectListItem() {Text = "Active", Value="1"},
+                                       new SelectListItem() {Text = "Inactive", Value="2"}} , new { @class="form-control" })
+                                    </div>
+                                </div>
+
+
+
+
+
+
+
+
+                            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            <div class="form-group py-2">
+                                <div class="icheck-material-primary">
+                                    <input type="checkbox" id="user-checkbox1" checked="" />
+                                    <label for="user-checkbox1">I Agree Terms & Conditions</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" id="btnuserformsubmit" class="btn btn-success waves-effect waves-light btn-sm"><i class="icon-lock"></i> Register</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+</div>
+@*end*@
+
+<!--Start Back To Top Button-->
+<a href="javaScript:void();" class="back-to-top"><i class="fa fa-angle-double-up"></i> </a>
+<!--End Back To Top Button-->
+
+
+
+
+<script>
+
+    $(document).ready(function () {
+
+        $.ajax({
+
+            type: "POST",
+            url:"@Url.Action("BindDesignationDDL", "UsersForm")",
+            success: function (data) {
+                $('#ddldesignation').append(data);
+            }
+        });
+
+
+    });
+
+
+</script>
+
+
+
+
+<script>
+    $("#ddlstate").change(function () {
+        var value = $(this).children(":selected").attr("value");
+        var text = $("#ddlstate option:selected").html();
+
+        $("#statetext").val(text);
+        $("#stateid").val(value);
+    });
+</script>
+
+
+<script>
+    $("#ddlcity").change(function () {
+        var value = $(this).children(":selected").attr("value");
+        var text = $("#ddlcity option:selected").html();
+
+        $("#citytext").val(text);
+        $("#cityid").val(value);
+    });
+</script>
+
+
+
+
+
+@*for State dropdown*@
+
+
+
+
+<script>
+
+    $(document).ready(function () {
+
+        $.ajax({
+
+            type: "POST",
+            url:"@Url.Action("BindStateDDL", "UsersForm")",
+            success: function (data) {
+                $('#ddlstate').append(data);
+            }
+        });
+
+
+    });
+
+
+</script>
+
+<script>
+    $("#ddlstate").change(function () {
+        var value = $(this).children(":selected").attr("value");
+        var text = $("#ddlstate option:selected").html();
+
+        $("#statetext").val(text);
+        $("#stateid").val(value);
+
+
+        $.ajax({
+
+            type: "POST",
+            url: "@Url.Action("OnChangeBindCity", "UsersForm")",
+            data: { "send": "" + value+  ""},
+            success: function (data) {
+
+                $('#ddlcity').append(data);
+            }
+
+
+
+        });
+
+
+
+    });
+</script>
+@*end*@
+
+
+
+
+
+
+
+
+
+
