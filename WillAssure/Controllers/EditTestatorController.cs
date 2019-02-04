@@ -102,6 +102,11 @@ namespace WillAssure.Controllers
             cmd.Parameters.AddWithValue("@Country", "");
             cmd.Parameters.AddWithValue("@Pin", "");
             cmd.Parameters.AddWithValue("@active", "");
+            cmd.Parameters.AddWithValue("@Contact_Verification", "");
+            cmd.Parameters.AddWithValue("@Email_Verification", "");
+            cmd.Parameters.AddWithValue("@Mobile_Verification_Status", "");
+            cmd.Parameters.AddWithValue("@Email_OTP", "");
+            cmd.Parameters.AddWithValue("@Mobile_OTP", "");
             cmd.ExecuteNonQuery();
             con.Close();
 
@@ -152,7 +157,10 @@ namespace WillAssure.Controllers
 
                 }
             }
-            Response.Write("<script>alert('Your Records Have Been Deleted...!')</script>");
+            
+
+            ViewBag.Message = "RecordsDeleted";
+
             return data;
         }
 

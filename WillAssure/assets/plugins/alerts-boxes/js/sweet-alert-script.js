@@ -9,13 +9,28 @@
                   swal("Here's the title!", "...and here's the text!");
               });
 
-              $("#alert-success").click(function(){
-                  swal("Good job!", "You clicked the button!,", "success");
+     //success Alert Button
+
+
+              $("#btnOTPCheckSUCCESS").click(function(){
+                  swal("Verified!", "Your OTP has Been Verified!,", "success");
+              });
+     
+
+              $("#btnDeleteTestatorData").click(function () {
+                 swal("Deleted!", "Your Data has Been Deleted!,", "success");
+             });
+
+     //end
+
+     //Failed Alert Button
+
+     $("#btnOTPCheckFAILED").click(function(){
+                  swal("Failed!", "Please Enter Correct OTP!,", "error");
               });
 
-              $("#alert-error").click(function(){
-                  swal("Somthing Wrong!", "You clicked the button!,", "error");
-              });
+
+     //end
 
               $("#alert-info").click(function(){
                   swal("Information!", "You clicked the button!,", "info");

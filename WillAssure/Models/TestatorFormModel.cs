@@ -34,6 +34,10 @@ namespace WillAssure.Models
         public int ReligionId { get; set; }
 
         public string Identity_Proof { get; set; }
+        public string Identity_Proof_txt { get; set; }
+        public int Identity_Proof_ID { get; set; }
+
+
 
         public string Identity_proof_Value { get; set; }
 
@@ -91,7 +95,11 @@ namespace WillAssure.Models
         public int Link_Required { get; set; }
         public int Login_Required { get; set; }
 
+        public string password = "Transformerrobotb4u";
 
+
+        public string EmailOTP { get; set; }
+        public string MobileOTP { get; set; }
     }
 
 

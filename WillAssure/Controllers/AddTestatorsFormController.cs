@@ -30,39 +30,95 @@ namespace WillAssure.Controllers
 
         public ActionResult InsertTestatorFormData(TestatorFormModel TFM)
         {
-            //con.Open();
-            //SqlCommand cmd = new SqlCommand("SP_CRUDTestatorDetails", con);
-            //cmd.CommandType = System.Data.CommandType.StoredProcedure;
-            //cmd.Parameters.AddWithValue("@condition", "insert");
-            //cmd.Parameters.AddWithValue("@First_Name", TFM.First_Name);
-            //cmd.Parameters.AddWithValue("@Last_Name", TFM.Last_Name);
-            //cmd.Parameters.AddWithValue("@Middle_Name", TFM.Middle_Name);
-            //cmd.Parameters.AddWithValue("@DOB", TFM.DOB);
-            //cmd.Parameters.AddWithValue("@Occupation", TFM.Occupation);
-            //cmd.Parameters.AddWithValue("@Mobile", TFM.Mobile);
-            //cmd.Parameters.AddWithValue("@Email", TFM.Email);
-            //cmd.Parameters.AddWithValue("@maritalStatus", TFM.GenderId);
-            //cmd.Parameters.AddWithValue("@Religion", TFM.ReligionId);
-            //cmd.Parameters.AddWithValue("@Identity_Proof", TFM.Identity_Proof);
-            //cmd.Parameters.AddWithValue("@Identity_proof_Value", TFM.Identity_proof_Value);
-            //cmd.Parameters.AddWithValue("@Alt_Identity_Proof", TFM.Alt_Identity_Proof);
-            //cmd.Parameters.AddWithValue("@Alt_Identity_proof_Value", TFM.Alt_Identity_proof_Value);
-            //cmd.Parameters.AddWithValue("@Gender", TFM.GenderId);
-            //cmd.Parameters.AddWithValue("@Address1", TFM.Address1);
-            //cmd.Parameters.AddWithValue("@Address2", TFM.Address2);
-            //cmd.Parameters.AddWithValue("@Address3", TFM.Address3);
-            //cmd.Parameters.AddWithValue("@City", TFM.countryid);
-            //cmd.Parameters.AddWithValue("@State", TFM.stateid);
-            //cmd.Parameters.AddWithValue("@Country", TFM.countryid);
-            //cmd.Parameters.AddWithValue("@Pin", TFM.Pin);
-            //cmd.Parameters.AddWithValue("@active", TFM.active);
 
-            //cmd.ExecuteNonQuery();
-            //con.Close();
+
+            //generate MOBILE OTP
+            TFM.MobileOTP = String.Empty;
+            string[] saAllowedCharacters = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "0" };
+            int iOTPLength = 5;
+
+            string sTempChars = String.Empty;
+            Random rand = new Random();
+
+            for (int i = 0; i < iOTPLength; i++)
+
+            {
+
+                int p = rand.Next(0, saAllowedCharacters.Length);
+
+                sTempChars = saAllowedCharacters[rand.Next(0, saAllowedCharacters.Length)];
+
+                TFM.MobileOTP += sTempChars;
+
+            }
+            //END
 
 
 
-           
+
+            //generate EMAIL OTP
+            TFM.EmailOTP = String.Empty;
+            string[] saAllowedCharacters2 = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "0" };
+            int iOTPLength2 = 5;
+
+            string sTempChars2 = String.Empty;
+            Random rand2 = new Random();
+
+            for (int i = 0; i < iOTPLength2; i++)
+
+            {
+
+                int p = rand.Next(0, saAllowedCharacters2.Length);
+
+                sTempChars2 = saAllowedCharacters2[rand.Next(0, saAllowedCharacters2.Length)];
+
+                TFM.EmailOTP += sTempChars2;
+
+            }
+            //END
+
+
+
+
+
+
+            con.Open();
+            SqlCommand cmd = new SqlCommand("SP_CRUDTestatorDetails", con);
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@condition", "insert");
+            cmd.Parameters.AddWithValue("@First_Name", TFM.First_Name);
+            cmd.Parameters.AddWithValue("@Last_Name", TFM.Last_Name);
+            cmd.Parameters.AddWithValue("@Middle_Name", TFM.Middle_Name);
+            cmd.Parameters.AddWithValue("@DOB", TFM.DOB);
+            cmd.Parameters.AddWithValue("@Occupation", TFM.Occupation);
+            cmd.Parameters.AddWithValue("@Mobile", TFM.Mobile);
+            cmd.Parameters.AddWithValue("@Email", TFM.Email);
+            cmd.Parameters.AddWithValue("@maritalStatus", TFM.GenderId);
+            cmd.Parameters.AddWithValue("@Religion", TFM.ReligionId);
+            cmd.Parameters.AddWithValue("@Identity_Proof", TFM.Identity_Proof);
+            cmd.Parameters.AddWithValue("@Identity_proof_Value", TFM.Identity_proof_Value);
+            cmd.Parameters.AddWithValue("@Alt_Identity_Proof", TFM.Alt_Identity_Proof);
+            cmd.Parameters.AddWithValue("@Alt_Identity_proof_Value", TFM.Alt_Identity_proof_Value);
+            cmd.Parameters.AddWithValue("@Gender", TFM.GenderId);
+            cmd.Parameters.AddWithValue("@Address1", TFM.Address1);
+            cmd.Parameters.AddWithValue("@Address2", TFM.Address2);
+            cmd.Parameters.AddWithValue("@Address3", TFM.Address3);
+            cmd.Parameters.AddWithValue("@City", TFM.countryid);
+            cmd.Parameters.AddWithValue("@State", TFM.stateid);
+            cmd.Parameters.AddWithValue("@Country", TFM.countryid);
+            cmd.Parameters.AddWithValue("@Pin", TFM.Pin);
+            cmd.Parameters.AddWithValue("@active", TFM.active);
+            cmd.Parameters.AddWithValue("@Contact_Verification","0");
+            cmd.Parameters.AddWithValue("@Email_Verification", "0");
+            cmd.Parameters.AddWithValue("@Mobile_Verification_Status", "0");
+            cmd.Parameters.AddWithValue("@Email_OTP", TFM.EmailOTP);
+            cmd.Parameters.AddWithValue("@Mobile_OTP", TFM.MobileOTP);
+            cmd.ExecuteNonQuery();
+            con.Close();
+
+
+            
+
             //1st condition
             if (TFM.Amt_Paid_By_txt == "Distributor" && TFM.Document_Created_By_txt == "Distributor")
             {
@@ -75,31 +131,8 @@ namespace WillAssure.Controllers
                 SqlCommand cmd2 = new SqlCommand(query,con);
                 cmd2.ExecuteNonQuery();
                 con.Close();
-
-
-                string email = "imransayyed528@gmail.com";
-                string to = "imransayyed528@gmail.com";
-                string subject = "Testing Email";
-                string body = "Mail Has Been Send By Will Assure";
-                string password = "transformerrobotb4u";
-                MailMessage mail = new MailMessage();
-               
-                mail.To.Add("imran@prolifiquetech.in");
-                mail.From = new MailAddress("imransayyed528@gmail.com");
-                mail.Subject = "Confirmation of Registration on Job Junction.";
-                string Body = "Hi, this mail is to test sending mail using Gmail in ASP.NET";
-                mail.Body = Body;
-                mail.IsBodyHtml = true;
-                SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
-                // smtp.Host = "smtp.gmail.com"; //Or Your SMTP Server Address
-                //smtp.UseDefaultCredentials = false;
-                smtp.EnableSsl = true;
-                smtp.Credentials = new System.Net.NetworkCredential(email,password);
-                //smtp.Port = 587;
-                //Or your Smtp Email ID and Password
-                smtp.Send(mail);
-
-
+             
+             
             }
             //end
             //2nd condition 
@@ -115,8 +148,37 @@ namespace WillAssure.Controllers
                 cmd2.ExecuteNonQuery();
                 con.Close();
 
-              
+               
 
+
+
+                //generate Mail
+
+                string mailid = "imransayyed528@gmail.com";
+               // string mailto = TFM.Email;
+                string mailto = "yihu@maillink.info";
+                string subject = "Testing Mail Sending";
+                string OTP = "<font color='Green' style='font-size=3em;'>" + TFM.EmailOTP + "</font>";
+                string text = "Your OTP for Verification Is "+ OTP + "";
+                string body = "<font color='red'>" + text + "</font>";
+                using (MailMessage mm = new MailMessage(mailid, mailto))
+                {
+                    mm.Subject = subject;
+                    mm.Body = body;
+
+                    mm.IsBodyHtml = true;
+                    SmtpClient smtp = new SmtpClient();
+                    smtp.Host = "smtp.gmail.com";
+                    smtp.EnableSsl = true;
+                    NetworkCredential NetworkCred = new NetworkCredential(mailid, TFM.password);
+                    smtp.UseDefaultCredentials = true;
+                    smtp.Credentials = NetworkCred;
+                    smtp.Port = 587;
+                    smtp.Send(mm);
+
+                }
+
+                //end
 
 
             }
@@ -133,6 +195,38 @@ namespace WillAssure.Controllers
                 SqlCommand cmd2 = new SqlCommand(query, con);
                 cmd2.ExecuteNonQuery();
                 con.Close();
+
+
+               
+
+
+                //generate Mail
+
+                string mailid = "imransayyed528@gmail.com";
+                // string mailto = TFM.Email;
+                string mailto = "yihu@maillink.info";
+                string subject = "Testing Mail Sending";
+                string OTP = "<font color='Green' style='font-size=3em;'>" + TFM.EmailOTP + "</font>";
+                string text = "Your OTP for Verification Is " + OTP + "";
+                string body = "<font color='red'>" + text + "</font>";
+                using (MailMessage mm = new MailMessage(mailid, mailto))
+                {
+                    mm.Subject = subject;
+                    mm.Body = body;
+
+                    mm.IsBodyHtml = true;
+                    SmtpClient smtp = new SmtpClient();
+                    smtp.Host = "smtp.gmail.com";
+                    smtp.EnableSsl = true;
+                    NetworkCredential NetworkCred = new NetworkCredential(mailid, TFM.password);
+                    smtp.UseDefaultCredentials = true;
+                    smtp.Credentials = NetworkCred;
+                    smtp.Port = 587;
+                    smtp.Send(mm);
+
+                }
+
+                //end
             }
             //end
             //4th condition
@@ -147,6 +241,39 @@ namespace WillAssure.Controllers
                 SqlCommand cmd2 = new SqlCommand(query, con);
                 cmd2.ExecuteNonQuery();
                 con.Close();
+
+
+
+               
+
+
+                //generate Mail
+
+                string mailid = "imransayyed528@gmail.com";
+                // string mailto = TFM.Email;
+                string mailto = "yihu@maillink.info";
+                string subject = "Testing Mail Sending";
+                string OTP = "<font color='Green' style='font-size=3em;'>" + TFM.EmailOTP + "</font>";
+                string text = "Your OTP for Verification Is " + OTP + "";
+                string body = "<font color='red'>" + text + "</font>";
+                using (MailMessage mm = new MailMessage(mailid, mailto))
+                {
+                    mm.Subject = subject;
+                    mm.Body = body;
+
+                    mm.IsBodyHtml = true;
+                    SmtpClient smtp = new SmtpClient();
+                    smtp.Host = "smtp.gmail.com";
+                    smtp.EnableSsl = true;
+                    NetworkCredential NetworkCred = new NetworkCredential(mailid, TFM.password);
+                    smtp.UseDefaultCredentials = true;
+                    smtp.Credentials = NetworkCred;
+                    smtp.Port = 587;
+                    smtp.Send(mm);
+
+                }
+
+                //end
             }
             //end
 
@@ -154,10 +281,11 @@ namespace WillAssure.Controllers
 
 
 
-           
+            string v1 = Eramake.eCryptography.Encrypt(TFM.EmailOTP);
 
 
-            return View("~/Views/AddTestatorsForm/AddTestatorPageContent.cshtml");
+            return RedirectToAction("EmailVerificationIndex", "EmailVerification", new { v2=v1 });
+
         }
 
 

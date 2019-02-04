@@ -33,7 +33,7 @@
                     <div class="card-body">
                         <div class="card-title text-primary">Add Testators Details</div>
                         <hr>
-                        @using (Html.BeginForm())
+                        @using (Html.BeginForm(null, null, FormMethod.Post, new { name = "PopUp", id = "PopUp" }))
                         {
                             <div class="row">
                                 <div class="col-sm-6">
@@ -150,7 +150,7 @@
            new SelectListItem() {Text = "Aadhaar Card", Value="1"},
            new SelectListItem() {Text = "Passport", Value="2"},
            new SelectListItem() {Text = "Driving Licences", Value="3"},
-           new SelectListItem() {Text = "Pan Card", Value="4"}}, new { @class = "form-control" })
+           new SelectListItem() {Text = "Pan Card", Value="4"}}, new { @class = "form-control" , @id= "Identity_Proof" })
 
                                     </div>
                                 </div>
@@ -366,8 +366,8 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <button type="submit" id="btnTestatorformsubmit" formaction="InsertTestatorFormData" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i> Register</button>
-
+                                <button type="submit" id="alert-success" formaction="InsertTestatorFormData" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i> Register</button>
+                                 
                             </div>
                         }
                     </div>
@@ -544,6 +544,24 @@
 
        
     });
+
+
+
+
+    $("#Identity_Proof").change(function () {
+        var value = $(this).children(":selected").attr("value");
+        var text = $("#Identity_Proof option:selected").html();
+
+        $("#Identity_Proof_txt").val(text);
+        $("#Identity_Proof_ID").val(value);
+
+
+
+
+    });
+
+
+
 </script>
 
 
@@ -557,4 +575,13 @@
     
 
     });
+</script>
+
+
+<script type="text/javascript">
+    function updateParent() {
+        document.forms["PopUp"].submit(); 
+        window.opener.location.reload();
+        window.close();
+    }
 </script>
