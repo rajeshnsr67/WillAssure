@@ -45,6 +45,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="eCryptography, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Eramake.eCryptography.1.1.6\lib\net45\eCryptography.dll</HintPath>
     </Reference>
@@ -129,9 +132,11 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AddAssetsController.cs" />
     <Compile Include="Controllers\AddBeneficiaryController.cs" />
     <Compile Include="Controllers\AddDistributorController.cs" />
     <Compile Include="Controllers\AddTestatorsFormController.cs" />
+    <Compile Include="Controllers\EditAssetsController.cs" />
     <Compile Include="Controllers\EditBeneficiaryController.cs" />
     <Compile Include="Controllers\EditDistributorController.cs" />
     <Compile Include="Controllers\EditRoleController.cs" />
@@ -139,17 +144,29 @@
     <Compile Include="Controllers\EditUserFormController.cs" />
     <Compile Include="Controllers\EmailVerificationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginPageController.cs" />
     <Compile Include="Controllers\RoleAddController.cs" />
+    <Compile Include="Controllers\UpdateBeneficiaryController.cs" />
     <Compile Include="Controllers\UpdateDistributorController.cs" />
     <Compile Include="Controllers\UpdateEditFormController.cs" />
     <Compile Include="Controllers\UpdateTestatorsController.cs" />
     <Compile Include="Controllers\UsersFormController.cs" />
+    <Compile Include="CrystalReports\WillDocument.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WillDocument.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Admin.cs" />
+    <Compile Include="Models\AssetsModel.cs" />
+    <Compile Include="Models\BeneficiaryModel.cs" />
     <Compile Include="Models\DesingnationModel.cs" />
     <Compile Include="Models\DistributorFormModel.cs" />
     <Compile Include="Models\EmailVerificationModel.cs" />
+    <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\RoleFormModel.cs" />
     <Compile Include="Models\TestatorFormModel.cs" />
     <Compile Include="Models\UserFormModel.cs" />
@@ -942,6 +959,7 @@
     <Content Include="assets\plugins\summernote\dist\font\summernote291f291f.ttf" />
     <Content Include="assets\plugins\summernote\dist\font\summernote291f291f.woff" />
     <Content Include="assets\plugins\summernote\dist\font\summernoted41dd41d.eot" />
+    <Content Include="Documents\WillDocument.docx" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -981,6 +999,10 @@
     <Content Include="Views\EmailVerification\EmailVerificationPageContent.cshtml" />
     <Content Include="Views\AddBeneficiary\AddBeneficiaryPageContent.cshtml" />
     <Content Include="Views\EditBeneficiary\EditBeneficiaryPageContent.cshtml" />
+    <Content Include="Views\UpdateBeneficiary\UpdateBeneficiary.cshtml" />
+    <Content Include="Views\AddAssets\AddAssetsPageContent.cshtml" />
+    <Content Include="Views\EditAssets\EditAssetsPageContent.cshtml" />
+    <Content Include="Views\LoginPage\LoginPageContent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -997,6 +1019,15 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="CrystalReports\WillDocument.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>WillDocument.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

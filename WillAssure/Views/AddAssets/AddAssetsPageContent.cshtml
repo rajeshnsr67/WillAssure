@@ -1,6 +1,6 @@
 ﻿@model WillAssure.Models.BeneficiaryModel
 @{
-    ViewBag.Title = "AddBeneficiaryPageContent";
+    ViewBag.Title = "AddAssetsPageContent";
 }
 
 
@@ -28,7 +28,7 @@
                 <div class="card">
                     <div class="card-body">
 
-                        <div class="card-title text-primary">Add Beneficiary</div>
+                        <div class="card-title text-primary">Add Assets</div>
 
 
 
@@ -38,21 +38,21 @@
                                 <div class="col-sm-6">
 
                                     <div class="form-group">
-                                        <label for="input-1">First Name</label>
+                                        <label for="input-1">Assets Type</label>
 
                                         @Html.TextBoxFor(m => m.First_Name, new { @class = "form-control", @id = "txtFirst_Name", @placeholder = "Enter First Name", @autocomplete = "off" })
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <label for="input-1">Last Name</label>
+                                        <label for="input-1">Assets Name</label>
 
                                         @Html.TextBoxFor(m => m.Last_Name, new { @class = "form-control", @id = "txtLast_Name", @placeholder = "Enter Last Name", @autocomplete = "off" })
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <label for="input-1">Middle Name</label>
+                                        <label for="input-1">Code</label>
                                         @Html.TextBoxFor(m => m.Middle_Name, new { @class = "form-control", @id = "txtMiddle_Name", @placeholder = "Enter Middle Name", @autocomplete = "off" })
                                     </div>
                                 </div>
@@ -60,7 +60,7 @@
 
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <label for="input-5">DOB</label>
+                                        <label for="input-5">Due Date</label>
                                         @Html.TextBoxFor(m => m.DOB, new { @type = "date", @class = "form-control", @id = "txtDOB", @placeholder = "Enter DOB", @autocomplete = "off" })
                                     </div>
                                 </div>
@@ -68,7 +68,7 @@
 
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <label for="input-3">Mobile</label>
+                                        <label for="input-3">Current Status</label>
                                         @Html.TextBoxFor(m => m.Mobile, new { @class = "form-control", @id = "txtMobile", @placeholder = "Enter Mobile", @autocomplete = "off" })
                                     </div>
                                 </div>
@@ -76,7 +76,7 @@
 
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <label for="input-3">Relationship</label>
+                                        <label for="input-3">IssuedBy</label>
                                         @Html.TextBoxFor(m => m.Relationship, new { @class = "form-control", @id = "txtRelationship", @placeholder = "Enter Relationship", @autocomplete = "off" })
                                     </div>
                                 </div>
@@ -84,7 +84,7 @@
 
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <label for="input-3">Marital Status</label>
+                                        <label for="input-3">Location</label>
                                         @Html.DropDownListFor(x => x.Marital_Status, new SelectListItem[]{
                                         new SelectListItem() {Text = "--Select--", Value="0"},
                                         new SelectListItem() {Text = "Married", Value="1"},
@@ -98,7 +98,7 @@
 
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <label for="input-3">Religion</label>
+                                        <label for="input-3">Identifier</label>
                                         @Html.DropDownListFor(x => x.Religion, new SelectListItem[]{
                                  new SelectListItem() {Text = "--Select--", Value="0"},
                                  new SelectListItem() {Text = "Buddhism", Value="1"},
@@ -121,7 +121,7 @@
                                 <div class="col-sm-6">
 
                                     <div class="form-group">
-                                        <label for="input-3">Identity proof</label>
+                                        <label for="input-3">PropertyDesc</label>
                                         @Html.DropDownListFor(x => x.Identity_proof, new SelectListItem[]{
                                new SelectListItem() {Text = "--Select Identity Proof--", Value="0"},
                                new SelectListItem() {Text = "Aadhaar Card", Value="1"},
@@ -137,7 +137,7 @@
 
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <label for="input-3">Identity proof value</label>
+                                        <label for="input-3">QTY</label>
                                         @Html.TextBoxFor(m => m.Identity_proof_value, new { @class = "form-control", @id = "txtIdentity_proof_value", @placeholder = "Enter Identity proof value", @autocomplete = "off" })
 
                                     </div>
@@ -147,7 +147,7 @@
 
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <label for="input-3">Alt Identity proof</label>
+                                        <label for="input-3">Weight</label>
                                         @Html.TextBoxFor(m => m.Alt_Identity_proof, new { @class = "form-control", @id = "txtAlt_Identity_proof", @placeholder = "Enter Alt Identity proof", @autocomplete = "off" })
                                     </div>
                                 </div>
@@ -155,21 +155,21 @@
 
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <label for="input-3">Alt Identity proof value</label>
+                                        <label for="input-3">OwnerShip</label>
                                         @Html.TextBoxFor(m => m.Alt_Identity_proof_value, new { @class = "form-control", @id = "txtAlt_Identity_proof_value", @placeholder = "Enter Alt Identity proof value", @autocomplete = "off" })
                                     </div>
                                 </div>
 
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <label for="input-3">Address1</label>
+                                        <label for="input-3">Remark</label>
                                         @Html.TextAreaFor(m => m.Address1, new { @class = "form-control", @id = "txtAddress1", @placeholder = "Enter Your Address 1", @autocomplete = "off" })
                                     </div>
                                 </div>
 
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <label for="input-3">Address2</label>
+                                        <label for="input-3">Nomination</label>
                                         @Html.TextAreaFor(m => m.Address2, new { @class = "form-control", @id = "txtAddress2", @placeholder = "Enter Address 2", @autocomplete = "off" })
                                     </div>
                                 </div>
@@ -177,7 +177,7 @@
 
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <label for="input-3">Address 3</label>
+                                        <label for="input-3">Nominee Details</label>
                                         @Html.TextAreaFor(m => m.Address3, new { @class = "form-control", @id = "txtAddress3", @placeholder = "Enter Address 3", @autocomplete = "off" })
                                     </div>
                                 </div>
@@ -186,7 +186,7 @@
                                 <div class="col-sm-6">
 
                                     <div class="form-group">
-                                        <label for="input-1">State</label>
+                                        <label for="input-1">Name</label>
 
                                         <select id="ddlstate" class="form-control">
                                             <option value="0">--Select State--</option>
@@ -200,7 +200,7 @@
                                 <div class="col-sm-6">
 
                                     <div class="form-group">
-                                        <label for="input-1">City</label>
+                                        <label for="input-1">Documnt Type</label>
                                         <select id="ddlcity" class="form-control">
                                             <option value="0">--Select City--</option>
                                         </select>
@@ -213,7 +213,7 @@
 
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <label for="input-3">Pin</label>
+                                        <label for="input-3">Document Number</label>
                                         @Html.TextBoxFor(m => m.Pin, new { @class = "form-control", @id = "txtPin", @placeholder = "Enter Pin", @autocomplete = "off" })
                                     </div>
                                 </div>
@@ -221,44 +221,7 @@
 
 
 
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="input-3">beneficiary type</label>
-                                        @Html.DropDownListFor(x => x.beneficiary_type, new SelectListItem[]{
-                                          new SelectListItem() {Text = "--Select--", Value="0"},
-                                          new SelectListItem() {Text = "Distributor", Value="1"},
-                                          new SelectListItem() {Text = "Testator", Value="2"}}, new { @class = "form-control" , @id= "ddlbeneficiary_type" })
-
-                                        @Html.HiddenFor(m => m.beneficiary_type_id, new { id = "beneficiary_type_id" })
-                                        @Html.HiddenFor(m => m.beneficiary_type_txt, new { id = "beneficiary_type_txt" })
-                                    </div>
-                                </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                            </div>
+             </div>
 
 
 
@@ -281,7 +244,7 @@
                             </div>
                             <div class="form-group">
                                 <button type="submit" id="btnBeneficiaryformsubmit" formaction="InsertBeneficiaryData" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i>Submit</button>
-                                <button type="button" id="btnBeneficiarySUCESS" style="display:none;"></button>
+                                <button id="btnBeneficiarySUCESS" style="display:none;"></button>
                             </div>
                         }
                     </div>
@@ -356,7 +319,7 @@
 
         $("#statetext").val(text);
         $("#stateid").val(value);
- 
+
 
         $.ajax({
 
@@ -386,7 +349,7 @@
         $("#citytext").val(text);
         $("#cityid").val(value);
 
-      
+
     });
 
 </script>
@@ -395,18 +358,19 @@
 
 
 
-@if (ViewBag.Message == "RecordsInsert")
-{
-    <script>
+@*@if (ViewBag.Message == "RecordsInsert")
+    {
+        <script>
 
-        $(document).ready(function () {
-            $("#btnBeneficiarySUCESS").on("click", function () { });
+            $(document).ready(function () {
+                $("#btnBeneficiarySUCESS").on("click", function () { });
 
-            $("#btnBeneficiarySUCESS").click(); //trigger event after listening to it.
+                $("#btnBeneficiarySUCESS").click(); //trigger event after listening to it.
 
-        });
-    </script>
+            });
+        </script>
 
-}
+    }*@
 
-    
+
+

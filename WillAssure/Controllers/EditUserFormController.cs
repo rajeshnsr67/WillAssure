@@ -35,13 +35,14 @@ namespace WillAssure.Controllers
             con.Close();
             string data = "";
             string Role = "";
-            string Status = "";
+            string a = "";
             if (dt.Rows.Count > 0)
             {
-
+                
 
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
+                    int Status = Convert.ToInt32(dt.Rows[i]["active"]);
 
                     if (dt.Rows[i]["rId"].ToString() == "1")
                     {
@@ -64,15 +65,16 @@ namespace WillAssure.Controllers
                         Role = "Testator";
                     }
 
-
-                    if (dt.Rows[i]["active"].ToString() == "1")
+                    if(Status == 1)
                     {
-                        Status = "Active";
+                        a = "Active";
                     }
                     else
                     {
-                        Status = "InActive";
+                        a = "InActive";
                     }
+
+                  
 
 
                     data = data + "<tr class='nr'><td>" + dt.Rows[i]["uId"].ToString() + "</td>"
@@ -93,7 +95,7 @@ namespace WillAssure.Controllers
                                
                                 + "<td>" + dt.Rows[i]["Designation"].ToString() + "</td>"
                                 + "<td>" + Role + "</td>"
-                                + "<td>" + Status + "</td>"
+                                + "<td>" + a + "</td>"
                                
                                 + "<td><button type='button'   id='" + dt.Rows[i]["uId"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary'>Edit</button><button type='button'   id='" + dt.Rows[i]["uId"].ToString() + "' onClick='Delete(this.id)'   class='btn btn-danger'>Delete</button></td></tr>";
                                 
@@ -131,7 +133,8 @@ namespace WillAssure.Controllers
            
             cmd.Parameters.AddWithValue("@Designation", "");
             cmd.Parameters.AddWithValue("@Active", "");
-          
+            cmd.Parameters.AddWithValue("@compId", "");
+            cmd.Parameters.AddWithValue("@Linked_user", "");
             cmd.Parameters.AddWithValue("@rid", "");
             cmd.ExecuteNonQuery();
             con.Close();

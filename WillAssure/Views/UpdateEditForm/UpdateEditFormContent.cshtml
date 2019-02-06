@@ -31,13 +31,15 @@
                     <div class="card-body">
                         <div class="card-title text-primary">Add Users Registration</div>
                         <hr>
-                        <form action="@Url.Action("GetUserFormData", "UsersForm")">
+                      @using (Html.BeginForm())
+                      {
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="input-1">First Name</label>
 
                                         @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", @id = "txtfirstname", @placeholder = "Enter Your First Name", @autocomplete = "off" })
+                                        @Html.HiddenFor(m=>m.uid)
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
@@ -184,7 +186,7 @@
                                        new SelectListItem() {Text = "Admin", Value="1"},
                                        new SelectListItem() {Text = "Distributor", Value="2"},
                                        new SelectListItem() {Text = "Employee", Value="3"},
-                                       new SelectListItem() {Text = "Testator", Value="4"}} , new { @class="form-control" })
+                                       new SelectListItem() {Text = "Testator", Value="4"}}, new { @class = "form-control" })
                                     </div>
                                 </div>
 
@@ -197,7 +199,7 @@
                                         @Html.DropDownListFor(x => x.Active, new SelectListItem[]{
                                        new SelectListItem() {Text = "--Select--", Value="0"},
                                        new SelectListItem() {Text = "Active", Value="1"},
-                                       new SelectListItem() {Text = "Inactive", Value="2"}} , new { @class="form-control" })
+                                       new SelectListItem() {Text = "Inactive", Value="2"}}, new { @class = "form-control" })
                                     </div>
                                 </div>
 
@@ -230,9 +232,9 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <button type="submit" id="btnuserformsubmit" class="btn btn-success waves-effect waves-light btn-sm"><i class="icon-lock"></i> Register</button>
+                                <button type="submit" id="btnuserformUpdate" formaction="UpdatingUserform" class="btn btn-success waves-effect waves-light btn-sm"><i class="icon-lock"></i> Register</button>
                             </div>
-                        </form>
+                      }
                     </div>
                 </div>
             </div>

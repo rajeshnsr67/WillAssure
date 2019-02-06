@@ -19,7 +19,17 @@
 
               $("#btnDeleteTestatorData").click(function () {
                  swal("Deleted!", "Your Data has Been Deleted!,", "success");
-             });
+              });
+
+     
+                 $("#btnBeneficiarySUCESS").click(function () {
+                     swal("Submitted!", "Your Data has Been Submitted!,", "success");
+                 });
+
+
+     $("#btnLoginSUCCESS").click(function () {
+         swal("Submitted!", "Your Data has Been Submitted!,", "success");
+     });
 
      //end
 
@@ -29,6 +39,10 @@
                   swal("Failed!", "Please Enter Correct OTP!,", "error");
               });
 
+
+     $("#btnLoginFAILED").click(function () {
+         swal("Failed!", "Please Enter Valid Details!,", "error");
+     });
 
      //end
 

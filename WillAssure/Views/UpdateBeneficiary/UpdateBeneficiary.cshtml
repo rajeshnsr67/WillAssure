@@ -1,6 +1,6 @@
 ﻿@model WillAssure.Models.BeneficiaryModel
 @{
-    ViewBag.Title = "AddBeneficiaryPageContent";
+    ViewBag.Title = "UpdateBeneficiary";
 }
 
 
@@ -281,7 +281,7 @@
                             </div>
                             <div class="form-group">
                                 <button type="submit" id="btnBeneficiaryformsubmit" formaction="InsertBeneficiaryData" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i>Submit</button>
-                                <button type="button" id="btnBeneficiarySUCESS" style="display:none;"></button>
+                                <button id="btnBeneficiarySUCESS" style="display:none;"></button>
                             </div>
                         }
                     </div>
@@ -356,7 +356,7 @@
 
         $("#statetext").val(text);
         $("#stateid").val(value);
- 
+
 
         $.ajax({
 
@@ -386,7 +386,7 @@
         $("#citytext").val(text);
         $("#cityid").val(value);
 
-      
+
     });
 
 </script>
@@ -395,18 +395,18 @@
 
 
 
-@if (ViewBag.Message == "RecordsInsert")
-{
-    <script>
+@*@if (ViewBag.Message == "RecordsInsert")
+    {
+        <script>
 
-        $(document).ready(function () {
-            $("#btnBeneficiarySUCESS").on("click", function () { });
+            $(document).ready(function () {
+                $("#btnBeneficiarySUCESS").on("click", function () { });
 
-            $("#btnBeneficiarySUCESS").click(); //trigger event after listening to it.
+                $("#btnBeneficiarySUCESS").click(); //trigger event after listening to it.
 
-        });
-    </script>
+            });
+        </script>
 
-}
+    }*@
 
-    
+

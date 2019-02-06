@@ -58,6 +58,21 @@ namespace WillAssure.Controllers
             cmd.ExecuteNonQuery();
             con.Close();
 
+            
+
+            con.Open();
+            string query = "select TOP 1 * FROM  companyDetails ORDER BY compId DESC";
+            SqlDataAdapter da = new SqlDataAdapter(query, con);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            if (dt.Rows.Count > 0)
+            {
+                Session["compId"] = Convert.ToInt32(dt.Rows[0]["compId"]); 
+            }
+            con.Close();
+
+            
+
             Response.Write("<script type='text/javascript'>$(document).ready(function(){$('#alert-success').trigger('click');});</ script > ");
 
 

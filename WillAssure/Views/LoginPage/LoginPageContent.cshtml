@@ -1,0 +1,194 @@
+﻿@model WillAssure.Models.LoginModel
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<!-- Mirrored from codervent.com/rukada/light-admin/authentication-signin.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 28 Nov 2018 11:46:08 GMT -->
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Will Assure</title>
+
+
+
+    @*Master Style Links*@
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!--Sweet Alerts -->
+    <script src="~/assets/plugins/alerts-boxes/js/sweetalert.min.js"></script>
+    <script src="~/assets/plugins/alerts-boxes/js/sweet-alert-script.js"></script>
+    <!--favicon-->
+    <link rel="icon" href="~/assets/images/favicon.ico" type="image/x-icon">
+    <!-- simplebar CSS-->
+    <link href="~/assets/plugins/simplebar/css/simplebar.css" rel="stylesheet" />
+    <!-- Bootstrap core CSS-->
+    <link href="~/assets/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- animate CSS-->
+    <link href="~/assets/css/animate.css" rel="stylesheet" type="text/css" />
+    <!-- Icons CSS-->
+    <link href="~/assets/css/icons.css" rel="stylesheet" type="text/css" />
+    <!-- Sidebar CSS-->
+    <link href="~/assets/css/sidebar-menu.css" rel="stylesheet" />
+    <!-- Custom Style-->
+    <link href="~/assets/css/app-style.css" rel="stylesheet" />
+    <!--Data Tables -->
+    <link href="~/assets/plugins/bootstrap-datatable/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css">
+    <link href="~/assets/plugins/bootstrap-datatable/css/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css">
+    @*Master end*@
+
+
+</head>
+<body class="bg-dark">
+    <!-- Start wrapper-->
+    <div id="wrapper">
+        <div class="card card-authentication1 mx-auto my-5">
+            <div class="card-body">
+                <div class="card-content p-2">
+                    <div class="text-center">
+                        <img src="~/assets/images/logo-icon.png" alt="logo icon">
+                    </div>
+                    <div class="card-title text-uppercase text-center py-3">Sign In</div>
+                    @using (Html.BeginForm())
+                    {
+                        <div class="form-group">
+                            <label for="exampleInputUsername" class="">Username</label>
+                            <div class="position-relative has-icon-right">
+
+                                @Html.TextBoxFor(m => m.UserID, new { @id = "exampleInputUsername", @class = "form-control input-shadow", @placeholder = "Enter Username" })
+                                <div class="form-control-position">
+                                    <i class="icon-user"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword" class="">Password</label>
+                            <div class="position-relative has-icon-right">
+
+                                @Html.TextBoxFor(m => m.Password, new { @type = "password", @id = "exampleInputPassword", @class = "form-control input-shadow", @placeholder = "Enter Password" })
+                                <div class="form-control-position">
+                                    <i class="icon-lock"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-6">
+                                <div class="icheck-material-primary">
+                                    <input type="checkbox" id="user-checkbox" checked="" />
+                                    <label for="user-checkbox">Remember me</label>
+                                </div>
+                            </div>
+                            <div class="form-group col-6 text-right">
+                                <a href="authentication-reset-password.html">Reset Password</a>
+                            </div>
+                        </div>
+                        <button type="submit" formaction="@Url.Action("LoginPageData","LoginPage")" class="btn btn-primary shadow-primary btn-block waves-effect waves-light">Sign In</button>
+                        <button type="button" style="display:;" id="btnLoginSUCCESS"></button>
+                        <button type="button" style="display:;" id="btnLoginFAILED"></button>
+                  
+                    }
+                </div>
+
+                @*SUCCESS AND FAILED MESSAGE*@
+
+
+                @if (ViewBag.Message == "SUCCESS")
+                {
+                    <script>
+
+                        $(document).ready(function () {
+                            $("#btnLoginSUCCESS").on("click", function () { });
+
+                            $("#btnLoginSUCCESS").click(); //trigger event after listening to it.
+
+                        });
+                    </script>
+
+                }
+                @if (ViewBag.Message == "FAILED")
+                {
+                    <script>
+
+                        $(document).ready(function () {
+                            alert("test");
+                            $("#btnLoginFAILED").on("click", function () { });
+
+                            $("#btnLoginFAILED").click(); /
+
+                        });
+
+                    </script>
+
+                }
+
+                @*END*@
+
+            </div>
+            <div class="card-footer text-center py-3">
+                <p class="text-muted mb-0">Do not have an account? <a href="authentication-signup.html"> Sign Up here</a></p>
+            </div>
+        </div>
+
+        <!--Start Back To Top Button-->
+        <a href="javaScript:void();" class="back-to-top"><i class="fa fa-angle-double-up"></i> </a>
+        <!--End Back To Top Button-->
+    </div><!--wrapper-->
+    @*Master Scripts Links*@
+    <!-- Bootstrap core JavaScript-->
+    <script src="~/assets/js/jquery.min.js" /></script>
+    <script src="~/assets/js/popper.min.js"></script>
+    <script src="~/assets/js/bootstrap.min.js"></script>
+    <!-- simplebar js -->
+    <script src="~/assets/plugins/simplebar/js/simplebar.js"></script>
+    <!-- waves effect js -->
+    <script src="~/assets/js/waves.js"></script>
+    <!-- sidebar-menu js -->
+    <script src="~/assets/js/sidebar-menu.js"></script>
+    <!-- Custom scripts -->
+    <script src="~/assets/js/app-script.js"></script>
+    <!-- Chart js -->
+    <script src="~/assets/plugins/Chart.js/Chart.min.js"></script>
+    <!--Peity Chart -->
+    <script src="~/assets/plugins/peity/jquery.peity.min.js"></script>
+    <!-- Index js -->
+    <script src="~/assets/js/index3.js"></script>
+    <!--Data Tables js-->
+    <script src="~/assets/plugins/bootstrap-datatable/js/jquery.dataTables.min.js"></script>
+    <script src="~/assets/plugins/bootstrap-datatable/js/dataTables.bootstrap4.min.js"></script>
+    <script src="~/assets/plugins/bootstrap-datatable/js/dataTables.buttons.min.js"></script>
+    <script src="~/assets/plugins/bootstrap-datatable/js/buttons.bootstrap4.min.js"></script>
+    <script src="~/assets/plugins/bootstrap-datatable/js/jszip.min.js"></script>
+    <script src="~/assets/plugins/bootstrap-datatable/js/pdfmake.min.js"></script>
+    <script src="~/assets/plugins/bootstrap-datatable/js/vfs_fonts.js"></script>
+    <script src="~/assets/plugins/bootstrap-datatable/js/buttons.html5.min.js"></script>
+    <script src="~/assets/plugins/bootstrap-datatable/js/buttons.print.min.js"></script>
+    <script src="~/assets/plugins/bootstrap-datatable/js/buttons.colVis.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            //Default data table
+            $('#default-datatable').DataTable();
+
+
+            var table = $('#default-datatable').DataTable({
+                lengthChange: false,
+                buttons: ['copy', 'excel', 'pdf', 'print', 'colvis']
+            });
+
+            table.buttons().container()
+                .appendTo('#example_wrapper .col-md-6:eq(0)');
+
+        });
+
+    </script>
+    @*Master Scripts Link End*@
+
+
+
+   
+
+</body>
+<!-- Mirrored from codervent.com/rukada/light-admin/authentication-signin.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 28 Nov 2018 11:46:08 GMT -->
+</html>

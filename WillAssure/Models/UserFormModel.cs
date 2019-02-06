@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace WillAssure.Models
 {
@@ -27,9 +28,19 @@ namespace WillAssure.Models
         public int LinkedUser { get; set; }
         public string Designation { get; set; }
         public string Active { get; set; }
-        public string CompId { get; set; }
+        public int CompId { get; set; }
         public string data { get; set; }
         public int rid { get; set; }
         public string rtext { get; set; }
+        public int UserRole { get; set; }
+
+       
+
+
     }
+
+
+
+   
+
 }

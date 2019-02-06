@@ -19,6 +19,9 @@ namespace WillAssure.Controllers
         public ActionResult UsersFormIndex()
         {
 
+
+            int RoleId = Convert.ToInt32(Session["rId"]); 
+
             return View("~/Views/UsersForm/UsersFormPageContent.cshtml");
         }
 
@@ -42,15 +45,41 @@ namespace WillAssure.Controllers
             cmd.Parameters.AddWithValue("@Pin", UFM.Pin);
             cmd.Parameters.AddWithValue("@UserId", UFM.UserId);
             cmd.Parameters.AddWithValue("@UserPassword", UFM.UserPassword);
-           
-
             cmd.Parameters.AddWithValue("@Designation", UFM.Designation);
             cmd.Parameters.AddWithValue("@Active", UFM.Active);
             cmd.Parameters.AddWithValue("@rid", UFM.rid);
+            UFM.CompId = Convert.ToInt32(Session["compid"]);
+            cmd.Parameters.AddWithValue("@compId", UFM.CompId);
+            cmd.Parameters.AddWithValue("@Linked_user", UFM.rid);
+            cmd.ExecuteNonQuery();
+           
+
 
           
-            cmd.ExecuteNonQuery();
+
+            string query = "SELEct * from users where compId = '" + UFM.CompId + "'";
+            SqlDataAdapter da = new SqlDataAdapter(query, con);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+
+
+            if (dt.Rows.Count > 0)
+            {
+                if (Convert.ToInt32(dt.Rows[0]["rId"]) == 1)
+                {
+
+                    string update = "update users set Linked_user = 0 where  CompId = '" + UFM.CompId + "'";
+                    SqlCommand cmd2 = new SqlCommand(update, con);
+                    cmd2.ExecuteNonQuery();
+                    
+                }
+               
+
+            }
+
             con.Close();
+
+
 
             Response.Write("<script type='text / javascript'>$(document).ready(function() {$('#alert-success').trigger('click');  });</ script > ");
 
