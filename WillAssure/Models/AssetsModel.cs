@@ -7,6 +7,7 @@ namespace WillAssure.Models
 {
     public class AssetsModel
     {
+        public int amId { get; set; }
         public int aId { get; set; }
 
         public string assetsCode { get; set; }
@@ -35,16 +36,42 @@ namespace WillAssure.Models
 
         public string Remark { get; set; }
 
-        public int documentId { get; set; }
+        public string Nomination { get; set; }
 
-        public int tId { get; set; }
+        public string NomineeDetails { get; set; }
 
-        public string Identity_Proof { get; set; }
+        public string Name { get; set; }
 
-        public string Identity_Proof_Value { get; set; }
+        public string RegisteredAddress { get; set; }
 
-        public string Alt_Identity_Proof  { get; set; }
+        public string  PermanentAddress  { get; set; }
 
-        public string Alt_Identity_Proof_Value { get; set; }
+        public string Identity_proof { get; set; }
+
+        public string Identity_proof_value { get; set; }
+
+
+        public string Alt_Identity_proof { get; set; }
+
+        public string Alt_Identity_proof_value { get; set; }
+
+        public string Phone { get; set; }
+
+        public string Mobile { get; set; }
+
+        public string Amount { get; set; }
+
+
+        public string identifier { get; set; } 
+
+
+        public string assettypetext { get; set; }
+        public int assettypeid { get; set; }
+
+
+        public string assetCategorytext { get; set; }
+        public int assetCategoryid { get; set; }
+
+
     }
 }

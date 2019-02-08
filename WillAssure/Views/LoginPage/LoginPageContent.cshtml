@@ -58,7 +58,7 @@
                             <label for="exampleInputUsername" class="">Username</label>
                             <div class="position-relative has-icon-right">
 
-                                @Html.TextBoxFor(m => m.UserID, new { @id = "exampleInputUsername", @class = "form-control input-shadow", @placeholder = "Enter Username" })
+                                @Html.TextBoxFor(m => m.UserID, new { @id = "exampleInputUsername", @class = "form-control input-shadow", @placeholder = "Enter Username" , @autocomplete = "off" })
                                 <div class="form-control-position">
                                     <i class="icon-user"></i>
                                 </div>
@@ -68,7 +68,7 @@
                             <label for="exampleInputPassword" class="">Password</label>
                             <div class="position-relative has-icon-right">
 
-                                @Html.TextBoxFor(m => m.Password, new { @type = "password", @id = "exampleInputPassword", @class = "form-control input-shadow", @placeholder = "Enter Password" })
+                                @Html.TextBoxFor(m => m.Password, new { @type = "password", @id = "exampleInputPassword", @class = "form-control input-shadow", @placeholder = "Enter Password" , @autocomplete = "off" })
                                 <div class="form-control-position">
                                     <i class="icon-lock"></i>
                                 </div>

@@ -44,26 +44,7 @@ namespace WillAssure.Controllers
                 {
                     int Status = Convert.ToInt32(dt.Rows[i]["active"]);
 
-                    if (dt.Rows[i]["rId"].ToString() == "1")
-                    {
-                        Role = "SuperAdmin";
-                    }
-                    if (dt.Rows[i]["rId"].ToString() == "2")
-                    {
-                        Role = "Admin(Will Assure)";
-                    }
-                    if (dt.Rows[i]["rId"].ToString() == "3")
-                    {
-                        Role = "Distributor";
-                    }
-                    if (dt.Rows[i]["rId"].ToString() == "4")
-                    {
-                        Role = "Users";
-                    }
-                    if (dt.Rows[i]["rId"].ToString() == "5")
-                    {
-                        Role = "Testator";
-                    }
+                  
 
                     if(Status == 1)
                     {
@@ -94,7 +75,7 @@ namespace WillAssure.Controllers
                                 + "<td>" + dt.Rows[i]["userPwd"].ToString() + "</td>"
                                
                                 + "<td>" + dt.Rows[i]["Designation"].ToString() + "</td>"
-                                + "<td>" + Role + "</td>"
+                                + "<td>" + dt.Rows[i]["rId"].ToString() + "</td>"
                                 + "<td>" + a + "</td>"
                                
                                 + "<td><button type='button'   id='" + dt.Rows[i]["uId"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary'>Edit</button><button type='button'   id='" + dt.Rows[i]["uId"].ToString() + "' onClick='Delete(this.id)'   class='btn btn-danger'>Delete</button></td></tr>";

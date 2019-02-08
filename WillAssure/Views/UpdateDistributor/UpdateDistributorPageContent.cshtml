@@ -29,29 +29,29 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
-                        <div class="card-title text-primary">Add Distributor Registration</div>
-                        <hr>
-                        <form action="@Url.Action("UpdatingDistributorData", "UpdateDistributor")" id="DistributorForm" type="Post">
+
+                        @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "DistributorForm" }))
+                        {
                             <div class="row">
                                 <div class="col-sm-6">
 
                                     <div class="form-group">
                                         <label for="input-1">Company Name</label>
-                                        @Html.HiddenFor(m => m.compId, new { @class = "form-control", @id = "txtcompid" })
-                                        @Html.TextBoxFor(m => m.companyName, new { @class = "form-control", @id = "txtComanyName", @placeholder = "Enter Company Name", @autocomplete = "off" })
+
+                                        @Html.TextBoxFor(m => m.companyName, new { @class = "form-control validate[required,alert['field is missing']] text-input", @id = "txtComanyName", @placeholder = "Enter Company Name", @autocomplete = "off" })
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="input-1">Owner Name</label>
 
-                                        @Html.TextBoxFor(m => m.ownerName, new { @class = "form-control", @id = "txtownerName", @placeholder = "Enter Owner Name", @autocomplete = "off" })
+                                        @Html.TextBoxFor(m => m.ownerName, new { @class = "form-control validate[required] text-input", @id = "txtownerName", @placeholder = "Enter Owner Name", @autocomplete = "off" })
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="input-1">Owner Mobile No</label>
-                                        @Html.TextBoxFor(m => m.ownerMobileNo, new { @class = "form-control", @id = "txtownerMobileNo", @placeholder = "Enter Owner Mobile No", @autocomplete = "off" })
+                                        @Html.TextBoxFor(m => m.ownerMobileNo, new { @class = "form-control validate[required] text-input", @id = "txtownerMobileNo", @placeholder = "Enter Owner Mobile No", @autocomplete = "off" })
                                     </div>
                                 </div>
 
@@ -59,7 +59,7 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="input-5">Address 1</label>
-                                        @Html.TextAreaFor(m => m.Address1, new { @type = "date", @class = "form-control", @id = "txtAddress1", @placeholder = "Enter Address 1", @autocomplete = "off" })
+                                        @Html.TextAreaFor(m => m.Address1, new { @type = "date", @class = "form-control validate[required] text-input", @id = "txtAddress1", @placeholder = "Enter Address 1", @autocomplete = "off" })
                                     </div>
                                 </div>
 
@@ -67,7 +67,7 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="input-3">Address 2</label>
-                                        @Html.TextAreaFor(m => m.Address2, new { @class = "form-control", @id = "txtAddress2", @placeholder = "Enter Address2", @autocomplete = "off" })
+                                        @Html.TextAreaFor(m => m.Address2, new { @class = "form-control validate[required] text-input", @id = "txtAddress2", @placeholder = "Enter Address2", @autocomplete = "off" })
                                     </div>
                                 </div>
 
@@ -75,7 +75,7 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="input-3">City</label>
-                                        @Html.TextBoxFor(m => m.City, new { @class = "form-control", @id = "txtCity", @placeholder = "Enter Your City", @autocomplete = "off" })
+                                        @Html.TextBoxFor(m => m.City, new { @class = "form-control validate[required] text-input", @id = "txtCity", @placeholder = "Enter Your City", @autocomplete = "off" })
                                     </div>
                                 </div>
 
@@ -83,7 +83,7 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="input-3">State</label>
-                                        @Html.TextBoxFor(m => m.State, new { @class = "form-control", @id = "txtState", @placeholder = "Enter State", @autocomplete = "off" })
+                                        @Html.TextBoxFor(m => m.State, new { @class = "form-control validate[required] text-input", @id = "txtState", @placeholder = "Enter State", @autocomplete = "off" })
                                     </div>
                                 </div>
 
@@ -92,7 +92,7 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="input-3">Pin</label>
-                                        @Html.TextBoxFor(m => m.Pin, new { @class = "form-control", @id = "txtPin", @placeholder = "Enter Pin", @autocomplete = "off" })
+                                        @Html.TextBoxFor(m => m.Pin, new { @class = "form-control validate[required] text-input", @id = "txtPin", @placeholder = "Enter Pin", @autocomplete = "off" })
                                     </div>
                                 </div>
 
@@ -102,7 +102,7 @@
 
                                     <div class="form-group">
                                         <label for="input-3">GstNO</label>
-                                        @Html.TextBoxFor(m => m.GST_NO, new { @class = "form-control", @id = "txtGstNO", @placeholder = "Enter GstNO", @autocomplete = "off" })
+                                        @Html.TextBoxFor(m => m.GST_NO, new { @class = "form-control validate[required] text-input", @id = "txtGstNO", @placeholder = "Enter GstNO", @autocomplete = "off" })
                                     </div>
                                 </div>
 
@@ -111,7 +111,13 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="input-3">Identity Proof</label>
-                                        @Html.TextBoxFor(m => m.Identity_Proof, new { @class = "form-control", @id = "txtIdentity_Proof", @placeholder = "Enter Identity Proof", @autocomplete = "off" })
+                                        @Html.DropDownListFor(x => x.Identity_Proof, new SelectListItem[]{
+                                   new SelectListItem() {Text = "--Select Identity Proof--", Value="0"},
+                                   new SelectListItem() {Text = "Aadhaar Card", Value="1"},
+                                   new SelectListItem() {Text = "Passport", Value="2"},
+                                   new SelectListItem() {Text = "Driving Licences", Value="3"},
+                                   new SelectListItem() {Text = "Pan Card", Value="4"}} , new { @class="form-control" })
+
                                     </div>
                                 </div>
 
@@ -119,8 +125,8 @@
 
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <label for="input-3">Identity Proof Value</label>
-                                        @Html.TextBoxFor(m => m.Identity_Proof_Value, new { @class = "form-control", @id = "txtIdentityProofValue", @placeholder = "Enter Identity Proof Value", @autocomplete = "off" })
+                                        <label for="input-3">Identity Proof Number</label>
+                                        @Html.TextBoxFor(m => m.Identity_Proof_Value, new { @class = "form-control validate[required] text-input", @id = "txtIdentityProofValue", @placeholder = "Enter Identity Proof Value", @autocomplete = "off" })
                                     </div>
                                 </div>
 
@@ -128,14 +134,14 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="input-3">Alternate Identity Proof</label>
-                                        @Html.TextBoxFor(m => m.Alt_Identity_Proof, new { @class = "form-control", @id = "txtAlt_Identity_Proof", @placeholder = "Enter Alt Identity Proof", @autocomplete = "off" })
+                                        @Html.TextBoxFor(m => m.Alt_Identity_Proof, new { @class = "form-control validate[required] text-input", @id = "txtAlt_Identity_Proof", @placeholder = "Enter Alt Identity Proof", @autocomplete = "off" })
                                     </div>
                                 </div>
 
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <label for="input-3">Alternate Identity Proof Value</label>
-                                        @Html.TextBoxFor(m => m.Alt_Identity_Proof_Value, new { @class = "form-control", @id = "txtAlt_Identity_Proof_Value", @placeholder = "Enter Your Alt Identity Proof Value", @autocomplete = "off" })
+                                        <label for="input-3">Alternate Identity Proof Number</label>
+                                        @Html.TextBoxFor(m => m.Alt_Identity_Proof_Value, new { @class = "form-control validate[required] text-input", @id = "txtAlt_Identity_Proof_Value", @placeholder = "Enter Your Alt Identity Proof Value", @autocomplete = "off" })
                                     </div>
                                 </div>
 
@@ -150,7 +156,7 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="input-3">Contact Mobile No</label>
-                                        @Html.TextBoxFor(m => m.contactMobileNo, new { @class = "form-control", @id = "txtcontactMobileNo", @placeholder = "Enter Your Mobile No", @autocomplete = "off" })
+                                        @Html.TextBoxFor(m => m.contactMobileNo, new { @class = "form-control validate[required] text-input", @id = "txtcontactMobileNo", @placeholder = "Enter Your Mobile No", @autocomplete = "off" })
                                     </div>
                                 </div>
 
@@ -158,7 +164,7 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="input-3">Contact Mail Id</label>
-                                        @Html.TextBoxFor(m => m.contactMailId, new { @class = "form-control", @id = "txtcontactMailId", @placeholder = "Enter contact Mail Id ", @autocomplete = "off" })
+                                        @Html.TextBoxFor(m => m.contactMailId, new { @class = "form-control validate[required] text-input", @id = "txtcontactMailId", @placeholder = "Enter contact Mail Id ", @autocomplete = "off" })
                                     </div>
                                 </div>
 
@@ -167,14 +173,14 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="input-3">Bank Name</label>
-                                        @Html.TextBoxFor(m => m.bankName, new { @class = "form-control", @id = "txtbankName", @placeholder = "Enter Your bank Name", @autocomplete = "off" })
+                                        @Html.TextBoxFor(m => m.bankName, new { @class = "form-control validate[required] text-input", @id = "txtbankName", @placeholder = "Enter Your bank Name", @autocomplete = "off" })
                                     </div>
                                 </div>
 
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="input-3">Branch</label>
-                                        @Html.TextBoxFor(m => m.Branch, new { @class = "form-control", @id = "txtBranch", @placeholder = "Enter Branch", @autocomplete = "off" })
+                                        @Html.TextBoxFor(m => m.Branch, new { @class = "form-control validate[required] text-input", @id = "txtBranch", @placeholder = "Enter Branch", @autocomplete = "off" })
                                     </div>
                                 </div>
 
@@ -182,7 +188,7 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="input-3">Account Number</label>
-                                        @Html.TextBoxFor(m => m.accountNumber, new { @class = "form-control", @id = "txtaccountNumber", @placeholder = "Enter accountNumber", @autocomplete = "off" })
+                                        @Html.TextBoxFor(m => m.accountNumber, new { @class = "form-control validate[required] text-input", @id = "txtaccountNumber", @placeholder = "Enter accountNumber", @autocomplete = "off" })
                                     </div>
                                 </div>
 
@@ -190,7 +196,7 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="input-3">IFSC Code</label>
-                                        @Html.TextBoxFor(m => m.IFSC_Code, new { @class = "form-control", @id = "txtIFSC_Code", @placeholder = "Enter IFSC Code", @autocomplete = "off" })
+                                        @Html.TextBoxFor(m => m.IFSC_Code, new { @class = "form-control validate[required] text-input", @id = "txtIFSC_Code", @placeholder = "Enter IFSC Code", @autocomplete = "off" })
                                     </div>
                                 </div>
 
@@ -198,7 +204,7 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="input-3">Account Name</label>
-                                        @Html.TextBoxFor(m => m.accountName, new { @class = "form-control", @id = "txtaccountName", @placeholder = "Enter Your accountName", @autocomplete = "off" })
+                                        @Html.TextBoxFor(m => m.accountName, new { @class = "form-control validate[required] text-input", @id = "txtaccountName", @placeholder = "Enter Your accountName", @autocomplete = "off" })
                                     </div>
                                 </div>
 
@@ -207,7 +213,7 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="input-3">Referred By</label>
-                                        @Html.TextBoxFor(m => m.Referred_By, new { @class = "form-control", @id = "txtReferred_By", @placeholder = "Enter Referred By", @autocomplete = "off" })
+                                        @Html.TextBoxFor(m => m.Referred_By, new { @class = "form-control validate[required] text-input", @id = "txtReferred_By", @placeholder = "Enter Referred By", @autocomplete = "off" })
                                     </div>
                                 </div>
 
@@ -215,7 +221,7 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="input-3">Lead Generated By</label>
-                                        @Html.TextBoxFor(m => m.leadgeneratedBy, new { @class = "form-control", @id = "txtleadgeneratedBy", @placeholder = "Enter lead generated By", @autocomplete = "off" })
+                                        @Html.TextBoxFor(m => m.leadgeneratedBy, new { @class = "form-control validate[required] text-input", @id = "txtleadgeneratedBy", @placeholder = "Enter lead generated By", @autocomplete = "off" })
                                     </div>
                                 </div>
 
@@ -223,7 +229,7 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="input-3">Lead Converted By</label>
-                                        @Html.TextBoxFor(m => m.leadconvertedBy, new { @class = "form-control", @id = "txtCompId", @placeholder = "Enter lead converted By", @autocomplete = "off" })
+                                        @Html.TextBoxFor(m => m.leadconvertedBy, new { @class = "form-control validate[required] text-input", @id = "txtCompId", @placeholder = "Enter lead converted By", @autocomplete = "off" })
                                     </div>
                                 </div>
 
@@ -231,7 +237,7 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="input-3">Relationship Manager</label>
-                                        @Html.TextBoxFor(m => m.relationshipManager, new { @class = "form-control", @id = "txtrelationshipManager", @placeholder = "Enter relationship Manager", @autocomplete = "off" })
+                                        @Html.TextBoxFor(m => m.relationshipManager, new { @class = "form-control validate[required] text-input", @id = "txtrelationshipManager", @placeholder = "Enter relationship Manager", @autocomplete = "off" })
                                     </div>
                                 </div>
 
@@ -239,7 +245,7 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="input-3">Lead Status</label>
-                                        @Html.TextBoxFor(m => m.leadStatus, new { @class = "form-control", @id = "txtleadStatus", @placeholder = "Enter lead Status", @autocomplete = "off" })
+                                        @Html.TextBoxFor(m => m.leadStatus, new { @class = "form-control validate[required] text-input", @id = "txtleadStatus", @placeholder = "Enter lead Status", @autocomplete = "off" })
                                     </div>
                                 </div>
 
@@ -248,7 +254,7 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="input-3">Lead Remark</label>
-                                        @Html.TextBoxFor(m => m.leadRemark, new { @class = "form-control", @id = "txtleadRemark", @placeholder = "Enter lead Remark", @autocomplete = "off" })
+                                        @Html.TextBoxFor(m => m.leadRemark, new { @class = "form-control validate[required] text-input", @id = "txtleadRemark", @placeholder = "Enter lead Remark", @autocomplete = "off" })
                                     </div>
                                 </div>
 
@@ -275,10 +281,10 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <button type="submit" id="btnDistributorformsubmit" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i> Update</button>
-                                <button type="button" id="alert-success" style="display:none" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i> Register</button>
+                                <button type="submit" id="btnDistributorformsubmit" formaction="UpdatingDistributorData" class="btn btn-success shadow-success px-5"><i class="icon-lock"></i>Update Company</button>
+
                             </div>
-                        </form>
+                        }
                     </div>
                 </div>
             </div>
@@ -330,3 +336,9 @@
 </script>
 
 
+<script>
+    $(document).ready(function () {
+      
+        $("#DistributorForm").validationEngine();
+    });
+</script>

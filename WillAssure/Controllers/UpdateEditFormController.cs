@@ -109,7 +109,7 @@ namespace WillAssure.Controllers
             SqlCommand cmd = new SqlCommand("SP_Users", con);
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@condition", "update");
-            cmd.Parameters.AddWithValue("@uId", UFM.uid);
+            cmd.Parameters.AddWithValue("@uid",UFM.uid);
             cmd.Parameters.AddWithValue("@FirstName", UFM.FirstName);
             cmd.Parameters.AddWithValue("@LastName", UFM.LastName);
             cmd.Parameters.AddWithValue("@MiddleName", UFM.MiddleName);
@@ -124,11 +124,12 @@ namespace WillAssure.Controllers
             cmd.Parameters.AddWithValue("@Pin", UFM.Pin);
             cmd.Parameters.AddWithValue("@UserId", UFM.UserId);
             cmd.Parameters.AddWithValue("@UserPassword", UFM.UserPassword);
-            
             cmd.Parameters.AddWithValue("@Designation", UFM.Designation);
             cmd.Parameters.AddWithValue("@Active", UFM.Active);
-           
             cmd.Parameters.AddWithValue("@rid", UFM.rid);
+           
+            cmd.Parameters.AddWithValue("@compId", UFM.CompId);
+            cmd.Parameters.AddWithValue("@Linked_user", UFM.rid);
             cmd.ExecuteNonQuery();
             con.Close();
 
@@ -137,6 +138,46 @@ namespace WillAssure.Controllers
 
             return View("~/Views/UpdateEditForm/UpdateEditFormContent.cshtml");
         }
+
+
+
+
+        public String BindRoleDDL()
+        {
+
+            con.Open();
+            string query = "select * from Roles";
+            SqlDataAdapter da = new SqlDataAdapter(query, con);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            con.Close();
+            string data = "";
+
+            if (dt.Rows.Count > 0)
+            {
+
+
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+
+
+
+
+                    data = data + "<option value=" + dt.Rows[i]["rid"].ToString() + " >" + dt.Rows[i]["Role"].ToString() + "</option>";
+
+
+
+                }
+
+
+
+
+            }
+
+            return data;
+
+        }
+
 
 
 

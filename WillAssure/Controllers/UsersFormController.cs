@@ -88,42 +88,7 @@ namespace WillAssure.Controllers
 
 
 
-        public string BindDesignationDDL()
-        {
- 
-            con.Open();
-            string query = "select * from Roles";
-            SqlDataAdapter da = new SqlDataAdapter(query,con);
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-            con.Close();
-            string data = "";
-           
-            if (dt.Rows.Count > 0)
-            {
-
-
-                for (int i = 0; i < dt.Rows.Count; i++)
-                {
-
-                   
-                  
-
-                    data = data + "<option value="+ dt.Rows[i]["rid"].ToString() + " >" + dt.Rows[i]["Role"].ToString() + "</option>";
-
-
-                    
-                }
-
-
-
-                
-            }
-        
-            return data;
-    
-
-        }
+     
 
 
         public String BindStateDDL()
@@ -205,36 +170,75 @@ namespace WillAssure.Controllers
         public String BindRoleDDL()
         {
 
-            con.Open();
-            string query = "select * from Roles";
-            SqlDataAdapter da = new SqlDataAdapter(query, con);
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-            con.Close();
-            string data = "";
-
-            if (dt.Rows.Count > 0)
+            int roles = 0;
+            roles = Convert.ToInt32(Session["rId"]);
+            if (roles != 1)
             {
 
+                con.Open();
+                string query = "select * from Roles";
+                SqlDataAdapter da = new SqlDataAdapter(query, con);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                con.Close();
+                string data = "";
 
-                for (int i = 0; i < dt.Rows.Count; i++)
+                if (dt.Rows.Count > 0)
                 {
 
 
+                    for (int i = 0; i < dt.Rows.Count; i++)
+                    {
 
 
-                    data = data + "<option value=" + dt.Rows[i]["rid"].ToString() + " >" + dt.Rows[i]["Role"].ToString() + "</option>";
+
+
+                        data = data + "<option value=" + dt.Rows[i]["rid"].ToString() + " >" + dt.Rows[i]["Role"].ToString() + "</option>";
+
+
+
+                    }
+
 
 
 
                 }
 
-
-
+                return data;
 
             }
+            else
+            {
+                con.Open();
+                string query = "select * from subroles";
+                SqlDataAdapter da = new SqlDataAdapter(query, con);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                con.Close();
+                string data = "";
 
-            return data;
+                if (dt.Rows.Count > 0)
+                {
+
+
+                    for (int i = 0; i < dt.Rows.Count; i++)
+                    {
+
+
+
+
+                        data = data + "<option value=" + dt.Rows[i]["Subrid"].ToString() + " >" + dt.Rows[i]["SubRolesName"].ToString() + "</option>";
+
+
+
+                    }
+
+
+
+
+                }
+                return data;
+            }
 
         }
 

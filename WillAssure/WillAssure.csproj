@@ -149,6 +149,7 @@
     <Compile Include="Controllers\UpdateBeneficiaryController.cs" />
     <Compile Include="Controllers\UpdateDistributorController.cs" />
     <Compile Include="Controllers\UpdateEditFormController.cs" />
+    <Compile Include="Controllers\UpdateRolesController.cs" />
     <Compile Include="Controllers\UpdateTestatorsController.cs" />
     <Compile Include="Controllers\UsersFormController.cs" />
     <Compile Include="CrystalReports\WillDocument.cs">
@@ -930,6 +931,12 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="css_Validation\customMessages.css" />
+    <Content Include="css_Validation\releasenotes.plugin.css" />
+    <Content Include="css_Validation\screenshot.png" />
+    <Content Include="css_Validation\style.css" />
+    <Content Include="css_Validation\template.css" />
+    <Content Include="css_Validation\validationEngine.jquery.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -971,6 +978,8 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Script_Validation\jquery.validationEngine-en.js" />
+    <Content Include="Script_Validation\jquery.validationEngine.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -1003,6 +1012,7 @@
     <Content Include="Views\AddAssets\AddAssetsPageContent.cshtml" />
     <Content Include="Views\EditAssets\EditAssetsPageContent.cshtml" />
     <Content Include="Views\LoginPage\LoginPageContent.cshtml" />
+    <Content Include="Views\UpdateRoles\UpdateRolesPageContent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

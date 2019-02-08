@@ -1,6 +1,6 @@
 ﻿@model WillAssure.Models.RoleFormModel
 @{
-    ViewBag.Title = "AddRoleContentPage";
+    ViewBag.Title = "UpdateRolesPageContent";
 }
 
 
@@ -29,18 +29,17 @@
                 <div class="card">
                     <div class="card-body">
 
-
-
                         @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "RoleForm" }))
                         {
-                            
                             <div class="row">
                                 <div class="col-sm-6">
 
                                     <div class="form-group">
                                         <label for="input-1">Role Name</label>
-
-                                        @Html.TextBoxFor(m => m.Role, new { @class = "form-control validate[required] text-input", @id = "txtRole", @placeholder = "Enter Role", @autocomplete = "off", alert = "LabourCost is requried" })
+                                        @{ string v = " data-errormessage-value-missing  = 'Email is required!' "; }
+                                        @Html.HiddenFor(m => m.RoleID)
+                                        @Html.TextBoxFor(m => m.Role, new { @class = "form-control validate[required] text-input", @id = "txtRole", @placeholder = "Enter Role", @autocomplete = "off" , @v = v  })
+                               
                                     </div>
                                 </div>
 
@@ -48,6 +47,18 @@
 
 
                             </div>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
                             <div class="form-group py-2">
@@ -58,9 +69,8 @@
                             </div>
                             <div class="form-group">
 
-                                <button type="submit" id="btnRoleformsubmit" formaction="InsertRoleFormData" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i> Add Roles</button>
+                                <button type="submit" id="btnRoleformUpdate" formaction="UpdatingRoles" class="btn btn-success shadow-success px-5"><i class="icon-lock"></i>Update Roles</button>
                             </div>
-                            
                         }
                     </div>
                 </div>
@@ -79,23 +89,8 @@
 <!--Start Back To Top Button-->
 <a href="javaScript:void();" class="back-to-top"><i class="fa fa-angle-double-up"></i> </a>
 <!--End Back To Top Button-->
-
-
 <script>
-    
-
-
-
-
     $(document).ready(function () {
         $("#RoleForm").validationEngine();
     });
 </script>
-
-
-
-
-
-
-
-

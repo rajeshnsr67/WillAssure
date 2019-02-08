@@ -34,6 +34,18 @@ namespace WillAssure.Controllers
             {
                 Session["rId"] = Convert.ToInt32(dt.Rows[0]["rId"]);
                 Session["uid"] = Convert.ToInt32(dt.Rows[0]["uid"]);
+              
+                Session["ComparerrId"] = Convert.ToInt32(dt.Rows[0]["rId"]);
+                con.Open();
+               string query2 = "select * from roles where rId = "+ Session["rId"] + " ";
+               SqlDataAdapter da2 = new SqlDataAdapter(query2,con);
+               DataTable dt2 = new DataTable();
+                da2.Fill(dt2);
+                if (dt2.Rows.Count > 0)
+                {
+                    Session["Role"] = dt2.Rows[0]["Role"].ToString();
+                }
+                con.Close();
 
                 ViewBag.Message = "SUCCESS";
                 return View("~/Views/Home/Index.cshtml");
@@ -58,6 +70,7 @@ namespace WillAssure.Controllers
             Session["rId"] = "";
             Session["uid"] = "";
             Session["compid"] = "";
+            Session["ComparerrId"] = "";
             return View("~/Views/LoginPage/LoginPageContent.cshtml");
         }
 

@@ -25,16 +25,32 @@ namespace WillAssure.Controllers
 
         public ActionResult InsertRoleFormData(RoleFormModel RFM)
         {
+            int roles = 0;
+            roles = Convert.ToInt32(Session["rId"]); 
+            if (roles != 1)
+            {
+                //main Roles
+                con.Open();
+                SqlCommand cmd = new SqlCommand("SP_Roles", con);
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@condition", "insert");
+                cmd.Parameters.AddWithValue("@role ", RFM.Role);
+                cmd.ExecuteNonQuery();
+                con.Close();
 
-            con.Open();
-            SqlCommand cmd = new SqlCommand("SP_Roles", con);
-            cmd.CommandType = System.Data.CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@condition", "insert");
-            cmd.Parameters.AddWithValue("@role ", RFM.Role);
-            cmd.ExecuteNonQuery();
-            con.Close();
+                Response.Write("<script type='text/javascript'>$(document).ready(function(){$('#alert-success').trigger('click');});</ script > ");
+            }
+            else
+            {
+                //Sub Roles
+                con.Open();
+                string query = "insert into subroles (SubRolesName,Rid) values ('" + RFM.Role + "' , '" + roles + "')";
+                SqlCommand cmd = new SqlCommand(query,con);
+                cmd.ExecuteNonQuery();
+                con.Close();
 
-            Response.Write("<script type='text/javascript'>$(document).ready(function(){$('#alert-success').trigger('click');});</ script > ");
+            }
+
 
             return View("~/Views/RoleAdd/AddRoleContentPage.cshtml");
         }

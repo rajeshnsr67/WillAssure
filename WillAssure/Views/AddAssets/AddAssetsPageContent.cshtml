@@ -1,4 +1,4 @@
-﻿@model WillAssure.Models.BeneficiaryModel
+﻿@model WillAssure.Models.AssetsModel
 @{
     ViewBag.Title = "AddAssetsPageContent";
 }
@@ -32,167 +32,20 @@
 
 
 
-                        @using (Html.BeginForm())
+                        @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "AssetsForm" }))
+
                         {
                             <div class="row">
                                 <div class="col-sm-6">
 
                                     <div class="form-group">
-                                        <label for="input-1">Assets Type</label>
+                                        <label for="input-1">Asset Type</label>
 
-                                        @Html.TextBoxFor(m => m.First_Name, new { @class = "form-control", @id = "txtFirst_Name", @placeholder = "Enter First Name", @autocomplete = "off" })
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="input-1">Assets Name</label>
-
-                                        @Html.TextBoxFor(m => m.Last_Name, new { @class = "form-control", @id = "txtLast_Name", @placeholder = "Enter Last Name", @autocomplete = "off" })
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="input-1">Code</label>
-                                        @Html.TextBoxFor(m => m.Middle_Name, new { @class = "form-control", @id = "txtMiddle_Name", @placeholder = "Enter Middle Name", @autocomplete = "off" })
-                                    </div>
-                                </div>
-
-
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="input-5">Due Date</label>
-                                        @Html.TextBoxFor(m => m.DOB, new { @type = "date", @class = "form-control", @id = "txtDOB", @placeholder = "Enter DOB", @autocomplete = "off" })
-                                    </div>
-                                </div>
-
-
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="input-3">Current Status</label>
-                                        @Html.TextBoxFor(m => m.Mobile, new { @class = "form-control", @id = "txtMobile", @placeholder = "Enter Mobile", @autocomplete = "off" })
-                                    </div>
-                                </div>
-
-
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="input-3">IssuedBy</label>
-                                        @Html.TextBoxFor(m => m.Relationship, new { @class = "form-control", @id = "txtRelationship", @placeholder = "Enter Relationship", @autocomplete = "off" })
-                                    </div>
-                                </div>
-
-
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="input-3">Location</label>
-                                        @Html.DropDownListFor(x => x.Marital_Status, new SelectListItem[]{
-                                        new SelectListItem() {Text = "--Select--", Value="0"},
-                                        new SelectListItem() {Text = "Married", Value="1"},
-                                        new SelectListItem() {Text = "UnMarried", Value="2"}} , new { @class="form-control" , @id = "ddlMarital_Status" })
-                                        @Html.HiddenFor(m => m.Marital_Status_TXT, new { @id = "Marital_Status_TXT" })
-                                        @Html.HiddenFor(m => m.Marital_Status_ID, new { @id = "Marital_Status_ID" })
-                                    </div>
-                                </div>
-
-
-
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="input-3">Identifier</label>
-                                        @Html.DropDownListFor(x => x.Religion, new SelectListItem[]{
-                                 new SelectListItem() {Text = "--Select--", Value="0"},
-                                 new SelectListItem() {Text = "Buddhism", Value="1"},
-                                 new SelectListItem() {Text = "Christians", Value="2"},
-                                 new SelectListItem() {Text = "Hinduism", Value="3"},
-                                 new SelectListItem() {Text = "Islam", Value="4"},
-                                 new SelectListItem() {Text = "Jainism", Value="5"},
-                                 new SelectListItem() {Text = "Sikhism", Value="6"},
-                                 new SelectListItem() {Text = "Zoroastrian", Value="7"},
-                                 new SelectListItem() {Text = "Guru Nanak Dev", Value="8"},
-                                 new SelectListItem() {Text = "Lord Mahavira", Value="9"},
-                                 new SelectListItem() {Text = "Adi Shankaracharya", Value="10"}}, new { @class = "form-control" , @id = "ddlReligion" })
-                                        @Html.HiddenFor(m => m.Religion_txt, new { @id = "Religion_txt" })
-                                        @Html.HiddenFor(m => m.Religion_id, new { @id = "Religion_id" })
-                                    </div>
-                                </div>
-
-
-
-                                <div class="col-sm-6">
-
-                                    <div class="form-group">
-                                        <label for="input-3">PropertyDesc</label>
-                                        @Html.DropDownListFor(x => x.Identity_proof, new SelectListItem[]{
-                               new SelectListItem() {Text = "--Select Identity Proof--", Value="0"},
-                               new SelectListItem() {Text = "Aadhaar Card", Value="1"},
-                               new SelectListItem() {Text = "Passport", Value="2"},
-                               new SelectListItem() {Text = "Driving Licences", Value="3"},
-                               new SelectListItem() {Text = "Pan Card", Value="4"}} , new { @class="form-control" , @id= "DDLIdentity_proof" })
-                                        @Html.HiddenFor(m => m.Identity_proof_txt, new { @id = "Identity_proof_txt" })
-                                        @Html.HiddenFor(m => m.Identity_proof_id, new { @id = "Identity_proof_id" })
-                                    </div>
-                                </div>
-
-
-
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="input-3">QTY</label>
-                                        @Html.TextBoxFor(m => m.Identity_proof_value, new { @class = "form-control", @id = "txtIdentity_proof_value", @placeholder = "Enter Identity proof value", @autocomplete = "off" })
-
-                                    </div>
-                                </div>
-
-
-
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="input-3">Weight</label>
-                                        @Html.TextBoxFor(m => m.Alt_Identity_proof, new { @class = "form-control", @id = "txtAlt_Identity_proof", @placeholder = "Enter Alt Identity proof", @autocomplete = "off" })
-                                    </div>
-                                </div>
-
-
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="input-3">OwnerShip</label>
-                                        @Html.TextBoxFor(m => m.Alt_Identity_proof_value, new { @class = "form-control", @id = "txtAlt_Identity_proof_value", @placeholder = "Enter Alt Identity proof value", @autocomplete = "off" })
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="input-3">Remark</label>
-                                        @Html.TextAreaFor(m => m.Address1, new { @class = "form-control", @id = "txtAddress1", @placeholder = "Enter Your Address 1", @autocomplete = "off" })
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="input-3">Nomination</label>
-                                        @Html.TextAreaFor(m => m.Address2, new { @class = "form-control", @id = "txtAddress2", @placeholder = "Enter Address 2", @autocomplete = "off" })
-                                    </div>
-                                </div>
-
-
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="input-3">Nominee Details</label>
-                                        @Html.TextAreaFor(m => m.Address3, new { @class = "form-control", @id = "txtAddress3", @placeholder = "Enter Address 3", @autocomplete = "off" })
-                                    </div>
-                                </div>
-
-
-                                <div class="col-sm-6">
-
-                                    <div class="form-group">
-                                        <label for="input-1">Name</label>
-
-                                        <select id="ddlstate" class="form-control">
-                                            <option value="0">--Select State--</option>
+                                        <select id="ddlAssetType" class="form-control">
+                                            <option value="0">--Select--</option>
                                         </select>
-                                        @Html.HiddenFor(m => m.State_id, new { id = "stateid" })
-                                        @Html.HiddenFor(m => m.State_txt, new { id = "statetext" })
+                                        @Html.HiddenFor(m => m.assettypeid, new { id = "assettypeid" })
+                                        @Html.HiddenFor(m => m.assettypetext, new { id = "assettypetext" })
                                     </div>
                                 </div>
 
@@ -200,31 +53,32 @@
                                 <div class="col-sm-6">
 
                                     <div class="form-group">
-                                        <label for="input-1">Documnt Type</label>
-                                        <select id="ddlcity" class="form-control">
-                                            <option value="0">--Select City--</option>
+                                        <label for="input-1">Asset Category</label>
+
+                                        <select id="ddlAssetCategory" class="form-control">
+                                            <option value="0">--Select--</option>
                                         </select>
-                                        @Html.HiddenFor(m => m.City_id, new { id = "cityid" })
-                                        @Html.HiddenFor(m => m.City_txt, new { id = "citytext" })
-
-                                    </div>
-
-                                </div>
-
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="input-3">Document Number</label>
-                                        @Html.TextBoxFor(m => m.Pin, new { @class = "form-control", @id = "txtPin", @placeholder = "Enter Pin", @autocomplete = "off" })
+                                        @Html.HiddenFor(m => m.assetCategoryid, new { id = "assetCategoryid" })
+                                        @Html.HiddenFor(m => m.assetCategorytext, new { id = "assetCategorytext" })
                                     </div>
                                 </div>
 
 
 
 
-             </div>
+
+                            </div>
+
+
+                            <div class="row" id="listdata">
 
 
 
+                            </div>
+
+
+
+                            <input type="button" formaction="" id="btnadd" name="name" class="btn btn-danger" value="Add" />
 
 
 
@@ -243,10 +97,22 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <button type="submit" id="btnBeneficiaryformsubmit" formaction="InsertBeneficiaryData" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i>Submit</button>
+                                <button type="submit" id="btnBeneficiaryformsubmit" formaction="InsertBeneficiaryData" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i>Add Assets</button>
                                 <button id="btnBeneficiarySUCESS" style="display:none;"></button>
                             </div>
+
+
+
+
+
+
+
+
                         }
+
+
+
+
                     </div>
                 </div>
             </div>
@@ -262,93 +128,21 @@
 @*end*@
 
 
-
-
 <script>
-        $("#ddlMarital_Status").change(function () {
-        var value = $(this).children(":selected").attr("value");
-            var text = $("#ddlMarital_Status option:selected").html();
-
-            $("#Marital_Status_TXT").val(text);
-            $("#Marital_Status_ID").val(value);
-        });
-
-
-
-        $("#ddlReligion").change(function () {
-            var value = $(this).children(":selected").attr("value");
-            var text = $("#ddlReligion option:selected").html();
-
-            $("#Religion_txt").val(text);
-            $("#Religion_id").val(value);
-        });
-
-
-
-
-        $("#DDLIdentity_proof").change(function () {
-            var value = $(this).children(":selected").attr("value");
-            var text = $("#DDLIdentity_proof option:selected").html();
-
-            $("#Identity_proof_txt").val(text);
-            $("#Identity_proof_id").val(value);
-        });
-
-
-
-
     $(document).ready(function () {
 
-        $.ajax({
+         $.ajax({
 
             type: "POST",
-            url:"@Url.Action("BindStateDDL", "AddBeneficiary")",
-            success: function (data) {
-                $('#ddlstate').append(data);
-            }
-        });
-
-
-    });
-
-
-
-    $("#ddlstate").change(function () {
-        var value = $(this).children(":selected").attr("value");
-        var text = $("#ddlstate option:selected").html();
-
-        $("#statetext").val(text);
-        $("#stateid").val(value);
-
-
-        $.ajax({
-
-            type: "POST",
-            url: "@Url.Action("OnChangeBindCity", "AddBeneficiary")",
-            data: { "send": "" + value+  ""},
+            url: "@Url.Action("BindAssetTypeDDL", "AddAssets")",
             success: function (data) {
 
-                $('#ddlcity').append(data);
+                $('#ddlAssetType').append(data);
             }
 
 
 
         });
-
-
-
-    });
-
-
-
-
-    $("#ddlcity").change(function () {
-        var value = $(this).children(":selected").attr("value");
-        var text = $("#ddlstate option:selected").html();
-
-        $("#citytext").val(text);
-        $("#cityid").val(value);
-
 
     });
 
@@ -356,21 +150,101 @@
 
 
 
+<script>
+    $("#ddlAssetType").change(function () {
+        var value = $(this).children(":selected").attr("value");
+        var text = $("#ddlAssetType option:selected").html();
+
+        $("#assettypetext").val(text);
+        $("#assettypeid").val(value);
 
 
-@*@if (ViewBag.Message == "RecordsInsert")
-    {
-        <script>
+        $.ajax({
 
-            $(document).ready(function () {
-                $("#btnBeneficiarySUCESS").on("click", function () { });
+            type: "POST",
+            url: "@Url.Action("BindAssetCategoryDDL", "AddAssets")",
+            data: { "send": "" + value+  ""},
+            success: function (data) {
 
-                $("#btnBeneficiarySUCESS").click(); //trigger event after listening to it.
+                $('#ddlAssetCategory').append(data);
+            }
 
-            });
-        </script>
 
-    }*@
+
+        });
+
+
+
+    });
+
+
+
+
+
+
+
+    $("#ddlAssetCategory").change(function () {
+        var value = $(this).children(":selected").attr("value");
+        var text = $("#ddlAssetCategory option:selected").html();
+
+        $("#assetCategorytext").val(text);
+        $("#assetCategoryid").val(value);
+
+
+        $.ajax({
+
+            type: "POST",
+            url: "@Url.Action("AssetFields", "AddAssets")",
+            data: { "send": "" + value+  ""},
+            success: function (data) {
+                alert(data);
+                $('#listdata').empty();
+                $('#listdata').append(data);
+            }
+
+
+
+        });
+
+
+
+    });
+
+
+</script>
+
+
+
+
+
+<script>
+        $(document).ready(function () {
+            $("#AssetsForm").validationEngine();
+        });
+</script>
+
+
+<script>
+    $("#btnadd").click(function () {
+
+        $.ajax({
+
+            type: "POST",
+            url: "@Url.Action("DynamicFields", "AddAssets")",
+            success: function (data) {
+
+                $('#listdata').append(data);
+
+
+            }
+
+
+
+        });
+
+
+    });
+</script>
 
 
 
