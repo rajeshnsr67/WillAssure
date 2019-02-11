@@ -155,7 +155,7 @@
             url: "@Url.Action("DeleteTestatorFormRecords", "EditTestator")",
             data: {  "send": "" + id + ""   },
             success: function (data) {
-                $('#TestatorFormData').append(data);
+                $('#TestatorFormData').empty().append(data);
                 location.reload();
             }
 

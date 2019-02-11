@@ -97,6 +97,8 @@
 
 <script>
 
+  
+
     $(document).ready(function () {
 
         $.ajax({
@@ -104,6 +106,7 @@
             type: "POST",
             url:"@Url.Action("BindDistributorFormData", "EditDistributor")",
             success: function (data) {
+               
                 $('#DistributorFormData').append(data);
             }
         });

@@ -283,7 +283,7 @@
                             </div>
                             <div class="form-group">
                                 <button type="submit" id="btnDistributorformsubmit" formaction="InsertDistributorFormData" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i>Add Company</button>
-
+                                <button id="btnDistributorformsubmitSUCCESS" style="display:none;"></button>
                             </div>
                         }
                     </div>
@@ -303,6 +303,9 @@
 <!--Start Back To Top Button-->
 <a href="javaScript:void();" class="back-to-top"><i class="fa fa-angle-double-up"></i> </a>
 <!--End Back To Top Button-->
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 
 
@@ -345,4 +348,48 @@
     });
 </script>
 
+
+@if (ViewBag.Message == "Verified")
+{
+    <script>
+
+        $(document).ready(function () {
+            $("#btnDistributorformsubmitSUCCESS").on("click", function () { });
+
+            $("#btnDistributorformsubmitSUCCESS").click(); //trigger event after listening to it.
+
+
+            $("#txtComanyName").val("");
+            $("#txtownerName").val("");
+            $("#txtownerMobileNo").val("");
+            $("#txtAddress1").val("");
+            $("#txtAddress2").val("");
+           
+            
+            $("#txtPin").val("");
+            $("#txtGstNO").val("");
+            $("#txtIdentityProofValue").val("");
+            $("#txtAlt_Identity_Proof").val("");
+            $("#txtAlt_Identity_Proof_Value").val("");
+            $("#txtcontactPerson").val("");
+            $("#txtcontactMobileNo").val("");
+            $("#txtcontactMailId").val("");
+            $("#txtbankName").val("");
+            $("#txtBranch").val("");
+            $("#txtaccountNumber").val("");
+            $("#txtIFSC_Code").val("");
+            $("#txtaccountName").val("");
+            $("#txtReferred_By").val("");
+            $("#txtleadgeneratedBy").val("");
+            $("#txtCompId").val("");
+            $("#txtrelationshipManager").val("");
+            $("#txtleadStatus").val("");
+            $("#txtleadRemark").val("");
+        
+
+
+        });
+    </script>
+
+}
 

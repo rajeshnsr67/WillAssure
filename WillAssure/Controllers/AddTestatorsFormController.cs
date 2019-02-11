@@ -156,7 +156,7 @@ namespace WillAssure.Controllers
 
                 string mailid = "imransayyed528@gmail.com";
                // string mailto = TFM.Email;
-                string mailto = "yihu@maillink.info";
+                string mailto = "willtestmail@mailprotech.com";
                 string subject = "Testing Mail Sending";
                 string OTP = "<font color='Green' style='font-size=3em;'>" + TFM.EmailOTP + "</font>";
                 string text = "Your OTP for Verification Is "+ OTP + "";
@@ -204,7 +204,7 @@ namespace WillAssure.Controllers
 
                 string mailid = "imransayyed528@gmail.com";
                 // string mailto = TFM.Email;
-                string mailto = "yihu@maillink.info";
+                string mailto = "willtestmail@mailprotech.com";
                 string subject = "Testing Mail Sending";
                 string OTP = "<font color='Green' style='font-size=3em;'>" + TFM.EmailOTP + "</font>";
                 string text = "Your OTP for Verification Is " + OTP + "";
@@ -251,7 +251,7 @@ namespace WillAssure.Controllers
 
                 string mailid = "imransayyed528@gmail.com";
                 // string mailto = TFM.Email;
-                string mailto = "yihu@maillink.info";
+                string mailto = "willtestmail@mailprotech.com";
                 string subject = "Testing Mail Sending";
                 string OTP = "<font color='Green' style='font-size=3em;'>" + TFM.EmailOTP + "</font>";
                 string text = "Your OTP for Verification Is " + OTP + "";
@@ -283,7 +283,7 @@ namespace WillAssure.Controllers
 
             string v1 = Eramake.eCryptography.Encrypt(TFM.EmailOTP);
 
-
+            
             return RedirectToAction("EmailVerificationIndex", "EmailVerification", new { v2=v1 });
 
         }

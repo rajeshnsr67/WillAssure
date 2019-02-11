@@ -38,7 +38,7 @@ namespace WillAssure.Controllers
                 cmd.ExecuteNonQuery();
                 con.Close();
 
-                Response.Write("<script type='text/javascript'>$(document).ready(function(){$('#alert-success').trigger('click');});</ script > ");
+                ViewBag.Message = "Verified";
             }
             else
             {
@@ -48,10 +48,10 @@ namespace WillAssure.Controllers
                 SqlCommand cmd = new SqlCommand(query,con);
                 cmd.ExecuteNonQuery();
                 con.Close();
-
+                ViewBag.Message = "Verified";
             }
 
-
+            
             return View("~/Views/RoleAdd/AddRoleContentPage.cshtml");
         }
 

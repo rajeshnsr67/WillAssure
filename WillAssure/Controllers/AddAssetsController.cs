@@ -113,8 +113,8 @@ namespace WillAssure.Controllers
             da.Fill(dt);
             con.Close();
 
-            Am.Qty = 0;
-            Am.Weight = 0;
+            Am.Qty = "0";
+            Am.Weight = "0";
             Am.nId = 0;
            
             if (dt.Rows.Count > 0)
@@ -130,16 +130,16 @@ namespace WillAssure.Controllers
                 Am.certificateNumber = dt.Rows[0]["certificateNumber"].ToString();
                 Am.propertyDescription = dt.Rows[0]["propertyDescription"].ToString();
 
-                if (Convert.ToInt32(dt.Rows[0]["Qty"]) != 0)
+                if (Convert.ToString(dt.Rows[0]["Qty"]) != "0")
                 {
-                    Am.Qty = Convert.ToInt32(dt.Rows[0]["Qty"]);
+                    Am.Qty = Convert.ToString(dt.Rows[0]["Qty"]);
                 }
 
 
-                if (Convert.ToInt32(dt.Rows[0]["Weight"]) != 0)
+                if (Convert.ToString(dt.Rows[0]["Weight"]) != "0")
                 {
 
-                    Am.Weight = Convert.ToInt32(dt.Rows[0]["Weight"]);
+                    Am.Weight = Convert.ToString(dt.Rows[0]["Weight"]);
                 }
 
                 Am.ownerShip = dt.Rows[0]["ownerShip"].ToString();

@@ -58,7 +58,7 @@
                             <label for="exampleInputUsername" class="">Username</label>
                             <div class="position-relative has-icon-right">
 
-                                @Html.TextBoxFor(m => m.UserID, new { @id = "exampleInputUsername", @class = "form-control input-shadow", @placeholder = "Enter Username" , @autocomplete = "off" })
+                                @Html.TextBoxFor(m => m.UserID, new { @id = "txtUserId", @class = "form-control input-shadow", @placeholder = "Enter Username", @autocomplete = "off" })
                                 <div class="form-control-position">
                                     <i class="icon-user"></i>
                                 </div>
@@ -68,7 +68,7 @@
                             <label for="exampleInputPassword" class="">Password</label>
                             <div class="position-relative has-icon-right">
 
-                                @Html.TextBoxFor(m => m.Password, new { @type = "password", @id = "exampleInputPassword", @class = "form-control input-shadow", @placeholder = "Enter Password" , @autocomplete = "off" })
+                                @Html.TextBoxFor(m => m.Password, new { @type = "password", @id = "exampleInputPassword", @class = "form-control input-shadow", @placeholder = "Enter Password", @autocomplete = "off" })
                                 <div class="form-control-position">
                                     <i class="icon-lock"></i>
                                 </div>
@@ -85,10 +85,10 @@
                                 <a href="authentication-reset-password.html">Reset Password</a>
                             </div>
                         </div>
-                        <button type="submit" formaction="@Url.Action("LoginPageData","LoginPage")" class="btn btn-primary shadow-primary btn-block waves-effect waves-light">Sign In</button>
-                        <button type="button" style="display:;" id="btnLoginSUCCESS"></button>
-                        <button type="button" style="display:;" id="btnLoginFAILED"></button>
-                  
+                        <button type="submit" formaction="@Url.Action("LoginPageData","LoginPage")" id="btnlogin" class="btn btn-primary shadow-primary btn-block waves-effect waves-light">Sign In</button>
+
+                        <button type="button" id="btnloginSUCCESS" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
+                        <button type="button" id="btnloginFAILED" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
                     }
                 </div>
 
@@ -100,9 +100,9 @@
                     <script>
 
                         $(document).ready(function () {
-                            $("#btnLoginSUCCESS").on("click", function () { });
+                            $("#btnloginSUCCESS").on("click", function () { });
 
-                            $("#btnLoginSUCCESS").click(); //trigger event after listening to it.
+                            $("#btnloginSUCCESS").click(); //trigger event after listening to it.
 
                         });
                     </script>
@@ -113,10 +113,10 @@
                     <script>
 
                         $(document).ready(function () {
-                            alert("test");
-                            $("#btnLoginFAILED").on("click", function () { });
+                    
+                            $("#btnloginFAILED").on("click", function () { });
 
-                            $("#btnLoginFAILED").click(); /
+                            $("#btnloginFAILED").click(); 
 
                         });
 
@@ -187,7 +187,19 @@
 
 
 
-   
+
+
+
+    <script>
+        $(document).ready(function () {
+            $("#VerificationForm").validationEngine();
+        });
+    </script>
+
+    @*END*@
+
+
+
 
 </body>
 <!-- Mirrored from codervent.com/rukada/light-admin/authentication-signin.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 28 Nov 2018 11:46:08 GMT -->

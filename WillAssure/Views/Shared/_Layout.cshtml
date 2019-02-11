@@ -12,7 +12,7 @@
 
     @*validation css*@
     <link href="~/css_Validation/customMessages.css" rel="stylesheet" />
-   
+
     <link href="~/css_Validation/validationEngine.jquery.css" rel="stylesheet" />
     @*end*@
 
@@ -20,7 +20,8 @@
 
 
     @*Master Style Links*@
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <script src="~/assets/js/jquery.min.js"></script>
     <!--Sweet Alerts -->
     <script src="~/assets/plugins/alerts-boxes/js/sweetalert.min.js"></script>
     <script src="~/assets/plugins/alerts-boxes/js/sweet-alert-script.js"></script>
@@ -341,17 +342,17 @@
 
                     <li>
                         <a href="javaScript:void();" class="waves-effect">
-                            <i class="zmdi zmdi-format-list-bulleted"></i> <span>Document</span>
+                            <i class="zmdi zmdi-format-list-bulleted"></i> <span>Doc Creation</span>
                             <i class="fa fa-angle-left pull-right"></i>
                         </a>
                         <ul class="sidebar-submenu">
 
-                            <li><a href=@Url.Action("UsersFormIndex","UsersForm")><i class="zmdi zmdi-star-outline"></i>Add Employee</a></li>
+                            <li><a href=@Url.Action("AddDocumentIndex","AddDocument")><i class="zmdi zmdi-star-outline"></i>Add Document</a></li>
 
                         </ul>
                         <ul class="sidebar-submenu">
 
-                            <li><a href=@Url.Action("EditUserFormIndex","EditUserForm")><i class="zmdi zmdi-star-outline"></i>Edit Employee</a></li>
+                            <li><a href=@Url.Action("EditDocumentIndex","EditDocument")><i class="zmdi zmdi-star-outline"></i>Edit Document</a></li>
 
                         </ul>
 
@@ -435,12 +436,12 @@
                         </a>
                         <ul class="sidebar-submenu">
 
-                            <li><a href=@Url.Action("AddBeneficiaryIndex","AddBeneficiary")><i class="zmdi zmdi-star-outline"></i>Add Coupons </a></li>
+                            <li><a href=@Url.Action("AddCouponsIndex","AddCoupons")><i class="zmdi zmdi-star-outline"></i>Add Coupons </a></li>
 
                         </ul>
                         <ul class="sidebar-submenu">
 
-                            <li><a href=@Url.Action("EditBeneficiaryIndex","EditBeneficiary")><i class="zmdi zmdi-star-outline"></i>Edit Coupons</a></li>
+                            <li><a href=@Url.Action("EditCouponsIndex","EditCoupons")><i class="zmdi zmdi-star-outline"></i>Edit Coupons</a></li>
 
                         </ul>
 
@@ -728,7 +729,7 @@
 
 @*Master Scripts Links*@
 <!-- Bootstrap core JavaScript-->
-<script src="~/assets/js/jquery.min.js" /></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="~/assets/js/popper.min.js"></script>
 <script src="~/assets/js/bootstrap.min.js"></script>
 <!-- simplebar js -->

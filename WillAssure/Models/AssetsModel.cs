@@ -26,9 +26,9 @@ namespace WillAssure.Models
 
         public string propertyDescription { get; set; }
 
-        public int Qty { get; set; }
+        public string Qty { get; set; }
 
-        public int Weight { get; set; }
+        public string Weight { get; set; }
 
         public string ownerShip { get; set; }
 

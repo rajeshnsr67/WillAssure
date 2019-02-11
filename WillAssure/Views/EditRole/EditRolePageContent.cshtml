@@ -42,6 +42,7 @@
                                 </thead>
                                 <tbody id="RolesData"></tbody>
                             </table>
+                           
                         </div>
                     </div>
                 </div>
@@ -86,6 +87,8 @@
     });
 
 
+
+
 </script>
 
 <script>
@@ -104,7 +107,7 @@
             url: "@Url.Action("UpdateRoles", "EditRole")",
             data: {  "send": "" + id + ""   },
             success: function (data) {
-                alert(data);
+
 
                 var NestId = data
                 var url = "/UpdateRoles/UpdateRolesIndex?NestId=" + NestId;
@@ -123,7 +126,7 @@
     function Delete(id) {
 
         var id = id;
-        alert(id);
+
 
 
         $.ajax({
@@ -132,7 +135,18 @@
             url: "@Url.Action("DeleteRolesRecords", "EditRole")",
             data: {  "send": "" + id + ""   },
             success: function (data) {
+                $(".btnRoleDeleteSUCCESS").on("click", function () { });
+                $('.btnRoleDeleteSUCCESS').click();
+
+
                 $('#RolesData').append(data);
+
+                
+                  
+               
+
+              
+
                 location.reload();
             }
 
@@ -142,4 +156,6 @@
     }
 
 </script>
+
+
 

@@ -27,8 +27,39 @@
                  });
 
 
-     $("#btnLoginSUCCESS").click(function () {
+     $("#btnloginSUCCESS").click(function () {
          swal("Submitted!", "Your Data has Been Submitted!,", "success");
+     });
+
+
+     
+
+     $("#btnRoleformsubmitSUCCESS").click(function () {
+         swal("Roles Added!", "Your Data has Been Added!,", "success");
+     });
+
+     
+
+     $(".btnRoleDeleteSUCCESS").click(function () {
+         swal("Roles Deleted!", "Your Data has Been Deleted!,", "success");
+     });
+
+     
+
+
+     $("#btnDistributorformsubmitSUCCESS").click(function () {
+         swal("Distributor Added!", "Your Data has Been Added!,", "success");
+     });
+
+     
+
+     $("#btnUserformsubmitSUCCESS").click(function () {
+         swal("Records Added!", "Your Data has Been Added!,", "success");
+     });
+
+     
+     $("#InsertTestatorFormDataSUCCESS").click(function () {
+         swal("Testator Added!", "Your Data has Been Added!,", "success");
      });
 
      //end
@@ -40,7 +71,7 @@
               });
 
 
-     $("#btnLoginFAILED").click(function () {
+     $("#btnloginFAILED").click(function () {
          swal("Failed!", "Please Enter Valid Details!,", "error");
      });
 

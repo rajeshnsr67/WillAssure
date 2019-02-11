@@ -21,7 +21,7 @@ namespace WillAssure.Controllers
         {
             return View("~/Views/AddDistributor/AddDistributorPageContent.cshtml");
         }
-
+        [HttpPost]
         public ActionResult InsertDistributorFormData(DistributorFormModel DFM)
         {
             con.Open();
@@ -73,8 +73,9 @@ namespace WillAssure.Controllers
 
             
 
-            Response.Write("<script type='text/javascript'>$(document).ready(function(){$('#alert-success').trigger('click');});</ script > ");
+          
 
+            ViewBag.Message = "Verified";
 
             return View("~/Views/AddDistributor/AddDistributorPageContent.cshtml");
         }

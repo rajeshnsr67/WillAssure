@@ -1,6 +1,8 @@
 ﻿@model WillAssure.Models.RoleFormModel
 @{
-    ViewBag.Title = "AddRoleContentPage";
+                /**/
+
+                ViewBag.Title = "AddRoleContentPage";
 }
 
 
@@ -33,7 +35,7 @@
 
                         @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "RoleForm" }))
                         {
-                            
+
                             <div class="row">
                                 <div class="col-sm-6">
 
@@ -59,8 +61,10 @@
                             <div class="form-group">
 
                                 <button type="submit" id="btnRoleformsubmit" formaction="InsertRoleFormData" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i> Add Roles</button>
+                                <button type="button" id="btnRoleformsubmitSUCCESS" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
+                               
                             </div>
-                            
+
                         }
                     </div>
                 </div>
@@ -81,21 +85,38 @@
 <!--End Back To Top Button-->
 
 
+
+
 <script>
-    
-
-
-
-
-    $(document).ready(function () {
+   $(document).ready(function () {
         $("#RoleForm").validationEngine();
     });
+
+
+  
 </script>
 
 
 
 
+@if (ViewBag.Message == "Verified")
+{
+    <script>
 
+        $(document).ready(function () {
+
+
+            $("#btnRoleformsubmitSUCCESS").on("click", function () { });
+
+            $("#btnRoleformsubmitSUCCESS").click(); //trigger event after listening to it.
+
+            $("#txtRole").val("");
+        
+
+        });
+    </script>
+
+}
 
 
 

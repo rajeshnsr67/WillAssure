@@ -91,7 +91,7 @@ namespace WillAssure.Controllers
 
                     string mailid = "imransayyed528@gmail.com";
                     // string mailto = TFM.Email;
-                    string mailto = "yihu@maillink.info";
+                    string mailto = "willtestmail@mailprotech.com";
                     string subject = "Testing Mail Sending";
                     //  string OTP = "<font color='Green' style='font-size=3em;'>" + TFM.EmailOTP + "</font>";
                     string text = "<font color='Green' style='font-size=3em;'>Your UserId And Password For Logging In Is <br> UserID : " + PanNumber + " <br> Password : " + Password + "</font>";

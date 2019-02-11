@@ -134,11 +134,16 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AddAssetsController.cs" />
     <Compile Include="Controllers\AddBeneficiaryController.cs" />
+    <Compile Include="Controllers\AddCouponsController.cs" />
     <Compile Include="Controllers\AddDistributorController.cs" />
+    <Compile Include="Controllers\AddDocumentController.cs" />
+    <Compile Include="Controllers\AddTemplateMasterController.cs" />
     <Compile Include="Controllers\AddTestatorsFormController.cs" />
     <Compile Include="Controllers\EditAssetsController.cs" />
     <Compile Include="Controllers\EditBeneficiaryController.cs" />
+    <Compile Include="Controllers\EditCouponsController.cs" />
     <Compile Include="Controllers\EditDistributorController.cs" />
+    <Compile Include="Controllers\EditDocumentController.cs" />
     <Compile Include="Controllers\EditRoleController.cs" />
     <Compile Include="Controllers\EditTestatorController.cs" />
     <Compile Include="Controllers\EditUserFormController.cs" />
@@ -152,10 +157,10 @@
     <Compile Include="Controllers\UpdateRolesController.cs" />
     <Compile Include="Controllers\UpdateTestatorsController.cs" />
     <Compile Include="Controllers\UsersFormController.cs" />
-    <Compile Include="CrystalReports\WillDocument.cs">
+    <Compile Include="CrystalReports\WillTestator.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>WillDocument.rpt</DependentUpon>
+      <DependentUpon>WillTestator.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Global.asax.cs">
@@ -169,6 +174,7 @@
     <Compile Include="Models\EmailVerificationModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\RoleFormModel.cs" />
+    <Compile Include="Models\TemplateMasterModel.cs" />
     <Compile Include="Models\TestatorFormModel.cs" />
     <Compile Include="Models\UserFormModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -1013,6 +1019,11 @@
     <Content Include="Views\EditAssets\EditAssetsPageContent.cshtml" />
     <Content Include="Views\LoginPage\LoginPageContent.cshtml" />
     <Content Include="Views\UpdateRoles\UpdateRolesPageContent.cshtml" />
+    <Content Include="Views\AddDocument\AddDocumentPageContent.cshtml" />
+    <Content Include="Views\EditDocument\EditDocumentPageContent.cshtml" />
+    <Content Include="Views\AddCoupons\AddCouponsPageContent.cshtml" />
+    <Content Include="Views\EditCoupons\EditCouponsPageContent.cshtml" />
+    <Content Include="Views\AddTemplateMaster\AddTemplateMasterContent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1031,9 +1042,9 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="CrystalReports\WillDocument.rpt">
+    <EmbeddedResource Include="CrystalReports\WillTestator.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>WillDocument.cs</LastGenOutput>
+      <LastGenOutput>WillTestator.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

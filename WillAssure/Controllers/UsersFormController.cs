@@ -81,7 +81,7 @@ namespace WillAssure.Controllers
 
 
 
-            Response.Write("<script type='text / javascript'>$(document).ready(function() {$('#alert-success').trigger('click');  });</ script > ");
+            ViewBag.Message = "Verified";
 
             return View("~/Views/UsersForm/UsersFormPageContent.cshtml");
         }

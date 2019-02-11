@@ -16,14 +16,14 @@ namespace WillAssure.CrystalReports {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class WillDocument : ReportClass {
+    public class WillTestator : ReportClass {
         
-        public WillDocument() {
+        public WillTestator() {
         }
         
         public override string ResourceName {
             get {
-                return "WillDocument.rpt";
+                return "WillTestator.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace WillAssure.CrystalReports {
         
         public override string FullResourceName {
             get {
-                return "WillAssure.CrystalReports.WillDocument.rpt";
+                return "WillAssure.CrystalReports.WillTestator.rpt";
             }
             set {
                 // Do nothing
@@ -90,9 +90,9 @@ namespace WillAssure.CrystalReports {
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedWillDocument : Component, ICachedReport {
+    public class CachedWillTestator : Component, ICachedReport {
         
-        public CachedWillDocument() {
+        public CachedWillTestator() {
         }
         
         [Browsable(false)]
@@ -129,7 +129,7 @@ namespace WillAssure.CrystalReports {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            WillDocument rpt = new WillDocument();
+            WillTestator rpt = new WillTestator();
             rpt.Site = this.Site;
             return rpt;
         }
