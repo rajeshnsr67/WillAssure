@@ -101,7 +101,7 @@
             type: "POST",
             url:"@Url.Action("BindTestatorFormData", "EditTestator")",
             success: function (data) {
-                $('#TestatorFormData').append(data);
+                $('#TestatorFormData').empty().append(data);
             }
         });
 

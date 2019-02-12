@@ -107,7 +107,7 @@
             url:"@Url.Action("BindDistributorFormData", "EditDistributor")",
             success: function (data) {
                
-                $('#DistributorFormData').append(data);
+                $('#DistributorFormData').empty().append(data);
             }
         });
 
@@ -161,7 +161,7 @@
             url: "@Url.Action("DeleteDistributorFormRecords", "EditDistributor")",
             data: {  "send": "" + id + ""   },
             success: function (data) {
-                $('#DistributorFormData').append(data);
+                $('#DistributorFormData').empty().append(data);
                 location.reload();
             }
 

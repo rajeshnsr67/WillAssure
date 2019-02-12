@@ -40,5 +40,17 @@ namespace WillAssure.Controllers
 
             return View("~/Views/AddTemplateMaster/AddTemplateMasterContent.cshtml");
         }
+
+
+        public int onchangeddltestatortype()
+        {
+            int index = Convert.ToInt32(Request["send"]);
+
+
+            return index;
+        }
+
+
+
     }
 }

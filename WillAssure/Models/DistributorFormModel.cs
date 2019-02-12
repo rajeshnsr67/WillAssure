@@ -70,7 +70,18 @@ namespace WillAssure.Models
 
         public string leadRemark { get; set; }
 
+        public int stateid { get; set; }
 
+        public string statetext { get; set; }
+
+        public int cityid { get; set; }
+
+        public string citytext { get; set; }
+
+
+
+
+         
 
     }
 }

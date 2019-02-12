@@ -40,7 +40,7 @@ namespace WillAssure.Controllers
                 {
                     data = data + "<tr class='nr'><td>" + dt.Rows[i]["rId"].ToString() + "</td>"
                                 + "<td>" + dt.Rows[i]["Role"].ToString() + "</td>"
-                                + "<td><button type='button'   id='" + dt.Rows[i]["rId"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary'>Edit</button><button type='button'   id='" + dt.Rows[i]["rId"].ToString() + "' onClick='Delete(this.id)'   class='btn btn-danger '>Delete</button></td> <td> <button type='button' class='btnRoleDeleteSUCCESS'  style='display: ; ' class='btnpopup btn btn - primary shadow - primary px - 5'><i class='icon -lock'></i></button> </td>   </tr>";
+                                + "<td><button type='button'   id='" + dt.Rows[i]["rId"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary'>Edit</button><button type='button'   id='" + dt.Rows[i]["rId"].ToString() + "' onClick='Delete(this.id)'   class='btn btn-danger '>Delete</button></td>    </tr>";
 
                 }
             }
@@ -82,7 +82,7 @@ namespace WillAssure.Controllers
                 {
                     data = data + "<tr class='nr'><td>" + dt.Rows[i]["rId"].ToString() + "</td>"
                                 + "<td>" + dt.Rows[i]["Role"].ToString() + "</td>"
-                                + "<td><button type='button'   id='" + dt.Rows[i]["rId"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary'>Edit</button><button type='button'   id='" + dt.Rows[i]["rId"].ToString() + "' onClick='Delete(this.id)'   class='btn btn-danger '>Delete</button> <td> <button type='button' class='btnRoleDeleteSUCCESS'  style='display: ; ' class='btnpopup btn btn - primary shadow - primary px - 5'><i class='icon -lock'></i></button> </td> </td></tr>";
+                                + "<td><button type='button'   id='" + dt.Rows[i]["rId"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary'>Edit</button><button type='button'   id='" + dt.Rows[i]["rId"].ToString() + "' onClick='Delete(this.id)'   class='btn btn-danger '>Delete</button>  </td></tr>";
 
                 }
             }

@@ -80,7 +80,7 @@ namespace WillAssure.Controllers
 
 
 
-
+            TFM.uId = Convert.ToInt32(Session["uid"]); 
 
             con.Open();
             SqlCommand cmd = new SqlCommand("SP_CRUDTestatorDetails", con);
@@ -113,6 +113,7 @@ namespace WillAssure.Controllers
             cmd.Parameters.AddWithValue("@Mobile_Verification_Status", "0");
             cmd.Parameters.AddWithValue("@Email_OTP", TFM.EmailOTP);
             cmd.Parameters.AddWithValue("@Mobile_OTP", TFM.MobileOTP);
+            cmd.Parameters.AddWithValue("@uid", TFM.uId);
             cmd.ExecuteNonQuery();
             con.Close();
 

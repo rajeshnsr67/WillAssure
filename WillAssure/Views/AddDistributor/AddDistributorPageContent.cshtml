@@ -74,19 +74,33 @@
 
 
                                 <div class="col-sm-6">
+
                                     <div class="form-group">
-                                        <label for="input-3">City</label>
-                                        @Html.TextBoxFor(m => m.City, new { @class = "form-control validate[required] text-input", @id = "txtCity", @placeholder = "Enter Your City", @autocomplete = "off" })
+                                        <label for="input-1">State</label>
+
+                                        <select id="ddlstate" class="form-control">
+                                            <option value="0">--Select State--</option>
+                                        </select>
+                                        @Html.HiddenFor(m => m.stateid, new { id = "stateid" })
+                                        @Html.HiddenFor(m => m.statetext, new { id = "statetext" })
                                     </div>
                                 </div>
 
 
                                 <div class="col-sm-6">
+
                                     <div class="form-group">
-                                        <label for="input-3">State</label>
-                                        @Html.TextBoxFor(m => m.State, new { @class = "form-control validate[required] text-input", @id = "txtState", @placeholder = "Enter State", @autocomplete = "off" })
+                                        <label for="input-1">City</label>
+                                        <select id="ddlcity" class="form-control">
+                                            <option value="0">--Select City--</option>
+                                        </select>
+                                        @Html.HiddenFor(m => m.cityid, new { id = "cityid" })
+                                        @Html.HiddenFor(m => m.citytext, new { id = "citytext" })
+
                                     </div>
+
                                 </div>
+
 
 
 
@@ -317,7 +331,66 @@
         $.ajax({
 
             type: "POST",
-            url:"@Url.Action("BindDesignationDDL", "UsersForm")",
+            url:"@Url.Action("BindStateDDL", "AddDistributor")",
+            success: function (data) {
+                $('#ddlstate').empty().append(data);
+            }
+        });
+
+
+    });
+
+
+</script>
+
+<script>
+    $("#ddlstate").change(function () {
+        var value = $(this).children(":selected").attr("value");
+        var text = $("#ddlstate option:selected").html();
+
+        $("#statetext").val(text);
+        $("#stateid").val(value);
+
+
+
+         $.ajax({
+
+            type: "POST",
+            url: "@Url.Action("OnChangeBindCity", "AddDistributor")",
+            data: { "send": "" + value+  ""},
+            success: function (data) {
+
+                $('#ddlcity').empty().append(data);
+            }
+
+
+
+        });
+
+
+
+    });
+</script>
+
+
+<script>
+    $("#ddlcity").change(function () {
+        var value = $(this).children(":selected").attr("value");
+        var text = $("#ddlcity option:selected").html();
+
+        $("#citytext").val(text);
+        $("#cityid").val(value);
+    });
+</script>
+
+<script>
+
+    $(document).ready(function () {
+
+        $.ajax({
+
+            type: "POST",
+            url:"@Url.Action("BindDesignationDDL", "AddDistributor")",
             success: function (data) {
                 $('#ddldesignation').append(data);
             }
@@ -364,8 +437,8 @@
             $("#txtownerMobileNo").val("");
             $("#txtAddress1").val("");
             $("#txtAddress2").val("");
-           
-            
+
+
             $("#txtPin").val("");
             $("#txtGstNO").val("");
             $("#txtIdentityProofValue").val("");
@@ -385,7 +458,7 @@
             $("#txtrelationshipManager").val("");
             $("#txtleadStatus").val("");
             $("#txtleadRemark").val("");
-        
+
 
 
         });

@@ -100,12 +100,21 @@ namespace WillAssure.Controllers
         }
 
 
+       
+
+
+
+
 
         public string AssetFields()
         {
             AssetsModel Am = new AssetsModel();
             string data = "";
+         
+
+
             int index = Convert.ToInt32(Request["send"]);
+           
             con.Open();
             string query = "select * from AssetsInfo where amId = '" + index + "'";
             SqlDataAdapter da = new SqlDataAdapter(query, con);
@@ -165,23 +174,24 @@ namespace WillAssure.Controllers
                 if (index == 1)
                 {
 
-                    data = data + "<div class='col-sm-6'><div class='form-group'>  <label for='input-1'> " + Am.currentStatus + " </label> <input autocomplete='off' class='form-control validate[required]text-input' id='txtcurrentStatus' name='currentStatus' placeholder='Enter current Status' type='text' value=''></div></div>" +
-               data + "<div class='col-sm-6'><div class='form-group'>  <label for='input-1'> " + Am.issuedBy + " </label> <input autocomplete='off' class='form-control validate[required]text-input' id='txtissuedBy' name='issuedBy' placeholder='Enter issued By' type='text' value=''></div></div>" +
-               data + "<div class='col-sm-6'><div class='form-group'>  <label for='input-1'> " + Am.propertyDescription + " </label> <input autocomplete='off' class='form-control validate[required]text-input' id='txtpropertyDescription' name='propertyDescription' placeholder='Enter property Description' type='text' value=''></div></div>" +
-               data + "<div class='col-sm-6'><div class='form-group'>  <label for='input-1'> " + Am.Nomination + " </label> <input autocomplete='off' class='form-control validate[required]text-input' id='txtNomination' name='Nomination' placeholder='Enter Nomination' type='text' value=''></div></div>" +
-               data + "<div class='col-sm-6'><div class='form-group'>  <label for='input-1'> " + Am.NomineeDetails + " </label> <input autocomplete='off' class='form-control validate[required]text-input' id='txtNomineeDetails' name='NomineeDetails' placeholder='Enter Nominee Details' type='text' value=''></div></div>";
+                    data = data + "<div class='col-sm-6'><div class='form-group'>  <label for='input-1'> " + Am.currentStatus + " </label> <select class='form-control' id='ddlcontrol'>  <option value='1'>CheckBox</option>    <option value='2'>RadioButton</option>   <option value='3'>TextArea</option>     <option value='4'>Textbox</option></select >      </div></div>" +
+                    data + "<div class='col-sm-6'><div class='form-group'>  <label for='input-1'> " + Am.issuedBy + " </label> <select class='form-control' id='ddlcontrol'>  <option value='1'>CheckBox</option>    <option value='2'>RadioButton</option>   <option value='3'>TextArea</option>     <option value='4'>Textbox</option></select >      </div></div>" +
+                    data + "<div class='col-sm-6'><div class='form-group'>  <label for='input-1'> " + Am.propertyDescription + " </label><select class='form-control' id='ddlcontrol'>  <option value='1'>CheckBox</option>    <option value='2'>RadioButton</option>   <option value='3'>TextArea</option>     <option value='4'>Textbox</option></select >      </div></div>" +
+                    data + "<div class='col-sm-6'><div class='form-group'>  <label for='input-1'> " + Am.Nomination + " </label> <select class='form-control' id='ddlcontrol'>  <option value='1'>CheckBox</option>    <option value='2'>RadioButton</option>   <option value='3'>TextArea</option>     <option value='4'>Textbox</option></select>      </div></div>" +
+                    data + "<div class='col-sm-6'><div class='form-group'>  <label for='input-1'> " + Am.NomineeDetails + " </label> <select class='form-control' id='ddlcontrol'>  <option value='1'>CheckBox</option>    <option value='2'>RadioButton</option>   <option value='3'>TextArea</option>     <option value='4'>Textbox</option></select >      </div></div>";
 
-               
+
+
                 }
 
 
                 if (index == 2)
                 {
 
-                    data = data + "<div class='col-sm-6'><div class='form-group'>  <label for='input-1'> " + Am.issuedBy + " </label> <input autocomplete='off' class='form-control validate[required]text-input' id='txtcurrentStatus' name='currentStatus' placeholder='Enter current Status' type='text' value=''></div></div>" +
-               data + "<div class='col-sm-6'><div class='form-group'>  <label for='input-1'> " + Am.identifier + " </label> <input autocomplete='off' class='form-control validate[required]text-input' id='txtissuedBy' name='issuedBy' placeholder='Enter issued By' type='text' value=''></div></div>" +
-               data + "<div class='col-sm-6'><div class='form-group'>  <label for='input-1'> " + Am.Nomination + " </label> <input autocomplete='off' class='form-control validate[required]text-input' id='txtpropertyDescription' name='propertyDescription' placeholder='Enter property Description' type='text' value=''></div></div>" +
-               data + "<div class='col-sm-6'><div class='form-group'>  <label for='input-1'> " + Am.NomineeDetails + " </label> <input autocomplete='off' class='form-control validate[required]text-input' id='txtNomination' name='Nomination' placeholder='Enter Nomination' type='text' value=''></div></div>";
+                    data = data + "<div class='col-sm-6'><div class='form-group'>  <label for='input-1'> " + Am.issuedBy + " </label> <select class='form-control' id='ddlcontrol'>  <option value='1'>CheckBox</option>    <option value='2'>RadioButton</option>   <option value='3'>TextArea</option>     <option value='4'>Textbox</option></select ></div></div>" +
+               data + "<div class='col-sm-6'><div class='form-group'>  <label for='input-1'> " + Am.identifier + " </label><select class='form-control' id='ddlcontrol'>  <option value='1'>CheckBox</option>    <option value='2'>RadioButton</option>   <option value='3'>TextArea</option>     <option value='4'>Textbox</option></select ></div></div>" +
+               data + "<div class='col-sm-6'><div class='form-group'>  <label for='input-1'> " + Am.Nomination + " </label><select class='form-control' id='ddlcontrol'>  <option value='1'>CheckBox</option>    <option value='2'>RadioButton</option>   <option value='3'>TextArea</option>     <option value='4'>Textbox</option></select ></div></div>" +
+               data + "<div class='col-sm-6'><div class='form-group'>  <label for='input-1'> " + Am.NomineeDetails + " </label><select class='form-control' id='ddlcontrol'>  <option value='1'>CheckBox</option>    <option value='2'>RadioButton</option>   <option value='3'>TextArea</option>     <option value='4'>Textbox</option></select ></div></div>";
 
 
                     
@@ -191,10 +201,10 @@ namespace WillAssure.Controllers
                 if (index == 3)
                 {
 
-                    data = data + "<div class='col-sm-6'><div class='form-group'>  <label for='input-1'> " + Am.issuedBy + " </label> <input autocomplete='off' class='form-control validate[required]text-input' id='txtcurrentStatus' name='currentStatus' placeholder='Enter current Status' type='text' value=''></div></div>" +
-               data + "<div class='col-sm-6'><div class='form-group'>  <label for='input-1'> " + Am.identifier + " </label> <input autocomplete='off' class='form-control validate[required]text-input' id='txtissuedBy' name='issuedBy' placeholder='Enter issued By' type='text' value=''></div></div>" +
-               data + "<div class='col-sm-6'><div class='form-group'>  <label for='input-1'> " + Am.Nomination + " </label> <input autocomplete='off' class='form-control validate[required]text-input' id='txtpropertyDescription' name='propertyDescription' placeholder='Enter property Description' type='text' value=''></div></div>" +
-               data + "<div class='col-sm-6'><div class='form-group'>  <label for='input-1'> " + Am.NomineeDetails + " </label> <input autocomplete='off' class='form-control validate[required]text-input' id='txtNomination' name='Nomination' placeholder='Enter Nomination' type='text' value=''></div></div>";
+                    data = data + "<div class='col-sm-6'><div class='form-group'>  <label for='input-1'> " + Am.issuedBy + " </label><select class='form-control' id='ddlcontrol'>  <option value='1'>CheckBox</option>    <option value='2'>RadioButton</option>   <option value='3'>TextArea</option>     <option value='4'>Textbox</option></select ></div></div>" +
+               data + "<div class='col-sm-6'><div class='form-group'>  <label for='input-1'> " + Am.identifier + " </label> <select class='form-control' id='ddlcontrol'>  <option value='1'>CheckBox</option>    <option value='2'>RadioButton</option>   <option value='3'>TextArea</option>     <option value='4'>Textbox</option></select ></div></div>" +
+               data + "<div class='col-sm-6'><div class='form-group'>  <label for='input-1'> " + Am.Nomination + " </label><select class='form-control' id='ddlcontrol'>  <option value='1'>CheckBox</option>    <option value='2'>RadioButton</option>   <option value='3'>TextArea</option>     <option value='4'>Textbox</option></select ></div></div>" +
+               data + "<div class='col-sm-6'><div class='form-group'>  <label for='input-1'> " + Am.NomineeDetails + " </label><select class='form-control' id='ddlcontrol'>  <option value='1'>CheckBox</option>    <option value='2'>RadioButton</option>   <option value='3'>TextArea</option>     <option value='4'>Textbox</option></select ></div></div>";
 
 
                   
@@ -204,10 +214,10 @@ namespace WillAssure.Controllers
                 if (index == 4)
                 {
 
-                    data = data + "<div class='col-sm-6'><div class='form-group'>  <label for='input-1'> " + Am.issuedBy + " </label> <input autocomplete='off' class='form-control validate[required]text-input' id='txtcurrentStatus' name='currentStatus' placeholder='Enter current Status' type='text' value=''></div></div>" +
+                    data = data + "<div class='col-sm-6'><div class='form-group'>  <label for='input-1'> " + Am.issuedBy + " </label> <select class='form-control' id='ddlcontrol'>  <option value='1'>CheckBox</option>    <option value='2'>RadioButton</option>   <option value='3'>TextArea</option>     <option value='4'>Textbox</option></select ></div></div>" +
               
-               data + "<div class='col-sm-6'><div class='form-group'>  <label for='input-1'> " + Am.Nomination + " </label> <input autocomplete='off' class='form-control validate[required]text-input' id='txtpropertyDescription' name='propertyDescription' placeholder='Enter property Description' type='text' value=''></div></div>" +
-               data + "<div class='col-sm-6'><div class='form-group'>  <label for='input-1'> " + Am.NomineeDetails + " </label> <input autocomplete='off' class='form-control validate[required]text-input' id='txtNomination' name='Nomination' placeholder='Enter Nomination' type='text' value=''></div></div>";
+               data + "<div class='col-sm-6'><div class='form-group'>  <label for='input-1'> " + Am.Nomination + " </label> <select class='form-control' id='ddlcontrol'>  <option value='1'>CheckBox</option>    <option value='2'>RadioButton</option>   <option value='3'>TextArea</option>     <option value='4'>Textbox</option></select ></div></div>" +
+               data + "<div class='col-sm-6'><div class='form-group'>  <label for='input-1'> " + Am.NomineeDetails + " </label><select class='form-control' id='ddlcontrol'>  <option value='1'>CheckBox</option>    <option value='2'>RadioButton</option>   <option value='3'>TextArea</option>     <option value='4'>Textbox</option></select ></div></div>";
 
 
                    
@@ -217,12 +227,12 @@ namespace WillAssure.Controllers
                 if (index == 5)
                 {
 
-                    data = data + "<div class='col-sm-6'><div class='form-group'>  <label for='input-1'> " + Am.dueDate + " </label> <input autocomplete='off' class='form-control validate[required]text-input' id='txtcurrentStatus' name='currentStatus' placeholder='Enter current Status' type='text' value=''></div></div>" +
+                    data = data + "<div class='col-sm-6'><div class='form-group'>  <label for='input-1'> " + Am.dueDate + " </label> <select class='form-control' id='ddlcontrol'>  <option value='1'>CheckBox</option>    <option value='2'>RadioButton</option>   <option value='3'>TextArea</option>     <option value='4'>Textbox</option></select ></div></div>" +
 
-               data + "<div class='col-sm-6'><div class='form-group'>  <label for='input-1'> " + Am.issuedBy + " </label> <input autocomplete='off' class='form-control validate[required]text-input' id='txtpropertyDescription' name='propertyDescription' placeholder='Enter property Description' type='text' value=''></div></div>" +
-               data + "<div class='col-sm-6'><div class='form-group'>  <label for='input-1'> " + Am.identifier + " </label> <input autocomplete='off' class='form-control validate[required]text-input' id='txtNomination' name='Nomination' placeholder='Enter Nomination' type='text' value=''></div></div>" +
-               data + "<div class='col-sm-6'><div class='form-group'>  <label for='input-1'> " + Am.Nomination + " </label> <input autocomplete='off' class='form-control validate[required]text-input' id='txtNomination' name='Nomination' placeholder='Enter Nomination' type='text' value=''></div></div>" +
-               data + "<div class='col-sm-6'><div class='form-group'>  <label for='input-1'> " + Am.NomineeDetails + " </label> <input autocomplete='off' class='form-control validate[required]text-input' id='txtNomination' name='Nomination' placeholder='Enter Nomination' type='text' value=''></div></div>";
+               data + "<div class='col-sm-6'><div class='form-group'>  <label for='input-1'> " + Am.issuedBy + " </label><select class='form-control' id='ddlcontrol'>  <option value='1'>CheckBox</option>    <option value='2'>RadioButton</option>   <option value='3'>TextArea</option>     <option value='4'>Textbox</option></select ></div></div>" +
+               data + "<div class='col-sm-6'><div class='form-group'>  <label for='input-1'> " + Am.identifier + " </label><select class='form-control' id='ddlcontrol'>  <option value='1'>CheckBox</option>    <option value='2'>RadioButton</option>   <option value='3'>TextArea</option>     <option value='4'>Textbox</option></select ></div></div>" +
+               data + "<div class='col-sm-6'><div class='form-group'>  <label for='input-1'> " + Am.Nomination + " </label><select class='form-control' id='ddlcontrol'>  <option value='1'>CheckBox</option>    <option value='2'>RadioButton</option>   <option value='3'>TextArea</option>     <option value='4'>Textbox</option></select ></div></div>" +
+               data + "<div class='col-sm-6'><div class='form-group'>  <label for='input-1'> " + Am.NomineeDetails + " </label><select class='form-control' id='ddlcontrol'>  <option value='1'>CheckBox</option>    <option value='2'>RadioButton</option>   <option value='3'>TextArea</option>     <option value='4'>Textbox</option></select ></div></div>";
 
 
                    
@@ -232,12 +242,12 @@ namespace WillAssure.Controllers
                 if (index == 6)
                 {
 
-                    data = data + "<div class='col-sm-6'><div class='form-group'>  <label for='input-1'> " + Am.dueDate + " </label> <input autocomplete='off' class='form-control validate[required]text-input' id='txtcurrentStatus' name='currentStatus' placeholder='Enter current Status' type='text' value=''></div></div>" +
+                    data = data + "<div class='col-sm-6'><div class='form-group'>  <label for='input-1'> " + Am.dueDate + " </label> <select class='form-control' id='ddlcontrol'>  <option value='1'>CheckBox</option>    <option value='2'>RadioButton</option>   <option value='3'>TextArea</option>     <option value='4'>Textbox</option></select ></div></div>" +
 
-               data + "<div class='col-sm-6'><div class='form-group'>  <label for='input-1'> " + Am.issuedBy + " </label> <input autocomplete='off' class='form-control validate[required]text-input' id='txtpropertyDescription' name='propertyDescription' placeholder='Enter property Description' type='text' value=''></div></div>" +
-               data + "<div class='col-sm-6'><div class='form-group'>  <label for='input-1'> " + Am.identifier + " </label> <input autocomplete='off' class='form-control validate[required]text-input' id='txtNomination' name='Nomination' placeholder='Enter Nomination' type='text' value=''></div></div>" +
-               data + "<div class='col-sm-6'><div class='form-group'>  <label for='input-1'> " + Am.Nomination + " </label> <input autocomplete='off' class='form-control validate[required]text-input' id='txtNomination' name='Nomination' placeholder='Enter Nomination' type='text' value=''></div></div>" +
-               data + "<div class='col-sm-6'><div class='form-group'>  <label for='input-1'> " + Am.NomineeDetails + " </label> <input autocomplete='off' class='form-control validate[required]text-input' id='txtNomination' name='Nomination' placeholder='Enter Nomination' type='text' value=''></div></div>";
+               data + "<div class='col-sm-6'><div class='form-group'>  <label for='input-1'> " + Am.issuedBy + " </label> <select class='form-control' id='ddlcontrol'>  <option value='1'>CheckBox</option>    <option value='2'>RadioButton</option>   <option value='3'>TextArea</option>     <option value='4'>Textbox</option></select ></div></div>" +
+               data + "<div class='col-sm-6'><div class='form-group'>  <label for='input-1'> " + Am.identifier + " </label> <select class='form-control' id='ddlcontrol'>  <option value='1'>CheckBox</option>    <option value='2'>RadioButton</option>   <option value='3'>TextArea</option>     <option value='4'>Textbox</option></select ></div></div>" +
+               data + "<div class='col-sm-6'><div class='form-group'>  <label for='input-1'> " + Am.Nomination + " </label><select class='form-control' id='ddlcontrol'>  <option value='1'>CheckBox</option>    <option value='2'>RadioButton</option>   <option value='3'>TextArea</option>     <option value='4'>Textbox</option></select ></div></div>" +
+               data + "<div class='col-sm-6'><div class='form-group'>  <label for='input-1'> " + Am.NomineeDetails + " </label><select class='form-control' id='ddlcontrol'>  <option value='1'>CheckBox</option>    <option value='2'>RadioButton</option>   <option value='3'>TextArea</option>     <option value='4'>Textbox</option></select ></div></div>";
 
 
                    
@@ -250,10 +260,10 @@ namespace WillAssure.Controllers
 
 
 
-                    data = data + "<div class='col-sm-6'><div class='form-group'>  <label for='input-1'> " + Am.issuedBy + " </label> <input autocomplete='off' class='form-control validate[required]text-input' id='txtpropertyDescription' name='propertyDescription' placeholder='Enter property Description' type='text' value=''></div></div>" +
-               data + "<div class='col-sm-6'><div class='form-group'>  <label for='input-1'> " + Am.identifier + " </label> <input autocomplete='off' class='form-control validate[required]text-input' id='txtNomination' name='Nomination' placeholder='Enter Nomination' type='text' value=''></div></div>" +
-               data + "<div class='col-sm-6'><div class='form-group'>  <label for='input-1'> " + Am.Nomination + " </label> <input autocomplete='off' class='form-control validate[required]text-input' id='txtNomination' name='Nomination' placeholder='Enter Nomination' type='text' value=''></div></div>" +
-               data + "<div class='col-sm-6'><div class='form-group'>  <label for='input-1'> " + Am.NomineeDetails + " </label> <input autocomplete='off' class='form-control validate[required]text-input' id='txtNomination' name='Nomination' placeholder='Enter Nomination' type='text' value=''></div></div>";
+                    data = data + "<div class='col-sm-6'><div class='form-group'>  <label for='input-1'> " + Am.issuedBy + " </label> <select class='form-control' id='ddlcontrol'>  <option value='1'>CheckBox</option>    <option value='2'>RadioButton</option>   <option value='3'>TextArea</option>     <option value='4'>Textbox</option></select ></div></div>" +
+               data + "<div class='col-sm-6'><div class='form-group'>  <label for='input-1'> " + Am.identifier + " </label><select class='form-control' id='ddlcontrol'>  <option value='1'>CheckBox</option>    <option value='2'>RadioButton</option>   <option value='3'>TextArea</option>     <option value='4'>Textbox</option></select ></div></div>" +
+               data + "<div class='col-sm-6'><div class='form-group'>  <label for='input-1'> " + Am.Nomination + " </label><select class='form-control' id='ddlcontrol'>  <option value='1'>CheckBox</option>    <option value='2'>RadioButton</option>   <option value='3'>TextArea</option>     <option value='4'>Textbox</option></select ></div></div>" +
+               data + "<div class='col-sm-6'><div class='form-group'>  <label for='input-1'> " + Am.NomineeDetails + " </label> <select class='form-control' id='ddlcontrol'>  <option value='1'>CheckBox</option>    <option value='2'>RadioButton</option>   <option value='3'>TextArea</option>     <option value='4'>Textbox</option></select ></div></div>";
 
 
                    
@@ -265,10 +275,10 @@ namespace WillAssure.Controllers
 
 
 
-                    data = data + "<div class='col-sm-6'><div class='form-group'>  <label for='input-1'> " + Am.issuedBy + " </label> <input autocomplete='off' class='form-control validate[required]text-input' id='txtpropertyDescription' name='propertyDescription' placeholder='Enter property Description' type='text' value=''></div></div>" +
-               data + "<div class='col-sm-6'><div class='form-group'>  <label for='input-1'> " + Am.identifier + " </label> <input autocomplete='off' class='form-control validate[required]text-input' id='txtNomination' name='Nomination' placeholder='Enter Nomination' type='text' value=''></div></div>" +
-               data + "<div class='col-sm-6'><div class='form-group'>  <label for='input-1'> " + Am.Nomination + " </label> <input autocomplete='off' class='form-control validate[required]text-input' id='txtNomination' name='Nomination' placeholder='Enter Nomination' type='text' value=''></div></div>" +
-               data + "<div class='col-sm-6'><div class='form-group'>  <label for='input-1'> " + Am.NomineeDetails + " </label> <input autocomplete='off' class='form-control validate[required]text-input' id='txtNomination' name='Nomination' placeholder='Enter Nomination' type='text' value=''></div></div>";
+                    data = data + "<div class='col-sm-6'><div class='form-group'>  <label for='input-1'> " + Am.issuedBy + " </label> <select class='form-control' id='ddlcontrol'>  <option value='1'>CheckBox</option>    <option value='2'>RadioButton</option>   <option value='3'>TextArea</option>     <option value='4'>Textbox</option></select ></div></div>" +
+               data + "<div class='col-sm-6'><div class='form-group'>  <label for='input-1'> " + Am.identifier + " </label> <select class='form-control' id='ddlcontrol'>  <option value='1'>CheckBox</option>    <option value='2'>RadioButton</option>   <option value='3'>TextArea</option>     <option value='4'>Textbox</option></select ></div></div>" +
+               data + "<div class='col-sm-6'><div class='form-group'>  <label for='input-1'> " + Am.Nomination + " </label><select class='form-control' id='ddlcontrol'>  <option value='1'>CheckBox</option>    <option value='2'>RadioButton</option>   <option value='3'>TextArea</option>     <option value='4'>Textbox</option></select ></div></div>" +
+               data + "<div class='col-sm-6'><div class='form-group'>  <label for='input-1'> " + Am.NomineeDetails + " </label> <select class='form-control' id='ddlcontrol'>  <option value='1'>CheckBox</option>    <option value='2'>RadioButton</option>   <option value='3'>TextArea</option>     <option value='4'>Textbox</option></select ></div></div>";
 
 
                  
@@ -280,10 +290,10 @@ namespace WillAssure.Controllers
 
 
 
-                    data = data + "<div class='col-sm-6'><div class='form-group'>  <label for='input-1'> " + Am.issuedBy + " </label> <input autocomplete='off' class='form-control validate[required]text-input' id='txtpropertyDescription' name='propertyDescription' placeholder='Enter property Description' type='text' value=''></div></div>" +
+                    data = data + "<div class='col-sm-6'><div class='form-group'>  <label for='input-1'> " + Am.issuedBy + " </label><select class='form-control' id='ddlcontrol'>  <option value='1'>CheckBox</option>    <option value='2'>RadioButton</option>   <option value='3'>TextArea</option>     <option value='4'>Textbox</option></select ></div></div>" +
              
-               data + "<div class='col-sm-6'><div class='form-group'>  <label for='input-1'> " + Am.Nomination + " </label> <input autocomplete='off' class='form-control validate[required]text-input' id='txtNomination' name='Nomination' placeholder='Enter Nomination' type='text' value=''></div></div>" +
-               data + "<div class='col-sm-6'><div class='form-group'>  <label for='input-1'> " + Am.NomineeDetails + " </label> <input autocomplete='off' class='form-control validate[required]text-input' id='txtNomination' name='Nomination' placeholder='Enter Nomination' type='text' value=''></div></div>";
+               data + "<div class='col-sm-6'><div class='form-group'>  <label for='input-1'> " + Am.Nomination + " </label><select class='form-control' id='ddlcontrol'>  <option value='1'>CheckBox</option>    <option value='2'>RadioButton</option>   <option value='3'>TextArea</option>     <option value='4'>Textbox</option></select ></div></div>" +
+               data + "<div class='col-sm-6'><div class='form-group'>  <label for='input-1'> " + Am.NomineeDetails + " </label> <select class='form-control' id='ddlcontrol'>  <option value='1'>CheckBox</option>    <option value='2'>RadioButton</option>   <option value='3'>TextArea</option>     <option value='4'>Textbox</option></select ></div></div>";
 
 
                    
@@ -295,10 +305,10 @@ namespace WillAssure.Controllers
 
 
 
-                    data = data + "<div class='col-sm-6'><div class='form-group'>  <label for='input-1'> " + Am.issuedBy + " </label> <input autocomplete='off' class='form-control validate[required]text-input' id='txtpropertyDescription' name='propertyDescription' placeholder='Enter property Description' type='text' value=''></div></div>" +
-                 data + "<div class='col-sm-6'><div class='form-group'>  <label for='input-1'> " + Am.identifier + " </label> <input autocomplete='off' class='form-control validate[required]text-input' id='txtNomination' name='Nomination' placeholder='Enter Nomination' type='text' value=''></div></div>" +
-               data + "<div class='col-sm-6'><div class='form-group'>  <label for='input-1'> " + Am.Nomination + " </label> <input autocomplete='off' class='form-control validate[required]text-input' id='txtNomination' name='Nomination' placeholder='Enter Nomination' type='text' value=''></div></div>" +
-               data + "<div class='col-sm-6'><div class='form-group'>  <label for='input-1'> " + Am.NomineeDetails + " </label> <input autocomplete='off' class='form-control validate[required]text-input' id='txtNomination' name='Nomination' placeholder='Enter Nomination' type='text' value=''></div></div>";
+                    data = data + "<div class='col-sm-6'><div class='form-group'>  <label for='input-1'> " + Am.issuedBy + " </label> <select class='form-control' id='ddlcontrol'>  <option value='1'>CheckBox</option>    <option value='2'>RadioButton</option>   <option value='3'>TextArea</option>     <option value='4'>Textbox</option></select ></div></div>" +
+                 data + "<div class='col-sm-6'><div class='form-group'>  <label for='input-1'> " + Am.identifier + " </label> <select class='form-control' id='ddlcontrol'>  <option value='1'>CheckBox</option>    <option value='2'>RadioButton</option>   <option value='3'>TextArea</option>     <option value='4'>Textbox</option></select ></div></div>" +
+               data + "<div class='col-sm-6'><div class='form-group'>  <label for='input-1'> " + Am.Nomination + " </label> <select class='form-control' id='ddlcontrol'>  <option value='1'>CheckBox</option>    <option value='2'>RadioButton</option>   <option value='3'>TextArea</option>     <option value='4'>Textbox</option></select ></div></div>" +
+               data + "<div class='col-sm-6'><div class='form-group'>  <label for='input-1'> " + Am.NomineeDetails + " </label> <select class='form-control' id='ddlcontrol'>  <option value='1'>CheckBox</option>    <option value='2'>RadioButton</option>   <option value='3'>TextArea</option>     <option value='4'>Textbox</option></select ></div></div>";
 
 
                    
@@ -315,89 +325,104 @@ namespace WillAssure.Controllers
 
 
 
-
-
-
-
-        public string DynamicFields()
+        public ActionResult InsertAssetsData()
         {
 
-            con.Open();
-            string query = "select * from AssetsType";
-            SqlDataAdapter da = new SqlDataAdapter(query, con);
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-            con.Close();
-            string data = "";
-
-            if (dt.Rows.Count > 0)
-            {
-
-
-                for (int i = 0; i < dt.Rows.Count; i++)
-                {
 
 
 
-
-                    data = data + " <option value=" + dt.Rows[i]["atId"].ToString() + " >" + dt.Rows[i]["AssetsType"].ToString() + "</option> ";
-
-
-
-                }
-            }
-
-
-
-
-            con.Open();
-            string query2 = "select * from AssetsCategory";
-            SqlDataAdapter da2 = new SqlDataAdapter(query2, con);
-            DataTable dt2 = new DataTable();
-            da2.Fill(dt2);
-            con.Close();
-            string data2 = "";
-
-            if (dt2.Rows.Count > 0)
-            {
-
-
-                for (int i = 0; i < dt2.Rows.Count; i++)
-                {
-
-
-
-
-                    data2 = data2 + " <option value=" + dt2.Rows[i]["amId"].ToString() + " >" + dt2.Rows[i]["AssetsCategory"].ToString() + "</option> ";
-
-
-
-                }
-            }
-
-
-
-            for (int i = 0; i < 1; i++)
-                {
-                    ddl = ddl + "<select id='ddlAssetType' class='form-control'><option value='0'>--Select--</option>'" + data + "'</select>";
-                    ddl2 = ddl2 + "<select id='ddlAssetCategory' class='form-control'><option value='0'>--Select--</option>'" + data2 + "'</select>";
-                }
-            structure = "<div class='col-sm-6'><div class='form-group'> " + ddl + " </div></div> <div></div>  <div class='col-sm-6'><div class='form-group'> " + ddl2 + " </div></div>";
-
-
-            string f = structure;
-
-
-
-
-           
-           
-
-
-
-
-            return f;
+            return View("~/Views/AddAssets/AddAssetsPageContent.cshtml");
         }
+
+
+
+        //public string DynamicFields()
+        //{
+
+        //    con.Open();
+        //    string query = "select * from AssetsType";
+        //    SqlDataAdapter da = new SqlDataAdapter(query, con);
+        //    DataTable dt = new DataTable();
+        //    da.Fill(dt);
+        //    con.Close();
+        //    string data = "";
+
+        //    if (dt.Rows.Count > 0)
+        //    {
+
+
+        //        for (int i = 0; i < dt.Rows.Count; i++)
+        //        {
+
+
+
+
+        //            data = data + " <option value=" + dt.Rows[i]["atId"].ToString() + " >" + dt.Rows[i]["AssetsType"].ToString() + "</option> ";
+
+
+
+        //        }
+        //    }
+
+
+
+
+        //    con.Open();
+        //    string query2 = "select * from AssetsCategory";
+        //    SqlDataAdapter da2 = new SqlDataAdapter(query2, con);
+        //    DataTable dt2 = new DataTable();
+        //    da2.Fill(dt2);
+        //    con.Close();
+        //    string data2 = "";
+
+        //    if (dt2.Rows.Count > 0)
+        //    {
+
+
+        //        for (int i = 0; i < dt2.Rows.Count; i++)
+        //        {
+
+
+
+
+        //            data2 = data2 + " <option value=" + dt2.Rows[i]["amId"].ToString() + " >" + dt2.Rows[i]["AssetsCategory"].ToString() + "</option> ";
+
+
+
+        //        }
+        //    }
+
+
+
+        //    for (int i = 0; i < 1; i++)
+        //        {
+        //            ddl = ddl + "<select id='ddlAssetTypeTemp' onchange='ddlAssetTypeTempChange()' class='form-control'><option value='0'>--Select--</option>'" + data + "'</select>";
+        //            ddl2 = ddl2 + "<select id='ddlAssetCategoryTemp' onchange='myFunction()' class='form-control'><option value='0'>--Select--</option></select>";
+        //        }
+
+
+
+          
+
+
+
+
+        //    structure = "<div class='col-sm-6'><div class='form-group'> " + ddl + " </div></div> <div></div>  <div class='col-sm-6'><div class='form-group'> " + ddl2 + " </div></div>";
+
+
+        //    string f = structure;
+
+
+
+
+           
+           
+
+
+
+
+        //    return f;
+        //}
 
 
       

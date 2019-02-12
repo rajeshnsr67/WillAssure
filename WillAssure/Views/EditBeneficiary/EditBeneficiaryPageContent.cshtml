@@ -101,7 +101,7 @@
             type: "POST",
             url:"@Url.Action("BindBeneficiaryFormData", "EditBeneficiary")",
             success: function (data) {
-                $('#BeneficiaryData').append(data);
+                $('#BeneficiaryData').empty().append(data);
             }
         });
 
@@ -155,7 +155,7 @@
             url: "@Url.Action("DeleteBeneficiaryRecords", "EditBeneficiary")",
             data: {  "send": "" + id + ""   },
             success: function (data) {
-                $('#BeneficiaryData').append(data);
+                $('#BeneficiaryData').empty().append(data);
                 location.reload();
             }
 

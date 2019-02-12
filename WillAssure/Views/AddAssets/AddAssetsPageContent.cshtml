@@ -78,7 +78,7 @@
 
 
 
-                            <input type="button" formaction="" id="btnadd" name="name" class="btn btn-danger" value="Add" />
+                            @*<input type="button" formaction="" id="btnadd" name="name" class="btn btn-danger" value="Add" />*@
 
 
 
@@ -97,7 +97,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <button type="submit" id="btnBeneficiaryformsubmit" formaction="InsertBeneficiaryData" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i>Add Assets</button>
+                                <button type="button" id="btnAssetformsubmit"  class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i>Add Assets</button>
                                 <button id="btnBeneficiarySUCESS" style="display:none;"></button>
                             </div>
 
@@ -175,6 +175,11 @@
 
 
 
+
+
+
+
+
     });
 
 
@@ -198,42 +203,101 @@
             data: { "send": "" + value+  ""},
             success: function (data) {
                 alert(data);
-                $('#listdata').empty();
-                $('#listdata').append(data);
+
+                $('#listdata').empty().append(data);
             }
 
 
 
         });
 
+  });
 
 
+</script>
+
+
+
+
+
+<script>
+    $(document).ready(function () {
+        $("#AssetsForm").validationEngine();
     });
-
-
 </script>
 
 
+@*<script>
+        $("#btnadd").click(function () {
+
+            $.ajax({
+
+                type: "POST",
+                url: "@Url.Action("DynamicFields", "AddAssets")",
+                success: function (data) {
+
+                    $('#listdata').append(data);
+
+
+                }
 
 
 
-<script>
-        $(document).ready(function () {
-            $("#AssetsForm").validationEngine();
+            });
+
+
         });
-</script>
+    </script>*@
 
 
 <script>
-    $("#btnadd").click(function () {
+    function ddlAssetTypeTempChange() {
+        var x = document.getElementById("ddlAssetTypeTemp").value;
+        alert(x);
+
+         @*$.ajax({
+
+            type: "POST",
+            url: "@Url.Action("ddlAssetCategoryTemp", "AddAssets")",
+            data: { "send": "" + x+  ""},
+            success: function (data) {
+
+                $('#ddlAssetCategoryTemp').empty().append(data);
+            }
+
+
+
+        });*@
+
+
+
+    }
+
+
+    function myFunction() {
+        var x = document.getElementById("ddlAssetCategoryTemp").value;
+        alert(x);
+
+
+
+
+
+    }
+
+</script>
+
+
+
+<script>
+    $("#btnAssetformsubmit").click(function () {
 
         $.ajax({
 
             type: "POST",
-            url: "@Url.Action("DynamicFields", "AddAssets")",
+            url: "@Url.Action("InsertAssetsData", "AddAssets")",
             success: function (data) {
 
-                $('#listdata').append(data);
+             
 
 
             }
@@ -245,6 +309,3 @@
 
     });
 </script>
-
-
-

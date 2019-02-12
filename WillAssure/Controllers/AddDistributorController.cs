@@ -33,8 +33,8 @@ namespace WillAssure.Controllers
             cmd.Parameters.AddWithValue("@ownerMobileNo", DFM.ownerMobileNo);
             cmd.Parameters.AddWithValue("@Address1", DFM.Address1 );
             cmd.Parameters.AddWithValue("@Address2", DFM.Address2);
-            cmd.Parameters.AddWithValue("@City", DFM.City);
-            cmd.Parameters.AddWithValue("@State", DFM.State);
+            cmd.Parameters.AddWithValue("@City", DFM.citytext);
+            cmd.Parameters.AddWithValue("@State", DFM.statetext);
             cmd.Parameters.AddWithValue("@Pin", DFM.Pin );
             cmd.Parameters.AddWithValue("@GST_NO", DFM.GST_NO );
             cmd.Parameters.AddWithValue("@Identity_Proof", DFM.Identity_Proof);
@@ -80,6 +80,78 @@ namespace WillAssure.Controllers
             return View("~/Views/AddDistributor/AddDistributorPageContent.cshtml");
         }
 
+        public String BindStateDDL()
+        {
+
+            con.Open();
+            string query = "select * from tbl_state";
+            SqlDataAdapter da = new SqlDataAdapter(query, con);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            con.Close();
+            string data = "";
+
+            if (dt.Rows.Count > 0)
+            {
+
+
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+
+
+
+
+                    data = data + "<option value=" + dt.Rows[i]["state_id"].ToString() + " >" + dt.Rows[i]["statename"].ToString() + "</option>";
+
+
+
+                }
+
+
+
+
+            }
+
+            return data;
+
+        }
+
+
+
+        public string OnChangeBindCity()
+        {
+            string response = Request["send"];
+            con.Open();
+            string query = "select * from tbl_city where state_id = '" + response + "'";
+            SqlDataAdapter da = new SqlDataAdapter(query, con);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            con.Close();
+            string data = "";
+
+            if (dt.Rows.Count > 0)
+            {
+
+
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+
+
+
+
+                    data = data + "<option value=" + dt.Rows[i]["id"].ToString() + " >" + dt.Rows[i]["city_name"].ToString() + "</option>";
+
+
+
+                }
+
+
+
+
+            }
+
+            return data;
+        }
 
 
         public ActionResult InsertUserFormData(DistributorFormModel DFM)

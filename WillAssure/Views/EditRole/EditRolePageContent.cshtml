@@ -79,7 +79,7 @@
             type: "POST",
             url:"@Url.Action("BindRolesFormData", "EditRole")",
             success: function (data) {
-                $('#RolesData').append(data);
+                $('#RolesData').empty().append(data);
             }
         });
 

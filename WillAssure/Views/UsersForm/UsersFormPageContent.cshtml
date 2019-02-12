@@ -335,7 +335,7 @@
         $("#rtext").val(text);
         $("#rid").val(value);
 
-        alert(text);
+       
     });
 </script>
 
@@ -355,7 +355,7 @@
             type: "POST",
             url:"@Url.Action("BindStateDDL", "UsersForm")",
             success: function (data) {
-                $('#ddlstate').append(data);
+                $('#ddlstate').empty().append(data);
             }
         });
 
@@ -381,7 +381,7 @@
             data: { "send": "" + value+  ""},
             success: function (data) {
 
-                $('#ddlcity').append(data);
+                $('#ddlcity').empty().append(data);
             }
 
 

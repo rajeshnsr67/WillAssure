@@ -98,7 +98,7 @@
             type: "POST",
             url:"@Url.Action("BindUserForm", "EditUserForm")",
             success: function (data) {
-                $('#UserData').append(data);
+                $('#UserData').empty().append(data);
             }
         });
 
@@ -152,7 +152,7 @@
             url: "@Url.Action("DeleteEditFormRecords", "EditUserForm")",
             data: {  "send": "" + id + ""   },
             success: function (data) {
-                $('#UserData').append(data);
+                $('#UserData').empty().append(data);
                 location.reload();
             }
 

@@ -83,7 +83,7 @@
 
 
 
-                            <div class="col-sm-4">
+                            <div class="col-sm-4">     
 
                                 <div class="form-group">
                                     <label for="input-1">Value</label>
@@ -146,6 +146,21 @@
 
         $("#templatetxt").val(text);
         $("#templateid").val(value);
+
+
+        $.ajax({
+
+            type: "POST",
+            url: " @Url.Action("onchangeddltestatortype", "AddTemplateMaster")",
+            data: { "send" : ""+value+"" },
+            success: function (data) {
+                alert(data)
+            }
+
+
+        });
+
+
     });
 
 
@@ -158,3 +173,5 @@
         $("#testator_typeid").val(value);
     });
 </script>
+
+

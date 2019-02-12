@@ -133,6 +133,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AddAssetsController.cs" />
+    <Compile Include="Controllers\AddAssetsTypeController.cs" />
     <Compile Include="Controllers\AddBeneficiaryController.cs" />
     <Compile Include="Controllers\AddCouponsController.cs" />
     <Compile Include="Controllers\AddDistributorController.cs" />
@@ -157,12 +158,6 @@
     <Compile Include="Controllers\UpdateRolesController.cs" />
     <Compile Include="Controllers\UpdateTestatorsController.cs" />
     <Compile Include="Controllers\UsersFormController.cs" />
-    <Compile Include="CrystalReports\WillTestator.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>WillTestator.rpt</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -973,6 +968,7 @@
     <Content Include="assets\plugins\summernote\dist\font\summernote291f291f.woff" />
     <Content Include="assets\plugins\summernote\dist\font\summernoted41dd41d.eot" />
     <Content Include="Documents\WillDocument.docx" />
+    <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -1024,6 +1020,7 @@
     <Content Include="Views\AddCoupons\AddCouponsPageContent.cshtml" />
     <Content Include="Views\EditCoupons\EditCouponsPageContent.cshtml" />
     <Content Include="Views\AddTemplateMaster\AddTemplateMasterContent.cshtml" />
+    <Content Include="Views\AddAssetsType\AddAssetsTypePageContent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1044,7 +1041,6 @@
   <ItemGroup>
     <EmbeddedResource Include="CrystalReports\WillTestator.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>WillTestator.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
