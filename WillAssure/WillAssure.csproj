@@ -132,15 +132,20 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AddAssetCategoryController.cs" />
+    <Compile Include="Controllers\AddAssetInfoController.cs" />
     <Compile Include="Controllers\AddAssetsController.cs" />
-    <Compile Include="Controllers\AddAssetsTypeController.cs" />
     <Compile Include="Controllers\AddBeneficiaryController.cs" />
     <Compile Include="Controllers\AddCouponsController.cs" />
     <Compile Include="Controllers\AddDistributorController.cs" />
     <Compile Include="Controllers\AddDocumentController.cs" />
     <Compile Include="Controllers\AddTemplateMasterController.cs" />
     <Compile Include="Controllers\AddTestatorsFormController.cs" />
+    <Compile Include="Controllers\AssetTypeController.cs" />
+    <Compile Include="Controllers\EditAssetCategoryController.cs" />
+    <Compile Include="Controllers\EditAssetInfoController.cs" />
     <Compile Include="Controllers\EditAssetsController.cs" />
+    <Compile Include="Controllers\EditAssetTypeController.cs" />
     <Compile Include="Controllers\EditBeneficiaryController.cs" />
     <Compile Include="Controllers\EditCouponsController.cs" />
     <Compile Include="Controllers\EditDistributorController.cs" />
@@ -152,6 +157,8 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginPageController.cs" />
     <Compile Include="Controllers\RoleAddController.cs" />
+    <Compile Include="Controllers\UpdateAssetCategoryController.cs" />
+    <Compile Include="Controllers\UpdateAssetTypeController.cs" />
     <Compile Include="Controllers\UpdateBeneficiaryController.cs" />
     <Compile Include="Controllers\UpdateDistributorController.cs" />
     <Compile Include="Controllers\UpdateEditFormController.cs" />
@@ -162,7 +169,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Admin.cs" />
+    <Compile Include="Models\AssetCategoryModel.cs" />
     <Compile Include="Models\AssetsModel.cs" />
+    <Compile Include="Models\AssetTypeModel.cs" />
     <Compile Include="Models\BeneficiaryModel.cs" />
     <Compile Include="Models\DesingnationModel.cs" />
     <Compile Include="Models\DistributorFormModel.cs" />
@@ -1020,7 +1029,12 @@
     <Content Include="Views\AddCoupons\AddCouponsPageContent.cshtml" />
     <Content Include="Views\EditCoupons\EditCouponsPageContent.cshtml" />
     <Content Include="Views\AddTemplateMaster\AddTemplateMasterContent.cshtml" />
-    <Content Include="Views\AddAssetsType\AddAssetsTypePageContent.cshtml" />
+    <Content Include="Views\AssetType\AddAssetTypePageContent.cshtml" />
+    <Content Include="Views\AddAssetCategory\AddAssetCategoryPageContent.cshtml" />
+    <Content Include="Views\EditAssetType\EditAssetTypePageContent.cshtml" />
+    <Content Include="Views\UpdateAssetType\UpdateAssetTypePageContent.cshtml" />
+    <Content Include="Views\EditAssetCategory\EditAssetCategoryPageContent.cshtml" />
+    <Content Include="Views\UpdateAssetCategory\UpdateAssetCategoryPageContent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

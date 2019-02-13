@@ -73,5 +73,13 @@ namespace WillAssure.Models
         public int assetCategoryid { get; set; }
 
 
+        public string ControlTypetxt { get; set; }
+        public int ControlTypeId { get; set; }
+
+
+        public string assettxt { get; set; }
+        public int assetid { get; set; }
+
+
     }
 }

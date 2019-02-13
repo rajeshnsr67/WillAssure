@@ -1,0 +1,124 @@
+﻿@model WillAssure.Models.AssetTypeModel
+@{
+    /**/
+
+    ViewBag.Title = "AddAssetTypePageContent";
+}
+
+
+@*Main Content*@
+<div class="content-wrapper">
+    <div class="container-fluid">
+
+        <div class="row pt-2 pb-2">
+
+            <div class="col-sm-3">
+                <div class="btn-group float-sm-right">
+
+                    <div class="dropdown-menu">
+                        <a href="javaScript:void();" class="dropdown-item">Action</a>
+                        <a href="javaScript:void();" class="dropdown-item">Another action</a>
+                        <a href="javaScript:void();" class="dropdown-item">Something else here</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="javaScript:void();" class="dropdown-item">Separated link</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Breadcrumb-->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+
+
+
+                        @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "AssetTypeForm" }))
+                        {
+
+                            <div class="row">
+                                <div class="col-sm-6">
+
+                                    <div class="form-group">
+                                        <label for="input-1">Asset Type Name</label>
+
+                                        @Html.TextBoxFor(m => m.AssetsType, new { @class = "form-control validate[required] text-input", @id = "txtRole", @placeholder = "Enter Asset Type", @autocomplete = "off", alert = "LabourCost is requried" })
+                                    </div>
+                                </div>
+
+
+
+
+                            </div>
+
+
+                            <div class="form-group py-2">
+                                <div class="icheck-material-primary">
+                                    <input type="checkbox" id="user-checkbox1" checked="" />
+                                    <label for="user-checkbox1">I Agree Terms & Conditions</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+
+                                <button type="submit" id="btnAssetformsubmit" formaction="InsertAssetFormData" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i> Add Asset Type</button>
+                                <button type="button" id="btnAssetformsubmitSUCCESS" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
+
+                            </div>
+
+                        }
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+</div>
+@*end*@
+
+<!--Start Back To Top Button-->
+<a href="javaScript:void();" class="back-to-top"><i class="fa fa-angle-double-up"></i> </a>
+<!--End Back To Top Button-->
+
+
+
+
+<script>
+   $(document).ready(function () {
+       $("#AssetTypeForm").validationEngine();
+    });
+
+
+
+</script>
+
+
+
+
+@if (ViewBag.Message == "Verified")
+{
+    <script>
+
+        $(document).ready(function () {
+
+
+            $("#btnAssetformsubmitSUCCESS").on("click", function () { });
+
+            $("#btnAssetformsubmitSUCCESS").click(); //trigger event after listening to it.
+
+            $("#txtRole").val("");
+
+
+        });
+    </script>
+
+}
+
+
+
+
+

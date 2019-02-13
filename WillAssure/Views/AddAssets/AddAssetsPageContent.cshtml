@@ -35,50 +35,66 @@
                         @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "AssetsForm" }))
 
                         {
-                            <div class="row">
-                                <div class="col-sm-6">
+                        <div class="row">
+                            <div class="col-sm-4">
 
-                                    <div class="form-group">
-                                        <label for="input-1">Asset Type</label>
+                                <div class="form-group">
+                                    <label for="input-1">Asset Type</label>
 
-                                        <select id="ddlAssetType" class="form-control">
-                                            <option value="0">--Select--</option>
-                                        </select>
-                                        @Html.HiddenFor(m => m.assettypeid, new { id = "assettypeid" })
-                                        @Html.HiddenFor(m => m.assettypetext, new { id = "assettypetext" })
-                                    </div>
+                                    <select id="ddlAssetType" class="form-control">
+                                        <option value="0">--Select--</option>
+                                    </select>
+                                    @Html.HiddenFor(m => m.assettypeid, new { id = "assettypeid" })
+                                    @Html.HiddenFor(m => m.assettypetext, new { id = "assettypetext" })
                                 </div>
+                            </div>
 
 
-                                <div class="col-sm-6">
+                            <div class="col-sm-4">
 
-                                    <div class="form-group">
-                                        <label for="input-1">Asset Category</label>
+                                <div class="form-group">
+                                    <label for="input-1">Asset Category</label>
 
-                                        <select id="ddlAssetCategory" class="form-control">
-                                            <option value="0">--Select--</option>
-                                        </select>
-                                        @Html.HiddenFor(m => m.assetCategoryid, new { id = "assetCategoryid" })
-                                        @Html.HiddenFor(m => m.assetCategorytext, new { id = "assetCategorytext" })
-                                    </div>
+                                    <select id="ddlAssetCategory" class="form-control">
+                                        <option value="0">--Select--</option>
+                                    </select>
+                                    @Html.HiddenFor(m => m.assetCategoryid, new { id = "assetCategoryid" })
+                                    @Html.HiddenFor(m => m.assetCategorytext, new { id = "assetCategorytext" })
                                 </div>
+                            </div>
 
 
+
+
+                            <div class="col-sm-4">
+
+                                <div class="form-group">
+                                    <label for="input-1">Asset Code</label>
+
+                                    <input type="text" name="name" class="form-control validate[required] text-input" id="txtFirstName" placeholder="Enter Asset Code" autocomplete="off" />
+                                </div>
+                            </div>
+
+
+
+
+
+
+
+
+
+                        </div>
+
+
+                            <div id="listdata" class="row">
 
 
 
                             </div>
 
 
-                            <div class="row" id="listdata">
 
-
-
-                            </div>
-
-
-
-                            @*<input type="button" formaction="" id="btnadd" name="name" class="btn btn-danger" value="Add" />*@
+                            <input type="button" id="btnadd" name="name" class="btn btn-danger" value="Add" />
 
 
 
@@ -97,7 +113,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <button type="button" id="btnAssetformsubmit"  class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i>Add Assets</button>
+                                <button type="button" id="btnAssetformsubmit" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i>Add Assets</button>
                                 <button id="btnBeneficiarySUCESS" style="display:none;"></button>
                             </div>
 
@@ -137,12 +153,35 @@
             url: "@Url.Action("BindAssetTypeDDL", "AddAssets")",
             success: function (data) {
 
-                $('#ddlAssetType').append(data);
+                $('#ddlAssetType').empty().append('<option value="0">--Select--</option>'+data);
             }
 
 
 
         });
+
+
+
+
+
+
+
+
+           $.ajax({
+
+            type: "POST",
+            url: "@Url.Action("DDLBindAssetColumn", "AddAssets")",
+            success: function (data) {
+
+                $('#DDLAssetColumn').empty().append('<option value="0">--Select--</option>'+data);
+            }
+
+
+
+        });
+
+
+
 
     });
 
@@ -166,7 +205,7 @@
             data: { "send": "" + value+  ""},
             success: function (data) {
 
-                $('#ddlAssetCategory').empty().append(data);
+                $('#ddlAssetCategory').empty().append('<option value="0">--Select--</option>'+data);
             }
 
 
@@ -196,20 +235,7 @@
         $("#assetCategoryid").val(value);
 
 
-        $.ajax({
-
-            type: "POST",
-            url: "@Url.Action("AssetFields", "AddAssets")",
-            data: { "send": "" + value+  ""},
-            success: function (data) {
-                alert(data);
-
-                $('#listdata').empty().append(data);
-            }
-
-
-
-        });
+     
 
   });
 
@@ -227,7 +253,7 @@
 </script>
 
 
-@*<script>
+<script>
         $("#btnadd").click(function () {
 
             $.ajax({
@@ -247,7 +273,7 @@
 
 
         });
-    </script>*@
+    </script>
 
 
 <script>
@@ -308,4 +334,29 @@
 
 
     });
+
+
+
+    function getddlcontrolsid(id) {
+
+        var id = id;
+
+
+          $.ajax({
+
+            type: "POST",
+              url: "@Url.Action("CreateSelectedControls", "AddAssets")",
+              data: {"send":""+id+""},
+              success: function (data) {
+
+                  $('#generator').empty().append(data);
+
+
+               }
+
+
+
+        });
+       
+    }
 </script>

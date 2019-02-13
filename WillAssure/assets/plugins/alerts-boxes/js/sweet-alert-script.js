@@ -62,6 +62,11 @@
          swal("Testator Added!", "Your Data has Been Added!,", "success");
      });
 
+     
+
+     $("#btnAssetformsubmitSUCCESS").click(function () {
+         swal("Asset Type Added!", "Your Data has Been Added!,", "success");
+     });
      //end
 
      //Failed Alert Button

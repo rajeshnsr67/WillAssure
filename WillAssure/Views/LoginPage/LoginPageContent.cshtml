@@ -166,23 +166,7 @@
     <script src="~/assets/plugins/bootstrap-datatable/js/buttons.html5.min.js"></script>
     <script src="~/assets/plugins/bootstrap-datatable/js/buttons.print.min.js"></script>
     <script src="~/assets/plugins/bootstrap-datatable/js/buttons.colVis.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            //Default data table
-            $('#default-datatable').DataTable();
-
-
-            var table = $('#default-datatable').DataTable({
-                lengthChange: false,
-                buttons: ['copy', 'excel', 'pdf', 'print', 'colvis']
-            });
-
-            table.buttons().container()
-                .appendTo('#example_wrapper .col-md-6:eq(0)');
-
-        });
-
-    </script>
+    
     @*Master Scripts Link End*@
 
 
