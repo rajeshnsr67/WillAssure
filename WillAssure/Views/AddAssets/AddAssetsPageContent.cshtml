@@ -32,9 +32,9 @@
 
 
 
-                        @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "AssetsForm" }))
+                        @*@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "AssetsForm" }))
 
-                        {
+                        {*@
                         <div class="row">
                             <div class="col-sm-4">
 
@@ -106,14 +106,9 @@
 
 
 
-                            <div class="form-group py-2">
-                                <div class="icheck-material-primary">
-                                    <input type="checkbox" id="user-checkbox1" checked="" />
-                                    <label for="user-checkbox1">I Agree Terms & Conditions</label>
-                                </div>
-                            </div>
+                         
                             <div class="form-group">
-                                <button type="button" id="btnAssetformsubmit" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i>Add Assets</button>
+                                <input type="submit" name="name" value="Add Assets" id="btnAssetformsubmit" class="btn btn-primary shadow-primary px-5" />
                                 <button id="btnBeneficiarySUCESS" style="display:none;"></button>
                             </div>
 
@@ -124,7 +119,7 @@
 
 
 
-                        }
+                        @*}*@
 
 
 
@@ -234,7 +229,18 @@
         $("#assetCategorytext").val(text);
         $("#assetCategoryid").val(value);
 
+               $.ajax({
 
+            type: "POST",
+            url: "@Url.Action("DynamicFields", "AddAssets")",
+            success: function (data) {
+
+                $('#listdata').append(data);
+            }
+
+
+
+        });
      
 
   });
@@ -316,11 +322,11 @@
 
 <script>
     $("#btnAssetformsubmit").click(function () {
-
+        
         $.ajax({
 
             type: "POST",
-            url: "@Url.Action("InsertAssetsData", "AddAssets")",
+            url: "@Url.Action("InsertAssetsData","AddAssets")",
             success: function (data) {
 
              
@@ -359,4 +365,37 @@
         });
        
     }
+
+
+    $("#ddlAssetCategory").change(function () {
+        var value = $(this).children(":selected").attr("value");
+        var text = $("#ddlAssetCategory option:selected").html();
+
+        alert(value);
+
+        $.ajax({
+
+            type: "POST",
+            url: "@Url.Action("BindAssetColumnLabel", "AddAssets")",
+            data: { "send": "" + id + "" },
+            success: function (data) {
+                alert(data);
+                $(value).empty().append(data);
+
+
+            }
+
+
+
+        });
+
+
+
+    }
+
+
+
+       
+
+
 </script>

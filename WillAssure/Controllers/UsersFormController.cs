@@ -172,16 +172,50 @@ namespace WillAssure.Controllers
 
             int roles = 0;
             roles = Convert.ToInt32(Session["rId"]);
-            if (roles != 1)
+            if (roles != 1 && roles != 4)
             {
 
+                con.Open();
+                string query = "select * from subroles";
+                SqlDataAdapter da = new SqlDataAdapter(query, con);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                con.Close();
+                string data = "<option value='0'>--Select Role--</option>";
+
+                if (dt.Rows.Count > 0)
+                {
+
+
+                    for (int i = 0; i < dt.Rows.Count; i++)
+                    {
+
+
+
+
+                        data = data + "<option value=" + dt.Rows[i]["Subrid"].ToString() + " >" + dt.Rows[i]["SubRolesName"].ToString() + "</option>";
+
+
+
+                    }
+
+
+
+
+                }
+                return data;
+
+            }
+            else
+            {
+          
                 con.Open();
                 string query = "select * from Roles";
                 SqlDataAdapter da = new SqlDataAdapter(query, con);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
                 con.Close();
-                string data = "";
+                string data = "<option value='0'>--Select Role--</option>";
 
                 if (dt.Rows.Count > 0)
                 {
@@ -204,39 +238,6 @@ namespace WillAssure.Controllers
 
                 }
 
-                return data;
-
-            }
-            else
-            {
-                con.Open();
-                string query = "select * from subroles";
-                SqlDataAdapter da = new SqlDataAdapter(query, con);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-                con.Close();
-                string data = "";
-
-                if (dt.Rows.Count > 0)
-                {
-
-
-                    for (int i = 0; i < dt.Rows.Count; i++)
-                    {
-
-
-
-
-                        data = data + "<option value=" + dt.Rows[i]["Subrid"].ToString() + " >" + dt.Rows[i]["SubRolesName"].ToString() + "</option>";
-
-
-
-                    }
-
-
-
-
-                }
                 return data;
             }
 

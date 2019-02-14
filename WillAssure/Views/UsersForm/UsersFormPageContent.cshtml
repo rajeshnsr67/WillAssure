@@ -184,7 +184,7 @@
                                     <div class="form-group">
                                         <label for="input-3">Role</label>
                                         <select id="ddlRole" class="form-control">
-                                            <option value="0">--Select Role--</option>
+                                           
                                         </select>
                                         @Html.HiddenFor(m => m.rid, new { id = "rid" })
                                         @Html.HiddenFor(m => m.rtext, new { id = "rtext" })
@@ -230,12 +230,6 @@
 
 
 
-                            <div class="form-group py-2">
-                                <div class="icheck-material-primary">
-                                    <input type="checkbox" id="user-checkbox1" checked="" />
-                                    <label for="user-checkbox1">I Agree Terms & Conditions</label>
-                                </div>
-                            </div>
                             <div class="form-group">
 
                                 <button type="submit" id="btnUserformsubmit" formaction="GetUserFormData" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i>Add Users</button>
@@ -272,7 +266,7 @@
             type: "POST",
             url:"@Url.Action("BindRoleDDL", "UsersForm")",
             success: function (data) {
-                $('#ddlRole').append(data);
+                $('#ddlRole').empty().append(data);
             }
         });
 
