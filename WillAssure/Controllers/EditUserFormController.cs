@@ -158,7 +158,7 @@ namespace WillAssure.Controllers
 
                 }
             }
-            Response.Write("<script>alert('Your Records Have Been Deleted...!')</script>");
+           
             return data;
         }
 

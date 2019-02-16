@@ -41,7 +41,7 @@
 
                                     <div class="form-group">
                                         <label for="input-1">Asset Category Name</label>
-
+                                        @Html.HiddenFor(m => m.atid)
                                         @Html.TextBoxFor(m => m.assetcategory, new { @class = "form-control validate[required] text-input", @id = "txtRole", @placeholder = "Enter Asset Category", @autocomplete = "off", alert = "LabourCost is requried" })
                                     </div>
                                 </div>
@@ -72,8 +72,8 @@
                             </div>
                             <div class="form-group">
 
-                                <button type="submit" id="btnAssetCategoryformsubmit" formaction="InsertAssetCategoryFormData" class="btn btn-success shadow-primary px-5"><i class="icon-lock"></i> Update Asset Category</button>
-                                <button type="button" id="btnAssetCategoryformsubmitSUCCESS" style="display:none;" class="btnpopup btn btn-success shadow-primary px-5"><i class="icon-lock"></i></button>
+                                <button type="submit" id="btnAssetCategoryformsubmit" formaction="UpdatingAssetTypes" class="btn btn-success shadow-primary px-5"><i class="icon-lock"></i> Update Asset Category</button>
+                                <button type="button" id="btnassetcategoryupdated" style="display:none;" class="btnpopup btn btn-success shadow-primary px-5"><i class="icon-lock"></i></button>
 
                             </div>
 
@@ -118,11 +118,11 @@
         $(document).ready(function () {
 
 
-            $("#btnRoleformsubmitSUCCESS").on("click", function () { });
+            $("#btnassetcategoryupdated").on("click", function () { });
 
-            $("#btnRoleformsubmitSUCCESS").click(); //trigger event after listening to it.
+            $("#btnassetcategoryupdated").click(); //trigger event after listening to it.
 
-            $("#txtRole").val("");
+            
 
 
         });

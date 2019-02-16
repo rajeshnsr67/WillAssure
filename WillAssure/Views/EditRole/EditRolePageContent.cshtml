@@ -1,6 +1,8 @@
 ﻿
 @{
-    ViewBag.Title = "EditRolePageContent";
+                /**/
+
+                ViewBag.Title = "EditRolePageContent";
 }
 
 
@@ -37,12 +39,12 @@
                                         <th>RoleId</th>
                                         <th>RoleName</th>
                                         <th>Action</th>
-
+                                        <th><input type="button" id="btndeleteroles" name="name" value="" /></th>
                                     </tr>
                                 </thead>
                                 <tbody id="RolesData"></tbody>
                             </table>
-                           
+
                         </div>
                     </div>
                 </div>
@@ -135,19 +137,21 @@
             url: "@Url.Action("DeleteRolesRecords", "EditRole")",
             data: {  "send": "" + id + ""   },
             success: function (data) {
-                $(".btnRoleDeleteSUCCESS").on("click", function () { });
-                $('.btnRoleDeleteSUCCESS').click();
-
-
-                $('#RolesData').append(data);
-
-                
-                  
                
+
+                $("#btndeleteroles").on("click", function () { });
+
+                $("#btndeleteroles").click(); //trigger event after listening to it.
+
+
+               
+
+                $('#RolesData').empty().append(data).reload();
 
               
 
-                location.reload();
+
+              
             }
 
 

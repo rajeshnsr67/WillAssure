@@ -68,7 +68,7 @@
                             <div class="form-group">
 
                                 <button type="submit" id="btnAssetCategoryformsubmit" formaction="InsertAssetCategoryFormData" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i> Add Asset Category</button>
-                                <button type="button" id="btnAssetCategoryformsubmitSUCCESS" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
+                                <button type="button" id="btnassetcategoryadded" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
 
                             </div>
 
@@ -113,11 +113,11 @@
         $(document).ready(function () {
 
 
-            $("#btnRoleformsubmitSUCCESS").on("click", function () { });
+            $("#btnassetcategoryadded").on("click", function () { });
 
-            $("#btnRoleformsubmitSUCCESS").click(); //trigger event after listening to it.
+            $("#btnassetcategoryadded").click(); //trigger event after listening to it.
 
-            $("#txtRole").val("");
+          
 
 
         });

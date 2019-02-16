@@ -107,12 +107,13 @@ namespace WillAssure.Controllers
             cmd.Parameters.AddWithValue("@Mobile_Verification_Status", "");
             cmd.Parameters.AddWithValue("@Email_OTP", "");
             cmd.Parameters.AddWithValue("@Mobile_OTP", "");
+            cmd.Parameters.AddWithValue("@uid", "");
             cmd.ExecuteNonQuery();
             con.Close();
 
 
             con.Open();
-            string query = "select * from companyDetails";
+            string query = "select * from TestatorDetails";
             SqlDataAdapter da = new SqlDataAdapter(query, con);
             DataTable dt = new DataTable();
             da.Fill(dt);
@@ -125,41 +126,41 @@ namespace WillAssure.Controllers
 
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
-                    data = data + "<tr class='nr'><td>" + dt.Rows[i]["compId"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["companyName"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["ownerName"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["ownerMobileNo"].ToString() + "</td>"
+                    data = data + "<tr class='nr'><td>" + dt.Rows[i]["tId"].ToString() + "</td>"
+                                + "<td>" + dt.Rows[i]["First_Name"].ToString() + "</td>"
+                                + "<td>" + dt.Rows[i]["Last_Name"].ToString() + "</td>"
+                                + "<td>" + dt.Rows[i]["Middle_Name"].ToString() + "</td>"
+                                + "<td>" + dt.Rows[i]["DOB"].ToString() + "</td>"
+                                + "<td>" + dt.Rows[i]["Occupation"].ToString() + "</td>"
+                                + "<td>" + dt.Rows[i]["Mobile"].ToString() + "</td>"
+                                + "<td>" + dt.Rows[i]["Email"].ToString() + "</td>"
+                                + "<td>" + dt.Rows[i]["maritalStatus"].ToString() + "</td>"
+                                + "<td>" + dt.Rows[i]["Religion"].ToString() + "</td>"
+                                + "<td>" + dt.Rows[i]["Identity_Proof"].ToString() + "</td>"
+                                + "<td>" + dt.Rows[i]["Identity_proof_Value"].ToString() + "</td>"
+                                + "<td>" + dt.Rows[i]["Alt_Identity_Proof"].ToString() + "</td>"
+                                + "<td>" + dt.Rows[i]["Alt_Identity_proof_Value"].ToString() + "</td>"
+                                + "<td>" + dt.Rows[i]["Gender"].ToString() + "</td>"
                                 + "<td>" + dt.Rows[i]["Address1"].ToString() + "</td>"
                                 + "<td>" + dt.Rows[i]["Address2"].ToString() + "</td>"
+                                + "<td>" + dt.Rows[i]["Address3"].ToString() + "</td>"
                                 + "<td>" + dt.Rows[i]["City"].ToString() + "</td>"
                                 + "<td>" + dt.Rows[i]["State"].ToString() + "</td>"
+                                + "<td>" + dt.Rows[i]["Country"].ToString() + "</td>"
                                 + "<td>" + dt.Rows[i]["Pin"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["GST_NO"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["Identity_Proof"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["Identity_Proof_Value"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["Alt_Identity_Proof"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["Alt_Identity_Proof_Value"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["contactPerson"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["contactMobileNo"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["contactMailId"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["bankName"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["Branch"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["accountNumber"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["IFSC_Code"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["accountName"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["Referred_By"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["leadgeneratedBy"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["leadconvertedBy"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["relationshipManager"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["leadStatus"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["leadRemark"].ToString() + "</td>"
-                                + "<td><button type='button'   id='" + dt.Rows[i]["compId"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary'>Edit</button><button type='button'   id='" + dt.Rows[i]["compId"].ToString() + "' onClick='Delete(this.id)'   class='btn btn-danger'>Delete</button></td></tr>";
+                                + "<td>" + dt.Rows[i]["active"].ToString() + "</td>"
+                                + "<td>" + dt.Rows[i]["uId"].ToString() + "</td>"
+                                + "<td>" + dt.Rows[i]["Contact_Verification"].ToString() + "</td>"
+                                + "<td>" + dt.Rows[i]["Email_Verification"].ToString() + "</td>"
+                                + "<td>" + dt.Rows[i]["Mobile_Verification_Status"].ToString() + "</td>"
+                                + "<td>" + dt.Rows[i]["dateCreated"].ToString() + "</td>"
+                                + "<td><button type='button'   id='" + dt.Rows[i]["tId"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary'>Edit</button><button type='button'   id='" + dt.Rows[i]["tId"].ToString() + "' onClick='Delete(this.id)'   class='btn btn-danger'>Delete</button></td></tr>";
 
                 }
             }
             
 
-            ViewBag.Message = "RecordsDeleted";
+           
 
             return data;
         }

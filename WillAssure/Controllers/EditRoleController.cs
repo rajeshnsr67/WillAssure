@@ -85,8 +85,10 @@ namespace WillAssure.Controllers
                                 + "<td><button type='button'   id='" + dt.Rows[i]["rId"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary'>Edit</button><button type='button'   id='" + dt.Rows[i]["rId"].ToString() + "' onClick='Delete(this.id)'   class='btn btn-danger '>Delete</button>  </td></tr>";
 
                 }
+                
+              
             }
-            
+         
             return data;
         }
 

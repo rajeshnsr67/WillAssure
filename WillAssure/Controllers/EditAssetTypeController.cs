@@ -68,7 +68,7 @@ namespace WillAssure.Controllers
 
 
             con.Open();
-            string query = "select * from BeneficiaryDetails";
+            string query = "select * from AssetsType";
             SqlDataAdapter da = new SqlDataAdapter(query, con);
             DataTable dt = new DataTable();
             da.Fill(dt);
@@ -81,15 +81,15 @@ namespace WillAssure.Controllers
 
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
-                    data = data + "<tr class='nr'><td>" + dt.Rows[i]["bpId"].ToString() + "</td>"
-                               + "<td>" + dt.Rows[i]["First_Name"].ToString() + "</td>"
+                    data = data + "<tr class='nr'><td>" + dt.Rows[i]["atId"].ToString() + "</td>"
+                               + "<td>" + dt.Rows[i]["AssetsType"].ToString() + "</td>"
                              
-                               + "<td><button type='button'   id='" + dt.Rows[i]["bpId"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary'>Edit</button><button type='button'   id='" + dt.Rows[i]["bpId"].ToString() + "' onClick='Delete(this.id)'   class='btn btn-danger'>Delete</button></td></tr>";
+                               + "<td><button type='button'   id='" + dt.Rows[i]["atId"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary'>Edit</button><button type='button'   id='" + dt.Rows[i]["atId"].ToString() + "' onClick='Delete(this.id)'   class='btn btn-danger'>Delete</button></td></tr>";
 
 
                 }
             }
-            Response.Write("<script>alert('Your Records Have Been Deleted...!')</script>");
+           
             return data;
         }
 

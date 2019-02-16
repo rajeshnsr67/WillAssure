@@ -40,9 +40,6 @@
 
      
 
-     $(".btnRoleDeleteSUCCESS").click(function () {
-         swal("Roles Deleted!", "Your Data has Been Deleted!,", "success");
-     });
 
      
 
@@ -66,6 +63,57 @@
 
      $("#btnAssetformsubmitSUCCESS").click(function () {
          swal("Asset Type Added!", "Your Data has Been Added!,", "success");
+     });
+
+     $("#btnAssetformsubmitSUCCESS").click(function () {
+         swal("Asset Type Added!", "Your Data has Been Added!,", "success");
+     });
+
+     $("#btndeleteroles").click(function () {
+         swal("Role Deleted!", "Your Data has Been Deleted!,", "success");
+     });
+
+
+     $("#btndistributorDelete").click(function () {
+         swal("Company Deleted!", "Your Data has Been Deleted!,", "success");
+     });
+
+     
+     $("#btnuserformdelete").click(function () {
+         swal("Distributor Deleted!", "Your Data has Been Deleted!,", "success");
+     });
+
+    
+
+
+     $("#btndeletetestator").click(function () {
+         swal("Testator Deleted!", "Your Data has Been Deleted!,", "success");
+     });
+
+     
+
+     $("#btndeleteassettype").click(function () {
+         swal("AssetType Deleted!", "Your Data has Been Deleted!,", "success");
+     });
+
+     $("#btnUpdateassettype").click(function () {
+         swal("AssetType Updated!", "Your Data has Been Updated!,", "success");
+     });
+
+
+
+     $("#btnassetcategoryadded").click(function () {
+         swal("AssetCategory Added!", "Your Data has Been Added!,", "success");
+     });
+
+
+     $("#btnassetcategorydeleted").click(function () {
+         swal("AssetCategory Deleted!", "Your Data has Been Deleted!,", "success");
+     });
+
+
+     $("#btnassetcategoryupdated").click(function () {
+         swal("AssetCategory Updated!", "Your Data has Been Updated!,", "success");
      });
      //end
 

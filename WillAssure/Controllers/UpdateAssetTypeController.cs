@@ -51,15 +51,15 @@ namespace WillAssure.Controllers
         {
 
             con.Open();
-            SqlCommand cmd = new SqlCommand("SP_Roles", con);
+            SqlCommand cmd = new SqlCommand("SP_AssetsTypeCRUD", con);
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@condition", "update");
             cmd.Parameters.AddWithValue("@atId ", ATM.atId);
-            cmd.Parameters.AddWithValue("@AssetsType ", ATM.AssetsType);
+            cmd.Parameters.AddWithValue("@assettype ", ATM.AssetsType);
             cmd.ExecuteNonQuery();
             con.Close();
 
-
+            ViewBag.Message = "Verified";
             return View("~/Views/UpdateAssetType/UpdateAssetTypePageContent.cshtml");
         }
     }

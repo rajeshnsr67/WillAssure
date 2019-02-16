@@ -104,6 +104,26 @@
                     "regex": /^[\-\+]?((([0-9]{1,3})([,][0-9]{3})*)|([0-9]+))?([\.]([0-9]+))?$/,
                     "alertText": "* Invalid floating decimal number"
                 },
+                "Gstin": {
+                    // Number, including positive, negative, and floating decimal. credit: orefalo
+                    "regex": /^([0][1-9]|[1-2][0-9]|[3][0-5])([a-zA-Z]{5}[0-9]{4}[a-zA-Z]{1}[1-9a-zA-Z]{1}[zZ]{1}[0-9a-zA-Z]{1})+$/,
+                    "alertText": "* Invalid Gstin"
+                },
+                "AccountNumber": {
+                    // Number, including positive, negative, and floating decimal. credit: orefalo
+                    "regex": /^\d{9,18}$/,
+                    "alertText": "* Invalid Account Number"
+                },
+                "IFSC": {
+                    // Number, including positive, negative, and floating decimal. credit: orefalo
+                    "regex": /^[A-Za-z]{4}[a-zA-Z0-9]{7}$/,
+                    "alertText": "* Invalid IFSC Code"
+                },
+                "adharCard": {
+                    // Number, including positive, negative, and floating decimal. credit: orefalo
+                    "regex": /^(\d{12}|\d{16})$/,
+                    "alertText": "* Invalid adharCard"
+                },
                 "date": {                    
                     //	Check if date is valid by leap year
 			"func": function (field) {

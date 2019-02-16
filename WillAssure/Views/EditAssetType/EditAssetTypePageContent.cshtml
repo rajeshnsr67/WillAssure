@@ -35,10 +35,10 @@
                                     <tr class="ui-widget-header">
                                         <th>AtId</th>
                                         <th>AssetType</th>
-                                      
+
 
                                         <th>Action</th>
-
+                                        <th style="display:none"><input type="button" id="btndeleteassettype" name="name" value="" /></th>
                                     </tr>
                                 </thead>
                                 <tbody id="AssetTypeData"></tbody>
@@ -132,8 +132,12 @@
             url: "@Url.Action("DeleteAssetTypeRecords", "EditAssetType")",
             data: {  "send": "" + id + ""   },
             success: function (data) {
-                $('#AssetTypeData').empty().append(data);
-                location.reload();
+
+                $("#btndeleteassettype").on("click", function () { });
+
+                $("#btndeleteassettype").click(); //trigger event after listening to it.
+                $('#AssetTypeData').empty().append(data).reload();
+                
             }
 
 

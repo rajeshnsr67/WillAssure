@@ -41,7 +41,7 @@
 
                                     <div class="form-group">
                                         <label for="input-1">Asset Type Name</label>
-
+                                        @Html.HiddenFor(m => m.atId)
                                         @Html.TextBoxFor(m => m.AssetsType, new { @class = "form-control validate[required] text-input", @id = "txtRole", @placeholder = "Enter Asset Type", @autocomplete = "off", alert = "LabourCost is requried" })
                                     </div>
                                 </div>
@@ -60,8 +60,8 @@
                             </div>
                             <div class="form-group">
 
-                                <button type="submit" id="btnAssetformsubmit" formaction="InsertAssetFormData" class="btn btn-success shadow-primary px-5"><i class="icon-lock"></i> Update Asset Type</button>
-                                <button type="button" id="btnAssetformsubmitSUCCESS" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
+                                <button type="submit" id="btnAssetformsubmit" formaction="UpdatingAssetTypes" class="btn btn-success shadow-primary px-5"><i class="icon-lock"></i> Update Asset Type</button>
+                                <button type="button" id="btnUpdateassettype" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
 
                             </div>
 
@@ -106,11 +106,11 @@
         $(document).ready(function () {
 
 
-            $("#btnAssetformsubmitSUCCESS").on("click", function () { });
+            $("#btnUpdateassettype").on("click", function () { });
 
-            $("#btnAssetformsubmitSUCCESS").click(); //trigger event after listening to it.
+            $("#btnUpdateassettype").click(); //trigger event after listening to it.
 
-            $("#txtRole").val("");
+           
 
 
         });

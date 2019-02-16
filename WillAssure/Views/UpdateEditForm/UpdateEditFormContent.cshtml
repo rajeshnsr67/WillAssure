@@ -28,7 +28,7 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
-                        <div class="card-title text-primary">Add Users Registration</div>
+                        <div class="card-title text-primary">Update Distributor</div>
                         <hr>
                         @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "UserForm" }))
                         {
@@ -59,7 +59,14 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="input-5">Date Of Birth</label>
-                                        @Html.TextBoxFor(m => m.Dob, new { @type = "date", @class = "form-control validate[required] text-input", @id = "txtDob", @placeholder = "Select Your Date Of Birth", @autocomplete = "off" })
+                                        @*@Html.TextBoxFor(m => m.Dob, new { @type = "date", @class = "form-control validate[required] text-input", @id = "txtDob", @placeholder = "Select Your Date Of Birth", @autocomplete = "off" })*@
+
+
+                                        <div id="datepicker" class="input-group date" data-date-format="dd-mm-yyyy">
+                                            <input class="form-control" type="text" id="Dob" name="Dob" autocomplete="off" placeholder="Select Date Of Birth" />
+                                            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                        </div>
+
                                     </div>
                                 </div>
 
@@ -67,7 +74,7 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="input-3">Mobile</label>
-                                        @Html.TextBoxFor(m => m.Mobile, new { @class = "form-control validate[required] text-input", @id = "txtmobile", @placeholder = "Enter Your Mobile Number", @autocomplete = "off" })
+                                        @Html.TextBoxFor(m => m.Mobile, new { @class = "form-control validate[required,custom[integer],maxSize[10]] text - input", @id = "txtmobile", @placeholder = "Enter Your Mobile Number", @autocomplete = "off" })
                                     </div>
                                 </div>
 
@@ -75,7 +82,7 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="input-3">Email</label>
-                                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control validate[required] text-input", @id = "txtEmail", @placeholder = "Enter Your Email", @autocomplete = "off" })
+                                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control validate[required,custom[email]] text-input", @id = "txtEmail", @placeholder = "Enter Your Email", @autocomplete = "off" })
                                     </div>
                                 </div>
 
@@ -146,7 +153,7 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="input-3">Pin</label>
-                                        @Html.TextBoxFor(m => m.Pin, new { @class = "form-control validate[required] text-input", @id = "txtPin", @placeholder = "Enter Your Pin", @autocomplete = "off" })
+                                        @Html.TextBoxFor(m => m.Pin, new { @class = "form-control validate[required,custom[integer],maxSize[6]] text-input", @id = "txtPin", @placeholder = "Enter Your Pin", @autocomplete = "off" })
                                     </div>
                                 </div>
 
@@ -180,13 +187,15 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="input-3">Role</label>
-                                        <select id="ddlRole" class="form-control">
-                                            <option value="0">--Select Role--</option>
-                                        </select>
+                                        <select id="ddlRole" class="form-control"></select>
                                         @Html.HiddenFor(m => m.rid, new { id = "rid" })
                                         @Html.HiddenFor(m => m.rtext, new { id = "rtext" })
                                     </div>
                                 </div>
+
+
+
+
 
 
 
@@ -223,12 +232,7 @@
 
 
 
-                            <div class="form-group py-2">
-                                <div class="icheck-material-primary">
-                                    <input type="checkbox" id="user-checkbox1" checked="" />
-                                    <label for="user-checkbox1">I Agree Terms & Conditions</label>
-                                </div>
-                            </div>
+
                             <div class="form-group">
 
                                 <button type="submit" id="UpdatingUserform" formaction="UpdatingUserform" class="btn btn-success shadow-success px-5"><i class="icon-lock"></i>Update Users</button>

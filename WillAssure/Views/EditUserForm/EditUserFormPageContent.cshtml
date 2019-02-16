@@ -29,7 +29,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="card">
-                    <div class="card-header"><i class="fa fa-table"></i>Registered User Data</div>
+                    <div class="card-header"><i class="fa fa-table"></i>Distributor Data</div>
                     <div class="card-body">
                         <div class="table-responsive">
                             <table id="default-datatable" class="table table-bordered">
@@ -56,7 +56,7 @@
                                         <th>RoleID</th>
                                         <th>Active</th>
                                         <th>Action</th>
-
+                                        <th style="display:none"><input type="button" id="btnuserformdelete" name="name" value="" /></th>
 
 
                                     </tr>
@@ -152,8 +152,16 @@
             url: "@Url.Action("DeleteEditFormRecords", "EditUserForm")",
             data: {  "send": "" + id + ""   },
             success: function (data) {
-                $('#UserData').empty().append(data);
-                location.reload();
+
+                $("#btnuserformdelete").on("click", function () { });
+
+                $("#btnuserformdelete").click(); //trigger event after listening to it.
+
+
+
+
+                $('#UserData').empty().append(data).reload();
+              
             }
 
 

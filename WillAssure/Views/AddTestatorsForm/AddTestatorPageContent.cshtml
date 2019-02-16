@@ -66,12 +66,15 @@
                                 </div>
 
 
-                                <div class="col-sm-6">
+                                <div class="col-sm-3">
 
                                     <div class="form-group">
                                         <label for="input-1">Date Of Birth</label>
 
-                                        @Html.TextBoxFor(m => m.DOB, new { @type = "date", @class = "form-control validate[required] text-input", @id = "txtDOB", @placeholder = "Select Date Of Birth", @autocomplete = "off" })
+                                        <div id="datepicker" class="input-group date" data-date-format="dd-mm-yyyy">
+                                            <input class="form-control" type="text" id="DOB" name="DOB" autocomplete="off" placeholder="Select Date Of Birth" />
+                                            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -91,7 +94,7 @@
                                     <div class="form-group">
                                         <label for="input-1">Mobile</label>
 
-                                        @Html.TextBoxFor(m => m.Mobile, new { @class = "form-control validate[required] text-input", @id = "txtmobile", @placeholder = "Enter Mobile Number", @autocomplete = "off" })
+                                        @Html.TextBoxFor(m => m.Mobile, new { @class = "form-control validate[required,custom[integer],maxSize[10]]text - input", @id = "txtmobile", @placeholder = "Enter Mobile Number", @autocomplete = "off" })
                                     </div>
                                 </div>
 
@@ -101,7 +104,7 @@
                                     <div class="form-group">
                                         <label for="input-1">Email</label>
 
-                                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control validate[required] text-input", @id = "txtEmail", @placeholder = "Enter Email", @autocomplete = "off" })
+                                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control validate[required,custom[email]] text-input", @id = "txtEmail", @placeholder = "Enter Email", @autocomplete = "off" })
                                     </div>
                                 </div>
 
@@ -170,7 +173,7 @@
                                     <div class="form-group">
                                         <label for="input-1">Alt Identity Proof</label>
 
-                                        @Html.TextBoxFor(m => m.Alt_Identity_Proof, new { @class = "form-control validate[required] text-input", @id = "txtAltIdentityProof", @placeholder = "Enter Alt Identity Proof", @autocomplete = "off" })
+                                        @Html.TextBoxFor(m => m.Alt_Identity_Proof, new { @class = "form-control  text-input", @id = "txtAltIdentityProof", @placeholder = "Enter Alt Identity Proof", @autocomplete = "off" })
                                     </div>
                                 </div>
 
@@ -180,7 +183,7 @@
                                     <div class="form-group">
                                         <label for="input-1">Alt Identity proof Value</label>
 
-                                        @Html.TextBoxFor(m => m.Alt_Identity_proof_Value, new { @class = "form-control validate[required] text-input", @id = "txtAltIdentityproofValue", @placeholder = "Enter Alt Identity proof Value", @autocomplete = "off" })
+                                        @Html.TextBoxFor(m => m.Alt_Identity_proof_Value, new { @class = "form-control  text-input", @id = "txtAltIdentityproofValue", @placeholder = "Enter Alt Identity proof Value", @autocomplete = "off" })
                                     </div>
                                 </div>
 

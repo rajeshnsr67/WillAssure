@@ -47,19 +47,19 @@ namespace WillAssure.Controllers
 
 
 
-        public ActionResult UpdatingAssetTypes(AssetTypeModel ATM)
+        public ActionResult UpdatingAssetTypes(AssetCategoryModel ACM)
         {
-
             con.Open();
-            SqlCommand cmd = new SqlCommand("SP_Roles", con);
-            cmd.CommandType = System.Data.CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@condition", "update");
-            cmd.Parameters.AddWithValue("@atId ", ATM.atId);
-            cmd.Parameters.AddWithValue("@AssetsType ", ATM.AssetsType);
+            SqlCommand cmd = new SqlCommand("SP_AssetsCategoryCRUD", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@condition", "insert");
+            cmd.Parameters.AddWithValue("@atid", ACM.atid);
+            cmd.Parameters.AddWithValue("@assetcategory", ACM.assetcategory);
+            cmd.Parameters.AddWithValue("@assetcode", ACM.assetcode);
             cmd.ExecuteNonQuery();
             con.Close();
 
-
+            ViewBag.Message = "Verified"; 
             return View("~/Views/UpdateAssetType/UpdateAssetTypePageContent.cshtml");
         }
 

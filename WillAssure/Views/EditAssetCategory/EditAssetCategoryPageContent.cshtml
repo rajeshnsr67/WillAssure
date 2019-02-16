@@ -36,7 +36,7 @@
                                         <th>Asset Category</th>
                                         <th>Asset Code</th>
                                         <th>Action</th>
-
+                                        <th><input type="button" id="btnassetcategorydeleted" name="name" value="" /></th>
                                     </tr>
                                 </thead>
                                 <tbody id="AssetCategoryData"></tbody>
@@ -134,19 +134,25 @@
             url: "@Url.Action("DeleteAssetCategoryData", "EditAssetCategory")",
             data: {  "send": "" + id + ""   },
             success: function (data) {
-                $(".btnRoleDeleteSUCCESS").on("click", function () { });
-                $('.btnRoleDeleteSUCCESS').click();
+               
 
+                $("#btnassetcategorydeleted").on("click", function () { });
 
-                $('#AssetCategoryData').append(data);
-
-
-
+                $("#btnassetcategorydeleted").click(); //trigger event after listening to it.
 
 
 
 
-                location.reload();
+                $('#AssetCategoryData').empty().append(data).reload();
+              
+
+
+
+
+
+
+
+              
             }
 
 
