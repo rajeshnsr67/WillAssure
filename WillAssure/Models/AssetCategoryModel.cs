@@ -13,7 +13,11 @@ namespace WillAssure.Models
         public int atid { get; set; }
         public string assetcategory { get; set; }
         public string assetcode { get; set; }
+
+
         
+        public int assettypeid { get; set; }
+        public string assettypetext { get; set; }
 
     }
 }

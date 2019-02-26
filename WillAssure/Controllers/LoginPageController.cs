@@ -71,6 +71,10 @@ namespace WillAssure.Controllers
             Session["uid"] = "";
             Session["compid"] = "";
             Session["ComparerrId"] = "";
+            Session["amId"] = "";
+            Session["assetsCode"] = "";
+            Session["atId"] = "";
+           
             return View("~/Views/LoginPage/LoginPageContent.cshtml");
         }
 

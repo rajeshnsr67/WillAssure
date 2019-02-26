@@ -27,13 +27,12 @@ namespace WillAssure.Controllers
         public ActionResult InsertAssetCategoryFormData(AssetCategoryModel ACM)
         {
 
-            if (Session["atId"] != null)
-            {
+           
                 con.Open();
                 SqlCommand cmd = new SqlCommand("SP_AssetsCategoryCRUD", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@condition", "insert");
-                cmd.Parameters.AddWithValue("@atid", Session["atId"]);
+                cmd.Parameters.AddWithValue("@atid", ACM.assettypeid);
                 cmd.Parameters.AddWithValue("@assetcategory", ACM.assetcategory);
                 cmd.Parameters.AddWithValue("@assetcode", ACM.assetcode);
                 cmd.ExecuteNonQuery();
@@ -50,7 +49,8 @@ namespace WillAssure.Controllers
                 if (dt.Rows.Count > 0)
                 {
                     string i = dt.Rows[0]["atId"].ToString();
-                    Session["amId"] = "";
+                    string j = dt.Rows[0]["assetsCode"].ToString();
+                    Session["assetCodes"] = j;
                     Session["amId"] = i;
                 }
 
@@ -58,11 +58,10 @@ namespace WillAssure.Controllers
                 con.Close();
 
                 ViewBag.Message = "Verified";
-            }
-            else
-            {
-                Response.Write("<script>alert('Add Asset Type First')</script>");
-            }
+            
+          
+              
+            
 
           
 
@@ -70,5 +69,44 @@ namespace WillAssure.Controllers
 
             return View("~/Views/AddAssetCategory/AddAssetCategoryPageContent.cshtml");
         }
+
+
+        public String BindAssetTypeDDL()
+        {
+
+            con.Open();
+            string query = "select * from AssetsType";
+            SqlDataAdapter da = new SqlDataAdapter(query, con);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            con.Close();
+            string data = "";
+
+            if (dt.Rows.Count > 0)
+            {
+
+
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+
+
+
+
+                    data = data + "<option value=" + dt.Rows[i]["atId"].ToString() + " >" + dt.Rows[i]["AssetsType"].ToString() + "</option> ";
+
+
+
+                }
+
+
+
+            }
+
+            return data;
+
+        }
+
+
+
     }
 }

@@ -71,6 +71,7 @@
                             <div class="form-group">
 
                                 <button type="submit" id="btnRoleformUpdate" formaction="UpdatingRoles" class="btn btn-success shadow-success px-5"><i class="icon-lock"></i>Update Roles</button>
+                                <button type="button" style="display:none;" id="btnRoleDataUpdate" formaction="UpdatingRoles" class="btn btn-success shadow-success px-5"><i class="icon-lock"></i>Update Roles</button>
                             </div>
                         }
                     </div>
@@ -95,3 +96,23 @@
         $("#RoleForm").validationEngine();
     });
 </script>
+
+
+@if (ViewBag.Message == "Verified")
+{
+    <script>
+
+        $(document).ready(function () {
+
+
+            $("#btnRoleDataUpdate").on("click", function () { });
+
+            $("#btnRoleDataUpdate").click(); //trigger event after listening to it.
+
+
+
+
+        });
+    </script>
+
+}

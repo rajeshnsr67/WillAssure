@@ -127,7 +127,7 @@
             url: "@Url.Action("UpdateBeneficiaryForm", "EditBeneficiary")",
             data: {  "send": "" + id + ""   },
             success: function (data) {
-                alert(data);
+             
 
                 var NestId = data
                 var url = "/UpdateBeneficiary/UpdateBeneficiaryIndex?NestId=" + NestId;
@@ -146,7 +146,7 @@
     function Delete(id) {
 
         var id = id;
-        alert(id);
+     
 
 
         $.ajax({

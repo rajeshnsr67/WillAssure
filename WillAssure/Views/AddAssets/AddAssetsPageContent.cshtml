@@ -32,58 +32,53 @@
 
 
 
-                        @*@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "AssetsForm" }))
+                        @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "AssetsForm" }))
 
-                        {*@
-                        <div class="row">
-                            <div class="col-sm-4">
+                        {
+                            <div class="row">
+                                <div class="col-sm-6">
 
-                                <div class="form-group">
-                                    <label for="input-1">Asset Type</label>
+                                    <div class="form-group">
+                                        <label for="input-1">Asset Type</label>
 
-                                    <select id="ddlAssetType" class="form-control">
-                                        <option value="0">--Select--</option>
-                                    </select>
-                                    @Html.HiddenFor(m => m.assettypeid, new { id = "assettypeid" })
-                                    @Html.HiddenFor(m => m.assettypetext, new { id = "assettypetext" })
+                                        <select id="ddlAssetType" class="form-control">
+                                            <option value="0">--Select--</option>
+                                        </select>
+                                        @Html.HiddenFor(m => m.assettypeid, new { id = "assettypeid" })
+                                        @Html.HiddenFor(m => m.assettypetext, new { id = "assettypetext" })
+
+                                    </div>
                                 </div>
-                            </div>
 
 
-                            <div class="col-sm-4">
+                                <div class="col-sm-6">
 
-                                <div class="form-group">
-                                    <label for="input-1">Asset Category</label>
+                                    <div class="form-group">
+                                        <label for="input-1">Asset Category</label>
 
-                                    <select id="ddlAssetCategory" class="form-control">
-                                        <option value="0">--Select--</option>
-                                    </select>
-                                    @Html.HiddenFor(m => m.assetCategoryid, new { id = "assetCategoryid" })
-                                    @Html.HiddenFor(m => m.assetCategorytext, new { id = "assetCategorytext" })
+                                        <select id="ddlAssetCategory" class="form-control">
+                                            <option value="0">--Select--</option>
+                                        </select>
+                                        @Html.HiddenFor(m => m.assetCategoryid, new { id = "assetCategoryid" })
+                                        @Html.HiddenFor(m => m.assetCategorytext, new { id = "assetCategorytext" })
+                                        @Html.HiddenFor(m => m.amId, new { id = "amid" })
+                                    </div>
                                 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                             </div>
-
-
-
-
-                            <div class="col-sm-4">
-
-                                <div class="form-group">
-                                    <label for="input-1">Asset Code</label>
-
-                                    <input type="text" name="name" class="form-control validate[required] text-input" id="txtFirstName" placeholder="Enter Asset Code" autocomplete="off" />
-                                </div>
-                            </div>
-
-
-
-
-
-
-
-
-
-                        </div>
 
 
                             <div id="listdata" class="row">
@@ -94,22 +89,51 @@
 
 
 
+
+
+
+
+                            <textarea id="assetcolumn" style="display:none;" name="assetcolumn" class="form-control">
+
+                            </textarea>
+
+                            <textarea id="col" style="display:none;" name="col" class="form-control">
+
+                            </textarea>
+
+                            <textarea id="val" style="display:none;" name="val" class="form-control">
+
+                            </textarea>
+
+
+                            <textarea id="assetcolumnValues" style="display:none;" name="assetcolumnValues" class="form-control">
+
+                            </textarea>
+
+
+                            <textarea id="controls" style="display:none;" name="controls" class="form-control">
+
+                            </textarea>
+
+
+                            <textarea id="values" style="display:none;" name="values" class="form-control">
+
+                            </textarea>
+
+
+
+
+
+
+
+
+
                             <input type="button" id="btnadd" name="name" class="btn btn-danger" value="Add" />
-
-
-
-
-
-
-
-
-
-
-
-                         
+                            <br />
+                            <br />
                             <div class="form-group">
-                                <input type="submit" name="name" value="Add Assets" id="btnAssetformsubmit" class="btn btn-primary shadow-primary px-5" />
-                                <button id="btnBeneficiarySUCESS" style="display:none;"></button>
+                                <input type="submit" id="btnSubmitAsset" formaction="InsertAssetsData" name="name" class="btn btn-primary" value="Submit" />
+                                <button id="btnaddAssetSUCCESS" style="display:none;"></button>
                             </div>
 
 
@@ -119,7 +143,7 @@
 
 
 
-                        @*}*@
+                        }
 
 
 
@@ -193,6 +217,8 @@
         $("#assettypeid").val(value);
 
 
+
+
         $.ajax({
 
             type: "POST",
@@ -228,7 +254,7 @@
 
         $("#assetCategorytext").val(text);
         $("#assetCategoryid").val(value);
-
+        $("#amid").val(value);
                $.ajax({
 
             type: "POST",
@@ -241,7 +267,7 @@
 
 
         });
-     
+
 
   });
 
@@ -278,37 +304,44 @@
             });
 
 
-        });
-    </script>
+    });
 
 
-<script>
-    function ddlAssetTypeTempChange() {
-        var x = document.getElementById("ddlAssetTypeTemp").value;
-        alert(x);
+    @*$("#btnSubmitAsset").click(function () {
 
-         @*$.ajax({
+       $.ajax({
 
             type: "POST",
-            url: "@Url.Action("ddlAssetCategoryTemp", "AddAssets")",
-            data: { "send": "" + x+  ""},
+            url: "@Url.Action("InsertAssetsData","AddAssets")",
             success: function (data) {
 
-                $('#ddlAssetCategoryTemp').empty().append(data);
+
+
+
             }
 
 
 
-        });*@
+        });
 
 
+    });*@
+
+</script>
+
+
+<script>
+
+
+    function ddlAssetTypeTempChange() {
+        var x = document.getElementById("ddlAssetTypeTemp").value;
 
     }
 
 
     function myFunction() {
         var x = document.getElementById("ddlAssetCategoryTemp").value;
-        alert(x);
+
 
 
 
@@ -321,57 +354,19 @@
 
 
 <script>
-    $("#btnAssetformsubmit").click(function () {
-        
-        $.ajax({
-
-            type: "POST",
-            url: "@Url.Action("InsertAssetsData","AddAssets")",
-            success: function (data) {
-
-             
-
-
-            }
 
 
 
-        });
-
-
-    });
 
 
 
-    function getddlcontrolsid(id) {
-
-        var id = id;
-
-
-          $.ajax({
-
-            type: "POST",
-              url: "@Url.Action("CreateSelectedControls", "AddAssets")",
-              data: {"send":""+id+""},
-              success: function (data) {
-
-                  $('#generator').empty().append(data);
-
-
-               }
-
-
-
-        });
-       
-    }
 
 
     $("#ddlAssetCategory").change(function () {
         var value = $(this).children(":selected").attr("value");
         var text = $("#ddlAssetCategory option:selected").html();
 
-        alert(value);
+
 
         $.ajax({
 
@@ -379,7 +374,7 @@
             url: "@Url.Action("BindAssetColumnLabel", "AddAssets")",
             data: { "send": "" + id + "" },
             success: function (data) {
-                alert(data);
+
                 $(value).empty().append(data);
 
 
@@ -391,11 +386,86 @@
 
 
 
+
+
+
+
+
+</script>
+
+<script>
+
+    function getAssetColumnValue(ENTITY) {
+
+
+
+
+        $("#assetcolumn").append("" + ENTITY + ",");
+
+        $("#col").append("" + ENTITY + "Controls" + ",");
+        $("#val").append("" + ENTITY + "Values" + ",");
+
+
     }
 
 
 
-       
+
+
+    function bar(value) {
+        var val = value;
+
+        $("#assetcolumnValues").append("'" + value + "',");
+
+
+
+    }
+
+
+
+
+
+
+    function getControls(id) {
+
+        var id = id;
+
+
+        $("#controls").append("'" + id + "',");
+
+
+    }
+
+
+
+    function bar2(value) {
+        var val = value;
+
+        $("#values").append("'" + value + "',");
+
+    }
+
 
 
 </script>
+
+
+
+@if (ViewBag.Message == "Verified")
+{
+    <script>
+
+        $(document).ready(function () {
+
+
+            $("#btnaddAssetSUCCESS").on("click", function () { });
+
+            $("#btnaddAssetSUCCESS").click(); //trigger event after listening to it.
+
+        
+
+
+        });
+    </script>
+
+}

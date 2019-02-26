@@ -104,7 +104,7 @@
             url: "@Url.Action("UpdateAssetTypeForm", "EditAssetType")",
             data: {  "send": "" + id + ""   },
             success: function (data) {
-                alert(data);
+               
 
                 var NestId = data
                 var url = "/UpdateAssetType/UpdateAssetTypeIndex?NestId=" + NestId;
@@ -123,7 +123,7 @@
     function Delete(id) {
 
         var id = id;
-        alert(id);
+     
 
 
         $.ajax({

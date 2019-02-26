@@ -36,7 +36,7 @@ namespace WillAssure.Controllers
                        TFM.First_Name = dt.Rows[0]["First_Name"].ToString();
                        TFM.Last_Name =  dt.Rows[0]["Last_Name"].ToString();
                        TFM.Middle_Name = dt.Rows[0]["Middle_Name"].ToString();
-                       TFM.DOB = dt.Rows[0]["DOB"].ToString();
+                       TFM.DOB = Convert.ToDateTime(dt.Rows[0]["DOB"]);
                        TFM.Occupation = dt.Rows[0]["Occupation"].ToString();
                        TFM.Mobile = dt.Rows[0]["Mobile"].ToString();
                        TFM.Email = dt.Rows[0]["Email"].ToString();
@@ -96,13 +96,16 @@ namespace WillAssure.Controllers
             cmd.Parameters.AddWithValue("@State", TFM.stateid);
             cmd.Parameters.AddWithValue("@Country", TFM.countryid);
             cmd.Parameters.AddWithValue("@Pin", TFM.Pin);
-            cmd.Parameters.AddWithValue("@active", TFM.active); cmd.ExecuteNonQuery();
+            cmd.Parameters.AddWithValue("@active", TFM.active);
+            cmd.Parameters.AddWithValue("@uid", TFM.uId);
+     
+            cmd.ExecuteNonQuery();
             con.Close();
 
-            Response.Write("<script type='text/javascript'>$(document).ready(function(){$('#alert-success').trigger('click');});</ script > ");
+            ViewBag.Message = "Verified";
 
 
-            return View("~/Views/UpdateDistributor/UpdateDistributorPageContent.cshtml");
+            return View("~/Views/UpdateTestators/UpdateTestatorPageContent.cshtml");
         }
 
 

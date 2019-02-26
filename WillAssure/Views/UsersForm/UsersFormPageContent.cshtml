@@ -82,7 +82,7 @@
 
 
                                         <div id="datepicker" class="input-group date" data-date-format="dd-mm-yyyy">
-                                            <input class="form-control" type="text" id="DOB" name="DOB" autocomplete="off" placeholder="Select Date Of Birth" />
+                                            <input class="form-control validate[required]" type="text" id="DOB" name="DOB" autocomplete="off" placeholder="Select Date Of Birth" />
                                             <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                                         </div>
 
@@ -335,7 +335,7 @@
     $("#ddlcity").change(function () {
         var value = $(this).children(":selected").attr("value");
         var text = $("#ddlcity option:selected").html();
-
+        
         $("#citytext").val(text);
         $("#cityid").val(value);
     });

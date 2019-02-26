@@ -44,7 +44,7 @@ namespace WillAssure.Models
 
         public string RegisteredAddress { get; set; }
 
-        public string  PermanentAddress  { get; set; }
+        public string PermanentAddress { get; set; }
 
         public string Identity_proof { get; set; }
 
@@ -62,7 +62,7 @@ namespace WillAssure.Models
         public string Amount { get; set; }
 
 
-        public string identifier { get; set; } 
+        public string identifier { get; set; }
 
 
         public string assettypetext { get; set; }
@@ -79,6 +79,20 @@ namespace WillAssure.Models
 
         public string assettxt { get; set; }
         public int assetid { get; set; }
+
+
+        public string txtlabel { get; set; }
+        public string txtvalue { get; set; }
+
+        public string assetcolumn { get; set; }
+        public string assetcolumnValues { get; set; }
+        public string controls { get; set; }
+        public string values { get; set; }
+
+        public string col { get; set; }
+        public string val { get; set; }
+
+
 
 
     }

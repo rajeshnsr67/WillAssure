@@ -59,7 +59,7 @@ namespace WillAssure.Controllers
             cmd.ExecuteNonQuery();
             con.Close();
 
-
+            ViewBag.Message = "Verified";
             return View("~/Views/UpdateRoles/UpdateRolesPageContent.cshtml");
         }
 

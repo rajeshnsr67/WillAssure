@@ -1,4 +1,6 @@
 ﻿@model WillAssure.Models.TestatorFormModel
+
+
 @{
     ViewBag.Title = "UpdateTestatorPageContent";
 }
@@ -29,16 +31,16 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
-                        <div class="card-title text-primary"> Update Testator Details</div>
+                        <div class="card-title text-primary">Add Testators Details</div>
                         <hr>
-                        @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "TestatorForm" }))
+                        @using (Html.BeginForm(null, null, FormMethod.Post, new { name = "PopUp", id = "TestatorForm" }))
                         {
                             <div class="row">
                                 <div class="col-sm-6">
 
                                     <div class="form-group">
                                         <label for="input-1">First Name</label>
-
+                                        @Html.HiddenFor(m=>m.tId)
                                         @Html.TextBoxFor(m => m.First_Name, new { @class = "form-control validate[required] text-input", @id = "txtFirstName", @placeholder = "Enter First Name", @autocomplete = "off" })
                                     </div>
                                 </div>
@@ -64,12 +66,15 @@
                                 </div>
 
 
-                                <div class="col-sm-6">
+                                <div class="col-sm-3">
 
                                     <div class="form-group">
                                         <label for="input-1">Date Of Birth</label>
 
-                                        @Html.TextBoxFor(m => m.DOB, new { @type = "date", @class = "form-control validate[required] text-input", @id = "txtDOB", @placeholder = "Select Date Of Birth", @autocomplete = "off" })
+                                        <div id="datepicker" class="input-group date" data-date-format="dd-mm-yyyy">
+                                            <input class="form-control validate[required]" type="text" id="DOB" name="DOB" autocomplete="off" placeholder="Select Date Of Birth" />
+                                            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -89,7 +94,7 @@
                                     <div class="form-group">
                                         <label for="input-1">Mobile</label>
 
-                                        @Html.TextBoxFor(m => m.Mobile, new { @class = "form-control validate[required] text-input", @id = "txtmobile", @placeholder = "Enter Mobile Number", @autocomplete = "off" })
+                                        @Html.TextBoxFor(m => m.Mobile, new { @class = "form-control validate[required,custom[integer],maxSize[10]]text - input", @id = "txtmobile", @placeholder = "Enter Mobile Number", @autocomplete = "off" })
                                     </div>
                                 </div>
 
@@ -99,7 +104,7 @@
                                     <div class="form-group">
                                         <label for="input-1">Email</label>
 
-                                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control validate[required] text-input", @id = "txtEmail", @placeholder = "Enter Email", @autocomplete = "off" })
+                                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control validate[required,custom[email]] text-input", @id = "txtEmail", @placeholder = "Enter Email", @autocomplete = "off" })
                                     </div>
                                 </div>
 
@@ -168,7 +173,7 @@
                                     <div class="form-group">
                                         <label for="input-1">Alt Identity Proof</label>
 
-                                        @Html.TextBoxFor(m => m.Alt_Identity_Proof, new { @class = "form-control validate[required] text-input", @id = "txtAltIdentityProof", @placeholder = "Enter Alt Identity Proof", @autocomplete = "off" })
+                                        @Html.TextBoxFor(m => m.Alt_Identity_Proof, new { @class = "form-control  text-input", @id = "txtAltIdentityProof", @placeholder = "Enter Alt Identity Proof", @autocomplete = "off" })
                                     </div>
                                 </div>
 
@@ -178,7 +183,7 @@
                                     <div class="form-group">
                                         <label for="input-1">Alt Identity proof Value</label>
 
-                                        @Html.TextBoxFor(m => m.Alt_Identity_proof_Value, new { @class = "form-control validate[required] text-input", @id = "txtAltIdentityproofValue", @placeholder = "Enter Alt Identity proof Value", @autocomplete = "off" })
+                                        @Html.TextBoxFor(m => m.Alt_Identity_proof_Value, new { @class = "form-control  text-input", @id = "txtAltIdentityproofValue", @placeholder = "Enter Alt Identity proof Value", @autocomplete = "off" })
                                     </div>
                                 </div>
 
@@ -358,22 +363,9 @@
 
 
 
-
-
-
-
-
-
-
-                            <div class="form-group py-2">
-                                <div class="icheck-material-primary">
-                                    <input type="checkbox" id="user-checkbox1" checked="" />
-                                    <label for="user-checkbox1">I Agree Terms & Conditions</label>
-                                </div>
-                            </div>
                             <div class="form-group">
-                                <button type="submit" id="btnTestatorformsubmit" formaction="UpdatingTestatorFormData" class="btn btn-success shadow-success px-5"><i class="icon-lock"></i>Update Testator</button>
-
+                                <button type="submit" id="alert-success" formaction="UpdatingTestatorFormData" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i>Update Testator</button>
+                                <button type="button" style="display:none;" id="btnTestatorformsubmitUPDATE" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
                             </div>
                         }
                     </div>
@@ -394,6 +386,20 @@
 <a href="javaScript:void();" class="back-to-top"><i class="fa fa-angle-double-up"></i> </a>
 <!--End Back To Top Button-->
 @*for Country dropdown*@
+@if (ViewBag.Message == "Verified")
+{
+    <script>
+
+        $(document).ready(function () {
+            $("#btnTestatorformsubmitUPDATE").on("click", function () { });
+
+            $("#btnTestatorformsubmitUPDATE").click(); //trigger event after listening to it.
+
+        });
+    </script>
+
+}
+
 
 <script>
 
@@ -538,6 +544,59 @@
 @*end*@
 
 
+<script>
+    $("#ddldocumentcreatedby").change(function () {
+        var value = $(this).children(":selected").attr("value");
+        var text = $("#ddldocumentcreatedby option:selected").html();
+
+        $("#Document_Created_By_txt").val(text);
+        $("#Document_Created_By_ID").val(value);
+
+
+
+
+    });
+
+
+
+
+    $("#Identity_Proof").change(function () {
+        var value = $(this).children(":selected").attr("value");
+        var text = $("#Identity_Proof option:selected").html();
+
+        $("#Identity_Proof_txt").val(text);
+        $("#Identity_Proof_ID").val(value);
+
+
+
+
+    });
+
+
+
+</script>
+
+
+<script>
+    $("#DDLAmtPaidBY").change(function () {
+        var value = $(this).children(":selected").attr("value");
+        var text = $("#DDLAmtPaidBY option:selected").html();
+
+        $("#Amt_Paid_By_txt").val(text);
+        $("#Amt_Paid_By_ID").val(value);
+
+
+    });
+</script>
+
+
+<script type="text/javascript">
+    function updateParent() {
+        document.forms["PopUp"].submit();
+        window.opener.location.reload();
+        window.close();
+    }
+</script>
 
 
 <script>

@@ -44,6 +44,8 @@ namespace WillAssure.Controllers
             if (dt.Rows.Count > 0)
             {
                 string i = dt.Rows[0]["atId"].ToString();
+                Session["amId"] = "";
+                Session["assetsCode"] = "";
                 Session["atId"] = "";
                 Session["atId"] = i;
             }

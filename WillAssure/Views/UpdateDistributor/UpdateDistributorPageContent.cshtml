@@ -79,8 +79,8 @@
                                     <div class="form-group">
                                         <label for="input-1">State</label>
 
-                                        <select id="ddlstate" class="form-control">
-                                            <option value="0">--Select State--</option>
+                                        <select id="ddlstate" class="form-control validate[required]">
+                                            <option>--Select State--</option>
                                         </select>
                                         @Html.HiddenFor(m => m.stateid, new { id = "stateid" })
                                         @Html.HiddenFor(m => m.statetext, new { id = "statetext" })
@@ -90,10 +90,10 @@
 
                                 <div class="col-sm-6">
 
-                                    <div class="form-group">
+                                    <div class="form-group ">
                                         <label for="input-1">City</label>
-                                        <select id="ddlcity" class="form-control">
-                                            <option value="0">--Select City--</option>
+                                        <select id="ddlcity" class="form-control validate[required]">
+                                            <option>--Select City--</option>
                                         </select>
                                         @Html.HiddenFor(m => m.cityid, new { id = "cityid" })
                                         @Html.HiddenFor(m => m.citytext, new { id = "citytext" })
@@ -142,7 +142,7 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="input-3">Identity Proof Number</label>
-                                        <div id="appendtxt"></div>
+                                        <div id="appendtxt"> @Html.TextBoxFor(m => m.Identity_Proof_Value, new { @class = "form-control validate[required] text-input", @id = "txtAdharCard", @placeholder = "Enter Aadhaar Card", @autocomplete = "off" })</div>
 
                                         @*@Html.TextBoxFor(m => m.Identity_Proof_Value, new { @class = "form-control validate[required] text-input", @id = "txtIdentityProofValue", @placeholder = "Enter Identity Proof Value", @autocomplete = "off" })*@
                                     </div>
@@ -292,7 +292,7 @@
 
                             <div class="form-group">
                                 <button type="submit" id="btnDistributorformsubmit" formaction="UpdatingDistributorData" class="btn btn-success shadow-success px-5"><i class="icon-lock"></i>Update Company</button>
-
+                                <button type="button" style="display:none;" id="btnDistributorformsubmitUPDATE" formaction="UpdatingDistributorData" class="btn btn-success shadow-success px-5"><i class="icon-lock"></i></button>
                             </div>
                         }
                     </div>
@@ -348,7 +348,7 @@
 
 <script>
     $(document).ready(function () {
-      
+
         $("#DistributorForm").validationEngine();
     });
 </script>
@@ -380,3 +380,87 @@
 
     }
 </script>
+
+
+
+
+<script>
+    $("#ddlstate").change(function () {
+        var value = $(this).children(":selected").attr("value");
+        var text = $("#ddlstate option:selected").html();
+
+        $("#statetext").val(text);
+        $("#stateid").val(value);
+
+
+
+         $.ajax({
+
+            type: "POST",
+            url: "@Url.Action("OnChangeBindCity", "UpdateDistributor")",
+            data: { "send": "" + value+  ""},
+            success: function (data) {
+
+                $('#ddlcity').empty().append(data);
+            }
+
+
+
+        });
+
+
+
+    });
+</script>
+
+
+<script>
+    $("#ddlcity").change(function () {
+        var value = $(this).children(":selected").attr("value");
+        var text = $("#ddlcity option:selected").html();
+
+        $("#citytext").val(text);
+        $("#cityid").val(value);
+    });
+</script>
+
+<script>
+
+    $(document).ready(function () {
+
+        $.ajax({
+
+            type: "POST",
+            url:"@Url.Action("BindStateDDL", "AddDistributor")",
+            success: function (data) {
+                $('#ddlstate').empty().append(data);
+            }
+        });
+
+
+    });
+
+
+</script>
+
+
+
+
+@if (ViewBag.Message == "Verified")
+{
+    <script>
+
+        $(document).ready(function () {
+
+
+            $("#btnDistributorformsubmitUPDATE").on("click", function () { });
+
+            $("#btnDistributorformsubmitUPDATE").click(); //trigger event after listening to it.
+
+           
+
+
+        });
+    </script>
+
+}

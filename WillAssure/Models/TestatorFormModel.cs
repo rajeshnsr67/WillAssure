@@ -16,7 +16,7 @@ namespace WillAssure.Models
 
         public string Middle_Name { get; set; }
 
-        public string DOB { get; set; }
+        public DateTime DOB { get; set; }
 
         public string Occupation { get; set; }
 

@@ -30,25 +30,65 @@ namespace WillAssure.Controllers
             if (roles != 1)
             {
                 //main Roles
-                con.Open();
-                SqlCommand cmd = new SqlCommand("SP_Roles", con);
-                cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@condition", "insert");
-                cmd.Parameters.AddWithValue("@role ", RFM.Role);
-                cmd.ExecuteNonQuery();
-                con.Close();
 
-                ViewBag.Message = "Verified";
+                con.Open();
+                string query = "select count(*) from Roles  where Role = '" + RFM.Role + "'";
+                SqlCommand cmd = new SqlCommand(query, con);
+                int count = (int)cmd.ExecuteScalar();
+
+                if (count > 0)
+                {
+                    ViewBag.Message = "Duplicate";
+                }
+                else
+                {
+                    
+                    SqlCommand cmd2 = new SqlCommand("SP_Roles", con);
+                    cmd2.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmd2.Parameters.AddWithValue("@condition", "insert");
+                    cmd2.Parameters.AddWithValue("@role ", RFM.Role);
+                    cmd2.ExecuteNonQuery();
+                    
+
+                    ViewBag.Message = "Verified";
+                }
+
+
+              
             }
             else
             {
                 //Sub Roles
-                con.Open();
-                string query = "insert into subroles (SubRolesName,Rid) values ('" + RFM.Role + "' , '" + roles + "')";
-                SqlCommand cmd = new SqlCommand(query,con);
-                cmd.ExecuteNonQuery();
+
+                
+                string query = "select count(*) from Role  where Role = '" + RFM.Role + "'";
+                SqlCommand cmd = new SqlCommand(query, con);
+                int count = (int)cmd.ExecuteScalar();
+
+                if (count > 0)
+                {
+                    ViewBag.Message = "Duplicate";
+                }
+                else
+                {
+                    
+                    string query2 = "insert into subroles (SubRolesName,Rid) values ('" + RFM.Role + "' , '" + roles + "')";
+                    SqlCommand cmd2 = new SqlCommand(query2, con);
+                    cmd2.ExecuteNonQuery();
+                    
+                    ViewBag.Message = "Verified";
+                }
+               
+            
+
+
+
+
+
+           
+                
                 con.Close();
-                ViewBag.Message = "Verified";
+               
             }
 
             

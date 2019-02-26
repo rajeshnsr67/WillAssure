@@ -14,16 +14,24 @@ namespace WillAssure.Controllers
 {
     public class AddAssetsController : Controller
     {
+
+        public static int nCount;
+
         int id = 1;
+       
 
         public static string connectionString = ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString;
         SqlConnection con = new SqlConnection(connectionString);
         string ddl = "";
         string ddl2 = "";
         string structure = "";
+        string query1 = "";
         // GET: AddAssets
         public ActionResult AddAssetsIndex()
         {
+
+            nCount = 0;
+
             return View("~/Views/AddAssets/AddAssetsPageContent.cshtml");
         }
 
@@ -177,8 +185,11 @@ namespace WillAssure.Controllers
 
         public string DynamicFields()
         {
-
             AssetsModel Am = new AssetsModel();
+            
+            nCount++;
+            
+          
             string ddstruct = "";
             string finalstruct = "";
             // dynamic control
@@ -235,9 +246,9 @@ namespace WillAssure.Controllers
 
 
             finalstruct = finalstruct + "<div class='col-sm-3'><div class='form-group'><label for='input - 1'>Entity</label>     "+ddstruct+"       </div></div>" +
-            finalstruct + "<div class='col-sm-3'><div class='form-group'><label for='input-1'>Label</label>   <input type='text' name='name' class='form-control validate[required] text - input' id='txtFirstName'  autocomplete='off' />    </div></div>" +
-            finalstruct + "<div class='col-sm-3'><div class='form-group'>   <label for='input-1'>Controls</label>   <select class='form-control' id='DDLControls' onchange=getddlcontrolsid(this.value)>    <option value='0'>--Select--</option >   <option value='1'>TextBox</option >    <option value='2'>TextArea</option>    <option value='3'>DatePicker</option>     <option value='4'>CheckBox</option>   <option value='5'>RadioButton</option>  </select></div></div>" +
-            finalstruct + "<div class='col-sm-3'><div class='form-group'><label for='input-1'>Values</label>  <input type='text' name='name' class='form-control validate[required] text - input' id='txtFirstName'  autocomplete='off' />    </div></div>";
+            finalstruct + "<div class='col-sm-3'><div class='form-group'><label for='input-1'>Label</label>   <input type='text' name='txtlabel' class='form-control validate[required] text - input' id='txtlabel' name='txtlabel' onchange=bar(this.value) autocomplete='off' />    </div></div>" +
+            finalstruct + "<div class='col-sm-3'><div class='form-group'>   <label for='input-1'>Controls</label>   <select class='form-control' id='DDLControls' name='DDLControls' onChange='getControls(this.options[this.selectedIndex].innerHTML)'>    <option value='0'>--Select--</option >   <option value='TextBox'>TextBox</option >    <option value='TextArea'>TextArea</option>    <option value='DatePicker'>DatePicker</option>     <option value='CheckBox'>CheckBox</option>   <option value='RadioButton'>RadioButton</option>  </select></div></div>" +
+            finalstruct + "<div class='col-sm-3'><div class='form-group'><label for='input-1'>Values</label>  <input type='text' id='txtval' class='form-control validate[required] text - input'   onchange=bar2(this.value) name='txtval'  autocomplete='off' />    </div></div>";
 
 
 
@@ -278,11 +289,48 @@ namespace WillAssure.Controllers
 
 
 
-        public ActionResult InsertAssetsData()
+        public string InsertAssetsData( AssetsModel form)
         {
+           
+         
 
 
-            return View("~/Views/AddAssets/AddAssetsPageContent.cshtml");
+
+
+       
+
+            string column = form.assetcolumn.Replace(" ", string.Empty).Replace("\r\n", string.Empty);
+            string cv = form.assetcolumnValues.Replace(" ", string.Empty).Replace("\r\n", string.Empty);
+            string col = form.col.Replace(" ", string.Empty).Replace("\r\n", string.Empty);
+            string val = form.val.Replace(" ", string.Empty).Replace("\r\n", string.Empty);
+
+            string cc = form.controls.Replace(" ", string.Empty).Replace("\r\n", string.Empty);
+            string vv = form.values.Replace(" ", string.Empty).Replace("\r\n", string.Empty);
+
+            string c = column.Substring(0, column.Length - 1);
+         
+            string contr = col.Substring(0, col.Length - 1);
+            string valu = val.Substring(0, val.Length - 1);
+            string c1 = cc.Substring(0, cc.Length - 1);
+            string v1 = vv.Substring(0, vv.Length - 1);
+
+            string columnvalues = cv.Substring(0, cv.Length - 1);
+
+            con.Open();
+            query1 = "insert into AssetsInfo (amId," +c+","+ contr + ", "+ valu + ") values (" + form.amId + " , " + columnvalues + " , "+ c1 + " , "+ v1 + ") ";
+            SqlCommand cmd1 = new SqlCommand(query1, con);
+            cmd1.ExecuteNonQuery();
+            con.Close();
+
+
+
+
+
+          
+            string s = ViewBag.Message = "Verified";
+
+
+            return "";
         }
 
 

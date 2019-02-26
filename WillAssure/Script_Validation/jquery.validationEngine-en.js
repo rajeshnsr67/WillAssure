@@ -124,6 +124,11 @@
                     "regex": /^(\d{12}|\d{16})$/,
                     "alertText": "* Invalid adharCard"
                 },
+                "Passport": {
+                    // Number, including positive, negative, and floating decimal. credit: orefalo
+                    "regex": /^[A-PR-WY][1-9]\d\s?\d{4}[1-9]$/,
+                    "alertText": "* Invalid Passport"
+                },
                 "date": {                    
                     //	Check if date is valid by leap year
 			"func": function (field) {

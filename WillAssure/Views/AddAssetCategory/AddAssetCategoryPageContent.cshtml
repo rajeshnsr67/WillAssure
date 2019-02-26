@@ -37,7 +37,23 @@
                         {
 
                         <div class="row">
-                            <div class="col-sm-6">
+
+                            <div class="col-sm-4">
+
+                                <div class="form-group">
+                                    <label for="input-1">Asset Type</label>
+
+                                    <select id="ddlAssetType" class="form-control" >
+                                        <option value="0">--Select--</option>
+                                    </select>
+                                    @Html.HiddenFor(m => m.assettypeid, new { id = "assettypeid" })
+                                    @Html.HiddenFor(m => m.assettypetext, new { id = "assettypetext" })
+                                </div>
+                            </div>
+
+
+
+                            <div class="col-sm-4">
 
                                 <div class="form-group">
                                     <label for="input-1">Asset Category Name</label>
@@ -49,7 +65,7 @@
 
 
 
-                            <div class="col-sm-6">
+                            <div class="col-sm-4">
 
                                 <div class="form-group">
                                     <label for="input-1">Asset Category Code</label>
@@ -95,12 +111,40 @@
 
 
 <script>
-   $(document).ready(function () {
-       $("#AssetCategoryForm").validationEngine();
+
+    
+    $(document).ready(function () {
+
+       
+        
+        $("#AssetCategoryForm").validationEngine();
+
+
+          $.ajax({
+
+            type: "POST",
+            url: "@Url.Action("BindAssetTypeDDL", "AddAssetCategory")",
+            success: function (data) {
+
+                $('#ddlAssetType').empty().append('<option value="0">--Select--</option>'+data);
+            }
+
+
+
+        });
+
+
     });
 
 
+    $("#ddlAssetType").change(function () {
+        var value = $(this).children(":selected").attr("value");
+        var text = $("#ddlAssetType option:selected").html();
+        alert(value);
+        $("#assettypetext").val(text);
+        $("#assettypeid").val(value);
 
+    });
 </script>
 
 

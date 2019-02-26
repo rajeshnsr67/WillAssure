@@ -117,7 +117,7 @@ namespace WillAssure.Controllers
             cmd.ExecuteNonQuery();
             con.Close();
 
-
+            Session["createdby"] = TFM.Document_Created_By_txt; 
             
 
             //1st condition
@@ -156,8 +156,8 @@ namespace WillAssure.Controllers
                 //generate Mail
 
                 string mailid = "imransayyed528@gmail.com";
-               // string mailto = TFM.Email;
-                string mailto = "willtestmail@mailprotech.com";
+                string mailto = TFM.Email;
+                //string mailto = "willtestmail@mailprotech.com";
                 string subject = "Testing Mail Sending";
                 string OTP = "<font color='Green' style='font-size=3em;'>" + TFM.EmailOTP + "</font>";
                 string text = "Your OTP for Verification Is "+ OTP + "";
@@ -204,8 +204,8 @@ namespace WillAssure.Controllers
                 //generate Mail
 
                 string mailid = "imransayyed528@gmail.com";
-                // string mailto = TFM.Email;
-                string mailto = "willtestmail@mailprotech.com";
+                string mailto = TFM.Email;
+                //string mailto = "willtestmail@mailprotech.com";
                 string subject = "Testing Mail Sending";
                 string OTP = "<font color='Green' style='font-size=3em;'>" + TFM.EmailOTP + "</font>";
                 string text = "Your OTP for Verification Is " + OTP + "";
@@ -251,8 +251,8 @@ namespace WillAssure.Controllers
                 //generate Mail
 
                 string mailid = "imransayyed528@gmail.com";
-                // string mailto = TFM.Email;
-                string mailto = "willtestmail@mailprotech.com";
+                string mailto = TFM.Email;
+                //string mailto = "willtestmail@mailprotech.com";
                 string subject = "Testing Mail Sending";
                 string OTP = "<font color='Green' style='font-size=3em;'>" + TFM.EmailOTP + "</font>";
                 string text = "Your OTP for Verification Is " + OTP + "";
@@ -284,7 +284,7 @@ namespace WillAssure.Controllers
 
             string v1 = Eramake.eCryptography.Encrypt(TFM.EmailOTP);
 
-            
+            ViewBag.Message = "Verified";
             return RedirectToAction("EmailVerificationIndex", "EmailVerification", new { v2=v1 });
 
         }

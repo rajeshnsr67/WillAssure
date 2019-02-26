@@ -115,6 +115,48 @@
      $("#btnassetcategoryupdated").click(function () {
          swal("AssetCategory Updated!", "Your Data has Been Updated!,", "success");
      });
+
+
+     $("#btnRoleDataUpdate").click(function () {
+         swal("Role Updated!", "Your Data has Been Updated!,", "success");
+     });
+
+     
+
+     $("#btnDistributorformsubmitUPDATE").click(function () {
+         swal("Company Updated!", "Your Data has Been Updated!,", "success");
+     });
+
+     
+
+     $("#UpdatingUserformUPDATE").click(function () {
+         swal("Distributor Updated!", "Your Data has Been Updated!,", "success");
+     });
+
+
+     
+     $("#btnTestatorformsubmitUPDATE").click(function () {
+         swal("Testator Updated!", "Your Data has Been Updated!,", "success");
+     });
+
+     
+
+     $("#ADDTestatorFormData").click(function () {
+         swal("Testator Added!", "Your Data has Been Added!,", "success");
+     });
+
+
+
+     $("#btnAssetSUCCESS").click(function () {
+         swal("Asset Added!", "Your Data has Been Added!,", "success");
+     });
+
+
+     $("#btnaddAssetSUCCESS").click(function () {
+         swal("Asset Added!", "Your Data has Been Added!,", "success");
+     });
+
+
      //end
 
      //Failed Alert Button
@@ -126,6 +168,12 @@
 
      $("#btnloginFAILED").click(function () {
          swal("Failed!", "Please Enter Valid Details!,", "error");
+     });
+
+
+
+     $("#btnRoleformsubmitCHECK").click(function () {
+         swal("Failed!", "Enter Role Already Exists!,", "error");
      });
 
      //end

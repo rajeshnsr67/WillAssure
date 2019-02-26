@@ -113,7 +113,7 @@ namespace WillAssure.Controllers
             cmd.Parameters.AddWithValue("@FirstName", UFM.FirstName);
             cmd.Parameters.AddWithValue("@LastName", UFM.LastName);
             cmd.Parameters.AddWithValue("@MiddleName", UFM.MiddleName);
-            cmd.Parameters.AddWithValue("@Dob", UFM.Dob);
+            cmd.Parameters.AddWithValue("@Dob",UFM.Dob.ToString());
             cmd.Parameters.AddWithValue("@Mobile", UFM.Mobile);
             cmd.Parameters.AddWithValue("@Email", UFM.Email);
             cmd.Parameters.AddWithValue("@Address1", UFM.Address1);
@@ -133,9 +133,9 @@ namespace WillAssure.Controllers
             cmd.ExecuteNonQuery();
             con.Close();
 
-            Response.Write("<script>alert('Your Records Have Been Updated...!')</script>");
 
 
+            ViewBag.Message = "Verified";
             return View("~/Views/UpdateEditForm/UpdateEditFormContent.cshtml");
         }
 
