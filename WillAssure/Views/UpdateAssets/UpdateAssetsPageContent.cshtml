@@ -1,0 +1,154 @@
+﻿@model WillAssure.Models.AssetsModel
+@{
+    ViewBag.Title = "UpdateAssetsPageContent";
+}
+
+
+@*Main Content*@
+<div class="content-wrapper">
+    <div class="container-fluid">
+        
+
+        <div class="row pt-2 pb-2">
+
+            <div class="col-sm-3">
+                <div class="btn-group float-sm-right">
+
+                    <div class="dropdown-menu">
+                        <a href="javaScript:void();" class="dropdown-item">Action</a>
+                        <a href="javaScript:void();" class="dropdown-item">Another action</a>
+                        <a href="javaScript:void();" class="dropdown-item">Something else here</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="javaScript:void();" class="dropdown-item">Separated link</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Breadcrumb-->
+        @using (Html.BeginForm("UpdatingAssetsData", null, FormMethod.Post, new { id = "UserForm" }))
+        {
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-body">
+
+                            @Html.HiddenFor(m=>m.aiId,new { @id = "aid" })
+
+                            <div id="listdata" class="row">
+
+
+
+                            </div>
+
+                         
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            <div class="col-sm-3">
+                                <div class="form-group">
+
+                                    <button type="submit" id="btnAssetupdateformsubmit" class="btn btn-success shadow-primary px-5"><i class="icon-lock"></i> Update Assets</button>
+                                    <button type="button" id="btnassetcategoryupdated" style="display:none;" class="btnpopup btn btn-success shadow-primary px-5"><i class="icon-lock"></i></button>
+
+                                </div>
+
+
+                            </div>
+
+                            </div>
+                        </div>  
+                    </div>
+                </div>
+                        
+        }
+            @*end*@
+
+
+
+            <script>
+
+                function getAssetColumnValue(ENTITY) {
+
+                    var x = ENTITY;
+                    alert(x);
+
+                    $("#getentitycolumn").val(x);
+
+
+
+
+                }
+
+
+                @*$("#btnAssetupdateformsubmit").click(function () {
+
+                    var data = $("getentitycolumn").val;
+
+                    alert(data);
+
+                    $.ajax({
+
+                        type: "POST",
+                        url: "@Url.Action("UpdatingAssetsData", "AddAssets")",
+                        data: {"send": ""++""},
+                        success: function (data) {
+
+
+
+
+                        }
+
+
+
+                    });
+
+
+                });*@
+
+
+
+              
+                $(document).ready(function () {
+                    
+                    var data = $("#aid").val();
+                 
+                       $.ajax({
+                        
+                        type: "POST",
+                        url: "@Url.Action("DynamicFields", "UpdateAssets")",
+                           data: { "send": "" + data+""},
+                        success: function (data) {
+
+                            $("#listdata").append(data);
+                            
+
+                        }
+
+
+
+                    });
+
+
+                });
+
+
+
+            </script>

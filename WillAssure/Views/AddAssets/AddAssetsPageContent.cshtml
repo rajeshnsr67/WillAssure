@@ -1,6 +1,7 @@
 ﻿@model WillAssure.Models.AssetsModel
 @{
     ViewBag.Title = "AddAssetsPageContent";
+    Session["check"] = "";
 }
 
 
@@ -32,7 +33,7 @@
 
 
 
-                        @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "AssetsForm" }))
+                        @using (Html.BeginForm("InsertAssetsData", null, FormMethod.Post, new { id = "AssetsForm" }))
 
                         {
                             <div class="row">
@@ -132,7 +133,7 @@
                             <br />
                             <br />
                             <div class="form-group">
-                                <input type="submit" id="btnSubmitAsset" formaction="InsertAssetsData" name="name" class="btn btn-primary" value="Submit" />
+                                <input type="submit" id="btnSubmitAsset"  name="name" class="btn btn-primary" value="Submit" />
                                 <button id="btnaddAssetSUCCESS" style="display:none;"></button>
                             </div>
 

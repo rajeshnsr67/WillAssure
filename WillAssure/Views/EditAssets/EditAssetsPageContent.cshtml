@@ -3,5 +3,170 @@
     ViewBag.Title = "EditAssetsPageContent";
 }
 
-<h2>EditAssetsPageContent</h2>
+
+@*Main Content*@
+<div class="content-wrapper">
+    <div class="container-fluid">
+
+        <div class="row pt-2 pb-2">
+
+            <div class="col-sm-3">
+                <div class="btn-group float-sm-right">
+
+                    <div class="dropdown-menu">
+                        <a href="javaScript:void();" class="dropdown-item">Action</a>
+                        <a href="javaScript:void();" class="dropdown-item">Another action</a>
+                        <a href="javaScript:void();" class="dropdown-item">Something else here</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="javaScript:void();" class="dropdown-item">Separated link</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Breadcrumb-->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header"><i class="fa fa-table"></i>AssetCategory Data</div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="default-datatable" class="table table-bordered">
+                                <thead>
+                                    <tr class="ui-widget-header">
+                                        <th>Asset ID</th>
+                                        <th>Asset Category</th>
+                                        <th>Asset Code</th>
+                                        <th>Action</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody id="AssetData"></tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- End Row-->
+
+
+
+    </div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+@*end*@
+
+
+
+
+
+<script>
+
+    $(document).ready(function () {
+
+        $.ajax({
+
+            type: "POST",
+            url:"@Url.Action("BindAssetData", "EditAssets")",
+            success: function (data) {
+                $('#AssetData').empty().append(data);
+            }
+        });
+
+
+    });
+
+
+
+
+</script>
+
+<script>
+
+
+    function Edit(id) {
+
+
+        var id = id;
+
+
+
+            $.ajax({
+
+            type: "POST",
+            url: "@Url.Action("UpdateAssetData", "EditAssets")",
+            data: {  "send": "" + id + ""   },
+            success: function (data) {
+
+
+                var NestId = data
+                var url = "/UpdateAssets/UpdateAssetsIndex/?NestId=" + NestId;
+                window.location.href = url;
+
+
+            }
+
+
+
+        });
+
+    }
+
+
+    function Delete(id) {
+
+        var id = id;
+
+
+
+        $.ajax({
+
+            type: "POST",
+            url: "@Url.Action("DeleteAssetData", "EditAssets")",
+            data: {  "send": "" + id + ""   },
+            success: function (data) {
+
+
+                $("#btnassetcategorydeleted").on("click", function () { });
+
+                $("#btnassetcategorydeleted").click(); //trigger event after listening to it.
+
+
+
+
+                $('#AssetData').empty().append(data).reload();
+
+
+
+
+
+
+
+
+
+            }
+
+
+
+        });
+    }
+
+</script>
+
+
+
+
+
+
 

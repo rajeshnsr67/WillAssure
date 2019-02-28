@@ -30,8 +30,8 @@ namespace WillAssure.Controllers
         public ActionResult AddAssetsIndex()
         {
 
-            nCount = 0;
-
+            nCount = 1;
+            Session["fields"] = 0;
             return View("~/Views/AddAssets/AddAssetsPageContent.cshtml");
         }
 
@@ -187,8 +187,9 @@ namespace WillAssure.Controllers
         {
             AssetsModel Am = new AssetsModel();
             
-            nCount++;
-            
+            int c = nCount++;
+           
+            Session["fields"] = c; 
           
             string ddstruct = "";
             string finalstruct = "";
@@ -289,7 +290,7 @@ namespace WillAssure.Controllers
 
 
 
-        public string InsertAssetsData( AssetsModel form)
+        public ActionResult InsertAssetsData( AssetsModel form)
         {
            
          
@@ -307,30 +308,39 @@ namespace WillAssure.Controllers
             string cc = form.controls.Replace(" ", string.Empty).Replace("\r\n", string.Empty);
             string vv = form.values.Replace(" ", string.Empty).Replace("\r\n", string.Empty);
 
-            string c = column.Substring(0, column.Length - 1);
-         
-            string contr = col.Substring(0, col.Length - 1);
-            string valu = val.Substring(0, val.Length - 1);
-            string c1 = cc.Substring(0, cc.Length - 1);
-            string v1 = vv.Substring(0, vv.Length - 1);
+            
 
-            string columnvalues = cv.Substring(0, cv.Length - 1);
+            if (column != "" && cv != "" && col != "" && val != "" && cc != "" && vv != "")
+            {
+                string c = column.Substring(0, column.Length - 1);
 
-            con.Open();
-            query1 = "insert into AssetsInfo (amId," +c+","+ contr + ", "+ valu + ") values (" + form.amId + " , " + columnvalues + " , "+ c1 + " , "+ v1 + ") ";
-            SqlCommand cmd1 = new SqlCommand(query1, con);
-            cmd1.ExecuteNonQuery();
-            con.Close();
+                string contr = col.Substring(0, col.Length - 1);
+                string valu = val.Substring(0, val.Length - 1);
+                string c1 = cc.Substring(0, cc.Length - 1);
+                string v1 = vv.Substring(0, vv.Length - 1);
+
+                string columnvalues = cv.Substring(0, cv.Length - 1);
+
+                con.Open();
+                query1 = "insert into AssetsInfo (amId," + c + "," + contr + ", " + valu + ") values (" + form.amId + " , " + columnvalues + " , " + c1 + " , " + v1 + ") ";
+                SqlCommand cmd1 = new SqlCommand(query1, con);
+                cmd1.ExecuteNonQuery();
+                con.Close();
 
 
 
+
+                ViewBag.Message = "Verified";
+
+
+            }
 
 
           
-            string s = ViewBag.Message = "Verified";
 
 
-            return "";
+
+            return View("~/Views/AddAssets/AddAssetsPageContent.cshtml");
         }
 
 

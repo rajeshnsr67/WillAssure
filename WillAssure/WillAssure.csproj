@@ -180,6 +180,7 @@
     <Compile Include="Models\RoleFormModel.cs" />
     <Compile Include="Models\TemplateMasterModel.cs" />
     <Compile Include="Models\TestatorFormModel.cs" />
+    <Compile Include="Controllers\UpdateAssetsController.cs" />
     <Compile Include="Models\UserFormModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -1035,6 +1036,7 @@
     <Content Include="Views\UpdateAssetType\UpdateAssetTypePageContent.cshtml" />
     <Content Include="Views\EditAssetCategory\EditAssetCategoryPageContent.cshtml" />
     <Content Include="Views\UpdateAssetCategory\UpdateAssetCategoryPageContent.cshtml" />
+    <Content Include="Views\UpdateAssets\UpdateAssetsPageContent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
