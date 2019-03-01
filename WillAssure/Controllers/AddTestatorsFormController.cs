@@ -117,8 +117,59 @@ namespace WillAssure.Controllers
             cmd.ExecuteNonQuery();
             con.Close();
 
-            Session["createdby"] = TFM.Document_Created_By_txt; 
-            
+            int testatorid = 0;
+            int templateid = 0;
+            string testatortype = "";
+
+            // for storing testator id and created by in document master
+            con.Open();
+            string query = "select top 1 * from TestatorDetails order by tId desc ";
+            SqlDataAdapter da = new SqlDataAdapter(query,con);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            if (dt.Rows.Count > 0)
+            {
+            testatorid = Convert.ToInt32(dt.Rows[0]["tId"]); 
+              
+            }
+            con.Close();
+            //end
+
+
+
+            // for storing templateMaster templateid and  testator id in document master
+            con.Open();
+            string q2= "select * from templateMaster";
+            SqlDataAdapter da2 = new SqlDataAdapter(q2, con);
+            DataTable dt2 = new DataTable();
+            da2.Fill(dt2);
+            if (dt2.Rows.Count > 0)
+            {
+                templateid = Convert.ToInt32(dt2.Rows[0]["templateid"]);
+                Session["tid"] = "";
+                Session["tid"] = templateid;
+                testatortype = dt2.Rows[0]["testator_type"].ToString();
+                Session["Document_Created_By"] = "";
+                Session["Document_Created_By"] = TFM.Document_Created_By;
+            }
+            con.Close();
+            //end
+
+
+            // insert values in document master 
+            con.Open();
+            string q = "insert into [documentMaster] (tid,created_by,templateId,testator_type) values (" +testatorid+"' , '"+TFM.Document_Created_By+"' , "+templateid+" , '"+testatortype+"')";
+            SqlCommand c = new SqlCommand(q, con);
+            c.ExecuteNonQuery();
+            con.Close();
+
+
+
+            //end
+
+
+
+
 
             //1st condition
             if (TFM.Amt_Paid_By_txt == "Distributor" && TFM.Document_Created_By_txt == "Distributor")
@@ -128,8 +179,8 @@ namespace WillAssure.Controllers
                 TFM.Login_Required = 0;
 
                 con.Open();
-                string query = "insert into Authorization_Rules (Document_Created_By,Distributor_Id,Amt_Paid_By,Testator_Id,Authentication_Required,Link_Required,Login_Required) values ('" + TFM.Document_Created_By_txt + "' , '" + TFM.Document_Created_By_ID + "' , '" + TFM.Amt_Paid_By_txt + "' , '" + TFM.Amt_Paid_By + "'  , '"+TFM.Authentication_Required+"' , '"+TFM.Link_Required+"' , '"+TFM.Login_Required+"') ";
-                SqlCommand cmd2 = new SqlCommand(query,con);
+                string query1 = "insert into Authorization_Rules (Document_Created_By,Distributor_Id,Amt_Paid_By,Testator_Id,Authentication_Required,Link_Required,Login_Required) values ('" + TFM.Document_Created_By_txt + "' , '" + TFM.Document_Created_By_ID + "' , '" + TFM.Amt_Paid_By_txt + "' , '" + TFM.Amt_Paid_By + "'  , '"+TFM.Authentication_Required+"' , '"+TFM.Link_Required+"' , '"+TFM.Login_Required+"') ";
+                SqlCommand cmd2 = new SqlCommand(query1,con);
                 cmd2.ExecuteNonQuery();
                 con.Close();
              
@@ -144,8 +195,8 @@ namespace WillAssure.Controllers
                 TFM.Login_Required = 1;
 
                 con.Open();
-                string query = "insert into Authorization_Rules (Document_Created_By,Distributor_Id,Amt_Paid_By,Testator_Id,Authentication_Required,Link_Required,Login_Required) values ('" + TFM.Document_Created_By_txt + "' , '" + TFM.Document_Created_By_ID + "' , '" + TFM.Amt_Paid_By_txt + "' , '" + TFM.Amt_Paid_By + "'  , '" + TFM.Authentication_Required + "' , '" + TFM.Link_Required + "' , '" + TFM.Login_Required + "') ";
-                SqlCommand cmd2 = new SqlCommand(query, con);
+                string query2 = "insert into Authorization_Rules (Document_Created_By,Distributor_Id,Amt_Paid_By,Testator_Id,Authentication_Required,Link_Required,Login_Required) values ('" + TFM.Document_Created_By_txt + "' , '" + TFM.Document_Created_By_ID + "' , '" + TFM.Amt_Paid_By_txt + "' , '" + TFM.Amt_Paid_By + "'  , '" + TFM.Authentication_Required + "' , '" + TFM.Link_Required + "' , '" + TFM.Login_Required + "') ";
+                SqlCommand cmd2 = new SqlCommand(query2, con);
                 cmd2.ExecuteNonQuery();
                 con.Close();
 
@@ -192,8 +243,8 @@ namespace WillAssure.Controllers
                 TFM.Login_Required = 1;
 
                 con.Open();
-                string query = "insert into Authorization_Rules (Document_Created_By,Distributor_Id,Amt_Paid_By,Testator_Id,Authentication_Required,Link_Required,Login_Required) values ('" + TFM.Document_Created_By_txt + "' , '" + TFM.Document_Created_By_ID + "' , '" + TFM.Amt_Paid_By_txt + "' , '" + TFM.Amt_Paid_By + "'  , '" + TFM.Authentication_Required + "' , '" + TFM.Link_Required + "' , '" + TFM.Login_Required + "') ";
-                SqlCommand cmd2 = new SqlCommand(query, con);
+                string query3 = "insert into Authorization_Rules (Document_Created_By,Distributor_Id,Amt_Paid_By,Testator_Id,Authentication_Required,Link_Required,Login_Required) values ('" + TFM.Document_Created_By_txt + "' , '" + TFM.Document_Created_By_ID + "' , '" + TFM.Amt_Paid_By_txt + "' , '" + TFM.Amt_Paid_By + "'  , '" + TFM.Authentication_Required + "' , '" + TFM.Link_Required + "' , '" + TFM.Login_Required + "') ";
+                SqlCommand cmd2 = new SqlCommand(query3, con);
                 cmd2.ExecuteNonQuery();
                 con.Close();
 
@@ -238,8 +289,8 @@ namespace WillAssure.Controllers
                 TFM.Login_Required = 1;
 
                 con.Open();
-                string query = "insert into Authorization_Rules (Document_Created_By,Distributor_Id,Amt_Paid_By,Testator_Id,Authentication_Required,Link_Required,Login_Required) values ('" + TFM.Document_Created_By_txt + "' , '" + TFM.Document_Created_By_ID + "' , '" + TFM.Amt_Paid_By_txt + "' , '" + TFM.Amt_Paid_By + "'  , '" + TFM.Authentication_Required + "' , '" + TFM.Link_Required + "' , '" + TFM.Login_Required + "') ";
-                SqlCommand cmd2 = new SqlCommand(query, con);
+                string query4 = "insert into Authorization_Rules (Document_Created_By,Distributor_Id,Amt_Paid_By,Testator_Id,Authentication_Required,Link_Required,Login_Required) values ('" + TFM.Document_Created_By_txt + "' , '" + TFM.Document_Created_By_ID + "' , '" + TFM.Amt_Paid_By_txt + "' , '" + TFM.Amt_Paid_By + "'  , '" + TFM.Authentication_Required + "' , '" + TFM.Link_Required + "' , '" + TFM.Login_Required + "') ";
+                SqlCommand cmd2 = new SqlCommand(query4, con);
                 cmd2.ExecuteNonQuery();
                 con.Close();
 

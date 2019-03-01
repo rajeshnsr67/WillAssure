@@ -139,6 +139,7 @@
     <Compile Include="Controllers\AddCouponsController.cs" />
     <Compile Include="Controllers\AddDistributorController.cs" />
     <Compile Include="Controllers\AddDocumentController.cs" />
+    <Compile Include="Controllers\AddNomineeController.cs" />
     <Compile Include="Controllers\AddTemplateMasterController.cs" />
     <Compile Include="Controllers\AddTestatorsFormController.cs" />
     <Compile Include="Controllers\AssetTypeController.cs" />
@@ -150,6 +151,7 @@
     <Compile Include="Controllers\EditCouponsController.cs" />
     <Compile Include="Controllers\EditDistributorController.cs" />
     <Compile Include="Controllers\EditDocumentController.cs" />
+    <Compile Include="Controllers\EditNomineeController.cs" />
     <Compile Include="Controllers\EditRoleController.cs" />
     <Compile Include="Controllers\EditTestatorController.cs" />
     <Compile Include="Controllers\EditUserFormController.cs" />
@@ -162,6 +164,7 @@
     <Compile Include="Controllers\UpdateBeneficiaryController.cs" />
     <Compile Include="Controllers\UpdateDistributorController.cs" />
     <Compile Include="Controllers\UpdateEditFormController.cs" />
+    <Compile Include="Controllers\UpdateNomineeController.cs" />
     <Compile Include="Controllers\UpdateRolesController.cs" />
     <Compile Include="Controllers\UpdateTestatorsController.cs" />
     <Compile Include="Controllers\UsersFormController.cs" />
@@ -177,6 +180,7 @@
     <Compile Include="Models\DistributorFormModel.cs" />
     <Compile Include="Models\EmailVerificationModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
+    <Compile Include="Models\NomineeModel.cs" />
     <Compile Include="Models\RoleFormModel.cs" />
     <Compile Include="Models\TemplateMasterModel.cs" />
     <Compile Include="Models\TestatorFormModel.cs" />
@@ -1037,6 +1041,9 @@
     <Content Include="Views\EditAssetCategory\EditAssetCategoryPageContent.cshtml" />
     <Content Include="Views\UpdateAssetCategory\UpdateAssetCategoryPageContent.cshtml" />
     <Content Include="Views\UpdateAssets\UpdateAssetsPageContent.cshtml" />
+    <Content Include="Views\AddNominee\AddNomineePageContent.cshtml" />
+    <Content Include="Views\EditNominee\EditNomineePageContent.cshtml" />
+    <Content Include="Views\UpdateNominee\UpdateNomineePageContent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -38,7 +38,7 @@ File: app-style
 */
 
 /* Google Font*/
-@import url('https://fonts.googleapis.com/css?family+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +Roboto:300,400,500,700');
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700');
 
 /* General */
 html {
@@ -65,7 +65,7 @@ body {
     color: #636363;
     letter-spacing: 1px;
 }
-[tabindex+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +"-1"]:focus {
+[tabindex="-1"]:focus {
 	outline: 0!important
 }
 
@@ -2245,15 +2245,15 @@ hr {
   position: relative;
   text-align: left;
 }
-.icon-container [class^+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +"ti-"], 
-.icon-container [class*+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +" ti-"] {
+.icon-container [class^="ti-"], 
+.icon-container [class*=" ti-"] {
   color: #000;
   position: absolute;
   margin-top: 3px;
   transition: .3s;
 }
-.icon-container:hover [class^+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +"ti-"],
-.icon-container:hover [class*+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +" ti-"] {
+.icon-container:hover [class^="ti-"],
+.icon-container:hover [class*=" ti-"] {
   font-size: 2.2em;
   margin-top: -5px;
 }
@@ -2746,10 +2746,10 @@ form.striped-rows .form-group {
     color: white;
 }
 
-.input-group-prepend [type+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +checkbox]:checked,
-.input-group-prepend [type+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +checkbox]:not(:checked),
-.input-group-prepend [type+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +radio]:checked,
-.input-group-prepend [type+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +radio]:not(:checked) {
+.input-group-prepend [type=checkbox]:checked,
+.input-group-prepend [type=checkbox]:not(:checked),
+.input-group-prepend [type=radio]:checked,
+.input-group-prepend [type=radio]:not(:checked) {
     position: initial;
     opacity: 1;
     margin-top: 0px;
@@ -4694,12 +4694,12 @@ table.grid td {
 
 /* CheckBoxes & Radios */
 
-[class*+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +"icheck-material"] {
+[class*="icheck-material"] {
   min-height: 22px;
   margin-top: 6px;
   margin-bottom: 6px 
   padding-left: 0px; }
-  [class*+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +"icheck-material"] > label {
+  [class*="icheck-material"] > label {
     padding-left: 29px !important;
     min-height: 22px;
     line-height: 22px;
@@ -4709,7 +4709,7 @@ table.grid td {
     margin-bottom: 0;
     font-weight: normal;
     cursor: pointer; }
-  [class*+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +"icheck-material"] > input:first-child {
+  [class*="icheck-material"] > input:first-child {
     position: absolute !important;
     opacity: 0;
     margin: 0;
@@ -4726,20 +4726,20 @@ table.grid td {
     transform: scale(2);
     -ms-transform: scale(2);
     transition: opacity 0.3s, transform 0.3s; }
-    [class*+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +"icheck-material"] > input:first-child:disabled {
+    [class*="icheck-material"] > input:first-child:disabled {
       cursor: default; }
-      [class*+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +"icheck-material"] > input:first-child:disabled + label,
-      [class*+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +"icheck-material"] > input:first-child:disabled + input[type+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +"hidden"] + label,
-      [class*+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +"icheck-material"] > input:first-child:disabled + label::before,
-      [class*+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +"icheck-material"] > input:first-child:disabled + input[type+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +"hidden"] + label::before {
+      [class*="icheck-material"] > input:first-child:disabled + label,
+      [class*="icheck-material"] > input:first-child:disabled + input[type="hidden"] + label,
+      [class*="icheck-material"] > input:first-child:disabled + label::before,
+      [class*="icheck-material"] > input:first-child:disabled + input[type="hidden"] + label::before {
         pointer-events: none;
         cursor: default;
-        filter: alpha(opacity+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +65);
+        filter: alpha(opacity=65);
         -webkit-box-shadow: none;
         box-shadow: none;
         opacity: .65; }
-    [class*+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +"icheck-material"] > input:first-child + label::before,
-    [class*+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +"icheck-material"] > input:first-child + input[type+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +"hidden"] + label::before {
+    [class*="icheck-material"] > input:first-child + label::before,
+    [class*="icheck-material"] > input:first-child + input[type="hidden"] + label::before {
       content: "";
       display: inline-block;
       position: absolute;
@@ -4749,8 +4749,8 @@ table.grid td {
       border-radius: .25rem;
       margin-left: -29px;
       box-sizing: border-box; }
-    [class*+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +"icheck-material"] > input:first-child:checked + label::after,
-    [class*+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +"icheck-material"] > input:first-child:checked + input[type+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +"hidden"] + label::after {
+    [class*="icheck-material"] > input:first-child:checked + label::after,
+    [class*="icheck-material"] > input:first-child:checked + input[type="hidden"] + label::after {
       content: "";
       display: inline-block;
       position: absolute;
@@ -4764,25 +4764,25 @@ table.grid td {
       transform: translate(7.75px, 4.5px) rotate(45deg);
       -ms-transform: translate(7.75px, 4.5px) rotate(45deg);
       box-sizing: border-box; }
-    [class*+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +"icheck-material"] > input:first-child:not(:checked):not(:disabled):hover + label::before,
-    [class*+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +"icheck-material"] > input:first-child:not(:checked):not(:disabled):hover + input[type+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +"hidden"] + label::before {
+    [class*="icheck-material"] > input:first-child:not(:checked):not(:disabled):hover + label::before,
+    [class*="icheck-material"] > input:first-child:not(:checked):not(:disabled):hover + input[type="hidden"] + label::before {
       border-width: 2px; }
-    [class*+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +"icheck-material"] > input:first-child::-ms-check {
+    [class*="icheck-material"] > input:first-child::-ms-check {
       opacity: 0;
       border-radius: 50%; }
-    [class*+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +"icheck-material"] > input:first-child:active {
+    [class*="icheck-material"] > input:first-child:active {
       transform: scale(0);
       -ms-transform: scale(0);
       opacity: 1;
       transition: opacity 0s, transform 0s; }
-  [class*+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +"icheck-material"] > input[type+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +"radio"]:first-child + label::before,
-  [class*+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +"icheck-material"] > input[type+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +"radio"]:first-child + input[type+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +"hidden"] + label::before {
+  [class*="icheck-material"] > input[type="radio"]:first-child + label::before,
+  [class*="icheck-material"] > input[type="radio"]:first-child + input[type="hidden"] + label::before {
     border-radius: 50%; }
-  [class*+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +"icheck-material"] > input[type+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +"radio"]:first-child:checked + label::before,
-  [class*+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +"icheck-material"] > input[type+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +"radio"]:first-child:checked + input[type+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +"hidden"] + label::before {
+  [class*="icheck-material"] > input[type="radio"]:first-child:checked + label::before,
+  [class*="icheck-material"] > input[type="radio"]:first-child:checked + input[type="hidden"] + label::before {
     background-color: transparent; }
-  [class*+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +"icheck-material"] > input[type+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +"radio"]:first-child:checked + label::after,
-  [class*+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +"icheck-material"] > input[type+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +"radio"]:first-child:checked + input[type+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +"hidden"] + label::after {
+  [class*="icheck-material"] > input[type="radio"]:first-child:checked + label::after,
+  [class*="icheck-material"] > input[type="radio"]:first-child:checked + input[type="hidden"] + label::after {
     content: "";
     position: absolute;
     width: 10px;
@@ -4793,8 +4793,8 @@ table.grid td {
     left: 5px;
     transform: none;
     -ms-transform: none; }
-  [class*+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +"icheck-material"] > input[type+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +"checkbox"]:first-child:checked + label::after,
-  [class*+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +"icheck-material"] > input[type+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +"checkbox"]:first-child:checked + input[type+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +"hidden"] + label::after {
+  [class*="icheck-material"] > input[type="checkbox"]:first-child:checked + label::after,
+  [class*="icheck-material"] > input[type="checkbox"]:first-child:checked + input[type="hidden"] + label::after {
     width: 6px;
     height: 12px;
     transform: translate(7px, 2px) rotate(45deg);
@@ -4811,19 +4811,19 @@ table.grid td {
   .icheck-material-primary > input:first-child::-ms-check {
     background-color: #5e72e4; }
   .icheck-material-primary > input:first-child:not(:checked):not(:disabled):hover + label::before,
-  .icheck-material-primary > input:first-child:not(:checked):not(:disabled):hover + input[type+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +"hidden"] + label::before {
+  .icheck-material-primary > input:first-child:not(:checked):not(:disabled):hover + input[type="hidden"] + label::before {
     border-color: #5e72e4; }
   .icheck-material-primary > input:first-child:checked + label::before,
-  .icheck-material-primary > input:first-child:checked + input[type+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +"hidden"] + label::before {
+  .icheck-material-primary > input:first-child:checked + input[type="hidden"] + label::before {
     background-color: #5e72e4;
     border-color: #5e72e4; }
   .icheck-material-primary > input:first-child:checked + label::after,
-  .icheck-material-primary > input:first-child:checked + input[type+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +"hidden"] + label::after {
+  .icheck-material-primary > input:first-child:checked + input[type="hidden"] + label::after {
     border-bottom-color: #fff;
     border-right-color: #fff; }
 
-.icheck-material-primary > input[type+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +"radio"]:first-child:checked + label::after,
-.icheck-material-primary > input[type+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +"radio"]:first-child:checked + input[type+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +"hidden"] + label::after {
+.icheck-material-primary > input[type="radio"]:first-child:checked + label::after,
+.icheck-material-primary > input[type="radio"]:first-child:checked + input[type="hidden"] + label::after {
   background-color: #5e72e4; }
 
 
@@ -4832,19 +4832,19 @@ table.grid td {
   .icheck-material-success > input:first-child::-ms-check {
     background-color: #2dce89; }
   .icheck-material-success > input:first-child:not(:checked):not(:disabled):hover + label::before,
-  .icheck-material-success > input:first-child:not(:checked):not(:disabled):hover + input[type+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +"hidden"] + label::before {
+  .icheck-material-success > input:first-child:not(:checked):not(:disabled):hover + input[type="hidden"] + label::before {
     border-color: #2dce89; }
   .icheck-material-success > input:first-child:checked + label::before,
-  .icheck-material-success > input:first-child:checked + input[type+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +"hidden"] + label::before {
+  .icheck-material-success > input:first-child:checked + input[type="hidden"] + label::before {
     background-color: #2dce89;
     border-color: #2dce89; }
   .icheck-material-success > input:first-child:checked + label::after,
-  .icheck-material-success > input:first-child:checked + input[type+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +"hidden"] + label::after {
+  .icheck-material-success > input:first-child:checked + input[type="hidden"] + label::after {
     border-bottom-color: #fff;
     border-right-color: #fff; }
 
-.icheck-material-success > input[type+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +"radio"]:first-child:checked + label::after,
-.icheck-material-success > input[type+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +"radio"]:first-child:checked + input[type+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +"hidden"] + label::after {
+.icheck-material-success > input[type="radio"]:first-child:checked + label::after,
+.icheck-material-success > input[type="radio"]:first-child:checked + input[type="hidden"] + label::after {
   background-color: #2dce89; }
 
 
@@ -4853,19 +4853,19 @@ table.grid td {
   .icheck-material-danger > input:first-child::-ms-check {
     background-color: #f5365c; }
   .icheck-material-danger > input:first-child:not(:checked):not(:disabled):hover + label::before,
-  .icheck-material-danger > input:first-child:not(:checked):not(:disabled):hover + input[type+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +"hidden"] + label::before {
+  .icheck-material-danger > input:first-child:not(:checked):not(:disabled):hover + input[type="hidden"] + label::before {
     border-color: #f5365c; }
   .icheck-material-danger > input:first-child:checked + label::before,
-  .icheck-material-danger > input:first-child:checked + input[type+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +"hidden"] + label::before {
+  .icheck-material-danger > input:first-child:checked + input[type="hidden"] + label::before {
     background-color: #f5365c;
     border-color: #f5365c; }
   .icheck-material-danger > input:first-child:checked + label::after,
-  .icheck-material-danger > input:first-child:checked + input[type+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +"hidden"] + label::after {
+  .icheck-material-danger > input:first-child:checked + input[type="hidden"] + label::after {
     border-bottom-color: #fff;
     border-right-color: #fff; }
 
-.icheck-material-danger > input[type+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +"radio"]:first-child:checked + label::after,
-.icheck-material-danger > input[type+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +"radio"]:first-child:checked + input[type+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +"hidden"] + label::after {
+.icheck-material-danger > input[type="radio"]:first-child:checked + label::after,
+.icheck-material-danger > input[type="radio"]:first-child:checked + input[type="hidden"] + label::after {
   background-color: #f5365c; }
 
 
@@ -4874,19 +4874,19 @@ table.grid td {
   .icheck-material-info > input:first-child::-ms-check {
     background-color: #11cdef; }
   .icheck-material-info > input:first-child:not(:checked):not(:disabled):hover + label::before,
-  .icheck-material-info > input:first-child:not(:checked):not(:disabled):hover + input[type+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +"hidden"] + label::before {
+  .icheck-material-info > input:first-child:not(:checked):not(:disabled):hover + input[type="hidden"] + label::before {
     border-color: #11cdef; }
   .icheck-material-info > input:first-child:checked + label::before,
-  .icheck-material-info > input:first-child:checked + input[type+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +"hidden"] + label::before {
+  .icheck-material-info > input:first-child:checked + input[type="hidden"] + label::before {
     background-color: #11cdef;
     border-color: #11cdef; }
   .icheck-material-info > input:first-child:checked + label::after,
-  .icheck-material-info > input:first-child:checked + input[type+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +"hidden"] + label::after {
+  .icheck-material-info > input:first-child:checked + input[type="hidden"] + label::after {
     border-bottom-color: #fff;
     border-right-color: #fff; }
 
-.icheck-material-info > input[type+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +"radio"]:first-child:checked + label::after,
-.icheck-material-info > input[type+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +"radio"]:first-child:checked + input[type+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +"hidden"] + label::after {
+.icheck-material-info > input[type="radio"]:first-child:checked + label::after,
+.icheck-material-info > input[type="radio"]:first-child:checked + input[type="hidden"] + label::after {
   background-color: #11cdef; }
 
 
@@ -4895,19 +4895,19 @@ table.grid td {
   .icheck-material-warning > input:first-child::-ms-check {
     background-color: #fb6340; }
   .icheck-material-warning > input:first-child:not(:checked):not(:disabled):hover + label::before,
-  .icheck-material-warning > input:first-child:not(:checked):not(:disabled):hover + input[type+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +"hidden"] + label::before {
+  .icheck-material-warning > input:first-child:not(:checked):not(:disabled):hover + input[type="hidden"] + label::before {
     border-color: #fb6340; }
   .icheck-material-warning > input:first-child:checked + label::before,
-  .icheck-material-warning > input:first-child:checked + input[type+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +"hidden"] + label::before {
+  .icheck-material-warning > input:first-child:checked + input[type="hidden"] + label::before {
     background-color: #fb6340;
     border-color: #fb6340; }
   .icheck-material-warning > input:first-child:checked + label::after,
-  .icheck-material-warning > input:first-child:checked + input[type+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +"hidden"] + label::after {
+  .icheck-material-warning > input:first-child:checked + input[type="hidden"] + label::after {
     border-bottom-color: #fff;
     border-right-color: #fff; }
 
-.icheck-material-warning > input[type+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +"radio"]:first-child:checked + label::after,
-.icheck-material-warning > input[type+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +"radio"]:first-child:checked + input[type+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +"hidden"] + label::after {
+.icheck-material-warning > input[type="radio"]:first-child:checked + label::after,
+.icheck-material-warning > input[type="radio"]:first-child:checked + input[type="hidden"] + label::after {
   background-color: #fb6340; }
 
 
@@ -4916,19 +4916,19 @@ table.grid td {
   .icheck-material-secondary > input:first-child::-ms-check {
     background-color: #ff2fa0; }
   .icheck-material-secondary > input:first-child:not(:checked):not(:disabled):hover + label::before,
-  .icheck-material-secondary > input:first-child:not(:checked):not(:disabled):hover + input[type+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +"hidden"] + label::before {
+  .icheck-material-secondary > input:first-child:not(:checked):not(:disabled):hover + input[type="hidden"] + label::before {
     border-color: #ff2fa0; }
   .icheck-material-secondary > input:first-child:checked + label::before,
-  .icheck-material-secondary > input:first-child:checked + input[type+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +"hidden"] + label::before {
+  .icheck-material-secondary > input:first-child:checked + input[type="hidden"] + label::before {
     background-color: #ff2fa0;
     border-color: #ff2fa0; }
   .icheck-material-secondary > input:first-child:checked + label::after,
-  .icheck-material-secondary > input:first-child:checked + input[type+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +"hidden"] + label::after {
+  .icheck-material-secondary > input:first-child:checked + input[type="hidden"] + label::after {
     border-bottom-color: #fff;
     border-right-color: #fff; }
 
-.icheck-material-secondary > input[type+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +"radio"]:first-child:checked + label::after,
-.icheck-material-secondary > input[type+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +"radio"]:first-child:checked + input[type+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +"hidden"] + label::after {
+.icheck-material-secondary > input[type="radio"]:first-child:checked + label::after,
+.icheck-material-secondary > input[type="radio"]:first-child:checked + input[type="hidden"] + label::after {
   background-color: #ff2fa0; }
 
 
@@ -4937,26 +4937,26 @@ table.grid td {
   .icheck-material-dark > input:first-child::-ms-check {
     background-color: #172b4d; }
   .icheck-material-dark > input:first-child:not(:checked):not(:disabled):hover + label::before,
-  .icheck-material-dark > input:first-child:not(:checked):not(:disabled):hover + input[type+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +"hidden"] + label::before {
+  .icheck-material-dark > input:first-child:not(:checked):not(:disabled):hover + input[type="hidden"] + label::before {
     border-color: #172b4d; }
   .icheck-material-dark > input:first-child:checked + label::before,
-  .icheck-material-dark > input:first-child:checked + input[type+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +"hidden"] + label::before {
+  .icheck-material-dark > input:first-child:checked + input[type="hidden"] + label::before {
     background-color: #172b4d;
     border-color: #172b4d; }
   .icheck-material-dark > input:first-child:checked + label::after,
-  .icheck-material-dark > input:first-child:checked + input[type+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +"hidden"] + label::after {
+  .icheck-material-dark > input:first-child:checked + input[type="hidden"] + label::after {
     border-bottom-color: #fff;
     border-right-color: #fff; }
 
-.icheck-material-dark > input[type+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +"radio"]:first-child:checked + label::after,
-.icheck-material-dark > input[type+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +"radio"]:first-child:checked + input[type+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +"hidden"] + label::after {
+.icheck-material-dark > input[type="radio"]:first-child:checked + label::after,
+.icheck-material-dark > input[type="radio"]:first-child:checked + input[type="hidden"] + label::after {
   background-color: #172b4d; }
 
 
-.input-group-addon [type+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +checkbox]:checked,
-.input-group-addon [type+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +checkbox]:not(:checked),
-.input-group-addon [type+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +radio]:checked,
-.input-group-addon [type+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +radio]:not(:checked) {
+.input-group-addon [type=checkbox]:checked,
+.input-group-addon [type=checkbox]:not(:checked),
+.input-group-addon [type=radio]:checked,
+.input-group-addon [type=radio]:not(:checked) {
     position: initial;
     opacity: 1;
   margin-top: 4px;

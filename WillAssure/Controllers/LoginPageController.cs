@@ -74,7 +74,9 @@ namespace WillAssure.Controllers
             Session["amId"] = "";
             Session["assetsCode"] = "";
             Session["atId"] = "";
-           
+            Session["aiId"] = "";
+            Session["tid"] = "";
+            Session["Document_Created_By"] = "";
             return View("~/Views/LoginPage/LoginPageContent.cshtml");
         }
 

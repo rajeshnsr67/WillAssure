@@ -14,7 +14,7 @@ File: app-style
  */
 @font-face {
   font-family: 'Material-Design-Iconic-Font';
-  src: url('../fonts/Material-Design-Iconic-Fontd1f1.woff2?v+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +2.2.0') format('woff2'), url('../fonts/Material-Design-Iconic-Fontd1f1.woff?v+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +2.2.0') format('woff'), url('../fonts/Material-Design-Iconic-Fontd1f1.ttf?v+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +2.2.0') format('truetype');
+  src: url('../fonts/Material-Design-Iconic-Fontd1f1.woff2?v=2.2.0') format('woff2'), url('../fonts/Material-Design-Iconic-Fontd1f1.woff?v=2.2.0') format('woff'), url('../fonts/Material-Design-Iconic-Fontd1f1.ttf?v=2.2.0') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
@@ -5187,8 +5187,8 @@ File: app-style
  * -------------------------- */
 @font-face {
   font-family: 'FontAwesome';
-  src: url('../fonts/fontawesome-webfont3e6e.eot?v+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +4.7.0');
-  src: url('../fonts/fontawesome-webfontd41d.eot?#iefix&v+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +4.7.0') format('embedded-opentype'), url('../fonts/fontawesome-webfont3e6e.woff2?v+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +4.7.0') format('woff2'), url('../fonts/fontawesome-webfont3e6e.woff?v+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +4.7.0') format('woff'), url('../fonts/fontawesome-webfont3e6e.ttf?v+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +4.7.0') format('truetype'), url('../fonts/fontawesome-webfont3e6e.svg?v+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +4.7.0#fontawesomeregular') format('svg');
+  src: url('../fonts/fontawesome-webfont3e6e.eot?v=4.7.0');
+  src: url('../fonts/fontawesome-webfontd41d.eot?#iefix&v=4.7.0') format('embedded-opentype'), url('../fonts/fontawesome-webfont3e6e.woff2?v=4.7.0') format('woff2'), url('../fonts/fontawesome-webfont3e6e.woff?v=4.7.0') format('woff'), url('../fonts/fontawesome-webfont3e6e.ttf?v=4.7.0') format('truetype'), url('../fonts/fontawesome-webfont3e6e.svg?v=4.7.0#fontawesomeregular') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -5299,31 +5299,31 @@ File: app-style
   }
 }
 .fa-rotate-90 {
-  -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +1)";
+  -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=1)";
   -webkit-transform: rotate(90deg);
   -ms-transform: rotate(90deg);
   transform: rotate(90deg);
 }
 .fa-rotate-180 {
-  -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +2)";
+  -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=2)";
   -webkit-transform: rotate(180deg);
   -ms-transform: rotate(180deg);
   transform: rotate(180deg);
 }
 .fa-rotate-270 {
-  -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +3)";
+  -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=3)";
   -webkit-transform: rotate(270deg);
   -ms-transform: rotate(270deg);
   transform: rotate(270deg);
 }
 .fa-flip-horizontal {
-  -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +0, mirror+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +1)";
+  -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=0, mirror=1)";
   -webkit-transform: scale(-1, 1);
   -ms-transform: scale(-1, 1);
   transform: scale(-1, 1);
 }
 .fa-flip-vertical {
-  -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +2, mirror+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +1)";
+  -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=2, mirror=1)";
   -webkit-transform: scale(1, -1);
   -ms-transform: scale(1, -1);
   transform: scale(1, -1);
@@ -7531,7 +7531,7 @@ File: app-style
   font-style: normal;
 }
 
-[class^+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +"ti-"], [class*+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +" ti-"] {
+[class^="ti-"], [class*=" ti-"] {
   font-family: 'themify';
   speak: none;
   font-style: normal;
@@ -7540,7 +7540,7 @@ File: app-style
   text-transform: none;
   line-height: 1;
 
-  /* Better Font Rendering += "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" ++= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" ++= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" ++= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" ++= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" ++= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" ++= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" ++= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" ++= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" ++= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" ++= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" + */
+  /* Better Font Rendering =========== */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -8610,14 +8610,14 @@ File: app-style
 /* simple line icons*/
 @font-face {
   font-family: 'simple-line-icons';
-  src: url('../fonts/Simple-Line-Iconsb26c.eot?v+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +2.4.0');
-  src: url('../fonts/Simple-Line-Iconsb26c.eot?v+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +2.4.0#iefix') format('embedded-opentype'), url('../fonts/Simple-Line-Iconsb26c.woff2?v+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +2.4.0') format('woff2'), url('../fonts/Simple-Line-Iconsb26c.ttf?v+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +2.4.0') format('truetype'), url('../fonts/Simple-Line-Iconsb26c.woff?v+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +2.4.0') format('woff'), url('../fonts/Simple-Line-Iconsb26c.svg?v+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +2.4.0#simple-line-icons') format('svg');
+  src: url('../fonts/Simple-Line-Iconsb26c.eot?v=2.4.0');
+  src: url('../fonts/Simple-Line-Iconsb26c.eot?v=2.4.0#iefix') format('embedded-opentype'), url('../fonts/Simple-Line-Iconsb26c.woff2?v=2.4.0') format('woff2'), url('../fonts/Simple-Line-Iconsb26c.ttf?v=2.4.0') format('truetype'), url('../fonts/Simple-Line-Iconsb26c.woff?v=2.4.0') format('woff'), url('../fonts/Simple-Line-Iconsb26c.svg?v=2.4.0#simple-line-icons') format('svg');
   font-weight: normal;
   font-style: normal;
 }
 /*
  Use the following CSS code if you want to have a class per icon.
- Instead of a list of all class selectors, you can use the generic [class*+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +"icon-"] selector, but it's slower:
+ Instead of a list of all class selectors, you can use the generic [class*="icon-"] selector, but it's slower:
 */
 .icon-user,
 .icon-people,
@@ -8815,7 +8815,7 @@ File: app-style
   font-variant: normal;
   text-transform: none;
   line-height: 1;
-  /* Better Font Rendering += "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" ++= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" ++= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" ++= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" ++= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" ++= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" ++= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" ++= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" ++= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" ++= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" ++= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" + */
+  /* Better Font Rendering =========== */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -9433,31 +9433,31 @@ File: app-style
   width: 1.4em;
 }
 .wi-rotate-90 {
-  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +1);
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
   -webkit-transform: rotate(90deg);
   -ms-transform: rotate(90deg);
   transform: rotate(90deg);
 }
 .wi-rotate-180 {
-  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +2);
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);
   -webkit-transform: rotate(180deg);
   -ms-transform: rotate(180deg);
   transform: rotate(180deg);
 }
 .wi-rotate-270 {
-  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +3);
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
   -webkit-transform: rotate(270deg);
   -ms-transform: rotate(270deg);
   transform: rotate(270deg);
 }
 .wi-flip-horizontal {
-  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +0, mirror+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +1);
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=0, mirror=1);
   -webkit-transform: scale(-1, 1);
   -ms-transform: scale(-1, 1);
   transform: scale(-1, 1);
 }
 .wi-flip-vertical {
-  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +2, mirror+= "<div class='col-sm-3'><div class='form-group'> <input  type='text' value='" +1);
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2, mirror=1);
   -webkit-transform: scale(1, -1);
   -ms-transform: scale(1, -1);
   transform: scale(1, -1);

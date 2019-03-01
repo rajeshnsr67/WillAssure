@@ -327,7 +327,21 @@ namespace WillAssure.Controllers
                 cmd1.ExecuteNonQuery();
                 con.Close();
 
+                con.Open();
+                string query = "select top 1 aiId from AssetsInfo order by aiId desc";
+                SqlDataAdapter da = new SqlDataAdapter(query, con);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
 
+                Session["aiId"] = "";
+
+                if (dt.Rows.Count > 0)
+                {
+                    Session["aiId"] = dt.Rows[0]["aiId"];
+                }
+
+
+                con.Close();
 
 
                 ViewBag.Message = "Verified";
