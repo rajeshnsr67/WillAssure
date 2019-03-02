@@ -33,7 +33,7 @@ namespace WillAssure.Controllers
 
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
-                 NM.nId = Convert.ToInt32(dt.Rows[i]["nId"]);
+                    NM.nId = NestId;
                  NM.First_Name =dt.Rows[i]["First_Name"].ToString();
                  NM.Last_Name = dt.Rows[i]["Last_Name"].ToString();
                  NM.Middle_Name = dt.Rows[i]["Middle_Name"].ToString();
@@ -74,15 +74,46 @@ namespace WillAssure.Controllers
 
         public ActionResult UpdatingNominee(NomineeModel NM)
         {
+            if (Session["aiId"] != null)
+            {
+                NM.aid = Convert.ToInt32(Session["aiId"]);
+
+            }
+            else
+            {
+                NM.aid = 0;
+            }
+
+            if (Session["tid"] != null)
+            {
+                NM.tId = Convert.ToInt32(Session["tid"]);
+
+            }
+            else
+            {
+                NM.tId = 0;
+            }
+
+            if (Session["Document_Created_By"] != null)
+            {
+                NM.createdBy = Session["Document_Created_By"].ToString();
+            }
+            else
+            {
+                NM.createdBy = "0";
+            }
+
+
 
             con.Open();
             SqlCommand cmd = new SqlCommand("SP_CRUDNominee", con);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@action", "update");
+            cmd.Parameters.AddWithValue("@nId", NM.nId);
             cmd.Parameters.AddWithValue("@First_Name", NM.First_Name);
             cmd.Parameters.AddWithValue("@Last_Name", NM.Last_Name);
             cmd.Parameters.AddWithValue("@Middle_Name", NM.Middle_Name);
-            cmd.Parameters.AddWithValue("@DOB", NM.DOB);
+            cmd.Parameters.AddWithValue("@DOB", Convert.ToDateTime(NM.DOB));
             cmd.Parameters.AddWithValue("@Mobile", NM.Mobile);
             cmd.Parameters.AddWithValue("@Relationship", NM.Relationship);
             cmd.Parameters.AddWithValue("@Marital_Status", NM.Marital_Status);

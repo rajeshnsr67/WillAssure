@@ -249,7 +249,7 @@ namespace WillAssure.Controllers
             finalstruct = finalstruct + "<div class='col-sm-3'><div class='form-group'><label for='input - 1'>Entity</label>     "+ddstruct+"       </div></div>" +
             finalstruct + "<div class='col-sm-3'><div class='form-group'><label for='input-1'>Label</label>   <input type='text' name='txtlabel' class='form-control validate[required] text - input' id='txtlabel' name='txtlabel' onchange=bar(this.value) autocomplete='off' />    </div></div>" +
             finalstruct + "<div class='col-sm-3'><div class='form-group'>   <label for='input-1'>Controls</label>   <select class='form-control' id='DDLControls' name='DDLControls' onChange='getControls(this.options[this.selectedIndex].innerHTML)'>    <option value='0'>--Select--</option >   <option value='TextBox'>TextBox</option >    <option value='TextArea'>TextArea</option>    <option value='DatePicker'>DatePicker</option>     <option value='CheckBox'>CheckBox</option>   <option value='RadioButton'>RadioButton</option>  </select></div></div>" +
-            finalstruct + "<div class='col-sm-3'><div class='form-group'><label for='input-1'>Values</label>  <input type='text' id='txtval' class='form-control validate[required] text - input'   onchange=bar2(this.value) name='txtval'  autocomplete='off' />    </div></div>";
+            finalstruct + "<div class='col-sm-3'><div class='form-group'><label for='input-1'>Values</label>  <input type='text' id='txtval' class='form-control  text - input'   onchange=bar2(this.value) name='txtval'  autocomplete='off' />    </div></div>";
 
 
 
@@ -308,7 +308,11 @@ namespace WillAssure.Controllers
             string cc = form.controls.Replace(" ", string.Empty).Replace("\r\n", string.Empty);
             string vv = form.values.Replace(" ", string.Empty).Replace("\r\n", string.Empty);
 
-            
+            if (vv == "")
+            {
+                vv = "'NA''";
+            }
+
 
             if (column != "" && cv != "" && col != "" && val != "" && cc != "" && vv != "")
             {
@@ -318,8 +322,12 @@ namespace WillAssure.Controllers
                 string valu = val.Substring(0, val.Length - 1);
                 string c1 = cc.Substring(0, cc.Length - 1);
                 string v1 = vv.Substring(0, vv.Length - 1);
+              
 
                 string columnvalues = cv.Substring(0, cv.Length - 1);
+
+             
+
 
                 con.Open();
                 query1 = "insert into AssetsInfo (amId," + c + "," + contr + ", " + valu + ") values (" + form.amId + " , " + columnvalues + " , " + c1 + " , " + v1 + ") ";
@@ -350,7 +358,7 @@ namespace WillAssure.Controllers
             }
 
 
-          
+
 
 
 

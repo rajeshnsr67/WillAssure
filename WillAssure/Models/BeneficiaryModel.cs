@@ -20,6 +20,8 @@ namespace WillAssure.Models
         public string Mobile { get; set; }
 
         public string Relationship { get; set; }
+        public int RelationshipId { get; set; }
+        public string RelationshipTxt { get; set; }
 
         public string Marital_Status { get; set; }
         public string Marital_Status_TXT { get; set; }

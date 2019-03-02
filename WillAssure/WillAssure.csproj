@@ -134,12 +134,14 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AddAssetCategoryController.cs" />
     <Compile Include="Controllers\AddAssetInfoController.cs" />
+    <Compile Include="Controllers\AddAssetMappingController.cs" />
     <Compile Include="Controllers\AddAssetsController.cs" />
     <Compile Include="Controllers\AddBeneficiaryController.cs" />
     <Compile Include="Controllers\AddCouponsController.cs" />
     <Compile Include="Controllers\AddDistributorController.cs" />
     <Compile Include="Controllers\AddDocumentController.cs" />
     <Compile Include="Controllers\AddNomineeController.cs" />
+    <Compile Include="Controllers\AddRelationController.cs" />
     <Compile Include="Controllers\AddTemplateMasterController.cs" />
     <Compile Include="Controllers\AddTestatorsFormController.cs" />
     <Compile Include="Controllers\AssetTypeController.cs" />
@@ -152,6 +154,7 @@
     <Compile Include="Controllers\EditDistributorController.cs" />
     <Compile Include="Controllers\EditDocumentController.cs" />
     <Compile Include="Controllers\EditNomineeController.cs" />
+    <Compile Include="Controllers\EditRelationController.cs" />
     <Compile Include="Controllers\EditRoleController.cs" />
     <Compile Include="Controllers\EditTestatorController.cs" />
     <Compile Include="Controllers\EditUserFormController.cs" />
@@ -173,6 +176,7 @@
     </Compile>
     <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\AssetCategoryModel.cs" />
+    <Compile Include="Models\AssetMappingModel.cs" />
     <Compile Include="Models\AssetsModel.cs" />
     <Compile Include="Models\AssetTypeModel.cs" />
     <Compile Include="Models\BeneficiaryModel.cs" />
@@ -180,11 +184,13 @@
     <Compile Include="Models\DistributorFormModel.cs" />
     <Compile Include="Models\EmailVerificationModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
+    <Compile Include="Models\MemberModelcs.cs" />
     <Compile Include="Models\NomineeModel.cs" />
     <Compile Include="Models\RoleFormModel.cs" />
     <Compile Include="Models\TemplateMasterModel.cs" />
     <Compile Include="Models\TestatorFormModel.cs" />
     <Compile Include="Controllers\UpdateAssetsController.cs" />
+    <Compile Include="Controllers\UpdateRelationController.cs" />
     <Compile Include="Models\UserFormModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -1044,6 +1050,10 @@
     <Content Include="Views\AddNominee\AddNomineePageContent.cshtml" />
     <Content Include="Views\EditNominee\EditNomineePageContent.cshtml" />
     <Content Include="Views\UpdateNominee\UpdateNomineePageContent.cshtml" />
+    <Content Include="Views\AddRelation\AddRelationPageContent.cshtml" />
+    <Content Include="Views\EditRelation\EditRelationPageContent.cshtml" />
+    <Content Include="Views\UpdateRelation\UpdateRelationPageContent.cshtml" />
+    <Content Include="Views\AddAssetMapping\AddAssetMappingPageContent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

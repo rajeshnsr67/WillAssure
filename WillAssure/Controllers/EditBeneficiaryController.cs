@@ -79,7 +79,7 @@ namespace WillAssure.Controllers
             int index = Convert.ToInt32(Request["send"]);
 
             con.Open();
-            SqlCommand cmd = new SqlCommand("BeneficiaryModel BM", con);
+            SqlCommand cmd = new SqlCommand("SP_CRUDBeneficiaryDetails", con);
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@condition", "delete");
             cmd.Parameters.AddWithValue("@bpId", index);
@@ -101,6 +101,8 @@ namespace WillAssure.Controllers
             cmd.Parameters.AddWithValue("@City","");
             cmd.Parameters.AddWithValue("@State","");
             cmd.Parameters.AddWithValue("@Pin","");
+            cmd.Parameters.AddWithValue("@aid", "");
+            cmd.Parameters.AddWithValue("@tid", "");
             cmd.Parameters.AddWithValue("@beneficiary_type","");
             cmd.ExecuteNonQuery();
             con.Close();

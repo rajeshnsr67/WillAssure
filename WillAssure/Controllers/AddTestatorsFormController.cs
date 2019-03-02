@@ -157,11 +157,11 @@ namespace WillAssure.Controllers
 
 
             // insert values in document master 
-            con.Open();
-            string q = "insert into [documentMaster] (tid,created_by,templateId,testator_type) values (" +testatorid+"' , '"+TFM.Document_Created_By+"' , "+templateid+" , '"+testatortype+"')";
-            SqlCommand c = new SqlCommand(q, con);
-            c.ExecuteNonQuery();
-            con.Close();
+            //con.Open();
+            //string q = "insert into [documentMaster] (tid,created_by,templateId,testator_type) values (" +testatorid+"' , '"+TFM.Document_Created_By+"' , "+templateid+" , '"+testatortype+"')";
+            //SqlCommand c = new SqlCommand(q, con);
+            //c.ExecuteNonQuery();
+            //con.Close();
 
 
 

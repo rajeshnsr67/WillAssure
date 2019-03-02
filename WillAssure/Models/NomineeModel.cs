@@ -15,7 +15,9 @@ namespace WillAssure.Models
       public string DOB { get; set;}
       public string Mobile { get; set;}
       public string Relationship { get; set;}
-      public string Marital_Status { get; set;}
+        public int RelationshipId { get; set; }
+        public string RelationshipTxt { get; set; }
+        public string Marital_Status { get; set;}
       public string Religion { get; set;}
       public string Identity_Proof { get; set;}
       public string Identity_Proof_Value { get; set;}
