@@ -314,48 +314,55 @@ namespace WillAssure.Controllers
             }
 
 
-            if (column != "" && cv != "" && col != "" && val != "" && cc != "" && vv != "")
+            if (Session["tid"] != null)
             {
-                string c = column.Substring(0, column.Length - 1);
-
-                string contr = col.Substring(0, col.Length - 1);
-                string valu = val.Substring(0, val.Length - 1);
-                string c1 = cc.Substring(0, cc.Length - 1);
-                string v1 = vv.Substring(0, vv.Length - 1);
-              
-
-                string columnvalues = cv.Substring(0, cv.Length - 1);
-
-             
-
-
-                con.Open();
-                query1 = "insert into AssetsInfo (amId," + c + "," + contr + ", " + valu + ") values (" + form.amId + " , " + columnvalues + " , " + c1 + " , " + v1 + ") ";
-                SqlCommand cmd1 = new SqlCommand(query1, con);
-                cmd1.ExecuteNonQuery();
-                con.Close();
-
-                con.Open();
-                string query = "select top 1 aiId from AssetsInfo order by aiId desc";
-                SqlDataAdapter da = new SqlDataAdapter(query, con);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-
-                Session["aiId"] = "";
-
-                if (dt.Rows.Count > 0)
+                if (column != "" && cv != "" && col != "" && val != "" && cc != "" && vv != "")
                 {
-                    Session["aiId"] = dt.Rows[0]["aiId"];
+                    string c = column.Substring(0, column.Length - 1);
+
+                    string contr = col.Substring(0, col.Length - 1);
+                    string valu = val.Substring(0, val.Length - 1);
+                    string c1 = cc.Substring(0, cc.Length - 1);
+                    string v1 = vv.Substring(0, vv.Length - 1);
+
+
+                    string columnvalues = cv.Substring(0, cv.Length - 1);
+
+
+
+                    con.Open();
+                    query1 = "insert into AssetsInfo (amId," + c + "," + contr + ", " + valu + ") values (" + form.amId + " , " + columnvalues + " , " + c1 + " , " + v1 + ") ";
+                    SqlCommand cmd1 = new SqlCommand(query1, con);
+                    cmd1.ExecuteNonQuery();
+                    con.Close();
+
+                    con.Open();
+                    string query = "select top 1 aiId from AssetsInfo order by aiId desc";
+                    SqlDataAdapter da = new SqlDataAdapter(query, con);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+
+                    Session["aiId"] = "";
+
+                    if (dt.Rows.Count > 0)
+                    {
+                        Session["aiId"] = dt.Rows[0]["aiId"];
+                    }
+
+
+                    con.Close();
+
+
+                    ViewBag.Message = "Verified";
+
+
                 }
-
-
-                con.Close();
-
-
-                ViewBag.Message = "Verified";
-
-
             }
+            else
+            {
+                Response.Write("<script>alert('Please Fill Testator First')</script>");
+            }
+          
 
 
 

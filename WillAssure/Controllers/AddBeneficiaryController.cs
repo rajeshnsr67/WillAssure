@@ -105,45 +105,51 @@ namespace WillAssure.Controllers
         public ActionResult InsertBeneficiaryData(BeneficiaryModel BM)
         {
 
-            if (Session["aiId"] != null)
+            if (Session["aiId"] != null && Session["tid"] != null)
             {
                 BM.aid = Convert.ToInt32(Session["aiId"]);
-            }
-
-            if (Session["tid"] != null)
-            {
                 BM.tid = Convert.ToInt32(Session["tId"]);
+
+
+                con.Open();
+                SqlCommand cmd = new SqlCommand("SP_CRUDBeneficiaryDetails", con);
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@condition", "insert");
+                cmd.Parameters.AddWithValue("@First_Name ", BM.First_Name);
+                cmd.Parameters.AddWithValue("@Last_Name", BM.Last_Name);
+                cmd.Parameters.AddWithValue("@Middle_Name", BM.Middle_Name);
+                cmd.Parameters.AddWithValue("@DOB", BM.DOB);
+                cmd.Parameters.AddWithValue("@Mobile", BM.Mobile);
+                cmd.Parameters.AddWithValue("@Relationship", BM.RelationshipTxt);
+                cmd.Parameters.AddWithValue("@Marital_Status", BM.Marital_Status);
+                cmd.Parameters.AddWithValue("@Religion", BM.Religion);
+                cmd.Parameters.AddWithValue("@Identity_proof", BM.Identity_proof);
+                cmd.Parameters.AddWithValue("@Identity_proof_value", BM.Identity_proof_value);
+                cmd.Parameters.AddWithValue("@Alt_Identity_proof", BM.Alt_Identity_proof);
+                cmd.Parameters.AddWithValue("@Alt_Identity_proof_value", BM.Alt_Identity_proof_value);
+                cmd.Parameters.AddWithValue("@Address1", BM.Address1);
+                cmd.Parameters.AddWithValue("@Address2", BM.Address2);
+                cmd.Parameters.AddWithValue("@Address3", BM.Address3);
+                cmd.Parameters.AddWithValue("@City", BM.City_txt);
+                cmd.Parameters.AddWithValue("@State", BM.State_txt);
+                cmd.Parameters.AddWithValue("@Pin", BM.Pin);
+                cmd.Parameters.AddWithValue("@aid", BM.aid);
+                cmd.Parameters.AddWithValue("@tid", BM.tid);
+                cmd.Parameters.AddWithValue("@beneficiary_type", BM.beneficiary_type);
+                cmd.ExecuteNonQuery();
+                con.Close();
+
+                ViewBag.Message = "RecordsInsert";
+
+            }
+            else
+            {
+                Response.Write("<script>alert('Please Fill Testator and Assets First')</script>");
             }
 
-            con.Open();
-            SqlCommand cmd = new SqlCommand("SP_CRUDBeneficiaryDetails", con);
-            cmd.CommandType = System.Data.CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@condition", "insert");
-            cmd.Parameters.AddWithValue("@First_Name ", BM.First_Name);
-            cmd.Parameters.AddWithValue("@Last_Name", BM.Last_Name);
-            cmd.Parameters.AddWithValue("@Middle_Name", BM.Middle_Name);
-            cmd.Parameters.AddWithValue("@DOB", BM.DOB);
-            cmd.Parameters.AddWithValue("@Mobile", BM.Mobile);
-            cmd.Parameters.AddWithValue("@Relationship", BM.RelationshipTxt);
-            cmd.Parameters.AddWithValue("@Marital_Status", BM.Marital_Status);
-            cmd.Parameters.AddWithValue("@Religion", BM.Religion);
-            cmd.Parameters.AddWithValue("@Identity_proof", BM.Identity_proof);
-            cmd.Parameters.AddWithValue("@Identity_proof_value", BM.Identity_proof_value);
-            cmd.Parameters.AddWithValue("@Alt_Identity_proof", BM.Alt_Identity_proof);
-            cmd.Parameters.AddWithValue("@Alt_Identity_proof_value", BM.Alt_Identity_proof_value);
-            cmd.Parameters.AddWithValue("@Address1",BM.Address1);
-            cmd.Parameters.AddWithValue("@Address2",BM.Address2);
-            cmd.Parameters.AddWithValue("@Address3",BM.Address3);
-            cmd.Parameters.AddWithValue("@City", BM.City_txt);
-            cmd.Parameters.AddWithValue("@State",BM.State_txt);
-            cmd.Parameters.AddWithValue("@Pin",BM.Pin);
-            cmd.Parameters.AddWithValue("@aid", BM.aid);
-            cmd.Parameters.AddWithValue("@tid", BM.tid);
-            cmd.Parameters.AddWithValue("@beneficiary_type",BM.beneficiary_type);
-            cmd.ExecuteNonQuery();
-            con.Close();
+          
 
-            ViewBag.Message = "RecordsInsert";
+          
 
             return View("~/Views/AddBeneficiary/AddBeneficiaryPageContent.cshtml");
         }

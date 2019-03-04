@@ -87,4 +87,38 @@
             alert(value);
         }
 
+        function getassettypeid(value) {
+
+
+
+            $.ajax({
+
+                type: "POST",
+                url: "../AddAssetMapping/bindassetcatDDL",
+                data: {"send":""+value+""},
+                success: function (data) {
+                    $("#ddlassetcat").empty().append(data);
+                }
+            });
+
+
+        }
+
+        
+
+
+        function getassetcatid(value) {
+            $.ajax({
+
+                type: "POST",
+                url: "../AddAssetMapping/getassetcolumndata",
+                data: { "send": "" + value + "" },
+                success: function (data) {
+                    $("#GenerateColumn").append(data);
+                }
+            });
+
+          
+        }
+
     </script>

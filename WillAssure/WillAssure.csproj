@@ -140,6 +140,7 @@
     <Compile Include="Controllers\AddCouponsController.cs" />
     <Compile Include="Controllers\AddDistributorController.cs" />
     <Compile Include="Controllers\AddDocumentController.cs" />
+    <Compile Include="Controllers\AddMainAssetsController.cs" />
     <Compile Include="Controllers\AddNomineeController.cs" />
     <Compile Include="Controllers\AddRelationController.cs" />
     <Compile Include="Controllers\AddTemplateMasterController.cs" />
@@ -153,6 +154,7 @@
     <Compile Include="Controllers\EditCouponsController.cs" />
     <Compile Include="Controllers\EditDistributorController.cs" />
     <Compile Include="Controllers\EditDocumentController.cs" />
+    <Compile Include="Controllers\EditMainAssetsController.cs" />
     <Compile Include="Controllers\EditNomineeController.cs" />
     <Compile Include="Controllers\EditRelationController.cs" />
     <Compile Include="Controllers\EditRoleController.cs" />
@@ -184,6 +186,7 @@
     <Compile Include="Models\DistributorFormModel.cs" />
     <Compile Include="Models\EmailVerificationModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
+    <Compile Include="Models\MainAssetsModel.cs" />
     <Compile Include="Models\MemberModelcs.cs" />
     <Compile Include="Models\NomineeModel.cs" />
     <Compile Include="Models\RoleFormModel.cs" />
@@ -1054,6 +1057,8 @@
     <Content Include="Views\EditRelation\EditRelationPageContent.cshtml" />
     <Content Include="Views\UpdateRelation\UpdateRelationPageContent.cshtml" />
     <Content Include="Views\AddAssetMapping\AddAssetMappingPageContent.cshtml" />
+    <Content Include="Views\AddMainAssets\AddMainAssetsPageContent.cshtml" />
+    <Content Include="Views\EditMainAssets\EditMainAssetsPageContent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

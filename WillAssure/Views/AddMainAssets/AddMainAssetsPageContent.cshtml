@@ -1,0 +1,199 @@
+﻿@model WillAssure.Models.MainAssetsModel
+@{
+    ViewBag.Title = "AddMainAssetsPageContent";
+}
+
+
+@*Main Content*@
+<div class="content-wrapper">
+    <div class="container-fluid">
+
+        <div class="row pt-2 pb-2">
+
+            <div class="col-sm-3">
+                <div class="btn-group float-sm-right">
+
+                    <div class="dropdown-menu">
+                        <a href="javaScript:void();" class="dropdown-item">Action</a>
+                        <a href="javaScript:void();" class="dropdown-item">Another action</a>
+                        <a href="javaScript:void();" class="dropdown-item">Something else here</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="javaScript:void();" class="dropdown-item">Separated link</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Breadcrumb-->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+
+                        <div class="card-title text-primary">Add Assets</div>
+                        <hr>
+
+                        @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "RoleForm" }))
+                        {
+
+                        <div class="row" id="binddata">
+                            <div class="col-sm-4">
+
+                                <div class="form-group">
+                                    <label for="input-1">Asset Category</label>
+
+                                    <select id="ddlassetcat" onChange='getassetcat(this.options[this.selectedIndex].innerHTML)' class="form-control">
+                                        <option value="0">--Select--</option>
+                                    </select>
+                                    @Html.HiddenFor(m => m.assetcatid, new { id = "assetcatid" })
+                                    @Html.HiddenFor(m => m.assetcattxt, new { id = "assetcattxt" })
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+
+                                <div class="form-group">
+                                    <label for="input-1">Select Asset</label>
+
+                                    <select id="ddlasset" onChange='getassetcolumntext(this.options[this.selectedIndex].innerHTML)' class="form-control">
+                                        <option value="0">--Select--</option>
+                                    </select>
+                                    @Html.HiddenFor(m => m.assetid, new { id = "assetid" })
+                                    @Html.HiddenFor(m => m.assettxt, new { id = "assettext" })
+                                </div>
+                            </div>
+
+
+                            <div class="col-sm-4">
+
+                                <div class="form-group">
+                                    <label for="input-1">Values</label>
+
+                                    @Html.TextBoxFor(m => m.currentStatus, new { @class = "form-control validate[required] text-input", @id = "txtvalues", @onchange = "bar2(this.value)", @placeholder = "Enter Value For Your Asset", @autocomplete = "off", alert = "LabourCost is requried" })
+                                </div>
+                            </div>
+
+
+
+
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-12">
+
+                                <div class="form-group">
+                                    <textarea id="column" style="display:none" name="column" class="form-control">
+ 
+                                    </textarea>
+                                </div>
+                            </div>
+
+
+                            <div class="col-sm-12">
+
+                                <div class="form-group">
+                                    <textarea id="text" style="display:none" name="text" class="form-control">
+ 
+                                    </textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <button type="button" id="btnadd" class="btn btn-danger shadow-primary px-5"><i class="icon-plus"></i>Add</button>
+                            <button type="submit" id="btnmainassetsubmit" formaction="InsertMainAssetFormData" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i> Submit Asset Info</button>
+
+                        </div>
+
+                        }
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+</div>
+@*end*@
+
+<script>
+
+       $("#ddlassetcat").change(function () {
+        var value = $(this).children(":selected").attr("value");
+        var text = $("#ddlassetcat option:selected").html();
+
+           $("#assetcattxt").val(text);
+           $("#assetcatid").val(value);
+
+    });
+
+
+    $("#ddlasset").change(function () {
+        var value = $(this).children(":selected").attr("value");
+        var text = $("#ddlasset option:selected").html();
+
+        $("#assettext").val(text);
+        $("#assetid").val(value);
+
+    });
+
+
+     $(document).ready(function () {
+
+        $.ajax({
+
+            type: "POST",
+            url:"@Url.Action("BindAssetColumn", "AddMainAssets")",
+            success: function (data) {
+                $('#ddlasset').empty().append(data);
+            }
+         });
+
+
+
+           $.ajax({
+
+            type: "POST",
+            url:"@Url.Action("BindAssetCategoryDDL", "AddMainAssets")",
+            success: function (data) {
+                $('#ddlassetcat').empty().append(data);
+            }
+        });
+
+
+    });
+
+
+
+
+    $("#btnadd").click(function () {
+
+          $.ajax({
+
+            type: "POST",
+            url:"@Url.Action("GenerateColumns", "AddMainAssets")",
+            success: function (data) {
+                $('#binddata').append(data);
+            }
+        });
+
+    });
+
+
+    function getassetcolumntext(text) {
+       
+        $("#column").append("" + text + ",");
+    }
+
+
+    function bar2(text) {
+       
+        $("#text").append("" + text + ",");
+    }
+
+
+
+</script>

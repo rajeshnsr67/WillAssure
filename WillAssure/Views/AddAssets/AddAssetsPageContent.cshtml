@@ -282,6 +282,9 @@
 <script>
     $(document).ready(function () {
         $("#AssetsForm").validationEngine();
+        
+      
+
     });
 </script>
 
@@ -399,7 +402,10 @@
     function getAssetColumnValue(ENTITY) {
 
 
-
+        if (ENTITY != "Nomination") {
+            
+            $("#values").append("'',");
+        }
 
         $("#assetcolumn").append("" + ENTITY + ",");
 
@@ -441,6 +447,8 @@
 
     function bar2(value) {
         var val = value;
+
+
 
         $("#values").append("'" + value + "',");
 
