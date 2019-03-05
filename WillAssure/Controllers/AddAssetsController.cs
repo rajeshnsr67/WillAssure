@@ -246,11 +246,11 @@ namespace WillAssure.Controllers
             //end
 
 
-            finalstruct = finalstruct + "<div class='col-sm-3'><div class='form-group'><label for='input - 1'>Entity</label>     "+ddstruct+"       </div></div>" +
+            finalstruct = finalstruct + "<div class='col-sm-3'><div class='form-group'><label for='input - 1'>Entity</label>     " + ddstruct + " </div></div>" +
             finalstruct + "<div class='col-sm-3'><div class='form-group'><label for='input-1'>Label</label>   <input type='text' name='txtlabel' class='form-control validate[required] text - input' id='txtlabel' name='txtlabel' onchange=bar(this.value) autocomplete='off' />    </div></div>" +
             finalstruct + "<div class='col-sm-3'><div class='form-group'>   <label for='input-1'>Controls</label>   <select class='form-control' id='DDLControls' name='DDLControls' onChange='getControls(this.options[this.selectedIndex].innerHTML)'>    <option value='0'>--Select--</option >   <option value='TextBox'>TextBox</option >    <option value='TextArea'>TextArea</option>    <option value='DatePicker'>DatePicker</option>     <option value='CheckBox'>CheckBox</option>   <option value='RadioButton'>RadioButton</option>  </select></div></div>" +
             finalstruct + "<div class='col-sm-3'><div class='form-group'><label for='input-1'>Values</label>  <input type='text' id='txtval' class='form-control  text - input'   onchange=bar2(this.value) name='txtval'  autocomplete='off' />    </div></div>";
-
+            
 
 
 
@@ -308,14 +308,11 @@ namespace WillAssure.Controllers
             string cc = form.controls.Replace(" ", string.Empty).Replace("\r\n", string.Empty);
             string vv = form.values.Replace(" ", string.Empty).Replace("\r\n", string.Empty);
 
-            if (vv == "")
-            {
-                vv = "'NA''";
-            }
+            
 
 
-            if (Session["tid"] != null)
-            {
+            //if (Session["tid"] != null)
+            //{
                 if (column != "" && cv != "" && col != "" && val != "" && cc != "" && vv != "")
                 {
                     string c = column.Substring(0, column.Length - 1);
@@ -357,11 +354,11 @@ namespace WillAssure.Controllers
 
 
                 }
-            }
-            else
-            {
-                Response.Write("<script>alert('Please Fill Testator First')</script>");
-            }
+            //}
+            //else
+            //{
+            //    Response.Write("<script>alert('Please Fill Testator First')</script>");
+            //}
           
 
 

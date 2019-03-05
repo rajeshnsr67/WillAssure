@@ -401,11 +401,9 @@
 
     function getAssetColumnValue(ENTITY) {
 
-
-        if (ENTITY != "Nomination") {
-            
-            $("#values").append("'',");
-        }
+   
+        
+        
 
         $("#assetcolumn").append("" + ENTITY + ",");
 
@@ -437,7 +435,10 @@
 
         var id = id;
 
-
+        if (id == "TextBox" || id == "TextArea" || id =="DatePicker") {
+            $("#values").append("'" + '' + "',");
+        }
+        
         $("#controls").append("'" + id + "',");
 
 
@@ -447,7 +448,7 @@
 
     function bar2(value) {
         var val = value;
-
+    
 
 
         $("#values").append("'" + value + "',");
