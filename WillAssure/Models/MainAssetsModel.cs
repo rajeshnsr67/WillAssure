@@ -120,5 +120,16 @@ namespace WillAssure.Models
         public string assetcattxt { get; set; }
         public int assetcatid { get; set; }
 
+
+        public string lbl1 { get; set; }
+        public string lbl2 { get; set; }
+        public string lbl3 { get; set; }
+        public string lbl4 { get; set; }
+        public string lbl5 { get; set; }
+
+
+        public string COLUMN { get; set; }
+        public string VALUE { get; set; }
+
     }
 }

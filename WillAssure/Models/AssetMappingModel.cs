@@ -122,5 +122,8 @@ namespace WillAssure.Models
 
         public string AssetValues { get; set; }
 
+
+   
+
     }
 }

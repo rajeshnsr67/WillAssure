@@ -36,7 +36,7 @@
                         {
 
                         <div class="row" >
-
+                     
                             <div class="col-sm-6">
 
                                 <div class="form-group">
@@ -103,7 +103,7 @@
 
                         <div class="form-group">
                             <button type="button" id="btnadd" class="btn btn-danger shadow-primary px-5"><i class="icon-plus"></i>Add</button>
-                            <button type="submit" name="Submit Asset Info" value="Submit Asset Info" id="btnmainassetsubmit" formaction="InsertMainAsset" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i>Submit Asset Info</button>
+                            <button type="submit" formaction="InsertMainAsset" name="Submit Asset Info" value="Submit Asset Info" id="btnmainassetsubmit"  class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i>Submit Asset Info</button>
 
                         </div>
 
@@ -141,8 +141,7 @@
             }
          });
 
-
-
+         
 
 
     });
@@ -175,7 +174,7 @@
      $(document).ready(function () {
          var r1 = $("input[name='optradio']:checked").val();
          
-         alert(r1);
+         
 
            $.ajax({
 
@@ -224,5 +223,137 @@
     }
 
 
+    @*$("#btnmainassetsubmit").click(function () {
+
+        var data = "";
+
+        if ($("#lbl1").text() != '') {
+            var lbl1 = $("#lbl1").text();
+            data = data + lbl1 + "~";
+        }
+        if ($("#lbl2").text() != '') {
+            var lbl2 = $("#lbl2").text();
+            data = data + lbl2 + "~";
+        }
+        if ($("#lbl3").text() != '') {
+            var lbl3 = $("#lbl3").text();
+            data = data + lbl3 + "~";
+        }
+        if ($("#lbl4").text() != '') {
+            var lbl4 = $("#lbl4").text();
+            data = data + lbl4 + "~";
+        }
+        if ($("#lbl5").text() != '') {
+            var lbl5 = $("#lbl5").text();
+            data = data + lbl5 + "~";
+        }
+        if ($("#lbl6").text() != '') {
+            var lbl6 = $("#lbl6").text();
+            data = data + lbl6 + "~";
+        }
+        if ($("#lbl7").text() != '') {
+            var lbl7 = $("#lbl7").text();
+            data = data + lbl7 + "~";
+        }
+        if ($("#lbl8").text() != '') {
+            var lbl8 = $("#lbl8").text();
+            data = data + lbl8 + "~";
+        }
+        if ($("#lbl9").text() != '') {
+            var lbl9 = $("#lbl9").text();
+            data = data + lbl9 + "~";
+        }
+        if ($("#lbl10").text() != '') {
+            var lbl10 = $("#lbl10").text();
+            data = data + lbl10 + "~";
+        }
+        if ($("#lbl11").text() != '') {
+            var lbl11 = $("#lbl11").text();
+            data = data + lbl11 + "~";
+        }
+        if ($("#lbl12").text() != '') {
+            var lbl12 = $("#lbl12").text();
+            data = data + lbl12 + "~";
+        }
+        if ($("#lbl3").text() != '') {
+            var lbl13 = $("#lbl13").text();
+            data = data + lbl13 + "~";
+        }
+        if ($("#lbl14").text() != '') {
+            var lbl14 = $("#lbl14").text();
+            data = data + lbl14 + "~";
+        }
+        if ($("#lbl15").text() != '') {
+            var lbl15 = $("#lbl15").text();
+            data = data + lbl15 + "~";
+        }
+        if ($("#lbl16").text() != '') {
+            var lbl16 = $("#lbl16").text();
+            data = data + lbl16 + "~";
+        }
+        if ($("#lbl17").text() != '') {
+            var lbl17 = $("#lbl17").text();
+            data = data + lbl17 + "~";
+        }
+        if ($("#lbl18").text() != '') {
+            var lbl18 = $("#lbl18").text();
+            data = data + lbl18 + "~";
+        }
+        if ($("#lbl19").text() != '') {
+            var lbl19 = $("#lbl19").text();
+            data = data + lbl19 + "~";
+        }
+        if ($("#lbl20").text() != '') {
+            var lbl20 = $("#lbl20").text();
+            data = data + lbl20 + "~";
+        }
+        if ($("#lbl21").text() != '') {
+            var lbl21 = $("#lbl21").text();
+            data = data + lbl21 + "~";
+        }
+        if ($("#lbl22").text() != '') {
+            var lbl22 = $("#lbl22").text();
+            data = data + lbl22 + "~";
+        }
+        if ($("#lbl23").text() != '') {
+            var lbl23 = $("#lbl23").text();
+            data = data + lbl23 + "~";
+        }
+        if ($("#lbl24").text() != '') {
+            var lbl1 = $("#lbl24").text();
+            data = data + lbl24 + "~";
+        }
+        
+        
+        var Currentradio =  $("input[name='Currentradio']:checked").val();
+        var ownershipRadio = $("input[name='ownershipRadio']:checked").val();
+        var nominationradio = $("input[name='nominationradio']:checked").val();
+
+
+        if (Currentradio != '') {
+            data = data + Currentradio + "~";
+        }
+
+        if (ownershipRadio != '') {
+            data = data + ownershipRadio + "~";
+        }
+
+        if (nominationradio != '') {
+            data = data + nominationradio + "~";
+        }
+
+
+         $.ajax({
+
+            type: "POST",
+            url: "@Url.Action("InsertMainAsset", "AddMainAssets")",
+            data: {"send":""+data+""},
+            success: function (data) {
+                
+            }
+        });
+       
+       
+    });*@
 
 </script>
