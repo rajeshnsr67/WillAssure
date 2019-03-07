@@ -123,7 +123,11 @@ namespace WillAssure.Models
         public string AssetValues { get; set; }
 
 
-   
+        public int assettypeid { get; set; }
+        public string assettypetext { get; set; }
+
+        public int assetcatid { get; set; }
+        public string assetcattext { get; set; }
 
     }
 }

@@ -10,6 +10,8 @@ using System.Configuration;
 using System.Data;
 using System.Web.Script.Serialization;
 using System.Collections;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace WillAssure.Controllers
 {
@@ -25,15 +27,9 @@ namespace WillAssure.Controllers
         }
 
 
-        public string GenerateColumn()
+        public String BindBeneficiaryDDL()
         {
-            string ddlbeneficiary = "";
-            string ddlassettype = "";
-            string ddlassetcat = "";
-            string final="";
-          
-
-
+            string data = "<option value='0'>--Select--</option>";
             con.Open();
             string query1 = "select aid, bpId , First_Name from BeneficiaryDetails";
             SqlDataAdapter da1 = new SqlDataAdapter(query1, con);
@@ -48,59 +44,58 @@ namespace WillAssure.Controllers
                 for (int i = 0; i < dt1.Rows.Count; i++)
                 {
 
-                    ddlbeneficiary = ddlbeneficiary + "<option value=" + dt1.Rows[i]["aid"] + ">" + dt1.Rows[i]["First_Name"] + "</option>";
+                    data = data + "<option value=" + dt1.Rows[i]["aid"] + ">" + dt1.Rows[i]["First_Name"] + "</option>";
 
                 }
 
             }
+            return data;
 
-
-
-
-            con.Open();
-            string query2 = "select * from AssetsType";
-            SqlDataAdapter da2 = new SqlDataAdapter(query2, con);
-            DataTable dt2 = new DataTable();
-            da2.Fill(dt2);
-            con.Close();
-
-
-            if (dt2.Rows.Count > 0)
-            {
-
-                for (int i = 0; i < dt2.Rows.Count; i++)
-                {
-
-                    ddlassettype = ddlassettype + "<option value=" + dt2.Rows[i]["atId"] + ">" + dt2.Rows[i]["AssetsType"] + "</option>";
-
-                }
-
-            }
-
-
-
-     
-
-
-
-
-            final = "<div class='col-sm-4'> <div class='form-group'> <label for='input-1'>Beneficiary</label> <select id='ddlcity' class='form-control'>  <option value='0'>--Select Beneficiary--</option> "+ddlbeneficiary+"</select> </div></div>";
-            final +="<div class='col-sm-4'> <div class='form-group'> <label for='input-1'>Assets</label> <select id='ddlassettype' onChange='getassettypeid(this.value)' class='form-control'>  <option value='0'>--Select--</option> "+ddlassettype+"  </select> </div></div>";
-            final += "<div class='col-sm-4'> <div class='form-group'> <label for='input-1'>Assets</label> <select id='ddlassetcat' onChange='getassetcatid(this.value)' class='form-control'>  <option value='0'>--Select--</option> </select> </div></div>";
-          //  final +="<div class='col-sm-3'> <div class='form-group'> <label for='input-1'>Values</label> <input type='text' class='form-control'  /></div></div>";
-
-
-            return final;
         }
 
 
+
+        public String BindAssetTypeDDL()
+        {
+
+            con.Open();
+            string query = "select * from AssetsType";
+            SqlDataAdapter da = new SqlDataAdapter(query, con);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            con.Close();
+            string data = "<option value='0'>--Select--</option>";
+
+            if (dt.Rows.Count > 0)
+            {
+
+
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+
+
+
+
+                    data = data + "<option value=" + dt.Rows[i]["atId"].ToString() + " >" + dt.Rows[i]["AssetsType"].ToString() + "</option> ";
+
+
+
+                }
+
+
+
+            }
+
+            return data;
+
+        }
 
         public string bindassetcatDDL()
         {
             int response = Convert.ToInt32(Request["send"]);
             string ddlassetcat = "<option value='0'>--Select--</option>";
             con.Open();
-            string query3 = "select * from AssetsCategory where atId = "+response+" ";
+            string query3 = "select * from AssetsCategory where atId = " + response + " ";
             SqlDataAdapter da3 = new SqlDataAdapter(query3, con);
             DataTable dt3 = new DataTable();
             da3.Fill(dt3);
@@ -113,7 +108,7 @@ namespace WillAssure.Controllers
                 for (int i = 0; i < dt3.Rows.Count; i++)
                 {
 
-                    ddlassetcat = ddlassetcat + "<option value=" + dt3.Rows[i]["amId"] + ">" + dt3.Rows[i]["AssetsCategory"] + "</option>";
+                    ddlassetcat = ddlassetcat + "<option value=" + dt3.Rows[i]["amId"] + "  onchange='getassetcatid(this.value)'  >" + dt3.Rows[i]["AssetsCategory"] + "</option>";
 
                 }
 
@@ -121,6 +116,12 @@ namespace WillAssure.Controllers
 
             return ddlassetcat;
         }
+
+
+
+
+
+       
 
 
 
@@ -493,9 +494,361 @@ namespace WillAssure.Controllers
 
                     }
 
+                    var f = "";
+                    string s = "";
 
+                    string query = "select * from AssetInformation where amId = "+response+"";
+                    SqlDataAdapter da = new SqlDataAdapter(query,con);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    string data = "";
+
+                    if (dt.Rows.Count > 0 )
+                    {
+                        string getjson = dt.Rows[0]["Json"].ToString();
+                        MainAssetsModel obj = JsonConvert.DeserializeObject<MainAssetsModel>(getjson);
+
+
+                        if (obj.dueDate != null)
+                        {
+                            data = data + obj.dueDate + "~";
+                        }
+                        if (obj.dueDateControls != null)
+                        {
+                            data = data + obj.dueDateControls + "~";
+                        }
+                        if (obj.DueDateValues != null)
+                        {
+                            data = data + obj.DueDateValues + "~";
+                        }
+
+
+
+
+                        if (obj.IssuedBy != null)
+                        {
+                            data = data + obj.IssuedBy + "~";
+                        }
+                        if (obj.IssuedByControls != null)
+                        {
+                            data = data + obj.IssuedByControls + "~";
+                        }
+                        if (obj.IssuedByValues != null)
+                        {
+                            data = data + obj.IssuedByValues + "~";
+                        }
+
+
+
+
+
+                        if (obj.Location != null)
+                        {
+                            data = data + obj.Location + "~";
+                        }
+                        if (obj.LocationControls != null)
+                        {
+                            data = data + obj.LocationControls + "~";
+                        }
+                        if (obj.LocationValues != null)
+                        {
+                            data = data + obj.LocationValues + "~";
+                        }
+
+
+
+
+                        if (obj.Identifier != null)
+                        {
+                            data = data + obj.Identifier + "~";
+                        }
+                        if (obj.IdentifierControls != null)
+                        {
+                            data = data + obj.IdentifierControls + "~";
+                        }
+                        if (obj.IdentifierValues != null)
+                        {
+                            data = data + obj.IdentifierValues + "~";
+                        }
+
+
+
+                        if (obj.assetsValue != null)
+                        {
+                            data = data + obj.assetsValue + "~";
+                        }
+                        if (obj.assetsValueControls != null)
+                        {
+                            data = data + obj.assetsValueControls + "~";
+                        }
+                        if (obj.assetsValueValues != null)
+                        {
+                            data = data + obj.assetsValueValues + "~";
+                        }
+
+
+
+
+
+                        if (obj.CertificateNumber != null)
+                        {
+                            data = data + obj.CertificateNumber + "~";
+                        }
+                        if (obj.CertificateNumberControls != null)
+                        {
+                            data = data + obj.CertificateNumberControls + "~";
+                        }
+
+                        if (obj.CertificateNumberValues != null)
+                        {
+                            data = data + obj.CertificateNumberValues + "~";
+                        }
+
+
+
+
+                        if (obj.DescriptionTypeofItem != null)
+                        {
+                            data = data + obj.DescriptionTypeofItem + "~";
+                        }
                     
-                    finalstruct = column;
+
+
+
+
+                        if (obj.NumberofItems != null)
+                        {
+                            data = data + obj.NumberofItems + "~";
+                        }
+                       
+
+
+
+
+                        if (obj.Weight != null)
+                        {
+                            data = data + obj.Weight + "~";
+                        }
+                        if (obj.WeightControls != null)
+                        {
+                            data = data + obj.WeightControls + "~";
+                        }
+                        if (obj.WeightValues != null)
+                        {
+                            data = data + obj.WeightValues + "~";
+                        }
+
+
+
+
+
+                        if (obj.Remark != null)
+                        {
+                            data = data + obj.Remark + "~";
+                        }
+                        if (obj.RemarkControls != null)
+                        {
+                            data = data + obj.RemarkControls + "~";
+                        }
+                        if (obj.RemarkValues != null)
+                        {
+                            data = data + obj.RemarkValues + "~";
+                        }
+
+
+
+
+                        if (obj.NomineeDetails != null)
+                        {
+                            data = data + obj.NomineeDetails + "~";
+                        }
+                        if (obj.NominationControls != null)
+                        {
+                            data = data + obj.NominationControls + "~";
+                        }
+                        if (obj.NominationValues != null)
+                        {
+                            data = data + obj.NominationValues + "~";
+                        }
+
+
+
+
+                        if (obj.Name != null)
+                        {
+                            data = data + obj.Name + "~";
+                        }
+                        if (obj.NameControls != null)
+                        {
+                            data = data + obj.NameControls + "~";
+                        }
+                        if (obj.NameValues != null)
+                        {
+                            data = data + obj.NameValues + "~";
+                        }
+
+
+
+                        if (obj.RegisteredAddress != null)
+                        {
+                            data = data + obj.RegisteredAddress + "~";
+                        }
+
+                        if (obj.RegisteredAddressControls != null)
+                        {
+                            data = data + obj.RegisteredAddressControls + "~";
+                        }
+
+                        if (obj.RegisteredAddressValues != null)
+                        {
+                            data = data + obj.RegisteredAddressValues + "~";
+                        }
+
+
+                        if (obj.PermanentAddress != null)
+                        {
+                            data = data + obj.PermanentAddress + "~";
+                        }
+                        if (obj.PermanentAddressControls != null)
+                        {
+                            data = data + obj.PermanentAddressControls + "~";
+                        }
+                        if (obj.PermanentAddressValues != null)
+                        {
+                            data = data + obj.PermanentAddressValues + "~";
+                        }
+
+
+
+
+                        if (obj.Identity_proof != null)
+                        {
+                            data = data + obj.Identity_proof + "~";
+                        }
+                        if (obj.Identity_proofControls != null)
+                        {
+                            data = data + obj.Identity_proofControls + "~";
+                        }
+                        if (obj.Identity_proofValues != null)
+                        {
+                            data = data + obj.Identity_proofValues + "~";
+                        }
+
+
+
+                        if (obj.Identity_proof_value != null)
+                        {
+                            data = data + obj.Identity_proof_value + "~";
+                        }
+                        if (obj.Identity_proof_valueControls != null)
+                        {
+                            data = data + obj.Identity_proof_valueControls + "~";
+                        }
+                        if (obj.Identity_proof_valueValues != null)
+                        {
+                            data = data + obj.Identity_proof_valueValues + "~";
+                        }
+
+
+
+
+                        if (obj.Alt_Identity_proof != null)
+                        {
+                            data = data + obj.Alt_Identity_proof + "~";
+                        }
+                        if (obj.Alt_Identity_proofControls != null)
+                        {
+                            data = data + obj.Alt_Identity_proofControls + "~";
+                        }
+                        if (obj.Alt_Identity_proof != null)
+                        {
+                            data = data + obj.Alt_Identity_proof + "~";
+                        }
+
+
+
+
+
+                        if (obj.Alt_Identity_proof_value != null)
+                        {
+                            data = data + obj.Alt_Identity_proof_value + "~";
+                        }
+                        if (obj.Alt_Identity_proofControls != null)
+                        {
+                            data = data + obj.Alt_Identity_proofControls + "~";
+                        }
+                        if (obj.Alt_Identity_proofValues != null)
+                        {
+                            data = data + obj.Alt_Identity_proofValues + "~";
+                        }
+
+
+
+
+
+                        if (obj.Phone != null)
+                        {
+                            data = data + obj.Phone + "~";
+                        }
+                        if (obj.PhoneControls != null)
+                        {
+                            data = data + obj.PhoneControls + "~";
+                        }
+                        if (obj.PhoneValues != null)
+                        {
+                            data = data + obj.PhoneValues + "~";
+                        }
+
+
+
+                        if (obj.Mobile != null)
+                        {
+                            data = data + obj.Mobile + "~";
+                        }
+                        if (obj.MobileControls != null)
+                        {
+                            data = data + obj.MobileControls + "~";
+                        }
+                        if (obj.MobileValues != null)
+                        {
+                            data = data + obj.MobileValues + "~";
+                        }
+
+
+
+                        if (obj.Amount != null)
+                        {
+                            data = data + obj.Amount + "~";
+                        }
+                        if (obj.AmountControls != null)
+                        {
+                            data = data + obj.AmountControls + "~";
+                        }
+                        if (obj.AmountValues != null)
+                        {
+                            data = data + obj.Amount + "~";
+                        }
+
+                         f = data;
+
+                        ArrayList fdata = new ArrayList(f.Split('~'));
+                  
+                        for (int j = 0; j < fdata.Count; j++)
+                        {
+                            if (fdata[j].ToString() != "")
+                            {
+                                s = s + "<input type='text' class='form-control' value='" + fdata[j].ToString() + "' />";
+                            }
+                            
+                        }
+
+
+                    }
+
+                 
+
+
+                    finalstruct = column + s;
 
 
                 }

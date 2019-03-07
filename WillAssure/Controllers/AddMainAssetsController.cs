@@ -212,6 +212,7 @@ namespace WillAssure.Controllers
         public string  OnChangeDDLCat()
         {
             int response = Convert.ToInt32(Request["send"]);
+            TempData["amid"] = response;
             con.Open();
             string query = "select * from AssetsInfo where amId = "+response+" ";
             SqlDataAdapter da = new SqlDataAdapter(query, con);
@@ -738,13 +739,13 @@ namespace WillAssure.Controllers
             {
 
 
-                dd.Add(obj.CurrentStatus, radio3.ToString());
+                dd.Add(obj.CurrentStatus, radio1.ToString());
             }
 
 
             if (obj.OwnerShip != null)
             {
-                dd.Add(obj.OwnerShip, radio3.ToString());
+                dd.Add(obj.OwnerShip, radio2.ToString());
             }
 
             if (obj.Nomination != null)
@@ -757,11 +758,11 @@ namespace WillAssure.Controllers
 
 
             string json = JsonConvert.SerializeObject(dd);
-
+            int amid =  Convert.ToInt32(TempData["amid"]);
             con.Open();
-           //string query = "insert into AssetInformation (Json) values"
-
-
+            string query = "insert into AssetInformation (amId,Json) values ("+ amid + " ,'" + json + "')";
+            SqlCommand cmd = new SqlCommand(query,con);
+            cmd.ExecuteNonQuery();
             con.Close();
 
 

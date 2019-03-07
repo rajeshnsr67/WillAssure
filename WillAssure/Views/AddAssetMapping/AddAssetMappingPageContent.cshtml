@@ -35,23 +35,52 @@
                         @*@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "RoleForm" }))
         {*@
 
-                        <div class="row" id="GenerateColumn">
+
+                        <div class="row" >
+
+
+
+                            <div class='col-sm-4'>
+                                <div class='form-group'>
+                                    <label for='input-1'>Beneficiary</label>
+                                    <select id='ddlbeneficiary' class='form-control'></select>
+                                </div>
+                            </div>
+
+
+                            <div class='col-sm-4'>
+                                <div class='form-group'>
+                                    <label for='input-1'>Assets Type</label>
+                                    <select id='ddlassettype' onChange='getassettypeid(this.value)' class='form-control'></select>
+                                </div>
+                            </div>
+
+
+
+                            <div class='col-sm-4'>
+                                <div class='form-group'>
+                                    <label for='input-1'>Assets Category</label>
+                                    <select id='ddlassetcat' onChange='getassetcatid(this.value)' class='form-control'></select>
+                                </div>
+                            </div>
 
 
 
 
 
 
-                            @*}*@
                         </div>
-                        <div class="form-group">
-                            <button type="button" id="btngeneratecolumn" class="btn btn-danger "><i class="icon-plus"></i>Add</button>
-                            <button type="submit" id="btnRoleformsubmit" formaction="InsertRoleFormData" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i>Submit</button>
-                            <button type="button" id="btnRoleformsubmitSUCCESS" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
-                            <button type="button" id="btnRoleformsubmitCHECK" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
+
+                        <div class="row" id="GenerateColumn">
+                        </div>
+                            <div class="form-group">
+
+                                <button type="submit" id="btnRoleformsubmit" formaction="InsertRoleFormData" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i>Submit</button>
+                                <button type="button" id="btnRoleformsubmitSUCCESS" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
+                                <button type="button" id="btnRoleformsubmitCHECK" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
+                            </div>
                         </div>
                     </div>
-            </div>
 
 
         </div>
@@ -65,21 +94,34 @@
 
 
     <script>
+        $(document).ready(function () {
 
-        $("#btngeneratecolumn").click(function () {
+            $.ajax({
+
+                type: "POST",
+                url: "../AddAssetMapping/BindBeneficiaryDDL",
+                success: function (data) {
+                    $("#ddlbeneficiary").append(data);
+                }
+            }); 
+
+
 
 
             $.ajax({
 
                 type: "POST",
-                url: "../AddAssetMapping/GenerateColumn",
+                url: "../AddAssetMapping/BindAssetTypeDDL",
                 success: function (data) {
-                    $("#GenerateColumn").append(data);
-                }
-                  });
+                    $("#ddlassettype").append(data);
+                   }
+            });        
 
+          
 
         });
+
+         
 
 
 
@@ -87,38 +129,48 @@
             alert(value);
         }
 
+       
+
+
         function getassettypeid(value) {
 
-
+           
 
             $.ajax({
 
                 type: "POST",
                 url: "../AddAssetMapping/bindassetcatDDL",
-                data: {"send":""+value+""},
+                data: { "send": "" + value + "" },
                 success: function (data) {
                     $("#ddlassetcat").empty().append(data);
+
+
                 }
             });
 
 
         }
-
         
 
 
         function getassetcatid(value) {
+
+           
+
             $.ajax({
 
                 type: "POST",
                 url: "../AddAssetMapping/getassetcolumndata",
                 data: { "send": "" + value + "" },
                 success: function (data) {
-                    $("#GenerateColumn").append(data);
+                    $("#GenerateColumn").empty().append(data);
                 }
             });
 
           
         }
+
+       
+
 
     </script>

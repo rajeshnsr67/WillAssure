@@ -111,10 +111,10 @@ namespace WillAssure.Models
 
 
         public string assettxt { get; set; }
-       public string assetid { get; set; }
+        public string assetid { get; set; }
 
-       public string column { get; set; }
-       public string text { get; set; }
+        public string column { get; set; }
+        public string text { get; set; }
 
 
         public string assetcattxt { get; set; }
@@ -131,5 +131,8 @@ namespace WillAssure.Models
         public string COLUMN { get; set; }
         public string VALUE { get; set; }
 
+
+        public string DescriptionTypeofItem {get; set;}
+        public string NumberofItems { get; set; }
     }
 }
