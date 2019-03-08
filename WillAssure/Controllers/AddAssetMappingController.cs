@@ -881,8 +881,7 @@ namespace WillAssure.Controllers
 
             string getcheckdata = TempData["checkdata"].ToString();
             MainAssetsModel obj = JsonConvert.DeserializeObject<MainAssetsModel>(getcheckdata);
-            int inputnumberofitems = 0;
-            int inputweight = 0;
+            
             int numberofitems = 0;
             int weight = 0;
 
