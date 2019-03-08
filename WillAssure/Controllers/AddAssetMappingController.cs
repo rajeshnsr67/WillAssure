@@ -135,6 +135,7 @@ namespace WillAssure.Controllers
             SqlDataAdapter da3 = new SqlDataAdapter(query3, con);
             DataTable dt3 = new DataTable();
             da3.Fill(dt3);
+            
             string column = "";
             string control = "<div class='col-sm-3'> <div class='form-group'>";
             string value = "";
@@ -153,7 +154,7 @@ namespace WillAssure.Controllers
                     if (dt3.Rows[i]["DueDateControls"].ToString() != "")
                     {
 
-                        column = column + "<input type=" + dt3.Rows[i]["DueDateControls"].ToString() + " class='form-control' /></div></div>";
+                        column = column + "<input type=" + dt3.Rows[i]["DueDateControls"].ToString() + " class='form-control' name='inputName' /></div></div>";
                         amm.dueDateControls = dt3.Rows[i]["DueDateControls"].ToString();
                     }
 
@@ -179,7 +180,7 @@ namespace WillAssure.Controllers
                         }
                         else
                         {
-                            column = column + "<input type=" + dt3.Rows[i]["CurrentStatusControls"].ToString() + " class='form-control' /></div></div>";
+                            column = column + "<input type=" + dt3.Rows[i]["CurrentStatusControls"].ToString() + " class='form-control' name='inputName' /></div></div>";
                         }
                         amm.CurrentStatusValues = dt3.Rows[i]["CurrentStatusValues"].ToString();
 
@@ -196,7 +197,7 @@ namespace WillAssure.Controllers
                     if (dt3.Rows[i]["IssuedByControls"].ToString() != "")
                     {
 
-                        column = column + "<input type=" + dt3.Rows[i]["IssuedByControls"].ToString() + " class='form-control' /></div></div>";
+                        column = column + "<input type=" + dt3.Rows[i]["IssuedByControls"].ToString() + " class='form-control' name='inputName' /></div></div>";
 
 
                     }
@@ -216,13 +217,13 @@ namespace WillAssure.Controllers
 
 
 
-                            column = column + "<textarea class='form-control'></textarea></div></div>";
+                            column = column + "<textarea class='form-control' name='inputName'></textarea></div></div>";
 
 
                         }
                         else
                         {
-                            column = column + "<input type=" + dt3.Rows[i]["LocationControls"].ToString() + " class='form-control' /></div></div>";
+                            column = column + "<input type=" + dt3.Rows[i]["LocationControls"].ToString() + " class='form-control' name='inputName' /></div></div>";
                         }
                     }
 
@@ -237,7 +238,7 @@ namespace WillAssure.Controllers
                     if (dt3.Rows[i]["IdentifierControls"].ToString() != "")
                     {
 
-                        column = column + "<input type=" + dt3.Rows[i]["IdentifierControls"].ToString() + " class='form-control' /></div></div>";
+                        column = column + "<input type=" + dt3.Rows[i]["IdentifierControls"].ToString() + " class='form-control' name='inputName' /></div></div>";
 
                     }
 
@@ -251,7 +252,7 @@ namespace WillAssure.Controllers
                     if (dt3.Rows[i]["assetsValueControls"].ToString() != "")
                     {
 
-                        column = column + "<input type=" + dt3.Rows[i]["assetsValueControls"].ToString() + " class='form-control' /></div></div>";
+                        column = column + "<input type=" + dt3.Rows[i]["assetsValueControls"].ToString() + " class='form-control' name='inputName' /></div></div>";
 
                     }
 
@@ -263,19 +264,26 @@ namespace WillAssure.Controllers
                     if (dt3.Rows[i]["CertificateNumberControls"].ToString() != "")
                     {
 
-                        column = column + "<input type=" + dt3.Rows[i]["CertificateNumberControls"].ToString() + " class='form-control' /></div></div>";
+                        column = column + "<input type=" + dt3.Rows[i]["CertificateNumberControls"].ToString() + " class='form-control' name='inputName' /></div></div>";
 
                     }
 
                     if (dt3.Rows[i]["PropertyDescription"].ToString() != "")
                     {
-                        column = column + "<div class='col-sm-3'> <div class='form-group'><label for='input-1' >" + dt3.Rows[i]["PropertyDescription"].ToString() + "</label>";
+                        if (dt3.Rows[i]["PropertyDescriptionControls"].ToString() == "DescriptionTypeofItem")
+                        {
+                            column = column + "<div class='col-sm-3'> <div class='form-group'><label for='input-1' >" + dt3.Rows[i]["PropertyDescription"].ToString() + "</label>";
+                        }
                     }
 
                     if (dt3.Rows[i]["PropertyDescriptionControls"].ToString() != "")
                     {
 
-                        column = column + "<input type=" + dt3.Rows[i]["PropertyDescriptionControls"].ToString() + " class='form-control' /></div></div>";
+                        if (dt3.Rows[i]["PropertyDescriptionControls"].ToString() == "DescriptionTypeofItem")
+                        {
+                            column = column + "<input type=" + dt3.Rows[i]["PropertyDescriptionControls"].ToString() + " class='form-control' name='inputName' /></div></div>";
+                        }
+                        
 
 
                     }
@@ -288,7 +296,7 @@ namespace WillAssure.Controllers
                     if (dt3.Rows[i]["QtyControls"].ToString() != "")
                     {
 
-                        column = column + "<input type=" + dt3.Rows[i]["QtyControls"].ToString() + " class='form-control' /></div></div>";
+                        column = column + "<input type=" + dt3.Rows[i]["QtyControls"].ToString() + " class='form-control' name='inputName' /></div></div>";
 
                     }
 
@@ -300,7 +308,7 @@ namespace WillAssure.Controllers
                     if (dt3.Rows[i]["WeightControls"].ToString() != "")
                     {
 
-                        column = column + "<input type=" + dt3.Rows[i]["WeightControls"].ToString() + " class='form-control' /></div></div>";
+                        column = column + "<input type=" + dt3.Rows[i]["WeightControls"].ToString() + " class='form-control' name='inputName' /></div></div>";
 
                     }
 
@@ -323,7 +331,7 @@ namespace WillAssure.Controllers
                         }
                         else
                         {
-                            column = column + "<input type=" + dt3.Rows[i]["OwnerShipControls"].ToString() + " class='form-control' /></div></div>";
+                            column = column + "<input type=" + dt3.Rows[i]["OwnerShipControls"].ToString() + " class='form-control' name='inputName'/></div></div>";
                         }
 
 
@@ -337,7 +345,7 @@ namespace WillAssure.Controllers
                     }
                     if (dt3.Rows[i]["RemarkControls"].ToString() != "")
                     {
-                        column = column + "<input type=" + dt3.Rows[i]["RemarkControls"].ToString() + " class='form-control' /></div></div>";
+                        column = column + "<input type=" + dt3.Rows[i]["RemarkControls"].ToString() + " class='form-control' name='inputName' /></div></div>";
 
                     }
 
@@ -361,7 +369,7 @@ namespace WillAssure.Controllers
                         }
                         else
                         {
-                            column = column + "<input type=" + dt3.Rows[i]["NominationControls"].ToString() + " class='form-control' /> </div></div>";
+                            column = column + "<input type=" + dt3.Rows[i]["NominationControls"].ToString() + " class='form-control' name='inputName' /> </div></div>";
                         }
 
 
@@ -376,7 +384,7 @@ namespace WillAssure.Controllers
 
                     if (dt3.Rows[i]["NomineeDetailsControls"].ToString() != "")
                     {
-                        column = column + "<input type=" + dt3.Rows[i]["NomineeDetailsControls"].ToString() + " class='form-control' /> </div></div>";
+                        column = column + "<input type=" + dt3.Rows[i]["NomineeDetailsControls"].ToString() + " class='form-control'  name='inputName'/> </div></div>";
                     }
 
                     if (dt3.Rows[i]["Name"].ToString() != "")
@@ -387,7 +395,7 @@ namespace WillAssure.Controllers
                     }
                     if (dt3.Rows[i]["NameControls"].ToString() != "")
                     {
-                        column = column + "<input type=" + dt3.Rows[i]["NameControls"].ToString() + " class='form-control' /></div></div>";
+                        column = column + "<input type=" + dt3.Rows[i]["NameControls"].ToString() + " class='form-control' name='inputName'/></div></div>";
 
                     }
 
@@ -398,7 +406,7 @@ namespace WillAssure.Controllers
                     }
                     if (dt3.Rows[i]["RegisteredAddressControls"].ToString() != "")
                     {
-                        column = column + "<input type=" + dt3.Rows[i]["RegisteredAddressControls"].ToString() + " class='form-control' /></div></div>";
+                        column = column + "<input type=" + dt3.Rows[i]["RegisteredAddressControls"].ToString() + " class='form-control' name='inputName'/></div></div>";
 
                     }
 
@@ -409,7 +417,7 @@ namespace WillAssure.Controllers
                     }
                     if (dt3.Rows[i]["PermanentAddressControls"].ToString() != "")
                     {
-                        column = column + "<input type=" + dt3.Rows[i]["PermanentAddressControls"].ToString() + " class='form-control' /></div></div>";
+                        column = column + "<input type=" + dt3.Rows[i]["PermanentAddressControls"].ToString() + " class='form-control' name='inputName' /></div></div>";
 
                     }
 
@@ -420,7 +428,7 @@ namespace WillAssure.Controllers
                     }
                     if (dt3.Rows[i]["Identity_proofControls"].ToString() != "")
                     {
-                        column = column + "<input type=" + dt3.Rows[i]["Identity_proofControls"].ToString() + " class='form-control' /></div></div>";
+                        column = column + "<input type=" + dt3.Rows[i]["Identity_proofControls"].ToString() + " class='form-control' name='inputName' /></div></div>";
 
                     }
 
@@ -431,7 +439,7 @@ namespace WillAssure.Controllers
                     }
                     if (dt3.Rows[i]["Identity_proof_valueControls"].ToString() != "")
                     {
-                        column = column + "<input type=" + dt3.Rows[i]["Identity_proof_valueControls"].ToString() + " class='form-control' /></div></div>";
+                        column = column + "<input type=" + dt3.Rows[i]["Identity_proof_valueControls"].ToString() + " class='form-control' name='inputName' /></div></div>";
 
                     }
 
@@ -442,7 +450,7 @@ namespace WillAssure.Controllers
                     }
                     if (dt3.Rows[i]["Alt_Identity_proofControls"].ToString() != "")
                     {
-                        column = column + "<input type=" + dt3.Rows[i]["Alt_Identity_proofControls"].ToString() + " class='form-control' /></div></div>";
+                        column = column + "<input type=" + dt3.Rows[i]["Alt_Identity_proofControls"].ToString() + " class='form-control' name='inputName' /></div></div>";
 
                     }
 
@@ -453,7 +461,7 @@ namespace WillAssure.Controllers
                     }
                     if (dt3.Rows[i]["Alt_Identity_proof_valueControls"].ToString() != "")
                     {
-                        column = column + "<input type=" + dt3.Rows[i]["Alt_Identity_proof_valueControls"].ToString() + " class='form-control' /></div></div>";
+                        column = column + "<input type=" + dt3.Rows[i]["Alt_Identity_proof_valueControls"].ToString() + " class='form-control' name='inputName' /></div></div>";
 
                     }
 
@@ -464,7 +472,7 @@ namespace WillAssure.Controllers
                     }
                     if (dt3.Rows[i]["PhoneControls"].ToString() != "")
                     {
-                        column = column + "<input type=" + dt3.Rows[i]["PhoneControls"].ToString() + " class='form-control' /></div></div>";
+                        column = column + "<input type=" + dt3.Rows[i]["PhoneControls"].ToString() + " class='form-control' name='inputName' /></div></div>";
 
                     }
 
@@ -477,7 +485,7 @@ namespace WillAssure.Controllers
                     }
                     if (dt3.Rows[i]["MobileControls"].ToString() != "")
                     {
-                        column = column + "<input type=" + dt3.Rows[i]["MobileControls"].ToString() + " class='form-control' /></div></div>";
+                        column = column + "<input type=" + dt3.Rows[i]["MobileControls"].ToString() + " class='form-control' name='inputName' /></div></div>";
 
 
                     }
@@ -490,7 +498,7 @@ namespace WillAssure.Controllers
                     }
                     if (dt3.Rows[i]["AmountControls"].ToString() != "")
                     {
-                        column = column + "<input type=" + dt3.Rows[i]["AmountControls"].ToString() + " class='form-control' /></div></div>";
+                        column = column + "<input type=" + dt3.Rows[i]["AmountControls"].ToString() + " class='form-control' name='inputName' /></div></div>";
 
                     }
 
@@ -507,7 +515,7 @@ namespace WillAssure.Controllers
                     {
                         string getjson = dt.Rows[0]["Json"].ToString();
                         MainAssetsModel obj = JsonConvert.DeserializeObject<MainAssetsModel>(getjson);
-
+                        TempData["checkdata"] = getjson;
 
                         if (obj.dueDate != null)
                         {
@@ -862,6 +870,56 @@ namespace WillAssure.Controllers
 
             return finalstruct;
         }
+
+
+
+
+
+
+        public ActionResult InsertBeneficiaryAsset(FormCollection collection)
+        {
+
+            string getcheckdata = TempData["checkdata"].ToString();
+            MainAssetsModel obj = JsonConvert.DeserializeObject<MainAssetsModel>(getcheckdata);
+            int inputnumberofitems = 0;
+            int inputweight = 0;
+            int numberofitems = 0;
+            int weight = 0;
+
+            if (obj.NumberofItems != null)
+            {
+                numberofitems = Convert.ToInt32(obj.NumberofItems);  
+            }
+
+
+
+
+
+            if (obj.Weight != null)
+            {
+                weight = Convert.ToInt32(obj.NumberofItems);
+            }
+
+            string value = Convert.ToString(collection["inputName"]);
+
+            
+            ArrayList result = new ArrayList(value.Split(','));
+
+
+            for (int i = 0; i < result.Count; i++)
+            {
+               
+            }
+
+            var radio1 = Convert.ToString(Request.Form["Currentradio"]);
+            var radio2 = Convert.ToString(Request.Form["ownershipRadio"]);
+            var radio3 = Convert.ToString(Request.Form["nominationradio"]);
+
+
+
+            return View("~/Views/AddAssetMapping/AddAssetMappingPageContent.cshtml");
+        }
+
 
 
     }
