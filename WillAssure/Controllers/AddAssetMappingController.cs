@@ -17,6 +17,7 @@ namespace WillAssure.Controllers
 {
     public class AddAssetMappingController : Controller
     {
+        
         public static string connectionString = ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString;
         SqlConnection con = new SqlConnection(connectionString);
 
@@ -504,7 +505,7 @@ namespace WillAssure.Controllers
 
                     var f = "";
                     string s = "";
-
+                    TempData["amid"] = response;
                     string query = "select * from AssetInformation where amId = "+response+"";
                     SqlDataAdapter da = new SqlDataAdapter(query,con);
                     DataTable dt = new DataTable();
@@ -836,16 +837,25 @@ namespace WillAssure.Controllers
                         {
                             data = data + obj.Amount + "~";
                         }
+                        if (obj.Address != null)
+                        {
+                            data = data + obj.Address + "~";
+                        }
+                        if (obj.CTSNo != null)
+                        {
+                            data = data + obj.CTSNo + "~";
+                        }
 
-                         f = data;
+                        f = data;
 
                         ArrayList fdata = new ArrayList(f.Split('~'));
-                  
-                        for (int j = 0; j < fdata.Count; j++)
+                        string getnonfinancialinput = "";
+                        for (int j = 1; j < fdata.Count; j++)
                         {
                             if (fdata[j].ToString() != "")
                             {
-                                s = s + "<input type='text' class='form-control' value='" + fdata[j].ToString() + "' />";
+                                TempData["calculate"] =  getnonfinancialinput = getnonfinancialinput + fdata[j].ToString() + "~";
+                                s = s + "<input type='text' id='output' class='form-control' value='" + fdata[j].ToString() + "' />";
                             }
                             
                         }
@@ -878,45 +888,376 @@ namespace WillAssure.Controllers
 
         public ActionResult InsertBeneficiaryAsset(FormCollection collection)
         {
-
+          
+            int Beneficiaryid = 0;
+            int AssetId = 0;
+            int assetcatid = 0;
+            int checknumberofitems = 0;
+            int checkweight = 0;
             string getcheckdata = TempData["checkdata"].ToString();
-            MainAssetsModel obj = JsonConvert.DeserializeObject<MainAssetsModel>(getcheckdata);
-            
-            int numberofitems = 0;
-            int weight = 0;
+          
+           
+            AssetMappingModel saveasset = new AssetMappingModel();
+       
+       
 
-            if (obj.NumberofItems != null)
+           
+
+            ArrayList cheknum = new ArrayList(TempData["calculate"].ToString().Split('~'));
+
+            for (int i = 0; i < cheknum.Count; i++)
             {
-                numberofitems = Convert.ToInt32(obj.NumberofItems);  
+                checknumberofitems = Convert.ToInt32(cheknum[0]);
+                checkweight = Convert.ToInt32(cheknum[1]);
+
             }
 
 
-
-
-
-            if (obj.Weight != null)
-            {
-                weight = Convert.ToInt32(obj.NumberofItems);
-            }
+        
 
             string value = Convert.ToString(collection["inputName"]);
+            string ddllist = collection["contentList"];
 
-            
             ArrayList result = new ArrayList(value.Split(','));
-
+            ArrayList dd = new ArrayList(ddllist.Split(','));
 
             for (int i = 0; i < result.Count; i++)
             {
-               
+                saveasset.NumberofItems = Convert.ToInt32(result[0]);
+                saveasset.weight = Convert.ToInt32(result[1]);
+
+            }
+
+
+            for (int i = 0; i < dd.Count; i++)
+            {
+                Beneficiaryid = Convert.ToInt32(dd[0]);
+                AssetId = Convert.ToInt32(dd[1]);
+                assetcatid = Convert.ToInt32(dd[2]);
             }
 
             var radio1 = Convert.ToString(Request.Form["Currentradio"]);
             var radio2 = Convert.ToString(Request.Form["ownershipRadio"]);
             var radio3 = Convert.ToString(Request.Form["nominationradio"]);
 
+            if (saveasset.NumberofItems >= checknumberofitems && saveasset.weight >= checkweight)
+            {
+                Response.Write("<script>alert('Number of Item Left is "+ checknumberofitems + " and Number of Weight Left is "+ checkweight + " ')</script>");
+            }
+            else
+            {
+                // insert beneficiary asset
+                string insertbenefijson = JsonConvert.SerializeObject(saveasset, Newtonsoft.Json.Formatting.None,
+                    new JsonSerializerSettings
+                    {
+                        NullValueHandling = NullValueHandling.Ignore
+                    });
+
+                con.Open();
+                string inserbeneficiaryasset = "insert into Beneficiary_AssetInfo (bpId,atId,amId,Json) values (" + Beneficiaryid + "," + AssetId + "," + assetcatid + ",'" + insertbenefijson + "')";
+                SqlCommand cmd = new SqlCommand(inserbeneficiaryasset, con);
+                cmd.ExecuteNonQuery();
+                con.Close();
+                //end
 
 
-            return View("~/Views/AddAssetMapping/AddAssetMappingPageContent.cshtml");
+
+
+                con.Open();
+                string query = "select * from AssetInformation where amId = " + TempData["amid"] + "";
+                SqlDataAdapter da = new SqlDataAdapter(query, con);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                string data = "";
+
+                if (dt.Rows.Count > 0)
+                {
+                    string getjson = dt.Rows[0]["Json"].ToString();
+                    MainAssetsModel upobj = JsonConvert.DeserializeObject<MainAssetsModel>(getjson);
+                    TempData["checkdata"] = getjson;
+
+                    string getcolumn = "";
+
+                    if (upobj.dueDate != null)
+                    {
+                        getcolumn = getcolumn + upobj.dueDate + "~";
+                    }
+
+
+
+
+
+
+                    if (upobj.IssuedBy != null)
+                    {
+                        upobj.IssuedBy = upobj.IssuedBy;
+                    }
+
+
+
+
+
+
+
+                    if (upobj.Location != null)
+                    {
+                        upobj.Location = upobj.Location;
+                    }
+
+
+
+
+
+
+                    if (upobj.Identifier != null)
+                    {
+                        upobj.Identifier = upobj.Identifier;
+                    }
+
+
+
+
+
+                    if (upobj.assetsValue != null)
+                    {
+                        upobj.assetsValue = upobj.assetsValue;
+                    }
+
+
+
+
+
+
+
+                    if (upobj.CertificateNumber != null)
+                    {
+                        upobj.CertificateNumber = upobj.CertificateNumber;
+                    }
+
+
+
+
+
+
+                    if (upobj.DescriptionTypeofItem != null)
+                    {
+                        upobj.DescriptionTypeofItem = upobj.DescriptionTypeofItem;
+                    }
+
+
+
+
+
+                    if (upobj.NumberofItems != null)
+                    {
+                        int cal = Convert.ToInt32(upobj.NumberofItems) - Convert.ToInt32(saveasset.NumberofItems);
+                        upobj.NumberofItems = cal.ToString();
+                    }
+
+
+
+
+
+                    if (upobj.Weight != null)
+                    {
+
+
+                        int cal = Convert.ToInt32(upobj.Weight) - Convert.ToInt32(saveasset.weight);
+                        upobj.Weight = cal.ToString();
+                    }
+
+
+
+
+
+
+
+
+
+                    if (upobj.Remark != null)
+                    {
+                        upobj.Remark = upobj.Remark;
+                    }
+                    if (upobj.RemarkControls != null)
+                    {
+                        upobj.RemarkControls = "";
+                    }
+
+
+
+
+
+                    if (upobj.NomineeDetails != null)
+                    {
+                        upobj.NomineeDetails = upobj.NomineeDetails;
+                    }
+                    if (upobj.NominationControls != null)
+                    {
+                        upobj.NominationControls = "";
+                    }
+
+
+
+
+
+                    if (upobj.Name != null)
+                    {
+                        upobj.Name = upobj.Name;
+                    }
+                    if (upobj.NameControls != null)
+                    {
+                        upobj.NameControls = "";
+                    }
+
+
+
+
+                    if (upobj.RegisteredAddress != null)
+                    {
+                        upobj.RegisteredAddress = upobj.RegisteredAddress;
+                    }
+
+                    if (upobj.RegisteredAddressControls != null)
+                    {
+                        upobj.RegisteredAddressControls = "";
+                    }
+
+
+
+
+                    if (upobj.PermanentAddress != null)
+                    {
+                        upobj.PermanentAddress = upobj.PermanentAddress;
+                    }
+                    if (upobj.PermanentAddressControls != null)
+                    {
+                        upobj.PermanentAddressControls = "";
+                    }
+
+
+
+
+
+                    if (upobj.Identity_proof != null)
+                    {
+                        upobj.Identity_proof = upobj.Identity_proof;
+                    }
+                    if (upobj.Identity_proofControls != null)
+                    {
+                        upobj.Identity_proofControls = "";
+                    }
+
+
+
+
+                    if (upobj.Identity_proof_value != null)
+                    {
+                        upobj.Identity_proof_value = upobj.Identity_proof_value;
+                    }
+                    if (upobj.Identity_proof_valueControls != null)
+                    {
+                        upobj.Identity_proof_valueControls = "";
+                    }
+
+
+
+
+
+                    if (upobj.Alt_Identity_proof != null)
+                    {
+                        upobj.Alt_Identity_proof = upobj.Alt_Identity_proof;
+                    }
+                    if (upobj.Alt_Identity_proofControls != null)
+                    {
+                        upobj.Alt_Identity_proofControls = "";
+                    }
+
+
+
+
+
+
+                    if (upobj.Alt_Identity_proof_value != null)
+                    {
+                        upobj.Alt_Identity_proof_value = upobj.Alt_Identity_proof_value;
+                    }
+                    if (upobj.Alt_Identity_proofControls != null)
+                    {
+                        upobj.Alt_Identity_proofControls = "";
+                    }
+
+
+
+
+
+
+                    if (upobj.Phone != null)
+                    {
+                        upobj.Phone = upobj.Phone;
+                    }
+                    if (upobj.PhoneControls != null)
+                    {
+                        upobj.PhoneControls = "";
+                    }
+
+
+
+
+                    if (upobj.Mobile != null)
+                    {
+                        upobj.Mobile = upobj.Mobile;
+                    }
+                    if (upobj.MobileControls != null)
+                    {
+                        upobj.MobileControls = "";
+                    }
+
+
+
+
+                    if (upobj.Amount != null)
+                    {
+                        upobj.Amount = upobj.Amount;
+                    }
+                    if (upobj.AmountControls != null)
+                    {
+                        upobj.AmountControls = "";
+                    }
+
+                    if (upobj.Address != null)
+                    {
+                        upobj.Address = "";
+                    }
+                    if (upobj.CTSNo != null)
+                    {
+                        upobj.CTSNo = "";
+                    }
+                    con.Close();
+                    string upjson = JsonConvert.SerializeObject(upobj, Newtonsoft.Json.Formatting.None,
+                    new JsonSerializerSettings
+                    {
+                        NullValueHandling = NullValueHandling.Ignore
+                    });
+
+                    con.Open();
+                    string updateassetinfo = "update AssetInformation set Json='" + upjson + "' where amId = " + TempData["amid"] + " ";
+                    SqlCommand cm2 = new SqlCommand(updateassetinfo, con);
+                    cm2.ExecuteNonQuery();
+                    con.Close();
+                }
+            }
+
+
+         
+
+
+       
+
+
+           
+                
+
+                return View("~/Views/AddAssetMapping/AddAssetMappingPageContent.cshtml");
         }
 
 

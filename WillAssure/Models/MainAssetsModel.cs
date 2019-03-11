@@ -47,9 +47,9 @@ namespace WillAssure.Models
         public string OwnerShipControls { get; set; }
         public string OwnerShipValues { get; set; }
 
-        public int nId { get; set; }
-        public int nIdControls { get; set; }
-        public int nIdValues { get; set; }
+        public int? nId { get; set; }
+        public int? nIdControls { get; set; }
+        public int? nIdValues { get; set; }
 
         public string Remark { get; set; }
         public string RemarkControls { get; set; }
@@ -118,7 +118,7 @@ namespace WillAssure.Models
 
 
         public string assetcattxt { get; set; }
-        public int assetcatid { get; set; }
+        public int? assetcatid { get; set; }
 
 
         public string lbl1 { get; set; }
@@ -134,5 +134,14 @@ namespace WillAssure.Models
 
         public string DescriptionTypeofItem {get; set;}
         public string NumberofItems { get; set; }
+
+
+        public string Address { get; set; }
+        public string CTSNo { get; set; }
+
+
+        public int? inputnumberofitems  { get; set; }
+        public int? inputweight { get; set; }
+
     }
 }

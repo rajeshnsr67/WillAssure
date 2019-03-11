@@ -32,8 +32,8 @@
                     <div class="card">
                         <div class="card-body">
 
-                            @Html.HiddenFor(m=>m.aiId,new { @id = "aid" })
-
+                            @Html.HiddenFor(m=>m.aiId, new { @id = "aid" })
+                            <input type="button" id="btnload" style="display:none;" />
                             <div id="listdata" class="row">
 
 
@@ -42,7 +42,7 @@
 
                          
 
-
+                            
 
 
 
@@ -124,12 +124,24 @@
                 });*@
 
 
-
-              
+             
                 $(document).ready(function () {
+
+                    $("#btnload").on("click", function () { });
+
+                    $("#btnload").click();
                     
-                    var data = $("#aid").val();
-                 
+           
+
+
+                });
+                
+              
+              
+                $("#btnload").click(function () {
+
+                             var data = $("#aid").val();
+                   
                        $.ajax({
                         
                         type: "POST",
@@ -146,9 +158,11 @@
 
                     });
 
-
                 });
 
 
-
             </script>
+
+
+
+       

@@ -94,30 +94,30 @@
 
 
 
-                            <textarea id="assetcolumn" style="display:none;" name="assetcolumn" class="form-control">
+                            <textarea id="assetcolumn" style="display:;" name="assetcolumn" class="form-control">
 
                             </textarea>
 
-                            <textarea id="col" style="display:none;" name="col" class="form-control">
+                            <textarea id="col" style="display:;" name="col" class="form-control">
 
                             </textarea>
 
-                            <textarea id="val" style="display:none;" name="val" class="form-control">
-
-                            </textarea>
-
-
-                            <textarea id="assetcolumnValues" style="display:none;" name="assetcolumnValues" class="form-control">
+                            <textarea id="val" style="display:;" name="val" class="form-control">
 
                             </textarea>
 
 
-                            <textarea id="controls" style="display:none;" name="controls" class="form-control">
+                            <textarea id="assetcolumnValues" style="display:;" name="assetcolumnValues" class="form-control">
 
                             </textarea>
 
 
-                            <textarea id="values" style="display:none;" name="values" class="form-control">
+                            <textarea id="controls" style="display:;" name="controls" class="form-control">
+
+                            </textarea>
+
+
+                            <textarea id="values" style="display:;" name="values" class="form-control">
 
                             </textarea>
 
@@ -410,7 +410,7 @@
         $("#col").append("" + ENTITY + "Controls" + ",");
         $("#val").append("" + ENTITY + "Values" + ",");
 
-
+        $("#assetcolumnValues").append("'"+ENTITY+"~");
     }
 
 
@@ -420,7 +420,7 @@
     function bar(value) {
         var val = value;
 
-        $("#assetcolumnValues").append("'" + value + "',");
+        $("#assetcolumnValues").append("" + value +  "',");
 
 
 

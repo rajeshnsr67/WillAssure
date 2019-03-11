@@ -44,7 +44,9 @@
                                 <div class='col-sm-4'>
                                     <div class='form-group'>
                                         <label for='input-1'>Beneficiary</label>
-                                        <select id='ddlbeneficiary' class='form-control'></select>
+                                        <select id='ddlbeneficiary' name="contentList" class='form-control'></select>
+                                        @Html.HiddenFor(m => m.Beneficiaryid, new { id = "Beneficiaryid" })
+                                        @Html.HiddenFor(m => m.Beneficiarytxt, new { id = "Beneficiarytxt" })
                                     </div>
                                 </div>
 
@@ -52,7 +54,9 @@
                                 <div class='col-sm-4'>
                                     <div class='form-group'>
                                         <label for='input-1'>Assets Type</label>
-                                        <select id='ddlassettype' onChange='getassettypeid(this.value)' class='form-control'></select>
+                                        <select id='ddlassettype' name="contentList" onChange='getassettypeid(this.value)' class='form-control'></select>
+                                        @Html.HiddenFor(m => m.assettypeid, new { id = "assettypeid" })
+                                        @Html.HiddenFor(m => m.assettypetext, new { id = "assettypetext" })
                                     </div>
                                 </div>
 
@@ -61,7 +65,9 @@
                                 <div class='col-sm-4'>
                                     <div class='form-group'>
                                         <label for='input-1'>Assets Category</label>
-                                        <select id='ddlassetcat' onChange='getassetcatid(this.value)' class='form-control'></select>
+                                        <select id='ddlassetcat' name="contentList" onChange='getassetcatid(this.value)' class='form-control'></select>
+                                        @Html.HiddenFor(m => m.assetcatid, new { id = "assetcatid" })
+                                        @Html.HiddenFor(m => m.assetcattext, new { id = "assetcattext" })
                                     </div>
                                 </div>
 
@@ -97,7 +103,7 @@
 
     <script>
         $(document).ready(function () {
-
+           
             $.ajax({
 
                 type: "POST",
@@ -166,6 +172,7 @@
                 data: { "send": "" + value + "" },
                 success: function (data) {
                     $("#GenerateColumn").empty().append(data);
+               
                 }
             });
 
@@ -173,6 +180,48 @@
         }
 
        
+        $("#ddlbeneficiary").change(function () {
+        var value = $(this).children(":selected").attr("value");
+        var text = $("#ddlasset option:selected").html();
 
+                $("#Beneficiaryid").val(text);
+                $("#Beneficiarytxt").val(value);
+
+       
+        });
+
+        $("#ddlbeneficiary").change(function () {
+            var value = $(this).children(":selected").attr("value");
+            var text = $("#ddlbeneficiary option:selected").html();
+
+            $("#Beneficiaryid").val(text);
+            $("#Beneficiarytxt").val(value);
+     
+
+        });
+
+
+        $("#ddlassettype").change(function () {
+            var value = $(this).children(":selected").attr("value");
+            var text = $("#ddlassettype option:selected").html();
+
+            $("#assettypeid").val(text);
+            $("#assettypetxt").val(value);
+       
+
+        });
+
+
+
+        $("#ddlassetcat").change(function () {
+        
+            var value = $(this).children(":selected").attr("value");
+            var text = $("#ddlassetcat option:selected").html();
+
+            $("#assetcatid").val(text);
+            $("#assetcattxt").val(value);
+       
+
+        });
 
     </script>

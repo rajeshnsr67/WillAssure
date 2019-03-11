@@ -175,6 +175,7 @@ namespace WillAssure.Controllers
         public String BindAssetCategoryDDL()
         {
             int response = Convert.ToInt32(Request["send"]);
+            TempData["atid"] = response;
             con.Open();
             string query = "select * from AssetsCategory where atId = "+ response + "";
             SqlDataAdapter da = new SqlDataAdapter(query, con);
@@ -760,7 +761,7 @@ namespace WillAssure.Controllers
             string json = JsonConvert.SerializeObject(dd);
             int amid =  Convert.ToInt32(TempData["amid"]);
             con.Open();
-            string query = "insert into AssetInformation (amId,Json) values ("+ amid + " ,'" + json + "')";
+            string query = "insert into AssetInformation (atId,amId,Json) values ("+ TempData["atid"] + " , "+ amid + " ,'" + json + "')";
             SqlCommand cmd = new SqlCommand(query,con);
             cmd.ExecuteNonQuery();
             con.Close();

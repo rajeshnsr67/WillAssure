@@ -143,6 +143,7 @@
         var text = $("#ddlasset option:selected").html();
         $("#assettext").val(text);
         $("#assetid").val(value);
+
           $.ajax({
             type: "POST",
             url: "@Url.Action("BindAssetCategoryDDL", "AddMainAssets")",
