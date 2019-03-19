@@ -1,4 +1,4 @@
-﻿@model WillAssure.Models.AssetMappingModel
+﻿﻿@model WillAssure.Models.AssetMappingModel
 @{
     ViewBag.Title = "AddAssetMappingPageContent";
 }
@@ -7,12 +7,9 @@
 @*Main Content*@
 <div class="content-wrapper">
     <div class="container-fluid">
-
         <div class="row pt-2 pb-2">
-
             <div class="col-sm-3">
                 <div class="btn-group float-sm-right">
-
                     <div class="dropdown-menu">
                         <a href="javaScript:void();" class="dropdown-item">Action</a>
                         <a href="javaScript:void();" class="dropdown-item">Another action</a>
@@ -24,86 +21,133 @@
             </div>
         </div>
         <!-- End Breadcrumb-->
-        @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "RoleForm" }))
-        {
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="card">
-                        <div class="card-body">
-
-                            <div class="card-title text-primary">Asset Mapping</div>
-                            <hr>
-
+        @*@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "RoleForm" }))
+        {*@
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title text-primary">Asset Mapping</div>
+                        <hr>
 
 
-
-                            <div class="row">
+                        <div class="row">
 
 
 
-                                <div class='col-sm-4'>
+                            <div class='col-sm-6'>
+                                <div class='form-group'>
+                                    <label for='input-1'>Assets Type</label>
+                                    <select id='ddlassettype' name="contentList" onChange='getassettypeid(this.value)' class='form-control'></select>
+                                    @Html.HiddenFor(m => m.assettypeid, new { id = "assettypeid" })
+                                    @Html.HiddenFor(m => m.assettypetext, new { id = "assettypetext" })
+                                </div>
+                            </div>
+
+                            <div class='col-sm-6'>
+                                <div class='form-group'>
+                                    <label for='input-1'>Assets Category</label>
+                                    <select id='ddlassetcat' name="contentList" onChange='getassetcatid(this.value)' class='form-control'></select>
+                                    @Html.HiddenFor(m => m.assetcatid, new { id = "assetcatid" })
+                                    @Html.HiddenFor(m => m.assetcattext, new { id = "assetcattext" })
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class='col-sm-3' id="type" style="display:none;">
+                            <div class='form-group'>
+                                <label for='input-1'>Type</label>
+                                <br />
+                                <form>
+                                    <label class="radio-inline">
+                                        <input type="radio" onchange="getvalone(this.value)" name="optradio" value="Single" checked>Single
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" onchange="getvaltwo(this.value)" name="optradio" value="Multiple">Multiple
+                                    </label>
+                                </form>
+                            </div>
+                        </div>
+
+
+                        <div id="parentdiv">
+                            <div class="row rowdiv" id="beneficiarydetails" style="display:none;">
+
+
+                                <div class='col-sm-2'>
                                     <div class='form-group'>
                                         <label for='input-1'>Beneficiary</label>
-                                        <select id='ddlbeneficiary' name="contentList" class='form-control'></select>
+                                        <select id='ddlbeneficiary' onchange="getddlbeneficiary(this.value)" name="contentList" class='form-control'></select>
                                         @Html.HiddenFor(m => m.Beneficiaryid, new { id = "Beneficiaryid" })
                                         @Html.HiddenFor(m => m.Beneficiarytxt, new { id = "Beneficiarytxt" })
                                     </div>
                                 </div>
-
-
-                                <div class='col-sm-4'>
-                                    <div class='form-group'>
-                                        <label for='input-1'>Assets Type</label>
-                                        <select id='ddlassettype' name="contentList" onChange='getassettypeid(this.value)' class='form-control'></select>
-                                        @Html.HiddenFor(m => m.assettypeid, new { id = "assettypeid" })
-                                        @Html.HiddenFor(m => m.assettypetext, new { id = "assettypetext" })
+                                <div id="getidentifier"></div>
+                                <div class='col-sm-3'>
+                                    <label for='input-1'>Instruments</label>
+                                    <select id='DDLAssetColumn' onchange="getDDLAssetColumn(this.value)" name="contentList" class='form-control'></select>
+                                    @Html.HiddenFor(m => m.InstrumentId, new { id = "InstrumentId" })
+                                    @Html.HiddenFor(m => m.Instrumenttxt, new { id = "Instrumenttxt" })
+                                </div>
+                                <div class='col-sm-2 grandparent'>
+                                    <div class='form-group parent'>
+                                        <label for='input-1'>Proportion</label>
+                                        <input type='text' class='form-control proportioninput' onkeypress="return isNumberKey(event)" onchange="gettxtproportion(this.value)" name="rank" id="txtproportion" />
                                     </div>
                                 </div>
-
-
-
-                                <div class='col-sm-4'>
-                                    <div class='form-group'>
-                                        <label for='input-1'>Assets Category</label>
-                                        <select id='ddlassetcat' name="contentList" onChange='getassetcatid(this.value)' class='form-control'></select>
-                                        @Html.HiddenFor(m => m.assetcatid, new { id = "assetcatid" })
-                                        @Html.HiddenFor(m => m.assetcattext, new { id = "assetcattext" })
+                                <div class='col-sm-2'>
+                                    <div class='form-group start'>
+                                        <label for='input-1'>Total</label>
+                                        <input type='text' id="txttotal" class='form-control totalinput' readonly />
                                     </div>
                                 </div>
-
-
-
-
-
-
-                            </div>
-
-                            <div class="row" id="GenerateColumn">
-                            </div>
-                            <div class="form-group">
-
-                                <button type="submit" id="btnRoleformsubmit" formaction="InsertBeneficiaryAsset" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i>Submit</button>
-                                <button type="button" id="btnRoleformsubmitSUCCESS" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
-                                <button type="button" id="btnRoleformsubmitCHECK" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
                             </div>
                         </div>
+
+                        <textarea id="query" style="display:none;" class="form-control">
+                               
+                           </textarea>
+                        <div class="form-group">
+                            <button type="button" id="btnadd" style="display:none;" class="btn btn-danger shadow-primary px-5"><i class="icon-lock"></i>Add</button>
+                            <button type="button" id="btnmappingsubmit" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i>Submit</button>
+                            <button type="button" id="btnRoleformsubmitSUCCESS" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
+                            <button type="button" id="btnRoleformsubmitCHECK" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
+                        </div>
                     </div>
-
-
                 </div>
 
-
             </div>
-        }
+
+        </div>
+        @*}*@
 
     </div>
-       
-@*end*@
+    @*end*@
 
 
-    <script>
+    <script>function isNumberKey(evt) {
+            var charCode = (evt.which) ? evt.which : event.keyCode
+            if (charCode > 31 && (charCode < 48 || charCode > 57))
+                return false;
+            return true;
+        }
+        $(document).on('keyup', '.proportioninput', function () {
+            var $rowdiv = $(this).closest('.rowdiv');
+            var proportionvalue = $(this).val();
+            //$(this).parent().
+            //var parentdivclassname = $(this).parent('div').parent('div').parent('div').parent('div').attr('id');
+
+            proportionvalue = + proportionvalue;
+            if (proportionvalue <= parseInt(100)) {
+                $rowdiv.find('.totalinput').val(parseInt(100) - proportionvalue);
+            } else {
+                $(this).val('');
+                $rowdiv.find('.totalinput').val('100');
+            }
+
+        });
         $(document).ready(function () {
-           
+
             $.ajax({
 
                 type: "POST",
@@ -111,7 +155,7 @@
                 success: function (data) {
                     $("#ddlbeneficiary").append(data);
                 }
-            }); 
+            });
 
 
 
@@ -122,14 +166,21 @@
                 url: "../AddAssetMapping/BindAssetTypeDDL",
                 success: function (data) {
                     $("#ddlassettype").append(data);
-                   }
-            });        
+                }
+            });
 
-          
+
+
+
+
+
 
         });
 
-         
+
+
+
+
 
 
 
@@ -137,12 +188,13 @@
             alert(value);
         }
 
-       
+
 
 
         function getassettypeid(value) {
 
-           
+
+
 
             $.ajax({
 
@@ -157,48 +209,83 @@
             });
 
 
+
+
+
         }
-        
+
 
 
         function getassetcatid(value) {
 
-           
 
+            $("#beneficiarydetails").show();
+            $("#type").show();
             $.ajax({
 
                 type: "POST",
                 url: "../AddAssetMapping/getassetcolumndata",
                 data: { "send": "" + value + "" },
                 success: function (data) {
-                    $("#GenerateColumn").empty().append(data);
-               
+                    $("#getidentifier").append(data);
+                    var r = data;
+                    var str = data;
+                    var res = str.replace("<label for='input-1'>Scheme</label> <input type='text' class='form-control' id='schemename'  value=", "").replace("/>","");
+
+
                 }
             });
 
-          
+
+
+            $.ajax({
+
+                type: "POST",
+                url: "../AddAssetMapping/ddlassetname",
+                data: { "send": "" + value + "" },
+                success: function (data) {
+                    $("#DDLAssetColumn").append(data);
+
+                }
+            });
+
+
         }
 
-       
-        $("#ddlbeneficiary").change(function () {
-        var value = $(this).children(":selected").attr("value");
-        var text = $("#ddlasset option:selected").html();
 
-                $("#Beneficiaryid").val(text);
-                $("#Beneficiarytxt").val(value);
+       function getddlbeneficiary (value){
 
-       
-        });
-
-        $("#ddlbeneficiary").change(function () {
-            var value = $(this).children(":selected").attr("value");
             var text = $("#ddlbeneficiary option:selected").html();
 
             $("#Beneficiaryid").val(text);
             $("#Beneficiarytxt").val(value);
-     
 
-        });
+
+
+           $("#query").append( value + ",");
+
+        };
+
+
+
+
+        function getDDLAssetColumn (value) {
+            //var value = $(this).children(":selected").attr("value");
+            var text = $("#DDLAssetColumn option:selected").html();
+
+
+
+            alert(value);
+
+            $("#Instrumenttxt").val(text);
+            $("#Instrumenttxt").val(value);
+
+            $("#query").append("'"+value+"'"+ ",");
+
+
+        };
+
+
 
 
         $("#ddlassettype").change(function () {
@@ -207,21 +294,139 @@
 
             $("#assettypeid").val(text);
             $("#assettypetxt").val(value);
-       
+
 
         });
 
 
 
         $("#ddlassetcat").change(function () {
-        
+
             var value = $(this).children(":selected").attr("value");
             var text = $("#ddlassetcat option:selected").html();
 
             $("#assetcatid").val(text);
             $("#assetcattxt").val(value);
-       
+
 
         });
+
+
+        function getvalone(value) {
+            $("#appendselection").empty().append("<input type='text' class='form-control' placeholder='Certificate No.' /> ");
+            $("#btnadd").hide();
+        }
+
+        function getvaltwo(value) {
+            $("#btnadd").show();
+        }
+
+        $("#btnadd").click(function () {
+            var $clone = $("#beneficiarydetails").clone();
+            $clone.find('.proportioninput').val('');
+            $clone.find('.totalinput').val('');
+            $clone.appendTo("#parentdiv");
+
+
+            var assettype = $("#ddlassettype").val();
+            var assetcat = $("#ddlassetcat").val();
+            var beneficiary = $("#ddlbeneficiary").val();
+            var schemename = $("#schemename").val();
+            var instrument = $("#DDLAssetColumn option:selected").html();
+            var proportion = $("#txtproportion").val();
+
+
+            //$("#query").append( "(" + assettype +","+ assetcat + "," + beneficiary + "," + schemename + "," + instrument + "," + proportion + ")" + "~")
+
+
+        });
+
+
+        function gettxtproportion(value) {
+            $("#query").append(value + "~");
+        }
+
+        function calculatefun(value) {
+
+            var row = $(this).closest(".grandparent");
+            var input = $(row).find("input").val();
+            alert(input);
+
+            var total = $("#txttotal").val()
+
+
+            var f = total - value;
+            $("#txttotal").val(f);
+
+
+
+
+        }
+
+
+
+        $("#btnmappingsubmit").click(function () {
+
+            var radioValue = $("input[name='optradio']:checked").val();
+            alert(radioValue);
+
+            if (radioValue == "Single") {
+
+                var assettype = $("#ddlassettype").val();
+                var assetcat = $("#ddlassetcat").val();
+                var beneficiary = $("#ddlbeneficiary").val();
+                var schemename = $("#schemename").val();
+                var instrument = $("#DDLAssetColumn option:selected").html();
+                var proportion = $("#txtproportion").val();
+
+
+                var data = assettype + "~" + assetcat + "~" + beneficiary + "~" + schemename + "~" + instrument + "~" + proportion;
+
+                $.ajax({
+
+                    type: "POST",
+                    url: "../AddAssetMapping/InsertSingleAssetMappeddata",
+                    data: { "send": "" + data + "" },
+                    success: function (data) {
+
+
+                    }
+                });
+
+
+
+            }
+            if (radioValue == "Multiple") {
+
+                var assettype = $("#ddlassettype").val();
+                var assetcat = $("#ddlassetcat").val();
+                var schemename = $("#schemename").val();
+
+                var data =  $("#query").val();
+                alert(data)
+                $.ajax({
+
+                    type: "POST",
+                    url: "../AddAssetMapping/InsertMultipleAssetMappeddata",
+                    data: { data: data, assettype: assettype, assetcat: assetcat },
+                    success: function (data) {
+
+
+                    }
+                });
+
+
+            }
+
+
+
+
+
+        });
+
+
+        function getschemename(value) {
+            $("#query").append("'" + value + "'" + ",");
+        }
 
     </script>

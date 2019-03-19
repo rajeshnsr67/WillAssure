@@ -43,8 +43,8 @@
                                 <div class="form-group">
                                     <label for="input-1">Asset Type</label>
 
-                                    <select id="ddlAssetType" class="form-control" >
-                                        <option value="0">--Select--</option>
+                                    <select id="ddlAssetType" class="form-control validate[required]" >
+                                        <option value="">--Select--</option>
                                     </select>
                                     @Html.HiddenFor(m => m.assettypeid, new { id = "assettypeid" })
                                     @Html.HiddenFor(m => m.assettypetext, new { id = "assettypetext" })
@@ -58,7 +58,7 @@
                                 <div class="form-group">
                                     <label for="input-1">Asset Category Name</label>
 
-                                    @Html.TextBoxFor(m => m.assetcategory, new { @class = "form-control validate[required] text-input", @id = "txtRole", @placeholder = "Enter Asset Category", @autocomplete = "off", alert = "LabourCost is requried" })
+                                    @Html.TextBoxFor(m => m.assetcategory, new { @class = "form-control validate[required] text-input", @id = "categoryname", @placeholder = "Enter Asset Category", @autocomplete = "off", alert = "LabourCost is requried" })
                                 </div>
                             </div>
 
@@ -70,7 +70,7 @@
                                 <div class="form-group">
                                     <label for="input-1">Asset Category Code</label>
 
-                                    @Html.TextBoxFor(m => m.assetcode, new { @class = "form-control validate[required] text-input", @id = "txtRole", @placeholder = "Enter Asset Code", @autocomplete = "off", alert = "LabourCost is requried" })
+                                    @Html.TextBoxFor(m => m.assetcode, new { @class = "form-control validate[required,custom[AlphaNumeric]]  text-input", @id = "categorycode", @placeholder = "Enter Asset Code", @autocomplete = "off", alert = "LabourCost is requried" })
                                 </div>
                             </div>
 
@@ -126,7 +126,7 @@
             url: "@Url.Action("BindAssetTypeDDL", "AddAssetCategory")",
             success: function (data) {
 
-                $('#ddlAssetType').empty().append('<option value="0">--Select--</option>'+data);
+                $('#ddlAssetType').empty().append('<option value="">--Select--</option>'+data);
             }
 
 
@@ -140,7 +140,7 @@
     $("#ddlAssetType").change(function () {
         var value = $(this).children(":selected").attr("value");
         var text = $("#ddlAssetType option:selected").html();
-        alert(value);
+       
         $("#assettypetext").val(text);
         $("#assettypeid").val(value);
 

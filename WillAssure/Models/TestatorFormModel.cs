@@ -23,10 +23,11 @@ namespace WillAssure.Models
         public string Mobile { get; set; }
 
         public string Email { get; set; }
+        public string material_status { get; set; }
+        public string material_status_id { get; set; }
+        public string material_status_txt { get; set; }
 
-    
 
-        
         public string Gendertext { get; set; }
         public int GenderId { get; set; }
 
@@ -95,11 +96,16 @@ namespace WillAssure.Models
         public int Link_Required { get; set; }
         public int Login_Required { get; set; }
 
-        public string password = "Transformerrobotb4u";
+       public string password { get; set; }
 
 
         public string EmailOTP { get; set; }
         public string MobileOTP { get; set; }
+
+
+        public string documenttype { get; set; }
+        public string documentcategory { get; set; } 
+
     }
 
 

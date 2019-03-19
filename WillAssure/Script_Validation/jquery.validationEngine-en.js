@@ -129,6 +129,16 @@
                     "regex": /^[A-PR-WY][1-9]\d\s?\d{4}[1-9]$/,
                     "alertText": "* Invalid Passport"
                 },
+                "characteronly": {
+                    // Number, including positive, negative, and floating decimal. credit: orefalo
+                    "regex": /^[a-zA-Z]+$/,
+                    "alertText": "* Characters Only"
+                },
+                "AlphaNumeric": {
+                    // Number, including positive, negative, and floating decimal. credit: orefalo
+                    "regex": /[A-Za-z0-9]+/,
+                    "alertText": "* AlphaNumeric Only"
+                },
                 "date": {                    
                     //	Check if date is valid by leap year
 			"func": function (field) {

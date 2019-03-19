@@ -1,0 +1,530 @@
+﻿@model WillAssure.Models.AppointeesModel
+@{
+    ViewBag.Title = "UpdateAppointeesPageContent";
+}
+
+
+@*Main Content*@
+<div class="content-wrapper">
+    <div class="container-fluid">
+
+        <div class="row pt-2 pb-2">
+
+            <div class="col-sm-3">
+                <div class="btn-group float-sm-right">
+
+                    <div class="dropdown-menu">
+                        <a href="javaScript:void();" class="dropdown-item">Action</a>
+                        <a href="javaScript:void();" class="dropdown-item">Another action</a>
+                        <a href="javaScript:void();" class="dropdown-item">Something else here</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="javaScript:void();" class="dropdown-item">Separated link</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Breadcrumb-->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title text-primary">Add Appointees</div>
+                        <hr>
+                        @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "DistributorForm" }))
+                        {
+                        <div class="row">
+                            <div class="col-sm-6">
+
+                                <div class="form-group">
+                                    <label for="input-1">Type</label>
+
+                                    @Html.DropDownListFor(x => x.Type, new SelectListItem[]{
+                         new SelectListItem() {Text = "--Select--", Value=""},
+                         new SelectListItem() {Text = "Executor", Value="1"},
+                         new SelectListItem() {Text = "Guardian", Value="2"},
+                         new SelectListItem() {Text = "Witness", Value="3"},
+                         new SelectListItem() {Text = "Agent", Value="4"},
+                         new SelectListItem() {Text = "Donee", Value="5"}}, new { @class = "form-control validate[required]", @id="ddltype" })
+                                    @Html.HiddenFor(m => m.TypeId, new { id = "TypeId" })
+                                    @Html.HiddenFor(m => m.Typetxt, new { id = "Typetxt" })
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="input-1">subType</label>
+
+                                    @Html.DropDownListFor(x => x.Type, new SelectListItem[]{
+                        new SelectListItem() {Text = "--Select--", Value=""},
+                        new SelectListItem() {Text = "Joint", Value="1"},
+                        new SelectListItem() {Text = "Single", Value="2"}}, new { @class = "form-control validate[required]", @id = "ddlsubtype" })
+                                    @Html.HiddenFor(m => m.subTypeId, new { id = "subTypeId" })
+                                    @Html.HiddenFor(m => m.subTypetxt, new { id = "subTypetxt" })
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="input-1">Name</label>
+                                    @Html.TextBoxFor(m => m.Name, new { @class = "form-control required validate[required]", @id = "txtname", @placeholder = "Enter Name", @autocomplete = "off" })
+                                </div>
+                            </div>
+
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="input-5">Middle Name</label>
+                                    @Html.TextBoxFor(m => m.middleName, new { @class = "form-control validate[required] text-input", @id = "txtmiddlename", @placeholder = "Enter Middle Name", @autocomplete = "off" })
+                                </div>
+                            </div>
+
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="input-3">Surname</label>
+                                    @Html.TextBoxFor(m => m.Surname, new { @class = "form-control validate[required] text-input", @id = "txtsurname", @placeholder = "Enter Surname", @autocomplete = "off" })
+                                </div>
+                            </div>
+
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="input-3">Identity Proof</label>
+                                    @Html.DropDownListFor(x => x.Identity_Proof, new SelectListItem[]{
+                               new SelectListItem() {Text = "--Select Identity Proof--", Value=""},
+                               new SelectListItem() {Text = "Aadhaar Card", Value="1"},
+                               new SelectListItem() {Text = "Passport", Value="2"},
+                               new SelectListItem() {Text = "Driving Licences", Value="3"},
+                               new SelectListItem() {Text = "Pan Card", Value="4"}} , new { @class= "form-control validate[required]", @onchange= "getIdentityselection(this.options[this.selectedIndex].innerHTML)" })
+
+                                </div>
+                            </div>
+
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="input-3">Identity Proof Number</label>
+                                    <div id="appendtxt">  @Html.TextBoxFor(m => m.Identity_Proof_Value, new { @class = "form-control validate[required] text-input", @id = "txtidentityproof", @placeholder = "Enter Identity Proof Number", @autocomplete = "off" })</div>
+
+                                    @*@Html.TextBoxFor(m => m.Identity_Proof_Value, new { @class = "form-control validate[required] text-input", @id = "txtIdentityProofValue", @placeholder = "Enter Identity Proof Value", @autocomplete = "off" })*@
+                                </div>
+                            </div>
+
+
+
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="input-3">Alternate Identity Proof</label>
+                                    @Html.TextBoxFor(m => m.Alt_Identity_Proof, new { @class = "form-control  text-input validate[required] ", @id = "txtAlt_Identity_Proof", @placeholder = "Enter Alt Identity Proof", @autocomplete = "off" })
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="input-3">Alternate Identity Proof Number</label>
+                                    @Html.TextBoxFor(m => m.Alt_Identity_Proof_Value, new { @class = "form-control  text-input validate[required]", @id = "txtAlt_Identity_Proof_Value", @placeholder = "Enter Your Alt Identity Proof Value", @autocomplete = "off" })
+                                </div>
+                            </div>
+
+
+
+                            <div class="col-sm-3">
+
+                                <div class="form-group">
+                                    <label for="input-1">Date Of Birth</label>
+
+                                    <div id="datepicker" class="input-group date" data-date-format="dd-mm-yyyy">
+                                        <input class="form-control validate[required]" type="text" id="DOB" name="DOB" autocomplete="off" placeholder="Select Date Of Birth" />
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="input-3">Gender</label>
+                                    @Html.DropDownListFor(x => x.Gender, new SelectListItem[]{
+                                    new SelectListItem() {Text = "--Select--", Value=""},
+                                    new SelectListItem() {Text = "Male", Value="1"},
+                                    new SelectListItem() {Text = "Female", Value="2"},
+                                    new SelectListItem() {Text = "Transgender", Value="3"}}, new { @class = "form-control  validate[required]" })
+                                </div>
+                            </div>
+
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="input-3">Occupation</label>
+                                    @Html.TextBoxFor(m => m.Occupation, new { @class = "form-control  text-input validate[required]", @id = "txtoccupation", @placeholder = "Enter Occupation", @autocomplete = "off" })
+                                </div>
+                            </div>
+
+
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="input-3">Relationship</label>
+                                    <select id="ddlrelation" class="form-control">
+                                        <option value="">--Select--</option>
+                                    </select>
+                                    @Html.HiddenFor(m => m.RelationshipId, new { id = "relationid" })
+                                    @Html.HiddenFor(m => m.RelationshipTxt, new { id = "relationtext" })
+                                </div>
+                            </div>
+
+
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="input-3">Address 1</label>
+                                    @Html.TextAreaFor(m => m.Address1, new { @class = "form-control  text-input validate[required]", @id = "txtaddress1", @placeholder = "Enter Address1", @autocomplete = "off" })
+                                </div>
+                            </div>
+
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="input-3">Address 2</label>
+                                    @Html.TextAreaFor(m => m.Address2, new { @class = "form-control  text-input validate[required]", @id = "txtaddress2", @placeholder = "Enter Address2", @autocomplete = "off" })
+                                </div>
+                            </div>
+
+
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="input-3">Address 3</label>
+                                    @Html.TextAreaFor(m => m.Address3, new { @class = "form-control  text-input validate[required]", @id = "txtaddress3", @placeholder = "Enter Address3", @autocomplete = "off" })
+                                </div>
+                            </div>
+
+
+
+
+
+                            <div class="col-sm-6">
+
+                                <div class="form-group">
+                                    <label for="input-1">State</label>
+
+                                    <select id="ddlstate" class="form-control validate[required]">
+                                        <option value="">--Select State--</option>
+                                    </select>
+                                    @Html.HiddenFor(m => m.stateid, new { id = "stateid" })
+                                    @Html.HiddenFor(m => m.statetext, new { id = "statetext" })
+                                </div>
+                            </div>
+
+
+
+
+                            <div class="col-sm-6">
+
+                                <div class="form-group">
+                                    <label for="input-1">City</label>
+                                    <select id="ddlcity" class="form-control validate[required]">
+                                        <option value="">--Select City--</option>
+                                    </select>
+                                    @Html.HiddenFor(m => m.cityid, new { id = "cityid" })
+                                    @Html.HiddenFor(m => m.citytext, new { id = "citytext" })
+
+                                </div>
+
+                            </div>
+
+
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="input-3">Pin</label>
+                                    @Html.TextBoxFor(m => m.Pin, new { @class = "form-control validate[required,custom[integer],maxSize[6]]  text-input", @id = "txtpin", @placeholder = "Enter Pin", @autocomplete = "off" })
+                                </div>
+                            </div>
+
+
+
+                        </div>
+
+
+                            <div class="form-group">
+                                <button type="submit" id="btnDistributorformsubmit" formaction="UpdatingAppointeesFormData" class="btn btn-success shadow-primary px-5"><i class="icon-lock"></i>Update Appointees</button>
+                                <button id="btnDistributorformsubmitSUCCESS" style="display:none;"></button>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+</div>
+@*end*@
+
+<!--Start Back To Top Button-->
+<a href="javaScript:void();" class="back-to-top"><i class="fa fa-angle-double-up"></i> </a>
+<!--End Back To Top Button-->
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+
+
+<script>
+
+    $(document).ready(function () {
+
+        $.ajax({
+
+            type: "POST",
+            url:"@Url.Action("BindStateDDL", "UpdateAppointees")",
+            success: function (data) {
+                $('#ddlstate').empty().append(data);
+            }
+        });
+
+
+            $.ajax({
+
+            type: "POST",
+            url:"@Url.Action("BindRelationDDL", "UpdateAppointees")",
+            success: function (data) {
+                $('#ddlrelation').empty().append(data);
+            }
+        });
+
+
+    });
+
+
+</script>
+
+<script>
+    $("#ddlstate").change(function () {
+        var value = $(this).children(":selected").attr("value");
+        var text = $("#ddlstate option:selected").html();
+
+        $("#statetext").val(text);
+        $("#stateid").val(value);
+
+
+
+         $.ajax({
+
+            type: "POST",
+            url: "@Url.Action("OnChangeBindCity", "UpdateAppointees")",
+            data: { "send": "" + value+  ""},
+            success: function (data) {
+
+                $('#ddlcity').empty().append(data);
+            }
+
+
+
+        });
+
+
+
+    });
+</script>
+
+
+<script>
+    $("#ddlcity").change(function () {
+        var value = $(this).children(":selected").attr("value");
+        var text = $("#ddlcity option:selected").html();
+
+        $("#citytext").val(text);
+        $("#cityid").val(value);
+    });
+</script>
+
+<script>
+
+    $(document).ready(function () {
+
+        $.ajax({
+
+            type: "POST",
+            url:"@Url.Action("BindDesignationDDL", "UpdateAppointees")",
+            success: function (data) {
+                $('#ddldesignation').append(data);
+            }
+        });
+
+
+    });
+
+
+</script>
+
+<script>
+    $("#ddldesignation").change(function () {
+        var value = $(this).children(":selected").attr("value");
+        var text = $("#ddldesignation option:selected").html();
+
+        $("#designationtxt").val(text);
+        $("#designationid").val(value);
+    });
+</script>
+
+
+<script>
+    $(document).ready(function () {
+        var key = $(this).attr("data-errormessage-value-missing='Mobile no.is required!'");
+        $("#txtComanyName").val(key);
+        $("#DistributorForm").validationEngine();
+    });
+</script>
+
+
+@if (ViewBag.Message == "Verified")
+{
+    <script>
+
+        $(document).ready(function () {
+            $("#btnDistributorformsubmitSUCCESS").on("click", function () { });
+
+            $("#btnDistributorformsubmitSUCCESS").click(); //trigger event after listening to it.
+
+
+            $("#txtComanyName").val("");
+            $("#txtownerName").val("");
+            $("#txtownerMobileNo").val("");
+            $("#txtAddress1").val("");
+            $("#txtAddress2").val("");
+
+
+            $("#txtPin").val("");
+            $("#txtGstNO").val("");
+            $("#txtIdentityProofValue").val("");
+            $("#txtAlt_Identity_Proof").val("");
+            $("#txtAlt_Identity_Proof_Value").val("");
+            $("#txtcontactPerson").val("");
+            $("#txtcontactMobileNo").val("");
+            $("#txtcontactMailId").val("");
+            $("#txtbankName").val("");
+            $("#txtBranch").val("");
+            $("#txtaccountNumber").val("");
+            $("#txtIFSC_Code").val("");
+            $("#txtaccountName").val("");
+            $("#txtReferred_By").val("");
+            $("#txtleadgeneratedBy").val("");
+            $("#txtCompId").val("");
+            $("#txtrelationshipManager").val("");
+            $("#txtleadStatus").val("");
+            $("#txtleadRemark").val("");
+
+
+
+        });
+    </script>
+
+}
+
+
+
+@*validation script*@
+<script>
+    function getIdentityselection(id) {
+        if (id == "Aadhaar Card") {
+            $("#appendtxt").empty().append("<input type='text' class='form-control validate[required,custom[adharCard]] text-input' id='Identity_Proof_Value' name='Identity_Proof_Value' placeholder='Enter Aadhaar Card' autocomplete='off'  />");
+        }
+
+
+        if (id == "Passport") {
+            $("#appendtxt").empty().append("<input type='text' class='form-control validate[required,custom[Passport]] text-input' id='Identity_Proof_Value' name='Identity_Proof_Value'  placeholder='Enter Passport Number' autocomplete='off'  />");
+        }
+
+
+
+        if (id == "Driving Licences") {
+            $("#appendtxt").empty().append("<input type='text' class='form-control validate[required] text-input' id='Identity_Proof_Value' name='Identity_Proof_Value' placeholder='Enter Driving Licences' autocomplete='off'  />");
+        }
+
+
+
+        if (id == "Pan Card") {
+            $("#appendtxt").empty().append("<input type='text' class='form-control validate[required] text-input' id='Identity_Proof_Value' name='Identity_Proof_Value' placeholder='Enter Pan Card' autocomplete='off'  />");
+        }
+
+
+    }
+
+
+
+
+    $("#ddlrelation").change(function () {
+        var value = $(this).children(":selected").attr("value");
+        var text = $("#ddlrelation option:selected").html();
+
+        $("#relationtext").val(text);
+        $("#relationid").val(value);
+
+
+    });
+
+
+
+    $("#ddltype").change(function () {
+        var value = $(this).children(":selected").attr("value");
+        var text = $("#ddltype option:selected").html();
+
+        $("#Typetxt").val(text);
+        $("#TypeId").val(value);
+
+
+    });
+
+
+    $("#ddlsubtype").change(function () {
+        var value = $(this).children(":selected").attr("value");
+        var text = $("#ddlsubtype option:selected").html();
+
+        $("#subTypetxt").val(text);
+        $("#subTypeId").val(value);
+
+
+    });
+</script>
+
+
+<script>
+    $("#ddlstate").change(function () {
+        var value = $(this).children(":selected").attr("value");
+        var text = $("#ddlstate option:selected").html();
+
+        $("#statetext").val(text);
+        $("#stateid").val(value);
+
+
+
+        $.ajax({
+
+            type: "POST",
+            url: "@Url.Action("OnChangeBindCity", "UpdateAppointees")",
+            data: { "send": "" + value+  ""},
+            success: function (data) {
+
+                $('#ddlcity').empty().append(data);
+            }
+
+
+
+        });
+
+
+
+
+
+    });
+</script>
+@*end*@
+
+
+

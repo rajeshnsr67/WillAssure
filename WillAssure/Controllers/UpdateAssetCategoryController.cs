@@ -52,10 +52,11 @@ namespace WillAssure.Controllers
             con.Open();
             SqlCommand cmd = new SqlCommand("SP_AssetsCategoryCRUD", con);
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@condition", "insert");
-            cmd.Parameters.AddWithValue("@atid", ACM.atid);
+            cmd.Parameters.AddWithValue("@condition", "update");
+            cmd.Parameters.AddWithValue("@amId", ACM.amid);
             cmd.Parameters.AddWithValue("@assetcategory", ACM.assetcategory);
             cmd.Parameters.AddWithValue("@assetcode", ACM.assetcode);
+            cmd.Parameters.AddWithValue("@atid", "");
             cmd.ExecuteNonQuery();
             con.Close();
 

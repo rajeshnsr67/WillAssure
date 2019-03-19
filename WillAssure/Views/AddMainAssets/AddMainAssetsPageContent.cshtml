@@ -32,7 +32,7 @@
                         <div class="card-title text-primary">Add Assets</div>
                         <hr>
 
-                        @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "RoleForm" }))
+                        @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "mainassetinfo" }))
                         {
 
                             <div class="row">
@@ -42,8 +42,8 @@
                                     <div class="form-group">
                                         <label for="input-1">Asset Type</label>
 
-                                        <select id="ddlasset" onChange='getassetcolumntext(this.options[this.selectedIndex].innerHTML)' class="form-control">
-                                            <option value="0">--Select--</option>
+                                        <select id="ddlasset" onChange='getassetcolumntext(this.options[this.selectedIndex].innerHTML)' class="form-control validate[required]">
+                                            <option value="">--Select--</option>
                                         </select>
                                         @Html.HiddenFor(m => m.assetid, new { id = "assetid" })
                                         @Html.HiddenFor(m => m.assettxt, new { id = "assettext" })
@@ -58,8 +58,8 @@
                                     <div class="form-group">
                                         <label for="input-1">Asset Category</label>
 
-                                        <select id="ddlassetcat" onChange='getassetcat(this.options[this.selectedIndex].innerHTML)' class="form-control">
-                                            <option value="0">--Select--</option>
+                                        <select id="ddlassetcat" onChange='getassetcat(this.options[this.selectedIndex].innerHTML)' class="form-control validate[required]">
+                                            <option value="">--Select--</option>
                                         </select>
                                         @Html.HiddenFor(m => m.assetcatid, new { id = "assetcatid" })
                                         @Html.HiddenFor(m => m.assetcattxt, new { id = "assetcattxt" })
@@ -186,4 +186,17 @@
         $("#text").append("" + text + ",");
     }
 
+
+
+
+
+
+</script>
+
+
+
+<script>
+    $(document).ready(function () {
+        $("#mainassetinfo").validationEngine();
+    });
 </script>

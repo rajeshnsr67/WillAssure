@@ -37,7 +37,7 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="input-1">First Name</label>
-
+                                        @Html.HiddenFor(m => m.uid)
                                         @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control validate[required] text-input", @id = "txtfirstname", @placeholder = "Enter Your First Name", @autocomplete = "off" })
                                     </div>
                                 </div>
@@ -124,8 +124,8 @@
                                     <div class="form-group">
                                         <label for="input-1">State</label>
 
-                                        <select id="ddlstate" class="form-control">
-                                            <option value="0">--Select State--</option>
+                                        <select id="ddlstate" class="form-control validate[required]">
+                                            <option value="">--Select State--</option>
                                         </select>
                                         @Html.HiddenFor(m => m.stateid, new { id = "stateid" })
                                         @Html.HiddenFor(m => m.statetext, new { id = "statetext" })
@@ -137,8 +137,8 @@
 
                                     <div class="form-group">
                                         <label for="input-1">City</label>
-                                        <select id="ddlcity" class="form-control">
-                                            <option value="0">--Select City--</option>
+                                        <select id="ddlcity" class="form-control validate[required]">
+                                            <option value="">--Select City--</option>
                                         </select>
                                         @Html.HiddenFor(m => m.cityid, new { id = "cityid" })
                                         @Html.HiddenFor(m => m.citytext, new { id = "citytext" })
@@ -204,9 +204,9 @@
                                     <div class="form-group">
                                         <label for="input-3">Status</label>
                                         @Html.DropDownListFor(x => x.Active, new SelectListItem[]{
-                                       new SelectListItem() {Text = "--Select--", Value="0"},
+                                       new SelectListItem() {Text = "--Select--", Value=""},
                                        new SelectListItem() {Text = "Active", Value="1"},
-                                       new SelectListItem() {Text = "Inactive", Value="2"}} , new { @class="form-control" })
+                                       new SelectListItem() {Text = "Inactive", Value="2"}} , new { @class= "form-control validate[required]" })
                                     </div>
                                 </div>
 
@@ -319,7 +319,7 @@
         $.ajax({
 
             type: "POST",
-            url:"@Url.Action("BindStateDDL", "UsersForm")",
+            url:"@Url.Action("BindStateDDL", "UpdateEditForm")",
             success: function (data) {
                 $('#ddlstate').append(data);
             }
@@ -343,7 +343,7 @@
         $.ajax({
 
             type: "POST",
-            url: "@Url.Action("OnChangeBindCity", "UsersForm")",
+            url: "@Url.Action("OnChangeBindCity", "UpdateEditForm")",
             data: { "send": "" + value+  ""},
             success: function (data) {
 
@@ -368,7 +368,7 @@
         $.ajax({
 
             type: "POST",
-            url:"@Url.Action("BindRoleDDL", "UsersForm")",
+            url:"@Url.Action("BindRoleDDL", "UpdateEditForm")",
             success: function (data) {
                 $('#ddlRole').append(data);
             }

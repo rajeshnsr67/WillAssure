@@ -132,6 +132,8 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AddAlternateAppointeesController.cs" />
+    <Compile Include="Controllers\AddAppointeesController.cs" />
     <Compile Include="Controllers\AddAssetCategoryController.cs" />
     <Compile Include="Controllers\AddAssetInfoController.cs" />
     <Compile Include="Controllers\AddAssetMappingController.cs" />
@@ -145,7 +147,11 @@
     <Compile Include="Controllers\AddRelationController.cs" />
     <Compile Include="Controllers\AddTemplateMasterController.cs" />
     <Compile Include="Controllers\AddTestatorsFormController.cs" />
+    <Compile Include="Controllers\AlternateBeneficiaryController.cs" />
     <Compile Include="Controllers\AssetTypeController.cs" />
+    <Compile Include="Controllers\EditAlternateAppointeesController.cs" />
+    <Compile Include="Controllers\EditAlternateBeneficiaryController.cs" />
+    <Compile Include="Controllers\EditAppointeesController.cs" />
     <Compile Include="Controllers\EditAssetCategoryController.cs" />
     <Compile Include="Controllers\EditAssetInfoController.cs" />
     <Compile Include="Controllers\EditAssetsController.cs" />
@@ -164,19 +170,32 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginPageController.cs" />
     <Compile Include="Controllers\RoleAddController.cs" />
+    <Compile Include="Controllers\UpdateAlternateAppointeesController.cs" />
+    <Compile Include="Controllers\UpdateAlternateBeneficiaryController.cs" />
+    <Compile Include="Controllers\UpdateAppointeesController.cs" />
     <Compile Include="Controllers\UpdateAssetCategoryController.cs" />
     <Compile Include="Controllers\UpdateAssetTypeController.cs" />
     <Compile Include="Controllers\UpdateBeneficiaryController.cs" />
     <Compile Include="Controllers\UpdateDistributorController.cs" />
     <Compile Include="Controllers\UpdateEditFormController.cs" />
+    <Compile Include="Controllers\UpdateMainAssetsController.cs" />
     <Compile Include="Controllers\UpdateNomineeController.cs" />
     <Compile Include="Controllers\UpdateRolesController.cs" />
     <Compile Include="Controllers\UpdateTestatorsController.cs" />
     <Compile Include="Controllers\UsersFormController.cs" />
+    <Compile Include="CrystalReports\WillTestator.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WillTestator.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Admin.cs" />
+    <Compile Include="Models\AlternateAppointeesModel.cs" />
+    <Compile Include="Models\AlternateBeneficiaryModel.cs" />
+    <Compile Include="Models\AppointeesModel.cs" />
     <Compile Include="Models\AssetCategoryModel.cs" />
     <Compile Include="Models\AssetMappingModel.cs" />
     <Compile Include="Models\AssetsModel.cs" />
@@ -1059,6 +1078,16 @@
     <Content Include="Views\AddAssetMapping\AddAssetMappingPageContent.cshtml" />
     <Content Include="Views\AddMainAssets\AddMainAssetsPageContent.cshtml" />
     <Content Include="Views\EditMainAssets\EditMainAssetsPageContent.cshtml" />
+    <Content Include="Views\AddAlternateAppointees\AddAlternateAppointeesPageContent.cshtml" />
+    <Content Include="Views\AddAppointees\AddAppointeesPageContent.cshtml" />
+    <Content Include="Views\AlternateBeneficiary\AlternateBeneficiaryPageContent.cshtml" />
+    <Content Include="Views\EditAlternateAppointees\EditAlternateAppointeesPageContent.cshtml" />
+    <Content Include="Views\EditAlternateBeneficiary\EditAlternateBeneficiary.cshtml" />
+    <Content Include="Views\EditAppointees\EditAppointeesPageContent.cshtml" />
+    <Content Include="Views\UpdateAlternateAppointees\UpdateAlternateAppointeesPageContent.cshtml" />
+    <Content Include="Views\UpdateAlternateBeneficiary\UpdateAlternateBeneficiaryPageContent.cshtml" />
+    <Content Include="Views\UpdateAppointees\UpdateAppointeesPageContent.cshtml" />
+    <Content Include="Views\UpdateMainAssets\UpdateMainAssetsPageContent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1079,6 +1108,7 @@
   <ItemGroup>
     <EmbeddedResource Include="CrystalReports\WillTestator.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>WillTestator.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

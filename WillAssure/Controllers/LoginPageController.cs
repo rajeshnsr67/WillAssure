@@ -47,6 +47,10 @@ namespace WillAssure.Controllers
                 }
                 con.Close();
 
+
+                
+
+
                 ViewBag.Message = "SUCCESS";
                 return View("~/Views/Home/Index.cshtml");
             }
@@ -67,14 +71,15 @@ namespace WillAssure.Controllers
 
         public ActionResult Logout()
         {
+            Session["apId"] = "";
             Session["rId"] = "";
             Session["uid"] = "";
-            Session["compid"] = "";
+            Session["compId"] = "";
             Session["ComparerrId"] = "";
             Session["amId"] = "";
             Session["assetsCode"] = "";
-            Session["atId"] = "";
-            Session["aiId"] = "";
+            Session["aiid"] = "";
+            Session["bpId"] = "";
             Session["tid"] = "";
             Session["Document_Created_By"] = "";
             return View("~/Views/LoginPage/LoginPageContent.cshtml");

@@ -79,8 +79,8 @@
                                     <div class="form-group">
                                         <label for="input-1">State</label>
 
-                                        <select id="ddlstate" class="form-control">
-                                            <option value="0">--Select State--</option>
+                                        <select id="ddlstate" class="form-control validate[required]">
+                                            <option value="">--Select State--</option>
                                         </select>
                                         @Html.HiddenFor(m => m.stateid, new { id = "stateid" })
                                         @Html.HiddenFor(m => m.statetext, new { id = "statetext" })
@@ -92,8 +92,8 @@
 
                                     <div class="form-group">
                                         <label for="input-1">City</label>
-                                        <select id="ddlcity" class="form-control">
-                                            <option value="0">--Select City--</option>
+                                        <select id="ddlcity" class="form-control validate[required]">
+                                            <option value="">--Select City--</option>
                                         </select>
                                         @Html.HiddenFor(m => m.cityid, new { id = "cityid" })
                                         @Html.HiddenFor(m => m.citytext, new { id = "citytext" })
@@ -128,11 +128,11 @@
                                     <div class="form-group">
                                         <label for="input-3">Identity Proof</label>
                                         @Html.DropDownListFor(x => x.Identity_Proof, new SelectListItem[]{
-                                   new SelectListItem() {Text = "--Select Identity Proof--", Value="0"},
+                                   new SelectListItem() {Text = "--Select Identity Proof--", Value=""},
                                    new SelectListItem() {Text = "Aadhaar Card", Value="1"},
                                    new SelectListItem() {Text = "Passport", Value="2"},
                                    new SelectListItem() {Text = "Driving Licences", Value="3"},
-                                   new SelectListItem() {Text = "Pan Card", Value="4"}} , new { @class="form-control" , @onchange= "getIdentityselection(this.options[this.selectedIndex].innerHTML)" })
+                                   new SelectListItem() {Text = "Pan Card", Value="4"}} , new { @class= "form-control validate[required]", @onchange= "getIdentityselection(this.options[this.selectedIndex].innerHTML)" })
 
                                     </div>
                                 </div>
@@ -152,14 +152,14 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="input-3">Alternate Identity Proof</label>
-                                        @Html.TextBoxFor(m => m.Alt_Identity_Proof, new { @class = "form-control  text-input", @id = "txtAlt_Identity_Proof", @placeholder = "Enter Alt Identity Proof", @autocomplete = "off" })
+                                        @Html.TextBoxFor(m => m.Alt_Identity_Proof, new { @class = "form-control  text-input validate[required]", @id = "txtAlt_Identity_Proof", @placeholder = "Enter Alt Identity Proof", @autocomplete = "off" })
                                     </div>
                                 </div>
 
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="input-3">Alternate Identity Proof Number</label>
-                                        @Html.TextBoxFor(m => m.Alt_Identity_Proof_Value, new { @class = "form-control  text-input", @id = "txtAlt_Identity_Proof_Value", @placeholder = "Enter Your Alt Identity Proof Value", @autocomplete = "off" })
+                                        @Html.TextBoxFor(m => m.Alt_Identity_Proof_Value, new { @class = "form-control  text-input validate[required]", @id = "txtAlt_Identity_Proof_Value", @placeholder = "Enter Your Alt Identity Proof Value", @autocomplete = "off" })
                                     </div>
                                 </div>
 

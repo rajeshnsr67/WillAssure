@@ -34,7 +34,6 @@
 
 
                         @using (Html.BeginForm("InsertAssetsData", null, FormMethod.Post, new { id = "AssetsForm" }))
-
                         {
                             <div class="row">
                                 <div class="col-sm-6">
@@ -42,8 +41,8 @@
                                     <div class="form-group">
                                         <label for="input-1">Asset Type</label>
 
-                                        <select id="ddlAssetType" class="form-control">
-                                            <option value="0">--Select--</option>
+                                        <select id="ddlAssetType" class="form-control validate[required]">
+                                            <option value="">--Select--</option>
                                         </select>
                                         @Html.HiddenFor(m => m.assettypeid, new { id = "assettypeid" })
                                         @Html.HiddenFor(m => m.assettypetext, new { id = "assettypetext" })
@@ -57,8 +56,8 @@
                                     <div class="form-group">
                                         <label for="input-1">Asset Category</label>
 
-                                        <select id="ddlAssetCategory" class="form-control">
-                                            <option value="0">--Select--</option>
+                                        <select id="ddlAssetCategory" class="form-control validate[required]">
+                                            <option value="">--Select--</option>
                                         </select>
                                         @Html.HiddenFor(m => m.assetCategoryid, new { id = "assetCategoryid" })
                                         @Html.HiddenFor(m => m.assetCategorytext, new { id = "assetCategorytext" })
@@ -94,30 +93,30 @@
 
 
 
-                            <textarea id="assetcolumn" style="display:;" name="assetcolumn" class="form-control">
+                            <textarea id="assetcolumn" style="display:none;" name="assetcolumn" class="form-control">
 
                             </textarea>
 
-                            <textarea id="col" style="display:;" name="col" class="form-control">
+                            <textarea id="col" style="display:none;" name="col" class="form-control">
 
                             </textarea>
 
-                            <textarea id="val" style="display:;" name="val" class="form-control">
-
-                            </textarea>
-
-
-                            <textarea id="assetcolumnValues" style="display:;" name="assetcolumnValues" class="form-control">
+                            <textarea id="val" style="display:none;" name="val" class="form-control">
 
                             </textarea>
 
 
-                            <textarea id="controls" style="display:;" name="controls" class="form-control">
+                            <textarea id="assetcolumnValues" style="display:none;" name="assetcolumnValues" class="form-control">
 
                             </textarea>
 
 
-                            <textarea id="values" style="display:;" name="values" class="form-control">
+                            <textarea id="controls" style="display:none;" name="controls" class="form-control">
+
+                            </textarea>
+
+
+                            <textarea id="values" style="display:none;" name="values" class="form-control">
 
                             </textarea>
 
@@ -173,7 +172,7 @@
             url: "@Url.Action("BindAssetTypeDDL", "AddAssets")",
             success: function (data) {
 
-                $('#ddlAssetType').empty().append('<option value="0">--Select--</option>'+data);
+                $('#ddlAssetType').empty().append('<option value="">--Select--</option>'+data);
             }
 
 
@@ -216,8 +215,6 @@
 
         $("#assettypetext").val(text);
         $("#assettypeid").val(value);
-
-
 
 
         $.ajax({
@@ -399,10 +396,25 @@
 
 <script>
 
-    function getAssetColumnValue(ENTITY) {
+        $(document).on('change', '.Entityinput', function () {
 
-   
+            $(".Entityinput").attr('disabled', 'disabled');
+        });
         
+        $(document).on('change', '.labelinput', function () {
+
+            $(".labelinput").attr('disabled', 'disabled');
+        });
+
+        $(document).on('change', '.ddlcontrolinput', function () {
+
+            $(".ddlcontrolinput").attr('disabled', 'disabled');
+        });
+        
+
+        function getAssetColumnValue(ENTITY) {
+           
+            alert(ENTITY);
         
 
         $("#assetcolumn").append("" + ENTITY + ",");
@@ -410,7 +422,9 @@
         $("#col").append("" + ENTITY + "Controls" + ",");
         $("#val").append("" + ENTITY + "Values" + ",");
 
-        $("#assetcolumnValues").append("'"+ENTITY+"~");
+        $("#assetcolumnValues").append("'" + ENTITY + "~");
+
+            $("#ddlassetcat").attr('disabled', 'disabled');
     }
 
 
@@ -422,12 +436,38 @@
 
         $("#assetcolumnValues").append("" + value +  "',");
 
-
+        $("#txtlabel").attr('disabled', 'disabled');
 
     }
 
+        //$(document).on('change', '#DDLControls', function () {
+
+        //    var id = $(this).children(":selected").attr("value");
+        //    var text = $("#DDLControls option:selected").html();
+
+        //    var parent = $(this).closest("#listdata").find("#txtval").removeAttr("disabled");
+             
+           
+            
+        //    if (id == "TextBox" || id == "TextArea" || id == "DatePicker") {
+        //    $("#values").append("'" + '' + "',");
+
+              
+        // }
+
+        //if (id == "RadioButton" || id == "CheckBox") {
 
 
+           
+        //}
+
+        //$("#controls").append("'" + id + "',");
+
+
+
+
+
+        //});
 
 
 
@@ -437,11 +477,22 @@
 
         if (id == "TextBox" || id == "TextArea" || id =="DatePicker") {
             $("#values").append("'" + '' + "',");
+            
+            $("#lbldynamic").css("display", "none");
+            $("#txtval").css("display", "none");
+        }
+
+        if (id == "RadioButton" || id == "CheckBox") {
+
+            
+            $("#lbldynamic").css("display", "inline");
+            $("#txtval").css("display", "inline");
         }
         
         $("#controls").append("'" + id + "',");
-
-
+        
+       
+       
     }
 
 

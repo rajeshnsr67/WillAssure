@@ -37,7 +37,7 @@ namespace WillAssure.Controllers
                 UFM.FirstName = dt.Rows[0]["First_Name"].ToString();
                 UFM.LastName = dt.Rows[0]["Last_Name"].ToString();
                 UFM.MiddleName = dt.Rows[0]["Middle_Name"].ToString();
-                UFM.Dob = dt.Rows[0]["DOB"].ToString();
+                UFM.Dob = Convert.ToDateTime(dt.Rows[0]["DOB"]);
                 UFM.Mobile = dt.Rows[0]["Mobile"].ToString();
                 UFM.Email = dt.Rows[0]["eMail"].ToString();
                 UFM.Address1 = dt.Rows[0]["Address1"].ToString();
@@ -113,7 +113,7 @@ namespace WillAssure.Controllers
             cmd.Parameters.AddWithValue("@FirstName", UFM.FirstName);
             cmd.Parameters.AddWithValue("@LastName", UFM.LastName);
             cmd.Parameters.AddWithValue("@MiddleName", UFM.MiddleName);
-            cmd.Parameters.AddWithValue("@Dob",UFM.Dob.ToString());
+            cmd.Parameters.AddWithValue("@Dob",UFM.Dob);
             cmd.Parameters.AddWithValue("@Mobile", UFM.Mobile);
             cmd.Parameters.AddWithValue("@Email", UFM.Email);
             cmd.Parameters.AddWithValue("@Address1", UFM.Address1);
@@ -177,6 +177,83 @@ namespace WillAssure.Controllers
             return data;
 
         }
+
+
+
+        public String BindStateDDL()
+        {
+
+            con.Open();
+            string query = "select * from tbl_state";
+            SqlDataAdapter da = new SqlDataAdapter(query, con);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            con.Close();
+            string data = "";
+
+            if (dt.Rows.Count > 0)
+            {
+
+
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+
+
+
+
+                    data = data + "<option value=" + dt.Rows[i]["state_id"].ToString() + " >" + dt.Rows[i]["statename"].ToString() + "</option>";
+
+
+
+                }
+
+
+
+
+            }
+
+            return data;
+
+        }
+
+
+
+        public string OnChangeBindCity()
+        {
+            string response = Request["send"];
+            con.Open();
+            string query = "select * from tbl_city where state_id = '" + response + "'";
+            SqlDataAdapter da = new SqlDataAdapter(query, con);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            con.Close();
+            string data = "";
+
+            if (dt.Rows.Count > 0)
+            {
+
+
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+
+
+
+
+                    data = data + "<option value=" + dt.Rows[i]["id"].ToString() + " >" + dt.Rows[i]["city_name"].ToString() + "</option>";
+
+
+
+                }
+
+
+
+
+            }
+
+            return data;
+        }
+
+
 
 
 

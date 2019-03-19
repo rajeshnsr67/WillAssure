@@ -105,10 +105,10 @@ namespace WillAssure.Controllers
         public ActionResult InsertBeneficiaryData(BeneficiaryModel BM)
         {
 
-            if (Session["aiId"] != null && Session["tid"] != null)
+            if (Session["aiid"] != null && Session["tid"] != null)
             {
-                BM.aid = Convert.ToInt32(Session["aiId"]);
-                BM.tid = Convert.ToInt32(Session["tId"]);
+                BM.aid = Convert.ToInt32(Session["aiid"]);
+                BM.tid = Convert.ToInt32(Session["tid"]);
 
 
                 con.Open();
@@ -139,12 +139,32 @@ namespace WillAssure.Controllers
                 cmd.ExecuteNonQuery();
                 con.Close();
 
+
+                con.Open();
+                string query2 = "select top 1 * from BeneficiaryDetails order by bpId desc";
+                SqlDataAdapter da = new SqlDataAdapter(query2,con);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                if (dt.Rows.Count > 0)
+                {
+                    Session["bpId"] = "";
+                    Session["bpId"] = Convert.ToInt32(dt.Rows[0]["bpId"]);
+                }
+                con.Close();
+
+
+
+
                 ViewBag.Message = "RecordsInsert";
+
+
+
+
 
             }
             else
             {
-                Response.Write("<script>alert('Please Fill Testator and Assets First')</script>");
+                Response.Write("<script>alert('Please Fill Testator and Assets Information First')</script>");
             }
 
           
@@ -165,7 +185,7 @@ namespace WillAssure.Controllers
             DataTable dt = new DataTable();
             da.Fill(dt);
             con.Close();
-            string data = "<option value='0' >--Select--</option>";
+            string data = "<option value='' >--Select--</option>";
 
             if (dt.Rows.Count > 0)
             {

@@ -115,9 +115,13 @@
                                     <div class="form-group">
                                         <label for="input-3">Marital Status</label>
                                         @Html.DropDownListFor(x => x.Gendertext, new SelectListItem[]{
-                                        new SelectListItem() {Text = "--Select--", Value="0"},
+                                        new SelectListItem() {Text = "--Select--", Value=""},
                                        new SelectListItem() {Text = "Married", Value="1"},
-                                        new SelectListItem() {Text = "UnMarried", Value="2"}}, new { @class = "form-control" })
+                                       new SelectListItem() {Text = "UnMarried", Value="2"}}, new { @class = "form-control validate[required]" , @id="ddlmaritalstatus" })
+
+                                        @Html.HiddenFor(m => m.material_status_id, new { id = "material_status_id" })
+                                        @Html.HiddenFor(m => m.material_status_txt, new { id = "material_status_txt" })
+
                                     </div>
                                 </div>
 
@@ -125,8 +129,8 @@
 
                                     <div class="form-group">
                                         <label for="input-1">Religion</label>
-                                        @Html.DropDownListFor(x => x.Religiontext, new SelectListItem[]{
-                                 new SelectListItem() {Text = "--Select--", Value="0"},
+                                        @Html.DropDownListFor(x => x.ReligionId, new SelectListItem[]{
+                                 new SelectListItem() {Text = "--Select--", Value=""},
                                  new SelectListItem() {Text = "Buddhism", Value="1"},
                                  new SelectListItem() {Text = "Christians", Value="2"},
                                  new SelectListItem() {Text = "Hinduism", Value="3"},
@@ -136,9 +140,10 @@
                                  new SelectListItem() {Text = "Zoroastrian", Value="7"},
                                  new SelectListItem() {Text = "Guru Nanak Dev", Value="8"},
                                  new SelectListItem() {Text = "Lord Mahavira", Value="9"},
-                                 new SelectListItem() {Text = "Adi Shankaracharya", Value="10"}}, new { @class = "form-control" })
+                                 new SelectListItem() {Text = "Adi Shankaracharya", Value="10"}}, new { @class = "form-control validate[required]" , @id="ddlreligion" })
 
-
+                                        @Html.HiddenFor(m => m.ReligionId, new { id = "ReligionId" })
+                                        @Html.HiddenFor(m => m.Religiontext, new { id = "Religiontext" })
 
 
                                     </div>
@@ -149,12 +154,13 @@
                                     <div class="form-group">
                                         <label for="input-3">Identity Proof</label>
                                         @Html.DropDownListFor(x => x.Identity_Proof, new SelectListItem[]{
-                                   new SelectListItem() {Text = "--Select Identity Proof--", Value="0"},
+                                   new SelectListItem() {Text = "--Select Identity Proof--", Value=""},
                                    new SelectListItem() {Text = "Aadhaar Card", Value="1"},
                                    new SelectListItem() {Text = "Passport", Value="2"},
                                    new SelectListItem() {Text = "Driving Licences", Value="3"},
-                                   new SelectListItem() {Text = "Pan Card", Value="4"}} , new { @class="form-control" , @onchange= "getIdentityselection(this.options[this.selectedIndex].innerHTML)" })
+                                   new SelectListItem() {Text = "Pan Card", Value="4"}} , new { @class= "form-control validate[required]", @id="ddlidentityproof" , @onchange= "getIdentityselection(this.options[this.selectedIndex].innerHTML)" })
 
+                                        @Html.HiddenFor(m => m.Identity_Proof_txt, new { id = "Identity_Proof_txt" })
                                     </div>
                                 </div>
 
@@ -174,7 +180,7 @@
                                     <div class="form-group">
                                         <label for="input-1">Alt Identity Proof</label>
 
-                                        @Html.TextBoxFor(m => m.Alt_Identity_Proof, new { @class = "form-control  text-input", @id = "txtAltIdentityProof", @placeholder = "Enter Alt Identity Proof", @autocomplete = "off" })
+                                        @Html.TextBoxFor(m => m.Alt_Identity_Proof, new { @class = "form-control validate[required]  text-input", @id = "txtAltIdentityProof", @placeholder = "Enter Alt Identity Proof", @autocomplete = "off" })
                                     </div>
                                 </div>
 
@@ -184,18 +190,23 @@
                                     <div class="form-group">
                                         <label for="input-1">Alt Identity proof Value</label>
 
-                                        @Html.TextBoxFor(m => m.Alt_Identity_proof_Value, new { @class = "form-control  text-input", @id = "txtAltIdentityproofValue", @placeholder = "Enter Alt Identity proof Value", @autocomplete = "off" })
+                                        @Html.TextBoxFor(m => m.Alt_Identity_proof_Value, new { @class = "form-control validate[required]  text-input", @id = "txtAltIdentityproofValue", @placeholder = "Enter Alt Identity proof Value", @autocomplete = "off" })
                                     </div>
                                 </div>
 
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="input-3">Gender</label>
-                                        @Html.DropDownListFor(x => x.Gendertext, new SelectListItem[]{
-                                        new SelectListItem() {Text = "--Select--", Value="0"},
-                                        new SelectListItem() {Text = "Male", Value="1"},
-                                        new SelectListItem() {Text = "Female", Value="2"},
-                                        new SelectListItem() {Text = "Transgender", Value="3"}}, new { @class = "form-control" })
+
+                                        <select class="form-control validate[required]" name="Gendertext" id="ddlgender">
+                                            <option value="">--Select--</option>
+                                            <option value="Male">Male</option>
+                                            <option value="Female">Female</option>
+                                            <option value="TransGender">TransGender</option>
+                                        </select>
+
+                                        @Html.HiddenFor(m => m.GenderId, new { id = "GenderId" })
+                                        @Html.HiddenFor(m => m.Gendertext, new { id = "Gendertext" })
                                     </div>
                                 </div>
 
@@ -234,8 +245,8 @@
 
                                     <div class="form-group">
                                         <label for="input-1">Country</label>
-                                        <select id="ddlcountry" class="form-control">
-                                            <option value="0">--Select Country--</option>
+                                        <select id="ddlcountry" class="form-control validate[required]">
+                                            <option value="">--Select Country--</option>
                                         </select>
                                         @Html.HiddenFor(m => m.countryid, new { id = "countryid" })
                                         @Html.HiddenFor(m => m.countrytext, new { id = "countrytext" })
@@ -250,8 +261,8 @@
                                     <div class="form-group">
                                         <label for="input-1">State</label>
 
-                                        <select id="ddlstate" class="form-control">
-                                            <option value="0">--Select State--</option>
+                                        <select id="ddlstate" class="form-control validate[required]">
+                                            <option value="">--Select State--</option>
                                         </select>
                                         @Html.HiddenFor(m => m.stateid, new { id = "stateid" })
                                         @Html.HiddenFor(m => m.statetext, new { id = "statetext" })
@@ -265,8 +276,8 @@
 
                                     <div class="form-group">
                                         <label for="input-1">City</label>
-                                        <select id="ddlcity" class="form-control">
-                                            <option value="0">--Select City--</option>
+                                        <select id="ddlcity" class="form-control validate[required]">
+                                            <option value="">--Select City--</option>
                                         </select>
                                         @Html.HiddenFor(m => m.cityid, new { id = "cityid" })
                                         @Html.HiddenFor(m => m.citytext, new { id = "citytext" })
@@ -286,7 +297,7 @@
                                     <div class="form-group">
                                         <label for="input-1">Pin</label>
 
-                                        @Html.TextBoxFor(m => m.Pin, new { @class = "form-control validate[required] text-input", @id = "txtComanyName", @placeholder = "Enter Company Name", @autocomplete = "off" })
+                                        @Html.TextBoxFor(m => m.Pin, new { @class = "form-control validate[required,custom[integer],maxSize[6]] text-input", @id = "txtComanyName", @placeholder = "Enter Company Name", @autocomplete = "off" })
                                     </div>
                                 </div>
 
@@ -295,9 +306,9 @@
                                     <div class="form-group">
                                         <label for="input-3">Status</label>
                                         @Html.DropDownListFor(x => x.active, new SelectListItem[]{
-                                       new SelectListItem() {Text = "--Select--", Value="0"},
+                                       new SelectListItem() {Text = "--Select--", Value=""},
                                        new SelectListItem() {Text = "Active", Value="1"},
-                                       new SelectListItem() {Text = "Inactive", Value="2"}}, new { @class = "form-control" })
+                                       new SelectListItem() {Text = "Inactive", Value="2"}}, new { @class = "form-control validate[required]" })
                                     </div>
                                 </div>
 
@@ -313,7 +324,49 @@
 
 
                             </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
 
+                                    <label style="line-height:41px;">Document Type</label>
+
+
+                                </div>
+
+                                <div class="col-sm-3">
+                                    @Html.DropDownListFor(x => x.documenttype, new SelectListItem[]{
+                                     new SelectListItem() {Text = "--Select--", Value=""},
+                                   
+                                     new SelectListItem() {Text = "Will", Value="Will"}}, new { @class = "form-control validate[required]", @id="ddldocumentcreatedby" })
+
+                                    @Html.HiddenFor(m => m.Document_Created_By_ID, new { id = "Document_Created_By_ID" })
+                                    @Html.HiddenFor(m => m.Document_Created_By_txt, new { id = "Document_Created_By_txt" })
+
+                                </div>
+
+
+
+                                <div class="col-sm-3">
+
+                                    <label style="line-height:41px;">Category</label>
+
+
+                                </div>
+
+                                <div class="col-sm-3">
+                                    @Html.DropDownListFor(x => x.documentcategory, new SelectListItem[]{
+                                    new SelectListItem() {Text = "--Select--", Value=""},
+                                    new SelectListItem() {Text = "Quick", Value="Quick"},
+                                    new SelectListItem() {Text = "Detailed", Value="Detailed"}}, new { @class = "form-control validate[required]", id= "DDLAmtPaidBY" })
+
+                                    @Html.HiddenFor(m => m.Amt_Paid_By_By_ID, new { id = "Amt_Paid_By_By_ID" })
+                                    @Html.HiddenFor(m => m.Amt_Paid_By_txt, new { id = "Amt_Paid_By_txt" })
+
+
+                                </div>
+                            </div>
+
+                            <hr>
 
                             <hr>
                             <div class="row">
@@ -326,9 +379,9 @@
 
                                 <div class="col-sm-3">
                                     @Html.DropDownListFor(x => x.Document_Created_By, new SelectListItem[]{
-                                     new SelectListItem() {Text = "--Select--", Value="0"},
+                                     new SelectListItem() {Text = "--Select--", Value=""},
                                      new SelectListItem() {Text = "Distributor", Value="1"},
-                                     new SelectListItem() {Text = "Testator", Value="2"}}, new { @class = "form-control" , @id="ddldocumentcreatedby" })
+                                     new SelectListItem() {Text = "Testator", Value="2"}}, new { @class = "form-control validate[required]", @id="ddldocumentcreatedby" })
 
                                     @Html.HiddenFor(m => m.Document_Created_By_ID, new { id = "Document_Created_By_ID" })
                                     @Html.HiddenFor(m => m.Document_Created_By_txt, new { id = "Document_Created_By_txt" })
@@ -346,9 +399,9 @@
 
                                 <div class="col-sm-3">
                                     @Html.DropDownListFor(x => x.Amt_Paid_By, new SelectListItem[]{
-                                    new SelectListItem() {Text = "--Select--", Value="0"},
+                                    new SelectListItem() {Text = "--Select--", Value=""},
                                     new SelectListItem() {Text = "Distributor", Value="1"},
-                                    new SelectListItem() {Text = "Testator", Value="2"}}, new { @class = "form-control" , id= "DDLAmtPaidBY" })
+                                    new SelectListItem() {Text = "Testator", Value="2"}}, new { @class = "form-control validate[required]", id= "DDLAmtPaidBY" })
 
                                     @Html.HiddenFor(m => m.Amt_Paid_By_By_ID, new { id = "Amt_Paid_By_By_ID" })
                                     @Html.HiddenFor(m => m.Amt_Paid_By_txt, new { id = "Amt_Paid_By_txt" })
@@ -447,6 +500,60 @@
 
 
     });
+
+
+
+ 
+
+
+    $("#ddlgender").change(function () {
+        var value = $(this).children(":selected").attr("value");
+        var text = $("#ddlgender option:selected").html();
+       
+        $("#Gendertext").val(text);
+        $("#GenderId").val(value);
+
+
+      
+
+
+
+    });
+
+
+
+
+    $("#ddlreligion").change(function () {
+        var value = $(this).children(":selected").attr("value");
+        var text = $("#ddlreligion option:selected").html();
+
+        $("#Religiontext").val(text);
+        $("#ReligionId").val(value);
+
+
+
+
+
+
+    });
+
+
+    $("#ddlmaritalstatus").change(function () {
+        var value = $(this).children(":selected").attr("value");
+        var text = $("#ddlmaritalstatus option:selected").html();
+
+        $("#material_status_txt").val(text);
+        $("#material_status_id").val(value);
+
+
+
+
+
+
+    });
+
+
+
 </script>
 @*end*@
 
@@ -612,6 +719,10 @@
 @*validation script*@
 <script>
     function getIdentityselection(id) {
+
+        $("#Identity_Proof_txt").val(id);
+
+    
         if (id == "Aadhaar Card") {
             $("#appendtxt").empty().append("<input type='text' class='form-control validate[required,custom[adharCard]] text-input' id='Identity_Proof_Value' name='Identity_Proof_Value' placeholder='Enter Aadhaar Card' autocomplete='off'  />");
         }

@@ -67,6 +67,7 @@ namespace WillAssure.Controllers
             da.Fill(dt);
             if (dt.Rows.Count > 0)
             {
+                Session["compId"] = "";
                 Session["compId"] = Convert.ToInt32(dt.Rows[0]["compId"]); 
             }
             con.Close();
@@ -89,7 +90,7 @@ namespace WillAssure.Controllers
             DataTable dt = new DataTable();
             da.Fill(dt);
             con.Close();
-            string data = "<option value='0'>--Select--</option>";
+            string data = "<option value=''>--Select--</option>";
 
             if (dt.Rows.Count > 0)
             {
@@ -127,7 +128,7 @@ namespace WillAssure.Controllers
             DataTable dt = new DataTable();
             da.Fill(dt);
             con.Close();
-            string data = "<option value='0'>--Select--</option>";
+            string data = "<option value=''>--Select--</option>";
 
             if (dt.Rows.Count > 0)
             {

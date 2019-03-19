@@ -78,265 +78,304 @@ namespace WillAssure.Controllers
             //END
 
 
-
-
-            TFM.uId = Convert.ToInt32(Session["uid"]); 
-
-            con.Open();
-            SqlCommand cmd = new SqlCommand("SP_CRUDTestatorDetails", con);
-            cmd.CommandType = System.Data.CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@condition", "insert");
-            cmd.Parameters.AddWithValue("@First_Name", TFM.First_Name);
-            cmd.Parameters.AddWithValue("@Last_Name", TFM.Last_Name);
-            cmd.Parameters.AddWithValue("@Middle_Name", TFM.Middle_Name);
-            cmd.Parameters.AddWithValue("@DOB", TFM.DOB);
-            cmd.Parameters.AddWithValue("@Occupation", TFM.Occupation);
-            cmd.Parameters.AddWithValue("@Mobile", TFM.Mobile);
-            cmd.Parameters.AddWithValue("@Email", TFM.Email);
-            cmd.Parameters.AddWithValue("@maritalStatus", TFM.GenderId);
-            cmd.Parameters.AddWithValue("@Religion", TFM.ReligionId);
-            cmd.Parameters.AddWithValue("@Identity_Proof", TFM.Identity_Proof);
-            cmd.Parameters.AddWithValue("@Identity_proof_Value", TFM.Identity_proof_Value);
-            cmd.Parameters.AddWithValue("@Alt_Identity_Proof", TFM.Alt_Identity_Proof);
-            cmd.Parameters.AddWithValue("@Alt_Identity_proof_Value", TFM.Alt_Identity_proof_Value);
-            cmd.Parameters.AddWithValue("@Gender", TFM.GenderId);
-            cmd.Parameters.AddWithValue("@Address1", TFM.Address1);
-            cmd.Parameters.AddWithValue("@Address2", TFM.Address2);
-            cmd.Parameters.AddWithValue("@Address3", TFM.Address3);
-            cmd.Parameters.AddWithValue("@City", TFM.countryid);
-            cmd.Parameters.AddWithValue("@State", TFM.stateid);
-            cmd.Parameters.AddWithValue("@Country", TFM.countryid);
-            cmd.Parameters.AddWithValue("@Pin", TFM.Pin);
-            cmd.Parameters.AddWithValue("@active", TFM.active);
-            cmd.Parameters.AddWithValue("@Contact_Verification","0");
-            cmd.Parameters.AddWithValue("@Email_Verification", "0");
-            cmd.Parameters.AddWithValue("@Mobile_Verification_Status", "0");
-            cmd.Parameters.AddWithValue("@Email_OTP", TFM.EmailOTP);
-            cmd.Parameters.AddWithValue("@Mobile_OTP", TFM.MobileOTP);
-            cmd.Parameters.AddWithValue("@uid", TFM.uId);
-            cmd.ExecuteNonQuery();
-            con.Close();
-
-            int testatorid = 0;
-            int templateid = 0;
-            string testatortype = "";
-
-            // for storing testator id and created by in document master
-            con.Open();
-            string query = "select top 1 * from TestatorDetails order by tId desc ";
-            SqlDataAdapter da = new SqlDataAdapter(query,con);
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-            if (dt.Rows.Count > 0)
+            if (Session["uid"] != null)
             {
-            testatorid = Convert.ToInt32(dt.Rows[0]["tId"]); 
+                TFM.uId = Convert.ToInt32(Session["uid"]);
+
+                con.Open();
+                SqlCommand cmd = new SqlCommand("SP_CRUDTestatorDetails", con);
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@condition", "insert");
+                cmd.Parameters.AddWithValue("@First_Name", TFM.First_Name);
+                cmd.Parameters.AddWithValue("@Last_Name", TFM.Last_Name);
+                cmd.Parameters.AddWithValue("@Middle_Name", TFM.Middle_Name);
+                cmd.Parameters.AddWithValue("@DOB", TFM.DOB);
+                cmd.Parameters.AddWithValue("@Occupation", TFM.Occupation);
+                cmd.Parameters.AddWithValue("@Mobile", TFM.Mobile);
+                cmd.Parameters.AddWithValue("@Email", TFM.Email);
+                cmd.Parameters.AddWithValue("@maritalStatus", TFM.material_status_txt);
+                cmd.Parameters.AddWithValue("@Religion", TFM.Religiontext);
+                cmd.Parameters.AddWithValue("@Identity_Proof", TFM.Identity_Proof_txt);
+                cmd.Parameters.AddWithValue("@Identity_proof_Value", TFM.Identity_proof_Value);
+                cmd.Parameters.AddWithValue("@Alt_Identity_Proof", TFM.Alt_Identity_Proof);
+                cmd.Parameters.AddWithValue("@Alt_Identity_proof_Value", TFM.Alt_Identity_proof_Value);
+                cmd.Parameters.AddWithValue("@Gender", TFM.Gendertext);
+                cmd.Parameters.AddWithValue("@Address1", TFM.Address1);
+                cmd.Parameters.AddWithValue("@Address2", TFM.Address2);
+                cmd.Parameters.AddWithValue("@Address3", TFM.Address3);
+                cmd.Parameters.AddWithValue("@City", TFM.citytext);
+                cmd.Parameters.AddWithValue("@State", TFM.statetext);
+                cmd.Parameters.AddWithValue("@Country", TFM.countrytext);
+                cmd.Parameters.AddWithValue("@Pin", TFM.Pin);
+                cmd.Parameters.AddWithValue("@active", TFM.active);
+                cmd.Parameters.AddWithValue("@Contact_Verification", "0");
+                cmd.Parameters.AddWithValue("@Email_Verification", "0");
+                cmd.Parameters.AddWithValue("@Mobile_Verification_Status", "0");
+                cmd.Parameters.AddWithValue("@Email_OTP", TFM.EmailOTP);
+                cmd.Parameters.AddWithValue("@Mobile_OTP", TFM.MobileOTP);
+                cmd.Parameters.AddWithValue("@uid", TFM.uId);
+                cmd.ExecuteNonQuery();
+                con.Close();
+
+                int testatorid = 0;
+                int templateid = 0;
+                string testatortype = "";
+
+                // for storing testator id and created by in document master
+                con.Open();
+                string query = "select top 1 * from TestatorDetails order by tId desc ";
+                SqlDataAdapter da = new SqlDataAdapter(query, con);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                if (dt.Rows.Count > 0)
+                {
+                    testatorid = Convert.ToInt32(dt.Rows[0]["tId"]);
+                    Session["tid"] = "";
+                    Session["tid"] = testatorid;
+                }
+                con.Close();
+                //end
+
+
+
+                // for storing templateMaster templateid and  testator id in document master
+                con.Open();
+                string q2 = "select * from templateMaster";
+                SqlDataAdapter da2 = new SqlDataAdapter(q2, con);
+                DataTable dt2 = new DataTable();
+                da2.Fill(dt2);
+                if (dt2.Rows.Count > 0)
+                {
+                    templateid = Convert.ToInt32(dt2.Rows[0]["templateid"]);
+
+                    Session["templateid"] = templateid;
+                    testatortype = dt2.Rows[0]["testator_type"].ToString();
+                    Session["Document_Created_By"] = "";
+                    Session["Document_Created_By"] = TFM.Document_Created_By;
+                }
+                con.Close();
+                //end
+
+
+                // document generation 
+
               
-            }
-            con.Close();
-            //end
-
-
-
-            // for storing templateMaster templateid and  testator id in document master
-            con.Open();
-            string q2= "select * from templateMaster";
-            SqlDataAdapter da2 = new SqlDataAdapter(q2, con);
-            DataTable dt2 = new DataTable();
-            da2.Fill(dt2);
-            if (dt2.Rows.Count > 0)
-            {
-                templateid = Convert.ToInt32(dt2.Rows[0]["templateid"]);
-                Session["tid"] = "";
-                Session["tid"] = templateid;
-                testatortype = dt2.Rows[0]["testator_type"].ToString();
-                Session["Document_Created_By"] = "";
-                Session["Document_Created_By"] = TFM.Document_Created_By;
-            }
-            con.Close();
-            //end
-
-
-            // insert values in document master 
-            //con.Open();
-            //string q = "insert into [documentMaster] (tid,created_by,templateId,testator_type) values (" +testatorid+"' , '"+TFM.Document_Created_By+"' , "+templateid+" , '"+testatortype+"')";
-            //SqlCommand c = new SqlCommand(q, con);
-            //c.ExecuteNonQuery();
-            //con.Close();
-
-
-
-            //end
-
-
-
-
-
-            //1st condition
-            if (TFM.Amt_Paid_By_txt == "Distributor" && TFM.Document_Created_By_txt == "Distributor")
-            {
-                TFM.Authentication_Required = 0;
-                TFM.Link_Required = 0;
-                TFM.Login_Required = 0;
-
                 con.Open();
-                string query1 = "insert into Authorization_Rules (Document_Created_By,Distributor_Id,Amt_Paid_By,Testator_Id,Authentication_Required,Link_Required,Login_Required) values ('" + TFM.Document_Created_By_txt + "' , '" + TFM.Document_Created_By_ID + "' , '" + TFM.Amt_Paid_By_txt + "' , '" + TFM.Amt_Paid_By + "'  , '"+TFM.Authentication_Required+"' , '"+TFM.Link_Required+"' , '"+TFM.Login_Required+"') ";
-                SqlCommand cmd2 = new SqlCommand(query1,con);
-                cmd2.ExecuteNonQuery();
-                con.Close();
-             
-             
-            }
-            //end
-            //2nd condition 
-            if (TFM.Amt_Paid_By_txt == "Distributor" && TFM.Document_Created_By_txt == "Testator")
-            {
-                TFM.Authentication_Required = 1;
-                TFM.Link_Required = 1;
-                TFM.Login_Required = 1;
-
-                con.Open();
-                string query2 = "insert into Authorization_Rules (Document_Created_By,Distributor_Id,Amt_Paid_By,Testator_Id,Authentication_Required,Link_Required,Login_Required) values ('" + TFM.Document_Created_By_txt + "' , '" + TFM.Document_Created_By_ID + "' , '" + TFM.Amt_Paid_By_txt + "' , '" + TFM.Amt_Paid_By + "'  , '" + TFM.Authentication_Required + "' , '" + TFM.Link_Required + "' , '" + TFM.Login_Required + "') ";
-                SqlCommand cmd2 = new SqlCommand(query2, con);
-                cmd2.ExecuteNonQuery();
+                string q = "insert into documentMaster (tId,templateId,IsUpdatetable,uId,pId,created_by,testator_type) values (" + testatorid + " , " + templateid + " ,  'Yes' ,   "+Convert.ToInt32(Session["uid"]) +" , 1 , '" + TFM.Document_Created_By_txt + "' , '" + testatortype + "')";
+                SqlCommand c = new SqlCommand(q, con);
+                c.ExecuteNonQuery();
                 con.Close();
 
-               
 
-
-
-                //generate Mail
-
-                string mailid = "imransayyed528@gmail.com";
-                string mailto = TFM.Email;
-                //string mailto = "willtestmail@mailprotech.com";
-                string subject = "Testing Mail Sending";
-                string OTP = "<font color='Green' style='font-size=3em;'>" + TFM.EmailOTP + "</font>";
-                string text = "Your OTP for Verification Is "+ OTP + "";
-                string body = "<font color='red'>" + text + "</font>";
-                using (MailMessage mm = new MailMessage(mailid, mailto))
-                {
-                    mm.Subject = subject;
-                    mm.Body = body;
-
-                    mm.IsBodyHtml = true;
-                    SmtpClient smtp = new SmtpClient();
-                    smtp.Host = "smtp.gmail.com";
-                    smtp.EnableSsl = true;
-                    NetworkCredential NetworkCred = new NetworkCredential(mailid, TFM.password);
-                    smtp.UseDefaultCredentials = true;
-                    smtp.Credentials = NetworkCred;
-                    smtp.Port = 587;
-                    smtp.Send(mm);
-
-                }
 
                 //end
 
 
-            }
-            //end
-            // 3rd condtion
-            if (TFM.Amt_Paid_By_txt == "Testator" && TFM.Document_Created_By_txt == "Distributor")
-            {
-                TFM.Authentication_Required = 1;
-                TFM.Link_Required = 1;
-                TFM.Login_Required = 1;
 
-                con.Open();
-                string query3 = "insert into Authorization_Rules (Document_Created_By,Distributor_Id,Amt_Paid_By,Testator_Id,Authentication_Required,Link_Required,Login_Required) values ('" + TFM.Document_Created_By_txt + "' , '" + TFM.Document_Created_By_ID + "' , '" + TFM.Amt_Paid_By_txt + "' , '" + TFM.Amt_Paid_By + "'  , '" + TFM.Authentication_Required + "' , '" + TFM.Link_Required + "' , '" + TFM.Login_Required + "') ";
-                SqlCommand cmd2 = new SqlCommand(query3, con);
-                cmd2.ExecuteNonQuery();
-                con.Close();
+                // DOCUMENT RULES
+                int typeid = 0;
+                int typecat = 0;
 
-
-               
-
-
-                //generate Mail
-
-                string mailid = "imransayyed528@gmail.com";
-                string mailto = TFM.Email;
-                //string mailto = "willtestmail@mailprotech.com";
-                string subject = "Testing Mail Sending";
-                string OTP = "<font color='Green' style='font-size=3em;'>" + TFM.EmailOTP + "</font>";
-                string text = "Your OTP for Verification Is " + OTP + "";
-                string body = "<font color='red'>" + text + "</font>";
-                using (MailMessage mm = new MailMessage(mailid, mailto))
+                if (TFM.documenttype == "Will")
                 {
-                    mm.Subject = subject;
-                    mm.Body = body;
-
-                    mm.IsBodyHtml = true;
-                    SmtpClient smtp = new SmtpClient();
-                    smtp.Host = "smtp.gmail.com";
-                    smtp.EnableSsl = true;
-                    NetworkCredential NetworkCred = new NetworkCredential(mailid, TFM.password);
-                    smtp.UseDefaultCredentials = true;
-                    smtp.Credentials = NetworkCred;
-                    smtp.Port = 587;
-                    smtp.Send(mm);
-
+                    typeid = 1;
+                }
+                if (TFM.documentcategory == "Quick")
+                {
+                    typecat = 1;
+                }
+                if (TFM.documentcategory == "Detailed")
+                {
+                    typecat = 2;
                 }
 
-                //end
-            }
-            //end
-            //4th condition
-            if (TFM.Amt_Paid_By_txt == "Testator" && TFM.Document_Created_By_txt == "Testator")
-            {
-                TFM.Authentication_Required = 1;
-                TFM.Link_Required = 1;
-                TFM.Login_Required = 1;
 
                 con.Open();
-                string query4 = "insert into Authorization_Rules (Document_Created_By,Distributor_Id,Amt_Paid_By,Testator_Id,Authentication_Required,Link_Required,Login_Required) values ('" + TFM.Document_Created_By_txt + "' , '" + TFM.Document_Created_By_ID + "' , '" + TFM.Amt_Paid_By_txt + "' , '" + TFM.Amt_Paid_By + "'  , '" + TFM.Authentication_Required + "' , '" + TFM.Link_Required + "' , '" + TFM.Login_Required + "') ";
-                SqlCommand cmd2 = new SqlCommand(query4, con);
-                cmd2.ExecuteNonQuery();
+                string q1 = "insert into documentRules (documentType,category,templateId) values (" + typeid +" , "+typecat+" , "+templateid+" )";
+                SqlCommand c1 = new SqlCommand(q1, con);
+                c1.ExecuteNonQuery();
                 con.Close();
 
 
 
-               
+                //
 
 
-                //generate Mail
-
-                string mailid = "imransayyed528@gmail.com";
-                string mailto = TFM.Email;
-                //string mailto = "willtestmail@mailprotech.com";
-                string subject = "Testing Mail Sending";
-                string OTP = "<font color='Green' style='font-size=3em;'>" + TFM.EmailOTP + "</font>";
-                string text = "Your OTP for Verification Is " + OTP + "";
-                string body = "<font color='red'>" + text + "</font>";
-                using (MailMessage mm = new MailMessage(mailid, mailto))
+                //1st condition
+                if (TFM.Amt_Paid_By_txt == "Distributor" && TFM.Document_Created_By_txt == "Distributor")
                 {
-                    mm.Subject = subject;
-                    mm.Body = body;
+                    TFM.Authentication_Required = 0;
+                    TFM.Link_Required = 0;
+                    TFM.Login_Required = 0;
 
-                    mm.IsBodyHtml = true;
-                    SmtpClient smtp = new SmtpClient();
-                    smtp.Host = "smtp.gmail.com";
-                    smtp.EnableSsl = true;
-                    NetworkCredential NetworkCred = new NetworkCredential(mailid, TFM.password);
-                    smtp.UseDefaultCredentials = true;
-                    smtp.Credentials = NetworkCred;
-                    smtp.Port = 587;
-                    smtp.Send(mm);
+                    con.Open();
+                    string query1 = "insert into Authorization_Rules (Document_Created_By,Distributor_Id,Amt_Paid_By,Testator_Id,Authentication_Required,Link_Required,Login_Required) values ('" + TFM.Document_Created_By_txt + "' , '" + TFM.Document_Created_By_ID + "' , '" + TFM.Amt_Paid_By_txt + "' , '" + TFM.Amt_Paid_By + "'  , '" + TFM.Authentication_Required + "' , '" + TFM.Link_Required + "' , '" + TFM.Login_Required + "') ";
+                    SqlCommand cmd2 = new SqlCommand(query1, con);
+                    cmd2.ExecuteNonQuery();
+                    con.Close();
+
 
                 }
-
                 //end
+                //2nd condition 
+                if (TFM.Amt_Paid_By_txt == "Distributor" && TFM.Document_Created_By_txt == "Testator")
+                {
+                    TFM.Authentication_Required = 1;
+                    TFM.Link_Required = 1;
+                    TFM.Login_Required = 1;
+
+                    con.Open();
+                    string query2 = "insert into Authorization_Rules (Document_Created_By,Distributor_Id,Amt_Paid_By,Testator_Id,Authentication_Required,Link_Required,Login_Required) values ('" + TFM.Document_Created_By_txt + "' , '" + TFM.Document_Created_By_ID + "' , '" + TFM.Amt_Paid_By_txt + "' , '" + TFM.Amt_Paid_By + "'  , '" + TFM.Authentication_Required + "' , '" + TFM.Link_Required + "' , '" + TFM.Login_Required + "') ";
+                    SqlCommand cmd2 = new SqlCommand(query2, con);
+                    cmd2.ExecuteNonQuery();
+                    con.Close();
+
+
+
+
+
+                    //generate Mail
+
+                    string mailid = "imransayyed528@gmail.com";
+                    string mailto = TFM.Email;
+                    //string mailto = "willtestmail@mailprotech.com";
+                    string subject = "Testing Mail Sending";
+                    string OTP = "<font color='Green' style='font-size=3em;'>" + TFM.EmailOTP + "</font>";
+                    string text = "Your OTP for Verification Is " + OTP + "";
+                    string body = "<font color='red'>" + text + "</font>";
+                    using (MailMessage mm = new MailMessage(mailid, mailto))
+                    {
+                        mm.Subject = subject;
+                        mm.Body = body;
+
+                        mm.IsBodyHtml = true;
+                        SmtpClient smtp = new SmtpClient();
+                        smtp.Host = "smtp.gmail.com";
+                        smtp.EnableSsl = true;
+                        NetworkCredential NetworkCred = new NetworkCredential(mailid, TFM.password);
+                        smtp.UseDefaultCredentials = true;
+                        smtp.Credentials = NetworkCred;
+                        smtp.Port = 587;
+                        smtp.Send(mm);
+
+                    }
+
+                    //end
+
+
+                }
+                //end
+                // 3rd condtion
+                if (TFM.Amt_Paid_By_txt == "Testator" && TFM.Document_Created_By_txt == "Distributor")
+                {
+                    TFM.Authentication_Required = 1;
+                    TFM.Link_Required = 1;
+                    TFM.Login_Required = 1;
+
+                    con.Open();
+                    string query3 = "insert into Authorization_Rules (Document_Created_By,Distributor_Id,Amt_Paid_By,Testator_Id,Authentication_Required,Link_Required,Login_Required) values ('" + TFM.Document_Created_By_txt + "' , '" + TFM.Document_Created_By_ID + "' , '" + TFM.Amt_Paid_By_txt + "' , '" + TFM.Amt_Paid_By + "'  , '" + TFM.Authentication_Required + "' , '" + TFM.Link_Required + "' , '" + TFM.Login_Required + "') ";
+                    SqlCommand cmd2 = new SqlCommand(query3, con);
+                    cmd2.ExecuteNonQuery();
+                    con.Close();
+
+
+
+
+
+                    //generate Mail
+
+                    string mailid = "imransayyed528@gmail.com";
+                    string mailto = TFM.Email;
+                    //string mailto = "willtestmail@mailprotech.com";
+                    string subject = "Testing Mail Sending";
+                    string OTP = "<font color='Green' style='font-size=3em;'>" + TFM.EmailOTP + "</font>";
+                    string text = "Your OTP for Verification Is " + OTP + "";
+                    string body = "<font color='red'>" + text + "</font>";
+                    using (MailMessage mm = new MailMessage(mailid, mailto))
+                    {
+                        mm.Subject = subject;
+                        mm.Body = body;
+
+                        mm.IsBodyHtml = true;
+                        SmtpClient smtp = new SmtpClient();
+                        smtp.Host = "smtp.gmail.com";
+                        smtp.EnableSsl = true;
+                        NetworkCredential NetworkCred = new NetworkCredential(mailid, TFM.password);
+                        smtp.UseDefaultCredentials = true;
+                        smtp.Credentials = NetworkCred;
+                        smtp.Port = 587;
+                        smtp.Send(mm);
+
+                    }
+
+                    //end
+                }
+                //end
+                //4th condition
+                if (TFM.Amt_Paid_By_txt == "Testator" && TFM.Document_Created_By_txt == "Testator")
+                {
+                    TFM.Authentication_Required = 1;
+                    TFM.Link_Required = 1;
+                    TFM.Login_Required = 1;
+
+                    con.Open();
+                    string query4 = "insert into Authorization_Rules (Document_Created_By,Distributor_Id,Amt_Paid_By,Testator_Id,Authentication_Required,Link_Required,Login_Required) values ('" + TFM.Document_Created_By_txt + "' , '" + TFM.Document_Created_By_ID + "' , '" + TFM.Amt_Paid_By_txt + "' , '" + TFM.Amt_Paid_By + "'  , '" + TFM.Authentication_Required + "' , '" + TFM.Link_Required + "' , '" + TFM.Login_Required + "') ";
+                    SqlCommand cmd2 = new SqlCommand(query4, con);
+                    cmd2.ExecuteNonQuery();
+                    con.Close();
+
+
+
+
+
+
+                    //generate Mail
+
+                    string mailid = "imransayyed528@gmail.com";
+                    string mailto = TFM.Email;
+                    //string mailto = "willtestmail@mailprotech.com";
+                    string subject = "Testing Mail Sending";
+                    string OTP = "<font color='Green' style='font-size=3em;'>" + TFM.EmailOTP + "</font>";
+                    string text = "Your OTP for Verification Is " + OTP + "";
+                    string body = "<font color='red'>" + text + "</font>";
+                    using (MailMessage mm = new MailMessage(mailid, mailto))
+                    {
+                        mm.Subject = subject;
+                        mm.Body = body;
+
+                        mm.IsBodyHtml = true;
+                        SmtpClient smtp = new SmtpClient();
+                        smtp.Host = "smtp.gmail.com";
+                        smtp.EnableSsl = true;
+                        NetworkCredential NetworkCred = new NetworkCredential(mailid, TFM.password);
+                        smtp.UseDefaultCredentials = true;
+                        smtp.Credentials = NetworkCred;
+                        smtp.Port = 587;
+                        smtp.Send(mm);
+
+                    }
+
+                    //end
+                }
+                //end
+
+
+
+
+
+                string v1 = Eramake.eCryptography.Encrypt(TFM.EmailOTP);
+
+                ViewBag.Message = "Verified";
+
+                return RedirectToAction("EmailVerificationIndex", "EmailVerification", new { v2 = v1 });
             }
-            //end
+            else
+            {
+                Response.Write("Please Fill Up Company Details First");
+            }
 
-
-
-
-
-            string v1 = Eramake.eCryptography.Encrypt(TFM.EmailOTP);
-
-            ViewBag.Message = "Verified";
-            return RedirectToAction("EmailVerificationIndex", "EmailVerification", new { v2=v1 });
+            return View("~/Views/AddTestatorsForm/AddTestatorPageContent.cshtml");
+          
 
         }
 

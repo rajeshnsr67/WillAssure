@@ -7,6 +7,7 @@ namespace WillAssure.Models
 {
     public class MainAssetsModel
     {
+        public int aiid { get; set; }
         public string dueDate { get; set; }
         public string dueDateControls { get; set; }
         public string DueDateValues { get; set; }

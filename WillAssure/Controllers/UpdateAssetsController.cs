@@ -50,7 +50,7 @@ namespace WillAssure.Models
             for (int i = 0; i < columnName.Count; i++)
             {
 
-                if (mulcontrol != null)
+                if (columnControl.ToString() == "RadioButton")
                 {
                     ArrayList ControlValue = new ArrayList(mulcontrol.Split(','));
                     q = q + "" + columnName[i].ToString() + " = " + columnValue[i].ToString() + "," + columnName[i].ToString() + "Controls" + "=" + "'" + columnControl[i].ToString() + "'" + "," + columnName[i].ToString() + "Values" + "=" + "'" + ControlValue[i].ToString() + "'";
@@ -58,7 +58,12 @@ namespace WillAssure.Models
                 }
                 else
                 {
-                    q = q + "" + columnName[i].ToString() + " = " + "'" + columnName[i].ToString() + "~" + columnValue[i].ToString() + "'" + "," + columnName[i].ToString() + "Controls" + "=" + "'" + columnControl[i].ToString() + "'" + ",";
+                    if (columnName[i].ToString() != null)
+                    {
+                        q = q + "" + columnName[i].ToString() + " = " + "'" + columnName[i].ToString() + "~" + columnValue[i].ToString() + "'" + "," + columnName[i].ToString() + "Controls" + "=" + "'" + columnControl[i].ToString() + "'" + ",";
+                    }
+
+                    
                     
                 }
 
@@ -121,7 +126,9 @@ namespace WillAssure.Models
                             if (va.ToString() != "")
                             {
 
+
                                 data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text'  class='form-control' name='column'  value=" + va[1].ToString() + "  />  <input type='hidden' name='tblcol'  class='form-control'   value=" + va[0].ToString() + "  />  </div></div>";
+                                break;
                             }
 
 
@@ -155,6 +162,7 @@ namespace WillAssure.Models
                             {
 
                                 data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text'  class='form-control' name='column'  value=" + va[1].ToString() + "  />  <input type='hidden' name='tblcol'  class='form-control'  value=" + va[0].ToString() + "  />  </div></div>";
+                                break;
                             }
 
 
@@ -189,6 +197,7 @@ namespace WillAssure.Models
                             {
 
                                 data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text'  class='form-control' name='column'  value=" + va[1].ToString() + "  />  <input type='hidden' name='tblcol'  class='form-control'  value=" + va[0].ToString() + "  />  </div></div>";
+                                break;
                             }
 
 
@@ -255,6 +264,7 @@ namespace WillAssure.Models
                             {
 
                                 data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text'  class='form-control' name='column'  value=" + va[1].ToString() + "  />  <input type='hidden' name='tblcol'  class='form-control'  value=" + va[0].ToString() + "  />  </div></div>";
+                                break;
                             }
 
 
@@ -286,6 +296,7 @@ namespace WillAssure.Models
                             {
 
                                 data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text'  class='form-control' name='column'  value=" + va[1].ToString() + "  />  <input type='hidden' name='tblcol'  class='form-control'  value=" + va[0].ToString() + "  />  </div></div>";
+                                break;
                             }
 
 
@@ -317,7 +328,9 @@ namespace WillAssure.Models
                             {
 
                                 data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text'  class='form-control' name='column'  value=" + va[1].ToString() + "  />  <input type='hidden' name='tblcol'  class='form-control'  value=" + va[0].ToString() + "  />  </div></div>";
+                                break;
                             }
+
 
 
                         }
@@ -347,6 +360,7 @@ namespace WillAssure.Models
                             {
 
                                 data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text'  class='form-control' name='column'  value=" + va[1].ToString() + "  />  <input type='hidden' name='tblcol'  class='form-control'  value=" + va[0].ToString() + "  />  </div></div>";
+                                break;
                             }
 
 
@@ -378,6 +392,7 @@ namespace WillAssure.Models
                             {
 
                                 data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text'  class='form-control' name='column'  value=" + va[1].ToString() + "  />  <input type='hidden' name='tblcol'  class='form-control'  value=" + va[0].ToString() + "  />  </div></div>";
+                                break;
                             }
 
 
@@ -409,6 +424,7 @@ namespace WillAssure.Models
                             {
 
                                 data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text'  class='form-control' name='column'  value=" + va[1].ToString() + "  />  <input type='hidden' name='tblcol'  class='form-control'  value=" + va[0].ToString() + "  />  </div></div>";
+                                break;
                             }
 
 
@@ -442,6 +458,7 @@ namespace WillAssure.Models
                             {
 
                                 data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text'  class='form-control' name='column'  value=" + va[1].ToString() + "  />  <input type='hidden' name='tblcol'  class='form-control'  value=" + va[0].ToString() + "  />  </div></div>";
+                                break; 
                             }
 
 
@@ -477,6 +494,7 @@ namespace WillAssure.Models
                             {
 
                                 data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text'  class='form-control' name='column'  value=" + va[1].ToString() + "  />  <input type='hidden' name='tblcol'  class='form-control'  value=" + va[0].ToString() + "  />  </div></div>";
+                                break;
                             }
 
 
@@ -510,7 +528,8 @@ namespace WillAssure.Models
                             if (va.ToString() != "")
                             {
 
-                                data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text'  class='form-control' name='column'  value=" + va[1].ToString() + "  />  <input type='hidden' name='tblcol'  class='form-control'  value=" + va[0].ToString() + "  />  </div></div>";
+                                data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text'  class='form-control' name='column'  value=" + va[1].ToString() + "  />  <input type='hidden' name='tblcol'  class='form-control'  value=" + va[0].ToString() + "  />  </div>";
+                                break;
                             }
 
 
@@ -522,7 +541,7 @@ namespace WillAssure.Models
 
                     if (Form.NominationControls != "")
                     {
-                        data = data + "<div class='col-sm-4'>  <div class='form-group'> <input type='text' class='form-control' name='control'  value=" + Form.NominationControls + "  />   </div></div>";
+                        data = data + " <div class='form-group'> <input type='text' class='form-control' name='control'  value=" + Form.NominationControls + "  />   </div></div>";
 
                     }
 
@@ -546,6 +565,7 @@ namespace WillAssure.Models
                             {
 
                                 data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text'  class='form-control' name='column'  value=" + va[1].ToString() + "  />  <input type='hidden' name='tblcol'  class='form-control'  value=" + va[0].ToString() + "  />  </div></div>";
+                                break;
                             }
 
 
@@ -609,6 +629,7 @@ namespace WillAssure.Models
                             {
 
                                 data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text'  class='form-control' name='column'  value=" + va[1].ToString() + "  />  <input type='hidden' name='tblcol'  class='form-control'  value=" + va[0].ToString() + "  />  </div></div>";
+                                break;
                             }
 
 
@@ -641,6 +662,7 @@ namespace WillAssure.Models
                             {
 
                                 data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text'  class='form-control' name='column'  value=" + va[1].ToString() + "  />  <input type='hidden' name='tblcol'  class='form-control'  value=" + va[0].ToString() + "  />  </div></div>";
+                                break;
                             }
 
 
@@ -676,6 +698,7 @@ namespace WillAssure.Models
                             {
 
                                 data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text'  class='form-control' name='column'  value=" + va[1].ToString() + "  />  <input type='hidden' name='tblcol'  class='form-control'  value=" + va[0].ToString() + "  />  </div></div>";
+                                break;
                             }
 
 
@@ -709,6 +732,7 @@ namespace WillAssure.Models
                             {
 
                                 data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text'  class='form-control' name='column'  value=" + va[1].ToString() + "  />  <input type='hidden' name='tblcol'  class='form-control'  value=" + va[0].ToString() + "  />  </div></div>";
+                                break;
                             }
 
 
@@ -741,6 +765,7 @@ namespace WillAssure.Models
                             {
 
                                 data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text'  class='form-control' name='column'  value=" + va[1].ToString() + "  />  <input type='hidden' name='tblcol'  class='form-control'  value=" + va[0].ToString() + "  />  </div></div>";
+                                break;
                             }
 
 
@@ -771,6 +796,7 @@ namespace WillAssure.Models
                             {
 
                                 data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text'  class='form-control' name='column'  value=" + va[1].ToString() + "  />  <input type='hidden' name='tblcol'  class='form-control'  value=" + va[0].ToString() + "  />  </div></div>";
+                                break;
                             }
 
 
@@ -802,6 +828,7 @@ namespace WillAssure.Models
                             {
 
                                 data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text'  class='form-control' name='column'  value=" + va[1].ToString() + "  />  <input type='hidden' name='tblcol'  class='form-control'  value=" + va[0].ToString() + "  />  </div></div>";
+                                break;
                             }
 
 
@@ -832,6 +859,7 @@ namespace WillAssure.Models
                             {
 
                                 data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text'  class='form-control' name='column'  value=" + va[1].ToString() + "  />  <input type='hidden' name='tblcol'  class='form-control'  value=" + va[0].ToString() + "  />  </div></div>";
+                                break;
                             }
 
 
@@ -860,6 +888,7 @@ namespace WillAssure.Models
                             {
 
                                 data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text'  class='form-control' name='column'  value=" + va[1].ToString() + "  />  <input type='hidden' name='tblcol'  class='form-control'  value=" + va[0].ToString() + "  />  </div></div>";
+                                break;
                             }
 
 

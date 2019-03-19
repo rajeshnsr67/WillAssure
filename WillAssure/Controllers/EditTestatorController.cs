@@ -26,7 +26,7 @@ namespace WillAssure.Controllers
         public string BindTestatorFormData()
         {
             con.Open();
-            string query = "select * from TestatorDetails";
+            string query = "select * from TestatorDetails ";
             SqlDataAdapter da = new SqlDataAdapter(query, con);
             DataTable dt = new DataTable();
             da.Fill(dt);

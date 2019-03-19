@@ -39,7 +39,7 @@
 
                                     <div class="form-group">
                                         <label for="input-1">Company Name</label>
-
+                                        @Html.HiddenFor(m=>m.compId)
                                         @Html.TextBoxFor(m => m.companyName, new { @class = "form-control validate[required,alert['field is missing']] text-input", @id = "txtComanyName", @placeholder = "Enter Company Name", @autocomplete = "off" })
                                     </div>
                                 </div>
@@ -79,7 +79,7 @@
                                     <div class="form-group">
                                         <label for="input-1">State</label>
 
-                                        <select id="ddlstate" class="form-control validate[required]">
+                                        <select id="ddlstate" class="form-control validate[required]" >
                                             <option>--Select State--</option>
                                         </select>
                                         @Html.HiddenFor(m => m.stateid, new { id = "stateid" })
@@ -92,7 +92,7 @@
 
                                     <div class="form-group ">
                                         <label for="input-1">City</label>
-                                        <select id="ddlcity" class="form-control validate[required]">
+                                        <select id="ddlcity" class="form-control validate[required]" >
                                             <option>--Select City--</option>
                                         </select>
                                         @Html.HiddenFor(m => m.cityid, new { id = "cityid" })
@@ -431,7 +431,7 @@
         $.ajax({
 
             type: "POST",
-            url:"@Url.Action("BindStateDDL", "AddDistributor")",
+            url:"@Url.Action("BindStateDDL", "UpdateDistributor")",
             success: function (data) {
                 $('#ddlstate').empty().append(data);
             }

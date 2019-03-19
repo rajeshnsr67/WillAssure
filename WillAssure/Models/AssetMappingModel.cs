@@ -106,7 +106,7 @@ namespace WillAssure.Models
         public string AmountValues { get; set; }
 
 
-        public string Identifier { get; set; }
+       
         public string IdentifierControls { get; set; }
         public string IdentifierValues { get; set; }
 
@@ -139,6 +139,21 @@ namespace WillAssure.Models
 
         public int? NumberofItems { get; set; }
         public int? weight { get; set; }
+
+
+        //public int? Beneficiary_ID { get; set; }
+        //public int? AssetType_ID { get; set; }
+        //public int? AssetCategory_ID { get; set; }
+        public string SchemeName { get; set; }
+        public string Identifier { get; set; }
+        public string InstrumentName { get; set; }
+        public string Beneficiary { get; set; }
+        public string Proportion { get; set; }
+        public int? TotalItems { get; set; }
+
+
+        public int InstrumentId { get; set; }
+        public int Instrumenttxt { get; set; }
 
     }
 }

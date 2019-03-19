@@ -41,7 +41,7 @@
                                     <div class="form-group">
                                         <label for="input-1">Member Name</label>
 
-                                        @Html.TextBoxFor(m => m.MemberName, new { @class = "form-control validate[required] text-input", @id = "txtRole", @placeholder = "Enter Member Name", @autocomplete = "off", alert = "LabourCost is requried" })
+                                        @Html.TextBoxFor(m => m.MemberName, new { @class = "form-control validate[required,custom[characteronly]] text-input", @id = "txtRole", @placeholder = "Enter Member Name", @autocomplete = "off", alert = "LabourCost is requried" })
                                     </div>
                                 </div>
 
