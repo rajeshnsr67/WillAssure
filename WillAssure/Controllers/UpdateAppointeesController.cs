@@ -212,7 +212,7 @@ namespace WillAssure.Controllers
             cmd.Parameters.AddWithValue("@Pin", AM.Pin);
             cmd.ExecuteNonQuery();
             con.Close();
-
+            ViewBag.Message = "Verified";
             return View("~/Views/UpdateAppointees/UpdateAppointeesPageContent.cshtml");
         }
     }

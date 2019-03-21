@@ -78,7 +78,7 @@ namespace WillAssure.Controllers
             //END
 
 
-            if (Session["uid"] != null)
+            if (Session["compId"] != null)
             {
                 TFM.uId = Convert.ToInt32(Session["uid"]);
 
@@ -95,6 +95,7 @@ namespace WillAssure.Controllers
                 cmd.Parameters.AddWithValue("@Email", TFM.Email);
                 cmd.Parameters.AddWithValue("@maritalStatus", TFM.material_status_txt);
                 cmd.Parameters.AddWithValue("@Religion", TFM.Religiontext);
+                cmd.Parameters.AddWithValue("@Relationship", TFM.RelationshipTxt);
                 cmd.Parameters.AddWithValue("@Identity_Proof", TFM.Identity_Proof_txt);
                 cmd.Parameters.AddWithValue("@Identity_proof_Value", TFM.Identity_proof_Value);
                 cmd.Parameters.AddWithValue("@Alt_Identity_Proof", TFM.Alt_Identity_Proof);
@@ -371,7 +372,8 @@ namespace WillAssure.Controllers
             }
             else
             {
-                Response.Write("Please Fill Up Company Details First");
+                ViewBag.Message = "link";
+
             }
 
             return View("~/Views/AddTestatorsForm/AddTestatorPageContent.cshtml");
@@ -572,7 +574,41 @@ namespace WillAssure.Controllers
             return data;
         }
 
+        public String BindRelationDDL()
+        {
 
+            con.Open();
+            string query = "select * from relationship";
+            SqlDataAdapter da = new SqlDataAdapter(query, con);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            con.Close();
+            string data = "<option value='' >--Select--</option>";
+
+            if (dt.Rows.Count > 0)
+            {
+
+
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+
+
+
+
+                    data = data + "<option value=" + dt.Rows[i]["Rid"].ToString() + " >" + dt.Rows[i]["MemberName"].ToString() + "</option>";
+
+
+
+                }
+
+
+
+
+            }
+
+            return data;
+
+        }
 
 
 

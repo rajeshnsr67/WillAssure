@@ -20,6 +20,11 @@ namespace WillAssure.Controllers
             return View("~/Views/LoginPage/LoginPageContent.cshtml");
         }
 
+        public ActionResult DynamicMenu()
+        {
+            return View("~/Views/LoginPage/DynamicMenuPageContent.cshtml");
+        }
+
 
         public ActionResult LoginPageData(LoginModel LM)
         {
@@ -84,6 +89,70 @@ namespace WillAssure.Controllers
             Session["Document_Created_By"] = "";
             return View("~/Views/LoginPage/LoginPageContent.cshtml");
         }
+
+
+
+
+        public ActionResult InsertParentMenu(DynamicMenuModel DMM)
+        {
+
+            con.Open();
+            string query = "insert into parentmenu (ParentName) values ('"+DMM.ParentMenu+"') ";
+            SqlCommand cmd = new SqlCommand(query,con);
+            cmd.ExecuteNonQuery();
+            con.Close();
+
+
+
+
+          return  View("~/Views/LoginPage/DynamicMenuPageContent.cshtml");
+        }
+
+
+
+        public string BindParent()
+        {
+            string data = "";
+            con.Open();
+            string query = "select * from parentmenu";
+            SqlDataAdapter da = new SqlDataAdapter(query,con);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            con.Close();
+
+            if (dt.Rows.Count > 0)
+            {
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    data = data + "<option value=" + Convert.ToInt32(dt.Rows[i]["ParentId"]) + ">"+ dt.Rows[i]["ParentName"].ToString() + "</option>";
+                }
+                
+            }
+
+
+            return data;
+        }
+
+
+
+
+        public ActionResult InsertChildmenu(DynamicMenuModel DMM)
+        {
+
+
+            con.Open();
+            string query = "insert into dynamicmenu (ParentMenu,ChildMenu,ChildUrl) values ('" + DMM.parenttxt + "' , '"+DMM.ChildMenu+"' , '"+DMM.ChildUrl+"') ";
+            SqlCommand cmd = new SqlCommand(query, con);
+            cmd.ExecuteNonQuery();
+            con.Close();
+
+
+            return View("~/Views/LoginPage/DynamicMenuPageContent.cshtml");
+        }
+
+
+
+
 
 
     }

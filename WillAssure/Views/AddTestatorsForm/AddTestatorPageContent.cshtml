@@ -2,9 +2,9 @@
 
 
 @{
-                /**/
+    /**/
 
-                ViewBag.Title = "AddTestatorPageContent";
+    ViewBag.Title = "AddTestatorPageContent";
 }
 
 
@@ -125,6 +125,21 @@
                                     </div>
                                 </div>
 
+
+
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="input-3">Relationship</label>
+                                        <select id="ddlrelation" class="form-control validate[required]">
+                                            <option value="">--Select State--</option>
+                                        </select>
+                                        @Html.HiddenFor(m => m.RelationshipId, new { id = "relationid" })
+                                        @Html.HiddenFor(m => m.RelationshipTxt, new { id = "relationtext" })
+                                    </div>
+                                </div>
+
+
+
                                 <div class="col-sm-6">
 
                                     <div class="form-group">
@@ -169,7 +184,7 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="input-3">Identity Proof Number</label>
-                                        <div id="appendtxt">  @Html.TextBoxFor(m => m.Identity_Proof, new { @class = "form-control validate[required] text-input", @id = "txtAdharCard", @placeholder = "Enter Aadhaar Card", @autocomplete = "off" })</div>
+                                        <div id="appendtxt">  </div>
 
                                         @*@Html.TextBoxFor(m => m.Identity_Proof_Value, new { @class = "form-control validate[required] text-input", @id = "txtIdentityProofValue", @placeholder = "Enter Identity Proof Value", @autocomplete = "off" })*@
                                     </div>
@@ -336,7 +351,7 @@
                                 <div class="col-sm-3">
                                     @Html.DropDownListFor(x => x.documenttype, new SelectListItem[]{
                                      new SelectListItem() {Text = "--Select--", Value=""},
-                                   
+
                                      new SelectListItem() {Text = "Will", Value="Will"}}, new { @class = "form-control validate[required]", @id="ddldocumentcreatedby" })
 
                                     @Html.HiddenFor(m => m.Document_Created_By_ID, new { id = "Document_Created_By_ID" })
@@ -420,6 +435,7 @@
                             <div class="form-group">
                                 <button type="submit" id="alert-success" formaction="InsertTestatorFormData" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i>Add Testator</button>
                                 <button type="button" style="display:none;" id="ADDTestatorFormData" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
+                                <button type="button" style="display:none;" id="testatorlinkcheck" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
                             </div>
                         }
                     </div>
@@ -454,6 +470,20 @@
 
 }
 
+
+@if (ViewBag.Message == "link")
+{
+    <script>
+
+        $(document).ready(function () {
+            $("#testatorlinkcheck").on("click", function () { });
+
+            $("#testatorlinkcheck").click(); //trigger event after listening to it.
+
+        });
+    </script>
+
+}
 
 <script>
 
@@ -503,18 +533,18 @@
 
 
 
- 
+
 
 
     $("#ddlgender").change(function () {
         var value = $(this).children(":selected").attr("value");
         var text = $("#ddlgender option:selected").html();
-       
+
         $("#Gendertext").val(text);
         $("#GenderId").val(value);
 
 
-      
+
 
 
 
@@ -722,7 +752,7 @@
 
         $("#Identity_Proof_txt").val(id);
 
-    
+
         if (id == "Aadhaar Card") {
             $("#appendtxt").empty().append("<input type='text' class='form-control validate[required,custom[adharCard]] text-input' id='Identity_Proof_Value' name='Identity_Proof_Value' placeholder='Enter Aadhaar Card' autocomplete='off'  />");
         }
@@ -752,3 +782,32 @@
 
 @*end*@
 
+
+<script>
+
+    $(document).ready(function () {
+
+        $.ajax({
+
+            type: "POST",
+            url:"@Url.Action("BindRelationDDL", "AddTestatorsForm")",
+            success: function (data) {
+                $('#ddlrelation').empty().append(data);
+            }
+        });
+
+
+    });
+
+
+        $("#ddlrelation").change(function () {
+            var value = $(this).children(":selected").attr("value");
+            var text = $("#ddlrelation option:selected").html();
+
+            $("#relationtext").val(text);
+            $("#relationid").val(value);
+
+
+        });
+
+</script>

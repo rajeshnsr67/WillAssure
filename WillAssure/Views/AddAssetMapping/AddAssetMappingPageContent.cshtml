@@ -22,7 +22,7 @@
         </div>
         <!-- End Breadcrumb-->
         @*@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "RoleForm" }))
-        {*@
+            {*@
         <div class="row">
             <div class="col-lg-12">
                 <div class="card">
@@ -110,8 +110,8 @@
                         <div class="form-group">
                             <button type="button" id="btnadd" style="display:none;" class="btn btn-danger shadow-primary px-5"><i class="icon-lock"></i>Add</button>
                             <button type="button" id="btnmappingsubmit" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i>Submit</button>
-                            <button type="button" id="btnRoleformsubmitSUCCESS" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
-                            <button type="button" id="btnRoleformsubmitCHECK" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
+                            <button type="button" id="btnmainassetsuccess" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
+
                         </div>
                     </div>
                 </div>
@@ -125,7 +125,8 @@
     @*end*@
 
 
-    <script>function isNumberKey(evt) {
+    <script>
+        function isNumberKey(evt) {
             var charCode = (evt.which) ? evt.which : event.keyCode
             if (charCode > 31 && (charCode < 48 || charCode > 57))
                 return false;
@@ -230,7 +231,7 @@
                     $("#getidentifier").append(data);
                     var r = data;
                     var str = data;
-                    var res = str.replace("<label for='input-1'>Scheme</label> <input type='text' class='form-control' id='schemename'  value=", "").replace("/>","");
+                    var res = str.replace("<label for='input-1'>Scheme</label> <input type='text' class='form-control' id='schemename'  value=", "").replace("/>", "");
 
 
                 }
@@ -253,7 +254,7 @@
         }
 
 
-       function getddlbeneficiary (value){
+        function getddlbeneficiary(value) {
 
             var text = $("#ddlbeneficiary option:selected").html();
 
@@ -262,14 +263,14 @@
 
 
 
-           $("#query").append( value + ",");
+            $("#query").append(value + ",");
 
         };
 
 
 
 
-        function getDDLAssetColumn (value) {
+        function getDDLAssetColumn(value) {
             //var value = $(this).children(":selected").attr("value");
             var text = $("#DDLAssetColumn option:selected").html();
 
@@ -280,7 +281,7 @@
             $("#Instrumenttxt").val(text);
             $("#Instrumenttxt").val(value);
 
-            $("#query").append("'"+value+"'"+ ",");
+            $("#query").append("'" + value + "'" + ",");
 
 
         };
@@ -402,7 +403,7 @@
                 var assetcat = $("#ddlassetcat").val();
                 var schemename = $("#schemename").val();
 
-                var data =  $("#query").val();
+                var data = $("#query").val();
                 alert(data)
                 $.ajax({
 
@@ -430,3 +431,24 @@
         }
 
     </script>
+
+
+    
+    @if (ViewBag.Message == "Verified")
+    {
+        <script>
+
+            $(document).ready(function () {
+
+
+                $("#btnmainassetsuccess").on("click", function () { });
+
+                $("#btnmainassetsuccess").click(); //trigger event after listening to it.
+
+           
+
+
+            });
+        </script>
+
+    }

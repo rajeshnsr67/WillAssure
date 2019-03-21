@@ -167,7 +167,7 @@ namespace WillAssure.Controllers
             cmd.Parameters.AddWithValue("@Pin", AM.Pin);
             cmd.ExecuteNonQuery();
             con.Close();
-
+            ViewBag.Message = "Verified";
 
             // dropdown selection
             int AppointmentofGuardian = 0;

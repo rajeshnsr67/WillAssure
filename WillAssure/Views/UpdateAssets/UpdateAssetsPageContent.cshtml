@@ -7,7 +7,7 @@
 @*Main Content*@
 <div class="content-wrapper">
     <div class="container-fluid">
-        
+
 
         <div class="row pt-2 pb-2">
 
@@ -32,7 +32,7 @@
                     <div class="card">
                         <div class="card-body">
 
-                            @Html.HiddenFor(m=>m.aiId, new { @id = "aid" })
+                            @Html.HiddenFor(m => m.aiId, new { @id = "aid" })
                             <input type="button" id="btnload" style="display:none;" />
                             <div id="listdata" class="row">
 
@@ -40,9 +40,9 @@
 
                             </div>
 
-                         
 
-                            
+
+
 
 
 
@@ -66,24 +66,24 @@
                                 <div class="form-group">
 
                                     <button type="submit" id="btnAssetupdateformsubmit" class="btn btn-success shadow-primary px-5"><i class="icon-lock"></i> Update Assets</button>
-                                    <button type="button" id="btnassetcategoryupdated" style="display:none;" class="btnpopup btn btn-success shadow-primary px-5"><i class="icon-lock"></i></button>
+                                    <button type="button" id="btnassetcontrolUpdated" style="display:none;" class="btnpopup btn btn-success shadow-primary px-5"><i class="icon-lock"></i></button>
 
                                 </div>
 
 
                             </div>
 
-                            </div>
-                        </div>  
+                        </div>
                     </div>
                 </div>
-                        
+            </div>
+
         }
-            @*end*@
+        @*end*@
 
 
 
-            <script>
+        <script>
 
                 function getAssetColumnValue(ENTITY) {
 
@@ -124,33 +124,33 @@
                 });*@
 
 
-             
+
                 $(document).ready(function () {
 
                     $("#btnload").on("click", function () { });
 
                     $("#btnload").click();
-                    
-           
+
+
 
 
                 });
-                
-              
-              
+
+
+
                 $("#btnload").click(function () {
 
                              var data = $("#aid").val();
-                   
+
                        $.ajax({
-                        
+
                         type: "POST",
                         url: "@Url.Action("DynamicFields", "UpdateAssets")",
                            data: { "send": "" + data+""},
                         success: function (data) {
 
                             $("#listdata").append(data);
-                            
+
 
                         }
 
@@ -161,8 +161,31 @@
                 });
 
 
+
+
+
+
+
+        </script>
+
+
+
+
+        @if (ViewBag.Message == "Verified")
+        {
+            <script>
+
+                $(document).ready(function () {
+
+
+                    $("#btnassetcontrolUpdated").on("click", function () { });
+
+                    $("#btnassetcontrolUpdated").click(); //trigger event after listening to it.
+
+                    $("#txtRole").val("");
+
+
+                });
             </script>
 
-
-
-       
+        }

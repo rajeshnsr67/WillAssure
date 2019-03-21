@@ -879,12 +879,12 @@ namespace WillAssure.Controllers
                 con.Close();
 
 
-
+                ViewBag.Message = "Verified";
             }
             else
             {
+                ViewBag.Message = "link";
 
-                Response.Write("<script>alert('Please Fill Up Testator Form First')</script>");
             }
 
 

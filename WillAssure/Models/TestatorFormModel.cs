@@ -34,6 +34,9 @@ namespace WillAssure.Models
         public string Religiontext { get; set; }
         public int ReligionId { get; set; }
 
+        public string RelationshipTxt { get; set; }
+        public int RelationshipId { get; set; }
+
         public string Identity_Proof { get; set; }
         public string Identity_Proof_txt { get; set; }
         public int Identity_Proof_ID { get; set; }

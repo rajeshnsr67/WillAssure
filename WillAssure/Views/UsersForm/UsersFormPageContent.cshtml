@@ -255,7 +255,8 @@
 
                                 <button type="submit" id="btnUserformsubmit" formaction="GetUserFormData" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i>Add Users</button>
                                 <button type="button" id="btnUserformsubmitSUCCESS" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
-
+                                <button type="button" id="btncheckuser" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
+                                <button type="button" id="btnuserlink" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
                             </div>
                         }
                     </div>
@@ -335,7 +336,7 @@
     $("#ddlcity").change(function () {
         var value = $(this).children(":selected").attr("value");
         var text = $("#ddlcity option:selected").html();
-        
+
         $("#citytext").val(text);
         $("#cityid").val(value);
     });
@@ -438,3 +439,43 @@
 
 
 
+@if (ViewBag.Message == "Duplicate")
+{
+    <script>
+
+        $(document).ready(function () {
+
+
+            $("#btncheckuser").on("click", function () { });
+
+            $("#btncheckuser").click(); //trigger event after listening to it.
+
+
+
+
+        });
+    </script>
+
+}
+
+
+
+
+@if (ViewBag.Message == "link")
+{
+    <script>
+
+        $(document).ready(function () {
+
+
+            $("#btnuserlink").on("click", function () { });
+
+            $("#btnuserlink").click(); //trigger event after listening to it.
+
+
+
+
+        });
+    </script>
+
+}

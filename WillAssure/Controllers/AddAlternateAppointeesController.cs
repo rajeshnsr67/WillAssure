@@ -174,14 +174,14 @@ namespace WillAssure.Controllers
                 cmd.Parameters.AddWithValue("@Pin", AM.Pin);
                 cmd.ExecuteNonQuery();
                 con.Close();
-
+                ViewBag.Message = "Verified";
             }
             else
             {
                 getAlternateExecutors = 2;
                 getAlternateGaurdian = 2;
 
-                Response.Write("<script>alert('Please Fill out Appointees Form First....!')</script>");
+                ViewBag.Message = "link";
             }
 
 
@@ -210,9 +210,33 @@ namespace WillAssure.Controllers
             SqlCommand cmd2 = new SqlCommand(rulequery, con);
             cmd2.ExecuteNonQuery();
             con.Close();
+
+
             //end
 
+            // rule id in document master
 
+            con.Open();
+            string getquery2 = "select top 1 * from documentMaster order by documentId desc";
+            SqlDataAdapter da2 = new SqlDataAdapter(getquery2, con);
+            DataTable dt2 = new DataTable();
+            da2.Fill(dt2);
+            int getruleid2 = 0;
+            if (dt2.Rows.Count > 0)
+            {
+                getruleid2 = Convert.ToInt32(dt2.Rows[0]["documentId"]);
+            }
+            con.Close();
+
+
+
+            con.Open();
+            string rulequery3 = "update documentMaster set wdId = " + getruleid + "  where documentId = " + getruleid2 + " ";
+            SqlCommand cmd3 = new SqlCommand(rulequery3, con);
+            cmd3.ExecuteNonQuery();
+            con.Close();
+
+            //end
 
 
             return View("~/Views/AddAlternateAppointees/AddAlternateAppointeesPageContent.cshtml");

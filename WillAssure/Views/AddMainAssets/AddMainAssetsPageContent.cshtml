@@ -1,5 +1,7 @@
 ﻿@model WillAssure.Models.MainAssetsModel
 @{
+    /**/
+
     ViewBag.Title = "AddMainAssetsPageContent";
 }
 
@@ -45,8 +47,7 @@
                                         <select id="ddlasset" onChange='getassetcolumntext(this.options[this.selectedIndex].innerHTML)' class="form-control validate[required]">
                                             <option value="">--Select--</option>
                                         </select>
-                                        @Html.HiddenFor(m => m.assetid, new { id = "assetid" })
-                                        @Html.HiddenFor(m => m.assettxt, new { id = "assettext" })
+
                                     </div>
                                 </div>
 
@@ -61,8 +62,7 @@
                                         <select id="ddlassetcat" onChange='getassetcat(this.options[this.selectedIndex].innerHTML)' class="form-control validate[required]">
                                             <option value="">--Select--</option>
                                         </select>
-                                        @Html.HiddenFor(m => m.assetcatid, new { id = "assetcatid" })
-                                        @Html.HiddenFor(m => m.assetcattxt, new { id = "assetcattxt" })
+
                                     </div>
                                 </div>
 
@@ -104,7 +104,8 @@
                             <div class="form-group">
                                 <button type="button" id="btnadd" class="btn btn-danger shadow-primary px-5"><i class="icon-plus"></i>Add</button>
                                 <button type="submit" formaction="InsertMainAsset" name="Submit Asset Info" value="Submit Asset Info" id="btnmainassetsubmit" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i>Submit Asset Info</button>
-
+                                <button type="button" id="btnassetinfosuccess" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
+                                <button type="button" id="mainassetlinkcheck" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
                             </div>
 
                         }
@@ -200,3 +201,44 @@
         $("#mainassetinfo").validationEngine();
     });
 </script>
+
+
+@if (ViewBag.Message == "Verified")
+{
+    <script>
+
+        $(document).ready(function () {
+
+
+            $("#btnassetinfosuccess").on("click", function () { });
+
+            $("#btnassetinfosuccess").click(); //trigger event after listening to it.
+
+
+
+
+        });
+    </script>
+
+}
+
+
+
+@if (ViewBag.Message == "link")
+{
+    <script>
+
+        $(document).ready(function () {
+
+
+            $("#mainassetlinkcheck").on("click", function () { });
+
+            $("#mainassetlinkcheck").click(); //trigger event after listening to it.
+
+
+
+
+        });
+    </script>
+
+}

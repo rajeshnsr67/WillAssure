@@ -82,7 +82,7 @@ namespace WillAssure.Models
             cmd.ExecuteNonQuery();
             con.Close();
 
-
+            ViewBag.Message = "Verified";
 
             return View("~/Views/UpdateAssets/UpdateAssetsPageContent.cshtml");
         }

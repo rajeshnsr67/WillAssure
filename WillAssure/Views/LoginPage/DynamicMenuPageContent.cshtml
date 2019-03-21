@@ -1,0 +1,160 @@
+﻿@model WillAssure.Models.DynamicMenuModel
+@{
+    ViewBag.Title = "DynamicMenuPageContent";
+}
+
+
+@*Main Content*@
+<div class="content-wrapper">
+    <div class="container-fluid">
+
+        <div class="row pt-2 pb-2">
+
+            <div class="col-sm-3">
+                <div class="btn-group float-sm-right">
+
+                    <div class="dropdown-menu">
+                        <a href="javaScript:void();" class="dropdown-item">Action</a>
+                        <a href="javaScript:void();" class="dropdown-item">Another action</a>
+                        <a href="javaScript:void();" class="dropdown-item">Something else here</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="javaScript:void();" class="dropdown-item">Separated link</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Breadcrumb-->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+
+                        <div class="card-title text-primary">Dynamic Menu Creation</div>
+                        <hr>
+
+                        @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "menuform" }))
+                        {
+
+
+
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-inline">
+
+                                        <input type="text" class="form-control" placeholder="Enter ParentName" name="ParentMenu">
+                                        <button type="submit" formaction="InsertParentMenu" id="btnparent" class="btnpopup btn btn-danger "><i class="icon-plus"></i>Add Parent</button>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        <hr />
+                        @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "menuform" }))
+                        {
+                            <div class="row">
+
+                                <div class="col-sm-4">
+
+                                    <div class="form-group">
+                                        <label for="input-1">Parent</label>
+
+                                        <select id="ddlparent" class="form-control validate[required]">
+                                            <option value="">--Select Parent--</option>
+                                        </select>
+                                        @Html.HiddenFor(m => m.parentid, new { id = "parentid" })
+                                        @Html.HiddenFor(m => m.parenttxt, new { id = "parenttxt" })
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-4">
+
+                                    <div class="form-group">
+                                        <label for="input-1">Child Menu</label>
+
+                                        <input type="text" class="form-control" placeholder="Enter Child Menu" name="ChildMenu">
+                                    </div>
+                                </div>
+
+
+                                <div class="col-sm-4">
+
+                                    <div class="form-group">
+                                        <label for="input-1">Child Menu Url</label>
+
+                                        <input type="text" class="form-control" placeholder="Enter Child Menu Url" name="ChildUrl">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+
+                                <button type="submit" id="btnRoleformsubmit" formaction="InsertChildmenu" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i>Create</button>
+                                <button type="button" id="btnRoleformsubmitSUCCESS" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
+                                <button type="button" id="btnRoleformsubmitCHECK" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
+                            </div>
+                        }
+
+
+
+
+
+
+
+                    </div>
+                        </div>
+                </div>
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+</div>
+@*end*@
+
+<!--Start Back To Top Button-->
+<a href="javaScript:void();" class="back-to-top"><i class="fa fa-angle-double-up"></i> </a>
+<!--End Back To Top Button-->
+
+
+
+
+<script>
+    $(document).ready(function () {
+
+        $("#testing").val("successful");
+    });
+
+    $(document).ready(function () {
+
+        $.ajax({
+
+            type: "POST",
+            url:"@Url.Action("BindParent", "LoginPage")",
+            success: function (data) {
+                $('#ddlparent').append(data);
+            }
+        });
+
+
+    });
+
+
+
+    $("#ddlparent").change(function () {
+        var value = $(this).children(":selected").attr("value");
+        var text = $("#ddlparent option:selected").html();
+
+        $("#parenttxt").val(text);
+        $("#parentid").val(value);
+    });
+</script>
+
+
+
+
+
+
+

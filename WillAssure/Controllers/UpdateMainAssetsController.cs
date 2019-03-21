@@ -9,6 +9,7 @@ using System.Data.SqlClient;
 using System.Configuration;
 using System.Data;
 using Newtonsoft.Json;
+using System.Collections;
 
 namespace WillAssure.Controllers
 {
@@ -39,34 +40,56 @@ namespace WillAssure.Controllers
         {
             string response = Request["send"].ToString();
             string structure = "";
-           
-            con.Open();
-            string query = "select b.aiid , a.AssetsType , c.AssetsCategory , b.Json from AssetsType a inner join  AssetInformation b on a.atId = b.atId inner join AssetsCategory  c on b.amId = c.amId  where b.aiid = " + response + " order by b.aiid asc  ";
-            SqlDataAdapter da = new SqlDataAdapter(query,con);
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-            con.Close();
 
-
-            if (dt.Rows.Count > 0)
+            if (response != "")
             {
-                for (int i = 0; i < dt.Rows.Count; i++)
+                con.Open();
+                string query = "select b.aiid , a.AssetsType , c.AssetsCategory , b.Json from AssetsType a inner join  AssetInformation b on a.atId = b.atId inner join AssetsCategory  c on b.amId = c.amId  where b.aiid = " + response + " order by b.aiid asc  ";
+                SqlDataAdapter da = new SqlDataAdapter(query, con);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                con.Close();
+
+
+                if (dt.Rows.Count > 0)
                 {
-                    structure = structure + "<div class='col-sm-6'>  <label>Assets Type</label>       <input type='text' class='form-control' value=" + dt.Rows[i]["AssetsType"].ToString() + " />     </div>";
-                    structure = structure + "<div class='col-sm-6'>  <label>Category Type</label>   <input type='text' class='form-control' value=" + dt.Rows[i]["AssetsCategory"].ToString() + " /> </div>";
-                    string getjson = dt.Rows[i]["Json"].ToString();
-
-                   var dict = JsonConvert.DeserializeObject<Dictionary<string, string>>(getjson);
-
-                    foreach (var kv in dict)
+                    for (int i = 0; i < dt.Rows.Count; i++)
                     {
-                        structure = structure + "<div class='col-sm-6'>  <label>" + kv.Key + "</label>  <input type='text' class='form-control' value=" + kv.Value + " />   </div>  ";
+
+
+
+
+                        structure = structure + "<div class='col-sm-6'>  <label>Assets Type</label>       <input type='text' class='form-control' value=" + dt.Rows[i]["AssetsType"].ToString() + " />     </div>";
+                        structure = structure + "<div class='col-sm-6'>  <label>Category Type</label>   <input type='text' class='form-control' value=" + dt.Rows[i]["AssetsCategory"].ToString() + " /> </div>";
+                        string getjson = dt.Rows[i]["Json"].ToString();
+
+                        var dict = JsonConvert.DeserializeObject<Dictionary<string, string>>(getjson);
+
+                        foreach (var kv in dict)
+                        {
+                            var k = kv.Key;
+                            ArrayList va = new ArrayList(k.Split('~'));
+                            for (int j = 0; j < va.Count; j++)
+                            {
+                                if (va.ToString() != "")
+                                {
+
+
+                                    structure = structure + "<div class='col-sm-6'>  <label>" + va[i].ToString() + "</label>  <input type='text' class='form-control' value=" + kv.Value + " />   </div>  ";
+                                    break;
+                                }
+                            }
+
+
+                            
+                        }
                     }
+
+
+
                 }
-
-               
-
             }
+            
 
             
 

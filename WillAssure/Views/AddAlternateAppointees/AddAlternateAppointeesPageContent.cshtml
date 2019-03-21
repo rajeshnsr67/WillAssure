@@ -33,8 +33,8 @@
                         @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "DistributorForm" }))
                         {
                             <div class="row">
-                               
-                               
+
+
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="input-1">Name</label>
@@ -222,7 +222,8 @@
 
                             <div class="form-group">
                                 <button type="submit" id="btnDistributorformsubmit" formaction="InsertAlternateAppointeesFormData" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i>Add Alternate Appointees</button>
-                                <button id="btnDistributorformsubmitSUCCESS" style="display:none;"></button>
+                                <button id="btnalternateappointeesSuccess" style="display:none;"></button>
+                                <button id="btnalternateappointeesLinking" style="display:none;"></button>
                             </div>
                         }
                     </div>
@@ -452,3 +453,43 @@
 
 
 
+
+
+
+@if (ViewBag.Message == "Verified")
+{
+    <script>
+
+        $(document).ready(function () {
+
+
+            $("#btnalternateappointeesSuccess").on("click", function () { });
+
+            $("#btnalternateappointeesSuccess").click(); //trigger event after listening to it.
+
+
+
+
+        });
+    </script>
+
+}
+
+@if (ViewBag.Message == "link")
+{
+    <script>
+
+        $(document).ready(function () {
+
+
+            $("#btnalternateappointeesLinking").on("click", function () { });
+
+            $("#btnalternateappointeesLinking").click(); //trigger event after listening to it.
+
+
+
+
+        });
+    </script>
+
+}

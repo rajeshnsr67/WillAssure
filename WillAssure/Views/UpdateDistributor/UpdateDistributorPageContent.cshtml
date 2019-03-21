@@ -61,7 +61,7 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="input-5">Address 1</label>
-                                        @Html.TextAreaFor(m => m.Address1, new { @type = "date", @class = "form-control validate[required] text-input", @id = "txtAddress1", @placeholder = "Enter Address 1", @autocomplete = "off" })
+                                        @Html.TextAreaFor(m => m.Address1, new { @class = "form-control validate[required] text-input", @id = "txtAddress1", @placeholder = "Enter Address 1", @autocomplete = "off" })
                                     </div>
                                 </div>
 
@@ -79,8 +79,8 @@
                                     <div class="form-group">
                                         <label for="input-1">State</label>
 
-                                        <select id="ddlstate" class="form-control validate[required]" >
-                                            <option>--Select State--</option>
+                                        <select id="ddlstate" class="form-control validate[required]">
+                                            <option value="">--Select State--</option>
                                         </select>
                                         @Html.HiddenFor(m => m.stateid, new { id = "stateid" })
                                         @Html.HiddenFor(m => m.statetext, new { id = "statetext" })
@@ -90,10 +90,10 @@
 
                                 <div class="col-sm-6">
 
-                                    <div class="form-group ">
+                                    <div class="form-group">
                                         <label for="input-1">City</label>
-                                        <select id="ddlcity" class="form-control validate[required]" >
-                                            <option>--Select City--</option>
+                                        <select id="ddlcity" class="form-control validate[required]">
+                                            <option value="">--Select City--</option>
                                         </select>
                                         @Html.HiddenFor(m => m.cityid, new { id = "cityid" })
                                         @Html.HiddenFor(m => m.citytext, new { id = "citytext" })
@@ -128,11 +128,11 @@
                                     <div class="form-group">
                                         <label for="input-3">Identity Proof</label>
                                         @Html.DropDownListFor(x => x.Identity_Proof, new SelectListItem[]{
-                                   new SelectListItem() {Text = "--Select Identity Proof--", Value="0"},
-                                   new SelectListItem() {Text = "Aadhaar Card", Value="1"},
-                                   new SelectListItem() {Text = "Passport", Value="2"},
-                                   new SelectListItem() {Text = "Driving Licences", Value="3"},
-                                   new SelectListItem() {Text = "Pan Card", Value="4"}} , new { @class="form-control" , @onchange= "getIdentityselection(this.options[this.selectedIndex].innerHTML)" })
+                                   new SelectListItem() {Text = "--Select Identity Proof--", Value=""},
+                                   new SelectListItem() {Text = "Aadhaar Card", Value="Aadhaar Card"},
+                                   new SelectListItem() {Text = "Passport", Value="Passport"},
+                                   new SelectListItem() {Text = "Driving Licences", Value="Driving Licences"},
+                                   new SelectListItem() {Text = "Pan Card", Value="Pan Card"}} , new { @class= "form-control validate[required]", @onchange= "getIdentityselection(this.options[this.selectedIndex].innerHTML)" })
 
                                     </div>
                                 </div>
@@ -142,9 +142,9 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="input-3">Identity Proof Number</label>
-                                        <div id="appendtxt"> @Html.TextBoxFor(m => m.Identity_Proof_Value, new { @class = "form-control validate[required] text-input", @id = "txtAdharCard", @placeholder = "Enter Aadhaar Card", @autocomplete = "off" })</div>
+                                        <div id="appendtxt"></div>
 
-                                        @*@Html.TextBoxFor(m => m.Identity_Proof_Value, new { @class = "form-control validate[required] text-input", @id = "txtIdentityProofValue", @placeholder = "Enter Identity Proof Value", @autocomplete = "off" })*@
+                                       
                                     </div>
                                 </div>
 
@@ -152,21 +152,21 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="input-3">Alternate Identity Proof</label>
-                                        @Html.TextBoxFor(m => m.Alt_Identity_Proof, new { @class = "form-control validate[required] text-input", @id = "txtAlt_Identity_Proof", @placeholder = "Enter Alt Identity Proof", @autocomplete = "off" })
+                                        @Html.TextBoxFor(m => m.Alt_Identity_Proof, new { @class = "form-control  text-input validate[required]", @id = "txtAlt_Identity_Proof", @placeholder = "Enter Alt Identity Proof", @autocomplete = "off" })
                                     </div>
                                 </div>
 
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="input-3">Alternate Identity Proof Number</label>
-                                        @Html.TextBoxFor(m => m.Alt_Identity_Proof_Value, new { @class = "form-control validate[required] text-input", @id = "txtAlt_Identity_Proof_Value", @placeholder = "Enter Your Alt Identity Proof Value", @autocomplete = "off" })
+                                        @Html.TextBoxFor(m => m.Alt_Identity_Proof_Value, new { @class = "form-control  text-input validate[required]", @id = "txtAlt_Identity_Proof_Value", @placeholder = "Enter Your Alt Identity Proof Value", @autocomplete = "off" })
                                     </div>
                                 </div>
 
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="input-3">Contact Person</label>
-                                        @Html.TextBoxFor(m => m.contactPerson, new { @class = "form-control", @id = "txtcontactPerson", @placeholder = "Enter contactPerson", @autocomplete = "off" })
+                                        @Html.TextBoxFor(m => m.contactPerson, new { @class = "form-control validate[required] ", @id = "txtcontactPerson", @placeholder = "Enter contactPerson", @autocomplete = "off" })
                                     </div>
                                 </div>
 
@@ -292,7 +292,7 @@
 
                             <div class="form-group">
                                 <button type="submit" id="btnDistributorformsubmit" formaction="UpdatingDistributorData" class="btn btn-success shadow-success px-5"><i class="icon-lock"></i>Update Company</button>
-                                <button type="button" style="display:none;" id="btnDistributorformsubmitUPDATE" formaction="UpdatingDistributorData" class="btn btn-success shadow-success px-5"><i class="icon-lock"></i></button>
+                                <button type="button" style="display:none;" id="btnDistributorformsubmitUPDATE"  class="btn btn-success shadow-success px-5"><i class="icon-lock"></i></button>
                             </div>
                         }
                     </div>
@@ -353,33 +353,41 @@
     });
 </script>
 
-
+@*validation script*@
 <script>
     function getIdentityselection(id) {
+        if (id == "--Select Identity Proof--") {
+            $("#appendtxt").empty().append("");
+        }
+
         if (id == "Aadhaar Card") {
-            $("#appendtxt").empty().append("<input type='text' class='form-control validate[required,custom[adharCard]] text-input' id='txtIdentityProofValue' placeholder='Enter Aadhaar Card' autocomplete='off'  />");
+            $("#appendtxt").empty().append("<input type='text' class='form-control validate[required,custom[adharCard]] text-input' id='Identity_Proof_Value' name='Identity_Proof_Value' placeholder='Enter Aadhaar Card' autocomplete='off'  />");
         }
 
 
         if (id == "Passport") {
-            $("#appendtxt").empty().append("<input type='text' class='form-control validate[required] text-input' id='txtIdentityProofValue' placeholder='Enter Passport Number' autocomplete='off'  />");
+            $("#appendtxt").empty().append("<input type='text' class='form-control validate[required,custom[Passport]] text-input' id='Identity_Proof_Value' name='Identity_Proof_Value'  placeholder='Enter Passport Number' autocomplete='off'  />");
         }
 
 
 
         if (id == "Driving Licences") {
-            $("#appendtxt").empty().append("<input type='text' class='form-control validate[required] text-input' id='txtIdentityProofValue' placeholder='Enter Driving Licences' autocomplete='off'  />");
+            $("#appendtxt").empty().append("<input type='text' class='form-control validate[required] text-input' id='Identity_Proof_Value' name='Identity_Proof_Value' placeholder='Enter Driving Licences' autocomplete='off'  />");
         }
 
 
 
         if (id == "Pan Card") {
-            $("#appendtxt").empty().append("<input type='text' class='form-control validate[required] text-input' id='txtIdentityProofValue' placeholder='Enter Pan Card' autocomplete='off'  />");
+            $("#appendtxt").empty().append("<input type='text' class='form-control validate[required] text-input' id='Identity_Proof_Value' name='Identity_Proof_Value' placeholder='Enter Pan Card' autocomplete='off'  />");
         }
 
 
     }
 </script>
+
+
+
+@*end*@
 
 
 
@@ -457,7 +465,7 @@
 
             $("#btnDistributorformsubmitUPDATE").click(); //trigger event after listening to it.
 
-           
+
 
 
         });

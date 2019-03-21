@@ -80,11 +80,11 @@ namespace WillAssure.Controllers
             cmd.Parameters.AddWithValue("@Middle_Name", BM.Middle_Name);
             cmd.Parameters.AddWithValue("@DOB", BM.DOB);
             cmd.Parameters.AddWithValue("@Mobile", BM.Mobile);
-            cmd.Parameters.AddWithValue("@Relationship", BM.Relationship);
+            cmd.Parameters.AddWithValue("@Relationship", BM.RelationshipTxt);
             cmd.Parameters.AddWithValue("@Marital_Status", BM.Marital_Status);
             cmd.Parameters.AddWithValue("@Religion", BM.Religion);
             cmd.Parameters.AddWithValue("@Identity_proof", BM.Identity_proof);
-            cmd.Parameters.AddWithValue("@Identity_proof_value", BM.Identity_proof_value);
+            cmd.Parameters.AddWithValue("@Identity_proof_value", BM.Identity_proof);
             cmd.Parameters.AddWithValue("@Alt_Identity_proof", BM.Alt_Identity_proof);
             cmd.Parameters.AddWithValue("@Alt_Identity_proof_value", BM.Alt_Identity_proof_value);
             cmd.Parameters.AddWithValue("@Address1", BM.Address1);
@@ -93,11 +93,13 @@ namespace WillAssure.Controllers
             cmd.Parameters.AddWithValue("@City", BM.City_txt);
             cmd.Parameters.AddWithValue("@State", BM.State_txt);
             cmd.Parameters.AddWithValue("@Pin", BM.Pin);
+            cmd.Parameters.AddWithValue("@aid", "");
+            cmd.Parameters.AddWithValue("@tid", "");
             cmd.Parameters.AddWithValue("@beneficiary_type", BM.beneficiary_type);
             cmd.ExecuteNonQuery();
             con.Close();
 
-            Response.Write("<script type='text/javascript'>$(document).ready(function(){$('#alert-success').trigger('click');});</ script > ");
+            ViewBag.Message = "Verified";
 
 
             return View("~/Views/UpdateDistributor/UpdateDistributorPageContent.cshtml");

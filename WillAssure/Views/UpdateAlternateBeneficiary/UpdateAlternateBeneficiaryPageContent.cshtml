@@ -40,7 +40,7 @@
 
                                 <div class="form-group">
                                     <label for="input-1">First Name</label>
-
+                                    @Html.HiddenFor(m=>m.lnk_bd_id)
                                     @Html.TextBoxFor(m => m.First_Name, new { @class = "form-control validate[required] text-input", @id = "firstname", @placeholder = "Enter First Name", @autocomplete = "off", alert = "LabourCost is requried" })
                                 </div>
                             </div>
@@ -260,8 +260,8 @@
                             <div class="form-group">
 
                                 <button type="submit" id="btnRoleformsubmit" formaction="UpdatingAlternateBeneficiary" class="btn btn-success shadow-primary px-5"><i class="icon-lock"></i> Update Alternate Beneficiary</button>
-                                <button type="button" id="btnRoleformsubmitSUCCESS" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
-                                <button type="button" id="btnRoleformsubmitCHECK" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
+                                <button type="button" id="btnupdatealternatesucess" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
+                               
                             </div>
 
                         }

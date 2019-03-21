@@ -365,23 +365,6 @@
 
 
 
-                    @*<li>
-                <a href="javaScript:void();" class="waves-effect">
-                    <i class="zmdi zmdi-format-list-bulleted"></i> <span>Doc Creation</span>
-                    <i class="fa fa-angle-left pull-right"></i>
-                </a>
-                <ul class="sidebar-submenu">
-
-                    <li><a href=@Url.Action("AddDocumentIndex","AddDocument")><i class="zmdi zmdi-star-outline"></i>Add Document</a></li>
-
-                </ul>
-                <ul class="sidebar-submenu">
-
-                    <li><a href=@Url.Action("EditDocumentIndex","EditDocument")><i class="zmdi zmdi-star-outline"></i>Edit Document</a></li>
-
-                </ul>
-
-            </li>*@
 
 
 
@@ -408,7 +391,23 @@
 
                     </li>
 
+                    <li>
+                        <a href="javaScript:void();" class="waves-effect">
+                            <i class="zmdi zmdi-format-list-bulleted"></i> <span>Testator Family</span>
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </a>
+                        <ul class="sidebar-submenu">
 
+                            <li><a href=@Url.Action("AddTestatorFamilyIndex","AddTestatorFamily")><i class="zmdi zmdi-star-outline"></i>Add Testator Family </a></li>
+
+                        </ul>
+                        <ul class="sidebar-submenu">
+
+                            <li><a href=@Url.Action("EditTestatorFamilyIndex","EditTestatorFamily")><i class="zmdi zmdi-star-outline"></i>Edit Testator Family</a></li>
+
+                        </ul>
+
+                    </li>
 
                     <li>
                         <a href="javaScript:void();" class="waves-effect">
@@ -521,6 +520,9 @@
                         </ul>
 
                     </li>
+
+
+
 
 
 
@@ -663,6 +665,25 @@
 
 
 
+                    <li>
+                        <a href="javaScript:void();" class="waves-effect">
+                            <i class="zmdi zmdi-format-list-bulleted"></i> <span>Document</span>
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </a>
+                        <ul class="sidebar-submenu">
+
+
+
+                            <li><a href=@Url.Action("Report.aspx","page")><i class="zmdi zmdi-star-outline"></i>View Document</a></li>
+
+                        </ul>
+
+
+                    </li>
+
+
+
+
 
                 }
 
@@ -678,75 +699,23 @@
 
 
 
-
                     <li>
                         <a href="javaScript:void();" class="waves-effect">
-                            <i class="zmdi zmdi-format-list-bulleted"></i> <span>Roles</span>
+                            <i class="zmdi zmdi-format-list-bulleted"></i> <span>Doc Verification</span>
                             <i class="fa fa-angle-left pull-right"></i>
                         </a>
                         <ul class="sidebar-submenu">
 
-                            <li><a href=@Url.Action("RoleAddIndex","RoleAdd")><i class="zmdi zmdi-star-outline"></i>Add Roles </a></li>
+                            <li><a href=@Url.Action("UsersFormIndex", "UsersForm")><i class="zmdi zmdi-star-outline"></i>Add Employee</a></li>
 
                         </ul>
                         <ul class="sidebar-submenu">
 
-                            <li><a href=@Url.Action("EditRoleIndex","EditRole")><i class="zmdi zmdi-star-outline"></i>Edit Roles</a></li>
+                            <li><a href=@Url.Action("EditUserFormIndex", "EditUserForm")><i class="zmdi zmdi-star-outline"></i>Edit Employee</a></li>
 
                         </ul>
 
                     </li>
-
-
-
-
-                    <li>
-                        <a href="javaScript:void();" class="waves-effect">
-                            <i class="zmdi zmdi-format-list-bulleted"></i> <span>Employee</span>
-                            <i class="fa fa-angle-left pull-right"></i>
-                        </a>
-                        <ul class="sidebar-submenu">
-
-                            <li><a href=@Url.Action("UsersFormIndex","UsersForm")><i class="zmdi zmdi-star-outline"></i>Add Employee</a></li>
-
-                        </ul>
-                        <ul class="sidebar-submenu">
-
-                            <li><a href=@Url.Action("EditUserFormIndex","EditUserForm")><i class="zmdi zmdi-star-outline"></i>Edit Employee</a></li>
-
-                        </ul>
-
-                    </li>
-
-
-
-
-
-
-
-
-                    <li>
-                        <a href="javaScript:void();" class="waves-effect">
-                            <i class="zmdi zmdi-format-list-bulleted"></i> <span>Doc Creation</span>
-                            <i class="fa fa-angle-left pull-right"></i>
-                        </a>
-                        <ul class="sidebar-submenu">
-
-                            <li><a href=@Url.Action("UsersFormIndex","UsersForm")><i class="zmdi zmdi-star-outline"></i>Add Employee</a></li>
-
-                        </ul>
-                        <ul class="sidebar-submenu">
-
-                            <li><a href=@Url.Action("EditUserFormIndex","EditUserForm")><i class="zmdi zmdi-star-outline"></i>Edit Employee</a></li>
-
-                        </ul>
-
-                    </li>
-
-
-
-
-
 
 
                     <li>
@@ -756,16 +725,23 @@
                         </a>
                         <ul class="sidebar-submenu">
 
-                            <li><a href=@Url.Action("UsersFormIndex","UsersForm")><i class="zmdi zmdi-star-outline"></i>Add Employee</a></li>
+                            <li><a href=@Url.Action("UsersFormIndex", "UsersForm")><i class="zmdi zmdi-star-outline"></i>Add Employee</a></li>
 
                         </ul>
                         <ul class="sidebar-submenu">
 
-                            <li><a href=@Url.Action("EditUserFormIndex","EditUserForm")><i class="zmdi zmdi-star-outline"></i>Edit Employee</a></li>
+                            <li><a href=@Url.Action("EditUserFormIndex", "EditUserForm")><i class="zmdi zmdi-star-outline"></i>Edit Employee</a></li>
 
                         </ul>
 
+                        <input type="text" class="form-control" name="name" value="" id="testing" />
                     </li>
+
+
+
+
+
+
 
 
                 }
@@ -919,7 +895,7 @@
 
 
             </ul>
-
+            
         </div>
         <!--End sidebar-wrapper-->
         @RenderBody()

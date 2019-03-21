@@ -48,6 +48,7 @@ namespace WillAssure.Controllers
                                 + "<td>" + dt.Rows[i]["Mobile"].ToString() + "</td>"
                                 + "<td>" + dt.Rows[i]["Email"].ToString() + "</td>"
                                 + "<td>" + dt.Rows[i]["maritalStatus"].ToString() + "</td>"
+                                + "<td>" + dt.Rows[i]["Relationship"].ToString() + "</td>"
                                 + "<td>" + dt.Rows[i]["Religion"].ToString() + "</td>"
                                 + "<td>" + dt.Rows[i]["Identity_Proof"].ToString() + "</td>"
                                 + "<td>" + dt.Rows[i]["Identity_proof_Value"].ToString() + "</td>"
@@ -88,6 +89,7 @@ namespace WillAssure.Controllers
             cmd.Parameters.AddWithValue("@Mobile", "");
             cmd.Parameters.AddWithValue("@Email", "");
             cmd.Parameters.AddWithValue("@maritalStatus", "");
+            cmd.Parameters.AddWithValue("@Relationship", "");
             cmd.Parameters.AddWithValue("@Religion", "");
             cmd.Parameters.AddWithValue("@Identity_Proof", "");
             cmd.Parameters.AddWithValue("@Identity_proof_Value", "");
@@ -135,6 +137,7 @@ namespace WillAssure.Controllers
                                 + "<td>" + dt.Rows[i]["Mobile"].ToString() + "</td>"
                                 + "<td>" + dt.Rows[i]["Email"].ToString() + "</td>"
                                 + "<td>" + dt.Rows[i]["maritalStatus"].ToString() + "</td>"
+                                + "<td>" + dt.Rows[i]["Relationship"].ToString() + "</td>"
                                 + "<td>" + dt.Rows[i]["Religion"].ToString() + "</td>"
                                 + "<td>" + dt.Rows[i]["Identity_Proof"].ToString() + "</td>"
                                 + "<td>" + dt.Rows[i]["Identity_proof_Value"].ToString() + "</td>"

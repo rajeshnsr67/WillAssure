@@ -70,8 +70,8 @@ namespace WillAssure.Controllers
             else
             {
 
-                Response.Write("<script>alert('Please Fill Out AssetInformation and Testator Form First....!')</script>");
 
+                ViewBag.Message = "link";
 
             }
 

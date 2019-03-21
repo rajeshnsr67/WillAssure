@@ -243,8 +243,8 @@
                             <div class="form-group">
 
                                 <button type="submit" id="btnRoleformsubmit" formaction="InsertNomineeData" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i> Add Nominee</button>
-                                <button type="button" id="btnRoleformsubmitSUCCESS" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
-
+                                <button type="button" id="btnnomineeinsertsuccess" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
+                                <button type="button" id="btnnomineelinking" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
                             </div>
 
                         }
@@ -390,3 +390,48 @@
         });
 
 </script>
+
+
+
+
+
+
+@if (ViewBag.Message == "Verified")
+{
+    <script>
+
+        $(document).ready(function () {
+
+
+            $("#btnnomineeinsertsuccess").on("click", function () { });
+
+            $("#btnnomineeinsertsuccess").click(); //trigger event after listening to it.
+
+
+
+
+        });
+    </script>
+
+}
+
+
+
+@if (ViewBag.Message == "link")
+{
+    <script>
+
+        $(document).ready(function () {
+
+
+            $("#btnnomineelinking").on("click", function () { });
+
+            $("#btnnomineelinking").click(); //trigger event after listening to it.
+
+
+
+
+        });
+    </script>
+
+}

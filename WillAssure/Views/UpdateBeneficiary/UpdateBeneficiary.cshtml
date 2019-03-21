@@ -1,8 +1,8 @@
 ﻿@model WillAssure.Models.BeneficiaryModel
 @{
-                /**/
+    /**/
 
-                ViewBag.Title = "UpdateBeneficiary";
+    ViewBag.Title = "UpdateBeneficiary";
 }
 
 
@@ -41,7 +41,7 @@
 
                                     <div class="form-group">
                                         <label for="input-1">First Name</label>
-
+                                        @Html.HiddenFor(m => m.bpId)
                                         @Html.TextBoxFor(m => m.First_Name, new { @class = "form-control validate[required] text-input", @id = "txtFirst_Name", @placeholder = "Enter First Name", @autocomplete = "off" })
                                     </div>
                                 </div>
@@ -85,7 +85,7 @@
                                     <div class="form-group">
                                         <label for="input-3">Relationship</label>
                                         <select id="ddlrelation" class="form-control validate[required]">
-                                         
+                                            <option value="">--Select State--</option>
                                         </select>
                                         @Html.HiddenFor(m => m.RelationshipId, new { id = "relationid" })
                                         @Html.HiddenFor(m => m.RelationshipTxt, new { id = "relationtext" })
@@ -98,8 +98,8 @@
                                         <label for="input-3">Marital Status</label>
                                         @Html.DropDownListFor(x => x.Marital_Status, new SelectListItem[]{
                                         new SelectListItem() {Text = "--Select--", Value=""},
-                                        new SelectListItem() {Text = "Married", Value="1"},
-                                        new SelectListItem() {Text = "UnMarried", Value="2"}} , new { @class= "form-control validate[required]", @id = "ddlMarital_Status" })
+                                        new SelectListItem() {Text = "Married", Value="Married"},
+                                        new SelectListItem() {Text = "UnMarried", Value="UnMarried"}} , new { @class= "form-control validate[required]", @id = "ddlMarital_Status" })
                                         @Html.HiddenFor(m => m.Marital_Status_TXT, new { @id = "Marital_Status_TXT" })
                                         @Html.HiddenFor(m => m.Marital_Status_ID, new { @id = "Marital_Status_ID" })
                                     </div>
@@ -112,16 +112,16 @@
                                         <label for="input-3">Religion</label>
                                         @Html.DropDownListFor(x => x.Religion, new SelectListItem[]{
                                  new SelectListItem() {Text = "--Select--", Value=""},
-                                 new SelectListItem() {Text = "Buddhism", Value="1"},
-                                 new SelectListItem() {Text = "Christians", Value="2"},
-                                 new SelectListItem() {Text = "Hinduism", Value="3"},
-                                 new SelectListItem() {Text = "Islam", Value="4"},
-                                 new SelectListItem() {Text = "Jainism", Value="5"},
-                                 new SelectListItem() {Text = "Sikhism", Value="6"},
-                                 new SelectListItem() {Text = "Zoroastrian", Value="7"},
-                                 new SelectListItem() {Text = "Guru Nanak Dev", Value="8"},
-                                 new SelectListItem() {Text = "Lord Mahavira", Value="9"},
-                                 new SelectListItem() {Text = "Adi Shankaracharya", Value="10"}}, new { @class = "form-control validate[required]", @id = "ddlReligion" })
+                                 new SelectListItem() {Text = "Buddhism", Value="Buddhism"},
+                                 new SelectListItem() {Text = "Christians", Value="Christians"},
+                                 new SelectListItem() {Text = "Hinduism", Value="Hinduism"},
+                                 new SelectListItem() {Text = "Islam", Value="Islam"},
+                                 new SelectListItem() {Text = "Jainism", Value="Jainism"},
+                                 new SelectListItem() {Text = "Sikhism", Value="Sikhism"},
+                                 new SelectListItem() {Text = "Zoroastrian", Value="Zoroastrian"},
+                                 new SelectListItem() {Text = "Guru Nanak Dev", Value="Guru Nanak Dev"},
+                                 new SelectListItem() {Text = "Lord Mahavira", Value="Lord Mahavira"},
+                                 new SelectListItem() {Text = "Adi Shankaracharya", Value="Adi Shankaracharya"}}, new { @class = "form-control validate[required]", @id = "ddlReligion" })
                                         @Html.HiddenFor(m => m.Religion_txt, new { @id = "Religion_txt" })
                                         @Html.HiddenFor(m => m.Religion_id, new { @id = "Religion_id" })
                                     </div>
@@ -134,10 +134,10 @@
                                         <label for="input-3">Identity Proof</label>
                                         @Html.DropDownListFor(x => x.Identity_proof, new SelectListItem[]{
                                    new SelectListItem() {Text = "--Select Identity Proof--", Value=""},
-                                   new SelectListItem() {Text = "Aadhaar Card", Value="1"},
-                                   new SelectListItem() {Text = "Passport", Value="2"},
-                                   new SelectListItem() {Text = "Driving Licences", Value="3"},
-                                   new SelectListItem() {Text = "Pan Card", Value="4"}} , new { @class= "form-control validate[required]", @id="ddlidentityproof" , @onchange= "getIdentityselection(this.options[this.selectedIndex].innerHTML)" })
+                                   new SelectListItem() {Text = "Aadhaar Card", Value="Aadhaar Card"},
+                                   new SelectListItem() {Text = "Passport", Value="Passport"},
+                                   new SelectListItem() {Text = "Driving Licences", Value="Driving Licences"},
+                                   new SelectListItem() {Text = "Pan Card", Value="Pan Card"}} , new { @class= "form-control validate[required]", @id="ddlidentityproof" , @onchange= "getIdentityselection(this.options[this.selectedIndex].innerHTML)" })
 
                                         @Html.HiddenFor(m => m.Identity_proof, new { id = "Identity_Proof_txt" })
                                     </div>
@@ -148,7 +148,7 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="input-3">Identity Proof Number</label>
-                                        <div id="appendtxt">  @Html.TextBoxFor(m => m.Identity_proof_txt, new { @class = "form-control validate[required] text-input", @id = "txtAdharCard", @placeholder = "Enter Aadhaar Card", @autocomplete = "off" })</div>
+                                        <div id="appendtxt">  </div>
 
                                         @*@Html.TextBoxFor(m => m.Identity_Proof_Value, new { @class = "form-control validate[required] text-input", @id = "txtIdentityProofValue", @placeholder = "Enter Identity Proof Value", @autocomplete = "off" })*@
                                     </div>
@@ -237,8 +237,12 @@
                                         <label for="input-3">beneficiary type</label>
                                         @Html.DropDownListFor(x => x.beneficiary_type, new SelectListItem[]{
                                           new SelectListItem() {Text = "--Select--", Value=""},
-                                          new SelectListItem() {Text = "Distributor", Value="1"},
-                                          new SelectListItem() {Text = "Testator", Value="2"}}, new { @class = "form-control validate[required]", @id= "ddlbeneficiary_type" })
+                                          new SelectListItem() {Text = " Will Beneficiary ", Value=" Will Beneficiary"},
+                                           new SelectListItem() {Text = " POA Agent", Value=" POA Agent"},
+                                            new SelectListItem() {Text = "  POA Revocation Agent", Value="  POA Revocation Agent"},
+                                             new SelectListItem() {Text = "  Gift Deed Donee", Value="  Gift Deed Donee"},
+                                               new SelectListItem() {Text = " Living Will Executor", Value="  Living Will Executor"},
+                                          new SelectListItem() {Text = "POA Health Care Agent", Value="POA Health Care Agent"}}, new { @class = "form-control validate[required]", @id= "ddlbeneficiary_type" })
 
                                         @Html.HiddenFor(m => m.beneficiary_type_id, new { id = "beneficiary_type_id" })
                                         @Html.HiddenFor(m => m.beneficiary_type_txt, new { id = "beneficiary_type_txt" })
@@ -288,15 +292,10 @@
 
 
 
-                            <div class="form-group py-2">
-                                <div class="icheck-material-primary">
-                                    <input type="checkbox" id="user-checkbox1" checked="" />
-                                    <label for="user-checkbox1">I Agree Terms & Conditions</label>
-                                </div>
-                            </div>
+
                             <div class="form-group">
-                                <button type="submit" id="btnBeneficiaryformsubmit" formaction="InsertBeneficiaryData" class="btn btn-success shadow-success px-5"><i class="icon-lock"></i>Update Beneficiary</button>
-                                <button id="btnBeneficiarySUCESS" style="display:none;"></button>
+                                <button type="submit" id="btnBeneficiaryformsubmit" formaction="UpdatingBeneficiaryData" class="btn btn-success shadow-success px-5"><i class="icon-lock"></i>Update Beneficiary</button>
+                                <button id="btnBeneficiaryupdated" style="display:none;"></button>
                             </div>
                         }
                     </div>
@@ -312,7 +311,6 @@
 
 </div>
 @*end*@
-
 
 
 
@@ -354,22 +352,12 @@
         $.ajax({
 
             type: "POST",
-            url:"@Url.Action("BindStateDDL", "UpdateBeneficiary")",
+            url:"@Url.Action("BindStateDDL", "AddBeneficiary")",
             success: function (data) {
                 $('#ddlstate').append(data);
             }
         });
 
-
-
-           $.ajax({
-
-            type: "POST",
-            url:"@Url.Action("BindRelationDDL", "UpdateBeneficiary")",
-            success: function (data) {
-                $('#ddlrelation').append(data);
-            }
-        });
 
     });
 
@@ -386,7 +374,7 @@
         $.ajax({
 
             type: "POST",
-            url: "@Url.Action("OnChangeBindCity", "UpdateBeneficiary")",
+            url: "@Url.Action("OnChangeBindCity", "AddBeneficiary")",
             data: { "send": "" + value+  ""},
             success: function (data) {
 
@@ -425,6 +413,50 @@
 
 
 
+@if (ViewBag.Message == "RecordsInsert")
+{
+    <script>
+
+        $(document).ready(function () {
+            $("#btnBeneficiarySUCESS").on("click", function () { });
+
+            $("#btnBeneficiarySUCESS").click(); //trigger event after listening to it.
+
+        });
+    </script>
+
+}
+
+<script>
+
+    $(document).ready(function () {
+
+        $.ajax({
+
+            type: "POST",
+            url:"@Url.Action("BindRelationDDL", "AddBeneficiary")",
+            success: function (data) {
+                $('#ddlrelation').empty().append(data);
+            }
+        });
+
+
+    });
+
+
+        $("#ddlrelation").change(function () {
+            var value = $(this).children(":selected").attr("value");
+            var text = $("#ddlrelation option:selected").html();
+
+            $("#relationtext").val(text);
+            $("#relationid").val(value);
+
+
+        });
+
+</script>
+
+
 
 @*validation script*@
 <script>
@@ -434,24 +466,24 @@
 
 
         if (id == "Aadhaar Card") {
-            $("#appendtxt").empty().append("<input type='text' class='form-control validate[required,custom[adharCard]] text-input' id='Identity_Proof_Value' name='Identity_Proof_Value' placeholder='Enter Aadhaar Card' autocomplete='off'  />");
+            $("#appendtxt").empty().append("<input type='text' class='form-control validate[required,custom[adharCard]] text-input' id='Identity_proof' name='Identity_Proof_Value' placeholder='Enter Aadhaar Card' autocomplete='off'  />");
         }
 
 
         if (id == "Passport") {
-            $("#appendtxt").empty().append("<input type='text' class='form-control validate[required,custom[Passport]] text-input' id='Identity_Proof_Value' name='Identity_Proof_Value'  placeholder='Enter Passport Number' autocomplete='off'  />");
+            $("#appendtxt").empty().append("<input type='text' class='form-control validate[required,custom[Passport]] text-input' id='Identity_proof' name='Identity_Proof_Value'  placeholder='Enter Passport Number' autocomplete='off'  />");
         }
 
 
 
         if (id == "Driving Licences") {
-            $("#appendtxt").empty().append("<input type='text' class='form-control validate[required] text-input' id='Identity_Proof_Value' name='Identity_Proof_Value' placeholder='Enter Driving Licences' autocomplete='off'  />");
+            $("#appendtxt").empty().append("<input type='text' class='form-control validate[required] text-input' id='Identity_Proof_Value' name='Identity_proof' placeholder='Enter Driving Licences' autocomplete='off'  />");
         }
 
 
 
         if (id == "Pan Card") {
-            $("#appendtxt").empty().append("<input type='text' class='form-control validate[required] text-input' id='Identity_Proof_Value' name='Identity_Proof_Value' placeholder='Enter Pan Card' autocomplete='off'  />");
+            $("#appendtxt").empty().append("<input type='text' class='form-control validate[required] text-input' id='Identity_Proof_Value' name='Identity_proof' placeholder='Enter Pan Card' autocomplete='off'  />");
         }
 
 
@@ -461,5 +493,6 @@
 
 
 @*end*@
+
 
 

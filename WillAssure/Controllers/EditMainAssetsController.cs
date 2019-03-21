@@ -44,7 +44,7 @@ namespace WillAssure.Controllers
                 var dict = JsonConvert.DeserializeObject<Dictionary<string, string>>(getjson);
                 foreach (var kv in dict)
                 {
-                    final = final + "<td>" + kv.Key + ":" + kv.Value + "</td>";
+                    final = final + kv.Key + ":" + kv.Value;
                 }
 
                 data = data + "<tr class='nr'><td>" + dt.Rows[i]["aiid"].ToString() + "</td>";

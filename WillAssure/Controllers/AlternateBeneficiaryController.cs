@@ -171,13 +171,13 @@ namespace WillAssure.Controllers
                 cmd.Parameters.AddWithValue("@Pin", ABM.Pin);
                 cmd.ExecuteNonQuery();
                 con.Close();
-
+                ViewBag.Message = "Verified";
             }
             else
             {
                 getbeneficiary = 2;
-                Response.Write("<script>alert('Please Fill Beneficiary Form First....!')</script>");
-                
+                ViewBag.Message = "link";
+
 
             }
 

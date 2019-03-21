@@ -90,7 +90,7 @@ namespace WillAssure.CrystalReports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_testatorname {
+        public CrystalDecisions.Shared.IParameterField Parameter_testatorsirname {
             get {
                 return this.DataDefinition.ParameterFields[0];
             }
@@ -98,7 +98,7 @@ namespace WillAssure.CrystalReports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_Gender {
+        public CrystalDecisions.Shared.IParameterField Parameter_testatorrelation {
             get {
                 return this.DataDefinition.ParameterFields[1];
             }
@@ -106,7 +106,7 @@ namespace WillAssure.CrystalReports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_maritialstatus {
+        public CrystalDecisions.Shared.IParameterField Parameter_testatorage {
             get {
                 return this.DataDefinition.ParameterFields[2];
             }
@@ -114,7 +114,7 @@ namespace WillAssure.CrystalReports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_fathernameorhusbandname {
+        public CrystalDecisions.Shared.IParameterField Parameter_beneficiaryname {
             get {
                 return this.DataDefinition.ParameterFields[3];
             }
@@ -122,7 +122,7 @@ namespace WillAssure.CrystalReports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_age {
+        public CrystalDecisions.Shared.IParameterField Parameter_beneficiarysirname {
             get {
                 return this.DataDefinition.ParameterFields[4];
             }
@@ -130,7 +130,7 @@ namespace WillAssure.CrystalReports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_address {
+        public CrystalDecisions.Shared.IParameterField Parameter_testatoradd {
             get {
                 return this.DataDefinition.ParameterFields[5];
             }
@@ -138,7 +138,7 @@ namespace WillAssure.CrystalReports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_executorname {
+        public CrystalDecisions.Shared.IParameterField Parameter_appointee1 {
             get {
                 return this.DataDefinition.ParameterFields[6];
             }
@@ -146,7 +146,7 @@ namespace WillAssure.CrystalReports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_executortype {
+        public CrystalDecisions.Shared.IParameterField Parameter_appointee2 {
             get {
                 return this.DataDefinition.ParameterFields[7];
             }
@@ -162,9 +162,41 @@ namespace WillAssure.CrystalReports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_alternatebeneficiary {
+        public CrystalDecisions.Shared.IParameterField Parameter_assetcategory {
             get {
                 return this.DataDefinition.ParameterFields[9];
+            }
+        }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.Shared.IParameterField Parameter_assetname {
+            get {
+                return this.DataDefinition.ParameterFields[10];
+            }
+        }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.Shared.IParameterField Parameter_benefname {
+            get {
+                return this.DataDefinition.ParameterFields[11];
+            }
+        }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.Shared.IParameterField Parameter_percent {
+            get {
+                return this.DataDefinition.ParameterFields[12];
+            }
+        }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.Shared.IParameterField Parameter_testator {
+            get {
+                return this.DataDefinition.ParameterFields[13];
             }
         }
     }
