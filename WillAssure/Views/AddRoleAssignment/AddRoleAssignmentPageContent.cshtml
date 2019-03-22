@@ -1,0 +1,258 @@
+﻿@model WillAssure.Models.RoleAssignModel
+@{
+    ViewBag.Title = "AddRoleAssignmentPageContent";
+}
+
+
+@*Main Content*@
+<div class="content-wrapper">
+    <div class="container-fluid">
+
+        <div class="row pt-2 pb-2">
+
+            <div class="col-sm-3">
+                <div class="btn-group float-sm-right">
+
+                    <div class="dropdown-menu">
+                        <a href="javaScript:void();" class="dropdown-item">Action</a>
+                        <a href="javaScript:void();" class="dropdown-item">Another action</a>
+                        <a href="javaScript:void();" class="dropdown-item">Something else here</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="javaScript:void();" class="dropdown-item">Separated link</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Breadcrumb-->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+
+                        <div class="card-title text-primary">Role Assignment</div>
+                        <hr>
+
+                        @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "RoleAssignForm" }))
+                        {
+
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="input-3">Role</label>
+                                    <select id="ddlrole" class="form-control validate[required]">
+                                        <option value="">--Select Role--</option>
+                                    </select>
+                                    @Html.HiddenFor(m => m.ddlroleid, new { id = "ddlroleid" })
+                                    @Html.HiddenFor(m => m.ddlroletxt, new { id = "ddlroletxt" })
+                                </div>
+                            </div>
+                            
+                            
+
+                            </div>
+
+                        <div class="row" style="display:none;" id="pagedata">
+                            <div class="col-sm-6">
+                                <table class="table">
+
+                                    <tbody>
+                                        <tr>
+                                            <td style="font-weight:bolder">Roles</td>
+                                            <td><label class="checkbox-inline"><input type="checkbox" value="RoleAdd">Add</label></td>
+                                            <td><label class="checkbox-inline"><input type="checkbox" value="RoleEdit">Edit</label></td>
+                                            <td><label class="checkbox-inline"><input type="checkbox" value="RoleDelete">Delete</label></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="font-weight:bolder">Company</td>
+                                            <td><label class="checkbox-inline"><input type="checkbox" value="CompanyAdd">Add</label></td>
+                                            <td><label class="checkbox-inline"><input type="checkbox" value="">Edit</label></td>
+                                            <td><label class="checkbox-inline"><input type="checkbox" value="">Delete</label></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="font-weight:bolder">Distributor</td>
+                                            <td><label class="checkbox-inline"><input type="checkbox" value="">Add</label></td>
+                                            <td><label class="checkbox-inline"><input type="checkbox" value="">Edit</label></td>
+                                            <td><label class="checkbox-inline"><input type="checkbox" value="">Delete</label></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="font-weight:bolder">Testators</td>
+                                            <td><label class="checkbox-inline"><input type="checkbox" value="">Add</label></td>
+                                            <td><label class="checkbox-inline"><input type="checkbox" value="">Edit</label></td>
+                                            <td><label class="checkbox-inline"><input type="checkbox" value="">Delete</label></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="font-weight:bolder">Testators Family</td>
+                                            <td><label class="checkbox-inline"><input type="checkbox" value="">Add</label></td>
+                                            <td><label class="checkbox-inline"><input type="checkbox" value="">Edit</label></td>
+                                            <td><label class="checkbox-inline"><input type="checkbox" value="">Delete</label></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="font-weight:bolder">Asset Type</td>
+                                            <td><label class="checkbox-inline"><input type="checkbox" value="">Add</label></td>
+                                            <td><label class="checkbox-inline"><input type="checkbox" value="">Edit</label></td>
+                                            <td><label class="checkbox-inline"><input type="checkbox" value="">Delete</label></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="font-weight:bolder">Asset Category</td>
+                                            <td><label class="checkbox-inline"><input type="checkbox" value="">Add</label></td>
+                                            <td><label class="checkbox-inline"><input type="checkbox" value="">Edit</label></td>
+                                            <td><label class="checkbox-inline"><input type="checkbox" value="">Delete</label></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="font-weight:bolder">Asset Controls Mapping</td>
+                                            <td><label class="checkbox-inline"><input type="checkbox" value="">Add</label></td>
+                                            <td><label class="checkbox-inline"><input type="checkbox" value="">Edit</label></td>
+                                            <td><label class="checkbox-inline"><input type="checkbox" value="">Delete</label></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="font-weight:bolder">Asset Information</td>
+                                            <td><label class="checkbox-inline"><input type="checkbox" value="">Add</label></td>
+                                            <td><label class="checkbox-inline"><input type="checkbox" value="">Edit</label></td>
+                                            <td><label class="checkbox-inline"><input type="checkbox" value="">Delete</label></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="font-weight:bolder">Relation</td>
+                                            <td><label class="checkbox-inline"><input type="checkbox" value="">Add</label></td>
+                                            <td><label class="checkbox-inline"><input type="checkbox" value="">Edit</label></td>
+                                            <td><label class="checkbox-inline"><input type="checkbox" value="">Delete</label></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="font-weight:bolder">Beneficiary</td>
+                                            <td><label class="checkbox-inline"><input type="checkbox" value="">Add</label></td>
+                                            <td><label class="checkbox-inline"><input type="checkbox" value="">Edit</label></td>
+                                            <td><label class="checkbox-inline"><input type="checkbox" value="">Delete</label></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="font-weight:bolder">Alternate Beneficiary</td>
+                                            <td><label class="checkbox-inline"><input type="checkbox" value="">Add</label></td>
+                                            <td><label class="checkbox-inline"><input type="checkbox" value="">Edit</label></td>
+                                            <td><label class="checkbox-inline"><input type="checkbox" value="">Delete</label></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="font-weight:bolder">Alternate Beneficiary</td>
+                                            <td><label class="checkbox-inline"><input type="checkbox" value="">Add</label></td>
+                                            <td><label class="checkbox-inline"><input type="checkbox" value="">Edit</label></td>
+                                            <td><label class="checkbox-inline"><input type="checkbox" value="">Delete</label></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="font-weight:bolder">Nominee</td>
+                                            <td><label class="checkbox-inline"><input type="checkbox" value="">Add</label></td>
+                                            <td><label class="checkbox-inline"><input type="checkbox" value="">Edit</label></td>
+                                            <td><label class="checkbox-inline"><input type="checkbox" value="">Delete</label></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="font-weight:bolder">Appointees</td>
+                                            <td><label class="checkbox-inline"><input type="checkbox" value="">Add</label></td>
+                                            <td><label class="checkbox-inline"><input type="checkbox" value="">Edit</label></td>
+                                            <td><label class="checkbox-inline"><input type="checkbox" value="">Delete</label></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="font-weight:bolder">Alternate Appointees</td>
+                                            <td><label class="checkbox-inline"><input type="checkbox" value="">Add</label></td>
+                                            <td><label class="checkbox-inline"><input type="checkbox" value="">Edit</label></td>
+                                            <td><label class="checkbox-inline"><input type="checkbox" value="">Delete</label></td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                            <div class="form-group">
+
+                                <button type="submit" id="btnRoleformsubmit" formaction="insertAssignRole" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i>Assign Roles</button>
+                                <button type="button" id="btnRoleformsubmitSUCCESS" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
+                                <button type="button" id="btnRoleformsubmitCHECK" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
+                            </div>
+
+                            }
+                        </div>
+                </div>
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+</div>
+@*end*@
+
+
+
+<script>
+
+    $(document).ready(function () {
+
+        $.ajax({
+
+            type: "POST",
+            url:"@Url.Action("BindRoleddl", "AddRoleAssignment")",
+            success: function (data) {
+                $('#ddlrole').append(data);
+            }
+        });
+
+
+    });
+
+
+
+        $(document).ready(function () {
+
+        $.ajax({
+
+            type: "POST",
+            url:"@Url.Action("BindPageDDl", "AddRoleAssignment")",
+            success: function (data) {
+                $('#ddlpage').append(data);
+            }
+        });
+
+
+    });
+
+
+
+
+    $("#ddlrole").change(function () {
+        var value = $(this).children(":selected").attr("value");
+        var text = $("#ddlrole option:selected").html();
+
+        $("#ddlroletxt").val(text);
+        $("#ddlroleid").val(value);
+
+
+        if (value == "") {
+            $("#pagedata").css("display", "none");
+        }
+        else {
+
+
+            $("#pagedata").css("display", "block");
+        }
+
+    });
+
+
+
+
+
+    $("#ddlpage").change(function () {
+        var value = $(this).children(":selected").attr("value");
+        var text = $("#ddlpage option:selected").html();
+
+        $("#ddlpagetxt").val(text);
+        $("#ddlpageid").val(value);
+
+        alert(value);
+
+
+    });
+
+</script>
+
+
+

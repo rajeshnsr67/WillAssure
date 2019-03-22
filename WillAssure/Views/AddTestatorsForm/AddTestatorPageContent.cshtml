@@ -352,7 +352,7 @@
                                     @Html.DropDownListFor(x => x.documenttype, new SelectListItem[]{
                                      new SelectListItem() {Text = "--Select--", Value=""},
 
-                                     new SelectListItem() {Text = "Will", Value="Will"}}, new { @class = "form-control validate[required]", @id="ddldocumentcreatedby" })
+                                     new SelectListItem() {Text = "Will", Value="Will"}}, new { @class = "form-control validate[required]", @id="ddldocumenttype" })
 
                                     @Html.HiddenFor(m => m.Document_Created_By_ID, new { id = "Document_Created_By_ID" })
                                     @Html.HiddenFor(m => m.Document_Created_By_txt, new { id = "Document_Created_By_txt" })
@@ -372,7 +372,7 @@
                                     @Html.DropDownListFor(x => x.documentcategory, new SelectListItem[]{
                                     new SelectListItem() {Text = "--Select--", Value=""},
                                     new SelectListItem() {Text = "Quick", Value="Quick"},
-                                    new SelectListItem() {Text = "Detailed", Value="Detailed"}}, new { @class = "form-control validate[required]", id= "DDLAmtPaidBY" })
+                                    new SelectListItem() {Text = "Detailed", Value="Detailed"}}, new { @class = "form-control validate[required]", id= "DDLAmtPaidBY2" })
 
                                     @Html.HiddenFor(m => m.Amt_Paid_By_By_ID, new { id = "Amt_Paid_By_By_ID" })
                                     @Html.HiddenFor(m => m.Amt_Paid_By_txt, new { id = "Amt_Paid_By_txt" })
@@ -396,10 +396,12 @@
                                     @Html.DropDownListFor(x => x.Document_Created_By, new SelectListItem[]{
                                      new SelectListItem() {Text = "--Select--", Value=""},
                                      new SelectListItem() {Text = "Distributor", Value="1"},
-                                     new SelectListItem() {Text = "Testator", Value="2"}}, new { @class = "form-control validate[required]", @id="ddldocumentcreatedby" })
+                                     new SelectListItem() {Text = "Testator", Value="2"}}, new { @class = "form-control validate[required]", @id= "ddldocumentcreatedby1" })
 
                                     @Html.HiddenFor(m => m.Document_Created_By_ID, new { id = "Document_Created_By_ID" })
                                     @Html.HiddenFor(m => m.Document_Created_By_txt, new { id = "Document_Created_By_txt" })
+
+                              
 
                                 </div>
 
@@ -416,11 +418,11 @@
                                     @Html.DropDownListFor(x => x.Amt_Paid_By, new SelectListItem[]{
                                     new SelectListItem() {Text = "--Select--", Value=""},
                                     new SelectListItem() {Text = "Distributor", Value="1"},
-                                    new SelectListItem() {Text = "Testator", Value="2"}}, new { @class = "form-control validate[required]", id= "DDLAmtPaidBY" })
+                                    new SelectListItem() {Text = "Testator", Value="2"}}, new { @class = "form-control validate[required]", id= "DDLAmtPaidBY3" })
 
                                     @Html.HiddenFor(m => m.Amt_Paid_By_By_ID, new { id = "Amt_Paid_By_By_ID" })
                                     @Html.HiddenFor(m => m.Amt_Paid_By_txt, new { id = "Amt_Paid_By_txt" })
-
+                                   
 
                                 </div>
                             </div>
@@ -683,14 +685,28 @@
 
 
 <script>
-    $("#ddldocumentcreatedby").change(function () {
+    $("#ddldocumentcreatedby1").change(function () {
         var value = $(this).children(":selected").attr("value");
-        var text = $("#ddldocumentcreatedby option:selected").html();
+        var text = $("#ddldocumentcreatedby1 option:selected").html();
 
         $("#Document_Created_By_txt").val(text);
         $("#Document_Created_By_ID").val(value);
 
+      
 
+
+    });
+
+
+
+    $("#ddldocumenttype").change(function () {
+        var value = $(this).children(":selected").attr("value");
+        var text = $("#ddldocumenttype option:selected").html();
+
+        $("#documenttype").val(text);
+        $("#documenttype").val(value);
+
+ 
 
 
     });
@@ -716,12 +732,13 @@
 
 
 <script>
-    $("#DDLAmtPaidBY").change(function () {
+    $("#DDLAmtPaidBY2").change(function () {
         var value = $(this).children(":selected").attr("value");
-        var text = $("#DDLAmtPaidBY option:selected").html();
+        var text = $("#DDLAmtPaidBY2 option:selected").html();
 
         $("#Amt_Paid_By_txt").val(text);
         $("#Amt_Paid_By_ID").val(value);
+  
 
 
     });

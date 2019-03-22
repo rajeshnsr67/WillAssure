@@ -318,6 +318,23 @@
                     </li>
 
 
+                    <li>
+                        <a href="javaScript:void();" class="waves-effect">
+                            <i class="zmdi zmdi-format-list-bulleted"></i> <span>Assign Roles</span>
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </a>
+                        <ul class="sidebar-submenu">
+
+                            <li><a href=@Url.Action("AddRoleAssignmentIndex","AddRoleAssignment")><i class="zmdi zmdi-star-outline"></i>Assign</a></li>
+
+                        </ul>
+                        <ul class="sidebar-submenu">
+
+                            <li><a href=@Url.Action("EditRoleIndex","EditRole")><i class="zmdi zmdi-star-outline"></i>Edit Roles</a></li>
+
+                        </ul>
+
+                    </li>
 
 
 
@@ -734,9 +751,31 @@
 
                         </ul>
 
-                        <input type="text" class="form-control" name="name" value="" id="testing" />
+
                     </li>
 
+
+
+                    if (ViewBag.Menu != null)
+                    {
+                        foreach (var item in ViewBag.Menu)
+                        {
+                            <li>
+                                <a href="javaScript:void();" class="waves-effect">
+                                    <i class="zmdi zmdi-format-list-bulleted"></i> <span>@item.parentname</span>
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </a>
+                                <ul class="sidebar-submenu">
+
+                                    <li><a href=@item.navigation><i class="zmdi zmdi-star-outline"></i>@item.childname</a></li>
+
+                                </ul>
+
+
+
+                            </li>
+                        }
+                    }
 
 
 

@@ -146,6 +146,7 @@
     <Compile Include="Controllers\AddMainAssetsController.cs" />
     <Compile Include="Controllers\AddNomineeController.cs" />
     <Compile Include="Controllers\AddRelationController.cs" />
+    <Compile Include="Controllers\AddRoleAssignmentController.cs" />
     <Compile Include="Controllers\AddTemplateMasterController.cs" />
     <Compile Include="Controllers\AddTestatorFamilyController.cs" />
     <Compile Include="Controllers\AddTestatorsFormController.cs" />
@@ -213,6 +214,7 @@
     <Compile Include="Models\MainAssetsModel.cs" />
     <Compile Include="Models\MemberModelcs.cs" />
     <Compile Include="Models\NomineeModel.cs" />
+    <Compile Include="Models\RoleAssignModel.cs" />
     <Compile Include="Models\RoleFormModel.cs" />
     <Compile Include="Models\TemplateMasterModel.cs" />
     <Compile Include="Models\TestatorFamilyModel.cs" />
@@ -1105,7 +1107,7 @@
     <Content Include="Views\AddTestatorFamily\AddTestatorFamilyPageContent.cshtml" />
     <Content Include="Views\EditTestatorFamily\EditTestatorFamilyPageContent.cshtml" />
     <Content Include="Views\UpdateTestatorFamily\UpdateTestatorFamilyPageContent.cshtml" />
-    <Content Include="Views\LoginPage\DynamicMenuPageContent.cshtml" />
+    <Content Include="Views\AddRoleAssignment\AddRoleAssignmentPageContent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

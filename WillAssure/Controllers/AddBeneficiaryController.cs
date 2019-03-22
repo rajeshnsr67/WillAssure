@@ -105,7 +105,7 @@ namespace WillAssure.Controllers
         public ActionResult InsertBeneficiaryData(BeneficiaryModel BM)
         {
 
-            if (Session["aiid"] != null && Session["tid"] != null)
+            if (Session["aiid"].ToString() != "" && Session["tid"].ToString() != "")
             {
                 BM.aid = Convert.ToInt32(Session["aiid"]);
                 BM.tid = Convert.ToInt32(Session["tid"]);

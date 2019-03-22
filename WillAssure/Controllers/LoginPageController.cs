@@ -28,6 +28,10 @@ namespace WillAssure.Controllers
 
         public ActionResult LoginPageData(LoginModel LM)
         {
+
+            
+           
+
             con.Open();
             string query = "select * from users where userID = '"+LM.UserID+"' and userPwd = '"+LM.Password+"' and active = 1";
             SqlDataAdapter da = new SqlDataAdapter(query,con);
@@ -53,8 +57,7 @@ namespace WillAssure.Controllers
                 con.Close();
 
 
-                
-
+            
 
                 ViewBag.Message = "SUCCESS";
                 return View("~/Views/Home/Index.cshtml");
@@ -141,7 +144,7 @@ namespace WillAssure.Controllers
 
 
             con.Open();
-            string query = "insert into dynamicmenu (ParentMenu,ChildMenu,ChildUrl) values ('" + DMM.parenttxt + "' , '"+DMM.ChildMenu+"' , '"+DMM.ChildUrl+"') ";
+            string query = "insert into dynamicmenu (ParentId,ParentMenu,ChildMenu,ChildUrl) values ('" + DMM.parentid + "' ,'" + DMM.parenttxt + "' , '"+DMM.ChildMenu+"' , '"+DMM.ChildUrl+"') ";
             SqlCommand cmd = new SqlCommand(query, con);
             cmd.ExecuteNonQuery();
             con.Close();
