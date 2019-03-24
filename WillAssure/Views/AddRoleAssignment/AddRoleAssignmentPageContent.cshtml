@@ -35,138 +35,152 @@
                         @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "RoleAssignForm" }))
                         {
 
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label for="input-3">Role</label>
-                                    <select id="ddlrole" class="form-control validate[required]">
-                                        <option value="">--Select Role--</option>
-                                    </select>
-                                    @Html.HiddenFor(m => m.ddlroleid, new { id = "ddlroleid" })
-                                    @Html.HiddenFor(m => m.ddlroletxt, new { id = "ddlroletxt" })
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="input-3">Role</label>
+                                        <select id="ddlrole" class="form-control validate[required]">
+                                            <option value="">--Select Role--</option>
+                                        </select>
+                                        @Html.HiddenFor(m => m.ddlroleid, new { id = "ddlroleid" })
+                                        @Html.HiddenFor(m => m.ddlroletxt, new { id = "ddlroletxt" })
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+
+                            <div class="row" style="display:none;" id="pagedata">
+                                <div class="col-sm-6">
+                                    <table class="table">
+
+                                        <tbody>
+                                            <tr>
+                                                <td style="font-weight:bolder"><input type="checkbox" id="Roles">Roles</td>
+                                                <td><label class="checkbox-inline"><input type="checkbox" id="RoleAdd">Add</label></td>
+                                                <td><label class="checkbox-inline"><input type="checkbox" id="RoleEdit">Edit</label></td>
+                                                <td><label class="checkbox-inline"><input type="checkbox" id="RoleDelete">Delete</label></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="font-weight:bolder"><input type="checkbox" id="Company">Company</td>
+                                                <td><label class="checkbox-inline"><input type="checkbox" id="CompanyAdd">Add</label></td>
+                                                <td><label class="checkbox-inline"><input type="checkbox" id="CompanyEdit">Edit</label></td>
+                                                <td><label class="checkbox-inline"><input type="checkbox" id="CompanyDelete">Delete</label></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="font-weight:bolder"><input type="checkbox" id="Distributor">Distributor</td>
+                                                <td><label class="checkbox-inline"><input type="checkbox" id="DistributorAdd">Add</label></td>
+                                                <td><label class="checkbox-inline"><input type="checkbox" id="DistributorEdit">Edit</label></td>
+                                                <td><label class="checkbox-inline"><input type="checkbox" id="DistributorDelete">Delete</label></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="font-weight:bolder"><input type="checkbox" id="Testators">Testators</td>
+                                                <td><label class="checkbox-inline"><input type="checkbox" id="TestatorsAdd">Add</label></td>
+                                                <td><label class="checkbox-inline"><input type="checkbox" id="TestatorsEdit">Edit</label></td>
+                                                <td><label class="checkbox-inline"><input type="checkbox" id="TestatorsDelete">Delete</label></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="font-weight:bolder"><input type="checkbox" id="TestatorsFamily">Testators Family</td>
+                                                <td><label class="checkbox-inline"><input type="checkbox" id="TestatorsFamilyAdd">Add</label></td>
+                                                <td><label class="checkbox-inline"><input type="checkbox" id="TestatorsFamilyEdit">Edit</label></td>
+                                                <td><label class="checkbox-inline"><input type="checkbox" id="TestatorsFamilyDelete">Delete</label></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="font-weight:bolder"><input type="checkbox" id="AssetType">Asset Type</td>
+                                                <td><label class="checkbox-inline"><input type="checkbox" id="AssetTypeAdd">Add</label></td>
+                                                <td><label class="checkbox-inline"><input type="checkbox" id="AssetTypeEdit">Edit</label></td>
+                                                <td><label class="checkbox-inline"><input type="checkbox" id="AssetTypeDelete">Delete</label></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="font-weight:bolder"><input type="checkbox" id="AssetCategory">Asset Category</td>
+                                                <td><label class="checkbox-inline"><input type="checkbox" id="AssetCategoryAdd">Add</label></td>
+                                                <td><label class="checkbox-inline"><input type="checkbox" id="AssetCategoryEdit">Edit</label></td>
+                                                <td><label class="checkbox-inline"><input type="checkbox" id="AssetCategoryDelete">Delete</label></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="font-weight:bolder"><input type="checkbox" id="AssetControlsMapping">Asset Controls Mapping</td>
+                                                <td><label class="checkbox-inline"><input type="checkbox" id="AssetControlsMappingAdd">Add</label></td>
+                                                <td><label class="checkbox-inline"><input type="checkbox" id="AssetControlsMappingEdit">Edit</label></td>
+                                                <td><label class="checkbox-inline"><input type="checkbox" id="AssetControlsMappingDelete">Delete</label></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="font-weight:bolder"><input type="checkbox" id="AssetInformation">Asset Information</td>
+                                                <td><label class="checkbox-inline"><input type="checkbox" id="AssetInformationAdd">Add</label></td>
+                                                <td><label class="checkbox-inline"><input type="checkbox" id="AssetInformationEdit">Edit</label></td>
+                                                <td><label class="checkbox-inline"><input type="checkbox" id="AssetInformationDelete">Delete</label></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="font-weight:bolder"><input type="checkbox" id="Relation">Relation</td>
+                                                <td><label class="checkbox-inline"><input type="checkbox" id="RelationAdd">Add</label></td>
+                                                <td><label class="checkbox-inline"><input type="checkbox" id="RelationEdit">Edit</label></td>
+                                                <td><label class="checkbox-inline"><input type="checkbox" id="RelationDelete">Delete</label></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="font-weight:bolder"><input type="checkbox" id="Beneficiary">Beneficiary</td>
+                                                <td><label class="checkbox-inline"><input type="checkbox" id="BeneficiaryAdd">Add</label></td>
+                                                <td><label class="checkbox-inline"><input type="checkbox" id="BeneficiaryEdit">Edit</label></td>
+                                                <td><label class="checkbox-inline"><input type="checkbox" id="BeneficiaryDelete">Delete</label></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="font-weight:bolder"><input type="checkbox" id="AlternateBeneficiary">Alternate Beneficiary</td>
+                                                <td><label class="checkbox-inline"><input type="checkbox" id="AlternateBeneficiaryAdd">Add</label></td>
+                                                <td><label class="checkbox-inline"><input type="checkbox" id="AlternateBeneficiaryEdit">Edit</label></td>
+                                                <td><label class="checkbox-inline"><input type="checkbox" id="AlternateBeneficiaryDelete">Delete</label></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td style="font-weight:bolder"><input type="checkbox" id="Nominee">Nominee</td>
+                                                <td><label class="checkbox-inline"><input type="checkbox" id="NomineeAdd">Add</label></td>
+                                                <td><label class="checkbox-inline"><input type="checkbox" id="NomineeEdit">Edit</label></td>
+                                                <td><label class="checkbox-inline"><input type="checkbox" id="NomineeDelete">Delete</label></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="font-weight:bolder"><input type="checkbox" id="Appointees">Appointees</td>
+                                                <td><label class="checkbox-inline"><input type="checkbox" id="AppointeesAdd">Add</label></td>
+                                                <td><label class="checkbox-inline"><input type="checkbox" id="AppointeesEdit">Edit</label></td>
+                                                <td><label class="checkbox-inline"><input type="checkbox" id="AppointeesDelete">Delete</label></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="font-weight:bolder"><input type="checkbox" id="AlternateAppointees">Alternate Appointees</td>
+                                                <td><label class="checkbox-inline"><input type="checkbox" id="AlternateAppointeesAdd">Add</label></td>
+                                                <td><label class="checkbox-inline"><input type="checkbox" id="AlternateAppointeesEdit">Edit</label></td>
+                                                <td><label class="checkbox-inline"><input type="checkbox" id="AlternateAppointeesDelete">Delete</label></td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
-                            
-                            
-
-                            </div>
-
-                        <div class="row" style="display:none;" id="pagedata">
-                            <div class="col-sm-6">
-                                <table class="table">
-
-                                    <tbody>
-                                        <tr>
-                                            <td style="font-weight:bolder">Roles</td>
-                                            <td><label class="checkbox-inline"><input type="checkbox" value="RoleAdd">Add</label></td>
-                                            <td><label class="checkbox-inline"><input type="checkbox" value="RoleEdit">Edit</label></td>
-                                            <td><label class="checkbox-inline"><input type="checkbox" value="RoleDelete">Delete</label></td>
-                                        </tr>
-                                        <tr>
-                                            <td style="font-weight:bolder">Company</td>
-                                            <td><label class="checkbox-inline"><input type="checkbox" value="CompanyAdd">Add</label></td>
-                                            <td><label class="checkbox-inline"><input type="checkbox" value="">Edit</label></td>
-                                            <td><label class="checkbox-inline"><input type="checkbox" value="">Delete</label></td>
-                                        </tr>
-                                        <tr>
-                                            <td style="font-weight:bolder">Distributor</td>
-                                            <td><label class="checkbox-inline"><input type="checkbox" value="">Add</label></td>
-                                            <td><label class="checkbox-inline"><input type="checkbox" value="">Edit</label></td>
-                                            <td><label class="checkbox-inline"><input type="checkbox" value="">Delete</label></td>
-                                        </tr>
-                                        <tr>
-                                            <td style="font-weight:bolder">Testators</td>
-                                            <td><label class="checkbox-inline"><input type="checkbox" value="">Add</label></td>
-                                            <td><label class="checkbox-inline"><input type="checkbox" value="">Edit</label></td>
-                                            <td><label class="checkbox-inline"><input type="checkbox" value="">Delete</label></td>
-                                        </tr>
-                                        <tr>
-                                            <td style="font-weight:bolder">Testators Family</td>
-                                            <td><label class="checkbox-inline"><input type="checkbox" value="">Add</label></td>
-                                            <td><label class="checkbox-inline"><input type="checkbox" value="">Edit</label></td>
-                                            <td><label class="checkbox-inline"><input type="checkbox" value="">Delete</label></td>
-                                        </tr>
-                                        <tr>
-                                            <td style="font-weight:bolder">Asset Type</td>
-                                            <td><label class="checkbox-inline"><input type="checkbox" value="">Add</label></td>
-                                            <td><label class="checkbox-inline"><input type="checkbox" value="">Edit</label></td>
-                                            <td><label class="checkbox-inline"><input type="checkbox" value="">Delete</label></td>
-                                        </tr>
-                                        <tr>
-                                            <td style="font-weight:bolder">Asset Category</td>
-                                            <td><label class="checkbox-inline"><input type="checkbox" value="">Add</label></td>
-                                            <td><label class="checkbox-inline"><input type="checkbox" value="">Edit</label></td>
-                                            <td><label class="checkbox-inline"><input type="checkbox" value="">Delete</label></td>
-                                        </tr>
-                                        <tr>
-                                            <td style="font-weight:bolder">Asset Controls Mapping</td>
-                                            <td><label class="checkbox-inline"><input type="checkbox" value="">Add</label></td>
-                                            <td><label class="checkbox-inline"><input type="checkbox" value="">Edit</label></td>
-                                            <td><label class="checkbox-inline"><input type="checkbox" value="">Delete</label></td>
-                                        </tr>
-                                        <tr>
-                                            <td style="font-weight:bolder">Asset Information</td>
-                                            <td><label class="checkbox-inline"><input type="checkbox" value="">Add</label></td>
-                                            <td><label class="checkbox-inline"><input type="checkbox" value="">Edit</label></td>
-                                            <td><label class="checkbox-inline"><input type="checkbox" value="">Delete</label></td>
-                                        </tr>
-                                        <tr>
-                                            <td style="font-weight:bolder">Relation</td>
-                                            <td><label class="checkbox-inline"><input type="checkbox" value="">Add</label></td>
-                                            <td><label class="checkbox-inline"><input type="checkbox" value="">Edit</label></td>
-                                            <td><label class="checkbox-inline"><input type="checkbox" value="">Delete</label></td>
-                                        </tr>
-                                        <tr>
-                                            <td style="font-weight:bolder">Beneficiary</td>
-                                            <td><label class="checkbox-inline"><input type="checkbox" value="">Add</label></td>
-                                            <td><label class="checkbox-inline"><input type="checkbox" value="">Edit</label></td>
-                                            <td><label class="checkbox-inline"><input type="checkbox" value="">Delete</label></td>
-                                        </tr>
-                                        <tr>
-                                            <td style="font-weight:bolder">Alternate Beneficiary</td>
-                                            <td><label class="checkbox-inline"><input type="checkbox" value="">Add</label></td>
-                                            <td><label class="checkbox-inline"><input type="checkbox" value="">Edit</label></td>
-                                            <td><label class="checkbox-inline"><input type="checkbox" value="">Delete</label></td>
-                                        </tr>
-                                        <tr>
-                                            <td style="font-weight:bolder">Alternate Beneficiary</td>
-                                            <td><label class="checkbox-inline"><input type="checkbox" value="">Add</label></td>
-                                            <td><label class="checkbox-inline"><input type="checkbox" value="">Edit</label></td>
-                                            <td><label class="checkbox-inline"><input type="checkbox" value="">Delete</label></td>
-                                        </tr>
-                                        <tr>
-                                            <td style="font-weight:bolder">Nominee</td>
-                                            <td><label class="checkbox-inline"><input type="checkbox" value="">Add</label></td>
-                                            <td><label class="checkbox-inline"><input type="checkbox" value="">Edit</label></td>
-                                            <td><label class="checkbox-inline"><input type="checkbox" value="">Delete</label></td>
-                                        </tr>
-                                        <tr>
-                                            <td style="font-weight:bolder">Appointees</td>
-                                            <td><label class="checkbox-inline"><input type="checkbox" value="">Add</label></td>
-                                            <td><label class="checkbox-inline"><input type="checkbox" value="">Edit</label></td>
-                                            <td><label class="checkbox-inline"><input type="checkbox" value="">Delete</label></td>
-                                        </tr>
-                                        <tr>
-                                            <td style="font-weight:bolder">Alternate Appointees</td>
-                                            <td><label class="checkbox-inline"><input type="checkbox" value="">Add</label></td>
-                                            <td><label class="checkbox-inline"><input type="checkbox" value="">Edit</label></td>
-                                            <td><label class="checkbox-inline"><input type="checkbox" value="">Delete</label></td>
-                                        </tr>
-
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
 
                             <div class="form-group">
 
-                                <button type="submit" id="btnRoleformsubmit" formaction="insertAssignRole" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i>Assign Roles</button>
+                                <button type="button" id="btnRoleAssignmentformsubmit" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i>Assign Roles</button>
                                 <button type="button" id="btnRoleformsubmitSUCCESS" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
                                 <button type="button" id="btnRoleformsubmitCHECK" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
                             </div>
 
-                            }
-                        </div>
+                        }
+                    </div>
+
+                    <input type="text" id="1" value="" />
+                    <input type="text" id="2" value="" />
+                    <input type="text" id="3" value="" />
+                    <input type="text" id="4" value="" />
+                    <input type="text" id="5" value="" />
+                    <input type="text" id="6" value="" />
+                    <input type="text" id="7" value="" />
+                    <input type="text" id="8" value="" />
+                    <input type="text" id="9" value="" />
+                    <input type="text" id="10" value="" />
+                    <input type="text" id="11" value="" />
+                    <input type="text" id="12" value="" />
+                    <input type="text" id="13" value="" />
+                    <input type="text" id="14" value="" />
+                    <input type="text" id="15" value="" />
+                    <input type="text" id="15" value="" />
+
+
                 </div>
             </div>
 
@@ -240,14 +254,596 @@
 
 
 
-    $("#ddlpage").change(function () {
-        var value = $(this).children(":selected").attr("value");
-        var text = $("#ddlpage option:selected").html();
+ 
 
-        $("#ddlpagetxt").val(text);
-        $("#ddlpageid").val(value);
 
-        alert(value);
+
+    $("#btnRoleAssignmentformsubmit").click(function () {
+     
+        var roleid  = $("#ddlroleid").val();
+        var add = "";
+        var edit = "";
+        var del = "";
+
+        var status1 = "";
+        var data1 = "";
+
+        var status2 = "";
+        var data2 = "";
+
+        var status3 = "";
+        var data3 = "";
+
+        var status4 = "";
+        var data4 = "";
+
+        var status5 = "";
+        var data5 = "";
+
+        var status6 = "";
+        var data6 = "";
+
+        var status7 = "";
+        var data7 = "";
+
+        var status8 = "";
+        var data8 = "";
+
+        var status9 = "";
+        var data9 = "";
+
+        var status10 = "";
+        var data10 = "";
+
+        var status11 = "";
+        var data11 = "";
+
+        var status12 = "";
+        var data12 = "";
+
+        var status13 = "";
+        var data13 = "";
+
+        var status14 = "";
+        var data14 = "";
+
+        var status15 = "";
+        var data15 = "";
+
+        var status16 = "";
+        var data16 = "";
+
+        // for role
+        if ($("#Roles").is(':checked')) {
+            status1 = status1 + "Active";
+        }
+        else {
+            status1 = status1 + "Inactive";
+        }
+
+        if ($("#RoleAdd").is(':checked')) {
+            data1 = data1 + "'1',";
+        }
+        else {
+            data1 = data1 + "'0',";
+        }
+        if ($("#RoleEdit").is(':checked')) {
+            data1 = data1 + "'1',";
+        }
+        else {
+            data1 = data1 + "'0',";
+        }
+        if ($("#RoleDelete").is(':checked')) {
+            data1 = data1 + "'1',";
+        }
+        else {
+            data1 = data1 + "'0'";
+        }
+
+        alert(data1);
+        $("#1").val("update Assignment_Roles set RoleId = "+roleid+" , RoleId = "+roleid+" , PageStatus= '" + status1 +"'  , Action = "+data1+" where PageName = 'Roles'");
+
+        //end
+
+
+
+
+
+
+
+        // for Company
+        if ($("#Company").is(':checked')) {
+            status2 = status2 + "Active";
+        }
+        else {
+            status2 = status2 + "Inactive";
+        }
+
+        if ($("#CompanyAdd").is(':checked')) {
+            data2 = data2 + "'1',";
+        }
+        else {
+            data2 = data2 + "'0',";
+        }
+        if ($("#CompanyEdit").is(':checked')) {
+            data2 = data2 + "'1',";
+        }
+        else {
+            data2 = data2 + "'0',";
+        }
+        if ($("#CompanyDelete").is(':checked')) {
+            data2 = data2 + "'1',";
+        }
+        else {
+            data2 = data2 + "'0'";
+        }
+
+        alert(data2);
+        $("#2").val("update Assignment_Roles set RoleId = "+roleid+" , PageStatus= '" + status2 + "'  , Action = " + data2 + " where PageName = 'Company'");
+
+        //end
+
+
+
+
+
+        // for Distributor
+        if ($("#Distributor").is(':checked')) {
+            status3 = status3 + "Active";
+        }
+        else {
+            status3 = status3 + "Inactive";
+        }
+
+        if ($("#DistributorAdd").is(':checked')) {
+            data3 = data3 + "'1',";
+        }
+        else {
+            data3 = data3 + "'0',";
+        }
+        if ($("#DistributorEdit").is(':checked')) {
+            data3 = data3 + "'1',";
+        }
+        else {
+            data3 = data3 + "'0',";
+        }
+        if ($("#DistributorDelete").is(':checked')) {
+            data3 = data3 + "'1',";
+        }
+        else {
+            data3 = data3 + "'0'";
+        }
+
+        alert(data3);
+        $("#3").val("update Assignment_Roles set RoleId = "+roleid+" , PageStatus= '" + status3 + "'  , Action = " + data3 + " where PageName = 'Distributor'");
+
+        //end
+
+
+
+
+
+        // for Testators
+        if ($("#Testators").is(':checked')) {
+            status4 = status4 + "Active";
+        }
+        else {
+            status4 = status4 + "Inactive";
+        }
+
+        if ($("#TestatorsAdd").is(':checked')) {
+            data4 = data4 + "'1',";
+        }
+        else {
+            data4 = data4 + "'0',";
+        }
+        if ($("#TestatorsEdit").is(':checked')) {
+            data4 = data4 + "'1',";
+        }
+        else {
+            data4 = data4 + "'0',";
+        }
+        if ($("#TestatorsDelete").is(':checked')) {
+            data4 = data4 + "'1',";
+        }
+        else {
+            data4 = data4 + "'0'";
+        }
+
+        alert(data4);
+        $("#4").val("update Assignment_Roles set RoleId = "+roleid+" , PageStatus= '" + status4 + "'  , Action = " + data4 + " where PageName = 'Testators'");
+
+        //end
+
+
+
+
+
+        // for TestatorsFamily
+        if ($("#TestatorsFamily").is(':checked')) {
+            status5 = status5 + "Active";
+        }
+        else {
+            status5 = status5 + "Inactive";
+        }
+
+        if ($("#TestatorsFamilyAdd").is(':checked')) {
+            data5 = data5 + "'1',";
+        }
+        else {
+            data5 = data5 + "'0',";
+        }
+        if ($("#TestatorsFamilyEdit").is(':checked')) {
+            data5 = data5 + "'1',";
+        }
+        else {
+            data5 = data5 + "'0',";
+        }
+        if ($("#TestatorsFamilyDelete").is(':checked')) {
+            data5 = data5 + "'1',";
+        }
+        else {
+            data5 = data5 + "'0'";
+        }
+
+        alert(data2);
+        $("#5").val("update Assignment_Roles set RoleId = "+roleid+" , PageStatus= '" + status5 + "'  , Action = " + data5 + " where PageName = 'TestatorsFamily'");
+
+        //end
+
+
+
+
+
+        // for AssetType
+        if ($("#AssetType").is(':checked')) {
+            status6 = status6 + "Active";
+        }
+        else {
+            status6 = status6 + "Inactive";
+        }
+
+        if ($("#AssetTypeAdd").is(':checked')) {
+            data6 = data6 + "'1',";
+        }
+        else {
+            data6 = data6 + "'0',";
+        }
+        if ($("#AssetTypeEdit").is(':checked')) {
+            data6 = data6 + "'1',";
+        }
+        else {
+            data6 = data6 + "'0',";
+        }
+        if ($("#AssetTypeDelete").is(':checked')) {
+            data6 = data6 + "'1',";
+        }
+        else {
+            data6 = data6 + "'0'";
+        }
+
+        alert(data6);
+        $("#6").val("update Assignment_Roles set RoleId = "+roleid+" , PageStatus= '" + status6 + "'  , Action = " + data6 + " where PageName = 'AssetType'");
+
+        //end
+
+
+
+
+
+        // for AssetCategory
+        if ($("#AssetCategory").is(':checked')) {
+            status7 = status7 + "Active";
+        }
+        else {
+            status7 = status7 + "Inactive";
+        }
+
+        if ($("#AssetCategoryAdd").is(':checked')) {
+            data7 = data7 + "'1',";
+        }
+        else {
+            data7 = data7 + "'0',";
+        }
+        if ($("#AssetCategoryEdit").is(':checked')) {
+            data7 = data7 + "'1',";
+        }
+        else {
+            data7 = data7 + "'0',";
+        }
+        if ($("#AssetCategoryDelete").is(':checked')) {
+            data7 = data7 + "'1',";
+        }
+        else {
+            data7 = data7 + "'0'";
+        }
+
+        alert(data7);
+        $("#7").val("update Assignment_Roles set RoleId = "+roleid+" , PageStatus= '" + status7 + "'  , Action = " + data7 + " where PageName = 'AssetCategory'");
+
+        //end
+
+
+
+
+        // for AssetControlsMapping
+        if ($("#AssetControlsMapping").is(':checked')) {
+            status8 = status8 + "Active";
+        }
+        else {
+            status8 = status8 + "Inactive";
+        }
+
+        if ($("#AssetControlsMappingAdd").is(':checked')) {
+            data8 = data8 + "'1',";
+        }
+        else {
+            data8 = data8 + "'0',";
+        }
+        if ($("#AssetControlsMappingEdit").is(':checked')) {
+            data8 = data8 + "'1',";
+        }
+        else {
+            data8 = data8 + "'0',";
+        }
+        if ($("#AssetControlsMappingDelete").is(':checked')) {
+            data8 = data8 + "'1',";
+        }
+        else {
+            data8 = data8 + "'0'";
+        }
+
+        alert(data2);
+        $("#8").val("update Assignment_Roles set RoleId = "+roleid+" , PageStatus= '" + status8 + "'  , Action = " + data8 + " where PageName = 'AssetControlsMapping'");
+
+        //end
+
+
+
+
+        // for AssetInformation
+        if ($("#AssetInformation").is(':checked')) {
+            status9 = status9 + "Active";
+        }
+        else {
+            status9 = status9 + "Inactive";
+        }
+
+        if ($("#AssetInformationAdd").is(':checked')) {
+            data9 = data9 + "'1',";
+        }
+        else {
+            data9 = data9 + "'0',";
+        }
+        if ($("#AssetInformationEdit").is(':checked')) {
+            data9 = data9 + "'1',";
+        }
+        else {
+            data9 = data9 + "'0',";
+        }
+        if ($("#AssetInformationDelete").is(':checked')) {
+            data9 = data9 + "'1',";
+        }
+        else {
+            data9 = data9 + "'0'";
+        }
+
+        alert(data9);
+        $("#9").val("update Assignment_Roles set RoleId = "+roleid+" , PageStatus= '" + status9 + "'  , Action = " + data9 + " where PageName = 'AssetInformation'");
+
+        //end
+
+
+
+
+        // for Relation
+        if ($("#Relation").is(':checked')) {
+            status10 = status10 + "Active";
+        }
+        else {
+            status10 = status10 + "Inactive";
+        }
+
+        if ($("#RelationAdd").is(':checked')) {
+            data10 = data10 + "'1',";
+        }
+        else {
+            data10 = data10 + "'0',";
+        }
+        if ($("#RelationEdit").is(':checked')) {
+            data10 = data10 + "'1',";
+        }
+        else {
+            data10 = data10 + "'0',";
+        }
+        if ($("#RelationDelete").is(':checked')) {
+            data10 = data10 + "'1',";
+        }
+        else {
+            data10 = data10 + "'0'";
+        }
+
+        alert(data10);
+        $("#10").val("update Assignment_Roles set RoleId = " + roleid + " , PageStatus= '" + status10 + "'  , Action = " + data10 + " where PageName = 'Relation'");
+
+        //end
+
+
+
+        // for Beneficiary
+        if ($("#Beneficiary").is(':checked')) {
+            status11 = status11 + "Active";
+        }
+        else {
+            status11 = status11 + "Inactive";
+        }
+
+        if ($("#BeneficiaryAdd").is(':checked')) {
+            data11 = data11 + "'1',";
+        }
+        else {
+            data11 = data11 + "'0',";
+        }
+        if ($("#BeneficiaryEdit").is(':checked')) {
+            data11 = data11 + "'1',";
+        }
+        else {
+            data11 = data11 + "'0',";
+        }
+        if ($("#BeneficiaryDelete").is(':checked')) {
+            data11 = data11 + "'1',";
+        }
+        else {
+            data11 = data11 + "'0'";
+        }
+
+        alert(data11);
+        $("#11").val("update Assignment_Roles set RoleId = " + roleid + " , PageStatus= '" + status11 + "'  , Action = " + data11 + " where PageName = 'Beneficiary'");
+
+        //end
+
+
+
+
+        // for AlternateBeneficiary
+        if ($("#AlternateBeneficiary").is(':checked')) {
+            status12 = status12 + "Active";
+        }
+        else {
+            status12 = status12 + "Inactive";
+        }
+
+        if ($("#AlternateBeneficiaryAdd").is(':checked')) {
+            data12 = data12 + "'1',";
+        }
+        else {
+            data12 = data12 + "'0',";
+        }
+        if ($("#AlternateBeneficiaryEdit").is(':checked')) {
+            data12 = data12 + "'1',";
+        }
+        else {
+            data12 = data12 + "'0',";
+        }
+        if ($("#AlternateBeneficiaryDelete").is(':checked')) {
+            data12 = data12 + "'1',";
+        }
+        else {
+            data12 = data12 + "'0'";
+        }
+
+        alert(data12);
+        $("#12").val("update Assignment_Roles set RoleId = " + roleid + " , PageStatus= '" + status12 + "'  , Action = " + data12 + " where PageName = 'AlternateBeneficiary'");
+
+        //end
+
+
+
+
+        // for Nominee
+        if ($("#Nominee").is(':checked')) {
+            status13 = status13 + "Active";
+        }
+        else {
+            status13 = status13 + "Inactive";
+        }
+
+        if ($("#NomineeAdd").is(':checked')) {
+            data13 = data13 + "'1',";
+        }
+        else {
+            data13 = data13 + "'0',";
+        }
+        if ($("#NomineeEdit").is(':checked')) {
+            data13 = data13 + "'1',";
+        }
+        else {
+            data13 = data13 + "'0',";
+        }
+        if ($("#NomineeDelete").is(':checked')) {
+            data13 = data13 + "'1',";
+        }
+        else {
+            data13 = data13 + "'0'";
+        }
+
+        alert(data13);
+        $("#13").val("update Assignment_Roles set RoleId = " + roleid + " , PageStatus= '" + status13 + "'  , Action = " + data13 + " where PageName = 'Nominee'");
+
+        //end
+
+
+
+
+        // for Appointees
+        if ($("#Appointees").is(':checked')) {
+            status14 = status14 + "Active";
+        }
+        else {
+            status14 = status14 + "Inactive";
+        }
+
+        if ($("#AppointeesAdd").is(':checked')) {
+            data14 = data14 + "'1',";
+        }
+        else {
+            data14 = data14 + "'0',";
+        }
+        if ($("#AppointeesEdit").is(':checked')) {
+            data14 = data14 + "'1',";
+        }
+        else {
+            data14 = data14 + "'0',";
+        }
+        if ($("#AppointeesDelete").is(':checked')) {
+            data14 = data14 + "'1',";
+        }
+        else {
+            data14 = data14 + "'0'";
+        }
+
+        alert(data14);
+        $("#14").val("update Assignment_Roles set RoleId = " + roleid + " , PageStatus= '" + status14 + "'  , Action = " + data14 + " where PageName = 'Appointees'");
+
+        //end
+
+
+
+
+
+        // for AlternateAppointees
+        if ($("#AlternateAppointees").is(':checked')) {
+            status15 = status15 + "Active";
+        }
+        else {
+            status15 = status15 + "Inactive";
+        }
+
+        if ($("#AlternateAppointeesAdd").is(':checked')) {
+            data15 = data15 + "'1',";
+        }
+        else {
+            data15 = data15 + "'0',";
+        }
+        if ($("#AlternateAppointeesEdit").is(':checked')) {
+            data15 = data15 + "'1',";
+        }
+        else {
+            data15 = data15 + "'0',";
+        }
+        if ($("#AlternateAppointeesDelete").is(':checked')) {
+            data15 = data15 + "'1',";
+        }
+        else {
+            data15 = data15 + "'0'";
+        }
+
+        alert(data15);
+        $("#15").val("update Assignment_Roles set RoleId = " + roleid + " , PageStatus= '" + status15 + "'  , Action = " + data15 + " where PageName = 'AlternateAppointees'");
+
+        //end
+
+        
 
 
     });
