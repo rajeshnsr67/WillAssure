@@ -20,6 +20,34 @@ namespace WillAssure.Controllers
         // GET: RoleAdd
         public ActionResult RoleAddIndex()
         {
+            List<LoginModel> Lmlist = new List<LoginModel>();
+            string q = "select * from Assignment_Roles where RoleId = " + Convert.ToInt32(Session["rId"]) + "";
+            SqlDataAdapter da3 = new SqlDataAdapter(q, con);
+            DataTable dt3 = new DataTable();
+            da3.Fill(dt3);
+            if (dt3.Rows.Count > 0)
+            {
+
+                for (int i = 0; i < dt3.Rows.Count; i++)
+                {
+                    LoginModel lm = new LoginModel();
+                    lm.PageName = dt3.Rows[i]["PageName"].ToString();
+                    lm.PageStatus = dt3.Rows[i]["PageStatus"].ToString();
+                    lm.Action = dt3.Rows[i]["Action"].ToString();
+
+
+
+                    Lmlist.Add(lm);
+                }
+
+
+
+                ViewBag.PageName = Lmlist;
+
+
+
+
+            }
             return View("~/Views/RoleAdd/AddRoleContentPage.cshtml");
         }
 

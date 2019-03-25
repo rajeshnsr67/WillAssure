@@ -14,9 +14,11 @@ namespace WillAssure.Models
 
 
 
-        public string parentname { get; set; }
-        public string childname { get; set; }
-        public string navigation { get; set; }
+        public string PageStatus { get; set; }
+        public string Action { get; set; }
+        public string PageName { get; set; }
+        public string Nav1 { get; set; }
+        public string Nav2 { get; set; }
 
 
     }

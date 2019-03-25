@@ -63,6 +63,12 @@
                                                 <td><label class="checkbox-inline"><input type="checkbox" id="RoleDelete">Delete</label></td>
                                             </tr>
                                             <tr>
+                                                <td style="font-weight:bolder"><input type="checkbox" id="RoleAssign">RoleAssign</td>
+                                                <td><label class="checkbox-inline"><input type="checkbox" id="RoleAssignAdd">Add</label></td>
+                                                <td><label class="checkbox-inline"><input type="checkbox" id="RoleAssignEdit">Edit</label></td>
+                                                <td><label class="checkbox-inline"><input type="checkbox" id="RoleAssignDelete">Delete</label></td>
+                                            </tr>
+                                            <tr>
                                                 <td style="font-weight:bolder"><input type="checkbox" id="Company">Company</td>
                                                 <td><label class="checkbox-inline"><input type="checkbox" id="CompanyAdd">Add</label></td>
                                                 <td><label class="checkbox-inline"><input type="checkbox" id="CompanyEdit">Edit</label></td>
@@ -148,6 +154,35 @@
                                                 <td><label class="checkbox-inline"><input type="checkbox" id="AlternateAppointeesDelete">Delete</label></td>
                                             </tr>
 
+
+                                            <tr>
+                                                <td style="font-weight:bolder"><input type="checkbox" id="CreateCoupons">CreateCoupons</td>
+                                                <td><label class="checkbox-inline"><input type="checkbox" id="CreateCouponsAdd">Add</label></td>
+                                                <td><label class="checkbox-inline"><input type="checkbox" id="CreateCouponsEdit">Edit</label></td>
+                                                <td><label class="checkbox-inline"><input type="checkbox" id="CreateCouponsDelete">Delete</label></td>
+                                            </tr>
+
+
+
+                                            <tr>
+                                                <td style="font-weight:bolder"><input type="checkbox" id="Mapping">Mapping</td>
+                                                <td><label class="checkbox-inline"><input type="checkbox" id="MappingAdd">Add</label></td>
+                                                <td><label class="checkbox-inline"><input type="checkbox" id="MappingEdit">Edit</label></td>
+                                                <td><label class="checkbox-inline"><input type="checkbox" id="MappingDelete">Delete</label></td>
+                                            </tr>
+
+
+
+
+
+
+                                            <tr>
+                                                <td style="font-weight:bolder"><input type="checkbox" id="Document">Document</td>
+                                                <td><label class="checkbox-inline"><input type="checkbox" id="DocumentAdd">Add</label></td>
+                                                <td><label class="checkbox-inline"><input type="checkbox" id="DocumentEdit">Edit</label></td>
+                                                <td><label class="checkbox-inline"><input type="checkbox" id="DocumentDelete">Delete</label></td>
+                                            </tr>
+
                                         </tbody>
                                     </table>
                                 </div>
@@ -163,22 +198,26 @@
                         }
                     </div>
 
-                    <input type="text" id="1" value="" />
-                    <input type="text" id="2" value="" />
-                    <input type="text" id="3" value="" />
-                    <input type="text" id="4" value="" />
-                    <input type="text" id="5" value="" />
-                    <input type="text" id="6" value="" />
-                    <input type="text" id="7" value="" />
-                    <input type="text" id="8" value="" />
-                    <input type="text" id="9" value="" />
-                    <input type="text" id="10" value="" />
-                    <input type="text" id="11" value="" />
-                    <input type="text" id="12" value="" />
-                    <input type="text" id="13" value="" />
-                    <input type="text" id="14" value="" />
-                    <input type="text" id="15" value="" />
-                    <input type="text" id="15" value="" />
+                    <input type="hidden" id="1" value="" />
+                    <input type="hidden" id="2" value="" />
+                    <input type="hidden" id="3" value="" />
+                    <input type="hidden" id="4" value="" />
+                    <input type="hidden" id="5" value="" />
+                    <input type="hidden" id="6" value="" />
+                    <input type="hidden" id="7" value="" />
+                    <input type="hidden" id="8" value="" />
+                    <input type="hidden" id="9" value="" />
+                    <input type="hidden" id="10" value="" />
+                    <input type="hidden" id="11" value="" />
+                    <input type="hidden" id="12" value="" />
+                    <input type="hidden" id="13" value="" />
+                    <input type="hidden" id="14" value="" />
+                    <input type="hidden" id="15" value="" />
+                    <input type="hidden" id="16" value="" />
+                    <input type="hidden" id="17" value="" />
+                    <input type="hidden" id="18" value="" />
+                    <input type="hidden" id="19" value="" />
+
 
 
                 </div>
@@ -313,6 +352,17 @@
         var status16 = "";
         var data16 = "";
 
+        var status17 = "";
+        var data17 = "";
+
+
+        var status18 = "";
+        var data18 = "";
+
+
+        var status19 = "";
+        var data19 = "";
+
         // for role
         if ($("#Roles").is(':checked')) {
             status1 = status1 + "Active";
@@ -322,28 +372,33 @@
         }
 
         if ($("#RoleAdd").is(':checked')) {
-            data1 = data1 + "'1',";
+            data1 = data1 + "1,";
         }
         else {
-            data1 = data1 + "'0',";
+            data1 = data1 + "0,";
         }
         if ($("#RoleEdit").is(':checked')) {
-            data1 = data1 + "'1',";
+            data1 = data1 + "2,";
         }
         else {
-            data1 = data1 + "'0',";
+            data1 = data1 + "0,";
         }
         if ($("#RoleDelete").is(':checked')) {
-            data1 = data1 + "'1',";
+            data1 = data1 + "3";
         }
         else {
-            data1 = data1 + "'0'";
+            data1 = data1 + "0";
         }
 
-        alert(data1);
-        $("#1").val("update Assignment_Roles set RoleId = "+roleid+" , RoleId = "+roleid+" , PageStatus= '" + status1 +"'  , Action = "+data1+" where PageName = 'Roles'");
+     
+        $("#1").val("update Assignment_Roles set  PageStatus= '" + status1 +"'  , Action = '"+data1+"' where PageName = 'Roles' and RoleId = "+roleid+" ");
 
         //end
+
+
+
+  
+
 
 
 
@@ -360,26 +415,26 @@
         }
 
         if ($("#CompanyAdd").is(':checked')) {
-            data2 = data2 + "'1',";
+            data2 = data2 + "1,";
         }
         else {
-            data2 = data2 + "'0',";
+            data2 = data2 + "0,";
         }
         if ($("#CompanyEdit").is(':checked')) {
-            data2 = data2 + "'1',";
+            data2 = data2 + "2,";
         }
         else {
-            data2 = data2 + "'0',";
+            data2 = data2 + "0,";
         }
         if ($("#CompanyDelete").is(':checked')) {
-            data2 = data2 + "'1',";
+            data2 = data2 + "3";
         }
         else {
-            data2 = data2 + "'0'";
+            data2 = data2 + "0";
         }
 
-        alert(data2);
-        $("#2").val("update Assignment_Roles set RoleId = "+roleid+" , PageStatus= '" + status2 + "'  , Action = " + data2 + " where PageName = 'Company'");
+      
+        $("#2").val("update Assignment_Roles set  PageStatus= '" + status2 + "'  , Action = '" + data2 + "' where PageName = 'Company' and RoleId = " + roleid +"");
 
         //end
 
@@ -396,26 +451,26 @@
         }
 
         if ($("#DistributorAdd").is(':checked')) {
-            data3 = data3 + "'1',";
+            data3 = data3 + "1,";
         }
         else {
-            data3 = data3 + "'0',";
+            data3 = data3 + "0,";
         }
         if ($("#DistributorEdit").is(':checked')) {
-            data3 = data3 + "'1',";
+            data3 = data3 + "2,";
         }
         else {
-            data3 = data3 + "'0',";
+            data3 = data3 + "0,";
         }
         if ($("#DistributorDelete").is(':checked')) {
-            data3 = data3 + "'1',";
+            data3 = data3 + "3";
         }
         else {
-            data3 = data3 + "'0'";
+            data3 = data3 + "0";
         }
 
-        alert(data3);
-        $("#3").val("update Assignment_Roles set RoleId = "+roleid+" , PageStatus= '" + status3 + "'  , Action = " + data3 + " where PageName = 'Distributor'");
+    
+        $("#3").val("update Assignment_Roles set  PageStatus= '" + status3 + "'  , Action = '" + data3 + "' where PageName = 'Distributor' and RoleId = " + roleid +"");
 
         //end
 
@@ -432,26 +487,26 @@
         }
 
         if ($("#TestatorsAdd").is(':checked')) {
-            data4 = data4 + "'1',";
+            data4 = data4 + "1,";
         }
         else {
-            data4 = data4 + "'0',";
+            data4 = data4 + "0,";
         }
         if ($("#TestatorsEdit").is(':checked')) {
-            data4 = data4 + "'1',";
+            data4 = data4 + "2,";
         }
         else {
-            data4 = data4 + "'0',";
+            data4 = data4 + "0,";
         }
         if ($("#TestatorsDelete").is(':checked')) {
-            data4 = data4 + "'1',";
+            data4 = data4 + "3";
         }
         else {
-            data4 = data4 + "'0'";
+            data4 = data4 + "0";
         }
 
-        alert(data4);
-        $("#4").val("update Assignment_Roles set RoleId = "+roleid+" , PageStatus= '" + status4 + "'  , Action = " + data4 + " where PageName = 'Testators'");
+     
+        $("#4").val("update Assignment_Roles set  PageStatus= '" + status4 + "'  , Action = '" + data4 + "' where PageName = 'Testators' and RoleId = " + roleid +"");
 
         //end
 
@@ -468,26 +523,26 @@
         }
 
         if ($("#TestatorsFamilyAdd").is(':checked')) {
-            data5 = data5 + "'1',";
+            data5 = data5 + "1,";
         }
         else {
-            data5 = data5 + "'0',";
+            data5 = data5 + "0,";
         }
         if ($("#TestatorsFamilyEdit").is(':checked')) {
-            data5 = data5 + "'1',";
+            data5 = data5 + "2,";
         }
         else {
-            data5 = data5 + "'0',";
+            data5 = data5 + "0,";
         }
         if ($("#TestatorsFamilyDelete").is(':checked')) {
-            data5 = data5 + "'1',";
+            data5 = data5 + "3";
         }
         else {
-            data5 = data5 + "'0'";
+            data5 = data5 + "0";
         }
 
-        alert(data2);
-        $("#5").val("update Assignment_Roles set RoleId = "+roleid+" , PageStatus= '" + status5 + "'  , Action = " + data5 + " where PageName = 'TestatorsFamily'");
+     
+        $("#5").val("update Assignment_Roles set  PageStatus= '" + status5 + "'  , Action = '" + data5 + "' where PageName = 'TestatorsFamily' and RoleId = "+roleid+"");
 
         //end
 
@@ -504,26 +559,26 @@
         }
 
         if ($("#AssetTypeAdd").is(':checked')) {
-            data6 = data6 + "'1',";
+            data6 = data6 + "1,";
         }
         else {
-            data6 = data6 + "'0',";
+            data6 = data6 + "0,";
         }
         if ($("#AssetTypeEdit").is(':checked')) {
-            data6 = data6 + "'1',";
+            data6 = data6 + "2,";
         }
         else {
-            data6 = data6 + "'0',";
+            data6 = data6 + "0,";
         }
         if ($("#AssetTypeDelete").is(':checked')) {
-            data6 = data6 + "'1',";
+            data6 = data6 + "3";
         }
         else {
-            data6 = data6 + "'0'";
+            data6 = data6 + "0";
         }
 
-        alert(data6);
-        $("#6").val("update Assignment_Roles set RoleId = "+roleid+" , PageStatus= '" + status6 + "'  , Action = " + data6 + " where PageName = 'AssetType'");
+     
+        $("#6").val("update Assignment_Roles set  PageStatus= '" + status6 + "'  , Action = '" + data6 + "' where PageName = 'AssetType' and RoleId = " + roleid +"");
 
         //end
 
@@ -540,26 +595,26 @@
         }
 
         if ($("#AssetCategoryAdd").is(':checked')) {
-            data7 = data7 + "'1',";
+            data7 = data7 + "1,";
         }
         else {
-            data7 = data7 + "'0',";
+            data7 = data7 + "0,";
         }
         if ($("#AssetCategoryEdit").is(':checked')) {
-            data7 = data7 + "'1',";
+            data7 = data7 + "2,";
         }
         else {
-            data7 = data7 + "'0',";
+            data7 = data7 + "0,";
         }
         if ($("#AssetCategoryDelete").is(':checked')) {
-            data7 = data7 + "'1',";
+            data7 = data7 + "3";
         }
         else {
-            data7 = data7 + "'0'";
+            data7 = data7 + "0";
         }
 
-        alert(data7);
-        $("#7").val("update Assignment_Roles set RoleId = "+roleid+" , PageStatus= '" + status7 + "'  , Action = " + data7 + " where PageName = 'AssetCategory'");
+      
+        $("#7").val("update Assignment_Roles set  PageStatus= '" + status7 + "'  , Action = '" + data7 + "' where PageName = 'AssetCategory' and RoleId = " + roleid +"");
 
         //end
 
@@ -575,26 +630,26 @@
         }
 
         if ($("#AssetControlsMappingAdd").is(':checked')) {
-            data8 = data8 + "'1',";
+            data8 = data8 + "1,";
         }
         else {
-            data8 = data8 + "'0',";
+            data8 = data8 + "0,";
         }
         if ($("#AssetControlsMappingEdit").is(':checked')) {
-            data8 = data8 + "'1',";
+            data8 = data8 + "2,";
         }
         else {
-            data8 = data8 + "'0',";
+            data8 = data8 + "0,";
         }
         if ($("#AssetControlsMappingDelete").is(':checked')) {
-            data8 = data8 + "'1',";
+            data8 = data8 + "3";
         }
         else {
-            data8 = data8 + "'0'";
+            data8 = data8 + "0";
         }
 
-        alert(data2);
-        $("#8").val("update Assignment_Roles set RoleId = "+roleid+" , PageStatus= '" + status8 + "'  , Action = " + data8 + " where PageName = 'AssetControlsMapping'");
+  
+        $("#8").val("update Assignment_Roles set  PageStatus= '" + status8 + "'  , Action = '" + data8 + "' where PageName = 'AssetControlsMapping' and RoleId = " + roleid +"");
 
         //end
 
@@ -610,26 +665,26 @@
         }
 
         if ($("#AssetInformationAdd").is(':checked')) {
-            data9 = data9 + "'1',";
+            data9 = data9 + "1,";
         }
         else {
-            data9 = data9 + "'0',";
+            data9 = data9 + "0,";
         }
         if ($("#AssetInformationEdit").is(':checked')) {
-            data9 = data9 + "'1',";
+            data9 = data9 + "2,";
         }
         else {
-            data9 = data9 + "'0',";
+            data9 = data9 + "0,";
         }
         if ($("#AssetInformationDelete").is(':checked')) {
-            data9 = data9 + "'1',";
+            data9 = data9 + "3";
         }
         else {
-            data9 = data9 + "'0'";
+            data9 = data9 + "0";
         }
 
-        alert(data9);
-        $("#9").val("update Assignment_Roles set RoleId = "+roleid+" , PageStatus= '" + status9 + "'  , Action = " + data9 + " where PageName = 'AssetInformation'");
+     
+        $("#9").val("update Assignment_Roles set  PageStatus= '" + status9 + "'  , Action = '" + data9 + "' where PageName = 'AssetInformation' and RoleId = " + roleid +"");
 
         //end
 
@@ -645,26 +700,26 @@
         }
 
         if ($("#RelationAdd").is(':checked')) {
-            data10 = data10 + "'1',";
+            data10 = data10 + "1,";
         }
         else {
-            data10 = data10 + "'0',";
+            data10 = data10 + "0,";
         }
         if ($("#RelationEdit").is(':checked')) {
-            data10 = data10 + "'1',";
+            data10 = data10 + "2,";
         }
         else {
-            data10 = data10 + "'0',";
+            data10 = data10 + "0,";
         }
         if ($("#RelationDelete").is(':checked')) {
-            data10 = data10 + "'1',";
+            data10 = data10 + "3";
         }
         else {
-            data10 = data10 + "'0'";
+            data10 = data10 + "0";
         }
 
-        alert(data10);
-        $("#10").val("update Assignment_Roles set RoleId = " + roleid + " , PageStatus= '" + status10 + "'  , Action = " + data10 + " where PageName = 'Relation'");
+       
+        $("#10").val("update Assignment_Roles set  PageStatus= '" + status10 + "'  , Action = '" + data10 + "' where PageName = 'Relation' and RoleId = " + roleid +"");
 
         //end
 
@@ -679,26 +734,26 @@
         }
 
         if ($("#BeneficiaryAdd").is(':checked')) {
-            data11 = data11 + "'1',";
+            data11 = data11 + "1,";
         }
         else {
-            data11 = data11 + "'0',";
+            data11 = data11 + "0,";
         }
         if ($("#BeneficiaryEdit").is(':checked')) {
-            data11 = data11 + "'1',";
+            data11 = data11 + "2,";
         }
         else {
-            data11 = data11 + "'0',";
+            data11 = data11 + "0,";
         }
         if ($("#BeneficiaryDelete").is(':checked')) {
-            data11 = data11 + "'1',";
+            data11 = data11 + "3";
         }
         else {
-            data11 = data11 + "'0'";
+            data11 = data11 + "0";
         }
 
-        alert(data11);
-        $("#11").val("update Assignment_Roles set RoleId = " + roleid + " , PageStatus= '" + status11 + "'  , Action = " + data11 + " where PageName = 'Beneficiary'");
+      
+        $("#11").val("update Assignment_Roles set  PageStatus= '" + status11 + "'  , Action = '" + data11 + "' where PageName = 'Beneficiary' and RoleId = " + roleid +"");
 
         //end
 
@@ -714,26 +769,26 @@
         }
 
         if ($("#AlternateBeneficiaryAdd").is(':checked')) {
-            data12 = data12 + "'1',";
+            data12 = data12 + "1,";
         }
         else {
-            data12 = data12 + "'0',";
+            data12 = data12 + "0,";
         }
         if ($("#AlternateBeneficiaryEdit").is(':checked')) {
-            data12 = data12 + "'1',";
+            data12 = data12 + "2,";
         }
         else {
-            data12 = data12 + "'0',";
+            data12 = data12 + "0,";
         }
         if ($("#AlternateBeneficiaryDelete").is(':checked')) {
-            data12 = data12 + "'1',";
+            data12 = data12 + "3";
         }
         else {
-            data12 = data12 + "'0'";
+            data12 = data12 + "0";
         }
 
-        alert(data12);
-        $("#12").val("update Assignment_Roles set RoleId = " + roleid + " , PageStatus= '" + status12 + "'  , Action = " + data12 + " where PageName = 'AlternateBeneficiary'");
+       
+        $("#12").val("update Assignment_Roles set  PageStatus= '" + status12 + "'  , Action = '" + data12 + "' where PageName = 'AlternateBeneficiary' and RoleId = " + roleid +"");
 
         //end
 
@@ -749,26 +804,26 @@
         }
 
         if ($("#NomineeAdd").is(':checked')) {
-            data13 = data13 + "'1',";
+            data13 = data13 + "1,";
         }
         else {
-            data13 = data13 + "'0',";
+            data13 = data13 + "0,";
         }
         if ($("#NomineeEdit").is(':checked')) {
-            data13 = data13 + "'1',";
+            data13 = data13 + "2,";
         }
         else {
-            data13 = data13 + "'0',";
+            data13 = data13 + "0,";
         }
         if ($("#NomineeDelete").is(':checked')) {
-            data13 = data13 + "'1',";
+            data13 = data13 + "3";
         }
         else {
-            data13 = data13 + "'0'";
+            data13 = data13 + "0";
         }
 
-        alert(data13);
-        $("#13").val("update Assignment_Roles set RoleId = " + roleid + " , PageStatus= '" + status13 + "'  , Action = " + data13 + " where PageName = 'Nominee'");
+     
+        $("#13").val("update Assignment_Roles set  PageStatus= '" + status13 + "'  , Action = '" + data13 + "' where PageName = 'Nominee' and RoleId = " + roleid +"");
 
         //end
 
@@ -784,26 +839,26 @@
         }
 
         if ($("#AppointeesAdd").is(':checked')) {
-            data14 = data14 + "'1',";
+            data14 = data14 + "1,";
         }
         else {
-            data14 = data14 + "'0',";
+            data14 = data14 + "0,";
         }
         if ($("#AppointeesEdit").is(':checked')) {
-            data14 = data14 + "'1',";
+            data14 = data14 + "2,";
         }
         else {
-            data14 = data14 + "'0',";
+            data14 = data14 + "0,";
         }
         if ($("#AppointeesDelete").is(':checked')) {
-            data14 = data14 + "'1',";
+            data14 = data14 + "3";
         }
         else {
-            data14 = data14 + "'0'";
+            data14 = data14 + "0";
         }
 
-        alert(data14);
-        $("#14").val("update Assignment_Roles set RoleId = " + roleid + " , PageStatus= '" + status14 + "'  , Action = " + data14 + " where PageName = 'Appointees'");
+
+        $("#14").val("update Assignment_Roles set  PageStatus= '" + status14 + "'  , Action = '" + data14 + "' where PageName = 'Appointees' and RoleId = " + roleid +"");
 
         //end
 
@@ -820,28 +875,185 @@
         }
 
         if ($("#AlternateAppointeesAdd").is(':checked')) {
-            data15 = data15 + "'1',";
+            data15 = data15 + "1,";
         }
         else {
-            data15 = data15 + "'0',";
+            data15 = data15 + "0,";
         }
         if ($("#AlternateAppointeesEdit").is(':checked')) {
-            data15 = data15 + "'1',";
+            data15 = data15 + "2,";
         }
         else {
-            data15 = data15 + "'0',";
+            data15 = data15 + "0,";
         }
         if ($("#AlternateAppointeesDelete").is(':checked')) {
-            data15 = data15 + "'1',";
+            data15 = data15 + "3";
         }
         else {
-            data15 = data15 + "'0'";
+            data15 = data15 + "0";
         }
 
-        alert(data15);
-        $("#15").val("update Assignment_Roles set RoleId = " + roleid + " , PageStatus= '" + status15 + "'  , Action = " + data15 + " where PageName = 'AlternateAppointees'");
+      
+        $("#15").val("update Assignment_Roles set  PageStatus= '" + status15 + "'  , Action = '" + data15 + "' where PageName = 'AlternateAppointees' and RoleId = " + roleid +"");
 
         //end
+
+
+
+
+
+        // for roleassignment
+        if ($("#RoleAssign").is(':checked')) {
+            status16 = status16 + "Active";
+        }
+        else {
+            status16 = status16 + "Inactive";
+        }
+
+        if ($("#RoleAssignAdd").is(':checked')) {
+            data16 = data16 + "1,";
+        }
+        else {
+            data16 = data16 + "0,";
+        }
+        if ($("#RoleAssignEdit").is(':checked')) {
+            data16 = data16 + "2,";
+        }
+        else {
+            data16 = data16 + "0,";
+        }
+        if ($("#RoleAssignDelete").is(':checked')) {
+            data16 = data16 + "3";
+        }
+        else {
+            data16 = data16 + "0";
+        }
+
+
+        $("#16").val("update Assignment_Roles set  PageStatus= '" + status16 + "'  , Action = '" + data16 + "' where PageName = 'AssignRoles' and RoleId = " + roleid + " ");
+
+        //end
+
+
+
+
+
+
+
+        // for CreateCoupons
+        if ($("#CreateCoupons").is(':checked')) {
+            status17 = status17 + "Active";
+        }
+        else {
+            status17 = status17 + "Inactive";
+        }
+
+        if ($("#CreateCouponsAdd").is(':checked')) {
+            data17 = data17 + "1,";
+        }
+        else {
+            data17 = data17 + "0,";
+        }
+        if ($("#CreateCouponsEdit").is(':checked')) {
+            data17 = data17 + "2,";
+        }
+        else {
+            data17 = data17 + "0,";
+        }
+        if ($("#CreateCouponsDelete").is(':checked')) {
+            data17 = data17 + "3";
+        }
+        else {
+            data17 = data17 + "0";
+        }
+
+
+        $("#17").val("update Assignment_Roles set  PageStatus= '" + status17 + "'  , Action = '" + data17 + "' where PageName = 'CreateCoupons' and RoleId = " + roleid + " ");
+
+        //end
+
+
+        // for Mapping
+        if ($("#Mapping").is(':checked')) {
+            status18 = status18 + "Active";
+        }
+        else {
+            status18 = status18 + "Inactive";
+        }
+
+        if ($("#MappingAdd").is(':checked')) {
+            data18 = data18 + "1,";
+        }
+        else {
+            data18 = data18 + "0,";
+        }
+        if ($("#MappingEdit").is(':checked')) {
+            data18 = data18 + "2,";
+        }
+        else {
+            data18 = data18 + "0,";
+        }
+        if ($("#MappingDelete").is(':checked')) {
+            data18 = data18 + "3";
+        }
+        else {
+            data18 = data18 + "0";
+        }
+
+
+        $("#18").val("update Assignment_Roles set  PageStatus= '" + status18 + "'  , Action = '" + data18 + "' where PageName = 'Mapping' and RoleId = " + roleid + " ");
+
+        //end
+
+
+
+        // for Document
+        if ($("#Document").is(':checked')) {
+            status19 = status19 + "Active";
+        }
+        else {
+            status19 = status19 + "Inactive";
+        }
+
+        if ($("#DocumentAdd").is(':checked')) {
+            data19 = data19 + "1,";
+        }
+        else {
+            data19 = data19 + "0,";
+        }
+        if ($("#DocumentEdit").is(':checked')) {
+            data19 = data19 + "2,";
+        }
+        else {
+            data19 = data19 + "0,";
+        }
+        if ($("#DocumentDelete").is(':checked')) {
+            data19 = data19 + "3";
+        }
+        else {
+            data19 = data19 + "0";
+        }
+
+
+        $("#19").val("update Assignment_Roles set  PageStatus= '" + status19 + "'  , Action = '" + data19 + "' where PageName = 'Document' and RoleId = " + roleid + " ");
+
+        //end
+
+
+
+        
+        var AllData = $("#1").val() + "~" + $("#2").val() + "~" + $("#3").val() + "~" + $("#4").val() + "~" + $("#5").val() + "~" + $("#6").val() + "~" + $("#7").val() + "~" + $("#8").val() + "~" + $("#9").val() + "~" + $("#10").val() + "~" + $("#11").val() + "~" + $("#12").val() + "~" + $("#13").val() + "~" + $("#14").val() + "~" + $("#15").val() + "~" + $("#16").val() + "~" + $("#17").val() + "~" + $("#18").val() + "~" + $("#19").val();
+
+
+          $.ajax({
+
+            type: "POST",
+              data: { data: AllData, roleid: roleid },
+            url:"@Url.Action("GetAssignRoles", "AddRoleAssignment")",
+            success: function (data) {
+                
+            }
+        });
 
         
 

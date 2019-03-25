@@ -1,4 +1,6 @@
 ﻿
+@using System.Collections;
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -123,10 +125,10 @@
 
                     <i class=""></i><span class="" style="color:white">(@Session["Role"])</span>
 
-                
+
                     <div class="dropdown-menu dropdown-menu-right">
                         <ul class="list-group list-group-flush">
-                           
+
                             <li class="list-group-item">
                                 <a href="javaScript:void();">
                                     <div class="media">
@@ -180,7 +182,7 @@
                     </div>
                 </li>
                 <li class="nav-item dropdown-lg">
-                    
+
                     <div class="dropdown-menu dropdown-menu-right">
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -224,7 +226,7 @@
                         </ul>
                     </div>
                 </li>
-                
+
                 <li class="nav-item">
                     <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown" href="#">
                         <span class="user-profile"><img src="~/assets/images/avatars/avatar-13.png" class="img-circle" alt="user avatar"></span>
@@ -297,644 +299,454 @@
 
 
                 @*Super admin roles Links*@
-                @if (Convert.ToInt32(Session["rId"]) == 4)
+                @if (ViewBag.PageName != null)
                 {
-                    <li>
-                        <a href="javaScript:void();" class="waves-effect">
-                            <i class="zmdi zmdi-format-list-bulleted"></i> <span>Roles</span>
-                            <i class="fa fa-angle-left pull-right"></i>
-                        </a>
-                        <ul class="sidebar-submenu">
-
-                            <li><a href=@Url.Action("RoleAddIndex","RoleAdd")><i class="zmdi zmdi-star-outline"></i>Add Roles </a></li>
-
-                        </ul>
-                        <ul class="sidebar-submenu">
-
-                            <li><a href=@Url.Action("EditRoleIndex","EditRole")><i class="zmdi zmdi-star-outline"></i>Edit Roles</a></li>
-
-                        </ul>
-
-                    </li>
-
-
-                    <li>
-                        <a href="javaScript:void();" class="waves-effect">
-                            <i class="zmdi zmdi-format-list-bulleted"></i> <span>Assign Roles</span>
-                            <i class="fa fa-angle-left pull-right"></i>
-                        </a>
-                        <ul class="sidebar-submenu">
-
-                            <li><a href=@Url.Action("AddRoleAssignmentIndex","AddRoleAssignment")><i class="zmdi zmdi-star-outline"></i>Assign</a></li>
-
-                        </ul>
-                        <ul class="sidebar-submenu">
-
-                            <li><a href=@Url.Action("EditRoleIndex","EditRole")><i class="zmdi zmdi-star-outline"></i>Edit Roles</a></li>
-
-                        </ul>
-
-                    </li>
-
-
-
-                    <li>
-                        <a href="javaScript:void();" class="waves-effect">
-                            <i class="zmdi zmdi-format-list-bulleted"></i> <span>Company</span>
-                            <i class="fa fa-angle-left pull-right"></i>
-                        </a>
-                        <ul class="sidebar-submenu">
-
-                            <li><a href=@Url.Action("AddDistributorIndex", "AddDistributor")><i class="zmdi zmdi-star-outline"></i>Add Company </a></li>
-
-                        </ul>
-                        <ul class="sidebar-submenu">
-
-                            <li><a href=@Url.Action("EditDistributorIndex", "EditDistributor")><i class="zmdi zmdi-star-outline"></i>Edit Company</a></li>
-
-                        </ul>
-
-                    </li>
-
-
-                    <li>
-                        <a href="javaScript:void();" class="waves-effect">
-                            <i class="zmdi zmdi-format-list-bulleted"></i> <span>Distributor</span>
-                            <i class="fa fa-angle-left pull-right"></i>
-                        </a>
-                        <ul class="sidebar-submenu">
-
-                            <li><a href=@Url.Action("UsersFormIndex","UsersForm")><i class="zmdi zmdi-star-outline"></i>Add Distributor</a></li>
-
-                        </ul>
-                        <ul class="sidebar-submenu">
-
-                            <li><a href=@Url.Action("EditUserFormIndex","EditUserForm")><i class="zmdi zmdi-star-outline"></i>Edit Distributor</a></li>
-
-                        </ul>
-
-                    </li>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                    <li>
-                        <a href="javaScript:void();" class="waves-effect">
-                            <i class="zmdi zmdi-format-list-bulleted"></i> <span>Testators</span>
-                            <i class="fa fa-angle-left pull-right"></i>
-                        </a>
-                        <ul class="sidebar-submenu">
-
-                            <li><a href=@Url.Action("AddTestatorsFormIndex", "AddTestatorsForm")><i class="zmdi zmdi-star-outline"></i>Add Testators </a></li>
-
-                        </ul>
-                        <ul class="sidebar-submenu">
-
-                            <li><a href=@Url.Action("EditTestatorIndex", "EditTestator")><i class="zmdi zmdi-star-outline"></i>Edit Testators</a></li>
-
-                        </ul>
-
-                    </li>
-
-                    <li>
-                        <a href="javaScript:void();" class="waves-effect">
-                            <i class="zmdi zmdi-format-list-bulleted"></i> <span>Testator Family</span>
-                            <i class="fa fa-angle-left pull-right"></i>
-                        </a>
-                        <ul class="sidebar-submenu">
-
-                            <li><a href=@Url.Action("AddTestatorFamilyIndex","AddTestatorFamily")><i class="zmdi zmdi-star-outline"></i>Add Testator Family </a></li>
-
-                        </ul>
-                        <ul class="sidebar-submenu">
-
-                            <li><a href=@Url.Action("EditTestatorFamilyIndex","EditTestatorFamily")><i class="zmdi zmdi-star-outline"></i>Edit Testator Family</a></li>
-
-                        </ul>
-
-                    </li>
-
-                    <li>
-                        <a href="javaScript:void();" class="waves-effect">
-                            <i class="zmdi zmdi-format-list-bulleted"></i> <span>Asset Type</span>
-                            <i class="fa fa-angle-left pull-right"></i>
-                        </a>
-                        <ul class="sidebar-submenu">
-
-                            <li><a href=@Url.Action("AssetTypeIndex","AssetType")><i class="zmdi zmdi-star-outline"></i>Add Asset Type </a></li>
-
-                        </ul>
-                        <ul class="sidebar-submenu">
-
-                            <li><a href=@Url.Action("EditAssetTypeIndex","EditAssetType")><i class="zmdi zmdi-star-outline"></i>Edit Asset Type</a></li>
-
-                        </ul>
-
-                    </li>
-
-
-
-                    <li>
-                        <a href="javaScript:void();" class="waves-effect">
-                            <i class="zmdi zmdi-format-list-bulleted"></i> <span>Asset Category</span>
-                            <i class="fa fa-angle-left pull-right"></i>
-                        </a>
-                        <ul class="sidebar-submenu">
-
-                            <li><a href=@Url.Action("AddAssetCategoryIndex","AddAssetCategory")><i class="zmdi zmdi-star-outline"></i>Add Category</a></li>
-
-                        </ul>
-                        <ul class="sidebar-submenu">
-
-                            <li><a href=@Url.Action("EditAssetCategoryIndex","EditAssetCategory")><i class="zmdi zmdi-star-outline"></i>Edit Category</a></li>
-
-                        </ul>
-
-                    </li>
-
-
-
-
-
-                    <li>
-                        <a href="javaScript:void();" class="waves-effect">
-                            <i class="zmdi zmdi-format-list-bulleted"></i> <span>Asset Control Mapping</span>
-                            <i class="fa fa-angle-left pull-right"></i>
-                        </a>
-
-
-
-
-
-
-                        <ul class="sidebar-submenu">
-
-                            <li><a href=@Url.Action("AddAssetsIndex","AddAssets")><i class="zmdi zmdi-star-outline"></i>Add Assets Controls</a></li>
-
-                        </ul>
-                        <ul class="sidebar-submenu">
-
-                            <li><a href=@Url.Action("EditAssetsIndex","EditAssets")><i class="zmdi zmdi-star-outline"></i>Edit Assets Controls</a></li>
-
-                        </ul>
-
-                    </li>
-
-
-
-                    <li>
-                        <a href="javaScript:void();" class="waves-effect">
-                            <i class="zmdi zmdi-format-list-bulleted"></i> <span>Assets Information</span>
-                            <i class="fa fa-angle-left pull-right"></i>
-                        </a>
-
-
-
-
-
-
-                        <ul class="sidebar-submenu">
-
-                            <li><a href=@Url.Action("AddMainAssetsIndex","AddMainAssets")><i class="zmdi zmdi-star-outline"></i>Add Assets</a></li>
-
-                        </ul>
-                        <ul class="sidebar-submenu">
-
-                            <li><a href=@Url.Action("EditMainAssetsIndex","EditMainAssets")><i class="zmdi zmdi-star-outline"></i>Edit Assets</a></li>
-
-                        </ul>
-
-                    </li>
-
-
-
-                    <li>
-                        <a href="javaScript:void();" class="waves-effect">
-                            <i class="zmdi zmdi-format-list-bulleted"></i> <span>Relation</span>
-                            <i class="fa fa-angle-left pull-right"></i>
-                        </a>
-                        <ul class="sidebar-submenu">
-
-                            <li><a href=@Url.Action("AddRelationIndex","AddRelation")><i class="zmdi zmdi-star-outline"></i>Add Relation </a></li>
-
-                        </ul>
-                        <ul class="sidebar-submenu">
-
-                            <li><a href=@Url.Action("EditRelationIndex","EditRelation")><i class="zmdi zmdi-star-outline"></i>Edit Relation</a></li>
-
-                        </ul>
-
-                    </li>
-
-
-
-
-
-
-
-                    <li>
-                        <a href="javaScript:void();" class="waves-effect">
-                            <i class="zmdi zmdi-format-list-bulleted"></i> <span>Beneficiary</span>
-                            <i class="fa fa-angle-left pull-right"></i>
-                        </a>
-                        <ul class="sidebar-submenu">
-
-                            <li><a href=@Url.Action("AddBeneficiaryIndex","AddBeneficiary")><i class="zmdi zmdi-star-outline"></i>Add Beneficiary </a></li>
-
-                        </ul>
-                        <ul class="sidebar-submenu">
-
-                            <li><a href=@Url.Action("EditBeneficiaryIndex","EditBeneficiary")><i class="zmdi zmdi-star-outline"></i>Edit Beneficiary</a></li>
-
-                        </ul>
-
-                    </li>
-
-
-
-                    <li>
-                        <a href="javaScript:void();" class="waves-effect">
-                            <i class="zmdi zmdi-format-list-bulleted"></i> <span>Alternate Beneficiary</span>
-                            <i class="fa fa-angle-left pull-right"></i>
-                        </a>
-                        <ul class="sidebar-submenu">
-
-                            <li><a href=@Url.Action("AlternateBeneficiaryIndex","AlternateBeneficiary")><i class="zmdi zmdi-star-outline"></i>Add Alt Beneficiary </a></li>
-
-                        </ul>
-                        <ul class="sidebar-submenu">
-
-                            <li><a href=@Url.Action("EditAlternateBeneficiaryIndex","EditAlternateBeneficiary")><i class="zmdi zmdi-star-outline"></i>Edit Alt Beneficiary</a></li>
-
-                        </ul>
-
-                    </li>
-
-
-
-                    <li>
-                        <a href="javaScript:void();" class="waves-effect">
-                            <i class="zmdi zmdi-format-list-bulleted"></i> <span>Nominee</span>
-                            <i class="fa fa-angle-left pull-right"></i>
-                        </a>
-                        <ul class="sidebar-submenu">
-
-                            <li><a href=@Url.Action("AddNomineeIndex","AddNominee")><i class="zmdi zmdi-star-outline"></i>Add Nominee </a></li>
-
-                        </ul>
-                        <ul class="sidebar-submenu">
-
-                            <li><a href=@Url.Action("EditNomineeIndex","EditNominee")><i class="zmdi zmdi-star-outline"></i>Edit Nominee</a></li>
-
-                        </ul>
-
-                    </li>
-
-
-
-                    <li>
-                        <a href="javaScript:void();" class="waves-effect">
-                            <i class="zmdi zmdi-format-list-bulleted"></i> <span>Appointees</span>
-                            <i class="fa fa-angle-left pull-right"></i>
-                        </a>
-                        <ul class="sidebar-submenu">
-
-                            <li><a href=@Url.Action("AddAppointeesIndex","AddAppointees")><i class="zmdi zmdi-star-outline"></i>Add Appointees </a></li>
-
-                        </ul>
-                        <ul class="sidebar-submenu">
-
-                            <li><a href=@Url.Action("EditAppointeesIndex","EditAppointees")><i class="zmdi zmdi-star-outline"></i>Edit Appointees</a></li>
-
-                        </ul>
-
-                    </li>
-
-
-                    <li>
-                        <a href="javaScript:void();" class="waves-effect">
-                            <i class="zmdi zmdi-format-list-bulleted"></i> <span>Alternate Appointees</span>
-                            <i class="fa fa-angle-left pull-right"></i>
-                        </a>
-                        <ul class="sidebar-submenu">
-
-                            <li><a href=@Url.Action("AddAlternateAppointeesIndex","AddAlternateAppointees")><i class="zmdi zmdi-star-outline"></i>Add Alternate Appointees </a></li>
-
-                        </ul>
-                        <ul class="sidebar-submenu">
-
-                            <li><a href=@Url.Action("EditAlternateAppointeesIndex","EditAlternateAppointees")><i class="zmdi zmdi-star-outline"></i>Edit Alternate Appointees</a></li>
-
-                        </ul>
-
-                    </li>
-
-
-
-
-                    <li>
-                        <a href="javaScript:void();" class="waves-effect">
-                            <i class="zmdi zmdi-format-list-bulleted"></i> <span>Create Coupons</span>
-                            <i class="fa fa-angle-left pull-right"></i>
-                        </a>
-                        <ul class="sidebar-submenu">
-
-                            <li><a href=@Url.Action("AddCouponsIndex","AddCoupons")><i class="zmdi zmdi-star-outline"></i>Add Coupons </a></li>
-
-                        </ul>
-                        <ul class="sidebar-submenu">
-
-                            <li><a href=@Url.Action("EditCouponsIndex","EditCoupons")><i class="zmdi zmdi-star-outline"></i>Edit Coupons</a></li>
-
-                        </ul>
-
-                    </li>
-
-
-
-
-                    <li>
-                        <a href="javaScript:void();" class="waves-effect">
-                            <i class="zmdi zmdi-format-list-bulleted"></i> <span>Mapping</span>
-                            <i class="fa fa-angle-left pull-right"></i>
-                        </a>
-                        <ul class="sidebar-submenu">
-
-                            <li><a href=@Url.Action("AddAssetMappingIndex","AddAssetMapping")><i class="zmdi zmdi-star-outline"></i>Mapping </a></li>
-
-                        </ul>
-
-
-                    </li>
-
-
-
-
-                    <li>
-                        <a href="javaScript:void();" class="waves-effect">
-                            <i class="zmdi zmdi-format-list-bulleted"></i> <span>Document</span>
-                            <i class="fa fa-angle-left pull-right"></i>
-                        </a>
-                        <ul class="sidebar-submenu">
-
-
-
-                            <li><a href=@Url.Action("Report.aspx","page")><i class="zmdi zmdi-star-outline"></i>View Document</a></li>
-
-                        </ul>
-
-
-                    </li>
-
-
-
-
-
-                }
-
-                @*end*@
-
-
-
-
-                @*Distributor Roles Links*@
-
-                @if (Convert.ToInt32(Session["rId"]) == 1)
-                {
-
-
-
-                    <li>
-                        <a href="javaScript:void();" class="waves-effect">
-                            <i class="zmdi zmdi-format-list-bulleted"></i> <span>Doc Verification</span>
-                            <i class="fa fa-angle-left pull-right"></i>
-                        </a>
-                        <ul class="sidebar-submenu">
-
-                            <li><a href=@Url.Action("UsersFormIndex", "UsersForm")><i class="zmdi zmdi-star-outline"></i>Add Employee</a></li>
-
-                        </ul>
-                        <ul class="sidebar-submenu">
-
-                            <li><a href=@Url.Action("EditUserFormIndex", "EditUserForm")><i class="zmdi zmdi-star-outline"></i>Edit Employee</a></li>
-
-                        </ul>
-
-                    </li>
-
-
-                    <li>
-                        <a href="javaScript:void();" class="waves-effect">
-                            <i class="zmdi zmdi-format-list-bulleted"></i> <span>Doc Verification</span>
-                            <i class="fa fa-angle-left pull-right"></i>
-                        </a>
-                        <ul class="sidebar-submenu">
-
-                            <li><a href=@Url.Action("UsersFormIndex", "UsersForm")><i class="zmdi zmdi-star-outline"></i>Add Employee</a></li>
-
-                        </ul>
-                        <ul class="sidebar-submenu">
-
-                            <li><a href=@Url.Action("EditUserFormIndex", "EditUserForm")><i class="zmdi zmdi-star-outline"></i>Edit Employee</a></li>
-
-                        </ul>
-
-
-                    </li>
-
-
-
-                    if (ViewBag.Menu != null)
+                    foreach (var item in ViewBag.PageName)
                     {
-                        foreach (var item in ViewBag.Menu)
+                        string navigation1 = item.Nav1;
+                        string navigation2 = item.Nav2;
+
+                        ArrayList nav1 = new ArrayList(navigation1.Split('~'));
+
+
+                        ArrayList nav2 = new ArrayList(navigation2.Split('~'));
+
+
+                        if (item.PageStatus == "Active")
+	{
+                <li>
+
+                    <a href="javaScript:void();" class="waves-effect">
+                        <i class="zmdi zmdi-format-list-bulleted"></i> <span>@item.PageName</span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </a>
+                    <ul class="sidebar-submenu">
+
+                        <li><a href=@Url.Action(nav1[1].ToString(), nav1[2].ToString())><i class="zmdi zmdi-star-outline"></i>@nav1[0].ToString()</a></li>
+
+                    </ul>
+                    <ul class="sidebar-submenu">
+                        @if (nav2[0].ToString() != "NULL")
                         {
-                            <li>
-                                <a href="javaScript:void();" class="waves-effect">
-                                    <i class="zmdi zmdi-format-list-bulleted"></i> <span>@item.parentname</span>
-                                    <i class="fa fa-angle-left pull-right"></i>
-                                </a>
-                                <ul class="sidebar-submenu">
-
-                                    <li><a href=@item.navigation><i class="zmdi zmdi-star-outline"></i>@item.childname</a></li>
-
-                                </ul>
-
-
-
-                            </li>
+                            <li><a href=@Url.Action(nav2[1].ToString(), nav2[2].ToString())><i class="zmdi zmdi-star-outline"></i>@nav2[0].ToString()</a></li>
                         }
+
+
+                    </ul>
+
+                </li>
+	}
+                        
                     }
 
-
-
-
-
-
-
                 }
+
+                @*<li>
+            <a href="javaScript:void();" class="waves-effect">
+                <i class="zmdi zmdi-format-list-bulleted"></i> <span>Assign Roles</span>
+                <i class="fa fa-angle-left pull-right"></i>
+            </a>
+            <ul class="sidebar-submenu">
+
+                <li><a href=@Url.Action("AddRoleAssignmentIndex","AddRoleAssignment")><i class="zmdi zmdi-star-outline"></i>Assign</a></li>
+
+            </ul>
+            <ul class="sidebar-submenu">
+
+                <li><a href=@Url.Action("EditRoleIndex","EditRole")><i class="zmdi zmdi-star-outline"></i>Edit Roles</a></li>
+
+            </ul>
+
+        </li>
+
+
+
+        <li>
+            <a href="javaScript:void();" class="waves-effect">
+                <i class="zmdi zmdi-format-list-bulleted"></i> <span>Company</span>
+                <i class="fa fa-angle-left pull-right"></i>
+            </a>
+            <ul class="sidebar-submenu">
+
+                <li><a href=@Url.Action("AddDistributorIndex", "AddDistributor")><i class="zmdi zmdi-star-outline"></i>Add Company </a></li>
+
+            </ul>
+            <ul class="sidebar-submenu">
+
+                <li><a href=@Url.Action("EditDistributorIndex", "EditDistributor")><i class="zmdi zmdi-star-outline"></i>Edit Company</a></li>
+
+            </ul>
+
+        </li>
+
+
+        <li>
+            <a href="javaScript:void();" class="waves-effect">
+                <i class="zmdi zmdi-format-list-bulleted"></i> <span>Distributor</span>
+                <i class="fa fa-angle-left pull-right"></i>
+            </a>
+            <ul class="sidebar-submenu">
+
+                <li><a href=@Url.Action("UsersFormIndex","UsersForm")><i class="zmdi zmdi-star-outline"></i>Add Distributor</a></li>
+
+            </ul>
+            <ul class="sidebar-submenu">
+
+                <li><a href=@Url.Action("EditUserFormIndex","EditUserForm")><i class="zmdi zmdi-star-outline"></i>Edit Distributor</a></li>
+
+            </ul>
+
+        </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <li>
+            <a href="javaScript:void();" class="waves-effect">
+                <i class="zmdi zmdi-format-list-bulleted"></i> <span>Testators</span>
+                <i class="fa fa-angle-left pull-right"></i>
+            </a>
+            <ul class="sidebar-submenu">
+
+                <li><a href=@Url.Action("AddTestatorsFormIndex", "AddTestatorsForm")><i class="zmdi zmdi-star-outline"></i>Add Testators </a></li>
+
+            </ul>
+            <ul class="sidebar-submenu">
+
+                <li><a href=@Url.Action("EditTestatorIndex", "EditTestator")><i class="zmdi zmdi-star-outline"></i>Edit Testators</a></li>
+
+            </ul>
+
+        </li>
+
+        <li>
+            <a href="javaScript:void();" class="waves-effect">
+                <i class="zmdi zmdi-format-list-bulleted"></i> <span>Testator Family</span>
+                <i class="fa fa-angle-left pull-right"></i>
+            </a>
+            <ul class="sidebar-submenu">
+
+                <li><a href=@Url.Action("AddTestatorFamilyIndex","AddTestatorFamily")><i class="zmdi zmdi-star-outline"></i>Add Testator Family </a></li>
+
+            </ul>
+            <ul class="sidebar-submenu">
+
+                <li><a href=@Url.Action("EditTestatorFamilyIndex","EditTestatorFamily")><i class="zmdi zmdi-star-outline"></i>Edit Testator Family</a></li>
+
+            </ul>
+
+        </li>
+
+        <li>
+            <a href="javaScript:void();" class="waves-effect">
+                <i class="zmdi zmdi-format-list-bulleted"></i> <span>Asset Type</span>
+                <i class="fa fa-angle-left pull-right"></i>
+            </a>
+            <ul class="sidebar-submenu">
+
+                <li><a href=@Url.Action("AssetTypeIndex","AssetType")><i class="zmdi zmdi-star-outline"></i>Add Asset Type </a></li>
+
+            </ul>
+            <ul class="sidebar-submenu">
+
+                <li><a href=@Url.Action("EditAssetTypeIndex","EditAssetType")><i class="zmdi zmdi-star-outline"></i>Edit Asset Type</a></li>
+
+            </ul>
+
+        </li>
+
+
+
+        <li>
+            <a href="javaScript:void();" class="waves-effect">
+                <i class="zmdi zmdi-format-list-bulleted"></i> <span>Asset Category</span>
+                <i class="fa fa-angle-left pull-right"></i>
+            </a>
+            <ul class="sidebar-submenu">
+
+                <li><a href=@Url.Action("AddAssetCategoryIndex","AddAssetCategory")><i class="zmdi zmdi-star-outline"></i>Add Category</a></li>
+
+            </ul>
+            <ul class="sidebar-submenu">
+
+                <li><a href=@Url.Action("EditAssetCategoryIndex","EditAssetCategory")><i class="zmdi zmdi-star-outline"></i>Edit Category</a></li>
+
+            </ul>
+
+        </li>
+
+
+
+
+
+        <li>
+            <a href="javaScript:void();" class="waves-effect">
+                <i class="zmdi zmdi-format-list-bulleted"></i> <span>Asset Control Mapping</span>
+                <i class="fa fa-angle-left pull-right"></i>
+            </a>
+
+
+
+
+
+
+            <ul class="sidebar-submenu">
+
+                <li><a href=@Url.Action("AddAssetsIndex","AddAssets")><i class="zmdi zmdi-star-outline"></i>Add Assets Controls</a></li>
+
+            </ul>
+            <ul class="sidebar-submenu">
+
+                <li><a href=@Url.Action("EditAssetsIndex","EditAssets")><i class="zmdi zmdi-star-outline"></i>Edit Assets Controls</a></li>
+
+            </ul>
+
+        </li>
+
+
+
+        <li>
+            <a href="javaScript:void();" class="waves-effect">
+                <i class="zmdi zmdi-format-list-bulleted"></i> <span>Assets Information</span>
+                <i class="fa fa-angle-left pull-right"></i>
+            </a>
+
+
+
+
+
+
+            <ul class="sidebar-submenu">
+
+                <li><a href=@Url.Action("AddMainAssetsIndex","AddMainAssets")><i class="zmdi zmdi-star-outline"></i>Add Assets</a></li>
+
+            </ul>
+            <ul class="sidebar-submenu">
+
+                <li><a href=@Url.Action("EditMainAssetsIndex","EditMainAssets")><i class="zmdi zmdi-star-outline"></i>Edit Assets</a></li>
+
+            </ul>
+
+        </li>
+
+
+
+        <li>
+            <a href="javaScript:void();" class="waves-effect">
+                <i class="zmdi zmdi-format-list-bulleted"></i> <span>Relation</span>
+                <i class="fa fa-angle-left pull-right"></i>
+            </a>
+            <ul class="sidebar-submenu">
+
+                <li><a href=@Url.Action("AddRelationIndex","AddRelation")><i class="zmdi zmdi-star-outline"></i>Add Relation </a></li>
+
+            </ul>
+            <ul class="sidebar-submenu">
+
+                <li><a href=@Url.Action("EditRelationIndex","EditRelation")><i class="zmdi zmdi-star-outline"></i>Edit Relation</a></li>
+
+            </ul>
+
+        </li>
+
+
+
+
+
+
+
+        <li>
+            <a href="javaScript:void();" class="waves-effect">
+                <i class="zmdi zmdi-format-list-bulleted"></i> <span>Beneficiary</span>
+                <i class="fa fa-angle-left pull-right"></i>
+            </a>
+            <ul class="sidebar-submenu">
+
+                <li><a href=@Url.Action("AddBeneficiaryIndex","AddBeneficiary")><i class="zmdi zmdi-star-outline"></i>Add Beneficiary </a></li>
+
+            </ul>
+            <ul class="sidebar-submenu">
+
+                <li><a href=@Url.Action("EditBeneficiaryIndex","EditBeneficiary")><i class="zmdi zmdi-star-outline"></i>Edit Beneficiary</a></li>
+
+            </ul>
+
+        </li>
+
+
+
+        <li>
+            <a href="javaScript:void();" class="waves-effect">
+                <i class="zmdi zmdi-format-list-bulleted"></i> <span>Alternate Beneficiary</span>
+                <i class="fa fa-angle-left pull-right"></i>
+            </a>
+            <ul class="sidebar-submenu">
+
+                <li><a href=@Url.Action("AlternateBeneficiaryIndex","AlternateBeneficiary")><i class="zmdi zmdi-star-outline"></i>Add Alt Beneficiary </a></li>
+
+            </ul>
+            <ul class="sidebar-submenu">
+
+                <li><a href=@Url.Action("EditAlternateBeneficiaryIndex","EditAlternateBeneficiary")><i class="zmdi zmdi-star-outline"></i>Edit Alt Beneficiary</a></li>
+
+            </ul>
+
+        </li>
+
+
+
+        <li>
+            <a href="javaScript:void();" class="waves-effect">
+                <i class="zmdi zmdi-format-list-bulleted"></i> <span>Nominee</span>
+                <i class="fa fa-angle-left pull-right"></i>
+            </a>
+            <ul class="sidebar-submenu">
+
+                <li><a href=@Url.Action("AddNomineeIndex","AddNominee")><i class="zmdi zmdi-star-outline"></i>Add Nominee </a></li>
+
+            </ul>
+            <ul class="sidebar-submenu">
+
+                <li><a href=@Url.Action("EditNomineeIndex","EditNominee")><i class="zmdi zmdi-star-outline"></i>Edit Nominee</a></li>
+
+            </ul>
+
+        </li>
+
+
+
+        <li>
+            <a href="javaScript:void();" class="waves-effect">
+                <i class="zmdi zmdi-format-list-bulleted"></i> <span>Appointees</span>
+                <i class="fa fa-angle-left pull-right"></i>
+            </a>
+            <ul class="sidebar-submenu">
+
+                <li><a href=@Url.Action("AddAppointeesIndex","AddAppointees")><i class="zmdi zmdi-star-outline"></i>Add Appointees </a></li>
+
+            </ul>
+            <ul class="sidebar-submenu">
+
+                <li><a href=@Url.Action("EditAppointeesIndex","EditAppointees")><i class="zmdi zmdi-star-outline"></i>Edit Appointees</a></li>
+
+            </ul>
+
+        </li>
+
+
+        <li>
+            <a href="javaScript:void();" class="waves-effect">
+                <i class="zmdi zmdi-format-list-bulleted"></i> <span>Alternate Appointees</span>
+                <i class="fa fa-angle-left pull-right"></i>
+            </a>
+            <ul class="sidebar-submenu">
+
+                <li><a href=@Url.Action("AddAlternateAppointeesIndex","AddAlternateAppointees")><i class="zmdi zmdi-star-outline"></i>Add Alternate Appointees </a></li>
+
+            </ul>
+            <ul class="sidebar-submenu">
+
+                <li><a href=@Url.Action("EditAlternateAppointeesIndex","EditAlternateAppointees")><i class="zmdi zmdi-star-outline"></i>Edit Alternate Appointees</a></li>
+
+            </ul>
+
+        </li>
+
+
+
+
+        <li>
+            <a href="javaScript:void();" class="waves-effect">
+                <i class="zmdi zmdi-format-list-bulleted"></i> <span>Create Coupons</span>
+                <i class="fa fa-angle-left pull-right"></i>
+            </a>
+            <ul class="sidebar-submenu">
+
+                <li><a href=@Url.Action("AddCouponsIndex","AddCoupons")><i class="zmdi zmdi-star-outline"></i>Add Coupons </a></li>
+
+            </ul>
+            <ul class="sidebar-submenu">
+
+                <li><a href=@Url.Action("EditCouponsIndex","EditCoupons")><i class="zmdi zmdi-star-outline"></i>Edit Coupons</a></li>
+
+            </ul>
+
+        </li>
+
+
+
+
+        <li>
+            <a href="javaScript:void();" class="waves-effect">
+                <i class="zmdi zmdi-format-list-bulleted"></i> <span>Mapping</span>
+                <i class="fa fa-angle-left pull-right"></i>
+            </a>
+            <ul class="sidebar-submenu">
+
+                <li><a href=@Url.Action("AddAssetMappingIndex","AddAssetMapping")><i class="zmdi zmdi-star-outline"></i>Mapping </a></li>
+
+            </ul>
+
+
+        </li>
+
+
+
+
+        <li>
+            <a href="javaScript:void();" class="waves-effect">
+                <i class="zmdi zmdi-format-list-bulleted"></i> <span>Document</span>
+                <i class="fa fa-angle-left pull-right"></i>
+            </a>
+            <ul class="sidebar-submenu">
+
+
+
+                <li><a href=@Url.Action("Report.aspx","page")><i class="zmdi zmdi-star-outline"></i>View Document</a></li>
+
+            </ul>
+
+
+        </li>*@
+
+
+
+
+
+
+
+
+
+
+
+
 
 
                 @*end*@
 
 
 
-                @*will assure Employee*@
-
-                @if (Convert.ToInt32(Session["rId"]) == 2)
-                {
 
 
-                    <li>
-                        <a href="javaScript:void();" class="waves-effect">
-                            <i class="zmdi zmdi-format-list-bulleted"></i> <span>Company</span>
-                            <i class="fa fa-angle-left pull-right"></i>
-                        </a>
-                        <ul class="sidebar-submenu">
-
-                            <li><a href=@Url.Action("AddDistributorIndex", "AddDistributor")><i class="zmdi zmdi-star-outline"></i>Add Company </a></li>
-
-                        </ul>
-                        <ul class="sidebar-submenu">
-
-                            <li><a href=@Url.Action("EditDistributorIndex", "EditDistributor")><i class="zmdi zmdi-star-outline"></i>Edit Company</a></li>
-
-                        </ul>
-
-                    </li>
-
-
-                    <li>
-                        <a href="javaScript:void();" class="waves-effect">
-                            <i class="zmdi zmdi-format-list-bulleted"></i> <span>Distributor</span>
-                            <i class="fa fa-angle-left pull-right"></i>
-                        </a>
-                        <ul class="sidebar-submenu">
-
-                            <li><a href=@Url.Action("UsersFormIndex", "UsersForm")><i class="zmdi zmdi-star-outline"></i>Add Distributor</a></li>
-
-                        </ul>
-                        <ul class="sidebar-submenu">
-
-                            <li><a href=@Url.Action("EditUserFormIndex", "EditUserForm")><i class="zmdi zmdi-star-outline"></i>Edit Distributor</a></li>
-
-                        </ul>
-
-                    </li>
-
-
-
-
-
-                    <li>
-                        <a href="javaScript:void();" class="waves-effect">
-                            <i class="zmdi zmdi-format-list-bulleted"></i> <span>Document</span>
-                            <i class="fa fa-angle-left pull-right"></i>
-                        </a>
-                        <ul class="sidebar-submenu">
-
-                            <li><a href=@Url.Action("UsersFormIndex", "UsersForm")><i class="zmdi zmdi-star-outline"></i>Add Employee</a></li>
-
-                        </ul>
-                        <ul class="sidebar-submenu">
-
-                            <li><a href=@Url.Action("EditUserFormIndex", "EditUserForm")><i class="zmdi zmdi-star-outline"></i>Edit Employee</a></li>
-
-                        </ul>
-
-                    </li>
-
-
-
-
-                    <li>
-                        <a href="javaScript:void();" class="waves-effect">
-                            <i class="zmdi zmdi-format-list-bulleted"></i> <span>Testators</span>
-                            <i class="fa fa-angle-left pull-right"></i>
-                        </a>
-                        <ul class="sidebar-submenu">
-
-                            <li><a href=@Url.Action("AddTestatorsFormIndex", "AddTestatorsForm")><i class="zmdi zmdi-star-outline"></i>Add Testators </a></li>
-
-                        </ul>
-                        <ul class="sidebar-submenu">
-
-                            <li><a href=@Url.Action("EditTestatorIndex", "EditTestator")><i class="zmdi zmdi-star-outline"></i>Edit Testators</a></li>
-
-                        </ul>
-
-                    </li>
-
-                }
-                @*end*@
-
-
-                @*Distributor Employee*@
-                @if (Convert.ToInt32(Session["rId"]) == 3)
-                {
-                    <li>
-                        <a href="javaScript:void();" class="waves-effect">
-                            <i class="zmdi zmdi-format-list-bulleted"></i> <span>Doc Creation</span>
-                            <i class="fa fa-angle-left pull-right"></i>
-                        </a>
-                        <ul class="sidebar-submenu">
-
-                            <li><a href=@Url.Action("UsersFormIndex", "UsersForm")><i class="zmdi zmdi-star-outline"></i>Add Employee</a></li>
-
-                        </ul>
-                        <ul class="sidebar-submenu">
-
-                            <li><a href=@Url.Action("EditUserFormIndex", "EditUserForm")><i class="zmdi zmdi-star-outline"></i>Edit Employee</a></li>
-
-                        </ul>
-
-                    </li>
-
-
-
-
-
-
-
-                    <li>
-                        <a href="javaScript:void();" class="waves-effect">
-                            <i class="zmdi zmdi-format-list-bulleted"></i> <span>Doc Verification</span>
-                            <i class="fa fa-angle-left pull-right"></i>
-                        </a>
-                        <ul class="sidebar-submenu">
-
-                            <li><a href=@Url.Action("UsersFormIndex", "UsersForm")><i class="zmdi zmdi-star-outline"></i>Add Employee</a></li>
-
-                        </ul>
-                        <ul class="sidebar-submenu">
-
-                            <li><a href=@Url.Action("EditUserFormIndex", "EditUserForm")><i class="zmdi zmdi-star-outline"></i>Edit Employee</a></li>
-
-                        </ul>
-
-                    </li>
-
-                    @*end*@
-
-                }
 
 
 
 
 
             </ul>
-            
+
         </div>
         <!--End sidebar-wrapper-->
         @RenderBody()
@@ -1020,9 +832,9 @@
 <script>
     $(function () {
         $("#datepicker").datepicker({
-          
+
             autoclose: true
-           
+
         })
     });
 
