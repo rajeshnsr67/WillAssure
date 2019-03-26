@@ -23,6 +23,37 @@ namespace WillAssure.Controllers
         // GET: AddRoleAssignment
         public ActionResult AddRoleAssignmentIndex()
         {
+            List<LoginModel> Lmlist = new List<LoginModel>();
+            con.Open();
+            string q = "select * from Assignment_Roles where RoleId = " + Convert.ToInt32(Session["rId"]) + "";
+            SqlDataAdapter da3 = new SqlDataAdapter(q, con);
+            DataTable dt3 = new DataTable();
+            da3.Fill(dt3);
+            if (dt3.Rows.Count > 0)
+            {
+
+                for (int i = 0; i < dt3.Rows.Count; i++)
+                {
+                    LoginModel lm = new LoginModel();
+                    lm.PageName = dt3.Rows[i]["PageName"].ToString();
+                    lm.PageStatus = dt3.Rows[i]["PageStatus"].ToString();
+                    lm.Action = dt3.Rows[i]["Action"].ToString();
+                    lm.Nav1 = dt3.Rows[i]["Nav1"].ToString();
+                    lm.Nav2 = dt3.Rows[i]["Nav2"].ToString();
+
+                    Lmlist.Add(lm);
+                }
+
+
+
+                ViewBag.PageName = Lmlist;
+
+
+
+
+            }
+
+            con.Close();
             return View("~/Views/AddRoleAssignment/AddRoleAssignmentPageContent.cshtml");
         }
 
@@ -59,7 +90,7 @@ namespace WillAssure.Controllers
                 string qry = "";
              
                 qry = qry + "insert into Assignment_Roles (RoleId,PageName,Nav1,Nav2) values ("+ roleid + " , 'Roles',' Add Roles~RoleAddIndex~RoleAdd','Edit Roles~EditRoleIndex~EditRole')";
-                qry = qry + "insert into Assignment_Roles (RoleId,PageName,Nav1,Nav2) values (" + roleid + " ,'AssignRoles','Assign~AddRoleAssignmentIndex~AddRoleAssignment','Edit Roles~EditRoleIndex~EditRole')";
+                qry = qry + "insert into Assignment_Roles (RoleId,PageName,Nav1,Nav2) values (" + roleid + " ,'AssignRoles','Assign~AddRoleAssignmentIndex~AddRoleAssignment','NULL~NULL~NULL')";
                 qry = qry + "insert into Assignment_Roles (RoleId,PageName,Nav1,Nav2) values (" + roleid + " ,'Company','Add Company~AddDistributorIndex~AddDistributor','Edit Company~EditDistributorIndex~EditDistributor')";
                 qry = qry + "insert into Assignment_Roles (RoleId,PageName,Nav1,Nav2) values (" + roleid + " ,'Distributor','Add Distributor~UsersFormIndex~UsersForm','Edit Distributor~EditUserFormIndex~EditUserForm')";
                 qry = qry + "insert into Assignment_Roles (RoleId,PageName,Nav1,Nav2) values (" + roleid + " ,'Testators','Add Testators~AddTestatorsFormIndex~AddTestatorsForm','Edit Testators~EditTestatorIndex~EditTestator')";
@@ -74,14 +105,14 @@ namespace WillAssure.Controllers
                 qry = qry + "insert into Assignment_Roles (RoleId,PageName,Nav1,Nav2) values (" + roleid + " ,'Nominee','Add Nominee~AddNomineeIndex~AddNominee','Edit Nominee~EditNomineeIndex~EditNominee')";
                 qry = qry + "insert into Assignment_Roles (RoleId,PageName,Nav1,Nav2) values (" + roleid + " ,'Appointees','Add Appointees~AddAppointeesIndex~AddAppointees','Edit Appointees~EditAppointeesIndex~EditAppointees')";
                 qry = qry + "insert into Assignment_Roles (RoleId,PageName,Nav1,Nav2) values (" + roleid + " ,'AlternateAppointees','Add Alternate Appointees~AddAlternateAppointeesIndex~AddAlternateAppointees','  Edit Alternate Appointees~EditAlternateAppointeesIndex~EditAlternateAppointees')";
-                qry = qry + "insert into Assignment_Roles (RoleId,PageName,Nav1,Nav2) values (" + roleid + " ,'CreateCoupons','Add Coupons~AddCouponsIndex~AddCoupons','Edit Coupons~EditCouponsIndex~EditCoupons')";
+                qry = qry + "insert into Assignment_Roles (RoleId,PageName,Nav1,Nav2) values (" + roleid + " ,'CreateCoupons','Add Coupons~AddCouponsIndex~AddCoupons','NULL~NULL~NULL')";
                 qry = qry + "insert into Assignment_Roles (RoleId,PageName,Nav1,Nav2) values (" + roleid + " ,'Mapping','Mapping~AddAssetMappingIndex~AddAssetMapping','NULL~NULL~NULL')";
                 qry = qry + "insert into Assignment_Roles (RoleId,PageName,Nav1,Nav2) values (" + roleid + " ,'Document','View Document~Report.aspx~page','NULL~NULL~NULL')";
                 SqlCommand cmd = new SqlCommand(qry,con);
                 cmd.ExecuteNonQuery();
 
 
-                Response.Write("<script>alert('Selected Role Is New Please Assign Role Again....! ')</script>");
+                
             }
             con.Close();
 
@@ -157,5 +188,26 @@ namespace WillAssure.Controllers
 
             return data;
         }
+
+
+
+        public string CheckRoleId()
+        {
+            int response = Convert.ToInt32(Request["send"]);
+            string data = "";
+            con.Open();
+            string query = "select count(RoleId) as total from Assignment_Roles where RoleId ="+ response + "";
+            SqlDataAdapter da = new SqlDataAdapter(query, con);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+
+            data = dt.Rows[0]["total"].ToString();
+
+
+            return data;
+        }
+
+
+
     }
 }

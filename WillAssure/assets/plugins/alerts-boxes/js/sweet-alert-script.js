@@ -367,6 +367,18 @@
 
 
 
+     // ROLE ASSIGNMENT
+     
+
+     $("#btnRoleAssignmentCHECK").click(function () {
+         swal("Information!", "Please Fill out Appointees Form First...!", "info");
+     });
+
+
+     //END
+
+
+
               $("#alert-warning").click(function(){
                   swal("Warning!", "You clicked the button!,", "warning");
               });

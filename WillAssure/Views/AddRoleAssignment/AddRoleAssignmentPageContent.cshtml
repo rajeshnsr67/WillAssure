@@ -191,7 +191,7 @@
                             <div class="form-group">
 
                                 <button type="button" id="btnRoleAssignmentformsubmit" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i>Assign Roles</button>
-                                <button type="button" id="btnRoleformsubmitSUCCESS" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
+                                <button type="button" id="btnRoleAssignmentCHECK" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
                                 <button type="button" id="btnRoleformsubmitCHECK" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
                             </div>
 
@@ -276,6 +276,22 @@
 
         $("#ddlroletxt").val(text);
         $("#ddlroleid").val(value);
+
+
+          $.ajax({
+
+            type: "POST",
+            url:"@Url.Action("CheckRoleId", "AddRoleAssignment")",
+              data: {"send":""+value+""},
+              success: function (data) {
+                  if (data == "0") {
+                      $("#pagedata").css("display", "none");
+                      alert("New Users Selected Please Click Assign Role To Assign Page...!")
+                  }
+            }
+        });
+
+
 
 
         if (value == "") {
@@ -1051,7 +1067,7 @@
               data: { data: AllData, roleid: roleid },
             url:"@Url.Action("GetAssignRoles", "AddRoleAssignment")",
             success: function (data) {
-                
+                $("#pagedata").css("display", "block");
             }
         });
 
@@ -1061,6 +1077,15 @@
     });
 
 </script>
+
+
+
+
+
+   
+
+
+
 
 
 

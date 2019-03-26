@@ -34,7 +34,8 @@ namespace WillAssure.Controllers
                     lm.PageName = dt3.Rows[i]["PageName"].ToString();
                     lm.PageStatus = dt3.Rows[i]["PageStatus"].ToString();
                     lm.Action = dt3.Rows[i]["Action"].ToString();
-
+                    lm.Nav1 = dt3.Rows[i]["Nav1"].ToString();
+                    lm.Nav2 = dt3.Rows[i]["Nav2"].ToString();
 
 
                     Lmlist.Add(lm);
