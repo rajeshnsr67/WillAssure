@@ -99,7 +99,7 @@ namespace WillAssure.Models
         public int Link_Required { get; set; }
         public int Login_Required { get; set; }
 
-       public string password { get; set; }
+        public string password = "admin@1234";
 
 
         public string EmailOTP { get; set; }

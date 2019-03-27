@@ -80,7 +80,7 @@ namespace WillAssure.Controllers
                 }
 
 
-             
+
 
 
 
@@ -106,14 +106,14 @@ namespace WillAssure.Controllers
             con.Close();
             string data = "";
             string testString = "";
-      
+
             for (int i = 0; i < Lmlist.Count(); i++)
             {
-               testString = Lmlist[0].Action;
-              
+                testString = Lmlist[0].Action;
+
             }
 
-         
+
 
             if (dt.Rows.Count > 0)
             {
@@ -135,7 +135,7 @@ namespace WillAssure.Controllers
                     {
                         data = data + "<tr class='nr'><td>" + dt.Rows[i]["rId"].ToString() + "</td>"
                         + "<td>" + dt.Rows[i]["Role"].ToString() + "</td>"
-                        + "<td><button type='button'   id=" + dt.Rows[i]["rId"].ToString() + "' onClick='Delete(this.id)'   class='btn btn-danger'>Delete</button></td></tr>";
+                        + "<td><button type='button'   id="+dt.Rows[i]["rId"].ToString()+" onClick='Delete(this.id)'   class='btn btn-danger'>Delete</button></td></tr>";
                     }
                 }
 
@@ -147,7 +147,7 @@ namespace WillAssure.Controllers
                     {
                         data = data + "<tr class='nr'><td>" + dt.Rows[i]["rId"].ToString() + "</td>"
                         + "<td>" + dt.Rows[i]["Role"].ToString() + "</td>"
-                        + "<td> <button type='button'   id='" + dt.Rows[i]["rId"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary'>Edit</button><button type='button'   id=" + dt.Rows[i]["rId"].ToString() + "' onClick='Delete(this.id)'   class='btn btn-danger'>Delete</button></td></tr>";
+                        + "<td> <button type='button'   id='" + dt.Rows[i]["rId"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary'>Edit</button><button type='button'   id="+dt.Rows[i]["rId"].ToString()+"   onClick='Delete(this.id)'   class='btn btn-danger'>Delete</button></td></tr>";
                     }
 
                 }
@@ -160,10 +160,10 @@ namespace WillAssure.Controllers
                     {
                         data = data + "<tr class='nr'><td>" + dt.Rows[i]["rId"].ToString() + "</td>"
                         + "<td>" + dt.Rows[i]["Role"].ToString() + "</td>";
-                        
+
                     }
 
-                   
+
 
                 }
 
@@ -243,7 +243,7 @@ namespace WillAssure.Controllers
             con.Close();
             string data = "";
             string testString = "";
-       
+
 
             for (int i = 0; i < Lmlist.Count(); i++)
             {
@@ -273,7 +273,7 @@ namespace WillAssure.Controllers
                     {
                         data = data + "<tr class='nr'><td>" + dt.Rows[i]["rId"].ToString() + "</td>"
                         + "<td>" + dt.Rows[i]["Role"].ToString() + "</td>"
-                        + "<td><button type='button'   id=" + dt.Rows[i]["rId"].ToString() + "' onClick='Delete(this.id)'   class='btn btn-danger'>Delete</button></td></tr>";
+                        + "<td><button type='button'   id="+dt.Rows[i]["rId"].ToString()+"   onClick='Delete(this.id)'   class='btn btn-danger'>Delete</button></td></tr>";
                     }
                 }
 
@@ -285,7 +285,7 @@ namespace WillAssure.Controllers
                     {
                         data = data + "<tr class='nr'><td>" + dt.Rows[i]["rId"].ToString() + "</td>"
                         + "<td>" + dt.Rows[i]["Role"].ToString() + "</td>"
-                        + "<td> <button type='button'   id='" + dt.Rows[i]["rId"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary'>Edit</button><button type='button'   id=" + dt.Rows[i]["rId"].ToString() + "' onClick='Delete(this.id)'   class='btn btn-danger'>Delete</button></td></tr>";
+                        + "<td> <button type='button'   id='" + dt.Rows[i]["rId"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary'>Edit</button><button type='button'   id= "+dt.Rows[i]["rId"].ToString()+"    onClick='Delete(this.id)'   class='btn btn-danger'>Delete</button></td></tr>";
                     }
 
                 }

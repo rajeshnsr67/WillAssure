@@ -20,6 +20,7 @@ namespace WillAssure.Controllers
         // GET: RoleAdd
         public ActionResult RoleAddIndex()
         {
+            // roleassignment
             List<LoginModel> Lmlist = new List<LoginModel>();
             string q = "select * from Assignment_Roles where RoleId = " + Convert.ToInt32(Session["rId"]) + "";
             SqlDataAdapter da3 = new SqlDataAdapter(q, con);
@@ -44,7 +45,7 @@ namespace WillAssure.Controllers
 
 
                 ViewBag.PageName = Lmlist;
-
+                //end
 
 
 
@@ -54,9 +55,48 @@ namespace WillAssure.Controllers
 
         public ActionResult InsertRoleFormData(RoleFormModel RFM)
         {
+
+            // roleassignment
+            List<LoginModel> Lmlist = new List<LoginModel>();
+            con.Open();
+            string q = "select * from Assignment_Roles where RoleId = " + Convert.ToInt32(Session["rId"]) + "";
+            SqlDataAdapter da3 = new SqlDataAdapter(q, con);
+            DataTable dt3 = new DataTable();
+            da3.Fill(dt3);
+            if (dt3.Rows.Count > 0)
+            {
+
+                for (int i = 0; i < dt3.Rows.Count; i++)
+                {
+                    LoginModel lm = new LoginModel();
+                    lm.PageName = dt3.Rows[i]["PageName"].ToString();
+                    lm.PageStatus = dt3.Rows[i]["PageStatus"].ToString();
+                    lm.Action = dt3.Rows[i]["Action"].ToString();
+                    lm.Nav1 = dt3.Rows[i]["Nav1"].ToString();
+                    lm.Nav2 = dt3.Rows[i]["Nav2"].ToString();
+
+                    Lmlist.Add(lm);
+                }
+
+
+
+                ViewBag.PageName = Lmlist;
+
+
+
+
+            }
+
+            con.Close();
+
+
+            //end
+
+
+
             int roles = 0;
             roles = Convert.ToInt32(Session["rId"]); 
-            if (roles != 1)
+            if (roles != 2 || roles != 3)
             {
                 //main Roles
 
@@ -82,15 +122,15 @@ namespace WillAssure.Controllers
                     ViewBag.Message = "Verified";
                 }
 
+                con.Close();
 
-              
             }
             else
             {
                 //Sub Roles
 
-                
-                string query = "select count(*) from Role  where Role = '" + RFM.Role + "'";
+                con.Open();
+                string query = "select count(*) from SubRoles  where Role = '" + RFM.Role + "'";
                 SqlCommand cmd = new SqlCommand(query, con);
                 int count = (int)cmd.ExecuteScalar();
 

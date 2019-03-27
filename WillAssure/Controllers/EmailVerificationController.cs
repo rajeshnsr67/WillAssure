@@ -18,7 +18,7 @@ namespace WillAssure.Controllers
     {
         public static string connectionString = ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString;
         SqlConnection con = new SqlConnection(connectionString);
-        public string Epassword = "Transformerrobotb4u";
+        public string Epassword = "admin@1234";
         // GET: EmailVerification
         public ActionResult EmailVerificationIndex(string v2)
         {
@@ -120,9 +120,9 @@ namespace WillAssure.Controllers
 
                     //generate Mail
 
-                    string mailid = "imransayyed528@gmail.com";
+                    string mailid = "manarmalleditor@gmail.com";
                     // string mailto = TFM.Email;
-                    string mailto = "willtestmail@mailprotech.com";
+                    string mailto = Session["mailto"].ToString();
                     string subject = "Testing Mail Sending";
                     //  string OTP = "<font color='Green' style='font-size=3em;'>" + TFM.EmailOTP + "</font>";
                     string text = "<font color='Green' style='font-size=3em;'>Your UserId And Password For Logging In Is <br> UserID : " + PanNumber + " <br> Password : " + Password + "</font>";

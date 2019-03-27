@@ -18,7 +18,15 @@ namespace WillAssure.Controllers
 
         public ActionResult UsersFormIndex()
         {
-            List<LoginModel> Lmlist = new List<LoginModel>();
+            if (Session["compId"] == null)
+            {
+                ViewBag.Message = "link";
+                
+            }
+
+
+
+                List<LoginModel> Lmlist = new List<LoginModel>();
             con.Open();
             string q = "select * from Assignment_Roles where RoleId = " + Convert.ToInt32(Session["rId"]) + "";
             SqlDataAdapter da3 = new SqlDataAdapter(q, con);
@@ -57,8 +65,42 @@ namespace WillAssure.Controllers
 
         public ActionResult GetUserFormData(UserFormModel UFM)
         {
-             
-            
+            // roleassignment
+            List<LoginModel> Lmlist = new List<LoginModel>();
+            con.Open();
+            string q3 = "select * from Assignment_Roles where RoleId = " + Convert.ToInt32(Session["rId"]) + "";
+            SqlDataAdapter da3 = new SqlDataAdapter(q3, con);
+            DataTable dt3 = new DataTable();
+            da3.Fill(dt3);
+            if (dt3.Rows.Count > 0)
+            {
+
+                for (int i = 0; i < dt3.Rows.Count; i++)
+                {
+                    LoginModel lm = new LoginModel();
+                    lm.PageName = dt3.Rows[i]["PageName"].ToString();
+                    lm.PageStatus = dt3.Rows[i]["PageStatus"].ToString();
+                    lm.Action = dt3.Rows[i]["Action"].ToString();
+                    lm.Nav1 = dt3.Rows[i]["Nav1"].ToString();
+                    lm.Nav2 = dt3.Rows[i]["Nav2"].ToString();
+
+                    Lmlist.Add(lm);
+                }
+
+
+
+                ViewBag.PageName = Lmlist;
+
+
+
+
+            }
+
+            con.Close();
+
+
+            //end
+
 
             if (Session["compId"] != null)
             {
@@ -259,78 +301,85 @@ namespace WillAssure.Controllers
 
         public String BindRoleDDL()
         {
+            string data = "<option value=''>--Select Role--</option>";
 
-            int roles = 0;
-            roles = Convert.ToInt32(Session["rId"]);
-            if (roles != 1 && roles != 4)
+            if (Session["rId"] != null)
             {
+                int roles = 0;
+                roles = Convert.ToInt32(Session["rId"]);
 
-                con.Open();
-                string query = "select * from subroles";
-                SqlDataAdapter da = new SqlDataAdapter(query, con);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-                con.Close();
-                string data = "<option value=''>--Select Role--</option>";
-
-                if (dt.Rows.Count > 0)
+                if (roles == 2 && roles == 3)
                 {
 
+                    con.Open();
+                    string query = "select * from subroles";
+                    SqlDataAdapter da = new SqlDataAdapter(query, con);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    con.Close();
+                    
 
-                    for (int i = 0; i < dt.Rows.Count; i++)
+                    if (dt.Rows.Count > 0)
                     {
 
 
+                        for (int i = 0; i < dt.Rows.Count; i++)
+                        {
 
 
-                        data = data + "<option value=" + dt.Rows[i]["Subrid"].ToString() + " >" + dt.Rows[i]["SubRolesName"].ToString() + "</option>";
+
+
+                            data = data + "<option value=" + dt.Rows[i]["Subrid"].ToString() + " >" + dt.Rows[i]["SubRolesName"].ToString() + "</option>";
+
+
+
+                        }
+
+
+
+
+                    }
+                   
+
+                }
+                else
+                {
+
+                    con.Open();
+                    string query = "select * from Roles";
+                    SqlDataAdapter da = new SqlDataAdapter(query, con);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    con.Close();
+
+
+                    if (dt.Rows.Count > 0)
+                    {
+
+
+                        for (int i = 0; i < dt.Rows.Count; i++)
+                        {
+
+
+
+
+                            data = data + "<option value=" + dt.Rows[i]["rid"].ToString() + " >" + dt.Rows[i]["Role"].ToString() + "</option>";
+
+
+
+                        }
+
 
 
 
                     }
 
 
-
-
-                }
-                return data;
-
-            }
-            else
-            {
-          
-                con.Open();
-                string query = "select * from Roles";
-                SqlDataAdapter da = new SqlDataAdapter(query, con);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-                con.Close();
-                string data = "<option value=''>--Select Role--</option>";
-
-                if (dt.Rows.Count > 0)
-                {
-
-
-                    for (int i = 0; i < dt.Rows.Count; i++)
-                    {
-
-
-
-
-                        data = data + "<option value=" + dt.Rows[i]["rid"].ToString() + " >" + dt.Rows[i]["Role"].ToString() + "</option>";
-
-
-
-                    }
-
-
-
-
                 }
 
-                return data;
             }
-
+           
+            return data;
         }
 
 

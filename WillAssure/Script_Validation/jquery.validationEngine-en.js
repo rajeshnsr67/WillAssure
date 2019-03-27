@@ -136,7 +136,7 @@
                 },
                 "AlphaNumeric": {
                     // Number, including positive, negative, and floating decimal. credit: orefalo
-                    "regex": /[A-Za-z0-9]+/,
+                    "regex": /^[A-Za-z_][A-Za-z\d_]*$/,
                     "alertText": "* AlphaNumeric Only"
                 },
                 "date": {                    

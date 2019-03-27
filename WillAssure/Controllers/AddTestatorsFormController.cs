@@ -22,6 +22,11 @@ namespace WillAssure.Controllers
         // GET: AddTestatorsForm
         public ActionResult AddTestatorsFormIndex()
         {
+            if (Session["compId"] == null)
+            {
+                ViewBag.Message = "link";
+            }
+
             List<LoginModel> Lmlist = new List<LoginModel>();
             con.Open();
             string q = "select * from Assignment_Roles where RoleId = " + Convert.ToInt32(Session["rId"]) + "";
@@ -60,7 +65,41 @@ namespace WillAssure.Controllers
 
         public ActionResult InsertTestatorFormData(TestatorFormModel TFM)
         {
+            // roleassignment
+            List<LoginModel> Lmlist = new List<LoginModel>();
+            con.Open();
+            string q3 = "select * from Assignment_Roles where RoleId = " + Convert.ToInt32(Session["rId"]) + "";
+            SqlDataAdapter da3 = new SqlDataAdapter(q3, con);
+            DataTable dt3 = new DataTable();
+            da3.Fill(dt3);
+            if (dt3.Rows.Count > 0)
+            {
 
+                for (int i = 0; i < dt3.Rows.Count; i++)
+                {
+                    LoginModel lm = new LoginModel();
+                    lm.PageName = dt3.Rows[i]["PageName"].ToString();
+                    lm.PageStatus = dt3.Rows[i]["PageStatus"].ToString();
+                    lm.Action = dt3.Rows[i]["Action"].ToString();
+                    lm.Nav1 = dt3.Rows[i]["Nav1"].ToString();
+                    lm.Nav2 = dt3.Rows[i]["Nav2"].ToString();
+
+                    Lmlist.Add(lm);
+                }
+
+
+
+                ViewBag.PageName = Lmlist;
+
+
+
+
+            }
+
+            con.Close();
+
+
+            //end
 
             //generate MOBILE OTP
             TFM.MobileOTP = String.Empty;
@@ -267,7 +306,7 @@ namespace WillAssure.Controllers
 
                     //generate Mail
 
-                    string mailid = "imransayyed528@gmail.com";
+                    string mailid = "manarmalleditor@gmail.com";
                     string mailto = TFM.Email;
                     //string mailto = "willtestmail@mailprotech.com";
                     string subject = "Testing Mail Sending";
@@ -315,7 +354,7 @@ namespace WillAssure.Controllers
 
                     //generate Mail
 
-                    string mailid = "imransayyed528@gmail.com";
+                    string mailid = "manarmalleditor@gmail.com";
                     string mailto = TFM.Email;
                     //string mailto = "willtestmail@mailprotech.com";
                     string subject = "Testing Mail Sending";
@@ -362,9 +401,10 @@ namespace WillAssure.Controllers
 
                     //generate Mail
 
-                    string mailid = "imransayyed528@gmail.com";
+                    string mailid = "manarmalleditor@gmail.com";
                     string mailto = TFM.Email;
-                    //string mailto = "willtestmail@mailprotech.com";
+                    Session["mailto"] = "";
+                    Session["mailto"] = mailto;
                     string subject = "Testing Mail Sending";
                     string OTP = "<font color='Green' style='font-size=3em;'>" + TFM.EmailOTP + "</font>";
                     string text = "Your OTP for Verification Is " + OTP + "";

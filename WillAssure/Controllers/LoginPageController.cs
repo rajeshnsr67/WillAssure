@@ -84,6 +84,7 @@ namespace WillAssure.Controllers
                 if (dt2.Rows.Count > 0)
                 {
                     Session["Role"] = dt2.Rows[0]["Role"].ToString();
+                   
                 }
 
 
@@ -141,6 +142,7 @@ namespace WillAssure.Controllers
 
         public ActionResult Logout()
         {
+            Session["Role"] = "";
             Session["apId"] = "";
             Session["rId"] = "";
             Session["uid"] = "";
@@ -152,6 +154,7 @@ namespace WillAssure.Controllers
             Session["bpId"] = "";
             Session["tid"] = "";
             Session["Document_Created_By"] = "";
+            Session["mailto"] = "";
             return View("~/Views/LoginPage/LoginPageContent.cshtml");
         }
 
