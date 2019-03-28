@@ -20,6 +20,10 @@ namespace WillAssure.Controllers
         // GET: AlternateBeneficiary
         public ActionResult AlternateBeneficiaryIndex()
         {
+            if (Session.SessionID == null)
+            {
+                return View("~/Views/LoginPage/LoginPageContent.cshtml");
+            }
             if (Session["bpId"] == null)
             {
                 ViewBag.Message = "link";
@@ -66,7 +70,7 @@ namespace WillAssure.Controllers
         {
 
             con.Open();
-            string query = "select * from tbl_state";
+            string query = "select distinct * from tbl_state order by statename asc  ";
             SqlDataAdapter da = new SqlDataAdapter(query, con);
             DataTable dt = new DataTable();
             da.Fill(dt);
@@ -104,7 +108,7 @@ namespace WillAssure.Controllers
         {
             string response = Request["send"];
             con.Open();
-            string query = "select * from tbl_city where state_id = '" + response + "'";
+            string query = "select distinct * from tbl_city where state_id = '" + response + "' order by city_name asc";
             SqlDataAdapter da = new SqlDataAdapter(query, con);
             DataTable dt = new DataTable();
             da.Fill(dt);
@@ -145,7 +149,7 @@ namespace WillAssure.Controllers
             DataTable dt = new DataTable();
             da.Fill(dt);
             con.Close();
-            string data = "<option value='0' >--Select--</option>";
+            string data = "<option value='' >--Select--</option>";
 
             if (dt.Rows.Count > 0)
             {

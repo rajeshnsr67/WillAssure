@@ -20,6 +20,10 @@ namespace WillAssure.Controllers
         // GET: UpdateTestators
         public ActionResult UpdateTestatorsIndex(int NestId)
         {
+            if (Session.SessionID == null)
+            {
+                return View("~/Views/LoginPage/LoginPageContent.cshtml");
+            }
             List<LoginModel> Lmlist = new List<LoginModel>();
             con.Open();
             string q = "select * from Assignment_Roles where RoleId = " + Convert.ToInt32(Session["rId"]) + "";
@@ -179,6 +183,230 @@ namespace WillAssure.Controllers
         }
 
 
+        public String BindCountryDDL()
+        {
+
+            con.Open();
+            string query = "select distinct * from country_tbl order by CountryName asc  ";
+            SqlDataAdapter da = new SqlDataAdapter(query, con);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            con.Close();
+            string data = "";
+
+            if (dt.Rows.Count > 0)
+            {
+
+
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+
+
+
+
+                    data = data + "<option value=" + dt.Rows[i]["CountryID"].ToString() + " >" + dt.Rows[i]["CountryName"].ToString() + "</option>";
+
+
+
+                }
+
+
+
+
+            }
+
+            return data;
+
+        }
+
+
+
+        public String BindStateDDL()
+        {
+
+            con.Open();
+            string query = "select distinct * from tbl_state order by statename asc  ";
+            SqlDataAdapter da = new SqlDataAdapter(query, con);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            con.Close();
+            string data = "";
+
+            if (dt.Rows.Count > 0)
+            {
+
+
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+
+
+
+
+                    data = data + "<option value=" + dt.Rows[i]["state_id"].ToString() + " >" + dt.Rows[i]["statename"].ToString() + "</option>";
+
+
+
+                }
+
+
+
+
+            }
+
+            return data;
+
+        }
+
+
+
+
+
+
+        public String BindCityDDL()
+        {
+
+            con.Open();
+            string query = "select distinct * from tbl_city  order by city_name asc ";
+            SqlDataAdapter da = new SqlDataAdapter(query, con);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            con.Close();
+            string data = "";
+
+            if (dt.Rows.Count > 0)
+            {
+
+
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+
+
+
+
+                    data = data + "<option value=" + dt.Rows[i]["id"].ToString() + " >" + dt.Rows[i]["city_name"].ToString() + "</option>";
+
+
+
+                }
+
+
+
+
+            }
+
+            return data;
+
+        }
+
+
+        public string OnChangeBindState()
+        {
+            string response = Request["send"];
+            con.Open();
+            string query = "select distinct * from tbl_state where country_id = '" + response + "' order by statename asc";
+            SqlDataAdapter da = new SqlDataAdapter(query, con);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            con.Close();
+            string data = "";
+
+            if (dt.Rows.Count > 0)
+            {
+
+
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+
+
+
+
+                    data = data + "<option value=" + dt.Rows[i]["state_id"].ToString() + " >" + dt.Rows[i]["statename"].ToString() + "</option>";
+
+
+
+                }
+
+
+
+
+            }
+
+            return data;
+        }
+
+
+
+
+        public string OnChangeBindCity()
+        {
+            string response = Request["send"];
+            con.Open();
+            string query = "select distinct * from tbl_city where state_id = '" + response + "' order by city_name asc";
+            SqlDataAdapter da = new SqlDataAdapter(query, con);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            con.Close();
+            string data = "";
+
+            if (dt.Rows.Count > 0)
+            {
+
+
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+
+
+
+
+                    data = data + "<option value=" + dt.Rows[i]["id"].ToString() + " >" + dt.Rows[i]["city_name"].ToString() + "</option>";
+
+
+
+                }
+
+
+
+
+            }
+
+            return data;
+        }
+
+        public String BindRelationDDL()
+        {
+
+            con.Open();
+            string query = "select * from relationship";
+            SqlDataAdapter da = new SqlDataAdapter(query, con);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            con.Close();
+            string data = "<option value='' >--Select--</option>";
+
+            if (dt.Rows.Count > 0)
+            {
+
+
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+
+
+
+
+                    data = data + "<option value=" + dt.Rows[i]["Rid"].ToString() + " >" + dt.Rows[i]["MemberName"].ToString() + "</option>";
+
+
+
+                }
+
+
+
+
+            }
+
+            return data;
+
+        }
 
 
     }

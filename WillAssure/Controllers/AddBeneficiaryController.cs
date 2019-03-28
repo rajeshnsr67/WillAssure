@@ -21,7 +21,12 @@ namespace WillAssure.Controllers
         // GET: AddBeneficiary
         public ActionResult AddBeneficiaryIndex()
         {
-            if (Session["aiid"] == null && Session["tid"] != null)
+            if (Session.SessionID == null)
+            {
+                return View("~/Views/LoginPage/LoginPageContent.cshtml");
+            }
+
+            if (Session["aiid"] == null && Session["tid"] == null)
             {
                 ViewBag.Message = "link";
             }
@@ -65,7 +70,7 @@ namespace WillAssure.Controllers
         {
 
             con.Open();
-            string query = "select * from tbl_state";
+            string query = "select distinct * from tbl_state order by statename asc  ";
             SqlDataAdapter da = new SqlDataAdapter(query, con);
             DataTable dt = new DataTable();
             da.Fill(dt);
@@ -103,7 +108,7 @@ namespace WillAssure.Controllers
         {
             string response = Request["send"];
             con.Open();
-            string query = "select * from tbl_city where state_id = '" + response + "'";
+            string query = "select distinct * from tbl_city where state_id = '" + response + "' order by city_name asc";
             SqlDataAdapter da = new SqlDataAdapter(query, con);
             DataTable dt = new DataTable();
             da.Fill(dt);
@@ -218,7 +223,7 @@ namespace WillAssure.Controllers
                 da.Fill(dt);
                 if (dt.Rows.Count > 0)
                 {
-                    Session["bpId"] = "";
+                    
                     Session["bpId"] = Convert.ToInt32(dt.Rows[0]["bpId"]);
                 }
                 con.Close();

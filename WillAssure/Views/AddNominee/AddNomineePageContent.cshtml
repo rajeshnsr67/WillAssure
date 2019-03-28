@@ -58,7 +58,7 @@
                                     <div class="form-group">
                                         <label for="input-1">DOB</label>
 
-                                        <div id="datepicker" class="input-group date" data-date-format="dd-mm-yyyy">
+                                        <div id="datepicker" class="input-group date" data-date-format="yyyy-dd-mm">
                                             <input class="form-control validate[required]" type="text" id="DOB" name="DOB" autocomplete="off" placeholder="Select Date Of Birth" />
                                             <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                                         </div>
@@ -70,7 +70,7 @@
                                     <div class="form-group">
                                         <label for="input-1">Mobile</label>
 
-                                        @Html.TextBoxFor(m => m.Mobile, new { @class = "form-control required validate[required,custom[integer],maxSize[10]]", @id = "txtmobile", @placeholder = "Mobile", @autocomplete = "off", alert = "LabourCost is requried" })
+                                        @Html.TextBoxFor(m => m.Mobile, new { @class = "form-control required validate[required,custom[Mobile],maxSize[10]]", @id = "txtmobile", @placeholder = "Mobile", @autocomplete = "off", alert = "LabourCost is requried" })
                                     </div>
                                 </div>
 
@@ -348,7 +348,7 @@
     $("#ddlcity").change(function () {
         var value = $(this).children(":selected").attr("value");
         var text = $("#ddlcity option:selected").html();
-        alert(text);
+        
         $("#citytext").val(text);
         $("#cityid").val(value);
     });
@@ -382,7 +382,7 @@
         $("#ddlrelation").change(function () {
             var value = $(this).children(":selected").attr("value");
             var text = $("#ddlrelation option:selected").html();
-            alert(text);
+        
             $("#RelationshipTxt").val(text);
             $("#RelationshipId").val(value);
 

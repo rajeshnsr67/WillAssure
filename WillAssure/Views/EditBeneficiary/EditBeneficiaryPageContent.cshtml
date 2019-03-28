@@ -59,7 +59,7 @@
                                         <th>createdBy</th>
                                         <th>documentId</th>
                                         <th>beneficiary_type</th>
-
+                                        <th style="display:none"><input type="button" id="btnbenefdelete" name="name" value="" /></th>
                                         <th>Action</th>
 
                                     </tr>
@@ -143,26 +143,78 @@
     }
 
 
-    function Delete(id) {
-
-        var id = id;
-     
 
 
-        $.ajax({
+
+
+
+      $(document).on('click', '.deletenotification', function () {
+
+        var $tr = $(this).closest('tr');
+        var id = $(this).attr('id');
+ 
+        swal({
+            title: "Are you sure?",
+            text: "Once deleted, you will not be able to recover this record!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+            .then(name => {
+                if (!name) throw null;
+
+             $.ajax({
 
             type: "POST",
             url: "@Url.Action("DeleteBeneficiaryRecords", "EditBeneficiary")",
             data: {  "send": "" + id + ""   },
-            success: function (data) {
-                $('#BeneficiaryData').empty().append(data);
-                location.reload();
+                 success: function (data) {
+
+                     $("#btnbenefdelete").on("click", function () { });
+
+                     $("#btnbenefdelete").click(); //trigger event after listening to it.
+
+                     $('#BeneficiaryData').empty().append(data).reload();
+          
             }
 
 
 
         });
-    }
+            })
+            .then(results => {
+                return results.json();
+            })
+            .then(json => {
+                const message = json.message;
+                const response = json.response;
+                if (response == 0) {
+                    $tr.fadeOut();
+                    swal({
+                        title: 'Deleted',
+                        text: message,
+                        icon: "success",
+                    })
+                        .then(willDelete => {
 
+                        })
+                }
+            })
+            //.catch(err => {
+            //    if (err) {
+            //        swal("Oh noes!", "The AJAX request failed!", "error");
+            //    } else {
+            //        swal.stopLoading();
+            //        swal.close();
+            //    }
+            //});
+    });
+
+
+
+
+
+
+    
 </script>
 

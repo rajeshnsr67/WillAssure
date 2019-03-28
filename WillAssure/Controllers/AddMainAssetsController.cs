@@ -22,6 +22,10 @@ namespace WillAssure.Controllers
         // GET: AddMainAssets
         public ActionResult AddMainAssetsIndex()
         {
+            if (Session.SessionID == null)
+            {
+                return View("~/Views/LoginPage/LoginPageContent.cshtml");
+            }
             if (Session["tid"] == null)
             {
                 ViewBag.Message = "link";
@@ -945,7 +949,7 @@ namespace WillAssure.Controllers
 
                 if (dt.Rows.Count > 0)
                 {
-                    Session["aiid"] = "";
+                 
                     Session["aiid"] = Convert.ToInt32(dt.Rows[0]["aiid"]);
 
                 }

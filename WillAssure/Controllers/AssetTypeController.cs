@@ -20,6 +20,10 @@ namespace WillAssure.Controllers
         // GET: AssetType
         public ActionResult AssetTypeIndex()
         {
+            if (Session.SessionID == null)
+            {
+                return View("~/Views/LoginPage/LoginPageContent.cshtml");
+            }
             List<LoginModel> Lmlist = new List<LoginModel>();
             con.Open();
             string q = "select * from Assignment_Roles where RoleId = " + Convert.ToInt32(Session["rId"]) + "";
@@ -92,36 +96,54 @@ namespace WillAssure.Controllers
 
 
             //end
+
+
+            //main Roles
+
             con.Open();
-            SqlCommand cmd = new SqlCommand("SP_AssetsTypeCRUD",con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@condition", "insert");
-            cmd.Parameters.AddWithValue("@assettype", ATM.AssetsType);
-            
-            cmd.ExecuteNonQuery();
+            string query1 = "select count(*) from assetstype  where AssetsType = '" + ATM.AssetsType + "'";
+            SqlCommand cmd2 = new SqlCommand(query1, con);
+            int count = (int)cmd2.ExecuteScalar();
             con.Close();
-
-            con.Open();
-            string query = "select top 1 * from AssetsType order by atId desc";
-            
-            SqlDataAdapter da = new SqlDataAdapter(query,con);
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-
-            if (dt.Rows.Count > 0)
+            if (count > 0)
             {
-                string i = dt.Rows[0]["atId"].ToString();
-                Session["amId"] = "";
-                Session["assetsCode"] = "";
-                Session["atId"] = "";
-                Session["atId"] = i;
+                ViewBag.Message = "Duplicate";
+            }
+           
+            else
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand("SP_AssetsTypeCRUD", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@condition", "insert");
+                cmd.Parameters.AddWithValue("@assettype", ATM.AssetsType);
+
+                cmd.ExecuteNonQuery();
+                con.Close();
+
+                con.Open();
+                string query = "select top 1 * from AssetsType order by atId desc";
+
+                SqlDataAdapter da = new SqlDataAdapter(query, con);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+
+                if (dt.Rows.Count > 0)
+                {
+                    string i = dt.Rows[0]["atId"].ToString();
+
+                    Session["atId"] = i;
+                }
+
+
+                con.Close();
+
+
+                ViewBag.Message = "Verified";
             }
 
 
-            con.Close();
-
-
-            ViewBag.Message = "Verified";
+           
 
             return View("~/Views/AssetType/AddAssetTypePageContent.cshtml");
         }

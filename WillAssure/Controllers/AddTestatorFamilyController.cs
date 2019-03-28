@@ -22,6 +22,10 @@ namespace WillAssure.Controllers
         // GET: AddTestatorFamily
         public ActionResult AddTestatorFamilyIndex()
         {
+            if (Session.SessionID == null)
+            {
+                return View("~/Views/LoginPage/LoginPageContent.cshtml");
+            }
             if (Session["tid"] == null)
             {
                 ViewBag.message = "link";
@@ -107,7 +111,7 @@ namespace WillAssure.Controllers
         {
 
             con.Open();
-            string query = "select * from tbl_state";
+            string query = "select distinct * from tbl_state order by statename asc   ";
             SqlDataAdapter da = new SqlDataAdapter(query, con);
             DataTable dt = new DataTable();
             da.Fill(dt);
@@ -145,7 +149,7 @@ namespace WillAssure.Controllers
         {
             string response = Request["send"];
             con.Open();
-            string query = "select * from tbl_city where state_id = '" + response + "'";
+            string query = "select distinct * from tbl_city where state_id = '" + response + "' order by city_name asc ";
             SqlDataAdapter da = new SqlDataAdapter(query, con);
             DataTable dt = new DataTable();
             da.Fill(dt);

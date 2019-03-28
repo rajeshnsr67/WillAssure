@@ -73,7 +73,7 @@
                                     <div class="form-group">
                                         <label for="input-1">Date Of Birth</label>
 
-                                        <div id="datepicker" class="input-group date" data-date-format="dd-mm-yyyy">
+                                        <div id="datepicker" class="input-group date" data-date-format="yyyy-dd-mm">
                                             <input class="form-control validate[required]" type="text" id="DOB" name="DOB" autocomplete="off" placeholder="Select Date Of Birth" />
                                             <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                                         </div>
@@ -96,7 +96,7 @@
                                     <div class="form-group">
                                         <label for="input-1">Mobile</label>
 
-                                        @Html.TextBoxFor(m => m.Mobile, new { @class = "form-control validate[required,custom[integer],maxSize[10]]text - input", @id = "txtmobile", @placeholder = "Enter Mobile Number", @autocomplete = "off" })
+                                        @Html.TextBoxFor(m => m.Mobile, new { @class = "form-control validate[required,custom[Mobile],maxSize[10]]text - input", @id = "txtmobile", @placeholder = "Enter Mobile Number", @autocomplete = "off" })
                                     </div>
                                 </div>
 
@@ -114,10 +114,10 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="input-3">Marital Status</label>
-                                        @Html.DropDownListFor(x => x.Gendertext, new SelectListItem[]{
+                                        @Html.DropDownListFor(x => x.material_status_txt, new SelectListItem[]{
                                         new SelectListItem() {Text = "--Select--", Value=""},
-                                       new SelectListItem() {Text = "Married", Value="1"},
-                                       new SelectListItem() {Text = "UnMarried", Value="2"}}, new { @class = "form-control validate[required]" , @id="ddlmaritalstatus" })
+                                       new SelectListItem() {Text = "Married", Value="Married"},
+                                       new SelectListItem() {Text = "UnMarried", Value="UnMarried"}}, new { @class = "form-control validate[required]" , @id="ddlmaritalstatus" })
 
                                         @Html.HiddenFor(m => m.material_status_id, new { id = "material_status_id" })
                                         @Html.HiddenFor(m => m.material_status_txt, new { id = "material_status_txt" })
@@ -144,18 +144,18 @@
 
                                     <div class="form-group">
                                         <label for="input-1">Religion</label>
-                                        @Html.DropDownListFor(x => x.ReligionId, new SelectListItem[]{
+                                        @Html.DropDownListFor(x => x.Religiontext, new SelectListItem[]{
                                  new SelectListItem() {Text = "--Select--", Value=""},
-                                 new SelectListItem() {Text = "Buddhism", Value="1"},
-                                 new SelectListItem() {Text = "Christians", Value="2"},
-                                 new SelectListItem() {Text = "Hinduism", Value="3"},
-                                 new SelectListItem() {Text = "Islam", Value="4"},
-                                 new SelectListItem() {Text = "Jainism", Value="5"},
-                                 new SelectListItem() {Text = "Sikhism", Value="6"},
-                                 new SelectListItem() {Text = "Zoroastrian", Value="7"},
-                                 new SelectListItem() {Text = "Guru Nanak Dev", Value="8"},
-                                 new SelectListItem() {Text = "Lord Mahavira", Value="9"},
-                                 new SelectListItem() {Text = "Adi Shankaracharya", Value="10"}}, new { @class = "form-control validate[required]" , @id="ddlreligion" })
+                                 new SelectListItem() {Text = "Buddhism", Value="Buddhism"},
+                                 new SelectListItem() {Text = "Christians", Value="Christians"},
+                                 new SelectListItem() {Text = "Hinduism", Value="Hinduism"},
+                                 new SelectListItem() {Text = "Islam", Value="Islam"},
+                                 new SelectListItem() {Text = "Jainism", Value="Jainism"},
+                                 new SelectListItem() {Text = "Sikhism", Value="Sikhism"},
+                                 new SelectListItem() {Text = "Zoroastrian", Value="Zoroastrian"},
+                                 new SelectListItem() {Text = "Guru Nanak Dev", Value="Guru Nanak Dev"},
+                                 new SelectListItem() {Text = "Lord Mahavira", Value="Lord Mahavira"},
+                                 new SelectListItem() {Text = "Adi Shankaracharya", Value="Adi Shankaracharya"}}, new { @class = "form-control validate[required]" , @id="ddlreligion" })
 
                                         @Html.HiddenFor(m => m.ReligionId, new { id = "ReligionId" })
                                         @Html.HiddenFor(m => m.Religiontext, new { id = "Religiontext" })
@@ -374,8 +374,7 @@
                                     new SelectListItem() {Text = "Quick", Value="Quick"},
                                     new SelectListItem() {Text = "Detailed", Value="Detailed"}}, new { @class = "form-control validate[required]", id= "DDLAmtPaidBY2" })
 
-                                    @Html.HiddenFor(m => m.Amt_Paid_By_By_ID, new { id = "Amt_Paid_By_By_ID" })
-                                    @Html.HiddenFor(m => m.Amt_Paid_By_txt, new { id = "Amt_Paid_By_txt" })
+                                  
 
 
                                 </div>
@@ -732,13 +731,13 @@
 
 
 <script>
-    $("#DDLAmtPaidBY2").change(function () {
+    $("#DDLAmtPaidBY3").change(function () {
         var value = $(this).children(":selected").attr("value");
-        var text = $("#DDLAmtPaidBY2 option:selected").html();
+        var text = $("#DDLAmtPaidBY3 option:selected").html();
 
         $("#Amt_Paid_By_txt").val(text);
         $("#Amt_Paid_By_ID").val(value);
-  
+     
 
 
     });

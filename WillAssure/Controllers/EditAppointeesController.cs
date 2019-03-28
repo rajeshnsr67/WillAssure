@@ -18,6 +18,10 @@ namespace WillAssure.Controllers
         // GET: EditAppointees
         public ActionResult EditAppointeesIndex()
         {
+            if (Session.SessionID == null)
+            {
+                return View("~/Views/LoginPage/LoginPageContent.cshtml");
+            }
             List<LoginModel> Lmlist = new List<LoginModel>();
             con.Open();
             string q = "select * from Assignment_Roles where RoleId = " + Convert.ToInt32(Session["rId"]) + "";
@@ -172,7 +176,7 @@ namespace WillAssure.Controllers
                                     + "<td>" + dt.Rows[i]["Pin"].ToString() + "</td>"
                                     + "<td>" + dt.Rows[i]["dateCreated"].ToString() + "</td>"
 
-                                    + "<td><button type='button'   id='" + dt.Rows[i]["apId"].ToString() + "' onClick='Delete(this.id)'   class='btn btn-danger '>Delete</button></td>    </tr>";
+                                    + "<td><button type='button'   id='" + dt.Rows[i]["apId"].ToString() + "'    class='btn btn-danger deletenotification'>Delete</button></td>    </tr>";
 
                     }
                 }
@@ -205,7 +209,7 @@ namespace WillAssure.Controllers
                                     + "<td>" + dt.Rows[i]["Pin"].ToString() + "</td>"
                                     + "<td>" + dt.Rows[i]["dateCreated"].ToString() + "</td>"
 
-                                    + "<td><button type='button'   id='" + dt.Rows[i]["apId"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary'>Edit</button><button type='button'   id='" + dt.Rows[i]["apId"].ToString() + "' onClick='Delete(this.id)'   class='btn btn-danger '>Delete</button></td>    </tr>";
+                                    + "<td><button type='button'   id='" + dt.Rows[i]["apId"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary'>Edit</button><button type='button'   id='" + dt.Rows[i]["apId"].ToString() + "'   class='btn btn-danger deletenotification'>Delete</button></td>    </tr>";
 
                     }
 
@@ -406,7 +410,7 @@ namespace WillAssure.Controllers
                                     + "<td>" + dt.Rows[i]["Pin"].ToString() + "</td>"
                                     + "<td>" + dt.Rows[i]["dateCreated"].ToString() + "</td>"
 
-                                    + "<td><button type='button'   id='" + dt.Rows[i]["apId"].ToString() + "' onClick='Delete(this.id)'   class='btn btn-danger '>Delete</button></td>    </tr>";
+                                    + "<td><button type='button'   id='" + dt.Rows[i]["apId"].ToString() + "'    class='btn btn-danger deletenotification '>Delete</button></td>    </tr>";
 
                     }
                 }
@@ -439,7 +443,7 @@ namespace WillAssure.Controllers
                                     + "<td>" + dt.Rows[i]["Pin"].ToString() + "</td>"
                                     + "<td>" + dt.Rows[i]["dateCreated"].ToString() + "</td>"
 
-                                    + "<td><button type='button'   id='" + dt.Rows[i]["apId"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary'>Edit</button><button type='button'   id='" + dt.Rows[i]["apId"].ToString() + "' onClick='Delete(this.id)'   class='btn btn-danger '>Delete</button></td>    </tr>";
+                                    + "<td><button type='button'   id='" + dt.Rows[i]["apId"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary'>Edit</button><button type='button'   id='" + dt.Rows[i]["apId"].ToString() + "'    class='btn btn-danger deletenotification'>Delete</button></td>    </tr>";
 
                     }
 

@@ -58,7 +58,7 @@
                                         <th>Pin</th>
                                       
                                         <th>Action</th>
-                                        <th style="display:none;"><input type="button" id="btndeleteroles" name="name" value="" /></th>
+                                        <th style="display:none;"><input type="button" id="btnaltappointeesdelete" name="name" value="" /></th>
                                     </tr>
                                 </thead>
                                 <tbody id="AppointeesData"></tbody>
@@ -144,39 +144,71 @@
     }
 
 
-    function Delete(id) {
 
-        var id = id;
+     $(document).on('click', '.deletenotification', function () {
 
+        var $tr = $(this).closest('tr');
+        var id = $(this).attr('id');
+    
+        swal({
+            title: "Are you sure?",
+            text: "Once deleted, you will not be able to recover this record!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+            .then(name => {
+                if (!name) throw null;
 
-
-        $.ajax({
+                  $.ajax({
 
             type: "POST",
             url: "@Url.Action("DeleteAppointeesRecords", "EditAlternateAppointees")",
             data: {  "send": "" + id + ""   },
             success: function (data) {
+                $("#btnaltappointeesdelete").on("click", function () { });
 
-
-                $("#btndeleteroles").on("click", function () { });
-
-                $("#btndeleteroles").click(); //trigger event after listening to it.
-
-
-
+                $("#btnaltappointeesdelete").click(); //trigger event after listening to it.
 
                 $('#AppointeesData').empty().append(data).reload();
+               }
+                 });
+            })
+            .then(results => {
+                return results.json();
+            })
+            .then(json => {
+                const message = json.message;
+                const response = json.response;
+                if (response == 0) {
+                    $tr.fadeOut();
+                    swal({
+                        title: 'Deleted',
+                        text: message,
+                        icon: "success",
+                    })
+                        .then(willDelete => {
+
+                        })
+                }
+            })
+            //.catch(err => {
+            //    if (err) {
+            //        swal("Oh noes!", "The AJAX request failed!", "error");
+            //    } else {
+            //        swal.stopLoading();
+            //        swal.close();
+            //    }
+            //});
+    });
 
 
 
 
 
-            }
 
 
 
-        });
-    }
 
 </script>
 

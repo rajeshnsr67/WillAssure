@@ -22,6 +22,11 @@ namespace WillAssure.Controllers
         // GET: AddTestatorsForm
         public ActionResult AddTestatorsFormIndex()
         {
+
+            if (Session.SessionID == null)
+            {
+                return View("~/Views/LoginPage/LoginPageContent.cshtml");
+            }
             if (Session["compId"] == null)
             {
                 ViewBag.Message = "link";
@@ -200,7 +205,7 @@ namespace WillAssure.Controllers
                 if (dt.Rows.Count > 0)
                 {
                     testatorid = Convert.ToInt32(dt.Rows[0]["tId"]);
-                    Session["tid"] = "";
+                    
                     Session["tid"] = testatorid;
                 }
                 con.Close();
@@ -220,7 +225,7 @@ namespace WillAssure.Controllers
 
                     Session["templateid"] = templateid;
                     testatortype = dt2.Rows[0]["testator_type"].ToString();
-                    Session["Document_Created_By"] = "";
+                    
                     Session["Document_Created_By"] = TFM.Document_Created_By;
                 }
                 con.Close();
@@ -308,6 +313,7 @@ namespace WillAssure.Controllers
 
                     string mailid = "manarmalleditor@gmail.com";
                     string mailto = TFM.Email;
+                    Session["mailto"] = mailto;
                     //string mailto = "willtestmail@mailprotech.com";
                     string subject = "Testing Mail Sending";
                     string OTP = "<font color='Green' style='font-size=3em;'>" + TFM.EmailOTP + "</font>";
@@ -356,6 +362,7 @@ namespace WillAssure.Controllers
 
                     string mailid = "manarmalleditor@gmail.com";
                     string mailto = TFM.Email;
+                    Session["mailto"] = mailto;
                     //string mailto = "willtestmail@mailprotech.com";
                     string subject = "Testing Mail Sending";
                     string OTP = "<font color='Green' style='font-size=3em;'>" + TFM.EmailOTP + "</font>";
@@ -403,7 +410,7 @@ namespace WillAssure.Controllers
 
                     string mailid = "manarmalleditor@gmail.com";
                     string mailto = TFM.Email;
-                    Session["mailto"] = "";
+                   
                     Session["mailto"] = mailto;
                     string subject = "Testing Mail Sending";
                     string OTP = "<font color='Green' style='font-size=3em;'>" + TFM.EmailOTP + "</font>";
@@ -459,7 +466,7 @@ namespace WillAssure.Controllers
         {
 
             con.Open();
-            string query = "select * from country_tbl";
+            string query = "select distinct * from country_tbl order by CountryName asc  ";
             SqlDataAdapter da = new SqlDataAdapter(query, con);
             DataTable dt = new DataTable();
             da.Fill(dt);
@@ -497,7 +504,7 @@ namespace WillAssure.Controllers
         {
 
             con.Open();
-            string query = "select * from tbl_state";
+            string query = "select distinct * from tbl_state order by statename asc  ";
             SqlDataAdapter da = new SqlDataAdapter(query, con);
             DataTable dt = new DataTable();
             da.Fill(dt);
@@ -538,7 +545,7 @@ namespace WillAssure.Controllers
         {
 
             con.Open();
-            string query = "select * from tbl_city";
+            string query = "select distinct * from tbl_city  order by city_name asc ";
             SqlDataAdapter da = new SqlDataAdapter(query, con);
             DataTable dt = new DataTable();
             da.Fill(dt);
@@ -575,7 +582,7 @@ namespace WillAssure.Controllers
         {
             string response = Request["send"];
             con.Open();
-            string query = "select * from tbl_state where country_id = '"+ response + "'";
+            string query = "select distinct * from tbl_state where country_id = '" + response + "' order by statename asc";
             SqlDataAdapter da = new SqlDataAdapter(query, con);
             DataTable dt = new DataTable();
             da.Fill(dt);
@@ -613,7 +620,7 @@ namespace WillAssure.Controllers
         {
             string response = Request["send"];
             con.Open();
-            string query = "select * from tbl_city where state_id = '" + response + "'";
+            string query = "select distinct * from tbl_city where state_id = '" + response + "' order by city_name asc";
             SqlDataAdapter da = new SqlDataAdapter(query, con);
             DataTable dt = new DataTable();
             da.Fill(dt);

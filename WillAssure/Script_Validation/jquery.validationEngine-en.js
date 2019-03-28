@@ -131,13 +131,18 @@
                 },
                 "characteronly": {
                     // Number, including positive, negative, and floating decimal. credit: orefalo
-                    "regex": /^[a-zA-Z]+$/,
+                    "regex": /^[a-zA-Z\s]*$/ ,
                     "alertText": "* Characters Only"
                 },
                 "AlphaNumeric": {
                     // Number, including positive, negative, and floating decimal. credit: orefalo
                     "regex": /^[A-Za-z_][A-Za-z\d_]*$/,
                     "alertText": "* AlphaNumeric Only"
+                },
+                "Mobile": {
+                    // Number, including positive, negative, and floating decimal. credit: orefalo
+                    "regex": /[2-9]{2}\d{8}/,
+                    "alertText": "*Invalid Mobile Number"
                 },
                 "date": {                    
                     //	Check if date is valid by leap year

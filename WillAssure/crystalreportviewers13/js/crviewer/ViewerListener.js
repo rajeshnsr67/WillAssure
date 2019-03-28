@@ -544,6 +544,9 @@ bobj.crv.ViewerListener.prototype = {
             this._ioHandler.addRequestField ('ServletTask', 'Export');
             this._ioHandler.addRequestField ('LoadInIFrame', useIframe);
         }
+        else if(this._ioHandler instanceof bobj.crv.AspDotNetAdapter){
+            useIframe = true;//always use iframe for exporting/printing in ASP
+        }
         else {
             useIframe = isOneClickPDFPrinting;
         }
@@ -623,13 +626,14 @@ bobj.crv.ViewerListener.prototype = {
     */
     showAdvancedParamDialog : function(param) {
         var paramOpts = this._getCommonProperty('paramOpts');
-        if(!paramOpts.canOpenAdvancedDialog) {
-            this.showError(L_bobj_crv_AdvancedDialog_NoAjax, L_bobj_crv_EnableAjax);
-        }
-        else {
-        	this._focusedParamName = param.paramName;
-            
-            if (this._isPromptingTypeFlex()) {    
+        
+        this._focusedParamName = param.paramName;
+        
+        if (this._isPromptingTypeFlex()) {  
+        	if(!paramOpts.canOpenAdvancedDialog) {
+                this.showError(L_bobj_crv_AdvancedDialog_NoAjax, L_bobj_crv_EnableAjax);
+            }
+            else {
                 var flexAdapter = bobj.crv.params.ViewerFlexParameterAdapter;
                 flexAdapter.setCurrentIParamInfo (this._name, this._paramCtrl, param);
                     
@@ -648,11 +652,12 @@ bobj.crv.ViewerListener.prototype = {
                     var closeCB = this._getPromptDialogCloseCB();
                     this._viewer.showFlexPromptDialog(this.getServletURI(), closeCB);
                 }
-            } else {
-                 /* Need to fetch the interactive parameter HTML*/
-                this._request({promptDlg: this._cloneParameter(param)}, true);    
             }
+        } else {
+             /* Need to fetch the interactive parameter HTML*/
+                this._request({promptDlg: this._cloneParameter(param)}, true);    
         }
+        
     },
     
     _cloneParameter : function(param) {

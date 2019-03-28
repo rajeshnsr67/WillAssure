@@ -18,6 +18,10 @@ namespace WillAssure.Controllers
         // GET: UpdateAlternateAppointees
         public ActionResult UpdateAlternateAppointeesIndex(int NestId)
         {
+            if (Session.SessionID == null)
+            {
+                return View("~/Views/LoginPage/LoginPageContent.cshtml");
+            }
             List<LoginModel> Lmlist = new List<LoginModel>();
             con.Open();
             string q = "select * from Assignment_Roles where RoleId = " + Convert.ToInt32(Session["rId"]) + "";

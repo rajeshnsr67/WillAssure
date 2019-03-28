@@ -64,7 +64,7 @@
                                     <div class="form-group">
                                         <label for="input-1">Date Of Birth</label>
 
-                                        <div id="datepicker" class="input-group date" data-date-format="dd-mm-yyyy">
+                                        <div id="datepicker" class="input-group date" data-date-format="yyyy-dd-mm">
                                             <input class="form-control validate[required]" type="text" id="DOB" name="DOB" autocomplete="off" placeholder="Select Date Of Birth" />
                                             <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                                         </div>
@@ -75,7 +75,7 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="input-3">Mobile</label>
-                                        @Html.TextBoxFor(m => m.Mobile, new { @class = "form-control validate[required,custom[integer],maxSize[10]] text-input", @id = "txtMobile", @placeholder = "Enter Mobile", @autocomplete = "off" })
+                                        @Html.TextBoxFor(m => m.Mobile, new { @class = "form-control validate[required,custom[Mobile],maxSize[10]] text-input", @id = "txtMobile", @placeholder = "Enter Mobile", @autocomplete = "off" })
                                     </div>
                                 </div>
 

@@ -20,6 +20,10 @@ namespace WillAssure.Controllers
         // GET: RoleAdd
         public ActionResult RoleAddIndex()
         {
+            if (Session.SessionID == null)
+            {
+                return View("~/Views/LoginPage/LoginPageContent.cshtml");
+            }
             // roleassignment
             List<LoginModel> Lmlist = new List<LoginModel>();
             string q = "select * from Assignment_Roles where RoleId = " + Convert.ToInt32(Session["rId"]) + "";

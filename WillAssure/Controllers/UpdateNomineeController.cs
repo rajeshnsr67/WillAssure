@@ -18,6 +18,10 @@ namespace WillAssure.Controllers
         // GET: UpdateNominee
         public ActionResult UpdateNomineeIndex(int NestId)
         {
+            if (Session.SessionID == null)
+            {
+                return View("~/Views/LoginPage/LoginPageContent.cshtml");
+            }
             List<LoginModel> Lmlist = new List<LoginModel>();
             con.Open();
             string q = "select * from Assignment_Roles where RoleId = " + Convert.ToInt32(Session["rId"]) + "";
@@ -83,7 +87,7 @@ namespace WillAssure.Controllers
                  NM.City = dt.Rows[i]["City"].ToString();
                  NM.State =dt.Rows[i]["State"].ToString();
                  NM.Pin =dt.Rows[i]["Pin"].ToString();
-                 NM.aid = Convert.ToInt32(dt.Rows[i]["aid"]);
+                 NM.aid = Convert.ToInt32(dt.Rows[i]["aiid"]);
                  NM.tId = Convert.ToInt32(dt.Rows[i]["tId"]);
                 
                  NM.createdBy = dt.Rows[i]["createdBy"].ToString();
@@ -216,12 +220,12 @@ namespace WillAssure.Controllers
         {
 
             con.Open();
-            string query = "select * from tbl_state";
+            string query = "select distinct * from tbl_state order by statename asc  ";
             SqlDataAdapter da = new SqlDataAdapter(query, con);
             DataTable dt = new DataTable();
             da.Fill(dt);
             con.Close();
-            string data = "<option value='0'>--Select--</option>";
+            string data = "<option value='0'>--Select State--</option>";
 
             if (dt.Rows.Count > 0)
             {
@@ -257,7 +261,7 @@ namespace WillAssure.Controllers
         {
             string response = Request["send"];
             con.Open();
-            string query = "select * from tbl_city where state_id = '" + response + "'";
+            string query = "select distinct * from tbl_city where state_id = '" + response + "' order by city_name asc ";
             SqlDataAdapter da = new SqlDataAdapter(query, con);
             DataTable dt = new DataTable();
             da.Fill(dt);

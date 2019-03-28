@@ -29,7 +29,10 @@ namespace WillAssure.Controllers
         // GET: AddAssets
         public ActionResult AddAssetsIndex()
         {
-
+            if (Session.SessionID == null)
+            {
+                return View("~/Views/LoginPage/LoginPageContent.cshtml");
+            }
 
             List<LoginModel> Lmlist = new List<LoginModel>();
             con.Open();
@@ -406,7 +409,7 @@ namespace WillAssure.Controllers
                     DataTable dt = new DataTable();
                     da.Fill(dt);
 
-                    Session["aiId"] = "";
+                   
 
                     if (dt.Rows.Count > 0)
                     {

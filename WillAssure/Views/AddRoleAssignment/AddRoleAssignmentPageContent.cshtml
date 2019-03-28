@@ -53,6 +53,8 @@
 
                             <div class="row" style="display:none;" id="pagedata">
                                 <div class="col-sm-6">
+                                    <input type="checkbox" id="checkAll">Check All
+                                    <hr />
                                     <table class="table">
 
                                         <tbody>
@@ -252,6 +254,9 @@
     });
 
 
+    $("#checkAll").click(function () {
+        $('input:checkbox').not(this).prop('checked', this.checked);
+    });
 
         $(document).ready(function () {
 
@@ -1066,7 +1071,12 @@
             type: "POST",
               data: { data: AllData, roleid: roleid },
             url:"@Url.Action("GetAssignRoles", "AddRoleAssignment")",
-            success: function (data) {
+              success: function (data) {
+                 
+                  $("#btnRoleAssignmentCHECK").on("click", function () { });
+
+                  $("#btnRoleAssignmentCHECK").click(); //trigger event after listening to it.
+
                 $("#pagedata").css("display", "block");
             }
         });

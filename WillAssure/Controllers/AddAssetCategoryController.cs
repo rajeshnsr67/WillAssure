@@ -20,6 +20,10 @@ namespace WillAssure.Controllers
         // GET: AddAssetCategory
         public ActionResult AddAssetCategoryIndex()
         {
+            if (Session.SessionID == null)
+            {
+                return View("~/Views/LoginPage/LoginPageContent.cshtml");
+            }
 
             List<LoginModel> Lmlist = new List<LoginModel>();
             con.Open();
@@ -98,6 +102,17 @@ namespace WillAssure.Controllers
 
 
             con.Open();
+            string query1 = "select count(*) from assetscategory  where AssetsCategory = '" + ACM.assetcategory + "' and assetsCode = '"+ ACM.assetcode + "'";
+            SqlCommand cmd2 = new SqlCommand(query1, con);
+            int count = (int)cmd2.ExecuteScalar();
+            con.Close();
+            if (count > 0)
+            {
+                ViewBag.Message = "Duplicate";
+            }
+            else
+            {
+                con.Open();
                 SqlCommand cmd = new SqlCommand("SP_AssetsCategoryCRUD", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@condition", "insert");
@@ -127,12 +142,17 @@ namespace WillAssure.Controllers
                 con.Close();
 
                 ViewBag.Message = "Verified";
-            
-          
-              
-            
 
-          
+            }
+
+
+
+
+
+
+
+
+
 
 
 

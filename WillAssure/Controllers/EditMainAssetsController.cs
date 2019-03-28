@@ -19,6 +19,10 @@ namespace WillAssure.Controllers
         // GET: EditMainAssets
         public ActionResult EditMainAssetsIndex()
         {
+            if (Session.SessionID == null)
+            {
+                return View("~/Views/LoginPage/LoginPageContent.cshtml");
+            }
             List<LoginModel> Lmlist = new List<LoginModel>();
             con.Open();
             string q = "select * from Assignment_Roles where RoleId = " + Convert.ToInt32(Session["rId"]) + "";
@@ -145,7 +149,7 @@ namespace WillAssure.Controllers
                     data += "<td>" + dt.Rows[i]["AssetsType"].ToString() + "</td>";
                     data += "<td>" + dt.Rows[i]["AssetsCategory"].ToString() + "</td>";
                     data += "<td>" + final + "</td>";
-                    data += "<td><button type='button'   id='" + dt.Rows[i]["aiid"].ToString() + "' onClick='Delete(this.id)'   class='btn btn-danger '>Delete</button>  </td></tr>";
+                    data += "<td><button type='button'   id='" + dt.Rows[i]["aiid"].ToString() + "'    class='btn btn-danger deletenotification'>Delete</button>  </td></tr>";
 
                 }
 
@@ -156,7 +160,7 @@ namespace WillAssure.Controllers
                     data += "<td>" + dt.Rows[i]["AssetsType"].ToString() + "</td>";
                     data += "<td>" + dt.Rows[i]["AssetsCategory"].ToString() + "</td>";
                     data += "<td>" + final + "</td>";
-                    data += "<td><button type='button'   id='" + dt.Rows[i]["aiid"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary'>Edit</button><button type='button'   id='" + dt.Rows[i]["aiid"].ToString() + "' onClick='Delete(this.id)'   class='btn btn-danger '>Delete</button>  </td></tr>";
+                    data += "<td><button type='button'   id='" + dt.Rows[i]["aiid"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary'>Edit</button><button type='button'   id='" + dt.Rows[i]["aiid"].ToString() + "'    class='btn btn-danger deletenotification'>Delete</button>  </td></tr>";
 
 
                 }
@@ -294,7 +298,7 @@ namespace WillAssure.Controllers
                     data += "<td>" + dt.Rows[i]["AssetsType"].ToString() + "</td>";
                     data += "<td>" + dt.Rows[i]["AssetsCategory"].ToString() + "</td>";
                     data += "<td>" + final + "</td>";
-                    data += "<td><button type='button'   id='" + dt.Rows[i]["aiid"].ToString() + "' onClick='Delete(this.id)'   class='btn btn-danger '>Delete</button>  </td></tr>";
+                    data += "<td><button type='button'   id='" + dt.Rows[i]["aiid"].ToString() + "'   class='btn btn-danger deletenotification'>Delete</button>  </td></tr>";
 
                 }
 
@@ -305,7 +309,7 @@ namespace WillAssure.Controllers
                     data += "<td>" + dt.Rows[i]["AssetsType"].ToString() + "</td>";
                     data += "<td>" + dt.Rows[i]["AssetsCategory"].ToString() + "</td>";
                     data += "<td>" + final + "</td>";
-                    data += "<td><button type='button'   id='" + dt.Rows[i]["aiid"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary'>Edit</button><button type='button'   id='" + dt.Rows[i]["aiid"].ToString() + "' onClick='Delete(this.id)'   class='btn btn-danger '>Delete</button>  </td></tr>";
+                    data += "<td><button type='button'   id='" + dt.Rows[i]["aiid"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary'>Edit</button><button type='button'   id='" + dt.Rows[i]["aiid"].ToString() + "'    class='btn btn-danger deletenotification'>Delete</button>  </td></tr>";
 
 
                 }

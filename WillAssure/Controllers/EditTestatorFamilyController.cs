@@ -20,6 +20,10 @@ namespace WillAssure.Controllers
         // GET: EditTestatorFamily
         public ActionResult EditTestatorFamilyIndex()
         {
+            if (Session.SessionID == null)
+            {
+                return View("~/Views/LoginPage/LoginPageContent.cshtml");
+            }
             List<LoginModel> Lmlist = new List<LoginModel>();
             con.Open();
             string q = "select * from Assignment_Roles where RoleId = " + Convert.ToInt32(Session["rId"]) + "";
@@ -173,7 +177,7 @@ namespace WillAssure.Controllers
                                     + "<td>" + dt.Rows[i]["Alt_Identity_Proof_Value"].ToString() + "</td>"
                                     + "<td>" + dt.Rows[i]["Is_Informed_Person"].ToString() + "</td>"
 
-                                    + "<td><button type='button'   id='" + dt.Rows[i]["fId"].ToString() + "' onClick='Delete(this.id)'   class='btn btn-danger '>Delete</button></td>    </tr>";
+                                    + "<td><button type='button'   id='" + dt.Rows[i]["fId"].ToString() + "'   class='btn btn-danger deletenotification'>Delete</button></td>    </tr>";
 
                     }
                 }
@@ -205,7 +209,7 @@ namespace WillAssure.Controllers
                                     + "<td>" + dt.Rows[i]["Alt_Identity_Proof_Value"].ToString() + "</td>"
                                     + "<td>" + dt.Rows[i]["Is_Informed_Person"].ToString() + "</td>"
 
-                                    + "<td><button type='button'   id='" + dt.Rows[i]["fId"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary'>Edit</button><button type='button'   id='" + dt.Rows[i]["fId"].ToString() + "' onClick='Delete(this.id)'   class='btn btn-danger '>Delete</button></td>    </tr>";
+                                    + "<td><button type='button'   id='" + dt.Rows[i]["fId"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary'>Edit</button><button type='button'   id='" + dt.Rows[i]["fId"].ToString() + "'    class='btn btn-danger deletenotification'>Delete</button></td>    </tr>";
 
                     }
 
@@ -402,7 +406,7 @@ namespace WillAssure.Controllers
                                     + "<td>" + dt.Rows[i]["Alt_Identity_Proof_Value"].ToString() + "</td>"
                                     + "<td>" + dt.Rows[i]["Is_Informed_Person"].ToString() + "</td>"
 
-                                    + "<td><button type='button'   id='" + dt.Rows[i]["fId"].ToString() + "' onClick='Delete(this.id)'   class='btn btn-danger '>Delete</button></td>    </tr>";
+                                    + "<td><button type='button'   id='" + dt.Rows[i]["fId"].ToString() + "'    class='btn btn-danger deletenotification'>Delete</button></td>    </tr>";
 
                     }
                 }
@@ -434,7 +438,7 @@ namespace WillAssure.Controllers
                                     + "<td>" + dt.Rows[i]["Alt_Identity_Proof_Value"].ToString() + "</td>"
                                     + "<td>" + dt.Rows[i]["Is_Informed_Person"].ToString() + "</td>"
 
-                                    + "<td><button type='button'   id='" + dt.Rows[i]["fId"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary'>Edit</button><button type='button'   id='" + dt.Rows[i]["fId"].ToString() + "' onClick='Delete(this.id)'   class='btn btn-danger '>Delete</button></td>    </tr>";
+                                    + "<td><button type='button'   id='" + dt.Rows[i]["fId"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary'>Edit</button><button type='button'   id='" + dt.Rows[i]["fId"].ToString() + "'    class='btn btn-danger deletenotification'>Delete</button></td>    </tr>";
 
                     }
 

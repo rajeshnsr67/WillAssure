@@ -11,6 +11,10 @@ namespace WillAssure.Controllers
         // GET: EditCoupons
         public ActionResult EditCouponsIndex()
         {
+            if (Session.SessionID == null)
+            {
+                return View("~/Views/LoginPage/LoginPageContent.cshtml");
+            }
             return View("~/Views/EditCoupons/EditCouponsPageContent.cshtml");
         }
     }

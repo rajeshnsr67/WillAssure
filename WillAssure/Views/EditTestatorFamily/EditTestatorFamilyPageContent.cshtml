@@ -144,13 +144,24 @@
     }
 
 
-    function Delete(id) {
-
-        var id = id;
 
 
+      $(document).on('click', '.deletenotification', function () {
 
-        $.ajax({
+        var $tr = $(this).closest('tr');
+        var id = $(this).attr('id');
+       
+        swal({
+            title: "Are you sure?",
+            text: "Once deleted, you will not be able to recover this record!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+            .then(name => {
+                if (!name) throw null;
+
+               $.ajax({
 
             type: "POST",
             url: "@Url.Action("DeleteTestatorFamilyRecords", "EditTestatorFamily")",
@@ -158,9 +169,9 @@
             success: function (data) {
 
 
-                $("#btndeleteroles").on("click", function () { });
+                $("#btntestatorfamilydelete").on("click", function () { });
 
-                $("#btndeleteroles").click(); //trigger event after listening to it.
+                $("#btntestatorfamilydelete").click(); //trigger event after listening to it.
 
 
 
@@ -176,7 +187,40 @@
 
 
         });
-    }
+            })
+            .then(results => {
+                return results.json();
+            })
+            .then(json => {
+                const message = json.message;
+                const response = json.response;
+                if (response == 0) {
+                    $tr.fadeOut();
+                    swal({
+                        title: 'Deleted',
+                        text: message,
+                        icon: "success",
+                    })
+                        .then(willDelete => {
+
+                        })
+                }
+            })
+            //.catch(err => {
+            //    if (err) {
+            //        swal("Oh noes!", "The AJAX request failed!", "error");
+            //    } else {
+            //        swal.stopLoading();
+            //        swal.close();
+            //    }
+            //});
+    });
+
+
+
+
+
+    
 
 </script>
 

@@ -36,6 +36,7 @@ bobj.crv.params.ParameterDialog = {
     init : function() {
         this._initDialogBox ();
         this._form = document.getElementById (this.id + '_form');
+        window.paramWindow = this;
     },
     
     _checkInitialization : function() {
@@ -90,8 +91,8 @@ bobj.crv.params.ParameterDialog = {
     },
     
     _onWindowResize : function () {
-        this.doLayout ();
-        this.center();
+        window.paramWindow.doLayout();
+        window.paramWindow.center();
     },
     
     doLayout: function () {

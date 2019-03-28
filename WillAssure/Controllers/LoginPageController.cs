@@ -147,7 +147,7 @@ namespace WillAssure.Controllers
             Session["rId"] = "";
             Session["uid"] = "";
             Session["compId"] = "";
-            Session["ComparerrId"] = "";
+          //  Session["ComparerrId"] = "";
             Session["amId"] = "";
             Session["assetsCode"] = "";
             Session["aiid"] = "";
@@ -155,6 +155,11 @@ namespace WillAssure.Controllers
             Session["tid"] = "";
             Session["Document_Created_By"] = "";
             Session["mailto"] = "";
+
+
+          
+
+
             return View("~/Views/LoginPage/LoginPageContent.cshtml");
         }
 

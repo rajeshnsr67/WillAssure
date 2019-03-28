@@ -20,6 +20,10 @@ namespace WillAssure.Controllers
         // GET: AddCoupons
         public ActionResult AddCouponsIndex()
         {
+            if (Session.SessionID == null)
+            {
+                return View("~/Views/LoginPage/LoginPageContent.cshtml");
+            }
 
             List<LoginModel> Lmlist = new List<LoginModel>();
             con.Open();

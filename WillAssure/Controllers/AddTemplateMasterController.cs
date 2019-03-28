@@ -19,6 +19,10 @@ namespace WillAssure.Controllers
         // GET: AddTemplateMaster
         public ActionResult AddTemplateMasterIndex()
         {
+            if (Session.SessionID == null)
+            {
+                return View("~/Views/LoginPage/LoginPageContent.cshtml");
+            }
             return View("~/Views/AddTemplateMaster/AddTemplateMasterContent.cshtml");
         }
 

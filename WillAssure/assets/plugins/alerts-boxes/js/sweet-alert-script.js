@@ -17,24 +17,10 @@
               });
      
 
-              $("#btnDeleteTestatorData").click(function () {
-                  swal({
-                      title: "Are you sure?",
-                      text: "Once deleted, you will not be able to recover this imaginary file!",
-                      icon: "warning",
-                      buttons: true,
-                      dangerMode: true,
-                  })
-                      .then((willDelete) => {
-                          if (willDelete) {
-                              swal("Poof! Your imaginary file has been deleted!", {
-                                  icon: "success",
-                              });
-                          } else {
-                              swal("Your imaginary file is safe!");
-                          }
-                      });
-              });
+     $("#btnDeleteTestatorData").click(function () {
+         swal("Deleted!", "Your Data has Been Deleted!,", "success");
+     });
+
 
      
 
@@ -110,6 +96,10 @@
          swal("Updated", "Your Data has Been Updated", "success");
      });
 
+     
+     $("#btnassettypecheck").click(function () {
+         swal("Failed", "Asset Type Already Exists", "error");
+     });
      //end
 
 
@@ -123,7 +113,11 @@
      $("#btnassetcategoryupdated").click(function () {
          swal("Updated", "Your Data has Been Updated", "success");
      });
+     
 
+     $("#btnassetcategorycheck").click(function () {
+         swal("Failed", "Data Already Exists", "error");
+     });
      //end
 
 
@@ -277,154 +271,87 @@
      });
 
      //end
- 
      $("#btndeleteroles").click(function () {
-               swal({
-                    title: "Are you sure?",
-                    text: "Once deleted you will not be able to recover!",
-                    icon: "warning",
-                    buttons: true,
-                    dangerMode: true,
-                  })
-                  .then((willDelete) => {
-                    if (willDelete) {
-                      swal("Data has been deleted!", {
-                        icon: "success",
-                      });
-                    } else {
-                        swal("Data is safe!");
-                    }
-                  });
+         swal("Role Deleted!", "Your Data has Been Deleted!,", "success");
      });
 
 
      $("#btndistributorDelete").click(function () {
-         swal({
-             title: "Are you sure?",
-             text: "Once deleted you will not be able to recover!",
-             icon: "warning",
-             buttons: true,
-             dangerMode: true,
-         })
-             .then((willDelete) => {
-                 if (willDelete) {
-                     swal("Data has been deleted!", {
-                         icon: "success",
-                     });
-                 } else {
-                     swal("Data is safe!");
-                 }
-             });
+         swal("Company Deleted!", "Your Data has Been Deleted!,", "success");
      });
 
-     
+
      $("#btnuserformdelete").click(function () {
-         swal({
-             title: "Are you sure?",
-             text: "Once deleted you will not be able to recover!",
-             icon: "warning",
-             buttons: true,
-             dangerMode: true,
-         })
-             .then((willDelete) => {
-                 if (willDelete) {
-                     swal("Data has been deleted!", {
-                         icon: "success",
-                     });
-                 } else {
-                     swal("Data is safe!");
-                 }
-             });
+         swal("Distributor Deleted!", "Your Data has Been Deleted!,", "success");
      });
 
-    
+
 
 
      $("#btndeletetestator").click(function () {
-         swal({
-             title: "Are you sure?",
-             text: "Once deleted you will not be able to recover!",
-             icon: "warning",
-             buttons: true,
-             dangerMode: true,
-         })
-             .then((willDelete) => {
-                 if (willDelete) {
-                     swal("Data has been deleted!", {
-                         icon: "success",
-                     });
-                 } else {
-                     swal("Data is safe!");
-                 }
-             });
+         swal("Testator Deleted!", "Your Data has Been Deleted!,", "success");
      });
-     
 
-     $("#btntestatorfamilydelete").click(function () {
-         swal({
-             title: "Are you sure?",
-             text: "Once deleted you will not be able to recover!",
-             icon: "warning",
-             buttons: true,
-             dangerMode: true,
-         })
-             .then((willDelete) => {
-                 if (willDelete) {
-                     swal("Data has been deleted!", {
-                         icon: "success",
-                     });
-                 } else {
-                     swal("Data is safe!");
-                 }
-             });
-     });
-     
+
 
      $("#btndeleteassettype").click(function () {
-         swal({
-             title: "Are you sure?",
-             text: "Once deleted you will not be able to recover!",
-             icon: "warning",
-             buttons: true,
-             dangerMode: true,
-         })
-             .then((willDelete) => {
-                 if (willDelete) {
-                     swal("Data has been deleted!", {
-                         icon: "success",
-                     });
-                 } else {
-                     swal("Data is safe!");
-                 }
-             });
+         swal("AssetType Deleted!", "Your Data has Been Deleted!,", "success");
      });
 
-    
+
 
 
 
 
 
      $("#btnassetcategorydeleted").click(function () {
-         swal({
-             title: "Are you sure?",
-             text: "Once deleted you will not be able to recover!",
-             icon: "warning",
-             buttons: true,
-             dangerMode: true,
-         })
-             .then((willDelete) => {
-                 if (willDelete) {
-                     swal("Data has been deleted!", {
-                         icon: "success",
-                     });
-                 } else {
-                     swal("Data is safe!");
-                 }
-             });
+         swal("AssetCategory Deleted!", "Your Data has Been Deleted!,", "success");
      });
 
 
+     
+     $("#btnaltappointeesdelete").click(function () {
+         swal("AssetCategory Deleted!", "Your Data has Been Deleted!,", "success");
+     });
+
+     
+     $("#btnaltbeneficiaryDelete").click(function () {
+         swal("AssetCategory Deleted!", "Your Data has Been Deleted!,", "success");
+     });
+     
+     $("#btnappointeesdelete").click(function () {
+         swal("AssetCategory Deleted!", "Your Data has Been Deleted!,", "success");
+     });
+
+
+     
+
+     $("#btnassetpagedelete").click(function () {
+         swal("AssetCategory Deleted!", "Your Data has Been Deleted!,", "success");
+     });
+
+     
+     $("#btnbenefdelete").click(function () {
+         swal("AssetCategory Deleted!", "Your Data has Been Deleted!,", "success");
+     });
+
+     
+     $("#btnmainassetDelete").click(function () {
+         swal("AssetCategory Deleted!", "Your Data has Been Deleted!,", "success");
+     });
+     
+     $("#btnnomineedelete").click(function () {
+         swal("AssetCategory Deleted!", "Your Data has Been Deleted!,", "success");
+     });
+
+     
+     $("#btnrelationdelete").click(function () {
+         swal("AssetCategory Deleted!", "Your Data has Been Deleted!,", "success");
+     });
+
+     $("#btntestatorfamilydelete").click(function () {
+         swal("AssetCategory Deleted!", "Your Data has Been Deleted!,", "success");
+     });
      //end
 
      //Failed Alert Button
@@ -493,7 +420,8 @@
      
 
      $("#btnRoleAssignmentCHECK").click(function () {
-         swal("Information!", "Please Fill out Appointees Form First...!", "info");
+        
+         swal("Roles Assigned", "Roles Have Been Assigned To Selected Users", "success");
      });
 
 
