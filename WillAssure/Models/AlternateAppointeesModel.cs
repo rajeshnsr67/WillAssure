@@ -19,7 +19,7 @@ namespace WillAssure.Models
         public string Identity_Proof_Value { get; set; }
         public string Alt_Identity_Proof { get; set; }
         public string Alt_Identity_Proof_Value { get; set; }
-        public DateTime DOB { get; set; }
+        public string Dob { get; set; }
         public string Gender { get; set; }
         public string Occupation { get; set; }
 

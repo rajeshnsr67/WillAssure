@@ -8,6 +8,7 @@ using System.Data.Sql;
 using System.Data.SqlClient;
 using System.Configuration;
 using System.Data;
+using System.Globalization;
 
 namespace WillAssure.Controllers
 {
@@ -68,7 +69,8 @@ namespace WillAssure.Controllers
             ABM.First_Name = dt.Rows[0]["First_Name"].ToString();
             ABM.Last_Name =  dt.Rows[0]["Last_Name"].ToString();
             ABM.Middle_Name =dt.Rows[0]["Middle_Name"].ToString();
-            ABM.DOB = Convert.ToDateTime(dt.Rows[0]["DOB"]);
+           
+            ABM.Dob = DateTime.ParseExact(dt.Rows[0]["DOB"].ToString(), "dd-MM-yyyy", CultureInfo.InvariantCulture).ToString(); 
             ABM.Mobile = dt.Rows[0]["Mobile"].ToString();
             ABM.Relationship =  dt.Rows[0]["Relationship"].ToString();
             ABM.Marital_Status = dt.Rows[0]["Marital_Status"].ToString();
@@ -248,7 +250,8 @@ namespace WillAssure.Controllers
             cmd.Parameters.AddWithValue("@First_Name", ABM.First_Name);
             cmd.Parameters.AddWithValue("@Last_Name", ABM.Last_Name);
             cmd.Parameters.AddWithValue("@Middle_Name", ABM.Middle_Name);
-            cmd.Parameters.AddWithValue("@DOB", ABM.DOB);
+            DateTime dat = DateTime.ParseExact(ABM.Dob, "dd-MM-yyyy", CultureInfo.InvariantCulture);
+            cmd.Parameters.AddWithValue("@DOB", dat);
             cmd.Parameters.AddWithValue("@Mobile", ABM.Mobile);
             cmd.Parameters.AddWithValue("@Relationship", ABM.Religion_ID);
             cmd.Parameters.AddWithValue("@Marital_Status", ABM.Marital_Status);

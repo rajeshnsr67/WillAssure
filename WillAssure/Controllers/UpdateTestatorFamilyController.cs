@@ -8,6 +8,7 @@ using System.Data.Sql;
 using System.Data.SqlClient;
 using System.Configuration;
 using System.Data;
+using System.Globalization;
 
 namespace WillAssure.Controllers
 {
@@ -75,7 +76,7 @@ namespace WillAssure.Controllers
                            TFM.First_Name =  dt.Rows[i]["First_Name"].ToString() ;
                            TFM.Last_Name = dt.Rows[i]["Last_Name"].ToString() ;
                            TFM.Middle_Name =  dt.Rows[i]["Middle_Name"].ToString() ;
-                           TFM.DOB = dt.Rows[i]["DOB"].ToString() ;
+                           TFM.Dob = dt.Rows[0]["DOB"].ToString();
                            TFM.Marital_Status =  dt.Rows[i]["Marital_Status"].ToString() ;
                            TFM.Religion =  dt.Rows[i]["Religion"].ToString() ;
                            TFM.Relationship = dt.Rows[i]["Relationship"].ToString() ;
@@ -263,7 +264,8 @@ namespace WillAssure.Controllers
             cmd.Parameters.AddWithValue("@First_Name", TFM.First_Name);
             cmd.Parameters.AddWithValue("@Last_Name", TFM.Last_Name);
             cmd.Parameters.AddWithValue("@Middle_Name", TFM.Middle_Name);
-            cmd.Parameters.AddWithValue("@DOB", TFM.DOB);
+            DateTime dat = DateTime.ParseExact(TFM.Dob, "dd-MM-yyyy", CultureInfo.InvariantCulture);
+            cmd.Parameters.AddWithValue("@DOB", dat);
             cmd.Parameters.AddWithValue("@Marital_Status", TFM.Marital_Status);
             cmd.Parameters.AddWithValue("@Religion", TFM.Religion);
             cmd.Parameters.AddWithValue("@Relationship", TFM.RelationshipTxt);

@@ -8,6 +8,8 @@ using System.Data.Sql;
 using System.Data.SqlClient;
 using System.Configuration;
 using System.Data;
+using System.Globalization;
+
 namespace WillAssure.Controllers
 {
     public class UpdateNomineeController : Controller
@@ -72,7 +74,7 @@ namespace WillAssure.Controllers
                  NM.First_Name =dt.Rows[i]["First_Name"].ToString();
                  NM.Last_Name = dt.Rows[i]["Last_Name"].ToString();
                  NM.Middle_Name = dt.Rows[i]["Middle_Name"].ToString();
-                 NM.DOB = dt.Rows[i]["DOB"].ToString();
+                 NM.Dob  = DateTime.ParseExact(dt.Rows[0]["DOB"].ToString(), "dd-MM-yyyy", CultureInfo.InvariantCulture).ToString();
                  NM.Mobile = dt.Rows[i]["Mobile"].ToString();
                  NM.Relationship = dt.Rows[i]["Relationship"].ToString();
                  NM.Marital_Status = dt.Rows[i]["Marital_Status"].ToString();
@@ -184,7 +186,8 @@ namespace WillAssure.Controllers
             cmd.Parameters.AddWithValue("@First_Name", NM.First_Name);
             cmd.Parameters.AddWithValue("@Last_Name", NM.Last_Name);
             cmd.Parameters.AddWithValue("@Middle_Name", NM.Middle_Name);
-            cmd.Parameters.AddWithValue("@DOB", Convert.ToDateTime(NM.DOB));
+            DateTime dat = DateTime.ParseExact(NM.Dob, "dd-MM-yyyy", CultureInfo.InvariantCulture);
+            cmd.Parameters.AddWithValue("@DOB", dat);
             cmd.Parameters.AddWithValue("@Mobile", NM.Mobile);
             cmd.Parameters.AddWithValue("@Relationship", NM.Relationship);
             cmd.Parameters.AddWithValue("@Marital_Status", NM.Marital_Status);

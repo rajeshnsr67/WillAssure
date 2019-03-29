@@ -15,7 +15,7 @@ namespace WillAssure.Models
 
         public string Middle_Name { get; set; }
 
-        public string DOB { get; set; }
+        public string Dob { get; set; }
 
         public string Mobile { get; set; }
 

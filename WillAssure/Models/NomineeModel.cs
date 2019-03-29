@@ -12,7 +12,7 @@ namespace WillAssure.Models
       public string First_Name { get; set;}
       public string Last_Name { get; set;}
       public string Middle_Name { get; set;}
-      public string DOB { get; set;}
+      public string Dob { get; set;}
       public string Mobile { get; set;}
       public string Relationship { get; set;}
         public int RelationshipId { get; set; }

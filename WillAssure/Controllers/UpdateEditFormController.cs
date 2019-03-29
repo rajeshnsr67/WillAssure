@@ -8,6 +8,7 @@ using System.Data.Sql;
 using System.Data.SqlClient;
 using System.Configuration;
 using System.Data;
+using System.Globalization;
 
 namespace WillAssure.Controllers
 {
@@ -72,7 +73,7 @@ namespace WillAssure.Controllers
                 UFM.FirstName = dt.Rows[0]["First_Name"].ToString();
                 UFM.LastName = dt.Rows[0]["Last_Name"].ToString();
                 UFM.MiddleName = dt.Rows[0]["Middle_Name"].ToString();
-                UFM.Dob = Convert.ToDateTime(dt.Rows[0]["DOB"]);
+                UFM.Dob = dt.Rows[0]["DOB"].ToString();
                 UFM.Mobile = dt.Rows[0]["Mobile"].ToString();
                 UFM.Email = dt.Rows[0]["eMail"].ToString();
                 UFM.Address1 = dt.Rows[0]["Address1"].ToString();
@@ -173,7 +174,7 @@ namespace WillAssure.Controllers
 
 
             //end
-
+           
             con.Open();
             SqlCommand cmd = new SqlCommand("SP_Users", con);
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
@@ -182,7 +183,8 @@ namespace WillAssure.Controllers
             cmd.Parameters.AddWithValue("@FirstName", UFM.FirstName);
             cmd.Parameters.AddWithValue("@LastName", UFM.LastName);
             cmd.Parameters.AddWithValue("@MiddleName", UFM.MiddleName);
-            cmd.Parameters.AddWithValue("@Dob",UFM.Dob);
+            DateTime dat = DateTime.ParseExact(UFM.Dob, "dd-MM-yyyy", CultureInfo.InvariantCulture);
+            cmd.Parameters.AddWithValue("@Dob", dat);
             cmd.Parameters.AddWithValue("@Mobile", UFM.Mobile);
             cmd.Parameters.AddWithValue("@Email", UFM.Email);
             cmd.Parameters.AddWithValue("@Address1", UFM.Address1);

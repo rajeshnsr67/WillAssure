@@ -8,6 +8,7 @@ using System.Data.Sql;
 using System.Data.SqlClient;
 using System.Configuration;
 using System.Data;
+using System.Globalization;
 
 namespace WillAssure.Controllers
 {
@@ -80,7 +81,9 @@ namespace WillAssure.Controllers
                     Am.Identity_Proof_Value = dt.Rows[i]["Identity_Proof_Value"].ToString();
                     Am.Alt_Identity_Proof = dt.Rows[i]["Alt_Identity_Proof"].ToString();
                     Am.Alt_Identity_Proof_Value = dt.Rows[i]["Alt_Identity_Proof_Value"].ToString();
-                    Am.DOB = Convert.ToDateTime(dt.Rows[i]["DOB"]);
+
+                    DateTime dat = DateTime.ParseExact(dt.Rows[i]["DOB"].ToString(), "dd-MM-yyyy", CultureInfo.InvariantCulture);
+        
                     Am.Gender = dt.Rows[i]["Gender"].ToString();
                     Am.Occupation = dt.Rows[i]["Occupation"].ToString();
                     Am.RelationshipTxt = dt.Rows[i]["Relationship"].ToString();
@@ -269,7 +272,8 @@ namespace WillAssure.Controllers
             cmd.Parameters.AddWithValue("@Identity_proof_value", AM.Identity_Proof_Value);
             cmd.Parameters.AddWithValue("@Alt_Identity_proof", AM.Alt_Identity_Proof);
             cmd.Parameters.AddWithValue("@Alt_Identity_proof_value", AM.Alt_Identity_Proof_Value);
-            cmd.Parameters.AddWithValue("@DOB", AM.DOB.ToString("dd/MM/yyyy"));
+            DateTime dat = DateTime.ParseExact(AM.Dob, "dd-MM-yyyy", CultureInfo.InvariantCulture);
+            cmd.Parameters.AddWithValue("@DOB", dat);
             cmd.Parameters.AddWithValue("@Gender", AM.Gender);
             cmd.Parameters.AddWithValue("@Occupation", AM.Occupation);
             cmd.Parameters.AddWithValue("@Relationship", AM.RelationshipTxt);

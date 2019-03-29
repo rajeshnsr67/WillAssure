@@ -173,8 +173,8 @@ namespace WillAssure.Controllers
 
                         mm.IsBodyHtml = true;
                         SmtpClient smtp = new SmtpClient();
-                        smtp.Host = "smtp.gmail.com";
-                        smtp.EnableSsl = true;
+                        smtp.Host = "216.10.240.149";
+                        smtp.EnableSsl = false;
                         NetworkCredential NetworkCred = new NetworkCredential(mailid, Epassword);
                         smtp.UseDefaultCredentials = true;
                         smtp.Credentials = NetworkCred;

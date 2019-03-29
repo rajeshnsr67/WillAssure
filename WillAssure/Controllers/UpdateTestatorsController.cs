@@ -8,6 +8,7 @@ using System.Data.Sql;
 using System.Data.SqlClient;
 using System.Configuration;
 using System.Data;
+using System.Globalization;
 
 namespace WillAssure.Controllers
 {
@@ -71,7 +72,7 @@ namespace WillAssure.Controllers
                        TFM.First_Name = dt.Rows[0]["First_Name"].ToString();
                        TFM.Last_Name =  dt.Rows[0]["Last_Name"].ToString();
                        TFM.Middle_Name = dt.Rows[0]["Middle_Name"].ToString();
-                       TFM.DOB = Convert.ToDateTime(dt.Rows[0]["DOB"]);
+                       TFM.Dob = dt.Rows[0]["DOB"].ToString();
                        TFM.Occupation = dt.Rows[0]["Occupation"].ToString();
                        TFM.Mobile = dt.Rows[0]["Mobile"].ToString();
                        TFM.Email = dt.Rows[0]["Email"].ToString();
@@ -169,9 +170,9 @@ namespace WillAssure.Controllers
 
 
             //cmd.ExecuteNonQuery();
-            var sqlFormattedDate = TFM.DOB.ToString("yyyy-MM-dd HH:mm:ss");
-
-            string query = "update TestatorDetails set First_Name = '"+TFM.First_Name+"' , Last_Name='"+TFM.Last_Name+"' ,Middle_Name= '"+TFM.Middle_Name+"' , DOB = '"+ sqlFormattedDate + "' ,Occupation='"+TFM.Occupation+"' ,Mobile='"+TFM.Mobile+"' ,Email = '"+TFM.Email+"' ,maritalStatus='"+TFM.material_status +"' , Religion='"+TFM.Religiontext+ "' ,  Relationship = '"+TFM.RelationshipTxt + "'   ,Identity_Proof='" + TFM.Identity_Proof+"' ,Identity_proof_Value='"+TFM.Identity_proof_Value+"',Alt_Identity_Proof='"+TFM.Alt_Identity_Proof+"',Alt_Identity_proof_Value='"+TFM.Alt_Identity_proof_Value+"',Gender='"+TFM.Gendertext+"',Address1='"+TFM.Address1+"',Address2='"+TFM.Address2+"',Address3='"+TFM.Address3+"',Country='"+TFM.countrytext+"',State='"+TFM.statetext+"',City='"+TFM.citytext+"',Pin='"+TFM.Pin+"',active='"+TFM.active+ "' , Relationship = '"+TFM.RelationshipTxt+"' where  tId = " + TFM.tId+"";
+            DateTime dat = DateTime.ParseExact(TFM.Dob, "dd-MM-yyyy", CultureInfo.InvariantCulture);
+            var sqlFormattedDate = dat;
+            string query = "update TestatorDetails set First_Name = '"+TFM.First_Name+"' , Last_Name='"+TFM.Last_Name+"' ,Middle_Name= '"+TFM.Middle_Name+"' , DOB = '"+ sqlFormattedDate + "' ,Occupation='"+TFM.Occupation+"' ,Mobile='"+TFM.Mobile+"' ,Email = '"+TFM.Email+"' ,maritalStatus='"+TFM.material_status +"' , Religion='"+TFM.Religiontext+ "' ,  Relationship = '"+TFM.RelationshipTxt + "'   ,Identity_Proof='" + TFM.Identity_Proof+"' ,Identity_proof_Value='"+TFM.Identity_proof_Value+"',Alt_Identity_Proof='"+TFM.Alt_Identity_Proof+"',Alt_Identity_proof_Value='"+TFM.Alt_Identity_proof_Value+"',Gender='"+TFM.Gendertext+"',Address1='"+TFM.Address1+"',Address2='"+TFM.Address2+"',Address3='"+TFM.Address3+"',Country='"+TFM.countrytext+"',State='"+TFM.statetext+"',City='"+TFM.citytext+"',Pin='"+TFM.Pin+"',active='"+TFM.active+ "'  where  tId = " + TFM.tId+"";
             SqlCommand cmd = new SqlCommand(query,con);
             cmd.ExecuteNonQuery();
             con.Close();

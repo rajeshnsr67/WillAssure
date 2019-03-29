@@ -8,6 +8,7 @@ using System.Data.Sql;
 using System.Data.SqlClient;
 using System.Configuration;
 using System.Data;
+using System.Globalization;
 
 namespace WillAssure.Controllers
 {
@@ -128,7 +129,12 @@ namespace WillAssure.Controllers
                     cmd.Parameters.AddWithValue("@FirstName", UFM.FirstName);
                     cmd.Parameters.AddWithValue("@LastName", UFM.LastName);
                     cmd.Parameters.AddWithValue("@MiddleName", UFM.MiddleName);
-                    cmd.Parameters.AddWithValue("@Dob", UFM.Dob);
+
+                    
+
+                    DateTime dat = DateTime.ParseExact(UFM.Dob, "dd-MM-yyyy", CultureInfo.InvariantCulture);
+
+                    cmd.Parameters.AddWithValue("@Dob", dat);
                     cmd.Parameters.AddWithValue("@Mobile", UFM.Mobile);
                     cmd.Parameters.AddWithValue("@Email", UFM.Email);
                     cmd.Parameters.AddWithValue("@Address1", UFM.Address1);

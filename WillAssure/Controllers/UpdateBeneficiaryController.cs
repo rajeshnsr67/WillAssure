@@ -8,6 +8,8 @@ using System.Data.Sql;
 using System.Data.SqlClient;
 using System.Configuration;
 using System.Data;
+using System.Globalization;
+
 namespace WillAssure.Controllers
 {
     public class UpdateBeneficiaryController : Controller
@@ -72,7 +74,7 @@ namespace WillAssure.Controllers
                 BM.First_Name = dt.Rows[0]["First_Name"].ToString();
                 BM.Last_Name = dt.Rows[0]["Last_Name"].ToString();
                 BM.Middle_Name = dt.Rows[0]["Middle_Name"].ToString();
-                BM.DOB = dt.Rows[0]["DOB"].ToString();
+                BM.Dob = DateTime.ParseExact(dt.Rows[0]["DOB"].ToString(), "dd-MM-yyyy", CultureInfo.InvariantCulture).ToString();
                 BM.Mobile = dt.Rows[0]["Mobile"].ToString();
                 BM.Relationship = dt.Rows[0]["Relationship"].ToString();
                 BM.Marital_Status = dt.Rows[0]["Marital_Status"].ToString();
@@ -147,7 +149,8 @@ namespace WillAssure.Controllers
             cmd.Parameters.AddWithValue("@First_Name ", BM.First_Name);
             cmd.Parameters.AddWithValue("@Last_Name", BM.Last_Name);
             cmd.Parameters.AddWithValue("@Middle_Name", BM.Middle_Name);
-            cmd.Parameters.AddWithValue("@DOB", BM.DOB);
+            DateTime dat = DateTime.ParseExact(BM.Dob, "dd-MM-yyyy", CultureInfo.InvariantCulture);
+            cmd.Parameters.AddWithValue("@DOB", dat);
             cmd.Parameters.AddWithValue("@Mobile", BM.Mobile);
             cmd.Parameters.AddWithValue("@Relationship", BM.RelationshipTxt);
             cmd.Parameters.AddWithValue("@Marital_Status", BM.Marital_Status);

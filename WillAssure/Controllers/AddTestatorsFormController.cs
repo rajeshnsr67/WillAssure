@@ -10,6 +10,7 @@ using System.Configuration;
 using System.Data;
 using System.Net.Mail;
 using System.Net;
+using System.Globalization;
 
 namespace WillAssure.Controllers
 {
@@ -155,7 +156,7 @@ namespace WillAssure.Controllers
             if (Session["compId"] != null)
             {
                 TFM.uId = Convert.ToInt32(Session["uid"]);
-
+                DateTime dat = DateTime.ParseExact(TFM.Dob, "dd-MM-yyyy", CultureInfo.InvariantCulture);
                 con.Open();
                 SqlCommand cmd = new SqlCommand("SP_CRUDTestatorDetails", con);
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
@@ -163,7 +164,7 @@ namespace WillAssure.Controllers
                 cmd.Parameters.AddWithValue("@First_Name", TFM.First_Name);
                 cmd.Parameters.AddWithValue("@Last_Name", TFM.Last_Name);
                 cmd.Parameters.AddWithValue("@Middle_Name", TFM.Middle_Name);
-                cmd.Parameters.AddWithValue("@DOB", TFM.DOB);
+                cmd.Parameters.AddWithValue("@DOB", dat);
                 cmd.Parameters.AddWithValue("@Occupation", TFM.Occupation);
                 cmd.Parameters.AddWithValue("@Mobile", TFM.Mobile);
                 cmd.Parameters.AddWithValue("@Email", TFM.Email);
@@ -326,8 +327,8 @@ namespace WillAssure.Controllers
 
                         mm.IsBodyHtml = true;
                         SmtpClient smtp = new SmtpClient();
-                        smtp.Host = "smtp.gmail.com";
-                        smtp.EnableSsl = true;
+                        smtp.Host = "216.10.240.149";
+                        smtp.EnableSsl = false;
                         NetworkCredential NetworkCred = new NetworkCredential(mailid, TFM.password);
                         smtp.UseDefaultCredentials = true;
                         smtp.Credentials = NetworkCred;
@@ -375,8 +376,8 @@ namespace WillAssure.Controllers
 
                         mm.IsBodyHtml = true;
                         SmtpClient smtp = new SmtpClient();
-                        smtp.Host = "smtp.gmail.com";
-                        smtp.EnableSsl = true;
+                        smtp.Host = "216.10.240.149";
+                        smtp.EnableSsl = false;
                         NetworkCredential NetworkCred = new NetworkCredential(mailid, TFM.password);
                         smtp.UseDefaultCredentials = true;
                         smtp.Credentials = NetworkCred;
@@ -423,8 +424,8 @@ namespace WillAssure.Controllers
 
                         mm.IsBodyHtml = true;
                         SmtpClient smtp = new SmtpClient();
-                        smtp.Host = "smtp.gmail.com";
-                        smtp.EnableSsl = true;
+                        smtp.Host = "216.10.240.149";
+                        smtp.EnableSsl = false;
                         NetworkCredential NetworkCred = new NetworkCredential(mailid, TFM.password);
                         smtp.UseDefaultCredentials = true;
                         smtp.Credentials = NetworkCred;

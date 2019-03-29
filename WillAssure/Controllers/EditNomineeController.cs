@@ -8,6 +8,7 @@ using System.Data.Sql;
 using System.Data.SqlClient;
 using System.Configuration;
 using System.Data;
+using System.Globalization;
 
 namespace WillAssure.Controllers
 {
@@ -126,7 +127,7 @@ namespace WillAssure.Controllers
                                     + "<td>" + dt.Rows[i]["First_Name"].ToString() + "</td>"
                                     + "<td>" + dt.Rows[i]["Last_Name"].ToString() + "</td>"
                                     + "<td>" + dt.Rows[i]["Middle_Name"].ToString() + "</td>"
-                                    + "<td>" + dt.Rows[i]["DOB"].ToString() + "</td>"
+                                     + "<td>" + dt.Rows[i]["DOB"].ToString() + "</td>"
                                     + "<td>" + dt.Rows[i]["Mobile"].ToString() + "</td>"
                                     + "<td>" + dt.Rows[i]["Relationship"].ToString() + "</td>"
                                     + "<td>" + dt.Rows[i]["Marital_Status"].ToString() + "</td>"
@@ -161,7 +162,7 @@ namespace WillAssure.Controllers
                                     + "<td>" + dt.Rows[i]["First_Name"].ToString() + "</td>"
                                     + "<td>" + dt.Rows[i]["Last_Name"].ToString() + "</td>"
                                     + "<td>" + dt.Rows[i]["Middle_Name"].ToString() + "</td>"
-                                    + "<td>" + dt.Rows[i]["DOB"].ToString() + "</td>"
+                                     + "<td>" + dt.Rows[i]["DOB"].ToString() + "</td>"
                                     + "<td>" + dt.Rows[i]["Mobile"].ToString() + "</td>"
                                     + "<td>" + dt.Rows[i]["Relationship"].ToString() + "</td>"
                                     + "<td>" + dt.Rows[i]["Marital_Status"].ToString() + "</td>"
@@ -197,7 +198,7 @@ namespace WillAssure.Controllers
                                     + "<td>" + dt.Rows[i]["First_Name"].ToString() + "</td>"
                                     + "<td>" + dt.Rows[i]["Last_Name"].ToString() + "</td>"
                                     + "<td>" + dt.Rows[i]["Middle_Name"].ToString() + "</td>"
-                                    + "<td>" + dt.Rows[i]["DOB"].ToString() + "</td>"
+                                     + "<td>" + dt.Rows[i]["DOB"].ToString() + "</td>"
                                     + "<td>" + dt.Rows[i]["Mobile"].ToString() + "</td>"
                                     + "<td>" + dt.Rows[i]["Relationship"].ToString() + "</td>"
                                     + "<td>" + dt.Rows[i]["Marital_Status"].ToString() + "</td>"
@@ -234,7 +235,7 @@ namespace WillAssure.Controllers
                                     + "<td>" + dt.Rows[i]["First_Name"].ToString() + "</td>"
                                     + "<td>" + dt.Rows[i]["Last_Name"].ToString() + "</td>"
                                     + "<td>" + dt.Rows[i]["Middle_Name"].ToString() + "</td>"
-                                    + "<td>" + dt.Rows[i]["DOB"].ToString() + "</td>"
+                                     + "<td>" + dt.Rows[i]["DOB"].ToString() + "</td>"
                                     + "<td>" + dt.Rows[i]["Mobile"].ToString() + "</td>"
                                     + "<td>" + dt.Rows[i]["Relationship"].ToString() + "</td>"
                                     + "<td>" + dt.Rows[i]["Marital_Status"].ToString() + "</td>"
@@ -373,7 +374,7 @@ namespace WillAssure.Controllers
                                     + "<td>" + dt.Rows[i]["First_Name"].ToString() + "</td>"
                                     + "<td>" + dt.Rows[i]["Last_Name"].ToString() + "</td>"
                                     + "<td>" + dt.Rows[i]["Middle_Name"].ToString() + "</td>"
-                                    + "<td>" + dt.Rows[i]["DOB"].ToString() + "</td>"
+                                     + "<td>" + dt.Rows[i]["DOB"].ToString() + "</td>"
                                     + "<td>" + dt.Rows[i]["Mobile"].ToString() + "</td>"
                                     + "<td>" + dt.Rows[i]["Relationship"].ToString() + "</td>"
                                     + "<td>" + dt.Rows[i]["Marital_Status"].ToString() + "</td>"
@@ -407,7 +408,7 @@ namespace WillAssure.Controllers
                                     + "<td>" + dt.Rows[i]["First_Name"].ToString() + "</td>"
                                     + "<td>" + dt.Rows[i]["Last_Name"].ToString() + "</td>"
                                     + "<td>" + dt.Rows[i]["Middle_Name"].ToString() + "</td>"
-                                    + "<td>" + dt.Rows[i]["DOB"].ToString() + "</td>"
+                                     + "<td>" + dt.Rows[i]["DOB"].ToString() + "</td>"
                                     + "<td>" + dt.Rows[i]["Mobile"].ToString() + "</td>"
                                     + "<td>" + dt.Rows[i]["Relationship"].ToString() + "</td>"
                                     + "<td>" + dt.Rows[i]["Marital_Status"].ToString() + "</td>"
@@ -443,7 +444,7 @@ namespace WillAssure.Controllers
                                     + "<td>" + dt.Rows[i]["First_Name"].ToString() + "</td>"
                                     + "<td>" + dt.Rows[i]["Last_Name"].ToString() + "</td>"
                                     + "<td>" + dt.Rows[i]["Middle_Name"].ToString() + "</td>"
-                                    + "<td>" + dt.Rows[i]["DOB"].ToString() + "</td>"
+                                     + "<td>" + dt.Rows[i]["DOB"].ToString() + "</td>"
                                     + "<td>" + dt.Rows[i]["Mobile"].ToString() + "</td>"
                                     + "<td>" + dt.Rows[i]["Relationship"].ToString() + "</td>"
                                     + "<td>" + dt.Rows[i]["Marital_Status"].ToString() + "</td>"
@@ -480,7 +481,7 @@ namespace WillAssure.Controllers
                                     + "<td>" + dt.Rows[i]["First_Name"].ToString() + "</td>"
                                     + "<td>" + dt.Rows[i]["Last_Name"].ToString() + "</td>"
                                     + "<td>" + dt.Rows[i]["Middle_Name"].ToString() + "</td>"
-                                    + "<td>" + dt.Rows[i]["DOB"].ToString() + "</td>"
+                                     + "<td>" + dt.Rows[i]["DOB"].ToString() + "</td>"
                                     + "<td>" + dt.Rows[i]["Mobile"].ToString() + "</td>"
                                     + "<td>" + dt.Rows[i]["Relationship"].ToString() + "</td>"
                                     + "<td>" + dt.Rows[i]["Marital_Status"].ToString() + "</td>"
