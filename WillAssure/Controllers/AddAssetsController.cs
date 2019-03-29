@@ -250,7 +250,7 @@ namespace WillAssure.Controllers
 
 
 
-                ddstruct = ddstruct + "<select class='form-control Entityinput validate[required]'  onChange='getAssetColumnValue(this.options[this.selectedIndex].innerHTML)' ><option value=''>--Select--</option><option value='1' >" + dt.Rows[0]["DueDate"].ToString() + "</option>" +
+                ddstruct = ddstruct + "<select class='form-control Entityinput validate[required]'   ><option value=''>--Select--</option><option value='1' >" + dt.Rows[0]["DueDate"].ToString() + "</option>" +
                 ddstruct + "<option value='2' >" + dt.Rows[0]["CurrentStatus"].ToString() + "</option>" +
                 ddstruct + "<option value='3' >" + dt.Rows[0]["IssuedBy"].ToString() + "</option>" +
                 ddstruct + "<option value='4' >" + dt.Rows[0]["Location"].ToString() + "</option>" +
@@ -283,9 +283,9 @@ namespace WillAssure.Controllers
 
 
             finalstruct = finalstruct + "<div class='col-sm-3'><div class='form-group'><label for='input - 1'>Entity</label>     " + ddstruct + " </div></div>" +
-            finalstruct + "<div class='col-sm-3'><div class='form-group'><label for='input-1'>Label</label>   <input type='text' name='txtlabel' class='form-control validate[required] text-input labelinput' id='txtlabel' name='txtlabel' onchange=bar(this.value) autocomplete='off' />    </div></div>" +
-            finalstruct + "<div class='col-sm-3'><div class='form-group'>   <label for='input-1'>Controls</label>   <select class='form-control ddlcontrolinput validate[required]'  onchange='getControls(this.value)' id='DDLControls' name='DDLControls' >    <option value=''>--Select--</option >   <option value='TextBox'>TextBox</option >    <option value='TextArea'>TextArea</option>    <option value='DatePicker'>DatePicker</option>     <option value='CheckBox'>CheckBox</option>   <option value='RadioButton'>RadioButton</option>  </select></div></div>" +
-            finalstruct + "<div class='col-sm-3'><div class='form-group'><label for='input-1' id='lbldynamic'>Values</label>  <input type='text' id='txtval'  class='form-control  text - input'   onchange=bar2(this.value) name='txtval'  autocomplete='off' />    </div></div>";
+            finalstruct + "<div class='col-sm-3'><div class='form-group'><label for='input-1'>Label</label>   <input type='text' name='txtlabel' class='form-control validate[required] text-input labelinput'  name='txtlabel' onchange=bar(this.value) autocomplete='off' />    </div></div>" +
+            finalstruct + "<div class='col-sm-3'><div class='form-group choosen'>   <label for='input-1'>Controls</label>   <select class='form-control ddlcontrolinput validate[required]'  onchange='getControls(this.value)'   name='DDLControls' >    <option value=''>--Select--</option >   <option value='TextBox'>TextBox</option >    <option value='TextArea'>TextArea</option>    <option value='DatePicker'>DatePicker</option>     <option value='CheckBox'>CheckBox</option>   <option value='RadioButton'>RadioButton</option>  </select></div></div>" +
+            finalstruct + "<div class='col-sm-3'><div class='form-group'><label for='input-1' id='lbldynamic'>Values</label>  <input type='text'  class='form-control  text - input'   onchange=bar2(this.value) name='txtval'  autocomplete='off' />    </div></div>";
             
 
 

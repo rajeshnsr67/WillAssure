@@ -144,6 +144,11 @@
                     "regex": /[2-9]{2}\d{8}/,
                     "alertText": "*Invalid Mobile Number"
                 },
+                "PinCode": {
+                    // Number, including positive, negative, and floating decimal. credit: orefalo
+                    "regex": /^[1-9][0-9]{5}$/,
+                    "alertText": "*Invalid Pin Number"
+                },
                 "date": {                    
                     //	Check if date is valid by leap year
 			"func": function (field) {

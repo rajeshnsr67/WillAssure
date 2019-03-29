@@ -396,20 +396,7 @@
 
 <script>
 
-        $(document).on('change', '.Entityinput', function () {
-
-            $(".Entityinput").attr('disabled', 'disabled');
-        });
-        
-        $(document).on('change', '.labelinput', function () {
-
-            $(".labelinput").attr('disabled', 'disabled');
-        });
-
-        $(document).on('change', '.ddlcontrolinput', function () {
-
-            $(".ddlcontrolinput").attr('disabled', 'disabled');
-        });
+    
         
 
         function getAssetColumnValue(ENTITY) {
@@ -424,7 +411,7 @@
 
         $("#assetcolumnValues").append("'" + ENTITY + "~");
 
-            $("#ddlassetcat").attr('disabled', 'disabled');
+           
     }
 
 
@@ -436,7 +423,7 @@
 
         $("#assetcolumnValues").append("" + value +  "',");
 
-        $("#txtlabel").attr('disabled', 'disabled');
+       
 
     }
 

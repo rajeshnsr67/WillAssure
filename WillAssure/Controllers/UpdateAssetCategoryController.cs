@@ -132,7 +132,7 @@ namespace WillAssure.Controllers
             con.Close();
 
             ViewBag.Message = "Verified"; 
-            return View("~/Views/UpdateAssetType/UpdateAssetTypePageContent.cshtml");
+            return View("~/Views/UpdateAssetCategory/UpdateAssetCategoryPageContent.cshtml");
         }
 
 
