@@ -81,7 +81,7 @@
                             </div>
 
 
-                            <div id="listdata" class="row">
+                            <div id="listdata" >
 
 
 
@@ -93,30 +93,30 @@
 
 
 
-                            <textarea id="assetcolumn" style="display:none;" name="assetcolumn" class="form-control">
+                            <textarea id="assetcolumn" style="display:;" name="assetcolumn" class="form-control">
 
                             </textarea>
 
-                            <textarea id="col" style="display:none;" name="col" class="form-control">
+                            <textarea id="col" style="display:;" name="col" class="form-control">
 
                             </textarea>
 
-                            <textarea id="val" style="display:none;" name="val" class="form-control">
-
-                            </textarea>
-
-
-                            <textarea id="assetcolumnValues" style="display:none;" name="assetcolumnValues" class="form-control">
+                            <textarea id="val" style="display:;" name="val" class="form-control">
 
                             </textarea>
 
 
-                            <textarea id="controls" style="display:none;" name="controls" class="form-control">
+                            <textarea id="assetcolumnValues" style="display:;" name="assetcolumnValues" class="form-control">
 
                             </textarea>
 
 
-                            <textarea id="values" style="display:none;" name="values" class="form-control">
+                            <textarea id="controls" style="display:;" name="controls" class="form-control">
+
+                            </textarea>
+
+
+                            <textarea id="values" style="display:;" name="values" class="form-control">
 
                             </textarea>
 
@@ -400,7 +400,9 @@
         
 
         function getAssetColumnValue(ENTITY) {
-           
+
+         
+
             alert(ENTITY);
         
 
@@ -457,30 +459,39 @@
         //});
 
 
+        //onchange = 'getControls(this.value)'
+    //function getControls(id) {
 
-    function getControls(id) {
+        $(document).on('change', '.ddlcontrolinput', function () {
+
+          
+
+        var id = $(this).closest('.group').find(".ddlcontrolinput").val();
+            
+           
+            
+
+       
 
         var id = id;
 
         if (id == "TextBox" || id == "TextArea" || id =="DatePicker") {
             $("#values").append("'" + '' + "',");
             
-            $("#lbldynamic").css("display", "none");
-            $("#txtval").css("display", "none");
+            $(this).closest('.group').find("#valuefield").attr("disabled", "disabled");
         }
 
         if (id == "RadioButton" || id == "CheckBox") {
 
             
-            $("#lbldynamic").css("display", "inline");
-            $("#txtval").css("display", "inline");
+            $(this).closest('.group').find("#valuefield").removeAttr("disabled"); ;
         }
         
         $("#controls").append("'" + id + "',");
         
        
        
-    }
+        });
 
 
 
@@ -491,7 +502,7 @@
 
         $("#values").append("'" + value + "',");
 
-    }
+    };
 
 
 

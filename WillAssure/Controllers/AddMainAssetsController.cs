@@ -930,7 +930,7 @@ namespace WillAssure.Controllers
             }
 
 
-            if (Session["tid"] != null)
+            if (Session["tid"].ToString() != "")
             {
                 string json = JsonConvert.SerializeObject(dd);
                 int amid = Convert.ToInt32(TempData["amid"]);

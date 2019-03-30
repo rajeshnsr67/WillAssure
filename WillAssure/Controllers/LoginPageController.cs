@@ -155,9 +155,10 @@ namespace WillAssure.Controllers
             Session["tid"] = "";
             Session["Document_Created_By"] = "";
             Session["mailto"] = "";
+            Session["userid"] = "";
 
 
-          
+
 
 
             return View("~/Views/LoginPage/LoginPageContent.cshtml");

@@ -195,21 +195,21 @@ namespace WillAssure.Views.ViewDocument
 
             WillTestator rpt = new WillTestator();
 
-            // ReportDocument rpt = new ReportDocument();
-            //rpt.SetParameterValue("testator", TestatorName);
-            //rpt.SetParameterValue("testatorsirname", TestatorName + testatorsirname);
-            //rpt.SetParameterValue("testatorrelation", TestatorRelationShip);
-            //rpt.SetParameterValue("testatorage", TestatorAge);
-            //rpt.SetParameterValue("beneficiaryname", BeneficiaryName);
-            //rpt.SetParameterValue("beneficiarysirname", beneficiarysirname);
-            //rpt.SetParameterValue("testatoradd", TestatorAddress);
-            //rpt.SetParameterValue("appointee1", executorname);
-            //rpt.SetParameterValue("appointee2", alternateexecutorname);
-            //rpt.SetParameterValue("wifename", Relation);
-            //rpt.SetParameterValue("assetcategory", assetcategory);
-            //rpt.SetParameterValue("assetname", instrumentname);
-            //rpt.SetParameterValue("benefname", mapbeneficiary);
-            //rpt.SetParameterValue("percent", proportion);
+            //ReportDocument rpt = new ReportDocument();
+            rpt.SetParameterValue("testator", TestatorName);
+            rpt.SetParameterValue("testatorsirname", TestatorName + testatorsirname);
+            rpt.SetParameterValue("testatorrelation", TestatorRelationShip);
+            rpt.SetParameterValue("testatorage", TestatorAge);
+            rpt.SetParameterValue("beneficiaryname", BeneficiaryName);
+            rpt.SetParameterValue("beneficiarysirname", beneficiarysirname);
+            rpt.SetParameterValue("testatoradd", TestatorAddress);
+            rpt.SetParameterValue("appointee1", executorname);
+            rpt.SetParameterValue("appointee2", alternateexecutorname);
+            rpt.SetParameterValue("wifename", Relation);
+            rpt.SetParameterValue("assetcategory", assetcategory);
+            rpt.SetParameterValue("assetname", instrumentname);
+            rpt.SetParameterValue("benefname", mapbeneficiary);
+            rpt.SetParameterValue("percent", proportion);
 
             rpt.Load(Server.MapPath(@"~/CrystalReports/WillTestator.rpt"));
 

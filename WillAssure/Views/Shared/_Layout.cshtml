@@ -314,34 +314,39 @@
 
                                 ArrayList act = new ArrayList(Action.Split(','));
 
-                                if (item.PageStatus == "Active")
+                                if (item.PageStatus == "Active" || nav1[0].ToString() == "Add User")
                                 {
-                                    <li>
+                <li>
 
-                                        <a href="javaScript:void();" class="waves-effect">
-                                            <i class="zmdi zmdi-format-list-bulleted"></i> <span>@item.PageName</span>
-                                            <i class="fa fa-angle-left pull-right"></i>
-                                        </a>
+                    <a href="javaScript:void();" class="waves-effect">
+                        <i class="zmdi zmdi-format-list-bulleted"></i> <span>@item.PageName</span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </a>
 
-                                        @if (act[0].ToString() == "1")
-                                        {
-                                            <ul class="sidebar-submenu">
+                    @if (act[0].ToString() == "1" || nav1[0].ToString() == "Add User")
+                    {
 
-                                                <li><a href=@Url.Action(nav1[1].ToString(), nav1[2].ToString())><i class="zmdi zmdi-star-outline"></i>@nav1[0].ToString()</a></li>
+                        string pagename = @nav1[0].ToString();
 
-                                            </ul>
-                                        }
+                        <ul class="sidebar-submenu">
 
-                                        <ul class="sidebar-submenu">
-                                            @if (nav2[0].ToString() != "NULL")
-                                            {
-                                                <li><a href=@Url.Action(nav2[1].ToString(), nav2[2].ToString())><i class="zmdi zmdi-star-outline"></i>@nav2[0].ToString()</a></li>
-                                            }
+                            <li><a href=@Url.Action(nav1[1].ToString(), nav1[2].ToString())><i class="zmdi zmdi-star-outline"></i>@nav1[0].ToString()</a></li>
+
+                        </ul>
 
 
-                                        </ul>
+                    }
 
-                                    </li>
+                    <ul class="sidebar-submenu">
+                        @if (nav2[0].ToString() != "NULL")
+                        {
+                            <li><a href=@Url.Action(nav2[1].ToString(), nav2[2].ToString())><i class="zmdi zmdi-star-outline"></i>@nav2[0].ToString()</a></li>
+                        }
+
+
+                    </ul>
+
+                </li>
                                 }
 
                             }

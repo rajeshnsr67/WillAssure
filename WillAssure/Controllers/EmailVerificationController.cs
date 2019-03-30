@@ -158,30 +158,39 @@ namespace WillAssure.Controllers
 
 
                     //generate Mail
+                    string mailto = "";
+                    string userid = "";
+                  
+                    mailto = Session["mailto"].ToString();
+                    userid = Session["userid"].ToString();
+                    string subject = "Will Assure Login Credentials";
 
-                    string mailid = "manarmalleditor@gmail.com";
-                    // string mailto = TFM.Email;
-                    string mailto = Session["mailto"].ToString();
-                    string subject = "Testing Mail Sending";
-                    //  string OTP = "<font color='Green' style='font-size=3em;'>" + TFM.EmailOTP + "</font>";
-                    string text = "<font color='Green' style='font-size=3em;'>Your UserId And Password For Logging In Is <br> UserID : " + PanNumber + " <br> Password : " + Password + "</font>";
+                    string text = "<font color='Green' style='font-size=3em;'>Your UserId And Password For Logging In Is <br> UserID : " + userid + " <br> Password : " + Password + "</font>";
                     string body = "<font color='red'>" + text + "</font>";
-                    using (MailMessage mm = new MailMessage(mailid, mailto))
-                    {
-                        mm.Subject = subject;
-                        mm.Body = body;
 
-                        mm.IsBodyHtml = true;
-                        SmtpClient smtp = new SmtpClient();
-                        smtp.Host = "216.10.240.149";
-                        smtp.EnableSsl = false;
-                        NetworkCredential NetworkCred = new NetworkCredential(mailid, Epassword);
-                        smtp.UseDefaultCredentials = true;
-                        smtp.Credentials = NetworkCred;
-                        smtp.Port = 587;
-                        smtp.Send(mm);
 
-                    }
+                    MailMessage msg = new MailMessage();
+                    msg.From = new MailAddress("info@drinco.in");
+                    msg.To.Add(mailto);
+                    msg.Subject = subject;
+                    msg.Body = body;
+
+                    msg.IsBodyHtml = true;
+                    SmtpClient smtp = new SmtpClient("216.10.240.149", 25);
+                    smtp.Credentials = new NetworkCredential("info@drinco.in", "95Bzf%s7");
+                    smtp.EnableSsl = false;
+                    smtp.Send(msg);
+                    smtp.Dispose();
+
+
+                    //end
+
+
+                    // new mail code
+           
+                   
+               
+
 
                     //end
 
