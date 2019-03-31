@@ -769,7 +769,7 @@ namespace WillAssure.Controllers
 
 
             con.Open();
-            string query = "insert into BeneficiaryAssets (AssetType_ID , AssetCategory_ID ,  Beneficiary_ID , SchemeName , InstrumentName , Proportion , rid ) values   (" + assettype + " , " + assetcat + " , " + beneficiary + " , '" + schemename + "' , '" + instrument + "' , '" + proportion + "' , " + Convert.ToInt32(Session["rId"]) + ") ";
+            string query = "insert into BeneficiaryAssets (AssetType_ID , AssetCategory_ID ,  Beneficiary_ID , SchemeName , InstrumentName , Proportion , tid ) values   (" + assettype + " , " + assetcat + " , " + beneficiary + " , '" + schemename + "' , '" + instrument + "' , '" + proportion + "' , " + Convert.ToInt32(Session["tid"]) + ") ";
             SqlCommand cmd = new SqlCommand(query, con);
             cmd.ExecuteNonQuery();
             con.Close();
@@ -830,7 +830,7 @@ namespace WillAssure.Controllers
                 {
                     con.Open();
                     result[i].ToString();
-                    string query = "insert into BeneficiaryAssets (AssetType_ID,AssetCategory_ID,Beneficiary_ID,SchemeName,InstrumentName,Proportion , rid) values (" + assettype+","+assetcat+","+ result[i].ToString() + "," + Convert.ToInt32(Session["rId"]) + ")";
+                    string query = "insert into BeneficiaryAssets (AssetType_ID,AssetCategory_ID,Beneficiary_ID,SchemeName,InstrumentName,Proportion , tid) values (" + assettype+","+assetcat+","+ result[i].ToString() + "," + Convert.ToInt32(Session["tid"]) + ")";
                     SqlCommand cmd = new SqlCommand(query,con);
                     cmd.ExecuteNonQuery();
                     con.Close();

@@ -240,7 +240,7 @@ namespace WillAssure.Controllers
             cmd.Parameters.AddWithValue("@City", AM.citytext);
             cmd.Parameters.AddWithValue("@State", AM.statetext);
             cmd.Parameters.AddWithValue("@Pin", AM.Pin);
-            cmd.Parameters.AddWithValue("@rid", Convert.ToInt32(Session["rId"]));
+            cmd.Parameters.AddWithValue("@tid", Convert.ToInt32(Session["tid"]));
             cmd.ExecuteNonQuery();
             con.Close();
             ViewBag.Message = "Verified";

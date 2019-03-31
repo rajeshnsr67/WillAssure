@@ -111,7 +111,7 @@ namespace WillAssure.Controllers
 
 
             con.Open();
-            string query = "select a.uId , a.First_Name , a.Last_Name , a.Middle_Name , a.DOB , a.Mobile , a.eMail , a.Address1 , a.Address2 , a.Address3 , a.City , a.State , a.Pin , a.userID , a.userPwd , a.Linked_user , a.Designation , b.Role , a.dateCreated , a.active , a.compId  from users a inner join Roles b on a.rId=b.rId where a.rId = " + Convert.ToInt32(Session["rId"]) + "";
+            string query = "select b.uId , b.First_Name , b.Last_Name , b.Middle_Name , b.DOB , b.Mobile , b.eMail , b.Address1 , b.Address2 , b.Address3 , b.City , b.State , b.Pin , b.userID , b.userPwd , b.Linked_user , b.Designation , c.Role , b.dateCreated , b.active , b.compId from companyDetails a inner join users b on a.compId=b.compId inner join Roles c on b.rId = c.rId  where a.compId = 1";
             SqlDataAdapter da = new SqlDataAdapter(query, con);
             DataTable dt = new DataTable();
             da.Fill(dt);
@@ -406,7 +406,7 @@ namespace WillAssure.Controllers
 
 
             con.Open();
-            string query = "select a.uId , a.First_Name , a.Last_Name , a.Middle_Name , a.DOB , a.Mobile , a.eMail , a.Address1 , a.Address2 , a.Address3 , a.City , a.State , a.Pin , a.userID , a.userPwd , a.Linked_user , a.Designation , b.Role , a.dateCreated , a.active , a.compId  from users a inner join Roles b on a.rId=b.rId where a.rId = " + Convert.ToInt32(Session["rId"]) + "";
+            string query = "select b.uId , b.First_Name , b.Last_Name , b.Middle_Name , b.DOB , b.Mobile , b.eMail , b.Address1 , b.Address2 , b.Address3 , b.City , b.State , b.Pin , b.userID , b.userPwd , b.Linked_user , b.Designation , c.Role , b.dateCreated , b.active , b.compId from companyDetails a inner join users b on a.compId=b.compId inner join Roles c on b.rId = c.rId  where a.compId = 1";
             SqlDataAdapter da = new SqlDataAdapter(query, con);
             DataTable dt = new DataTable();
             da.Fill(dt);
