@@ -113,7 +113,7 @@ namespace WillAssure.Controllers
 
             string final = "";
             con.Open();
-            string query = "select b.aiid , a.AssetsType , c.AssetsCategory , b.Json from AssetsType a inner join  AssetInformation b on a.atId = b.atId inner join AssetsCategory  c on b.amId = c.amId order by b.aiid asc";
+            string query = "select a.aiid , d.AssetsType , e.AssetsCategory , a.tid , a.docid , a.Json from AssetInformation a inner join TestatorDetails b on a.tid=b.tId inner join users c on b.uId=c.uId inner join AssetsType d on a.atId=d.atId inner join AssetsCategory e on a.amId=e.amId where c.rId =  " + Convert.ToInt32(Session["rId"]) + " ";
             SqlDataAdapter da = new SqlDataAdapter(query, con);
             DataTable dt = new DataTable();
             da.Fill(dt);
@@ -262,7 +262,7 @@ namespace WillAssure.Controllers
 
            // string final = "";
             con.Open();
-            string query = "select b.aiid , a.AssetsType , c.AssetsCategory , b.Json from AssetsType a inner join  AssetInformation b on a.atId = b.atId inner join AssetsCategory  c on b.amId = c.amId order by b.aiid asc";
+            string query = "select a.aiid , d.AssetsType , e.AssetsCategory , a.tid , a.docid , a.Json from AssetInformation a inner join TestatorDetails b on a.tid=b.tId inner join users c on b.uId=c.uId inner join AssetsType d on a.atId=d.atId inner join AssetsCategory e on a.amId=e.amId where c.rId =  " + Convert.ToInt32(Session["rId"]) + " ";
             SqlDataAdapter da = new SqlDataAdapter(query, con);
             DataTable dt = new DataTable();
             da.Fill(dt);

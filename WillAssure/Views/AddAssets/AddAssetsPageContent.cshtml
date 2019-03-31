@@ -93,30 +93,30 @@
 
 
 
-                            <textarea id="assetcolumn" style="display:;" name="assetcolumn" class="form-control">
+                            <textarea id="assetcolumn" style="display:none;" name="assetcolumn" class="form-control">
 
                             </textarea>
 
-                            <textarea id="col" style="display:;" name="col" class="form-control">
+                            <textarea id="col" style="display:none;" name="col" class="form-control">
 
                             </textarea>
 
-                            <textarea id="val" style="display:;" name="val" class="form-control">
-
-                            </textarea>
-
-
-                            <textarea id="assetcolumnValues" style="display:;" name="assetcolumnValues" class="form-control">
+                            <textarea id="val" style="display:none;" name="val" class="form-control">
 
                             </textarea>
 
 
-                            <textarea id="controls" style="display:;" name="controls" class="form-control">
+                            <textarea id="assetcolumnValues" style="display:none;" name="assetcolumnValues" class="form-control">
 
                             </textarea>
 
 
-                            <textarea id="values" style="display:;" name="values" class="form-control">
+                            <textarea id="controls" style="display:none;" name="controls" class="form-control">
+
+                            </textarea>
+
+
+                            <textarea id="values" style="display:none;" name="values" class="form-control">
 
                             </textarea>
 
@@ -402,9 +402,9 @@
         function getAssetColumnValue(ENTITY) {
 
          
-
-            alert(ENTITY);
-        
+            $(".Entityinput").attr("disabled", "disabled");
+            
+            
 
         $("#assetcolumn").append("" + ENTITY + ",");
 
@@ -422,6 +422,9 @@
 
     function bar(value) {
         var val = value;
+
+        
+        $(".labelinput").attr("disabled", "disabled");
 
         $("#assetcolumnValues").append("" + value +  "',");
 
@@ -464,7 +467,7 @@
 
         $(document).on('change', '.ddlcontrolinput', function () {
 
-          
+            $(".ddlcontrolinput").attr("disabled", "disabled");
 
         var id = $(this).closest('.group').find(".ddlcontrolinput").val();
             

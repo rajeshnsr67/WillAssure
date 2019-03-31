@@ -111,7 +111,7 @@ namespace WillAssure.Controllers
 
 
             con.Open();
-            string query = "select * from alternate_Appointees";
+            string query = "select * from alternate_Appointees where rid = " + Convert.ToInt32(Session["rId"]) + "";
             SqlDataAdapter da = new SqlDataAdapter(query, con);
             DataTable dt = new DataTable();
             da.Fill(dt);
@@ -143,7 +143,7 @@ namespace WillAssure.Controllers
                                     + "<td>" + dt.Rows[i]["City"].ToString() + "</td>"
                                     + "<td>" + dt.Rows[i]["State"].ToString() + "</td>"
                                     + "<td>" + dt.Rows[i]["Pin"].ToString() + "</td>"
-
+                                     + "<td>" + dt.Rows[i]["rid"].ToString() + "</td>"
 
                                     + "<td><button type='button'   id='" + dt.Rows[i]["id"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary'>Edit</button></td>    </tr>";
 
@@ -173,7 +173,7 @@ namespace WillAssure.Controllers
                                     + "<td>" + dt.Rows[i]["City"].ToString() + "</td>"
                                     + "<td>" + dt.Rows[i]["State"].ToString() + "</td>"
                                     + "<td>" + dt.Rows[i]["Pin"].ToString() + "</td>"
-
+                                     + "<td>" + dt.Rows[i]["rid"].ToString() + "</td>"
 
                                     + "<td><button type='button'   id='" + dt.Rows[i]["id"].ToString() + "'    class='btn btn-danger deletenotification'>Delete</button></td>    </tr>";
 
@@ -204,7 +204,7 @@ namespace WillAssure.Controllers
                                     + "<td>" + dt.Rows[i]["City"].ToString() + "</td>"
                                     + "<td>" + dt.Rows[i]["State"].ToString() + "</td>"
                                     + "<td>" + dt.Rows[i]["Pin"].ToString() + "</td>"
-
+                                     + "<td>" + dt.Rows[i]["rid"].ToString() + "</td>"
 
                                     + "<td><button type='button'   id='" + dt.Rows[i]["id"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary'>Edit</button><button type='button'   id='" + dt.Rows[i]["id"].ToString() + "'   class='btn btn-danger deletenotification'>Delete</button></td>    </tr>";
 
@@ -235,10 +235,11 @@ namespace WillAssure.Controllers
                                     + "<td>" + dt.Rows[i]["Address3"].ToString() + "</td>"
                                     + "<td>" + dt.Rows[i]["City"].ToString() + "</td>"
                                     + "<td>" + dt.Rows[i]["State"].ToString() + "</td>"
-                                    + "<td>" + dt.Rows[i]["Pin"].ToString() + "</td>";
+                                    + "<td>" + dt.Rows[i]["Pin"].ToString() + "</td>"
+                                    + "<td>" + dt.Rows[i]["rid"].ToString() + "</td>";
 
 
-                                  
+
 
                     }
                 }
@@ -280,6 +281,7 @@ namespace WillAssure.Controllers
             cmd.Parameters.AddWithValue("@City", "");
             cmd.Parameters.AddWithValue("@State", "");
             cmd.Parameters.AddWithValue("@Pin", "");
+            cmd.Parameters.AddWithValue("@rid", "");
             cmd.ExecuteNonQuery();
             con.Close();
 
@@ -337,7 +339,7 @@ namespace WillAssure.Controllers
 
 
             con.Open();
-            string query = "select * from alternate_Appointees";
+            string query = "select * from alternate_Appointees where rid = " + Convert.ToInt32(Session["rId"]) + "";
             SqlDataAdapter da = new SqlDataAdapter(query, con);
             DataTable dt = new DataTable();
             da.Fill(dt);
@@ -369,7 +371,7 @@ namespace WillAssure.Controllers
                                     + "<td>" + dt.Rows[i]["City"].ToString() + "</td>"
                                     + "<td>" + dt.Rows[i]["State"].ToString() + "</td>"
                                     + "<td>" + dt.Rows[i]["Pin"].ToString() + "</td>"
-
+                                     + "<td>" + dt.Rows[i]["rid"].ToString() + "</td>"
 
                                     + "<td><button type='button'   id='" + dt.Rows[i]["id"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary'>Edit</button></td>    </tr>";
 
@@ -399,7 +401,7 @@ namespace WillAssure.Controllers
                                     + "<td>" + dt.Rows[i]["City"].ToString() + "</td>"
                                     + "<td>" + dt.Rows[i]["State"].ToString() + "</td>"
                                     + "<td>" + dt.Rows[i]["Pin"].ToString() + "</td>"
-
+                                     + "<td>" + dt.Rows[i]["rid"].ToString() + "</td>"
 
                                     + "<td><button type='button'   id='" + dt.Rows[i]["id"].ToString() + "'    class='btn btn-danger deletenotification'>Delete</button></td>    </tr>";
 
@@ -430,7 +432,7 @@ namespace WillAssure.Controllers
                                     + "<td>" + dt.Rows[i]["City"].ToString() + "</td>"
                                     + "<td>" + dt.Rows[i]["State"].ToString() + "</td>"
                                     + "<td>" + dt.Rows[i]["Pin"].ToString() + "</td>"
-
+                                     + "<td>" + dt.Rows[i]["rid"].ToString() + "</td>"
 
                                     + "<td><button type='button'   id='" + dt.Rows[i]["id"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary'>Edit</button><button type='button'   id='" + dt.Rows[i]["id"].ToString() + "'    class='btn btn-danger deletenotification'>Delete</button></td>    </tr>";
 
@@ -461,8 +463,8 @@ namespace WillAssure.Controllers
                                     + "<td>" + dt.Rows[i]["Address3"].ToString() + "</td>"
                                     + "<td>" + dt.Rows[i]["City"].ToString() + "</td>"
                                     + "<td>" + dt.Rows[i]["State"].ToString() + "</td>"
-                                    + "<td>" + dt.Rows[i]["Pin"].ToString() + "</td>";
-
+                                    + "<td>" + dt.Rows[i]["Pin"].ToString() + "</td>"
+                                    +"<td>" + dt.Rows[i]["rid"].ToString() + "</td>";
 
 
 

@@ -1,0 +1,16 @@
+company done          
+distributor  done
+testator done
+testatorfamily done
+asset type notdone
+asset cat  notdone
+asstet control notdone
+asset information done
+relation notdone
+beneficiary done
+alternatebene done
+nominee done
+appointees check  done
+alternate appointees done
+mapping done
+

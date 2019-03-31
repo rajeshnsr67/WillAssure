@@ -23,11 +23,11 @@ namespace WillAssure.Controllers
             {
                 return View("~/Views/LoginPage/LoginPageContent.cshtml");
             }
-            if (Session["compId"] == null)
-            {
-                ViewBag.Message = "link";
+            //if (Session["compId"] == null)
+            //{
+            //    ViewBag.Message = "link";
                 
-            }
+            //}
 
 
 
@@ -107,8 +107,8 @@ namespace WillAssure.Controllers
             //end
 
 
-            if (Session["compId"] != null)
-            {
+            //if (Session["compId"] != null)
+            //{
 
 
                 con.Open();
@@ -148,8 +148,22 @@ namespace WillAssure.Controllers
                     cmd.Parameters.AddWithValue("@Designation", UFM.Designation);
                     cmd.Parameters.AddWithValue("@Active", UFM.Active);
                     cmd.Parameters.AddWithValue("@rid", UFM.rid);
-                    UFM.CompId = Convert.ToInt32(Session["compid"].ToString());
-                    cmd.Parameters.AddWithValue("@compId", UFM.CompId);
+                    //         UFM.CompId = Convert.ToInt32(Session["compid"].ToString());
+
+                   
+                    string que = "select top 1 * from companyDetails order by compId desc";
+                    SqlDataAdapter d = new SqlDataAdapter(que,con);
+                    DataTable dtt = new DataTable();
+                    d.Fill(dtt);
+                    int compid = 0;
+                    if (dtt.Rows.Count > 0)
+                    {
+                        compid = Convert.ToInt32(dtt.Rows[0]["compId"]);
+                    }
+                   
+                
+
+                    cmd.Parameters.AddWithValue("@compId", compid);
                     cmd.Parameters.AddWithValue("@Linked_user", UFM.rid);
                     cmd.ExecuteNonQuery();
 
@@ -175,6 +189,8 @@ namespace WillAssure.Controllers
                     }
 
                     con.Close();
+
+                    con.Open();
                     string query2 = "select top 1 * from users order by uId desc";
                     SqlDataAdapter da2 = new SqlDataAdapter(query2, con);
                     DataTable dt2 = new DataTable();
@@ -184,7 +200,7 @@ namespace WillAssure.Controllers
                        
                         Session["uid"] = Convert.ToInt32(dt.Rows[0]["uId"]);
                     }
-                    con.Open();
+                    con.Close();
 
 
 
@@ -205,13 +221,13 @@ namespace WillAssure.Controllers
 
 
                
-            }
-            else
-            {
+            //}
+            //else
+            //{
 
-                ViewBag.Message = "link";
+            //    ViewBag.Message = "link";
 
-            }
+            //}
 
            
            

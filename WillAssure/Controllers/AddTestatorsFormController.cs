@@ -28,10 +28,10 @@ namespace WillAssure.Controllers
             {
                 return View("~/Views/LoginPage/LoginPageContent.cshtml");
             }
-            if (Session["compId"] == null)
-            {
-                ViewBag.Message = "link";
-            }
+            //if (Session["compId"] == null)
+            //{
+            //    ViewBag.Message = "link";
+            //}
 
             List<LoginModel> Lmlist = new List<LoginModel>();
             con.Open();
@@ -153,8 +153,8 @@ namespace WillAssure.Controllers
             //END
 
 
-            if (Session["compId"] != null)
-            {
+            //if (Session["compId"] != null)
+            //{
                 TFM.uId = Convert.ToInt32(Session["uid"]);
                 DateTime dat = DateTime.ParseExact(TFM.Dob, "dd-MM-yyyy", CultureInfo.InvariantCulture);
                 con.Open();
@@ -454,12 +454,12 @@ namespace WillAssure.Controllers
                 ViewBag.Message = "Verified";
 
                 return RedirectToAction("EmailVerificationIndex", "EmailVerification", new { v2 = v1 });
-            }
-            else
-            {
-                ViewBag.Message = "link";
+            //}
+            //else
+            //{
+            //    ViewBag.Message = "link";
 
-            }
+            //}
 
             return View("~/Views/AddTestatorsForm/AddTestatorPageContent.cshtml");
           

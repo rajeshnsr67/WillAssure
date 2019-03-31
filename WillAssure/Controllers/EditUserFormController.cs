@@ -111,7 +111,7 @@ namespace WillAssure.Controllers
 
 
             con.Open();
-            string query = "select * from users";
+            string query = "select a.uId , a.First_Name , a.Last_Name , a.Middle_Name , a.DOB , a.Mobile , a.eMail , a.Address1 , a.Address2 , a.Address3 , a.City , a.State , a.Pin , a.userID , a.userPwd , a.Linked_user , a.Designation , b.Role , a.dateCreated , a.active , a.compId  from users a inner join Roles b on a.rId=b.rId where a.rId = " + Convert.ToInt32(Session["rId"]) + "";
             SqlDataAdapter da = new SqlDataAdapter(query, con);
             DataTable dt = new DataTable();
             da.Fill(dt);
@@ -250,7 +250,7 @@ namespace WillAssure.Controllers
                                     + "<td>" + dt.Rows[i]["userPwd"].ToString() + "</td>"
 
                                     + "<td>" + dt.Rows[i]["Designation"].ToString() + "</td>"
-                                    + "<td>" + dt.Rows[i]["rId"].ToString() + "</td>"
+                                    + "<td>" + dt.Rows[i]["Role"].ToString() + "</td>"
                                     + "<td>" + a + "</td>"
 
                                     + "<td><button type='button'   id='" + dt.Rows[i]["uId"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary'>Edit</button><button type='button'   id='" + dt.Rows[i]["uId"].ToString() + "'   class='btn btn-danger deletenotification'>Delete</button></td></tr>";
@@ -297,7 +297,7 @@ namespace WillAssure.Controllers
                                     + "<td>" + dt.Rows[i]["userPwd"].ToString() + "</td>"
 
                                     + "<td>" + dt.Rows[i]["Designation"].ToString() + "</td>"
-                                    + "<td>" + dt.Rows[i]["rId"].ToString() + "</td>"
+                                    + "<td>" + dt.Rows[i]["Role"].ToString() + "</td>"
                                     + "<td>" + a + "</td>";
 
                                  
@@ -406,7 +406,7 @@ namespace WillAssure.Controllers
 
 
             con.Open();
-            string query = "select * from users";
+            string query = "select a.uId , a.First_Name , a.Last_Name , a.Middle_Name , a.DOB , a.Mobile , a.eMail , a.Address1 , a.Address2 , a.Address3 , a.City , a.State , a.Pin , a.userID , a.userPwd , a.Linked_user , a.Designation , b.Role , a.dateCreated , a.active , a.compId  from users a inner join Roles b on a.rId=b.rId where a.rId = " + Convert.ToInt32(Session["rId"]) + "";
             SqlDataAdapter da = new SqlDataAdapter(query, con);
             DataTable dt = new DataTable();
             da.Fill(dt);
@@ -454,7 +454,7 @@ namespace WillAssure.Controllers
                                     + "<td>" + dt.Rows[i]["userPwd"].ToString() + "</td>"
 
                                     + "<td>" + dt.Rows[i]["Designation"].ToString() + "</td>"
-                                    + "<td>" + dt.Rows[i]["rId"].ToString() + "</td>"
+                                    + "<td>" + dt.Rows[i]["Role"].ToString() + "</td>"
                                     + "<td>" + a + "</td>"
 
                                     + "<td><button type='button'   id='" + dt.Rows[i]["uId"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary'>Edit</button></td></tr>";
@@ -499,7 +499,7 @@ namespace WillAssure.Controllers
                                     + "<td>" + dt.Rows[i]["userPwd"].ToString() + "</td>"
 
                                     + "<td>" + dt.Rows[i]["Designation"].ToString() + "</td>"
-                                    + "<td>" + dt.Rows[i]["rId"].ToString() + "</td>"
+                                    + "<td>" + dt.Rows[i]["Role"].ToString() + "</td>"
                                     + "<td>" + a + "</td>"
 
                                     + "<td><button type='button'   id='" + dt.Rows[i]["uId"].ToString() + "'    class='btn btn-danger deletenotification'>Delete</button></td></tr>";
@@ -545,7 +545,7 @@ namespace WillAssure.Controllers
                                     + "<td>" + dt.Rows[i]["userPwd"].ToString() + "</td>"
 
                                     + "<td>" + dt.Rows[i]["Designation"].ToString() + "</td>"
-                                    + "<td>" + dt.Rows[i]["rId"].ToString() + "</td>"
+                                    + "<td>" + dt.Rows[i]["Role"].ToString() + "</td>"
                                     + "<td>" + a + "</td>"
 
                                     + "<td><button type='button'   id='" + dt.Rows[i]["uId"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary'>Edit</button><button type='button'   id='" + dt.Rows[i]["uId"].ToString() + "'    class='btn btn-danger deletenotification'>Delete</button></td></tr>";
@@ -592,7 +592,7 @@ namespace WillAssure.Controllers
                                     + "<td>" + dt.Rows[i]["userPwd"].ToString() + "</td>"
 
                                     + "<td>" + dt.Rows[i]["Designation"].ToString() + "</td>"
-                                    + "<td>" + dt.Rows[i]["rId"].ToString() + "</td>"
+                                    + "<td>" + dt.Rows[i]["Role"].ToString() + "</td>"
                                     + "<td>" + a + "</td>";
 
 

@@ -112,7 +112,7 @@ namespace WillAssure.Controllers
 
 
             con.Open();
-            string query = "select * from TestatorDetails ";
+            string query = "select  a.tId , a.First_Name , a.Last_Name , a.Middle_Name , a.DOB , a.Occupation , a.Mobile , a.Email , a.maritalStatus , a.RelationShip , a.Religion , a.Identity_Proof , a.Identity_proof_Value , a.Alt_Identity_Proof , a.Alt_Identity_proof_Value , a.Gender , a.Address1 , a.Address2 , a.Address3 , a.City , a.State , a.Country , a.Pin ,a.active , a.uId , a.Contact_Verification , a.Email_Verification , a.Mobile_Verification_Status , a.dateCreated , a.Email_OTP , a.Mobile_OTP  from TestatorDetails a inner join users b on a.uId=b.uId where b.rId = " + Convert.ToInt32(Session["rId"]) + "";
             SqlDataAdapter da = new SqlDataAdapter(query, con);
             DataTable dt = new DataTable();
             da.Fill(dt);
@@ -363,7 +363,7 @@ namespace WillAssure.Controllers
 
 
             con.Open();
-            string query = "select * from TestatorDetails ";
+            string query = "select  a.tId , a.First_Name , a.Last_Name , a.Middle_Name , a.DOB , a.Occupation , a.Mobile , a.Email , a.maritalStatus , a.RelationShip , a.Religion , a.Identity_Proof , a.Identity_proof_Value , a.Alt_Identity_Proof , a.Alt_Identity_proof_Value , a.Gender , a.Address1 , a.Address2 , a.Address3 , a.City , a.State , a.Country , a.Pin ,a.active , a.uId , a.Contact_Verification , a.Email_Verification , a.Mobile_Verification_Status , a.dateCreated , a.Email_OTP , a.Mobile_OTP  from TestatorDetails a inner join users b on a.uId=b.uId where b.rId = " + Convert.ToInt32(Session["rId"]) + "";
             SqlDataAdapter da = new SqlDataAdapter(query, con);
             DataTable dt = new DataTable();
             da.Fill(dt);

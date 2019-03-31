@@ -44,6 +44,7 @@ namespace WillAssure.Models
       public string statetext { get; set; }
 
         public string Pin  { get; set;}
+        public int rid { get; set; }
 
 
     }
