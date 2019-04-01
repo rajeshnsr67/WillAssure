@@ -73,8 +73,11 @@ namespace WillAssure.Controllers
             if (dt.Rows.Count > 0)
             {
                 Session["rId"] = Convert.ToInt32(dt.Rows[0]["rId"]);
-                Session["uid"] = Convert.ToInt32(dt.Rows[0]["uid"]);
-              
+                Session["uid"] = Convert.ToInt32(dt.Rows[0]["userID"]);
+                Session["uuid"] = Convert.ToInt32(dt.Rows[0]["uId"]);
+                Session["compId"] = Convert.ToInt32(dt.Rows[0]["compId"]);
+
+
                 Session["ComparerrId"] = Convert.ToInt32(dt.Rows[0]["rId"]);
                 con.Open();
                string query2 = "select * from roles where rId = "+ Session["rId"] + " ";
@@ -156,7 +159,7 @@ namespace WillAssure.Controllers
             Session["Document_Created_By"] = "";
             Session["mailto"] = "";
             Session["userid"] = "";
-
+            Session["uuid"] = "";
 
 
 

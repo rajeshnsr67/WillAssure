@@ -141,33 +141,11 @@ namespace WillAssure.Controllers
             if (dt.Rows.Count > 0)
             {
 
-                compid = Convert.ToInt32(dt.Rows[0]["compId"]); 
+                Session["compid"] = Convert.ToInt32(dt.Rows[0]["compId"]); 
             }
             con.Close();
 
-            // get recent uid
-            int uid = 0;
-            con.Open();
-            string query2 = "select TOP 1 * FROM  users ORDER BY  uId DESC    ";
-            SqlDataAdapter da2 = new SqlDataAdapter(query2, con);
-            DataTable dt2 = new DataTable();
-            da2.Fill(dt2);
-            if (dt2.Rows.Count > 0)
-            {
-
-                uid = Convert.ToInt32(dt2.Rows[0]["uId"]);
-            }
-            con.Close();
-
-
-            //end
-
-            // add comp id to testator
-            con.Open();
-            string que = "update users set compId = "+compid+" where uId = "+ uid + "  ";
-            SqlCommand cmd2 = new SqlCommand(que,con);
-            cmd2.ExecuteNonQuery();
-            con.Close();
+           
 
 
             ViewBag.Message = "Verified";

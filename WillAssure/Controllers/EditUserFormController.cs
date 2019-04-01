@@ -111,7 +111,7 @@ namespace WillAssure.Controllers
 
 
             con.Open();
-            string query = "select b.uId , b.First_Name , b.Last_Name , b.Middle_Name , b.DOB , b.Mobile , b.eMail , b.Address1 , b.Address2 , b.Address3 , b.City , b.State , b.Pin , b.userID , b.userPwd , b.Linked_user , b.Designation , c.Role , b.dateCreated , b.active , b.compId from companyDetails a inner join users b on a.compId=b.compId inner join Roles c on b.rId = c.rId  where a.compId = 1";
+            string query = "select a.uId , a.First_Name , a.Last_Name , a.Middle_Name , a.DOB , a.Mobile , a.eMail , a.Address1 , a.Address2 , a.Address3 , a.City , a.State , a.Pin , a.userID , a.userPwd , a.Linked_user , a.Designation , c.Role , a.dateCreated , a.active , a.compId  from users a inner join companydetails b on a.compId=b.compId  inner join roles c on a.rId=c.rId where a.uid = " + Convert.ToInt32(Session["uuid"]) + " and a.compId = "+ Convert.ToInt32(Session["compId"]) + " and a.userID = "+ Convert.ToInt32(Session["uid"]) + "  and a.active = 1 and a.rid = "+ Convert.ToInt32(Session["rId"]) + " ";
             SqlDataAdapter da = new SqlDataAdapter(query, con);
             DataTable dt = new DataTable();
             da.Fill(dt);
@@ -161,6 +161,7 @@ namespace WillAssure.Controllers
                                     + "<td>" + dt.Rows[i]["Designation"].ToString() + "</td>"
                                     + "<td>" + dt.Rows[i]["rId"].ToString() + "</td>"
                                     + "<td>" + a + "</td>"
+                                     + "<td>" + Convert.ToInt32(dt.Rows[i]["compId"]) + "</td>"
 
                                     + "<td><button type='button'   id='" + dt.Rows[i]["uId"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary'>Edit</button></td></tr>";
 
@@ -206,7 +207,7 @@ namespace WillAssure.Controllers
                                     + "<td>" + dt.Rows[i]["Designation"].ToString() + "</td>"
                                     + "<td>" + dt.Rows[i]["rId"].ToString() + "</td>"
                                     + "<td>" + a + "</td>"
-
+                                      + "<td>" + Convert.ToInt32(dt.Rows[i]["compId"]) + "</td>"
                                     + "<td><button type='button'   id='" + dt.Rows[i]["uId"].ToString() + "'   class='btn btn-danger deletenotification'>Delete</button></td></tr>";
 
                     }
@@ -252,7 +253,7 @@ namespace WillAssure.Controllers
                                     + "<td>" + dt.Rows[i]["Designation"].ToString() + "</td>"
                                     + "<td>" + dt.Rows[i]["Role"].ToString() + "</td>"
                                     + "<td>" + a + "</td>"
-
+                                     + "<td>" + Convert.ToInt32(dt.Rows[i]["compId"]) + "</td>"
                                     + "<td><button type='button'   id='" + dt.Rows[i]["uId"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary'>Edit</button><button type='button'   id='" + dt.Rows[i]["uId"].ToString() + "'   class='btn btn-danger deletenotification'>Delete</button></td></tr>";
 
                     }
@@ -298,9 +299,10 @@ namespace WillAssure.Controllers
 
                                     + "<td>" + dt.Rows[i]["Designation"].ToString() + "</td>"
                                     + "<td>" + dt.Rows[i]["Role"].ToString() + "</td>"
-                                    + "<td>" + a + "</td>";
+                                    + "<td>" + a + "</td>"
+                                    + "<td>" + Convert.ToInt32(dt.Rows[i]["compId"]) + "</td>";
 
-                                 
+
 
                     }
                 }
@@ -406,7 +408,7 @@ namespace WillAssure.Controllers
 
 
             con.Open();
-            string query = "select b.uId , b.First_Name , b.Last_Name , b.Middle_Name , b.DOB , b.Mobile , b.eMail , b.Address1 , b.Address2 , b.Address3 , b.City , b.State , b.Pin , b.userID , b.userPwd , b.Linked_user , b.Designation , c.Role , b.dateCreated , b.active , b.compId from companyDetails a inner join users b on a.compId=b.compId inner join Roles c on b.rId = c.rId  where a.compId = 1";
+            string query = "select a.uId , a.First_Name , a.Last_Name , a.Middle_Name , a.DOB , a.Mobile , a.eMail , a.Address1 , a.Address2 , a.Address3 , a.City , a.State , a.Pin , a.userID , a.userPwd , a.Linked_user , a.Designation , c.Role , a.dateCreated , a.active , a.compId  from users a inner join companydetails b on a.compId=b.compId  inner join roles c on a.rId=c.rId where a.uid = " + Convert.ToInt32(Session["uuid"]) + " and a.compId = " + Convert.ToInt32(Session["compId"]) + " and a.userID = " + Convert.ToInt32(Session["uid"]) + "  and a.active = 1 and a.rid = " + Convert.ToInt32(Session["rId"]) + " ";
             SqlDataAdapter da = new SqlDataAdapter(query, con);
             DataTable dt = new DataTable();
             da.Fill(dt);
@@ -456,7 +458,7 @@ namespace WillAssure.Controllers
                                     + "<td>" + dt.Rows[i]["Designation"].ToString() + "</td>"
                                     + "<td>" + dt.Rows[i]["Role"].ToString() + "</td>"
                                     + "<td>" + a + "</td>"
-
+                                     + "<td>" + Convert.ToInt32(dt.Rows[i]["compId"]) + "</td>"
                                     + "<td><button type='button'   id='" + dt.Rows[i]["uId"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary'>Edit</button></td></tr>";
 
                     }
@@ -501,7 +503,7 @@ namespace WillAssure.Controllers
                                     + "<td>" + dt.Rows[i]["Designation"].ToString() + "</td>"
                                     + "<td>" + dt.Rows[i]["Role"].ToString() + "</td>"
                                     + "<td>" + a + "</td>"
-
+                                     + "<td>" + Convert.ToInt32(dt.Rows[i]["compId"]) + "</td>"
                                     + "<td><button type='button'   id='" + dt.Rows[i]["uId"].ToString() + "'    class='btn btn-danger deletenotification'>Delete</button></td></tr>";
 
                     }
@@ -547,7 +549,7 @@ namespace WillAssure.Controllers
                                     + "<td>" + dt.Rows[i]["Designation"].ToString() + "</td>"
                                     + "<td>" + dt.Rows[i]["Role"].ToString() + "</td>"
                                     + "<td>" + a + "</td>"
-
+                                     + "<td>" + Convert.ToInt32(dt.Rows[i]["compId"]) + "</td>"
                                     + "<td><button type='button'   id='" + dt.Rows[i]["uId"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary'>Edit</button><button type='button'   id='" + dt.Rows[i]["uId"].ToString() + "'    class='btn btn-danger deletenotification'>Delete</button></td></tr>";
 
                     }
@@ -593,8 +595,8 @@ namespace WillAssure.Controllers
 
                                     + "<td>" + dt.Rows[i]["Designation"].ToString() + "</td>"
                                     + "<td>" + dt.Rows[i]["Role"].ToString() + "</td>"
-                                    + "<td>" + a + "</td>";
-
+                                    + "<td>" + a + "</td>"
+                        + "<td>" + Convert.ToInt32(dt.Rows[i]["compId"]) + "</td>";
 
 
                     }

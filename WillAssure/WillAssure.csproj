@@ -240,6 +240,7 @@
     <Compile Include="Controllers\UpdateTestatorFamilyController.cs" />
     <Compile Include="Controllers\UpdateTestatorsController.cs" />
     <Compile Include="Controllers\UsersFormController.cs" />
+    <Compile Include="Controllers\ViewDocumentController.cs" />
     <Compile Include="CrystalReports\WillTestator.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1160,6 +1161,7 @@
     <Content Include="Views\EditTestatorFamily\EditTestatorFamilyPageContent.cshtml" />
     <Content Include="Views\UpdateTestatorFamily\UpdateTestatorFamilyPageContent.cshtml" />
     <Content Include="Views\AddRoleAssignment\AddRoleAssignmentPageContent.cshtml" />
+    <Content Include="Views\ViewDocument\EditViewDocumentPageContent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

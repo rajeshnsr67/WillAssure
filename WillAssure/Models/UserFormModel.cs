@@ -29,6 +29,7 @@ namespace WillAssure.Models
         public string Designation { get; set; }
         public string Active { get; set; }
         public int CompId { get; set; }
+        public string CompIdtext { get; set; }
         public string data { get; set; }
         public int rid { get; set; }
         public string rtext { get; set; }

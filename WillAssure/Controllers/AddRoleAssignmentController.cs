@@ -130,39 +130,39 @@ namespace WillAssure.Controllers
                
 
                 string qry = "";
-                string MainLink = "";
-                string SubLink1 = "";
-                string SubLink2 = "";
+                //string MainLink = "";
+                //string SubLink1 = "";
+                //string SubLink2 = "";
 
                 qry = qry + "insert into Assignment_Roles (RoleId,PageName,Nav1,Nav2) values ("+ roleid + " , 'Roles',' Add Roles~RoleAddIndex~RoleAdd','Edit Roles~EditRoleIndex~EditRole')";
              
 
-                if (roleid == 2)
-                {
-                    MainLink = "Distributor User";
-                    SubLink1 = "Add Users";
-                    SubLink2 = "Edit Users";
-                }
-                else
-                {
-                    MainLink = "Distributor";
-                    SubLink1 = "Add Distributor";
-                    SubLink2 = "Edit Distributor";
-                }
-                if (roleid == 3)
-                {
-                    MainLink = "WillAssure User";
-                    SubLink1 = "Add Users";
-                    SubLink2 = "Edit Users";
+                //if (roleid == 2)
+                //{
+                //    MainLink = "Distributor User";
+                //    SubLink1 = "Add Users";
+                //    SubLink2 = "Edit Users";
+                //}
+                //else
+                //{
+                //    MainLink = "Distributor";
+                //    SubLink1 = "Add Distributor";
+                //    SubLink2 = "Edit Distributor";
+                //}
+                //if (roleid == 3)
+                //{
+                //    MainLink = "WillAssure User";
+                //    SubLink1 = "Add Users";
+                //    SubLink2 = "Edit Users";
 
-                }
-
-
+                //}
 
 
-                qry = qry + "insert into Assignment_Roles (RoleId,PageName,Nav1,Nav2) values (" + roleid + " ,'" + MainLink + "','"+SubLink1+"~UsersFormIndex~UsersForm','"+SubLink2+"~EditUserFormIndex~EditUserForm')";
-                qry = qry + "insert into Assignment_Roles (RoleId,PageName,Nav1,Nav2) values (" + roleid + " ,'AssignRoles','Assign~AddRoleAssignmentIndex~AddRoleAssignment','NULL~NULL~NULL')";
+
                 qry = qry + "insert into Assignment_Roles (RoleId,PageName,Nav1,Nav2) values (" + roleid + " ,'Company','Add Company~AddDistributorIndex~AddDistributor','Edit Company~EditDistributorIndex~EditDistributor')";
+                qry = qry + "insert into Assignment_Roles (RoleId,PageName,Nav1,Nav2) values (" + roleid + " ,'Distributor','Add Distributor~UsersFormIndex~UsersForm','Edit Distributor~EditUserFormIndex~EditUserForm')";
+                qry = qry + "insert into Assignment_Roles (RoleId,PageName,Nav1,Nav2) values (" + roleid + " ,'AssignRoles','Assign~AddRoleAssignmentIndex~AddRoleAssignment','NULL~NULL~NULL')";
+                
 
 
 

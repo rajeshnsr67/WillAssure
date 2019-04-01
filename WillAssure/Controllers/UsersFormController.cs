@@ -23,15 +23,15 @@ namespace WillAssure.Controllers
             {
                 return View("~/Views/LoginPage/LoginPageContent.cshtml");
             }
-            //if (Session["compId"] == null)
-            //{
-            //    ViewBag.Message = "link";
-                
-            //}
+            if (Session["compId"] == null)
+            {
+                ViewBag.Message = "link";
+
+            }
 
 
 
-                List<LoginModel> Lmlist = new List<LoginModel>();
+            List<LoginModel> Lmlist = new List<LoginModel>();
             con.Open();
             string q = "select * from Assignment_Roles where RoleId = " + Convert.ToInt32(Session["rId"]) + "";
             SqlDataAdapter da3 = new SqlDataAdapter(q, con);
@@ -148,22 +148,25 @@ namespace WillAssure.Controllers
                     cmd.Parameters.AddWithValue("@Designation", UFM.Designation);
                     cmd.Parameters.AddWithValue("@Active", UFM.Active);
                     cmd.Parameters.AddWithValue("@rid", UFM.rid);
-                    //         UFM.CompId = Convert.ToInt32(Session["compid"].ToString());
+                //  UFM.CompId = Convert.ToInt32(Session["compid"]);
 
-                   
-                    string que = "select top 1 * from companyDetails order by compId desc";
-                    SqlDataAdapter d = new SqlDataAdapter(que,con);
-                    DataTable dtt = new DataTable();
-                    d.Fill(dtt);
-                    int compid = 0;
-                    if (dtt.Rows.Count > 0)
-                    {
-                        compid = Convert.ToInt32(dtt.Rows[0]["compId"]);
-                    }
-                   
-                
 
-                    cmd.Parameters.AddWithValue("@compId", compid);
+                //string que = "select top 1 * from companyDetails order by compId desc";
+                //SqlDataAdapter d = new SqlDataAdapter(que,con);
+                //DataTable dtt = new DataTable();
+                //d.Fill(dtt);
+                //int compid = 0;
+                //if (dtt.Rows.Count > 0)
+                //{
+                //    compid = Convert.ToInt32(dtt.Rows[0]["compId"]);
+                //}
+
+                if (UFM.rid == 1)
+                {
+                    UFM.CompId = 0;
+                }
+
+                    cmd.Parameters.AddWithValue("@compId", UFM.CompId);
                     cmd.Parameters.AddWithValue("@Linked_user", UFM.rid);
                     cmd.ExecuteNonQuery();
 
@@ -220,7 +223,7 @@ namespace WillAssure.Controllers
 
 
 
-               
+
             //}
             //else
             //{
@@ -229,17 +232,17 @@ namespace WillAssure.Controllers
 
             //}
 
-           
-           
-
-
-          
-
-           
 
 
 
-          
+
+
+
+
+
+
+
+
 
             return View("~/Views/UsersForm/UsersFormPageContent.cshtml");
         }
@@ -409,6 +412,43 @@ namespace WillAssure.Controllers
         }
 
 
+
+
+        public String BindCompanyDDL()
+        {
+
+            con.Open();
+            string query = "select compId , companyName  from companydetails";
+            SqlDataAdapter da = new SqlDataAdapter(query, con);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            con.Close();
+            string data = "<option value=''>--Select State--</option>";
+
+            if (dt.Rows.Count > 0)
+            {
+
+
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+
+
+
+
+                    data = data + "<option value=" + dt.Rows[i]["compId"].ToString() + " >" + dt.Rows[i]["companyName"].ToString() + "</option>";
+
+
+
+                }
+
+
+
+
+            }
+
+            return data;
+
+        }
 
 
 
