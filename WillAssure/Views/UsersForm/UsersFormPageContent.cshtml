@@ -178,7 +178,7 @@
 
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label for="input-3">Login Id</label>
+                                    <label for="input-3">User Id</label>
                                     @Html.TextBoxFor(m => m.UserId, new { @class = "form-control validate[required] text-input", @id = "txtUserId", @placeholder = "Enter Your UserId", @autocomplete = "off" })
                                 </div>
                             </div>
@@ -202,7 +202,8 @@
                                 </div>
                             </div>
 
-
+                            @if (Session["rId"].ToString() != "2")
+	                        {
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label for="input-3">Role</label>
@@ -211,6 +212,8 @@
                                     @Html.HiddenFor(m => m.rtext, new { id = "rtext" })
                                 </div>
                             </div>
+	                        }   
+                            
 
 
 
@@ -389,6 +392,14 @@
         $("#rtext").val(text);
         $("#rid").val(value);
 
+        if (text == "SuperAdmin" || text == "Distributor" || text == "WillAssureAdmin") {
+
+        }
+        else {
+            $("#ddlcompany").attr("disabled", "disabled");
+        }
+    
+
 
     });
 </script>
@@ -467,7 +478,7 @@
 
             $("#btnUserformsubmitSUCCESS").click(); //trigger event after listening to it.
 
-
+            function removeError() { $(".formError").remove() };
 
 
         });

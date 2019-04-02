@@ -63,6 +63,7 @@ namespace WillAssure.Controllers
 
             // check roles
             List<LoginModel> Lmlist = new List<LoginModel>();
+            string data = "";
             con.Open();
             string q = "select * from Assignment_Roles where RoleId = " + Convert.ToInt32(Session["rId"]) + "";
             SqlDataAdapter da3 = new SqlDataAdapter(q, con);
@@ -109,192 +110,199 @@ namespace WillAssure.Controllers
             }
 
 
-            con.Open();
-            string query = "select a.compId , a.companyName , a.ownerName , a.ownerMobileNo , a.Address1 , a.Address2 , a.City , a.State , a.Pin , a.GST_NO ,a.Identity_Proof , a.Identity_Proof_Value , a.Alt_Identity_Proof , a.Alt_Identity_Proof_Value , a.contactPerson , a.contactMobileNo , a.contactMailId , a.bankName , a.Branch , a.accountNumber , a.IFSC_Code , a.accountName , a.Referred_By , a.leadgeneratedBy , a.leadconvertedBy , a.relationshipManager , a.leadStatus , a.leadRemark from companyDetails a inner join users b on a.compId = b.compId  where b.compId =  " + Convert.ToInt32(Session["compId"]) + "  ";
-            SqlDataAdapter da = new SqlDataAdapter(query, con);
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-            con.Close();
-            string data = "";
 
-            if (dt.Rows.Count > 0)
-            {
-
-                if (testString == "1,2,0" || testString == "0,2,0" || testString == "0,2,3" || testString == "0,2,3" || testString == "0,2,0")
-                {
-                    for (int i = 0; i < dt.Rows.Count; i++)
-                    {
-
-
-
-                        data = data + "<tr class='nr'><td>" + dt.Rows[i]["compId"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["companyName"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["ownerName"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["ownerMobileNo"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["Address1"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["Address2"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["City"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["State"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["Pin"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["GST_NO"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["Identity_Proof"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["Identity_Proof_Value"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["Alt_Identity_Proof"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["Alt_Identity_Proof_Value"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["contactPerson"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["contactMobileNo"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["contactMailId"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["bankName"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["Branch"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["accountNumber"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["IFSC_Code"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["accountName"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["Referred_By"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["leadgeneratedBy"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["leadconvertedBy"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["relationshipManager"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["leadStatus"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["leadRemark"].ToString() + "</td>"
-                                + "<td><button type='button'   id='" + dt.Rows[i]["compId"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary'>Edit</button></td></tr>";
-                    }
-                }
-
-                if (testString == "1,0,3" || testString == "0,0,3" || testString == "0,2,3" || testString == "1,0,3" || testString == "0,0,3")
-                {
-                    for (int i = 0; i < dt.Rows.Count; i++)
-                    {
-
-
-
-                        data = data + "<tr class='nr'><td>" + dt.Rows[i]["compId"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["companyName"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["ownerName"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["ownerMobileNo"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["Address1"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["Address2"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["City"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["State"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["Pin"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["GST_NO"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["Identity_Proof"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["Identity_Proof_Value"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["Alt_Identity_Proof"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["Alt_Identity_Proof_Value"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["contactPerson"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["contactMobileNo"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["contactMailId"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["bankName"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["Branch"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["accountNumber"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["IFSC_Code"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["accountName"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["Referred_By"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["leadgeneratedBy"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["leadconvertedBy"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["relationshipManager"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["leadStatus"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["leadRemark"].ToString() + "</td>"
-                                + "<td><button type='button'   id='" + dt.Rows[i]["compId"].ToString() + "'   class='btn btn-danger deletenotification'>Delete</button></td></tr>";
-                    }
-                }
-
-
-                if (testString == "1,2,3" || testString == "0,2,3")
-                {
-
-                    for (int i = 0; i < dt.Rows.Count; i++)
-                    {
-
-
-
-                        data = data + "<tr class='nr'><td>" + dt.Rows[i]["compId"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["companyName"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["ownerName"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["ownerMobileNo"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["Address1"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["Address2"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["City"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["State"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["Pin"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["GST_NO"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["Identity_Proof"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["Identity_Proof_Value"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["Alt_Identity_Proof"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["Alt_Identity_Proof_Value"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["contactPerson"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["contactMobileNo"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["contactMailId"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["bankName"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["Branch"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["accountNumber"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["IFSC_Code"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["accountName"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["Referred_By"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["leadgeneratedBy"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["leadconvertedBy"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["relationshipManager"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["leadStatus"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["leadRemark"].ToString() + "</td>"
-                                + "<td><button type='button'   id='" + dt.Rows[i]["compId"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary'>Edit</button><button type='button'   id='" + dt.Rows[i]["compId"].ToString() + "'   class='btn btn-danger deletenotification'>Delete</button></td></tr>";
-                    }
-                }
-
-
-                if (testString == "0,0,0")
-                {
-                    for (int i = 0; i < dt.Rows.Count; i++)
-                    {
-
-
-
-                        data = data + "<tr class='nr'><td>" + dt.Rows[i]["compId"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["companyName"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["ownerName"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["ownerMobileNo"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["Address1"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["Address2"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["City"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["State"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["Pin"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["GST_NO"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["Identity_Proof"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["Identity_Proof_Value"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["Alt_Identity_Proof"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["Alt_Identity_Proof_Value"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["contactPerson"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["contactMobileNo"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["contactMailId"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["bankName"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["Branch"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["accountNumber"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["IFSC_Code"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["accountName"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["Referred_By"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["leadgeneratedBy"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["leadconvertedBy"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["relationshipManager"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["leadStatus"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["leadRemark"].ToString() + "</td>";
-                               
-                    }
-                }
-
-
-
-
+           
+                con.Open();
+                string query = "select a.compId , a.companyName , a.ownerName , a.ownerMobileNo , a.Address1 , a.Address2 , a.City , a.State , a.Pin , a.GST_NO ,a.Identity_Proof , a.Identity_Proof_Value , a.Alt_Identity_Proof , a.Alt_Identity_Proof_Value , a.contactPerson , a.contactMobileNo , a.contactMailId , a.bankName , a.Branch , a.accountNumber , a.IFSC_Code , a.accountName , a.Referred_By , a.leadgeneratedBy , a.leadconvertedBy , a.relationshipManager , a.leadStatus , a.leadRemark from companyDetails a inner join users b on a.compId = b.compId  where b.compId =  " + Convert.ToInt32(Session["compId"]) + "  ";
+                SqlDataAdapter da = new SqlDataAdapter(query, con);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                con.Close();
                
 
+                if (dt.Rows.Count > 0)
+                {
+
+                    if (testString == "1,2,0" || testString == "0,2,0" || testString == "0,2,3" || testString == "0,2,3" || testString == "0,2,0")
+                    {
+                        for (int i = 0; i < dt.Rows.Count; i++)
+                        {
 
 
-                   
-                   
+
+                            data = data + "<tr class='nr'><td>" + dt.Rows[i]["compId"].ToString() + "</td>"
+                                    + "<td>" + dt.Rows[i]["companyName"].ToString() + "</td>"
+                                    + "<td>" + dt.Rows[i]["ownerName"].ToString() + "</td>"
+                                    + "<td>" + dt.Rows[i]["ownerMobileNo"].ToString() + "</td>"
+                                    + "<td>" + dt.Rows[i]["Address1"].ToString() + "</td>"
+                                    + "<td>" + dt.Rows[i]["Address2"].ToString() + "</td>"
+                                    + "<td>" + dt.Rows[i]["City"].ToString() + "</td>"
+                                    + "<td>" + dt.Rows[i]["State"].ToString() + "</td>"
+                                    + "<td>" + dt.Rows[i]["Pin"].ToString() + "</td>"
+                                    + "<td>" + dt.Rows[i]["GST_NO"].ToString() + "</td>"
+                                    + "<td>" + dt.Rows[i]["Identity_Proof"].ToString() + "</td>"
+                                    + "<td>" + dt.Rows[i]["Identity_Proof_Value"].ToString() + "</td>"
+                                    + "<td>" + dt.Rows[i]["Alt_Identity_Proof"].ToString() + "</td>"
+                                    + "<td>" + dt.Rows[i]["Alt_Identity_Proof_Value"].ToString() + "</td>"
+                                    + "<td>" + dt.Rows[i]["contactPerson"].ToString() + "</td>"
+                                    + "<td>" + dt.Rows[i]["contactMobileNo"].ToString() + "</td>"
+                                    + "<td>" + dt.Rows[i]["contactMailId"].ToString() + "</td>"
+                                    + "<td>" + dt.Rows[i]["bankName"].ToString() + "</td>"
+                                    + "<td>" + dt.Rows[i]["Branch"].ToString() + "</td>"
+                                    + "<td>" + dt.Rows[i]["accountNumber"].ToString() + "</td>"
+                                    + "<td>" + dt.Rows[i]["IFSC_Code"].ToString() + "</td>"
+                                    + "<td>" + dt.Rows[i]["accountName"].ToString() + "</td>"
+                                    + "<td>" + dt.Rows[i]["Referred_By"].ToString() + "</td>"
+                                    //+ "<td>" + dt.Rows[i]["leadgeneratedBy"].ToString() + "</td>"
+                                    //+ "<td>" + dt.Rows[i]["leadconvertedBy"].ToString() + "</td>"
+                                    + "<td>" + dt.Rows[i]["relationshipManager"].ToString() + "</td>"
+                                    //+ "<td>" + dt.Rows[i]["leadStatus"].ToString() + "</td>"
+                                    //+ "<td>" + dt.Rows[i]["leadRemark"].ToString() + "</td>"
+                                    + "<td><button type='button'   id='" + dt.Rows[i]["compId"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary'>Edit</button></td></tr>";
+                        }
+                    }
+
+                    if (testString == "1,0,3" || testString == "0,0,3" || testString == "0,2,3" || testString == "1,0,3" || testString == "0,0,3")
+                    {
+                        for (int i = 0; i < dt.Rows.Count; i++)
+                        {
+
+
+
+                            data = data + "<tr class='nr'><td>" + dt.Rows[i]["compId"].ToString() + "</td>"
+                                    + "<td>" + dt.Rows[i]["companyName"].ToString() + "</td>"
+                                    + "<td>" + dt.Rows[i]["ownerName"].ToString() + "</td>"
+                                    + "<td>" + dt.Rows[i]["ownerMobileNo"].ToString() + "</td>"
+                                    + "<td>" + dt.Rows[i]["Address1"].ToString() + "</td>"
+                                    + "<td>" + dt.Rows[i]["Address2"].ToString() + "</td>"
+                                    + "<td>" + dt.Rows[i]["City"].ToString() + "</td>"
+                                    + "<td>" + dt.Rows[i]["State"].ToString() + "</td>"
+                                    + "<td>" + dt.Rows[i]["Pin"].ToString() + "</td>"
+                                    + "<td>" + dt.Rows[i]["GST_NO"].ToString() + "</td>"
+                                    + "<td>" + dt.Rows[i]["Identity_Proof"].ToString() + "</td>"
+                                    + "<td>" + dt.Rows[i]["Identity_Proof_Value"].ToString() + "</td>"
+                                    + "<td>" + dt.Rows[i]["Alt_Identity_Proof"].ToString() + "</td>"
+                                    + "<td>" + dt.Rows[i]["Alt_Identity_Proof_Value"].ToString() + "</td>"
+                                    + "<td>" + dt.Rows[i]["contactPerson"].ToString() + "</td>"
+                                    + "<td>" + dt.Rows[i]["contactMobileNo"].ToString() + "</td>"
+                                    + "<td>" + dt.Rows[i]["contactMailId"].ToString() + "</td>"
+                                    + "<td>" + dt.Rows[i]["bankName"].ToString() + "</td>"
+                                    + "<td>" + dt.Rows[i]["Branch"].ToString() + "</td>"
+                                    + "<td>" + dt.Rows[i]["accountNumber"].ToString() + "</td>"
+                                    + "<td>" + dt.Rows[i]["IFSC_Code"].ToString() + "</td>"
+                                    + "<td>" + dt.Rows[i]["accountName"].ToString() + "</td>"
+                                    + "<td>" + dt.Rows[i]["Referred_By"].ToString() + "</td>"
+                                    + "<td>" + dt.Rows[i]["leadgeneratedBy"].ToString() + "</td>"
+                                    + "<td>" + dt.Rows[i]["leadconvertedBy"].ToString() + "</td>"
+                                    + "<td>" + dt.Rows[i]["relationshipManager"].ToString() + "</td>"
+                                    //+ "<td>" + dt.Rows[i]["leadStatus"].ToString() + "</td>"
+                                    //+ "<td>" + dt.Rows[i]["leadRemark"].ToString() + "</td>"
+                                    + "<td><button type='button'   id='" + dt.Rows[i]["compId"].ToString() + "'   class='btn btn-danger deletenotification'>Delete</button></td></tr>";
+                        }
+                    }
+
+
+                    if (testString == "1,2,3" || testString == "0,2,3")
+                    {
+
+                        for (int i = 0; i < dt.Rows.Count; i++)
+                        {
+
+
+
+                            data = data + "<tr class='nr'><td>" + dt.Rows[i]["compId"].ToString() + "</td>"
+                                    + "<td>" + dt.Rows[i]["companyName"].ToString() + "</td>"
+                                    + "<td>" + dt.Rows[i]["ownerName"].ToString() + "</td>"
+                                    + "<td>" + dt.Rows[i]["ownerMobileNo"].ToString() + "</td>"
+                                    + "<td>" + dt.Rows[i]["Address1"].ToString() + "</td>"
+                                    + "<td>" + dt.Rows[i]["Address2"].ToString() + "</td>"
+                                    + "<td>" + dt.Rows[i]["City"].ToString() + "</td>"
+                                    + "<td>" + dt.Rows[i]["State"].ToString() + "</td>"
+                                    + "<td>" + dt.Rows[i]["Pin"].ToString() + "</td>"
+                                    + "<td>" + dt.Rows[i]["GST_NO"].ToString() + "</td>"
+                                    + "<td>" + dt.Rows[i]["Identity_Proof"].ToString() + "</td>"
+                                    + "<td>" + dt.Rows[i]["Identity_Proof_Value"].ToString() + "</td>"
+                                    + "<td>" + dt.Rows[i]["Alt_Identity_Proof"].ToString() + "</td>"
+                                    + "<td>" + dt.Rows[i]["Alt_Identity_Proof_Value"].ToString() + "</td>"
+                                    + "<td>" + dt.Rows[i]["contactPerson"].ToString() + "</td>"
+                                    + "<td>" + dt.Rows[i]["contactMobileNo"].ToString() + "</td>"
+                                    + "<td>" + dt.Rows[i]["contactMailId"].ToString() + "</td>"
+                                    + "<td>" + dt.Rows[i]["bankName"].ToString() + "</td>"
+                                    + "<td>" + dt.Rows[i]["Branch"].ToString() + "</td>"
+                                    + "<td>" + dt.Rows[i]["accountNumber"].ToString() + "</td>"
+                                    + "<td>" + dt.Rows[i]["IFSC_Code"].ToString() + "</td>"
+                                    + "<td>" + dt.Rows[i]["accountName"].ToString() + "</td>"
+                                    + "<td>" + dt.Rows[i]["Referred_By"].ToString() + "</td>"
+                                    + "<td>" + dt.Rows[i]["leadgeneratedBy"].ToString() + "</td>"
+                                    + "<td>" + dt.Rows[i]["leadconvertedBy"].ToString() + "</td>"
+                                    + "<td>" + dt.Rows[i]["relationshipManager"].ToString() + "</td>"
+                                    //+ "<td>" + dt.Rows[i]["leadStatus"].ToString() + "</td>"
+                                    //+ "<td>" + dt.Rows[i]["leadRemark"].ToString() + "</td>"
+                                    + "<td><button type='button'   id='" + dt.Rows[i]["compId"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary'>Edit</button><button type='button'   id='" + dt.Rows[i]["compId"].ToString() + "'   class='btn btn-danger deletenotification'>Delete</button></td></tr>";
+                        }
+                    }
+
+
+                    if (testString == "0,0,0")
+                    {
+                        for (int i = 0; i < dt.Rows.Count; i++)
+                        {
+
+
+
+                        data = data + "<tr class='nr'><td>" + dt.Rows[i]["compId"].ToString() + "</td>"
+                                + "<td>" + dt.Rows[i]["companyName"].ToString() + "</td>"
+                                + "<td>" + dt.Rows[i]["ownerName"].ToString() + "</td>"
+                                + "<td>" + dt.Rows[i]["ownerMobileNo"].ToString() + "</td>"
+                                + "<td>" + dt.Rows[i]["Address1"].ToString() + "</td>"
+                                + "<td>" + dt.Rows[i]["Address2"].ToString() + "</td>"
+                                + "<td>" + dt.Rows[i]["City"].ToString() + "</td>"
+                                + "<td>" + dt.Rows[i]["State"].ToString() + "</td>"
+                                + "<td>" + dt.Rows[i]["Pin"].ToString() + "</td>"
+                                + "<td>" + dt.Rows[i]["GST_NO"].ToString() + "</td>"
+                                + "<td>" + dt.Rows[i]["Identity_Proof"].ToString() + "</td>"
+                                + "<td>" + dt.Rows[i]["Identity_Proof_Value"].ToString() + "</td>"
+                                + "<td>" + dt.Rows[i]["Alt_Identity_Proof"].ToString() + "</td>"
+                                + "<td>" + dt.Rows[i]["Alt_Identity_Proof_Value"].ToString() + "</td>"
+                                + "<td>" + dt.Rows[i]["contactPerson"].ToString() + "</td>"
+                                + "<td>" + dt.Rows[i]["contactMobileNo"].ToString() + "</td>"
+                                + "<td>" + dt.Rows[i]["contactMailId"].ToString() + "</td>"
+                                + "<td>" + dt.Rows[i]["bankName"].ToString() + "</td>"
+                                + "<td>" + dt.Rows[i]["Branch"].ToString() + "</td>"
+                                + "<td>" + dt.Rows[i]["accountNumber"].ToString() + "</td>"
+                                + "<td>" + dt.Rows[i]["IFSC_Code"].ToString() + "</td>"
+                                + "<td>" + dt.Rows[i]["accountName"].ToString() + "</td>"
+                                + "<td>" + dt.Rows[i]["Referred_By"].ToString() + "</td>"
+                                + "<td>" + dt.Rows[i]["leadgeneratedBy"].ToString() + "</td>"
+                                + "<td>" + dt.Rows[i]["leadconvertedBy"].ToString() + "</td>"
+                                + "<td>" + dt.Rows[i]["relationshipManager"].ToString() + "</td>";
+                                    //+ "<td>" + dt.Rows[i]["leadStatus"].ToString() + "</td>"
+                                    //+ "<td>" + dt.Rows[i]["leadRemark"].ToString() + "</td>";
+
+                        }
+                    }
 
 
 
 
 
-                
-            }
+
+
+
+
+
+
+
+
+
+
+
+                }
+          
+
+
+
+           
 
             return data;
         }
@@ -431,8 +439,8 @@ namespace WillAssure.Controllers
                                 + "<td>" + dt.Rows[i]["leadgeneratedBy"].ToString() + "</td>"
                                 + "<td>" + dt.Rows[i]["leadconvertedBy"].ToString() + "</td>"
                                 + "<td>" + dt.Rows[i]["relationshipManager"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["leadStatus"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["leadRemark"].ToString() + "</td>"
+                                //+ "<td>" + dt.Rows[i]["leadStatus"].ToString() + "</td>"
+                                //+ "<td>" + dt.Rows[i]["leadRemark"].ToString() + "</td>"
                                 + "<td><button type='button'   id='" + dt.Rows[i]["compId"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary'>Edit</button></td></tr>";
                     }
                 }
@@ -470,8 +478,8 @@ namespace WillAssure.Controllers
                                 + "<td>" + dt.Rows[i]["leadgeneratedBy"].ToString() + "</td>"
                                 + "<td>" + dt.Rows[i]["leadconvertedBy"].ToString() + "</td>"
                                 + "<td>" + dt.Rows[i]["relationshipManager"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["leadStatus"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["leadRemark"].ToString() + "</td>"
+                                //+ "<td>" + dt.Rows[i]["leadStatus"].ToString() + "</td>"
+                                //+ "<td>" + dt.Rows[i]["leadRemark"].ToString() + "</td>"
                                 + "<td><button type='button'   id='" + dt.Rows[i]["compId"].ToString() + "'    class='btn btn-danger deletenotification'>Delete</button></td></tr>";
                     }
                 }
@@ -511,8 +519,8 @@ namespace WillAssure.Controllers
                                 + "<td>" + dt.Rows[i]["leadgeneratedBy"].ToString() + "</td>"
                                 + "<td>" + dt.Rows[i]["leadconvertedBy"].ToString() + "</td>"
                                 + "<td>" + dt.Rows[i]["relationshipManager"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["leadStatus"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["leadRemark"].ToString() + "</td>"
+                                //+ "<td>" + dt.Rows[i]["leadStatus"].ToString() + "</td>"
+                                //+ "<td>" + dt.Rows[i]["leadRemark"].ToString() + "</td>"
                                 + "<td><button type='button'   id='" + dt.Rows[i]["compId"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary'>Edit</button><button type='button'   id='" + dt.Rows[i]["compId"].ToString() + "'    class='btn btn-danger deletenotification'>Delete</button></td></tr>";
                     }
                 }
@@ -550,9 +558,9 @@ namespace WillAssure.Controllers
                                 + "<td>" + dt.Rows[i]["Referred_By"].ToString() + "</td>"
                                 + "<td>" + dt.Rows[i]["leadgeneratedBy"].ToString() + "</td>"
                                 + "<td>" + dt.Rows[i]["leadconvertedBy"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["relationshipManager"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["leadStatus"].ToString() + "</td>"
-                                + "<td>" + dt.Rows[i]["leadRemark"].ToString() + "</td>";
+                                + "<td>" + dt.Rows[i]["relationshipManager"].ToString() + "</td>";
+                                //+ "<td>" + dt.Rows[i]["leadStatus"].ToString() + "</td>"
+                                //+ "<td>" + dt.Rows[i]["leadRemark"].ToString() + "</td>";
 
                     }
                 }

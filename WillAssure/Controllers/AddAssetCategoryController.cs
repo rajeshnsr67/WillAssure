@@ -154,7 +154,7 @@ namespace WillAssure.Controllers
 
 
 
-
+            ModelState.Clear();
 
             return View("~/Views/AddAssetCategory/AddAssetCategoryPageContent.cshtml");
         }

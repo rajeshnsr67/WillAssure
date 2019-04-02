@@ -429,11 +429,11 @@ namespace WillAssure.Controllers
             //{
             //    Response.Write("<script>alert('Please Fill Testator First')</script>");
             //}
-          
 
 
 
 
+            ModelState.Clear();
 
 
             return View("~/Views/AddAssets/AddAssetsPageContent.cshtml");

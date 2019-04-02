@@ -72,7 +72,7 @@ namespace WillAssure.Controllers
         {
 
             con.Open();
-            string query = "select distinct * from tbl_state order by statename asc  ";
+            string query = "select distinct * from tbl_state where country_id = 101 order by statename asc  ";
             SqlDataAdapter da = new SqlDataAdapter(query, con);
             DataTable dt = new DataTable();
             da.Fill(dt);
@@ -287,7 +287,7 @@ namespace WillAssure.Controllers
             //end
 
 
-
+            ModelState.Clear();
 
             return View("~/Views/AlternateBeneficiary/AlternateBeneficiaryPageContent.cshtml");
         }

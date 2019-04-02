@@ -140,7 +140,7 @@ namespace WillAssure.Controllers
                 cmd.Parameters.AddWithValue("@Description_of_Assets", NM.Description_of_Assets);
                 cmd.ExecuteNonQuery();
                 con.Close();
-
+                ModelState.Clear();
                 ViewBag.Message = "Verified";
             }
             else
@@ -162,7 +162,7 @@ namespace WillAssure.Controllers
         {
 
             con.Open();
-            string query = "select distinct * from tbl_state order by statename asc  ";
+            string query = "select distinct * from tbl_state where country_id = 101 order by statename asc  ";
             SqlDataAdapter da = new SqlDataAdapter(query, con);
             DataTable dt = new DataTable();
             da.Fill(dt);

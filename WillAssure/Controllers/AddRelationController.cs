@@ -121,7 +121,7 @@ namespace WillAssure.Controllers
                 ViewBag.Message = "Verified";
             }
 
-
+            ModelState.Clear();
             return View("~/Views/AddRelation/AddRelationPageContent.cshtml");
         }
 

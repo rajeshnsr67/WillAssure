@@ -95,7 +95,10 @@ namespace WillAssure.Controllers
 
 
             //end
-
+            string s = "none";
+            string s2 = "none";
+            string s3 = "none";
+            string s4 = "none";
 
             con.Open();
             SqlCommand cmd = new SqlCommand("SP_CrudcompanyDetails", con);
@@ -123,16 +126,16 @@ namespace WillAssure.Controllers
             cmd.Parameters.AddWithValue("@IFSC_Code",DFM.IFSC_Code );
             cmd.Parameters.AddWithValue("@accountName", DFM.accountName);
             cmd.Parameters.AddWithValue("@Referred_By", DFM.Referred_By);
-            cmd.Parameters.AddWithValue("@leadgeneratedBy",DFM.leadgeneratedBy );
-            cmd.Parameters.AddWithValue("@leadconvertedBy",DFM.leadconvertedBy );
+            cmd.Parameters.AddWithValue("@leadgeneratedBy", s);
+            cmd.Parameters.AddWithValue("@leadconvertedBy", s2);
             cmd.Parameters.AddWithValue("@relationshipManager", DFM.relationshipManager );
-            cmd.Parameters.AddWithValue("@leadStatus", DFM.leadStatus );
-            cmd.Parameters.AddWithValue("@leadRemark", DFM.leadRemark);
+            cmd.Parameters.AddWithValue("@leadStatus", s3 );
+            cmd.Parameters.AddWithValue("@leadRemark", s4);
             cmd.ExecuteNonQuery();
             con.Close();
 
 
-            int compid = 0;
+            
             con.Open();
             string query = "select TOP 1 * FROM  companyDetails ORDER BY compId DESC";
             SqlDataAdapter da = new SqlDataAdapter(query, con);
@@ -145,8 +148,8 @@ namespace WillAssure.Controllers
             }
             con.Close();
 
-           
 
+            ModelState.Clear();
 
             ViewBag.Message = "Verified";
 
@@ -157,7 +160,7 @@ namespace WillAssure.Controllers
         {
 
             con.Open();
-            string query = "select distinct * from tbl_state order by statename asc  ";
+            string query = "select distinct * from tbl_state where country_id = 101 order by statename asc  ";
             SqlDataAdapter da = new SqlDataAdapter(query, con);
             DataTable dt = new DataTable();
             da.Fill(dt);

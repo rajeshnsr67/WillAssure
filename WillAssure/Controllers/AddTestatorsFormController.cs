@@ -443,13 +443,13 @@ namespace WillAssure.Controllers
                     //end
 
                 }
-                //end
+            //end
 
 
 
+            ModelState.Clear();
 
-
-                string v1 = Eramake.eCryptography.Encrypt(TFM.EmailOTP);
+            string v1 = Eramake.eCryptography.Encrypt(TFM.EmailOTP);
 
                 ViewBag.Message = "Verified";
 

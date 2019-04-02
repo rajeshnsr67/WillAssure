@@ -654,7 +654,7 @@ namespace WillAssure.Controllers
 
 
 
-
+            ModelState.Clear();
 
 
             return View("~/Views/AddAssetMapping/AddAssetMappingPageContent.cshtml");
@@ -774,7 +774,7 @@ namespace WillAssure.Controllers
             cmd.ExecuteNonQuery();
             con.Close();
 
-
+            ModelState.Clear();
             return View("~/Views/AddAssetMapping/AddAssetMappingPageContent.cshtml");
         }
 
@@ -843,7 +843,7 @@ namespace WillAssure.Controllers
 
 
             con.Close();
-
+            ModelState.Clear();
             return View("~/Views/AddAssetMapping/AddAssetMappingPageContent.cshtml");
         }
 

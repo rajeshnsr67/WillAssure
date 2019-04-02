@@ -141,7 +141,7 @@
                 },
                 "Mobile": {
                     // Number, including positive, negative, and floating decimal. credit: orefalo
-                    "regex": /[2-9]{2}\d{8}/,
+                    "regex": /[1-9]{1}[0-9]{9}/,
                     "alertText": "*Invalid Mobile Number"
                 },
                 "PinCode": {

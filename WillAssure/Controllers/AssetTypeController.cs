@@ -142,8 +142,8 @@ namespace WillAssure.Controllers
                 ViewBag.Message = "Verified";
             }
 
+            ModelState.Clear();
 
-           
 
             return View("~/Views/AssetType/AddAssetTypePageContent.cshtml");
         }

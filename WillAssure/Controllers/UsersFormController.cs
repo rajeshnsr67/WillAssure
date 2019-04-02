@@ -107,8 +107,8 @@ namespace WillAssure.Controllers
             //end
 
 
-            //if (Session["compId"] != null)
-            //{
+            if (Session["compId"] != null)
+            {
 
 
                 con.Open();
@@ -147,26 +147,43 @@ namespace WillAssure.Controllers
                     cmd.Parameters.AddWithValue("@UserPassword", UFM.UserPassword);
                     cmd.Parameters.AddWithValue("@Designation", UFM.Designation);
                     cmd.Parameters.AddWithValue("@Active", UFM.Active);
-                    cmd.Parameters.AddWithValue("@rid", UFM.rid);
-                //  UFM.CompId = Convert.ToInt32(Session["compid"]);
+                    if (UFM.rid != null)
+                    {
+                        cmd.Parameters.AddWithValue("@rid", UFM.rid);
+                    }
+                    else
+                    {
+                        UFM.rid = 0;
+                        cmd.Parameters.AddWithValue("@rid", UFM.rid);
+                    }
+                   
+                    //  UFM.CompId = Convert.ToInt32(Session["compid"]);
 
 
-                //string que = "select top 1 * from companyDetails order by compId desc";
-                //SqlDataAdapter d = new SqlDataAdapter(que,con);
-                //DataTable dtt = new DataTable();
-                //d.Fill(dtt);
-                //int compid = 0;
-                //if (dtt.Rows.Count > 0)
-                //{
-                //    compid = Convert.ToInt32(dtt.Rows[0]["compId"]);
-                //}
+                    //string que = "select top 1 * from companyDetails order by compId desc";
+                    //SqlDataAdapter d = new SqlDataAdapter(que,con);
+                    //DataTable dtt = new DataTable();
+                    //d.Fill(dtt);
+                    //int compid = 0;
+                    //if (dtt.Rows.Count > 0)
+                    //{
+                    //    compid = Convert.ToInt32(dtt.Rows[0]["compId"]);
+                    //}
 
-                if (UFM.rid == 1)
-                {
-                    UFM.CompId = 0;
-                }
+                    //if (UFM.rid == 1)
+                    //{
+                    //    UFM.CompId = 0;
+                    //}
+                    if (UFM.rid != 1 && UFM.rid != 2 && UFM.rid !=3)
+                    {
+                        cmd.Parameters.AddWithValue("@compId", 0);
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("@compId", Convert.ToInt32(Session["compid"]));
+                    }
 
-                    cmd.Parameters.AddWithValue("@compId", UFM.CompId);
+                    
                     cmd.Parameters.AddWithValue("@Linked_user", UFM.rid);
                     cmd.ExecuteNonQuery();
 
@@ -224,19 +241,19 @@ namespace WillAssure.Controllers
 
 
 
-            //}
-            //else
-            //{
+        }
+            else
+            {
 
-            //    ViewBag.Message = "link";
+                ViewBag.Message = "link";
 
-            //}
-
-
+            }
 
 
 
 
+
+            ModelState.Clear();
 
 
 
@@ -256,7 +273,7 @@ namespace WillAssure.Controllers
         {
 
             con.Open();
-            string query = "select distinct * from tbl_state order by statename asc";
+            string query = "select distinct * from tbl_state where country_id = 101 order by statename asc";
             SqlDataAdapter da = new SqlDataAdapter(query, con);
             DataTable dt = new DataTable();
             da.Fill(dt);
@@ -423,7 +440,7 @@ namespace WillAssure.Controllers
             DataTable dt = new DataTable();
             da.Fill(dt);
             con.Close();
-            string data = "<option value=''>--Select State--</option>";
+            string data = "<option value=''>--Select --</option>";
 
             if (dt.Rows.Count > 0)
             {

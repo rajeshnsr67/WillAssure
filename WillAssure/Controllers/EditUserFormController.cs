@@ -111,7 +111,7 @@ namespace WillAssure.Controllers
 
 
             con.Open();
-            string query = "select a.uId , a.First_Name , a.Last_Name , a.Middle_Name , a.DOB , a.Mobile , a.eMail , a.Address1 , a.Address2 , a.Address3 , a.City , a.State , a.Pin , a.userID , a.userPwd , a.Linked_user , a.Designation , c.Role , a.dateCreated , a.active , a.compId  from users a inner join companydetails b on a.compId=b.compId  inner join roles c on a.rId=c.rId where a.uid = " + Convert.ToInt32(Session["uuid"]) + " and a.compId = "+ Convert.ToInt32(Session["compId"]) + " and a.userID = "+ Convert.ToInt32(Session["uid"]) + "  and a.active = 1 and a.rid = "+ Convert.ToInt32(Session["rId"]) + " ";
+            string query = "select a.uId , a.First_Name , a.Last_Name , a.Middle_Name , a.DOB , a.Mobile , a.eMail , a.Address1 , a.Address2 , a.Address3 , a.City , a.State , a.Pin , a.userID , a.userPwd , a.Linked_user , a.Designation , c.Role , a.dateCreated , a.active , a.compId  from users a inner join companydetails b on a.compId=b.compId  inner join roles c on a.rId=c.rId where  b.compId = " + Convert.ToInt32(Session["compId"]) + "  and a.active = 1  ";
             SqlDataAdapter da = new SqlDataAdapter(query, con);
             DataTable dt = new DataTable();
             da.Fill(dt);
@@ -408,7 +408,7 @@ namespace WillAssure.Controllers
 
 
             con.Open();
-            string query = "select a.uId , a.First_Name , a.Last_Name , a.Middle_Name , a.DOB , a.Mobile , a.eMail , a.Address1 , a.Address2 , a.Address3 , a.City , a.State , a.Pin , a.userID , a.userPwd , a.Linked_user , a.Designation , c.Role , a.dateCreated , a.active , a.compId  from users a inner join companydetails b on a.compId=b.compId  inner join roles c on a.rId=c.rId where a.uid = " + Convert.ToInt32(Session["uuid"]) + " and a.compId = " + Convert.ToInt32(Session["compId"]) + " and a.userID = " + Convert.ToInt32(Session["uid"]) + "  and a.active = 1 and a.rid = " + Convert.ToInt32(Session["rId"]) + " ";
+            string query = "select a.uId , a.First_Name , a.Last_Name , a.Middle_Name , a.DOB , a.Mobile , a.eMail , a.Address1 , a.Address2 , a.Address3 , a.City , a.State , a.Pin , a.userID , a.userPwd , a.Linked_user , a.Designation , c.Role , a.dateCreated , a.active , a.compId  from users a inner join companydetails b on a.compId=b.compId  inner join roles c on a.rId=c.rId where  b.compId  = " + Convert.ToInt32(Session["compId"]) + "  and a.active = 1  ";
             SqlDataAdapter da = new SqlDataAdapter(query, con);
             DataTable dt = new DataTable();
             da.Fill(dt);

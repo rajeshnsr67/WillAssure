@@ -64,7 +64,7 @@ namespace WillAssure.Controllers
             List<LoginModel> Lmlist = new List<LoginModel>();
 
             con.Open();
-            string query = "select * from users where userID = '"+LM.UserID+"' and userPwd = '"+LM.Password+"' and active = 1";
+            string query = "select * from users where eMail = '"+LM.UserID+"' and userPwd = '"+LM.Password+"' and active = 1";
             SqlDataAdapter da = new SqlDataAdapter(query,con);
             DataTable dt = new DataTable();
             da.Fill(dt);
@@ -73,7 +73,7 @@ namespace WillAssure.Controllers
             if (dt.Rows.Count > 0)
             {
                 Session["rId"] = Convert.ToInt32(dt.Rows[0]["rId"]);
-                Session["uid"] = Convert.ToInt32(dt.Rows[0]["userID"]);
+                Session["uid"] = dt.Rows[0]["userID"].ToString();
                 Session["uuid"] = Convert.ToInt32(dt.Rows[0]["uId"]);
                 Session["compId"] = Convert.ToInt32(dt.Rows[0]["compId"]);
 
