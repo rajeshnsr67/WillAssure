@@ -112,7 +112,7 @@ namespace WillAssure.Controllers
 
 
             con.Open();
-            string query = "select * from TestatorDetails where uId = "+ Convert.ToInt32(Session["uid"]) + " ";
+            string query = "select * from TestatorDetails where uId = "+ Convert.ToInt32(Session["uuid"]) + " ";
             SqlDataAdapter da = new SqlDataAdapter(query, con);
             DataTable dt = new DataTable();
             da.Fill(dt);
@@ -363,7 +363,7 @@ namespace WillAssure.Controllers
 
 
             con.Open();
-            string query = "select * from TestatorDetails where uId = " + Convert.ToInt32(Session["uid"]) + " ";
+            string query = "select * from TestatorDetails where uId = " + Convert.ToInt32(Session["uuid"]) + " ";
             SqlDataAdapter da = new SqlDataAdapter(query, con);
             DataTable dt = new DataTable();
             da.Fill(dt);

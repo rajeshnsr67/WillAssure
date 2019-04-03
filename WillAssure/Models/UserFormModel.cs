@@ -35,13 +35,19 @@ namespace WillAssure.Models
         public string rtext { get; set; }
         public int UserRole { get; set; }
 
-       
+
+
+
+
+
+
+
 
 
     }
 
 
 
-   
+
 
 }

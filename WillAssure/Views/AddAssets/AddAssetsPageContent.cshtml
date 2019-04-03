@@ -153,6 +153,7 @@
             </div>
 
             <button id="btnaddAssetSUCCESS" style="display:none;"></button>
+            <button id="btnaddAssetchecking" style="display:none;"></button>
         </div>
 
 
@@ -279,8 +280,8 @@
 <script>
     $(document).ready(function () {
         $("#AssetsForm").validationEngine();
-        
-      
+
+
 
     });
 </script>
@@ -396,15 +397,15 @@
 
 <script>
 
-    
-        
 
-        function getAssetColumnValue(ENTITY) {
 
-         
-            $(".Entityinput").attr("disabled", "disabled");
-            
-            
+
+    function getAssetColumnValue(ENTITY) {
+
+
+        $(".Entityinput").attr("disabled", "disabled");
+
+
 
         $("#assetcolumn").append("" + ENTITY + ",");
 
@@ -413,7 +414,7 @@
 
         $("#assetcolumnValues").append("'" + ENTITY + "~");
 
-           
+
     }
 
 
@@ -423,84 +424,84 @@
     function bar(value) {
         var val = value;
 
-        
+
         $(".labelinput").attr("disabled", "disabled");
 
-        $("#assetcolumnValues").append("" + value +  "',");
+        $("#assetcolumnValues").append("" + value + "',");
 
-       
+
 
     }
 
-        //$(document).on('change', '#DDLControls', function () {
+    //$(document).on('change', '#DDLControls', function () {
 
-        //    var id = $(this).children(":selected").attr("value");
-        //    var text = $("#DDLControls option:selected").html();
+    //    var id = $(this).children(":selected").attr("value");
+    //    var text = $("#DDLControls option:selected").html();
 
-        //    var parent = $(this).closest("#listdata").find("#txtval").removeAttr("disabled");
-             
-           
-            
-        //    if (id == "TextBox" || id == "TextArea" || id == "DatePicker") {
-        //    $("#values").append("'" + '' + "',");
-
-              
-        // }
-
-        //if (id == "RadioButton" || id == "CheckBox") {
-
-
-           
-        //}
-
-        //$("#controls").append("'" + id + "',");
+    //    var parent = $(this).closest("#listdata").find("#txtval").removeAttr("disabled");
 
 
 
+    //    if (id == "TextBox" || id == "TextArea" || id == "DatePicker") {
+    //    $("#values").append("'" + '' + "',");
 
 
-        //});
+    // }
+
+    //if (id == "RadioButton" || id == "CheckBox") {
 
 
-        //onchange = 'getControls(this.value)'
+
+    //}
+
+    //$("#controls").append("'" + id + "',");
+
+
+
+
+
+    //});
+
+
+    //onchange = 'getControls(this.value)'
     //function getControls(id) {
 
-        $(document).on('change', '.ddlcontrolinput', function () {
+    $(document).on('change', '.ddlcontrolinput', function () {
 
-            $(".ddlcontrolinput").attr("disabled", "disabled");
+        $(".ddlcontrolinput").attr("disabled", "disabled");
 
         var id = $(this).closest('.group').find(".ddlcontrolinput").val();
-            
-           
-            
 
-       
+
+
+
+
 
         var id = id;
 
-        if (id == "TextBox" || id == "TextArea" || id =="DatePicker") {
+        if (id == "TextBox" || id == "TextArea" || id == "DatePicker") {
             $("#values").append("'" + '' + "',");
-            
+
             $(this).closest('.group').find("#valuefield").attr("disabled", "disabled");
         }
 
         if (id == "RadioButton" || id == "CheckBox") {
 
-            
-            $(this).closest('.group').find("#valuefield").removeAttr("disabled"); ;
+
+            $(this).closest('.group').find("#valuefield").removeAttr("disabled");;
         }
-        
+
         $("#controls").append("'" + id + "',");
-        
-       
-       
-        });
+
+
+
+    });
 
 
 
     function bar2(value) {
         var val = value;
-    
+
 
 
         $("#values").append("'" + value + "',");
@@ -524,19 +525,40 @@
 
             $("#btnaddAssetSUCCESS").click(); //trigger event after listening to it.
 
-        
+
 
 
         });
     </script>
 
 }
-    <script type="text/javascript">
-        //Stop Form Submission of Enter Key Press
-        function stopRKey(evt) {
-            var evt = (evt) ? evt : ((event) ? event : null);
-            var node = (evt.target) ? evt.target : ((evt.srcElement) ? evt.srcElement : null);
-            if ((evt.keyCode == 13) && (node.type == "text")) { return false; }
-        }
-        document.onkeypress = stopRKey;
+
+
+
+@if (ViewBag.Message == "Duplicate")
+{
+    <script>
+
+        $(document).ready(function () {
+
+
+            $("#btnaddAssetchecking").on("click", function () { });
+
+            $("#btnaddAssetchecking").click(); //trigger event after listening to it.
+
+
+
+
+        });
     </script>
+
+}
+<script type="text/javascript">
+    //Stop Form Submission of Enter Key Press
+    function stopRKey(evt) {
+        var evt = (evt) ? evt : ((event) ? event : null);
+        var node = (evt.target) ? evt.target : ((evt.srcElement) ? evt.srcElement : null);
+        if ((evt.keyCode == 13) && (node.type == "text")) { return false; }
+    }
+    document.onkeypress = stopRKey;
+</script>

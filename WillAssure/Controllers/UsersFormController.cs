@@ -331,14 +331,9 @@ namespace WillAssure.Controllers
         {
             string data = "";
 
-            if (Convert.ToInt32(Session["rId"]) == 2)
-            {
-                 data = "<option value=''>--Select Role--</option><option value ='1'>Distributor</option>";
-            }
-            else
-            {
+       
                  data = "<option value=''>--Select Role--</option>";
-            }
+            
                 
 
             if (Session["rId"] != null)
@@ -471,13 +466,13 @@ namespace WillAssure.Controllers
         
             string buttonname = "";
         
-            if (Convert.ToInt32(Session["rId"]) == 2)
+            if (Convert.ToInt32(Session["rId"]) == 1)
             {
             
              
                  
 
-                    if (Convert.ToInt32(Session["rId"]) == 2 && Convert.ToInt32(Session["compId"]) == 0)
+                    if (Convert.ToInt32(Session["rId"]) == 1 && Convert.ToInt32(Session["compId"]) == 0)
                     {
                     buttonname = "Add Distributor";
                     ViewBag.type = buttonname;
@@ -503,6 +498,15 @@ namespace WillAssure.Controllers
 
             return buttonname;
         }
+
+
+
+
+
+
+
+
+
 
 
 

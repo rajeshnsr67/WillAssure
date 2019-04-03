@@ -137,6 +137,7 @@ namespace WillAssure.Controllers
                 qry = qry + "insert into Assignment_Roles (RoleId,PageName,Nav1,Nav2) values ("+ roleid + " , 'Roles',' Add Roles~RoleAddIndex~RoleAdd','Edit Roles~EditRoleIndex~EditRole')";
              
 
+
                 //if (roleid == 2)
                 //{
                 //    MainLink = "Distributor User";
@@ -161,7 +162,11 @@ namespace WillAssure.Controllers
 
                 //qry = qry + "insert into Assignment_Roles (RoleId,PageName,Nav1,Nav2) values (" + roleid + " ,'Company','Add Company~AddDistributorIndex~AddDistributor','Edit Company~EditDistributorIndex~EditDistributor')";
                 qry = qry + "insert into Assignment_Roles (RoleId,PageName,Nav1,Nav2) values (" + roleid + " ,'Distributor','Add Distributor~UsersFormIndex~UsersForm','Edit Distributor~EditUserFormIndex~EditUserForm')";
+                qry = qry + "insert into Assignment_Roles (RoleId,PageName,Nav1,Nav2) values (" + roleid + " ,'WillEmployee','Add Employee~UsersFormIndex~UsersForm','Edit Employee~EditUserFormIndex~EditUserForm')";
+                qry = qry + "insert into Assignment_Roles (RoleId,PageName,Nav1,Nav2) values (" + roleid + " ,'DistributorEmployee','Add Employee~UsersFormIndex~UsersForm','Edit Employee~EditUserFormIndex~EditUserForm')";
                 qry = qry + "insert into Assignment_Roles (RoleId,PageName,Nav1,Nav2) values (" + roleid + " ,'AssignRoles','Assign~AddRoleAssignmentIndex~AddRoleAssignment','NULL~NULL~NULL')";
+
+
 
 
 
@@ -182,8 +187,7 @@ namespace WillAssure.Controllers
                 qry = qry + "insert into Assignment_Roles (RoleId,PageName,Nav1,Nav2) values (" + roleid + " ,'Document','View Document~Report.aspx~page','NULL~NULL~NULL')";
 
 
-                qry = qry + "insert into Assignment_Roles (RoleId,PageName,Nav1,Nav2) values (" + roleid + " ,'WillEmployee','Add Distributor~UsersFormIndex~UsersForm','Edit Distributor~EditUserFormIndex~EditUserForm')";
-                qry = qry + "insert into Assignment_Roles (RoleId,PageName,Nav1,Nav2) values (" + roleid + " ,'DistributorEmployee','Add Distributor~UsersFormIndex~UsersForm','Edit Distributor~EditUserFormIndex~EditUserForm')";
+
 
                 SqlCommand cmd = new SqlCommand(qry,con);
                 cmd.ExecuteNonQuery();
@@ -270,15 +274,20 @@ namespace WillAssure.Controllers
 
         public string CheckRoleId()
         {
-            int response = Convert.ToInt32(Request["send"]);
             string data = "";
-            con.Open();
-            string query = "select count(RoleId) as total from Assignment_Roles where RoleId ="+ response + "";
-            SqlDataAdapter da = new SqlDataAdapter(query, con);
-            DataTable dt = new DataTable();
-            da.Fill(dt);
+            if (Request["send"] != "")
+            {
+                int response = Convert.ToInt32(Request["send"]);
+              
+                con.Open();
+                string query = "select count(RoleId) as total from Assignment_Roles where RoleId =" + response + "";
+                SqlDataAdapter da = new SqlDataAdapter(query, con);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
 
-            data = dt.Rows[0]["total"].ToString();
+                data = dt.Rows[0]["total"].ToString();
+            }
+            
 
 
             return data;

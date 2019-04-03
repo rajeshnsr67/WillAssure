@@ -40,6 +40,17 @@
      $("#btnRoleDataUpdate").click(function () {
          swal("Updated", "Your Data has Been Updated", "success");
      });
+
+
+
+     $("#btnassignpagecheck").click(function () {
+         swal("New User", "New User Selected Please Click Assign Role To Assign Page...!", "warning");
+     });
+
+
+     
+  
+
      //end
      
 
@@ -363,6 +374,14 @@
 
      $("#btnloginFAILED").click(function () {
          swal("Failed!", "Please Enter Valid Details!,", "error");
+     });
+
+
+     
+
+
+     $("#btnaddAssetchecking").click(function () {
+         swal("Failed", "AssetCategory Already Mapped Please Select Another AssetCategory", "error");
      });
 
      //end

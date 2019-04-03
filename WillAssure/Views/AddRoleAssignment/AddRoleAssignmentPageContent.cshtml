@@ -70,17 +70,27 @@
                                                 <td><label class="checkbox-inline"><input type="checkbox" id="RoleAssignEdit">Edit</label></td>
                                                 <td><label class="checkbox-inline"><input type="checkbox" id="RoleAssignDelete">Delete</label></td>
                                             </tr>
-                                            <tr>
-                                                <td style="font-weight:bolder"><input type="checkbox" id="Company">Company</td>
-                                                <td><label class="checkbox-inline"><input type="checkbox" id="CompanyAdd">Add</label></td>
-                                                <td><label class="checkbox-inline"><input type="checkbox" id="CompanyEdit">Edit</label></td>
-                                                <td><label class="checkbox-inline"><input type="checkbox" id="CompanyDelete">Delete</label></td>
-                                            </tr>
+
                                             <tr>
                                                 <td style="font-weight:bolder"><input type="checkbox" id="Distributor">Distributor</td>
                                                 <td><label class="checkbox-inline"><input type="checkbox" id="DistributorAdd">Add</label></td>
                                                 <td><label class="checkbox-inline"><input type="checkbox" id="DistributorEdit">Edit</label></td>
                                                 <td><label class="checkbox-inline"><input type="checkbox" id="DistributorDelete">Delete</label></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td style="font-weight:bolder"><input type="checkbox" id="WillEmployee">WillEmployee</td>
+                                                <td><label class="checkbox-inline"><input type="checkbox" id="WillEmployeeAdd">Add</label></td>
+                                                <td><label class="checkbox-inline"><input type="checkbox" id="WillEmployeeEdit">Edit</label></td>
+                                                <td><label class="checkbox-inline"><input type="checkbox" id="WillEmployeeDelete">Delete</label></td>
+                                            </tr>
+
+
+                                            <tr>
+                                                <td style="font-weight:bolder"><input type="checkbox" id="DistributorEmployee">DistributorEmployee</td>
+                                                <td><label class="checkbox-inline"><input type="checkbox" id="DistributorEmployeeAdd">Add</label></td>
+                                                <td><label class="checkbox-inline"><input type="checkbox" id="DistributorEmployeeEdit">Edit</label></td>
+                                                <td><label class="checkbox-inline"><input type="checkbox" id="DistributorEmployeeDelete">Delete</label></td>
                                             </tr>
 
                                             <tr>
@@ -188,27 +198,9 @@
 
 
 
-                                            <tr>
-                                                <td style="font-weight:bolder"><input type="checkbox" id="Document">Document</td>
-                                                <td><label class="checkbox-inline"><input type="checkbox" id="DocumentAdd">Add</label></td>
-                                                <td><label class="checkbox-inline"><input type="checkbox" id="DocumentEdit">Edit</label></td>
-                                                <td><label class="checkbox-inline"><input type="checkbox" id="DocumentDelete">Delete</label></td>
-                                            </tr>
-
-                                            <tr>
-                                                <td style="font-weight:bolder"><input type="checkbox" id="WillEmployee">WillEmployee</td>
-                                                <td><label class="checkbox-inline"><input type="checkbox" id="WillEmployeeAdd">Add</label></td>
-                                                <td><label class="checkbox-inline"><input type="checkbox" id="WillEmployeeEdit">Edit</label></td>
-                                                <td><label class="checkbox-inline"><input type="checkbox" id="WillEmployeeDelete">Delete</label></td>
-                                            </tr>
 
 
-                                            <tr>
-                                                <td style="font-weight:bolder"><input type="checkbox" id="DistributorEmployee">DistributorEmployee</td>
-                                                <td><label class="checkbox-inline"><input type="checkbox" id="DistributorEmployeeAdd">Add</label></td>
-                                                <td><label class="checkbox-inline"><input type="checkbox" id="DistributorEmployeeEdit">Edit</label></td>
-                                                <td><label class="checkbox-inline"><input type="checkbox" id="DistributorEmployeeDelete">Delete</label></td>
-                                            </tr>
+
 
 
                                         </tbody>
@@ -243,8 +235,8 @@
                     <input type="hidden" id="17" value="" />
                     <input type="hidden" id="18" value="" />
                     <input type="hidden" id="19" value="" />
-                    <input type="text" id="20" value="" />
-                    <input type="text" id="21" value="" />
+                    <input type="hidden" id="20" value="" />
+                    <input type="hidden" id="21" value="" />
 
 
 
@@ -256,7 +248,7 @@
 
         <button type="button" id="btnRoleAssignmentCHECK" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
         <button type="button" id="btnRoleformsubmitCHECK" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
-
+        <button type="button" id="btnassignpagecheck" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
     </div>
 
 
@@ -319,7 +311,9 @@
               success: function (data) {
                   if (data == "0") {
                       $("#pagedata").css("display", "none");
-                      alert("New Users Selected Please Click Assign Role To Assign Page...!")
+                      $("#btnassignpagecheck").on("click", function () { });
+
+                      $("#btnassignpagecheck").click(); //trigger event after listening to it.
                   }
             }
         });
@@ -1175,7 +1169,7 @@
 
 
       //  + $("#2").val() + "~"
-        var AllData = $("#1").val() + "~"  + $("#3").val() + "~" + $("#4").val() + "~" + $("#5").val() + "~" + $("#6").val() + "~" + $("#7").val() + "~" + $("#8").val() + "~" + $("#9").val() + "~" + $("#10").val() + "~" + $("#11").val() + "~" + $("#12").val() + "~" + $("#13").val() + "~" + $("#14").val() + "~" + $("#15").val() + "~" + $("#16").val() + "~" + $("#17").val() + "~" + $("#18").val() + "~" + $("#19").val();
+        var AllData = $("#1").val() + "~" + $("#3").val() + "~" + $("#4").val() + "~" + $("#5").val() + "~" + $("#6").val() + "~" + $("#7").val() + "~" + $("#8").val() + "~" + $("#9").val() + "~" + $("#10").val() + "~" + $("#11").val() + "~" + $("#12").val() + "~" + $("#13").val() + "~" + $("#14").val() + "~" + $("#15").val() + "~" + $("#16").val() + "~" + $("#17").val() + "~" + $("#18").val() + "~" + $("#19").val() + "~" + $("#20").val() + "~" + $("#21").val() ;
 
 
           $.ajax({

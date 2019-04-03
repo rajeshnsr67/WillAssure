@@ -395,7 +395,19 @@ namespace WillAssure.Controllers
 
                     string columnvalues = cv.Substring(0, cv.Length - 1);
 
+                con.Open();
+                string checkquery = "select count(*) from AssetsInfo where amId = "+ form.amId + " ";
+                SqlCommand cmd = new SqlCommand(checkquery,con);
+                int count = (int)cmd.ExecuteScalar();
+                con.Close();
 
+
+                if (count > 0)
+                {
+                    ViewBag.Message = "Duplicate";
+                }
+                else
+                {
 
                     con.Open();
                     query1 = "insert into AssetsInfo (amId," + c + "," + contr + ", " + valu + ") values (" + form.amId + " , " + columnvalues + " , " + c1 + " , " + v1 + ") ";
@@ -409,7 +421,7 @@ namespace WillAssure.Controllers
                     DataTable dt = new DataTable();
                     da.Fill(dt);
 
-                   
+
 
                     if (dt.Rows.Count > 0)
                     {
@@ -418,9 +430,16 @@ namespace WillAssure.Controllers
 
 
                     con.Close();
-
-
                     ViewBag.Message = "Verified";
+
+                }
+
+
+
+
+
+
+               
 
 
                 }
@@ -433,7 +452,7 @@ namespace WillAssure.Controllers
 
 
 
-            ModelState.Clear();
+            
 
 
             return View("~/Views/AddAssets/AddAssetsPageContent.cshtml");
