@@ -186,6 +186,31 @@
                                                 <td><label class="checkbox-inline"><input type="checkbox" id="DocumentDelete">Delete</label></td>
                                             </tr>
 
+
+
+                                            <tr>
+                                                <td style="font-weight:bolder"><input type="checkbox" id="Document">Document</td>
+                                                <td><label class="checkbox-inline"><input type="checkbox" id="DocumentAdd">Add</label></td>
+                                                <td><label class="checkbox-inline"><input type="checkbox" id="DocumentEdit">Edit</label></td>
+                                                <td><label class="checkbox-inline"><input type="checkbox" id="DocumentDelete">Delete</label></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td style="font-weight:bolder"><input type="checkbox" id="WillEmployee">WillEmployee</td>
+                                                <td><label class="checkbox-inline"><input type="checkbox" id="WillEmployeeAdd">Add</label></td>
+                                                <td><label class="checkbox-inline"><input type="checkbox" id="WillEmployeeEdit">Edit</label></td>
+                                                <td><label class="checkbox-inline"><input type="checkbox" id="WillEmployeeDelete">Delete</label></td>
+                                            </tr>
+
+
+                                            <tr>
+                                                <td style="font-weight:bolder"><input type="checkbox" id="DistributorEmployee">DistributorEmployee</td>
+                                                <td><label class="checkbox-inline"><input type="checkbox" id="DistributorEmployeeAdd">Add</label></td>
+                                                <td><label class="checkbox-inline"><input type="checkbox" id="DistributorEmployeeEdit">Edit</label></td>
+                                                <td><label class="checkbox-inline"><input type="checkbox" id="DistributorEmployeeDelete">Delete</label></td>
+                                            </tr>
+
+
                                         </tbody>
                                     </table>
                                 </div>
@@ -194,8 +219,6 @@
                             <div class="form-group">
 
                                 <button type="button" id="btnRoleAssignmentformsubmit" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i>Assign Roles</button>
-                                <button type="button" id="btnRoleAssignmentCHECK" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
-                                <button type="button" id="btnRoleformsubmitCHECK" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
                             </div>
 
                         }
@@ -220,6 +243,8 @@
                     <input type="hidden" id="17" value="" />
                     <input type="hidden" id="18" value="" />
                     <input type="hidden" id="19" value="" />
+                    <input type="text" id="20" value="" />
+                    <input type="text" id="21" value="" />
 
 
 
@@ -229,6 +254,8 @@
 
         </div>
 
+        <button type="button" id="btnRoleAssignmentCHECK" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
+        <button type="button" id="btnRoleformsubmitCHECK" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
 
     </div>
 
@@ -385,6 +412,13 @@
         var status19 = "";
         var data19 = "";
 
+        var status20 = "";
+        var data20 = "";
+
+
+        var status21 = "";
+        var data21 = "";
+
         // for role
         if ($("#Roles").is(':checked')) {
             status1 = status1 + "Active";
@@ -429,34 +463,34 @@
 
 
         // for Company
-        if ($("#Company").is(':checked')) {
-            status2 = status2 + "Active";
-        }
-        else {
-            status2 = status2 + "Inactive";
-        }
+        //if ($("#Company").is(':checked')) {
+        //    status2 = status2 + "Active";
+        //}
+        //else {
+        //    status2 = status2 + "Inactive";
+        //}
 
-        if ($("#CompanyAdd").is(':checked')) {
-            data2 = data2 + "1,";
-        }
-        else {
-            data2 = data2 + "0,";
-        }
-        if ($("#CompanyEdit").is(':checked')) {
-            data2 = data2 + "2,";
-        }
-        else {
-            data2 = data2 + "0,";
-        }
-        if ($("#CompanyDelete").is(':checked')) {
-            data2 = data2 + "3";
-        }
-        else {
-            data2 = data2 + "0";
-        }
+        //if ($("#CompanyAdd").is(':checked')) {
+        //    data2 = data2 + "1,";
+        //}
+        //else {
+        //    data2 = data2 + "0,";
+        //}
+        //if ($("#CompanyEdit").is(':checked')) {
+        //    data2 = data2 + "2,";
+        //}
+        //else {
+        //    data2 = data2 + "0,";
+        //}
+        //if ($("#CompanyDelete").is(':checked')) {
+        //    data2 = data2 + "3";
+        //}
+        //else {
+        //    data2 = data2 + "0";
+        //}
 
       
-        $("#2").val("update Assignment_Roles set  PageStatus= '" + status2 + "'  , Action = '" + data2 + "' where PageName = 'Company' and RoleId = " + roleid +"");
+        //$("#2").val("update Assignment_Roles set  PageStatus= '" + status2 + "'  , Action = '" + data2 + "' where PageName = 'Company' and RoleId = " + roleid +"");
 
         //end
 
@@ -1063,8 +1097,85 @@
 
 
 
-        
-        var AllData = $("#1").val() + "~" + $("#2").val() + "~" + $("#3").val() + "~" + $("#4").val() + "~" + $("#5").val() + "~" + $("#6").val() + "~" + $("#7").val() + "~" + $("#8").val() + "~" + $("#9").val() + "~" + $("#10").val() + "~" + $("#11").val() + "~" + $("#12").val() + "~" + $("#13").val() + "~" + $("#14").val() + "~" + $("#15").val() + "~" + $("#16").val() + "~" + $("#17").val() + "~" + $("#18").val() + "~" + $("#19").val();
+
+        // for WillEmployee
+        if ($("#WillEmployee").is(':checked')) {
+            status20 = status20 + "Active";
+        }
+        else {
+            status20 = status20 + "Inactive";
+        }
+
+        if ($("#WillEmployeeAdd").is(':checked')) {
+            data20 = data20 + "1,";
+        }
+        else {
+            data20 = data20 + "0,";
+        }
+        if ($("#WillEmployeeEdit").is(':checked')) {
+            data20 = data20 + "2,";
+        }
+        else {
+            data20 = data20 + "0,";
+        }
+        if ($("#WillEmployeeDelete").is(':checked')) {
+            data20 = data20 + "3";
+        }
+        else {
+            data20 = data20 + "0";
+        }
+
+
+        $("#20").val("update Assignment_Roles set  PageStatus= '" + status20 + "'  , Action = '" + data20 + "' where PageName = 'WillEmployee' and RoleId = " + roleid + " ");
+
+        //end
+
+
+
+
+
+
+        // for WillEmployee
+        if ($("#DistributorEmployee").is(':checked')) {
+            status21 = status21 + "Active";
+        }
+        else {
+            status21 = status21 + "Inactive";
+        }
+
+        if ($("#DistributorEmployeeAdd").is(':checked')) {
+            data21 = data21 + "1,";
+        }
+        else {
+            data21 = data21 + "0,";
+        }
+        if ($("#DistributorEmployeeEdit").is(':checked')) {
+            data21 = data21 + "2,";
+        }
+        else {
+            data21 = data21 + "0,";
+        }
+        if ($("#DistributorEmployeeDelete").is(':checked')) {
+            data21 = data21 + "3";
+        }
+        else {
+            data21 = data21 + "0";
+        }
+
+
+        $("#21").val("update Assignment_Roles set  PageStatus= '" + status21 + "'  , Action = '" + data21 + "' where PageName = 'DistributorEmployee' and RoleId = " + roleid + " ");
+
+        //end
+
+
+
+
+
+
+
+
+      //  + $("#2").val() + "~"
+        var AllData = $("#1").val() + "~"  + $("#3").val() + "~" + $("#4").val() + "~" + $("#5").val() + "~" + $("#6").val() + "~" + $("#7").val() + "~" + $("#8").val() + "~" + $("#9").val() + "~" + $("#10").val() + "~" + $("#11").val() + "~" + $("#12").val() + "~" + $("#13").val() + "~" + $("#14").val() + "~" + $("#15").val() + "~" + $("#16").val() + "~" + $("#17").val() + "~" + $("#18").val() + "~" + $("#19").val();
 
 
           $.ajax({

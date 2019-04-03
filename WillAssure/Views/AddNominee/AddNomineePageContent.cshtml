@@ -243,8 +243,6 @@
                             <div class="form-group">
 
                                 <button type="submit" id="btnRoleformsubmit" formaction="InsertNomineeData" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i> Add Nominee</button>
-                                <button type="button" id="btnnomineeinsertsuccess" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
-                                <button type="button" id="btnnomineelinking" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
                             </div>
 
                         }
@@ -263,6 +261,8 @@
 
 
 
+<button type="button" id="btnnomineeinsertsuccess" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
+<button type="button" id="btnnomineelinking" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
 
 
 
@@ -348,7 +348,7 @@
     $("#ddlcity").change(function () {
         var value = $(this).children(":selected").attr("value");
         var text = $("#ddlcity option:selected").html();
-        
+
         $("#citytext").val(text);
         $("#cityid").val(value);
     });
@@ -382,7 +382,7 @@
         $("#ddlrelation").change(function () {
             var value = $(this).children(":selected").attr("value");
             var text = $("#ddlrelation option:selected").html();
-        
+
             $("#RelationshipTxt").val(text);
             $("#RelationshipId").val(value);
 

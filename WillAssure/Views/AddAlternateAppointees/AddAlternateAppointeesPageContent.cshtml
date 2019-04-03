@@ -210,7 +210,7 @@
 
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        
+
                                         <label for="input-3">Pin</label>
                                         @Html.TextBoxFor(m => m.Pin, new { @class = "form-control validate[required,custom[PinCode]]  text-input", @id = "txtpin", @placeholder = "Enter Pin", @autocomplete = "off" })
                                     </div>
@@ -223,15 +223,15 @@
 
                             <div class="form-group">
                                 <button type="submit" id="btnDistributorformsubmit" formaction="InsertAlternateAppointeesFormData" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i>Add Alternate Appointees</button>
-                                <button id="btnalternateappointeesSuccess" style="display:none;"></button>
-                                <button id="btnalternateappointeesLinking" style="display:none;"></button>
+
                             </div>
                         }
                     </div>
                 </div>
             </div>
 
-
+            <button id="btnalternateappointeesSuccess" style="display:none;"></button>
+            <button id="btnalternateappointeesLinking" style="display:none;"></button>
         </div>
 
 

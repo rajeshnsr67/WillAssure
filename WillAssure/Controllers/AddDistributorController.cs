@@ -100,56 +100,65 @@ namespace WillAssure.Controllers
             string s3 = "none";
             string s4 = "none";
 
-            con.Open();
-            SqlCommand cmd = new SqlCommand("SP_CrudcompanyDetails", con);
-            cmd.CommandType = System.Data.CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@condition", "insert");
-            cmd.Parameters.AddWithValue("@companyName ", DFM.companyName );
-            cmd.Parameters.AddWithValue("@ownerName", DFM.ownerName);
-            cmd.Parameters.AddWithValue("@ownerMobileNo", DFM.ownerMobileNo);
-            cmd.Parameters.AddWithValue("@Address1", DFM.Address1 );
-            cmd.Parameters.AddWithValue("@Address2", DFM.Address2);
-            cmd.Parameters.AddWithValue("@City", DFM.citytext);
-            cmd.Parameters.AddWithValue("@State", DFM.statetext);
-            cmd.Parameters.AddWithValue("@Pin", DFM.Pin );
-            cmd.Parameters.AddWithValue("@GST_NO", DFM.GST_NO );
-            cmd.Parameters.AddWithValue("@Identity_Proof", DFM.Identity_Proof);
-            cmd.Parameters.AddWithValue("@Identity_Proof_Value", DFM.Identity_Proof_Value);
-            cmd.Parameters.AddWithValue("@Alt_Identity_Proof", DFM.Alt_Identity_Proof);
-            cmd.Parameters.AddWithValue("@Alt_Identity_Proof_Value",DFM.Alt_Identity_Proof_Value );
-            cmd.Parameters.AddWithValue("@contactPerson", DFM.contactPerson);
-            cmd.Parameters.AddWithValue("@contactMobileNo",DFM.contactMobileNo );
-            cmd.Parameters.AddWithValue("@contactMailId",DFM.contactMailId );
-            cmd.Parameters.AddWithValue("@bankName", DFM.bankName);
-            cmd.Parameters.AddWithValue("@Branch", DFM.Branch);
-            cmd.Parameters.AddWithValue("@accountNumber",DFM.accountNumber );
-            cmd.Parameters.AddWithValue("@IFSC_Code",DFM.IFSC_Code );
-            cmd.Parameters.AddWithValue("@accountName", DFM.accountName);
-            cmd.Parameters.AddWithValue("@Referred_By", DFM.Referred_By);
-            cmd.Parameters.AddWithValue("@leadgeneratedBy", s);
-            cmd.Parameters.AddWithValue("@leadconvertedBy", s2);
-            cmd.Parameters.AddWithValue("@relationshipManager", DFM.relationshipManager );
-            cmd.Parameters.AddWithValue("@leadStatus", s3 );
-            cmd.Parameters.AddWithValue("@leadRemark", s4);
-            cmd.ExecuteNonQuery();
-            con.Close();
-
-
-            
-            con.Open();
-            string query = "select TOP 1 * FROM  companyDetails ORDER BY compId DESC";
-            SqlDataAdapter da = new SqlDataAdapter(query, con);
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-            if (dt.Rows.Count > 0)
+            if (Convert.ToInt32(Session["compId"]) == 0)
             {
+                con.Open();
+                SqlCommand cmd = new SqlCommand("SP_CrudcompanyDetails", con);
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@condition", "insert");
+                cmd.Parameters.AddWithValue("@companyName ", DFM.companyName);
+                cmd.Parameters.AddWithValue("@ownerName", DFM.ownerName);
+                cmd.Parameters.AddWithValue("@ownerMobileNo", DFM.ownerMobileNo);
+                cmd.Parameters.AddWithValue("@Address1", DFM.Address1);
+                cmd.Parameters.AddWithValue("@Address2", DFM.Address2);
+                cmd.Parameters.AddWithValue("@City", DFM.citytext);
+                cmd.Parameters.AddWithValue("@State", DFM.statetext);
+                cmd.Parameters.AddWithValue("@Pin", DFM.Pin);
+                cmd.Parameters.AddWithValue("@GST_NO", DFM.GST_NO);
+                cmd.Parameters.AddWithValue("@Identity_Proof", DFM.Identity_Proof);
+                cmd.Parameters.AddWithValue("@Identity_Proof_Value", DFM.Identity_Proof_Value);
+                cmd.Parameters.AddWithValue("@Alt_Identity_Proof", DFM.Alt_Identity_Proof);
+                cmd.Parameters.AddWithValue("@Alt_Identity_Proof_Value", DFM.Alt_Identity_Proof_Value);
+                cmd.Parameters.AddWithValue("@contactPerson", DFM.contactPerson);
+                cmd.Parameters.AddWithValue("@contactMobileNo", DFM.contactMobileNo);
+                cmd.Parameters.AddWithValue("@contactMailId", DFM.contactMailId);
+                cmd.Parameters.AddWithValue("@bankName", DFM.bankName);
+                cmd.Parameters.AddWithValue("@Branch", DFM.Branch);
+                cmd.Parameters.AddWithValue("@accountNumber", DFM.accountNumber);
+                cmd.Parameters.AddWithValue("@IFSC_Code", DFM.IFSC_Code);
+                cmd.Parameters.AddWithValue("@accountName", DFM.accountName);
+                cmd.Parameters.AddWithValue("@Referred_By", DFM.Referred_By);
+                cmd.Parameters.AddWithValue("@leadgeneratedBy", s);
+                cmd.Parameters.AddWithValue("@leadconvertedBy", s2);
+                cmd.Parameters.AddWithValue("@relationshipManager", DFM.relationshipManager);
+                cmd.Parameters.AddWithValue("@leadStatus", s3);
+                cmd.Parameters.AddWithValue("@leadRemark", s4);
+                cmd.ExecuteNonQuery();
+                con.Close();
 
-                Session["compid"] = Convert.ToInt32(dt.Rows[0]["compId"]); 
+
+
+                con.Open();
+                string query = "select TOP 1 * FROM  companyDetails ORDER BY compId DESC";
+                SqlDataAdapter da = new SqlDataAdapter(query, con);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                if (dt.Rows.Count > 0)
+                {
+
+                    Session["compid"] = Convert.ToInt32(dt.Rows[0]["compId"]);
+
+                    string update = "update users set compId = " + Convert.ToInt32(Session["compid"]) + "  where  compid = 0 ";
+                    SqlCommand cmd2 = new SqlCommand(update,con);
+                    cmd2.ExecuteNonQuery();
+                }
+                con.Close();
             }
-            con.Close();
+
+          
 
 
-            ModelState.Clear();
+          
 
             ViewBag.Message = "Verified";
 

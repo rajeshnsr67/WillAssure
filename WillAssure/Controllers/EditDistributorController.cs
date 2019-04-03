@@ -113,7 +113,7 @@ namespace WillAssure.Controllers
 
            
                 con.Open();
-                string query = "select a.compId , a.companyName , a.ownerName , a.ownerMobileNo , a.Address1 , a.Address2 , a.City , a.State , a.Pin , a.GST_NO ,a.Identity_Proof , a.Identity_Proof_Value , a.Alt_Identity_Proof , a.Alt_Identity_Proof_Value , a.contactPerson , a.contactMobileNo , a.contactMailId , a.bankName , a.Branch , a.accountNumber , a.IFSC_Code , a.accountName , a.Referred_By , a.leadgeneratedBy , a.leadconvertedBy , a.relationshipManager , a.leadStatus , a.leadRemark from companyDetails a inner join users b on a.compId = b.compId  where b.compId =  " + Convert.ToInt32(Session["compId"]) + "  ";
+                string query = " select * from companyDetails ";
                 SqlDataAdapter da = new SqlDataAdapter(query, con);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
@@ -396,7 +396,7 @@ namespace WillAssure.Controllers
 
 
             con.Open();
-            string query = "select a.compId , a.companyName , a.ownerName , a.ownerMobileNo , a.Address1 , a.Address2 , a.City , a.State , a.Pin , a.GST_NO ,a.Identity_Proof , a.Identity_Proof_Value , a.Alt_Identity_Proof , a.Alt_Identity_Proof_Value , a.contactPerson , a.contactMobileNo , a.contactMailId , a.bankName , a.Branch , a.accountNumber , a.IFSC_Code , a.accountName , a.Referred_By , a.leadgeneratedBy , a.leadconvertedBy , a.relationshipManager , a.leadStatus , a.leadRemark from companyDetails a inner join users b on a.compId = b.compId  where b.compId =  " + Convert.ToInt32(Session["compId"]) + "  ";
+            string query = " select * from companyDetails ";
             SqlDataAdapter da = new SqlDataAdapter(query, con);
             DataTable dt = new DataTable();
             da.Fill(dt);

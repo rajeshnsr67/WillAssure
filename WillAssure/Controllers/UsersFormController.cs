@@ -23,11 +23,7 @@ namespace WillAssure.Controllers
             {
                 return View("~/Views/LoginPage/LoginPageContent.cshtml");
             }
-            if (Session["compId"] == null)
-            {
-                ViewBag.Message = "link";
-
-            }
+     
 
 
 
@@ -107,8 +103,8 @@ namespace WillAssure.Controllers
             //end
 
 
-            if (Session["compId"] != null)
-            {
+            //if (Session["compId"] != null)
+            //{
 
 
                 con.Open();
@@ -156,32 +152,19 @@ namespace WillAssure.Controllers
                         UFM.rid = 0;
                         cmd.Parameters.AddWithValue("@rid", UFM.rid);
                     }
+
+                UFM.CompId = 0;
+                if (Session["compid"] != "")
+                {
+                    cmd.Parameters.AddWithValue("@compId", Convert.ToInt32(Session["compid"]));
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@compId", UFM.CompId);
+                }
+                 
                    
-                    //  UFM.CompId = Convert.ToInt32(Session["compid"]);
-
-
-                    //string que = "select top 1 * from companyDetails order by compId desc";
-                    //SqlDataAdapter d = new SqlDataAdapter(que,con);
-                    //DataTable dtt = new DataTable();
-                    //d.Fill(dtt);
-                    //int compid = 0;
-                    //if (dtt.Rows.Count > 0)
-                    //{
-                    //    compid = Convert.ToInt32(dtt.Rows[0]["compId"]);
-                    //}
-
-                    //if (UFM.rid == 1)
-                    //{
-                    //    UFM.CompId = 0;
-                    //}
-                    if (UFM.rid != 1 && UFM.rid != 2 && UFM.rid !=3)
-                    {
-                        cmd.Parameters.AddWithValue("@compId", 0);
-                    }
-                    else
-                    {
-                        cmd.Parameters.AddWithValue("@compId", Convert.ToInt32(Session["compid"]));
-                    }
+                    
 
                     
                     cmd.Parameters.AddWithValue("@Linked_user", UFM.rid);
@@ -223,9 +206,9 @@ namespace WillAssure.Controllers
                     con.Close();
 
 
+              
 
-
-
+                
 
 
 
@@ -241,19 +224,18 @@ namespace WillAssure.Controllers
 
 
 
-        }
-            else
-            {
+        //}
+            //else
+            //{
 
-                ViewBag.Message = "link";
+            //    ViewBag.Message = "link";
 
-            }
-
-
+            //}
 
 
 
-            ModelState.Clear();
+
+
 
 
 
@@ -347,23 +329,32 @@ namespace WillAssure.Controllers
 
         public String BindRoleDDL()
         {
-            string data = "<option value=''>--Select Role--</option>";
+            string data = "";
+
+            if (Convert.ToInt32(Session["rId"]) == 2)
+            {
+                 data = "<option value=''>--Select Role--</option><option value ='1'>Distributor</option>";
+            }
+            else
+            {
+                 data = "<option value=''>--Select Role--</option>";
+            }
+                
 
             if (Session["rId"] != null)
             {
                 int roles = 0;
                 roles = Convert.ToInt32(Session["rId"]);
 
-                if (roles == 2 && roles == 3)
+                if (roles == 2)
                 {
-
                     con.Open();
-                    string query = "select * from subroles";
+                    string query = "select * from roles where Pid = "+Convert.ToInt32(Session["uuid"])+"";
                     SqlDataAdapter da = new SqlDataAdapter(query, con);
                     DataTable dt = new DataTable();
                     da.Fill(dt);
                     con.Close();
-                    
+
 
                     if (dt.Rows.Count > 0)
                     {
@@ -375,7 +366,7 @@ namespace WillAssure.Controllers
 
 
 
-                            data = data + "<option value=" + dt.Rows[i]["Subrid"].ToString() + " >" + dt.Rows[i]["SubRolesName"].ToString() + "</option>";
+                            data = data + "<option value=" + dt.Rows[i]["rid"].ToString() + " >" + dt.Rows[i]["Role"].ToString() + "</option>";
 
 
 
@@ -385,14 +376,12 @@ namespace WillAssure.Controllers
 
 
                     }
-                   
-
                 }
                 else
                 {
 
                     con.Open();
-                    string query = "select * from Roles";
+                    string query = "select * from roles where Pid = " + Convert.ToInt32(Session["uuid"]) + "";
                     SqlDataAdapter da = new SqlDataAdapter(query, con);
                     DataTable dt = new DataTable();
                     da.Fill(dt);
@@ -421,7 +410,15 @@ namespace WillAssure.Controllers
                     }
 
 
+
+
                 }
+               
+              
+
+           
+
+
 
             }
            
@@ -465,6 +462,46 @@ namespace WillAssure.Controllers
 
             return data;
 
+        }
+
+
+
+        public string checktype()
+        {
+        
+            string buttonname = "";
+        
+            if (Convert.ToInt32(Session["rId"]) == 2)
+            {
+            
+             
+                 
+
+                    if (Convert.ToInt32(Session["rId"]) == 2 && Convert.ToInt32(Session["compId"]) == 0)
+                    {
+                    buttonname = "Add Distributor";
+                    ViewBag.type = buttonname;
+                    }
+                    else
+                    {
+                    buttonname = "Update Distributor";
+                    ViewBag.type = buttonname;
+                    }
+
+
+
+
+
+
+
+                con.Close();
+            }
+
+          
+            //bindbutton
+                
+
+            return buttonname;
         }
 
 

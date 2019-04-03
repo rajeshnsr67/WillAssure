@@ -374,7 +374,7 @@
                                     new SelectListItem() {Text = "Quick", Value="Quick"},
                                     new SelectListItem() {Text = "Detailed", Value="Detailed"}}, new { @class = "form-control validate[required]", id= "DDLAmtPaidBY2" })
 
-                                  
+
 
 
                                 </div>
@@ -400,7 +400,7 @@
                                     @Html.HiddenFor(m => m.Document_Created_By_ID, new { id = "Document_Created_By_ID" })
                                     @Html.HiddenFor(m => m.Document_Created_By_txt, new { id = "Document_Created_By_txt" })
 
-                              
+
 
                                 </div>
 
@@ -421,7 +421,7 @@
 
                                     @Html.HiddenFor(m => m.Amt_Paid_By_By_ID, new { id = "Amt_Paid_By_By_ID" })
                                     @Html.HiddenFor(m => m.Amt_Paid_By_txt, new { id = "Amt_Paid_By_txt" })
-                                   
+
 
                                 </div>
                             </div>
@@ -435,8 +435,6 @@
 
                             <div class="form-group">
                                 <button type="submit" id="alert-success" formaction="InsertTestatorFormData" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i>Add Testator</button>
-                                <button type="button" style="display:none;" id="ADDTestatorFormData" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
-                                <button type="button" style="display:none;" id="testatorlinkcheck" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
                             </div>
                         }
                     </div>
@@ -445,6 +443,8 @@
 
 
         </div>
+        <button type="button" style="display:none;" id="ADDTestatorFormData" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
+        <button type="button" style="display:none;" id="testatorlinkcheck" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
 
 
     </div>

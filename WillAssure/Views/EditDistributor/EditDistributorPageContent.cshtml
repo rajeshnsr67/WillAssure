@@ -27,10 +27,12 @@
         <!-- End Breadcrumb-->
 
         <div class="row">
+
             <div class="col-lg-12">
                 <div class="card">
-                    <div class="card-header"><i class="fa fa-table"></i>Company Data</div>
+                    <div class="card-header" style="float:left;"><i class="fa fa-table"></i>Company Data</div>
                     <div class="card-body">
+                       <center><a href="@Url.Action("AddDistributorIndex", "AddDistributor")"><button type="button" class="btn btn-primary" id="btncompany">Add New Company</button></a></center> 
                         <div class="table-responsive">
                             <table id="default-datatable" class="table table-bordered">
                                 <thead>
@@ -59,10 +61,10 @@
                                         <th>accountName</th>
                                         <th>Referred By</th>
                                         @*<th>leadgeneratedBy</th>
-                                        <th>leadconvertedBy</th>*@
+                        <th>leadconvertedBy</th>*@
                                         <th>relationshipManager</th>
                                         @*<th>leadStatus</th>
-                                        <th>leadRemark</th>*@
+                        <th>leadRemark</th>*@
                                         <th>Action</th>
 
                                     </tr>

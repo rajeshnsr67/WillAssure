@@ -17,5 +17,11 @@ namespace WillAssure
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
+
+        protected void Session_Start(object sender, EventArgs e)
+        {
+            // Code that runs when a new session is started
+            Session.Timeout = 220;
+        }
     }
 }

@@ -100,8 +100,7 @@ namespace WillAssure.Controllers
 
             int roles = 0;
             roles = Convert.ToInt32(Session["rId"]); 
-            if (roles != 2 || roles != 3)
-            {
+         
                 //main Roles
 
                 con.Open();
@@ -120,6 +119,7 @@ namespace WillAssure.Controllers
                     cmd2.CommandType = System.Data.CommandType.StoredProcedure;
                     cmd2.Parameters.AddWithValue("@condition", "insert");
                     cmd2.Parameters.AddWithValue("@role ", RFM.Role);
+                    cmd2.Parameters.AddWithValue("@pid ", Convert.ToInt32(Session["uuid"]));
                     cmd2.ExecuteNonQuery();
                     
 
@@ -128,30 +128,8 @@ namespace WillAssure.Controllers
 
                 con.Close();
 
-            }
-            else
-            {
-                //Sub Roles
-
-                con.Open();
-                string query = "select count(*) from SubRoles  where Role = '" + RFM.Role + "'";
-                SqlCommand cmd = new SqlCommand(query, con);
-                int count = (int)cmd.ExecuteScalar();
-
-                if (count > 0)
-                {
-                    ViewBag.Message = "Duplicate";
-                }
-                else
-                {
-                    
-                    string query2 = "insert into subroles (SubRolesName,Rid) values ('" + RFM.Role + "' , '" + roles + "')";
-                    SqlCommand cmd2 = new SqlCommand(query2, con);
-                    cmd2.ExecuteNonQuery();
-                    
-                    ViewBag.Message = "Verified";
-                }
-               
+            
+          
             
 
 
@@ -160,9 +138,9 @@ namespace WillAssure.Controllers
 
            
                 
-                con.Close();
                
-            }
+               
+            
 
             
             return View("~/Views/RoleAdd/AddRoleContentPage.cshtml");
