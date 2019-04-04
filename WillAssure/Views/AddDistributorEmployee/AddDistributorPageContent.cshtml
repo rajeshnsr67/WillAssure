@@ -203,20 +203,20 @@
                                 </div>
 
 
-                               @if (Convert.ToInt32(Session["rId"]) != 1 || Convert.ToInt32(Session["rId"]) != 2)
-                               {
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="input-3">Role</label>
-                                        <select id="ddlRole" class="form-control validate[required]"></select>
-                                        @Html.HiddenFor(m => m.rid, new { id = "rid" })
-                                        @Html.HiddenFor(m => m.rtext, new { id = "rtext" })
+                                @if (Convert.ToInt32(Session["rId"]) != 1 || Convert.ToInt32(Session["rId"]) != 2)
+                                {
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="input-3">Role</label>
+                                            <select id="ddlRole" class="form-control validate[required]"></select>
+                                            @Html.HiddenFor(m => m.rid, new { id = "rid" })
+                                            @Html.HiddenFor(m => m.rtext, new { id = "rtext" })
+                                        </div>
                                     </div>
-                                </div>
-                               }
-                               
-                                    
-                                
+                                }
+
+
+
 
 
 
@@ -235,10 +235,10 @@
 
 
                                         @*<select id="ddlcompany" class="form-control validate[required]">
-                                            <option value="">--Select--</option>
-                                        </select>
-                                        @Html.HiddenFor(m => m.CompId, new { id = "CompId" })
-                                        @Html.HiddenFor(m => m.CompIdtext, new { id = "CompIdtext" })*@
+                                                <option value="">--Select--</option>
+                                            </select>
+                                            @Html.HiddenFor(m => m.CompId, new { id = "CompId" })
+                                            @Html.HiddenFor(m => m.CompIdtext, new { id = "CompIdtext" })*@
                                     </div>
                                 </div>
 
@@ -286,7 +286,7 @@
                                 <button type="submit" id="btnUserformsubmit" formaction="GetUserFormData" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i>Add Users</button>
                                 <a href="@Url.Action("AddDistributorIndex","AddDistributor")"><button type="button" class="btn btn-danger" style="display:none;" id="btncompanyadd">Add Company</button></a>
                                 <a href="@Url.Action("UpdateDistributorIndex","UpdateDistributor",new { @NestId = Session["compId"]})"><button type="button" class="btn btn-danger" style="display:none;" id="btncompanyupdate">Update Company</button></a>
-                           
+
                             </div>
                         }
                     </div>
@@ -314,7 +314,7 @@
 <script>
 
     $('.radio').on('change', function () {
-       
+
         $('.radio').not(this).prop('checked', false);
         var val = $("input[name=radio]:checked").val()
 
@@ -335,7 +335,7 @@
         $.ajax({
 
             type: "POST",
-            url:"@Url.Action("BindRoleDDL", "UsersForm")",
+            url:"@Url.Action("BindRoleDDL", "AddDistributorEmployee")",
             success: function (data) {
                 $('#ddlRole').empty().append(data);
             }
@@ -347,7 +347,7 @@
               $.ajax({
 
             type: "POST",
-            url:"@Url.Action("BindCompanyDDL", "UsersForm")",
+            url:"@Url.Action("BindCompanyDDL", "AddDistributorEmployee")",
             success: function (data) {
                 $('#ddlcompany').empty().append(data);
             }
@@ -366,7 +366,7 @@
         $.ajax({
 
             type: "POST",
-            url:"@Url.Action("BindDesignationDDL", "UsersForm")",
+            url:"@Url.Action("BindDesignationDDL", "AddDistributorEmployee")",
             success: function (data) {
 
                 $('#ddldesignation').append(data);
@@ -399,7 +399,7 @@
         $("#CompIdtext").val(text);
         $("#CompId").val(value);
 
-       
+
     });
 </script>
 
@@ -429,8 +429,8 @@
             $.ajax({
 
             type: "POST",
-            url: "@Url.Action("checktype", "UsersForm")",
-            
+            url: "@Url.Action("checktype", "AddDistributorEmployee")",
+
             success: function (data) {
 
                 if (data =="Update Distributor") {
@@ -448,15 +448,15 @@
 
 
         });
-           
-            
+
+
         }
         else {
             $("#showcompany").css('display', 'none');
             $("#btncompany").css('display', 'none');
         }
-       
-    
+
+
 
 
     });
@@ -476,7 +476,7 @@
         $.ajax({
 
             type: "POST",
-            url:"@Url.Action("BindStateDDL", "UsersForm")",
+            url:"@Url.Action("BindStateDDL", "AddDistributorEmployee")",
             success: function (data) {
                 $('#ddlstate').empty().append(data);
             }
@@ -500,7 +500,7 @@
         $.ajax({
 
             type: "POST",
-            url: "@Url.Action("OnChangeBindCity", "UsersForm")",
+            url: "@Url.Action("OnChangeBindCity", "AddDistributorEmployee")",
             data: { "send": "" + value+  ""},
             success: function (data) {
 

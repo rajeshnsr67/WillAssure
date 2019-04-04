@@ -37,7 +37,7 @@
 
                                     <div class="form-group">
                                         <label for="input-1">Type</label>
-                                        @Html.HiddenFor(m => m.apId);
+                                        @Html.HiddenFor(m => m.apId)
                                         @Html.DropDownListFor(x => x.Type, new SelectListItem[]{
                              new SelectListItem() {Text = "--Select--", Value=""},
                              new SelectListItem() {Text = "Executor", Value="1"},

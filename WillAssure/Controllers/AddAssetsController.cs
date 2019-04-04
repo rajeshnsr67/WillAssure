@@ -367,22 +367,22 @@ namespace WillAssure.Controllers
 
 
 
+            if (form.assetcolumn != null || form.assetcolumnValues != null || form.col != null || form.val != null || form.controls != null || form.values != null)
+            {
+
+                string column = form.assetcolumn.Replace(" ", string.Empty).Replace("\r\n", string.Empty);
+                string cv = form.assetcolumnValues.Replace(" ", string.Empty).Replace("\r\n", string.Empty);
+                string col = form.col.Replace(" ", string.Empty).Replace("\r\n", string.Empty);
+                string val = form.val.Replace(" ", string.Empty).Replace("\r\n", string.Empty);
+
+                string cc = form.controls.Replace(" ", string.Empty).Replace("\r\n", string.Empty);
+                string vv = form.values.Replace(" ", string.Empty).Replace("\r\n", string.Empty);
 
 
 
-            string column = form.assetcolumn.Replace(" ", string.Empty).Replace("\r\n", string.Empty);
-            string cv = form.assetcolumnValues.Replace(" ", string.Empty).Replace("\r\n", string.Empty);
-            string col = form.col.Replace(" ", string.Empty).Replace("\r\n", string.Empty);
-            string val = form.val.Replace(" ", string.Empty).Replace("\r\n", string.Empty);
 
-            string cc = form.controls.Replace(" ", string.Empty).Replace("\r\n", string.Empty);
-            string vv = form.values.Replace(" ", string.Empty).Replace("\r\n", string.Empty);
-
-            
-
-
-            //if (Session["tid"] != null)
-            //{
+                //if (Session["tid"] != null)
+                //{
                 if (column != "" && cv != "" && col != "" && val != "" && cc != "" && vv != "")
                 {
                     string c = column.Substring(0, column.Length - 1);
@@ -395,43 +395,46 @@ namespace WillAssure.Controllers
 
                     string columnvalues = cv.Substring(0, cv.Length - 1);
 
-                con.Open();
-                string checkquery = "select count(*) from AssetsInfo where amId = "+ form.amId + " ";
-                SqlCommand cmd = new SqlCommand(checkquery,con);
-                int count = (int)cmd.ExecuteScalar();
-                con.Close();
-
-
-                if (count > 0)
-                {
-                    ViewBag.Message = "Duplicate";
-                }
-                else
-                {
-
                     con.Open();
-                    query1 = "insert into AssetsInfo (amId," + c + "," + contr + ", " + valu + ") values (" + form.amId + " , " + columnvalues + " , " + c1 + " , " + v1 + ") ";
-                    SqlCommand cmd1 = new SqlCommand(query1, con);
-                    cmd1.ExecuteNonQuery();
+                    string checkquery = "select count(*) from AssetsInfo where amId = " + form.amId + " ";
+                    SqlCommand cmd = new SqlCommand(checkquery, con);
+                    int count = (int)cmd.ExecuteScalar();
                     con.Close();
 
-                    con.Open();
-                    string query = "select top 1 aiId from AssetsInfo order by aiId desc";
-                    SqlDataAdapter da = new SqlDataAdapter(query, con);
-                    DataTable dt = new DataTable();
-                    da.Fill(dt);
 
-
-
-                    if (dt.Rows.Count > 0)
+                    if (count > 0)
                     {
-                        Session["aiId"] = dt.Rows[0]["aiId"];
+                        ViewBag.Message = "Duplicate";
+                    }
+                    else
+                    {
+
+                        con.Open();
+                        query1 = "insert into AssetsInfo (amId," + c + "," + contr + ", " + valu + ") values (" + form.amId + " , " + columnvalues + " , " + c1 + " , " + v1 + ") ";
+                        SqlCommand cmd1 = new SqlCommand(query1, con);
+                        cmd1.ExecuteNonQuery();
+                        con.Close();
+
+                        con.Open();
+                        string query = "select top 1 aiId from AssetsInfo order by aiId desc";
+                        SqlDataAdapter da = new SqlDataAdapter(query, con);
+                        DataTable dt = new DataTable();
+                        da.Fill(dt);
+
+
+
+                        if (dt.Rows.Count > 0)
+                        {
+                            Session["aiId"] = dt.Rows[0]["aiId"];
+                        }
+
+
+                        con.Close();
+                        ViewBag.Message = "Verified";
+
                     }
 
 
-                    con.Close();
-                    ViewBag.Message = "Verified";
-
                 }
 
 
@@ -439,10 +442,12 @@ namespace WillAssure.Controllers
 
 
 
-               
 
 
-                }
+
+
+
+            }
             //}
             //else
             //{

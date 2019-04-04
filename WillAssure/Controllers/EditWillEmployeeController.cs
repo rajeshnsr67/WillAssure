@@ -12,13 +12,12 @@ using System.Collections;
 
 namespace WillAssure.Controllers
 {
-    public class EditUserFormController : Controller
+    public class EditWillEmployeeController : Controller
     {
         public static string connectionString = ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString;
         SqlConnection con = new SqlConnection(connectionString);
-
-
-        public ActionResult EditUserFormIndex()
+        // GET: EditWillEmployee
+        public ActionResult EditWillEmployeeIndex()
         {
             if (Session.SessionID == null)
             {
@@ -56,8 +55,10 @@ namespace WillAssure.Controllers
 
             con.Close();
 
-            return View("~/Views/EditUserForm/EditUserFormPageContent.cshtml");
+
+            return View("~/Views/EditWillEmployee/EditWillEmployeePageContent.cshtml");
         }
+
 
 
         public string BindUserForm()
@@ -115,7 +116,7 @@ namespace WillAssure.Controllers
 
 
             con.Open();
-            string query = "select a.uId , a.First_Name , a.Last_Name , a.Middle_Name , a.DOB , a.Mobile , a.eMail , a.Address1 , a.Address2 , a.Address3 , a.City , a.State , a.Pin , a.userID , a.userPwd , a.Linked_user , a.Designation , b.Role , a.dateCreated , a.active , a.compId from users a inner join Roles b on a.rId=b.rId where a.rId = 2  and a.active = 1 ";
+            string query = "select a.uId , a.First_Name , a.Last_Name , a.Middle_Name , a.DOB , a.Mobile , a.eMail , a.Address1 , a.Address2 , a.Address3 , a.City , a.State , a.Pin , a.userID , a.userPwd , a.Linked_user , a.Designation , b.Role , a.dateCreated , a.active , a.compId from users a inner join Roles b on a.rId=b.rId where a.rId = 3  and a.active = 1 ";
             SqlDataAdapter da = new SqlDataAdapter(query, con);
             DataTable dt = new DataTable();
             da.Fill(dt);
@@ -314,7 +315,7 @@ namespace WillAssure.Controllers
                     }
                 }
 
-                
+
 
 
 
@@ -714,7 +715,7 @@ namespace WillAssure.Controllers
                 }
 
 
-             
+
 
 
 
@@ -731,7 +732,7 @@ namespace WillAssure.Controllers
 
             }
 
-                    return data;
+            return data;
         }
 
 
@@ -746,20 +747,20 @@ namespace WillAssure.Controllers
             cmd.Parameters.AddWithValue("@condition", "delete");
             cmd.Parameters.AddWithValue("@uid", index);
             cmd.Parameters.AddWithValue("@FirstName", "");
-            cmd.Parameters.AddWithValue("@LastName","");
-            cmd.Parameters.AddWithValue("@MiddleName","");
-            cmd.Parameters.AddWithValue("@Dob","");
+            cmd.Parameters.AddWithValue("@LastName", "");
+            cmd.Parameters.AddWithValue("@MiddleName", "");
+            cmd.Parameters.AddWithValue("@Dob", "");
             cmd.Parameters.AddWithValue("@Mobile", "");
             cmd.Parameters.AddWithValue("@Email", "");
             cmd.Parameters.AddWithValue("@Address1", "");
-            cmd.Parameters.AddWithValue("@Address2","");
+            cmd.Parameters.AddWithValue("@Address2", "");
             cmd.Parameters.AddWithValue("@Address3", "");
-            cmd.Parameters.AddWithValue("@City","");
+            cmd.Parameters.AddWithValue("@City", "");
             cmd.Parameters.AddWithValue("@State ", "");
             cmd.Parameters.AddWithValue("@Pin", "");
-            cmd.Parameters.AddWithValue("@UserId","");
+            cmd.Parameters.AddWithValue("@UserId", "");
             cmd.Parameters.AddWithValue("@UserPassword", "");
-           
+
             cmd.Parameters.AddWithValue("@Designation", "");
             cmd.Parameters.AddWithValue("@Active", "");
             cmd.Parameters.AddWithValue("@compId", "");
@@ -822,7 +823,7 @@ namespace WillAssure.Controllers
 
 
             con.Open();
-            string query = "select a.uId , a.First_Name , a.Last_Name , a.Middle_Name , a.DOB , a.Mobile , a.eMail , a.Address1 , a.Address2 , a.Address3 , a.City , a.State , a.Pin , a.userID , a.userPwd , a.Linked_user , a.Designation , b.Role , a.dateCreated , a.active , a.compId from users a inner join Roles b on a.rId=b.rId where a.rId = 2  and a.active = 1 ";
+            string query = "select a.uId , a.First_Name , a.Last_Name , a.Middle_Name , a.DOB , a.Mobile , a.eMail , a.Address1 , a.Address2 , a.Address3 , a.City , a.State , a.Pin , a.userID , a.userPwd , a.Linked_user , a.Designation , b.Role , a.dateCreated , a.active , a.compId from users a inner join Roles b on a.rId=b.rId where a.rId = 3  and a.active = 1 ";
             SqlDataAdapter da = new SqlDataAdapter(query, con);
             DataTable dt = new DataTable();
             da.Fill(dt);
@@ -1453,6 +1454,8 @@ namespace WillAssure.Controllers
 
             return index;
         }
+
+
 
 
 

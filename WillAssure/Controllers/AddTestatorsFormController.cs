@@ -155,7 +155,7 @@ namespace WillAssure.Controllers
 
             //if (Session["compId"] != null)
             //{
-                TFM.uId = Convert.ToInt32(Session["uid"]);
+                TFM.uId = Convert.ToInt32(Session["uuid"]);
                 DateTime dat = DateTime.ParseExact(TFM.Dob, "dd-MM-yyyy", CultureInfo.InvariantCulture);
                 con.Open();
                 SqlCommand cmd = new SqlCommand("SP_CRUDTestatorDetails", con);
@@ -237,7 +237,7 @@ namespace WillAssure.Controllers
 
               
                 con.Open();
-                string q = "insert into documentMaster (tId,templateId,IsUpdatetable,uId,pId,created_by,testator_type) values (" + testatorid + " , " + templateid + " ,  'Yes' ,   "+Convert.ToInt32(Session["uid"]) +" , 1 , '" + TFM.Document_Created_By_txt + "' , '" + testatortype + "')";
+                string q = "insert into documentMaster (tId,templateId,IsUpdatetable,uId,pId,created_by,testator_type) values (" + testatorid + " , " + templateid + " ,  'Yes' ,   "+Convert.ToInt32(Session["uuid"]) +" , 1 , '" + TFM.Document_Created_By_txt + "' , '" + testatortype + "')";
                 SqlCommand c = new SqlCommand(q, con);
                 c.ExecuteNonQuery();
                 con.Close();

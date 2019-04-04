@@ -100,8 +100,6 @@ namespace WillAssure.Controllers
             string s3 = "none";
             string s4 = "none";
 
-            if (Convert.ToInt32(Session["compId"]) == 0)
-            {
                 con.Open();
                 SqlCommand cmd = new SqlCommand("SP_CrudcompanyDetails", con);
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
@@ -138,22 +136,8 @@ namespace WillAssure.Controllers
 
 
 
-                con.Open();
-                string query = "select TOP 1 * FROM  companyDetails ORDER BY compId DESC";
-                SqlDataAdapter da = new SqlDataAdapter(query, con);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-                if (dt.Rows.Count > 0)
-                {
-
-                    Session["compid"] = Convert.ToInt32(dt.Rows[0]["compId"]);
-
-                    string update = "update users set compId = " + Convert.ToInt32(Session["compid"]) + "  where  compid = 0 ";
-                    SqlCommand cmd2 = new SqlCommand(update,con);
-                    cmd2.ExecuteNonQuery();
-                }
-                con.Close();
-            }
+         
+          
 
           
 

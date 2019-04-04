@@ -162,8 +162,8 @@ namespace WillAssure.Controllers
 
                 //qry = qry + "insert into Assignment_Roles (RoleId,PageName,Nav1,Nav2) values (" + roleid + " ,'Company','Add Company~AddDistributorIndex~AddDistributor','Edit Company~EditDistributorIndex~EditDistributor')";
                 qry = qry + "insert into Assignment_Roles (RoleId,PageName,Nav1,Nav2) values (" + roleid + " ,'Distributor','Add Distributor~UsersFormIndex~UsersForm','Edit Distributor~EditUserFormIndex~EditUserForm')";
-                qry = qry + "insert into Assignment_Roles (RoleId,PageName,Nav1,Nav2) values (" + roleid + " ,'WillEmployee','Add Employee~UsersFormIndex~UsersForm','Edit Employee~EditUserFormIndex~EditUserForm')";
-                qry = qry + "insert into Assignment_Roles (RoleId,PageName,Nav1,Nav2) values (" + roleid + " ,'DistributorEmployee','Add Employee~UsersFormIndex~UsersForm','Edit Employee~EditUserFormIndex~EditUserForm')";
+                qry = qry + "insert into Assignment_Roles (RoleId,PageName,Nav1,Nav2) values (" + roleid + " ,'WillEmployee','Add Employee~AddWillEmployeeIndex~AddWillEmployee','Edit Employee~EditWillEmployeeIndex~EditWillEmployee')";
+                qry = qry + "insert into Assignment_Roles (RoleId,PageName,Nav1,Nav2) values (" + roleid + " ,'DistributorEmployee','Add Employee~AddDistributorEmployeeIndex~AddDistributorEmployee','Edit Employee~EditDistributorEmployeeIndex~EditDistributorEmployee')";
                 qry = qry + "insert into Assignment_Roles (RoleId,PageName,Nav1,Nav2) values (" + roleid + " ,'AssignRoles','Assign~AddRoleAssignmentIndex~AddRoleAssignment','NULL~NULL~NULL')";
 
 
@@ -184,7 +184,7 @@ namespace WillAssure.Controllers
                 qry = qry + "insert into Assignment_Roles (RoleId,PageName,Nav1,Nav2) values (" + roleid + " ,'AlternateAppointees','Add Alternate Appointees~AddAlternateAppointeesIndex~AddAlternateAppointees','  Edit Alternate Appointees~EditAlternateAppointeesIndex~EditAlternateAppointees')";
                 qry = qry + "insert into Assignment_Roles (RoleId,PageName,Nav1,Nav2) values (" + roleid + " ,'CreateCoupons','Add Coupons~AddCouponsIndex~AddCoupons','NULL~NULL~NULL')";
                 qry = qry + "insert into Assignment_Roles (RoleId,PageName,Nav1,Nav2) values (" + roleid + " ,'Mapping','Mapping~AddAssetMappingIndex~AddAssetMapping','NULL~NULL~NULL')";
-                qry = qry + "insert into Assignment_Roles (RoleId,PageName,Nav1,Nav2) values (" + roleid + " ,'Document','View Document~Report.aspx~page','NULL~NULL~NULL')";
+                qry = qry + "insert into Assignment_Roles (RoleId,PageName,Nav1,Nav2) values (" + roleid + " ,'Document','View Document~ViewDocumentIndex~ViewDocument','NULL~NULL~NULL')";
 
 
 

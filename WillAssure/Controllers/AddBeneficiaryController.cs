@@ -181,7 +181,7 @@ namespace WillAssure.Controllers
 
             //end
 
-            if (Session["aiid"].ToString() != "" && Session["tid"].ToString() != "")
+            if (Session["aiid"] != null && Session["tid"].ToString() != null)
             {
                 BM.aid = Convert.ToInt32(Session["aiid"]);
                 BM.tid = Convert.ToInt32(Session["tid"]);

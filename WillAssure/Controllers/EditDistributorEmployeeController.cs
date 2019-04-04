@@ -12,13 +12,13 @@ using System.Collections;
 
 namespace WillAssure.Controllers
 {
-    public class EditUserFormController : Controller
+    public class EditDistributorEmployeeController : Controller
     {
         public static string connectionString = ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString;
         SqlConnection con = new SqlConnection(connectionString);
 
-
-        public ActionResult EditUserFormIndex()
+        // GET: EditDistributorEmployee
+        public ActionResult EditDistributorEmployeeIndex()
         {
             if (Session.SessionID == null)
             {
@@ -56,8 +56,10 @@ namespace WillAssure.Controllers
 
             con.Close();
 
-            return View("~/Views/EditUserForm/EditUserFormPageContent.cshtml");
+
+            return View("~/Views/EditDistributorEmployee/EditDistributorEmployeePageContent.cshtml");
         }
+
 
 
         public string BindUserForm()
@@ -314,7 +316,7 @@ namespace WillAssure.Controllers
                     }
                 }
 
-                
+
 
 
 
@@ -714,7 +716,7 @@ namespace WillAssure.Controllers
                 }
 
 
-             
+
 
 
 
@@ -731,7 +733,7 @@ namespace WillAssure.Controllers
 
             }
 
-                    return data;
+            return data;
         }
 
 
@@ -746,20 +748,20 @@ namespace WillAssure.Controllers
             cmd.Parameters.AddWithValue("@condition", "delete");
             cmd.Parameters.AddWithValue("@uid", index);
             cmd.Parameters.AddWithValue("@FirstName", "");
-            cmd.Parameters.AddWithValue("@LastName","");
-            cmd.Parameters.AddWithValue("@MiddleName","");
-            cmd.Parameters.AddWithValue("@Dob","");
+            cmd.Parameters.AddWithValue("@LastName", "");
+            cmd.Parameters.AddWithValue("@MiddleName", "");
+            cmd.Parameters.AddWithValue("@Dob", "");
             cmd.Parameters.AddWithValue("@Mobile", "");
             cmd.Parameters.AddWithValue("@Email", "");
             cmd.Parameters.AddWithValue("@Address1", "");
-            cmd.Parameters.AddWithValue("@Address2","");
+            cmd.Parameters.AddWithValue("@Address2", "");
             cmd.Parameters.AddWithValue("@Address3", "");
-            cmd.Parameters.AddWithValue("@City","");
+            cmd.Parameters.AddWithValue("@City", "");
             cmd.Parameters.AddWithValue("@State ", "");
             cmd.Parameters.AddWithValue("@Pin", "");
-            cmd.Parameters.AddWithValue("@UserId","");
+            cmd.Parameters.AddWithValue("@UserId", "");
             cmd.Parameters.AddWithValue("@UserPassword", "");
-           
+
             cmd.Parameters.AddWithValue("@Designation", "");
             cmd.Parameters.AddWithValue("@Active", "");
             cmd.Parameters.AddWithValue("@compId", "");
@@ -1453,6 +1455,8 @@ namespace WillAssure.Controllers
 
             return index;
         }
+
+
 
 
 

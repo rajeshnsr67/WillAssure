@@ -65,7 +65,7 @@ namespace WillAssure.Controllers
         public string BindDocumentData()
         {
             con.Open();
-            string query = "select h.documentId  , b.beneficiary_type , a.First_Name as TestatorName     from TestatorDetails a inner join BeneficiaryDetails b on a.tId=b.tId inner join Appointees c on a.tId = c.tid  inner join Appointees d on a.tId=d.tid inner join testatorFamily e on a.tId=e.tId inner join BeneficiaryAssets f on a.tId=f.tid  inner join AssetsCategory g on g.amId=f.AssetCategory_ID inner join documentmaster h on h.uId=a.uid   where a.uid =  " + Convert.ToInt32(Session["uid"]) + "";
+            string query = "select h.documentId  , b.beneficiary_type , a.First_Name as TestatorName     from TestatorDetails a inner join BeneficiaryDetails b on a.tId=b.tId inner join Appointees c on a.tId = c.tid  inner join Appointees d on a.tId=d.tid inner join testatorFamily e on a.tId=e.tId inner join BeneficiaryAssets f on a.tId=f.tid  inner join AssetsCategory g on g.amId=f.AssetCategory_ID inner join documentmaster h on h.uId=a.uid   where a.uid =  " + Convert.ToInt32(Session["uuid"]) + "";
             SqlDataAdapter da = new SqlDataAdapter(query, con);
             DataTable dt = new DataTable();
             da.Fill(dt);

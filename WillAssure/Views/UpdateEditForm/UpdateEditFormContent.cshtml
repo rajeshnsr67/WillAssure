@@ -237,6 +237,9 @@
 
                                 <button type="submit" id="UpdatingUserform" formaction="UpdatingUserform" class="btn btn-success shadow-success px-5"><i class="icon-lock"></i>Update Distributor</button>
                                 <button type="button" id="UpdatingUserformUPDATE" style="display:none;" formaction="UpdatingUserform" class="btn btn-success shadow-success px-5"><i class="icon-lock"></i></button>
+                                <a href="@Url.Action("AddDistributorIndex","AddDistributor")"><button type="button" class="btn btn-danger" style="display:none;" id="btncompanyadd">Add Company</button></a>
+                                <a href="@Url.Action("UpdateDistributorIndex","UpdateDistributor",new { @NestId = Session["compId"]})"><button type="button" class="btn btn-danger" style="display:none;" id="btncompanyupdate">Update Company</button></a>
+
                             </div>
                         }
                     </div>
@@ -379,12 +382,47 @@
 
 
 
-    $("#ddlRole").change(function () {
+  $("#ddlRole").change(function () {
         var value = $(this).children(":selected").attr("value");
         var text = $("#ddlRole option:selected").html();
 
         $("#rtext").val(text);
         $("#rid").val(value);
+
+        if (text == "Distributor") {
+
+
+            $.ajax({
+
+            type: "POST",
+            url: "@Url.Action("checktype", "UpdateEditForm")",
+            
+            success: function (data) {
+             
+                if (data =="Update Distributor") {
+
+                    $("#btncompanyupdate").removeAttr("style");
+
+                }
+
+                //if (data == "Add Distributor") {
+                //    $("#btncompanyadd").removeAttr("style");
+                //}
+
+            }
+
+
+
+        });
+           
+            
+        }
+        else {
+            $("#showcompany").css('display', 'none');
+            $("#btncompany").css('display', 'none');
+        }
+       
+    
 
 
     });

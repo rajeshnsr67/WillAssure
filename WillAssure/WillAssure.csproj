@@ -194,6 +194,7 @@
     <Compile Include="Controllers\AddBeneficiaryController.cs" />
     <Compile Include="Controllers\AddCouponsController.cs" />
     <Compile Include="Controllers\AddDistributorController.cs" />
+    <Compile Include="Controllers\AddDistributorEmployeeController.cs" />
     <Compile Include="Controllers\AddDocumentController.cs" />
     <Compile Include="Controllers\AddMainAssetsController.cs" />
     <Compile Include="Controllers\AddNomineeController.cs" />
@@ -202,6 +203,7 @@
     <Compile Include="Controllers\AddTemplateMasterController.cs" />
     <Compile Include="Controllers\AddTestatorFamilyController.cs" />
     <Compile Include="Controllers\AddTestatorsFormController.cs" />
+    <Compile Include="Controllers\AddWillEmployeeController.cs" />
     <Compile Include="Controllers\AlternateBeneficiaryController.cs" />
     <Compile Include="Controllers\AssetTypeController.cs" />
     <Compile Include="Controllers\EditAlternateAppointeesController.cs" />
@@ -214,6 +216,7 @@
     <Compile Include="Controllers\EditBeneficiaryController.cs" />
     <Compile Include="Controllers\EditCouponsController.cs" />
     <Compile Include="Controllers\EditDistributorController.cs" />
+    <Compile Include="Controllers\EditDistributorEmployeeController.cs" />
     <Compile Include="Controllers\EditDocumentController.cs" />
     <Compile Include="Controllers\EditMainAssetsController.cs" />
     <Compile Include="Controllers\EditNomineeController.cs" />
@@ -222,6 +225,7 @@
     <Compile Include="Controllers\EditTestatorController.cs" />
     <Compile Include="Controllers\EditTestatorFamilyController.cs" />
     <Compile Include="Controllers\EditUserFormController.cs" />
+    <Compile Include="Controllers\EditWillEmployeeController.cs" />
     <Compile Include="Controllers\EmailVerificationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginPageController.cs" />
@@ -233,12 +237,14 @@
     <Compile Include="Controllers\UpdateAssetTypeController.cs" />
     <Compile Include="Controllers\UpdateBeneficiaryController.cs" />
     <Compile Include="Controllers\UpdateDistributorController.cs" />
+    <Compile Include="Controllers\UpdateDistributorEmployeeController.cs" />
     <Compile Include="Controllers\UpdateEditFormController.cs" />
     <Compile Include="Controllers\UpdateMainAssetsController.cs" />
     <Compile Include="Controllers\UpdateNomineeController.cs" />
     <Compile Include="Controllers\UpdateRolesController.cs" />
     <Compile Include="Controllers\UpdateTestatorFamilyController.cs" />
     <Compile Include="Controllers\UpdateTestatorsController.cs" />
+    <Compile Include="Controllers\UpdateWillEmployeeController.cs" />
     <Compile Include="Controllers\UsersFormController.cs" />
     <Compile Include="Controllers\ViewDocumentController.cs" />
     <Compile Include="CrystalReports\WillTestator.cs">
@@ -1162,6 +1168,12 @@
     <Content Include="Views\UpdateTestatorFamily\UpdateTestatorFamilyPageContent.cshtml" />
     <Content Include="Views\AddRoleAssignment\AddRoleAssignmentPageContent.cshtml" />
     <Content Include="Views\ViewDocument\EditViewDocumentPageContent.cshtml" />
+    <Content Include="Views\AddWillEmployee\AddWillEmployeePageContent.cshtml" />
+    <Content Include="Views\EditWillEmployee\EditWillEmployeePageContent.cshtml" />
+    <Content Include="Views\UpdateWillEmployee\UpdateWillEmployeePageContent.cshtml" />
+    <Content Include="Views\AddDistributorEmployee\AddDistributorPageContent.cshtml" />
+    <Content Include="Views\EditDistributorEmployee\EditDistributorEmployeePageContent.cshtml" />
+    <Content Include="Views\UpdateDistributorEmployee\UpdateDistributorEmployeePageContent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

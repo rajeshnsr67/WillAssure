@@ -135,7 +135,7 @@ namespace WillAssure.Controllers
                 cmd.Parameters.AddWithValue("@Pin", NM.Pin);
                 cmd.Parameters.AddWithValue("@aid", NM.aid);
                 cmd.Parameters.AddWithValue("@tId", NM.tId);
-                cmd.Parameters.AddWithValue("@createdBy", Convert.ToInt32(Session["uid"]));
+                cmd.Parameters.AddWithValue("@createdBy", Convert.ToInt32(Session["uuid"]));
                 cmd.Parameters.AddWithValue("@documentId", NM.documentId);
                 cmd.Parameters.AddWithValue("@Description_of_Assets", NM.Description_of_Assets);
                 cmd.ExecuteNonQuery();

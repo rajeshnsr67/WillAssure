@@ -255,12 +255,12 @@
 
 
         function getddlbeneficiary(value) {
-
+            
             var text = $("#ddlbeneficiary option:selected").html();
 
             $("#Beneficiaryid").val(text);
             $("#Beneficiarytxt").val(value);
-
+            $("#Beneficiarytxt").val(value).attr("disabled","disabled");
 
 
             $("#query").append(value + ",");

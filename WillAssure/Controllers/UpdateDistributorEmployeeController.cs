@@ -10,15 +10,16 @@ using System.Configuration;
 using System.Data;
 using System.Globalization;
 
+
 namespace WillAssure.Controllers
 {
-    public class UpdateEditFormController : Controller
+    public class UpdateDistributorEmployeeController : Controller
     {
         public static string connectionString = ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString;
         SqlConnection con = new SqlConnection(connectionString);
 
-        // GET: UpdateEditForm
-        public ActionResult UpdateEditFormIndex(int NestId)
+        // GET: UpdateDistributorEmployee
+        public ActionResult UpdateDistributorEmployeeIndex(int NestId)
         {
             if (Session.SessionID == null)
             {
@@ -84,18 +85,20 @@ namespace WillAssure.Controllers
                 UFM.Pin = dt.Rows[0]["Pin"].ToString();
                 UFM.UserId = dt.Rows[0]["userID"].ToString();
                 UFM.UserPassword = dt.Rows[0]["userPwd"].ToString();
-                
+
                 UFM.Designation = dt.Rows[0]["Designation"].ToString();
                 UFM.rid = Convert.ToInt32(dt.Rows[0]["rId"]);
                 UFM.Active = dt.Rows[0]["active"].ToString();
-                
+
 
 
             }
 
+            return View("~/Views/UpdateDistributorEmployee/UpdateDistributorEmployeePageContent.cshtml",UFM);
 
-            return View("~/Views/UpdateEditForm/UpdateEditFormContent.cshtml", UFM);
         }
+
+
 
 
         public string BindDesignationDDL()
@@ -174,12 +177,12 @@ namespace WillAssure.Controllers
 
 
             //end
-           
+
             con.Open();
             SqlCommand cmd = new SqlCommand("SP_Users", con);
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@condition", "update");
-            cmd.Parameters.AddWithValue("@uid",UFM.uid);
+            cmd.Parameters.AddWithValue("@uid", UFM.uid);
             cmd.Parameters.AddWithValue("@FirstName", UFM.FirstName);
             cmd.Parameters.AddWithValue("@LastName", UFM.LastName);
             cmd.Parameters.AddWithValue("@MiddleName", UFM.MiddleName);
@@ -198,7 +201,7 @@ namespace WillAssure.Controllers
             cmd.Parameters.AddWithValue("@Designation", UFM.Designation);
             cmd.Parameters.AddWithValue("@Active", UFM.Active);
             cmd.Parameters.AddWithValue("@rid", UFM.rid);
-           
+
             cmd.Parameters.AddWithValue("@compId", UFM.CompId);
             cmd.Parameters.AddWithValue("@Linked_user", UFM.rid);
             cmd.ExecuteNonQuery();
@@ -207,7 +210,7 @@ namespace WillAssure.Controllers
 
 
             ViewBag.Message = "Verified";
-            return View("~/Views/UpdateEditForm/UpdateEditFormContent.cshtml");
+            return View("~/Views/UpdateDistributorEmployee/UpdateDistributorEmployeePageContent.cshtml");
         }
 
 
@@ -342,19 +345,19 @@ namespace WillAssure.Controllers
 
 
 
-               
+
 
 
                 buttonname = "Update Distributor";
                 ViewBag.type = buttonname;
 
-           
 
 
 
 
 
-                
+
+
             }
 
 
@@ -371,5 +374,10 @@ namespace WillAssure.Controllers
 
 
 
+
     }
+
+
+
+
 }

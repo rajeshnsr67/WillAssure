@@ -9,21 +9,21 @@ using System.Data.SqlClient;
 using System.Configuration;
 using System.Data;
 using System.Globalization;
-
 namespace WillAssure.Controllers
 {
-    public class UsersFormController : Controller
+    public class AddWillEmployeeController : Controller
     {
+
         public static string connectionString = ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString;
         SqlConnection con = new SqlConnection(connectionString);
-
-        public ActionResult UsersFormIndex()
+        // GET: AddWillEmployee
+        public ActionResult AddWillEmployeeIndex()
         {
             if (Session.SessionID == null)
             {
                 return View("~/Views/LoginPage/LoginPageContent.cshtml");
             }
-     
+
 
 
 
@@ -59,10 +59,15 @@ namespace WillAssure.Controllers
 
             con.Close();
 
-            int RoleId = Convert.ToInt32(Session["rId"]); 
+            int RoleId = Convert.ToInt32(Session["rId"]);
 
-            return View("~/Views/UsersForm/UsersFormPageContent.cshtml");
+
+
+            return View("~/Views/AddWillEmployee/AddWillEmployeePageContent.cshtml");
         }
+
+
+
 
         public ActionResult GetUserFormData(UserFormModel UFM)
         {
@@ -107,42 +112,42 @@ namespace WillAssure.Controllers
             //{
 
 
-                con.Open();
-                string q = "select count(*) from users where userID = '"+ UFM.UserId + "'";
-                SqlCommand c = new SqlCommand(q, con);
-                int count = (int)c.ExecuteScalar();
+            con.Open();
+            string q = "select count(*) from users where userID = '" + UFM.UserId + "'";
+            SqlCommand c = new SqlCommand(q, con);
+            int count = (int)c.ExecuteScalar();
 
-                if (count > 0)
-                {
-                    ViewBag.Message = "Duplicate";
-                }
-                else
-                {
-                   
-                    SqlCommand cmd = new SqlCommand("SP_Users", con);
-                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@condition", "insert");
-                    cmd.Parameters.AddWithValue("@FirstName", UFM.FirstName);
-                    cmd.Parameters.AddWithValue("@LastName", UFM.LastName);
-                    cmd.Parameters.AddWithValue("@MiddleName", UFM.MiddleName);
+            if (count > 0)
+            {
+                ViewBag.Message = "Duplicate";
+            }
+            else
+            {
 
-                    
+                SqlCommand cmd = new SqlCommand("SP_Users", con);
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@condition", "insert");
+                cmd.Parameters.AddWithValue("@FirstName", UFM.FirstName);
+                cmd.Parameters.AddWithValue("@LastName", UFM.LastName);
+                cmd.Parameters.AddWithValue("@MiddleName", UFM.MiddleName);
 
-                    DateTime dat = DateTime.ParseExact(UFM.Dob, "dd-MM-yyyy", CultureInfo.InvariantCulture);
 
-                    cmd.Parameters.AddWithValue("@Dob", dat);
-                    cmd.Parameters.AddWithValue("@Mobile", UFM.Mobile);
-                    cmd.Parameters.AddWithValue("@Email", UFM.Email);
-                    cmd.Parameters.AddWithValue("@Address1", UFM.Address1);
-                    cmd.Parameters.AddWithValue("@Address2", UFM.Address2);
-                    cmd.Parameters.AddWithValue("@Address3", UFM.Address3);
-                    cmd.Parameters.AddWithValue("@City", UFM.citytext);
-                    cmd.Parameters.AddWithValue("@State ", UFM.statetext);
-                    cmd.Parameters.AddWithValue("@Pin", UFM.Pin);
-                    cmd.Parameters.AddWithValue("@UserId", UFM.UserId);
-                    cmd.Parameters.AddWithValue("@UserPassword", UFM.UserPassword);
-                    cmd.Parameters.AddWithValue("@Designation", UFM.Designation);
-                    cmd.Parameters.AddWithValue("@Active", UFM.Active);
+
+                DateTime dat = DateTime.ParseExact(UFM.Dob, "dd-MM-yyyy", CultureInfo.InvariantCulture);
+
+                cmd.Parameters.AddWithValue("@Dob", dat);
+                cmd.Parameters.AddWithValue("@Mobile", UFM.Mobile);
+                cmd.Parameters.AddWithValue("@Email", UFM.Email);
+                cmd.Parameters.AddWithValue("@Address1", UFM.Address1);
+                cmd.Parameters.AddWithValue("@Address2", UFM.Address2);
+                cmd.Parameters.AddWithValue("@Address3", UFM.Address3);
+                cmd.Parameters.AddWithValue("@City", UFM.citytext);
+                cmd.Parameters.AddWithValue("@State ", UFM.statetext);
+                cmd.Parameters.AddWithValue("@Pin", UFM.Pin);
+                cmd.Parameters.AddWithValue("@UserId", UFM.UserId);
+                cmd.Parameters.AddWithValue("@UserPassword", UFM.UserPassword);
+                cmd.Parameters.AddWithValue("@Designation", UFM.Designation);
+                cmd.Parameters.AddWithValue("@Active", UFM.Active);
 
                 UFM.rid = 0;
                 if (Convert.ToInt32(Session["rId"]) == 1 || Convert.ToInt32(Session["rId"]) == 2)
@@ -166,69 +171,69 @@ namespace WillAssure.Controllers
                 {
                     cmd.Parameters.AddWithValue("@compId", UFM.CompId);
                 }
-                 
-                   
-                    
-
-                    
-                    cmd.Parameters.AddWithValue("@Linked_user", UFM.rid);
-                    cmd.ExecuteNonQuery();
 
 
-                    string query = "SELEct * from users where compId = '" + UFM.CompId + "'";
-                    SqlDataAdapter da = new SqlDataAdapter(query, con);
-                    DataTable dt = new DataTable();
-                    da.Fill(dt);
 
 
-                    if (dt.Rows.Count > 0)
+
+                cmd.Parameters.AddWithValue("@Linked_user", UFM.rid);
+                cmd.ExecuteNonQuery();
+
+
+                string query = "SELEct * from users where compId = '" + UFM.CompId + "'";
+                SqlDataAdapter da = new SqlDataAdapter(query, con);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+
+
+                if (dt.Rows.Count > 0)
+                {
+                    if (Convert.ToInt32(dt.Rows[0]["rId"]) == 1)
                     {
-                        if (Convert.ToInt32(dt.Rows[0]["rId"]) == 1)
-                        {
 
-                            string update = "update users set Linked_user = 0 where  CompId = '" + UFM.CompId + "'";
-                            SqlCommand cmd2 = new SqlCommand(update, con);
-                            cmd2.ExecuteNonQuery();
-
-                        }
-
+                        string update = "update users set Linked_user = 0 where  CompId = '" + UFM.CompId + "'";
+                        SqlCommand cmd2 = new SqlCommand(update, con);
+                        cmd2.ExecuteNonQuery();
 
                     }
 
-                    con.Close();
-
-                    con.Open();
-                    string query2 = "select top 1 * from users order by uId desc";
-                    SqlDataAdapter da2 = new SqlDataAdapter(query2, con);
-                    DataTable dt2 = new DataTable();
-                    da.Fill(dt2);
-                    if (dt2.Rows.Count > 0)
-                    {
-                       
-                        Session["uid"] = Convert.ToInt32(dt.Rows[0]["uId"]);
-                    }
-                    con.Close();
-
-
-              
-
-                
-
-
-
-
-
-                    ViewBag.Message = "Verified";
 
                 }
 
+                con.Close();
+
+                con.Open();
+                string query2 = "select top 1 * from users order by uId desc";
+                SqlDataAdapter da2 = new SqlDataAdapter(query2, con);
+                DataTable dt2 = new DataTable();
+                da.Fill(dt2);
+                if (dt2.Rows.Count > 0)
+                {
+
+                    Session["uid"] = Convert.ToInt32(dt.Rows[0]["uId"]);
+                }
+                con.Close();
 
 
 
 
 
 
-        //}
+
+
+
+
+                ViewBag.Message = "Verified";
+
+            }
+
+
+
+
+
+
+
+            //}
             //else
             //{
 
@@ -247,12 +252,12 @@ namespace WillAssure.Controllers
 
 
 
-            return View("~/Views/UsersForm/UsersFormPageContent.cshtml");
+            return View("~/Views/AddWillEmployee/AddWillEmployeePageContent.cshtml");
         }
 
 
 
-     
+
 
 
         public String BindStateDDL()
@@ -335,10 +340,10 @@ namespace WillAssure.Controllers
         {
             string data = "";
 
-       
-                 data = "<option value=''>--Select Role--</option>";
-            
-                
+
+            data = "<option value=''>--Select Role--</option>";
+
+
 
             if (Session["rId"] != null)
             {
@@ -348,7 +353,7 @@ namespace WillAssure.Controllers
                 if (roles == 2)
                 {
                     con.Open();
-                    string query = "select * from roles where Pid = "+Convert.ToInt32(Session["uuid"])+"";
+                    string query = "select * from roles where Pid = " + Convert.ToInt32(Session["uuid"]) + "";
                     SqlDataAdapter da = new SqlDataAdapter(query, con);
                     DataTable dt = new DataTable();
                     da.Fill(dt);
@@ -412,15 +417,15 @@ namespace WillAssure.Controllers
 
 
                 }
-               
-              
 
-           
+
+
+
 
 
 
             }
-           
+
             return data;
         }
 
@@ -467,47 +472,38 @@ namespace WillAssure.Controllers
 
         public string checktype()
         {
-        
+
             string buttonname = "";
-        
+
             if (Convert.ToInt32(Session["rId"]) == 1)
             {
-            
-             
-                 
-
-                  
-
-
-
-             
-                
-              
-                    buttonname = "Add Distributor";
-                    ViewBag.type = buttonname;
-                
 
 
 
 
-           
+
+
+
+
+
+
+
+                buttonname = "Add Distributor";
+                ViewBag.type = buttonname;
+
+
+
+
+
+
             }
 
-          
+
             //bindbutton
-                
+
 
             return buttonname;
         }
-
-
-
-
-
-
-
-
-
 
 
 

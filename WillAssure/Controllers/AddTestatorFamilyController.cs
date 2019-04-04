@@ -26,7 +26,7 @@ namespace WillAssure.Controllers
             {
                 return View("~/Views/LoginPage/LoginPageContent.cshtml");
             }
-            if (Session["tid"] == null)
+            if (Session["tid"]== null)
             {
                 ViewBag.message = "link";
             }

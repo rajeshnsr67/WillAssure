@@ -74,7 +74,7 @@ namespace WillAssure.Controllers
                  NM.First_Name =dt.Rows[i]["First_Name"].ToString();
                  NM.Last_Name = dt.Rows[i]["Last_Name"].ToString();
                  NM.Middle_Name = dt.Rows[i]["Middle_Name"].ToString();
-                 NM.Dob  = DateTime.ParseExact(dt.Rows[0]["DOB"].ToString(), "dd-MM-yyyy", CultureInfo.InvariantCulture).ToString();
+                 NM.Dob  = dt.Rows[0]["DOB"].ToString();
                  NM.Mobile = dt.Rows[i]["Mobile"].ToString();
                  NM.Relationship = dt.Rows[i]["Relationship"].ToString();
                  NM.Marital_Status = dt.Rows[i]["Marital_Status"].ToString();

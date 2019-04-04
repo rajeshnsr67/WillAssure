@@ -82,7 +82,7 @@ namespace WillAssure.Controllers
                     Am.Alt_Identity_Proof = dt.Rows[i]["Alt_Identity_Proof"].ToString();
                     Am.Alt_Identity_Proof_Value = dt.Rows[i]["Alt_Identity_Proof_Value"].ToString();
 
-                    DateTime dat = DateTime.ParseExact(dt.Rows[i]["DOB"].ToString(), "dd-MM-yyyy", CultureInfo.InvariantCulture);
+                    Am.Dob = dt.Rows[i]["DOB"].ToString();
         
                     Am.Gender = dt.Rows[i]["Gender"].ToString();
                     Am.Occupation = dt.Rows[i]["Occupation"].ToString();

@@ -58,7 +58,7 @@ namespace WillAssure.Controllers
             DistributorFormModel DFM = new DistributorFormModel();
 
             con.Open();
-            string query = "select * from companyDetails where compId = '" + NestId + "' ";
+            string query = "select * from companyDetails where compId = " + NestId + " ";
             SqlDataAdapter da = new SqlDataAdapter(query, con);
             DataTable dt = new DataTable();
             da.Fill(dt);
