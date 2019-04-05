@@ -149,28 +149,18 @@ namespace WillAssure.Controllers
                 cmd.Parameters.AddWithValue("@Designation", UFM.Designation);
                 cmd.Parameters.AddWithValue("@Active", UFM.Active);
 
-                UFM.rid = 0;
-                if (Convert.ToInt32(Session["rId"]) == 1 || Convert.ToInt32(Session["rId"]) == 2)
-                {
-                    UFM.rid = 2;
-                    cmd.Parameters.AddWithValue("@rid", UFM.rid);
-                }
-                else
-                {
+           
+
+                  
+               
 
                     cmd.Parameters.AddWithValue("@rid", UFM.rid);
-                }
+                
 
 
                 UFM.CompId = 0;
-                if (Session["compid"] != "")
-                {
-                    cmd.Parameters.AddWithValue("@compId", Convert.ToInt32(Session["compid"]));
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("@compId", UFM.CompId);
-                }
+
+                cmd.Parameters.AddWithValue("@compId", UFM.CompId);
 
 
 
@@ -350,10 +340,10 @@ namespace WillAssure.Controllers
                 int roles = 0;
                 roles = Convert.ToInt32(Session["rId"]);
 
-                if (roles == 2)
+                if (roles == 1)
                 {
                     con.Open();
-                    string query = "select * from roles where Pid = " + Convert.ToInt32(Session["uuid"]) + "";
+                    string query = "select * from Roles";
                     SqlDataAdapter da = new SqlDataAdapter(query, con);
                     DataTable dt = new DataTable();
                     da.Fill(dt);
@@ -385,7 +375,7 @@ namespace WillAssure.Controllers
                 {
 
                     con.Open();
-                    string query = "select * from roles where Pid = " + Convert.ToInt32(Session["uuid"]) + "";
+                    string query = "select a.rId , a.Role from Roles a inner join users b on a.Pid = b.uId where a.Pid = " + Convert.ToInt32(Session["uuid"])+"";
                     SqlDataAdapter da = new SqlDataAdapter(query, con);
                     DataTable dt = new DataTable();
                     da.Fill(dt);

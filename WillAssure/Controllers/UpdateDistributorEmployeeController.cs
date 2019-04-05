@@ -101,42 +101,7 @@ namespace WillAssure.Controllers
 
 
 
-        public string BindDesignationDDL()
-        {
-
-            con.Open();
-            string query = "select * from Roles";
-            SqlDataAdapter da = new SqlDataAdapter(query, con);
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-            con.Close();
-            string data = "";
-
-            if (dt.Rows.Count > 0)
-            {
-
-
-                for (int i = 0; i < dt.Rows.Count; i++)
-                {
-
-
-
-
-                    data = data + "<option value=" + dt.Rows[i]["rid"].ToString() + " >" + dt.Rows[i]["Role"].ToString() + "</option>";
-
-
-
-                }
-
-
-
-
-            }
-
-            return data;
-
-
-        }
+       
 
 
 
@@ -213,52 +178,11 @@ namespace WillAssure.Controllers
             return View("~/Views/UpdateDistributorEmployee/UpdateDistributorEmployeePageContent.cshtml");
         }
 
-
-
-
-        public String BindRoleDDL()
-        {
-
-            con.Open();
-            string query = "select * from Roles";
-            SqlDataAdapter da = new SqlDataAdapter(query, con);
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-            con.Close();
-            string data = "";
-
-            if (dt.Rows.Count > 0)
-            {
-
-
-                for (int i = 0; i < dt.Rows.Count; i++)
-                {
-
-
-
-
-                    data = data + "<option value=" + dt.Rows[i]["rid"].ToString() + " >" + dt.Rows[i]["Role"].ToString() + "</option>";
-
-
-
-                }
-
-
-
-
-            }
-
-            return data;
-
-        }
-
-
-
         public String BindStateDDL()
         {
 
             con.Open();
-            string query = "select distinct * from tbl_state order by statename asc  ";
+            string query = "select distinct * from tbl_state where country_id = 101 order by statename asc";
             SqlDataAdapter da = new SqlDataAdapter(query, con);
             DataTable dt = new DataTable();
             da.Fill(dt);
@@ -296,7 +220,7 @@ namespace WillAssure.Controllers
         {
             string response = Request["send"];
             con.Open();
-            string query = "select distinct * from tbl_city where state_id = '" + response + "' order by city_name asc ";
+            string query = "select distinct * from tbl_city where state_id = '" + response + "' order by city_name asc";
             SqlDataAdapter da = new SqlDataAdapter(query, con);
             DataTable dt = new DataTable();
             da.Fill(dt);
@@ -314,6 +238,185 @@ namespace WillAssure.Controllers
 
 
                     data = data + "<option value=" + dt.Rows[i]["id"].ToString() + " >" + dt.Rows[i]["city_name"].ToString() + "</option>";
+
+
+
+                }
+
+
+
+
+            }
+
+            return data;
+        }
+
+
+
+
+        public String BindRoleDDL()
+        {
+            int index = Convert.ToInt32(Request["send"]);
+            string data = "";
+
+
+            data = "<option value=''>--Select Role--</option>";
+
+
+
+            if (Session["rId"] != null)
+            {
+                int roles = 0;
+                roles = Convert.ToInt32(Session["rId"]);
+
+
+                con.Open();
+                string query = "select * from Roles   where  Pid = " + index + "";
+                SqlDataAdapter da = new SqlDataAdapter(query, con);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                con.Close();
+
+
+                if (dt.Rows.Count > 0)
+                {
+
+
+                    for (int i = 0; i < dt.Rows.Count; i++)
+                    {
+
+
+
+
+                        data = data + "<option value=" + dt.Rows[i]["rid"].ToString() + " >" + dt.Rows[i]["Role"].ToString() + "</option>";
+
+
+
+                    }
+
+
+
+
+                }
+
+
+
+
+
+
+
+
+
+            }
+
+            return data;
+        }
+
+
+
+
+        public String BindCompanyDDL()
+        {
+            string data = "<option value=''>--Select --</option>";
+            if (Convert.ToInt32(Session["rId"]) == 1)
+            {
+                con.Open();
+                string query = "select uId , First_Name from users";
+                SqlDataAdapter da = new SqlDataAdapter(query, con);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                con.Close();
+
+
+                if (dt.Rows.Count > 0)
+                {
+
+
+                    for (int i = 0; i < dt.Rows.Count; i++)
+                    {
+
+
+
+
+                        data = data + "<option value=" + dt.Rows[i]["uId"].ToString() + " >" + dt.Rows[i]["First_Name"].ToString() + "</option>";
+
+
+
+                    }
+
+
+
+
+                }
+
+
+
+            }
+            else
+            {
+
+                con.Open();
+                string query = "select a.uId , a.First_Name  from users a inner join roles b on a.rId=b.rId where a.rId = " + Convert.ToInt32(Session["rId"]) + " and a.uId = " + Convert.ToInt32(Session["uuid"]) + " ";
+                SqlDataAdapter da = new SqlDataAdapter(query, con);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                con.Close();
+
+
+                if (dt.Rows.Count > 0)
+                {
+
+
+                    for (int i = 0; i < dt.Rows.Count; i++)
+                    {
+
+
+
+
+                        data = data + "<option value=" + dt.Rows[i]["uId"].ToString() + " >" + dt.Rows[i]["First_Name"].ToString() + "</option>";
+
+
+
+                    }
+
+
+
+
+                }
+
+            }
+
+            return data;
+
+        }
+
+
+
+
+
+
+
+        public string BindDistributorDDL()
+        {
+            con.Open();
+            string query = "select uId , First_Name from users";
+            SqlDataAdapter da = new SqlDataAdapter(query, con);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            con.Close();
+            string data = "<option value=''>--Select --</option>";
+
+            if (dt.Rows.Count > 0)
+            {
+
+
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+
+
+
+
+                    data = data + "<option value=" + dt.Rows[i]["uId"].ToString() + " >" + dt.Rows[i]["First_Name"].ToString() + "</option>";
 
 
 

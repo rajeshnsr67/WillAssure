@@ -20,6 +20,18 @@ namespace WillAssure.Controllers
         // GET: UpdateEditForm
         public ActionResult UpdateEditFormIndex(int NestId)
         {
+            string buttonname = "";
+            if (Convert.ToInt32(Session["upcompanyid"]) != 0)
+            {
+
+
+                buttonname = "Update Distributor";
+                ViewBag.type = buttonname;
+
+
+            }
+
+
             if (Session.SessionID == null)
             {
                 return View("~/Views/LoginPage/LoginPageContent.cshtml");
@@ -197,6 +209,7 @@ namespace WillAssure.Controllers
             cmd.Parameters.AddWithValue("@UserPassword", UFM.UserPassword);
             cmd.Parameters.AddWithValue("@Designation", UFM.Designation);
             cmd.Parameters.AddWithValue("@Active", UFM.Active);
+            UFM.rid = 2;
             cmd.Parameters.AddWithValue("@rid", UFM.rid);
            
             cmd.Parameters.AddWithValue("@compId", UFM.CompId);
@@ -215,26 +228,81 @@ namespace WillAssure.Controllers
 
         public String BindRoleDDL()
         {
-
-            con.Open();
-            string query = "select * from Roles";
-            SqlDataAdapter da = new SqlDataAdapter(query, con);
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-            con.Close();
             string data = "";
 
-            if (dt.Rows.Count > 0)
+
+            data = "<option value=''>--Select Role--</option>";
+
+
+
+            if (Session["rId"] != null)
             {
+                int roles = 0;
+                roles = Convert.ToInt32(Session["rId"]);
+
+                if (roles == 2)
+                {
+                    con.Open();
+                    string query = "select * from roles where Pid = " + Convert.ToInt32(Session["uuid"]) + "";
+                    SqlDataAdapter da = new SqlDataAdapter(query, con);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    con.Close();
 
 
-                for (int i = 0; i < dt.Rows.Count; i++)
+                    if (dt.Rows.Count > 0)
+                    {
+
+
+                        for (int i = 0; i < dt.Rows.Count; i++)
+                        {
+
+
+
+
+                            data = data + "<option value=" + dt.Rows[i]["rid"].ToString() + " >" + dt.Rows[i]["Role"].ToString() + "</option>";
+
+
+
+                        }
+
+
+
+
+                    }
+                }
+                else
                 {
 
+                    con.Open();
+                    string query = "select * from roles where Pid = " + Convert.ToInt32(Session["uuid"]) + "";
+                    SqlDataAdapter da = new SqlDataAdapter(query, con);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    con.Close();
+
+
+                    if (dt.Rows.Count > 0)
+                    {
+
+
+                        for (int i = 0; i < dt.Rows.Count; i++)
+                        {
 
 
 
-                    data = data + "<option value=" + dt.Rows[i]["rid"].ToString() + " >" + dt.Rows[i]["Role"].ToString() + "</option>";
+
+                            data = data + "<option value=" + dt.Rows[i]["rid"].ToString() + " >" + dt.Rows[i]["Role"].ToString() + "</option>";
+
+
+
+                        }
+
+
+
+
+                    }
+
 
 
 
@@ -243,10 +311,12 @@ namespace WillAssure.Controllers
 
 
 
+
+
+
             }
 
             return data;
-
         }
 
 
@@ -327,26 +397,32 @@ namespace WillAssure.Controllers
 
 
 
-        public string checktype()
-        {
+        //public string checktype()
+        //{
 
-            string buttonname = "";
+        //    string buttonname = "";
 
-            if (Convert.ToInt32(Session["rId"]) == 1)
-            {
-
-
+        //    if (Convert.ToInt32(Session["rId"]) == 1)
+        //    {
 
 
 
 
 
 
+
+        //        if (Convert.ToInt32(Session["upcompanyid"]) != 0)
+        //        {
+
+
+        //            buttonname = "Update Distributor";
+        //            ViewBag.type = buttonname;
+
+
+        //        }
                
 
 
-                buttonname = "Update Distributor";
-                ViewBag.type = buttonname;
 
            
 
@@ -355,14 +431,14 @@ namespace WillAssure.Controllers
 
 
                 
-            }
+        //    }
 
 
-            //bindbutton
+        //    //bindbutton
 
 
-            return buttonname;
-        }
+        //    return buttonname;
+        //}
 
 
 

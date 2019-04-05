@@ -192,6 +192,7 @@ namespace WillAssure.Controllers
             cmd.Parameters.AddWithValue("@condition", "delete");
             cmd.Parameters.AddWithValue("@roleid", index);
             cmd.Parameters.AddWithValue("@Role", "");
+            cmd.Parameters.AddWithValue("@pid", "");
             cmd.ExecuteNonQuery();
             con.Close();
 

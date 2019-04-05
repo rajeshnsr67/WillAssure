@@ -203,8 +203,7 @@
                                 </div>
 
 
-                                @if (Convert.ToInt32(Session["rId"]) != 1 || Convert.ToInt32(Session["rId"]) != 2)
-                                {
+
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label for="input-3">Role</label>
@@ -213,7 +212,7 @@
                                             @Html.HiddenFor(m => m.rtext, new { id = "rtext" })
                                         </div>
                                     </div>
-                                }
+                                
 
 
 

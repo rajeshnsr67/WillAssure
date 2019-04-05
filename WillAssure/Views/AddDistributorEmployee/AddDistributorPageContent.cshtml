@@ -52,195 +52,85 @@
                         @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "UserForm" }))
                         {
 
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="input-1">First Name</label>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="input-1">First Name</label>
 
-                                        @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control validate[required] text-input", @id = "txtfirstname", @placeholder = "Enter Your First Name", @autocomplete = "off" })
-                                    </div>
+                                    @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control validate[required] text-input", @id = "txtfirstname", @placeholder = "Enter Your First Name", @autocomplete = "off" })
                                 </div>
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="input-1">Last Name</label>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="input-1">Last Name</label>
 
-                                        @Html.TextBoxFor(m => m.LastName, new { @class = "form-control validate[required] text-input", @id = "txtLastName", @placeholder = "Enter Your Last Name", @autocomplete = "off" })
-                                    </div>
+                                    @Html.TextBoxFor(m => m.LastName, new { @class = "form-control validate[required] text-input", @id = "txtLastName", @placeholder = "Enter Your Last Name", @autocomplete = "off" })
                                 </div>
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="input-1">Middle Name</label>
-                                        @Html.TextBoxFor(m => m.MiddleName, new { @class = "form-control validate[required] text-input", @id = "txtMiddleName", @placeholder = "Enter Your Middle Name", @autocomplete = "off" })
-                                    </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="input-1">Middle Name</label>
+                                    @Html.TextBoxFor(m => m.MiddleName, new { @class = "form-control validate[required] text-input", @id = "txtMiddleName", @placeholder = "Enter Your Middle Name", @autocomplete = "off" })
                                 </div>
+                            </div>
 
 
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="input-5">Date Of Birth</label>
-                                        @*@Html.TextBoxFor(m => m.Dob, new { @type = "date", @class = "form-control validate[required] text-input", @id = "txtDob", @placeholder = "Select Your Date Of Birth", @autocomplete = "off" })*@
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="input-5">Date Of Birth</label>
+                                    @*@Html.TextBoxFor(m => m.Dob, new { @type = "date", @class = "form-control validate[required] text-input", @id = "txtDob", @placeholder = "Select Your Date Of Birth", @autocomplete = "off" })*@
 
 
-                                        <div id="datepicker" class="input-group date" data-date-format="dd-mm-yyyy">
-                                            <input class="form-control validate[required]" type="text" id="DOB" name="DOB" autocomplete="off" placeholder="Select Date Of Birth" />
-                                            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                                        </div>
-
-                                    </div>
-                                </div>
-
-
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="input-3">Mobile</label>
-                                        @Html.TextBoxFor(m => m.Mobile, new { @class = "form-control validate[required,custom[Mobile],maxSize[10]] text - input", @id = "txtmobile", @placeholder = "Enter Your Mobile Number", @autocomplete = "off" })
-                                    </div>
-                                </div>
-
-
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="input-3">Email</label>
-                                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control validate[required,custom[email]] text-input", @id = "txtEmail", @placeholder = "Enter Your Email", @autocomplete = "off" })
-                                    </div>
-                                </div>
-
-
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="input-3">Address 1</label>
-                                        @Html.TextAreaFor(m => m.Address1, new { @class = "form-control validate[required] text-input", @id = "txtaddress1", @placeholder = "Enter Your Address 1", @autocomplete = "off" })
-                                    </div>
-                                </div>
-
-
-
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="input-3">Address 2</label>
-                                        @Html.TextAreaFor(m => m.Address2, new { @class = "form-control validate[required] text-input", @id = "txtaddress2", @placeholder = "Enter Your Address 2", @autocomplete = "off" })
-                                    </div>
-                                </div>
-
-
-
-                                <div class="col-sm-6">
-
-                                    <div class="form-group">
-                                        <label for="input-3">Address 3</label>
-                                        @Html.TextAreaFor(m => m.Address3, new { @class = "form-control validate[required] text-input", @id = "txtaddress3", @placeholder = "Enter Your Address 3", @autocomplete = "off" })
-                                    </div>
-                                </div>
-
-
-
-
-
-
-
-                                <div class="col-sm-6">
-
-                                    <div class="form-group">
-                                        <label for="input-1">State</label>
-
-                                        <select id="ddlstate" class="form-control validate[required]">
-                                            <option value="">--Select State--</option>
-                                        </select>
-                                        @Html.HiddenFor(m => m.stateid, new { id = "stateid" })
-                                        @Html.HiddenFor(m => m.statetext, new { id = "statetext" })
-                                    </div>
-                                </div>
-
-
-                                <div class="col-sm-6">
-
-                                    <div class="form-group">
-                                        <label for="input-1">City</label>
-                                        <select id="ddlcity" class="form-control validate[required]">
-                                            <option value=''>--Select City--</option>
-                                        </select>
-                                        @Html.HiddenFor(m => m.cityid, new { id = "cityid" })
-                                        @Html.HiddenFor(m => m.citytext, new { id = "citytext" })
-
+                                    <div id="datepicker" class="input-group date" data-date-format="dd-mm-yyyy">
+                                        <input class="form-control validate[required]" type="text" id="DOB" name="DOB" autocomplete="off" placeholder="Select Date Of Birth" />
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                                     </div>
 
                                 </div>
+                            </div>
 
 
-
-
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="input-3">Pin</label>
-                                        @Html.TextBoxFor(m => m.Pin, new { @class = "form-control validate[required,custom[PinCode]] text-input", @id = "txtPin", @placeholder = "Enter Your Pin", @autocomplete = "off" })
-                                    </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="input-3">Mobile</label>
+                                    @Html.TextBoxFor(m => m.Mobile, new { @class = "form-control validate[required,custom[Mobile],maxSize[10]] text - input", @id = "txtmobile", @placeholder = "Enter Your Mobile Number", @autocomplete = "off" })
                                 </div>
+                            </div>
 
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="input-3">User Name</label>
-                                        @Html.TextBoxFor(m => m.UserId, new { @class = "form-control validate[required] text-input", @id = "txtUserId", @placeholder = "Enter Your UserId", @autocomplete = "off" })
-                                    </div>
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="input-3">Email</label>
+                                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control validate[required,custom[email]] text-input", @id = "txtEmail", @placeholder = "Enter Your Email", @autocomplete = "off" })
                                 </div>
+                            </div>
 
 
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="input-3">User Password</label>
-                                        @Html.TextBoxFor(m => m.UserPassword, new { @type = "password", @class = "form-control validate[required] text-input", @id = "txtUserPassword", @placeholder = "Enter Your User Password", @autocomplete = "off" })
-                                    </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="input-3">Address 1</label>
+                                    @Html.TextAreaFor(m => m.Address1, new { @class = "form-control validate[required] text-input", @id = "txtaddress1", @placeholder = "Enter Your Address 1", @autocomplete = "off" })
                                 </div>
+                            </div>
 
 
 
-
-
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="input-3">Designation</label>
-                                        @Html.TextBoxFor(m => m.Designation, new { @class = "form-control validate[required] text-input", @id = "txtDesignation", @placeholder = "Enter Designation", @autocomplete = "off" })
-                                    </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="input-3">Address 2</label>
+                                    @Html.TextAreaFor(m => m.Address2, new { @class = "form-control validate[required] text-input", @id = "txtaddress2", @placeholder = "Enter Your Address 2", @autocomplete = "off" })
                                 </div>
-
-
-                                @if (Convert.ToInt32(Session["rId"]) != 1 || Convert.ToInt32(Session["rId"]) != 2)
-                                {
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label for="input-3">Role</label>
-                                            <select id="ddlRole" class="form-control validate[required]"></select>
-                                            @Html.HiddenFor(m => m.rid, new { id = "rid" })
-                                            @Html.HiddenFor(m => m.rtext, new { id = "rtext" })
-                                        </div>
-                                    </div>
-                                }
+                            </div>
 
 
 
+                            <div class="col-sm-6">
 
-
-
-
-                                <div class="col-sm-6" id="showcompany" style="display:none;">
-
-                                    <div class="form-group">
-                                        <label for="input-1">Add Company</label>
-                                        <br />
-                                        <label class="checkbox-inline">
-                                            <input type="checkbox" value="Yes" class="radio" name="radio">Yes
-                                        </label>
-                                        <label class="checkbox-inline">
-                                            <input type="checkbox" value="No" class="radio" name="radio">No
-                                        </label>
-
-
-                                        @*<select id="ddlcompany" class="form-control validate[required]">
-                                                <option value="">--Select--</option>
-                                            </select>
-                                            @Html.HiddenFor(m => m.CompId, new { id = "CompId" })
-                                            @Html.HiddenFor(m => m.CompIdtext, new { id = "CompIdtext" })*@
-                                    </div>
+                                <div class="form-group">
+                                    <label for="input-3">Address 3</label>
+                                    @Html.TextAreaFor(m => m.Address3, new { @class = "form-control validate[required] text-input", @id = "txtaddress3", @placeholder = "Enter Your Address 3", @autocomplete = "off" })
                                 </div>
+                            </div>
 
 
 
@@ -248,25 +138,145 @@
 
 
 
+                            <div class="col-sm-6">
 
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="input-3">Status</label>
-                                        @Html.DropDownListFor(x => x.Active, new SelectListItem[]{
-                                       new SelectListItem() {Text = "--Select--", Value=""},
-                                       new SelectListItem() {Text = "Active", Value="1"},
-                                       new SelectListItem() {Text = "Inactive", Value="2"}} , new { @class= "form-control validate[required]" })
-                                    </div>
+                                <div class="form-group">
+                                    <label for="input-1">State</label>
+
+                                    <select id="ddlstate" class="form-control validate[required]">
+                                        <option value="">--Select State--</option>
+                                    </select>
+                                    @Html.HiddenFor(m => m.stateid, new { id = "stateid" })
+                                    @Html.HiddenFor(m => m.statetext, new { id = "statetext" })
                                 </div>
+                            </div>
 
 
+                            <div class="col-sm-6">
 
+                                <div class="form-group">
+                                    <label for="input-1">City</label>
+                                    <select id="ddlcity" class="form-control validate[required]">
+                                        <option value=''>--Select City--</option>
+                                    </select>
+                                    @Html.HiddenFor(m => m.cityid, new { id = "cityid" })
+                                    @Html.HiddenFor(m => m.citytext, new { id = "citytext" })
 
-
-
-
+                                </div>
 
                             </div>
+
+
+
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="input-3">Pin</label>
+                                    @Html.TextBoxFor(m => m.Pin, new { @class = "form-control validate[required,custom[PinCode]] text-input", @id = "txtPin", @placeholder = "Enter Your Pin", @autocomplete = "off" })
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="input-3">User Name</label>
+                                    @Html.TextBoxFor(m => m.UserId, new { @class = "form-control validate[required] text-input", @id = "txtUserId", @placeholder = "Enter Your UserId", @autocomplete = "off" })
+                                </div>
+                            </div>
+
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="input-3">User Password</label>
+                                    @Html.TextBoxFor(m => m.UserPassword, new { @type = "password", @class = "form-control validate[required] text-input", @id = "txtUserPassword", @placeholder = "Enter Your User Password", @autocomplete = "off" })
+                                </div>
+                            </div>
+
+
+
+
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="input-3">Designation</label>
+                                    @Html.TextBoxFor(m => m.Designation, new { @class = "form-control validate[required] text-input", @id = "txtDesignation", @placeholder = "Enter Designation", @autocomplete = "off" })
+                                </div>
+                            </div>
+
+
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="input-3">Distributor</label>
+                                    <select id="BindDistributorDDL" class="form-control validate[required]"></select>
+                                    @Html.HiddenFor(m => m.distid, new { id = "distid" })
+                                    @Html.HiddenFor(m => m.distname, new { id = "distname" })
+                                </div>
+                            </div>
+
+
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="input-3">Role</label>
+                                    <select id="ddlRole" class="form-control validate[required]"><option value="">--Select--</option></select>
+                                    @Html.HiddenFor(m => m.rid, new { id = "rid" })
+                                    @Html.HiddenFor(m => m.rtext, new { id = "rtext" })
+                                </div>
+                            </div>
+
+
+
+
+
+
+
+
+                            <div class="col-sm-6" id="showcompany" style="display:none;">
+
+                                <div class="form-group">
+                                    <label for="input-1">Add Company</label>
+                                    <br />
+                                    <label class="checkbox-inline">
+                                        <input type="checkbox" value="Yes" class="radio" name="radio">Yes
+                                    </label>
+                                    <label class="checkbox-inline">
+                                        <input type="checkbox" value="No" class="radio" name="radio">No
+                                    </label>
+
+
+                                    @*<select id="ddlcompany" class="form-control validate[required]">
+                    <option value="">--Select--</option>
+                </select>
+                @Html.HiddenFor(m => m.CompId, new { id = "CompId" })
+                @Html.HiddenFor(m => m.CompIdtext, new { id = "CompIdtext" })*@
+                                </div>
+                            </div>
+
+
+
+
+
+
+
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="input-3">Status</label>
+                                    @Html.DropDownListFor(x => x.Active, new SelectListItem[]{
+                                   new SelectListItem() {Text = "--Select--", Value=""},
+                                   new SelectListItem() {Text = "Active", Value="1"},
+                                   new SelectListItem() {Text = "Inactive", Value="2"}} , new { @class= "form-control validate[required]" })
+                                </div>
+                            </div>
+
+
+
+
+
+
+
+
+                        </div>
 
 
 
@@ -313,24 +323,10 @@
 
 <script>
 
-    $('.radio').on('change', function () {
-
-        $('.radio').not(this).prop('checked', false);
-        var val = $("input[name=radio]:checked").val()
-
-        if (val == "Yes") {
-            $("#btncompany").removeAttr("style");
-        }
-
-        if (val == "No") {
-            $("#btncompany").css("display", "none");
-        }
 
 
-    });
 
-
-    $(document).ready(function () {
+    @*$(document).ready(function () {
 
         $.ajax({
 
@@ -339,7 +335,7 @@
             success: function (data) {
                 $('#ddlRole').empty().append(data);
             }
-        });
+        });*@
 
 
 
@@ -348,11 +344,37 @@
 
             type: "POST",
             url:"@Url.Action("BindCompanyDDL", "AddDistributorEmployee")",
-            success: function (data) {
-                $('#ddlcompany').empty().append(data);
+                  success: function (data) {
+                   
+                      $('#BindDistributorDDL').empty().append(data);
             }
         });
 
+
+
+
+     
+
+
+
+
+    $("#BindDistributorDDL").change(function () {
+        var value = $(this).children(":selected").attr("value");
+        var text = $("#BindDistributorDDL option:selected").html();
+
+        $("#distname").val(text);
+        $("#distid").val(value);
+
+
+            $.ajax({
+
+            type: "POST",
+            url: "@Url.Action("BindRoleDDL", "AddDistributorEmployee")",
+                data: {"send":""+value+""},
+            success: function (data) {
+                $('#ddlRole').empty().append(data);
+                                     }
+               });
 
     });
 
@@ -423,38 +445,9 @@
         $("#rtext").val(text);
         $("#rid").val(value);
 
-        if (text == "Distributor") {
 
 
-            $.ajax({
-
-            type: "POST",
-            url: "@Url.Action("checktype", "AddDistributorEmployee")",
-
-            success: function (data) {
-
-                if (data =="Update Distributor") {
-
-                    $("#btncompanyupdate").removeAttr("style");
-
-                }
-
-                if (data == "Add Distributor") {
-                    $("#btncompanyadd").removeAttr("style");
-                }
-
-            }
-
-
-
-        });
-
-
-        }
-        else {
-            $("#showcompany").css('display', 'none');
-            $("#btncompany").css('display', 'none');
-        }
+         
 
 
 

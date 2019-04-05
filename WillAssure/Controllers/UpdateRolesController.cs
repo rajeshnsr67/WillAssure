@@ -122,6 +122,7 @@ namespace WillAssure.Controllers
             cmd.Parameters.AddWithValue("@condition", "update");
             cmd.Parameters.AddWithValue("@roleid ", RFM.RoleID);
             cmd.Parameters.AddWithValue("@role ", RFM.Role);
+            cmd.Parameters.AddWithValue("@pid ", "");
             cmd.ExecuteNonQuery();
             con.Close();
 

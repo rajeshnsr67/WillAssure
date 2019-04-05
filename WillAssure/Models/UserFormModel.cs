@@ -36,7 +36,8 @@ namespace WillAssure.Models
         public int UserRole { get; set; }
 
 
-
+        public int distid { get; set; }
+        public string distname { get; set; }
 
 
 

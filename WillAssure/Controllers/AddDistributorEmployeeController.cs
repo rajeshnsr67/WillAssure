@@ -163,14 +163,9 @@ namespace WillAssure.Controllers
 
 
                 UFM.CompId = 0;
-                if (Session["compid"] != "")
-                {
-                    cmd.Parameters.AddWithValue("@compId", Convert.ToInt32(Session["compid"]));
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("@compId", UFM.CompId);
-                }
+            
+                cmd.Parameters.AddWithValue("@compId", UFM.CompId);
+                
 
 
 
@@ -219,7 +214,7 @@ namespace WillAssure.Controllers
 
 
 
-
+                ModelState.Clear();
 
 
 
@@ -338,6 +333,7 @@ namespace WillAssure.Controllers
 
         public String BindRoleDDL()
         {
+            int index = Convert.ToInt32(Request["send"]); 
             string data = "";
 
 
@@ -350,10 +346,9 @@ namespace WillAssure.Controllers
                 int roles = 0;
                 roles = Convert.ToInt32(Session["rId"]);
 
-                if (roles == 2)
-                {
+              
                     con.Open();
-                    string query = "select * from roles where Pid = " + Convert.ToInt32(Session["uuid"]) + "";
+                    string query = "select * from Roles   where  Pid = "+ index + "";
                     SqlDataAdapter da = new SqlDataAdapter(query, con);
                     DataTable dt = new DataTable();
                     da.Fill(dt);
@@ -380,43 +375,8 @@ namespace WillAssure.Controllers
 
 
                     }
-                }
-                else
-                {
-
-                    con.Open();
-                    string query = "select * from roles where Pid = " + Convert.ToInt32(Session["uuid"]) + "";
-                    SqlDataAdapter da = new SqlDataAdapter(query, con);
-                    DataTable dt = new DataTable();
-                    da.Fill(dt);
-                    con.Close();
-
-
-                    if (dt.Rows.Count > 0)
-                    {
-
-
-                        for (int i = 0; i < dt.Rows.Count; i++)
-                        {
-
-
-
-
-                            data = data + "<option value=" + dt.Rows[i]["rid"].ToString() + " >" + dt.Rows[i]["Role"].ToString() + "</option>";
-
-
-
-                        }
-
-
-
-
-                    }
-
-
-
-
-                }
+                
+                
 
 
 
@@ -434,9 +394,89 @@ namespace WillAssure.Controllers
 
         public String BindCompanyDDL()
         {
+            string data = "<option value=''>--Select --</option>";
+            if (Convert.ToInt32(Session["rId"]) == 1)
+            {
+                con.Open();
+                string query = "select uId , First_Name from users";
+                SqlDataAdapter da = new SqlDataAdapter(query, con);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                con.Close();
+                
 
+                if (dt.Rows.Count > 0)
+                {
+
+
+                    for (int i = 0; i < dt.Rows.Count; i++)
+                    {
+
+
+
+
+                        data = data + "<option value=" + dt.Rows[i]["uId"].ToString() + " >" + dt.Rows[i]["First_Name"].ToString() + "</option>";
+
+
+
+                    }
+
+
+
+
+                }
+
+
+
+            }
+            else
+            {
+
+                con.Open();
+                string query = "select a.uId , a.First_Name  from users a inner join roles b on a.rId=b.rId where a.rId = "+Convert.ToInt32(Session["rId"])+" and a.uId = "+ Convert.ToInt32(Session["uuid"]) + " ";
+                SqlDataAdapter da = new SqlDataAdapter(query, con);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                con.Close();
+
+
+                if (dt.Rows.Count > 0)
+                {
+
+
+                    for (int i = 0; i < dt.Rows.Count; i++)
+                    {
+
+
+
+
+                        data = data + "<option value=" + dt.Rows[i]["uId"].ToString() + " >" + dt.Rows[i]["First_Name"].ToString() + "</option>";
+
+
+
+                    }
+
+
+
+
+                }
+
+            }
+
+            return data;
+
+        }
+
+
+
+      
+
+
+
+        public string BindDistributorDDL()
+        {
             con.Open();
-            string query = "select compId , companyName  from companydetails";
+            string query = "select uId , First_Name from users";
             SqlDataAdapter da = new SqlDataAdapter(query, con);
             DataTable dt = new DataTable();
             da.Fill(dt);
@@ -453,7 +493,7 @@ namespace WillAssure.Controllers
 
 
 
-                    data = data + "<option value=" + dt.Rows[i]["compId"].ToString() + " >" + dt.Rows[i]["companyName"].ToString() + "</option>";
+                    data = data + "<option value=" + dt.Rows[i]["uId"].ToString() + " >" + dt.Rows[i]["First_Name"].ToString() + "</option>";
 
 
 
@@ -465,44 +505,6 @@ namespace WillAssure.Controllers
             }
 
             return data;
-
-        }
-
-
-
-        public string checktype()
-        {
-
-            string buttonname = "";
-
-            if (Convert.ToInt32(Session["rId"]) == 1)
-            {
-
-
-
-
-
-
-
-
-
-
-
-                buttonname = "Add Distributor";
-                ViewBag.type = buttonname;
-
-
-
-
-
-
-            }
-
-
-            //bindbutton
-
-
-            return buttonname;
         }
 
 

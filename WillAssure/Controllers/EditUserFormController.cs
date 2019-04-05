@@ -714,14 +714,14 @@ namespace WillAssure.Controllers
                 }
 
 
-             
+
 
 
 
 
                 //end
 
-
+        
 
 
 
@@ -1448,7 +1448,25 @@ namespace WillAssure.Controllers
         {
             int index = Convert.ToInt32(Request["send"]);
 
+            con.Open();
+            string query = "select compId from users where uid = " + index + "";
+            SqlDataAdapter da = new SqlDataAdapter(query, con);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            int compid = 0;
+            if (dt.Rows.Count > 0)
+            {
 
+               
+                    compid = Convert.ToInt32(dt.Rows[0]["compId"]);
+                    Session["upcompanyid"] = compid;
+                   
+                
+
+
+            }
+
+            con.Close();
 
 
             return index;

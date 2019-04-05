@@ -160,7 +160,7 @@ namespace WillAssure.Controllers
             Session["mailto"] = "";
             Session["userid"] = "";
             Session["uuid"] = "";
-
+            Session["upcompanyid"] = "";
 
 
 

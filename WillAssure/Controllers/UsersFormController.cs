@@ -144,34 +144,28 @@ namespace WillAssure.Controllers
                     cmd.Parameters.AddWithValue("@Designation", UFM.Designation);
                     cmd.Parameters.AddWithValue("@Active", UFM.Active);
 
-                UFM.rid = 0;
-                if (Convert.ToInt32(Session["rId"]) == 1 || Convert.ToInt32(Session["rId"]) == 2)
-                {
+                //UFM.rid = 0;
+                //if (Convert.ToInt32(Session["rId"]) != 2)
+                //{
                     UFM.rid = 2;
                     cmd.Parameters.AddWithValue("@rid", UFM.rid);
-                }
-                else
-                {
+                //}
+                //else
+                //{
 
-                    cmd.Parameters.AddWithValue("@rid", UFM.rid);
-                }
+                //    cmd.Parameters.AddWithValue("@rid", UFM.rid);
+                //}
 
 
                 UFM.CompId = 0;
-                if (Session["compid"] != "")
-                {
-                    cmd.Parameters.AddWithValue("@compId", Convert.ToInt32(Session["compid"]));
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("@compId", UFM.CompId);
-                }
-                 
-                   
-                    
 
-                    
-                    cmd.Parameters.AddWithValue("@Linked_user", UFM.rid);
+                cmd.Parameters.AddWithValue("@compId", UFM.CompId);
+
+
+
+
+
+                cmd.Parameters.AddWithValue("@Linked_user", UFM.rid);
                     cmd.ExecuteNonQuery();
 
 
