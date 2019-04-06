@@ -198,6 +198,7 @@
     <Compile Include="Controllers\AddDocumentController.cs" />
     <Compile Include="Controllers\AddMainAssetsController.cs" />
     <Compile Include="Controllers\AddNomineeController.cs" />
+    <Compile Include="Controllers\AddDocumentAllotmentController.cs" />
     <Compile Include="Controllers\AddRelationController.cs" />
     <Compile Include="Controllers\AddRoleAssignmentController.cs" />
     <Compile Include="Controllers\AddTemplateMasterController.cs" />
@@ -265,6 +266,7 @@
     <Compile Include="Models\AssetsModel.cs" />
     <Compile Include="Models\AssetTypeModel.cs" />
     <Compile Include="Models\BeneficiaryModel.cs" />
+    <Compile Include="Models\CouponsModel.cs" />
     <Compile Include="Models\DesingnationModel.cs" />
     <Compile Include="Models\DistributorFormModel.cs" />
     <Compile Include="Models\DynamicMenuModel.cs" />
@@ -273,6 +275,7 @@
     <Compile Include="Models\MainAssetsModel.cs" />
     <Compile Include="Models\MemberModelcs.cs" />
     <Compile Include="Models\NomineeModel.cs" />
+    <Compile Include="Models\PaymentModel.cs" />
     <Compile Include="Models\RoleAssignModel.cs" />
     <Compile Include="Models\RoleFormModel.cs" />
     <Compile Include="Models\TemplateMasterModel.cs" />
@@ -1174,6 +1177,7 @@
     <Content Include="Views\AddDistributorEmployee\AddDistributorPageContent.cshtml" />
     <Content Include="Views\EditDistributorEmployee\EditDistributorEmployeePageContent.cshtml" />
     <Content Include="Views\UpdateDistributorEmployee\UpdateDistributorEmployeePageContent.cshtml" />
+    <Content Include="Views\AddDocumentAllotment\AddDocumentAllotmentPageContent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

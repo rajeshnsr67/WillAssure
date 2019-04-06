@@ -345,8 +345,8 @@
             type: "POST",
             url:"@Url.Action("BindCompanyDDL", "AddDistributorEmployee")",
                   success: function (data) {
-                   
-                      $('#BindDistributorDDL').empty().append(data);
+                 
+                      $('#BindDistributorDDL').append(data);
             }
         });
 

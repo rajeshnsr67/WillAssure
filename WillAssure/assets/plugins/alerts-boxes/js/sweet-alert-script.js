@@ -84,6 +84,16 @@
     // end
 
 
+     //discount
+
+     $("#btnDiscountSUCCESS").click(function () {
+         swal("Submitted", "Your Data has Been Submitted", "success");
+     });
+
+
+     //end
+
+
      //testator
      $("#ADDTestatorFormData").click(function () {
          swal("Submitted", "Your Data has Been Submitted", "success");
@@ -474,4 +484,9 @@
 
               });
 
-          });
+});
+
+
+
+
+

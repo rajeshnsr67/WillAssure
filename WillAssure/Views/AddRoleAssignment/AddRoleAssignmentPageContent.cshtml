@@ -197,7 +197,12 @@
                                             </tr>
 
 
-
+                                            <tr>
+                                                <td style="font-weight:bolder"><input type="checkbox" id="Payment">Document Allotment</td>
+                                                <td><label class="checkbox-inline"><input type="checkbox" id="PaymentAdd">Add</label></td>
+                                                <td><label class="checkbox-inline"><input type="checkbox" id="PaymentEdit">Edit</label></td>
+                                                <td><label class="checkbox-inline"><input type="checkbox" id="PaymentDelete">Delete</label></td>
+                                            </tr>
 
 
 
@@ -237,6 +242,8 @@
                     <input type="hidden" id="19" value="" />
                     <input type="hidden" id="20" value="" />
                     <input type="hidden" id="21" value="" />
+                    <input type="hidden" id="22" value="" />
+
 
 
 
@@ -412,6 +419,10 @@
 
         var status21 = "";
         var data21 = "";
+
+
+        var status22 = "";
+        var data22 = "";
 
         // for role
         if ($("#Roles").is(':checked')) {
@@ -1166,10 +1177,47 @@
 
 
 
+        // for Payment
+        if ($("#Payment").is(':checked')) {
+            status22 = status22 + "Active";
+        }
+        else {
+            status22 = status22 + "Inactive";
+        }
+
+        if ($("#PaymentAdd").is(':checked')) {
+            data22 = data22 + "1,";
+        }
+        else {
+            data22 = data22 + "0,";
+        }
+        if ($("#PaymentEdit").is(':checked')) {
+            data22 = data22 + "2,";
+        }
+        else {
+            data22 = data22 + "0,";
+        }
+        if ($("#PaymentDelete").is(':checked')) {
+            data22 = data22 + "3";
+        }
+        else {
+            data22 = data22 + "0";
+        }
+
+
+        $("#22").val("update Assignment_Roles set  PageStatus= '" + status22 + "'  , Action = '" + data22 + "' where PageName = 'Document Allotment' and RoleId = " + roleid + " ");
+
+        //end
+
+
+
+
+
+
 
 
       //  + $("#2").val() + "~"
-        var AllData = $("#1").val() + "~" + $("#3").val() + "~" + $("#4").val() + "~" + $("#5").val() + "~" + $("#6").val() + "~" + $("#7").val() + "~" + $("#8").val() + "~" + $("#9").val() + "~" + $("#10").val() + "~" + $("#11").val() + "~" + $("#12").val() + "~" + $("#13").val() + "~" + $("#14").val() + "~" + $("#15").val() + "~" + $("#16").val() + "~" + $("#17").val() + "~" + $("#18").val() + "~" + $("#19").val() + "~" + $("#20").val() + "~" + $("#21").val() ;
+        var AllData = $("#1").val() + "~" + $("#3").val() + "~" + $("#4").val() + "~" + $("#5").val() + "~" + $("#6").val() + "~" + $("#7").val() + "~" + $("#8").val() + "~" + $("#9").val() + "~" + $("#10").val() + "~" + $("#11").val() + "~" + $("#12").val() + "~" + $("#13").val() + "~" + $("#14").val() + "~" + $("#15").val() + "~" + $("#16").val() + "~" + $("#17").val() + "~" + $("#18").val() + "~" + $("#19").val() + "~" + $("#20").val() + "~" + $("#21").val() + "~" + $("#22").val();
 
 
           $.ajax({

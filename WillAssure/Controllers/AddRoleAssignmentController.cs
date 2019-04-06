@@ -182,10 +182,10 @@ namespace WillAssure.Controllers
                 qry = qry + "insert into Assignment_Roles (RoleId,PageName,Nav1,Nav2) values (" + roleid + " ,'Nominee','Add Nominee~AddNomineeIndex~AddNominee','Edit Nominee~EditNomineeIndex~EditNominee')";
                 qry = qry + "insert into Assignment_Roles (RoleId,PageName,Nav1,Nav2) values (" + roleid + " ,'Appointees','Add Appointees~AddAppointeesIndex~AddAppointees','Edit Appointees~EditAppointeesIndex~EditAppointees')";
                 qry = qry + "insert into Assignment_Roles (RoleId,PageName,Nav1,Nav2) values (" + roleid + " ,'AlternateAppointees','Add Alternate Appointees~AddAlternateAppointeesIndex~AddAlternateAppointees','  Edit Alternate Appointees~EditAlternateAppointeesIndex~EditAlternateAppointees')";
-                qry = qry + "insert into Assignment_Roles (RoleId,PageName,Nav1,Nav2) values (" + roleid + " ,'CreateCoupons','Add Coupons~AddCouponsIndex~AddCoupons','NULL~NULL~NULL')";
+                qry = qry + "insert into Assignment_Roles (RoleId,PageName,Nav1,Nav2) values (" + roleid + " ,'CreateCoupons','Add Coupons~AddCouponsIndex~AddCoupons','Edit Coupons~EditCouponsIndex~EditCoupons')";
                 qry = qry + "insert into Assignment_Roles (RoleId,PageName,Nav1,Nav2) values (" + roleid + " ,'Mapping','Mapping~AddAssetMappingIndex~AddAssetMapping','NULL~NULL~NULL')";
                 qry = qry + "insert into Assignment_Roles (RoleId,PageName,Nav1,Nav2) values (" + roleid + " ,'Document','View Document~ViewDocumentIndex~ViewDocument','NULL~NULL~NULL')";
-
+                qry = qry + "insert into Assignment_Roles (RoleId,PageName,Nav1,Nav2) values (" + roleid + " ,'Document Allotment','Allotment~AddDocumentAllotmentIndex~AddDocumentAllotment','NULL~NULL~NULL')";
 
 
 

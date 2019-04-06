@@ -149,6 +149,21 @@ namespace WillAssure.Controllers
             //end
 
 
+            // ASSIGN TYPE
+
+            con.Open();
+            string query3 = "update  users set Type='DistributorAdmin' where uId = " + userid + "  ";
+            SqlCommand cm = new SqlCommand(query3, con);
+            cm.ExecuteNonQuery();
+            con.Close();
+
+
+
+            //END
+
+
+
+
 
             // get latest inserted compid
             string query5 = "select top 1 * from companyDetails order by compId desc";
@@ -177,6 +192,8 @@ namespace WillAssure.Controllers
             //end
 
 
+
+         
 
 
 

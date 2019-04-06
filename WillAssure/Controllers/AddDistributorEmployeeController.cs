@@ -201,14 +201,24 @@ namespace WillAssure.Controllers
                 string query2 = "select top 1 * from users order by uId desc";
                 SqlDataAdapter da2 = new SqlDataAdapter(query2, con);
                 DataTable dt2 = new DataTable();
-                da.Fill(dt2);
+                da2.Fill(dt2);
+                int distempid = 0;
                 if (dt2.Rows.Count > 0)
                 {
 
-                    Session["uid"] = Convert.ToInt32(dt.Rows[0]["uId"]);
+                    Session["uid"] = Convert.ToInt32(dt2.Rows[0]["uId"]);
+                    distempid = Convert.ToInt32(dt2.Rows[0]["uId"]);
+
                 }
                 con.Close();
 
+
+
+                con.Open();
+                string query3 = "update  users set Type='DistributorEmployee' where uId = "+ distempid + "  ";
+                SqlCommand cm = new SqlCommand(query3,con);
+                cm.ExecuteNonQuery();
+                con.Close();
 
 
 
@@ -413,7 +423,9 @@ namespace WillAssure.Controllers
                     {
 
 
+                        ViewBag.checktype = "superadmin";
 
+             
 
                         data = data + "<option value=" + dt.Rows[i]["uId"].ToString() + " >" + dt.Rows[i]["First_Name"].ToString() + "</option>";
 
@@ -426,12 +438,12 @@ namespace WillAssure.Controllers
 
                 }
 
-
+                return data;
 
             }
             else
             {
-
+                string dd = "";
                 con.Open();
                 string query = "select a.uId , a.First_Name  from users a inner join roles b on a.rId=b.rId where a.rId = "+Convert.ToInt32(Session["rId"])+" and a.uId = "+ Convert.ToInt32(Session["uuid"]) + " ";
                 SqlDataAdapter da = new SqlDataAdapter(query, con);
@@ -450,20 +462,21 @@ namespace WillAssure.Controllers
 
 
 
-                        data = data + "<option value=" + dt.Rows[i]["uId"].ToString() + " >" + dt.Rows[i]["First_Name"].ToString() + "</option>";
 
 
 
+                        dd = dd + "<option value=" + dt.Rows[i]["uId"].ToString() + " >" + dt.Rows[i]["First_Name"].ToString() + "</option>";
                     }
 
 
 
 
                 }
+                return dd;
 
             }
 
-            return data;
+           
 
         }
 
