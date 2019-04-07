@@ -91,6 +91,16 @@
      });
 
 
+     $("#btnallotmentsuccess").click(function () {
+         swal("Submitted", "Your Data has Been Submitted", "success");
+     });
+
+
+
+     $("#btnDiscountUpdated").click(function () {
+         swal("Updated", "Your Data has Been Updated", "success");
+     });
+
      //end
 
 

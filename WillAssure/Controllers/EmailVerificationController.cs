@@ -24,7 +24,9 @@ namespace WillAssure.Controllers
         {
             if (Session.SessionID == null)
             {
-                return View("~/Views/LoginPage/LoginPageContent.cshtml");
+
+                return RedirectToAction("LoginPageIndex", "LoginPage");
+
             }
             List<LoginModel> Lmlist = new List<LoginModel>();
             con.Open();

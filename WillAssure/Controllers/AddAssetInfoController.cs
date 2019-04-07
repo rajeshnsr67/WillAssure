@@ -19,6 +19,14 @@ namespace WillAssure.Controllers
         // GET: AddAssetInfo
         public ActionResult AddAssetInfoIndex()
         {
+            if (Session.SessionID == null)
+            {
+
+                return RedirectToAction("LoginPageIndex", "LoginPage");
+
+            }
+
+
             return View("~/Views/AddAssetInfo/AddAssetInfoPageContent.cshtml");
         }
 

@@ -22,7 +22,9 @@ namespace WillAssure.Controllers
         {
             if (Session.SessionID == null)
             {
-                return View("~/Views/LoginPage/LoginPageContent.cshtml");
+
+                return RedirectToAction("LoginPageIndex", "LoginPage");
+
             }
             List<LoginModel> Lmlist = new List<LoginModel>();
             con.Open();
@@ -115,7 +117,7 @@ namespace WillAssure.Controllers
 
             for (int i = 0; i < Lmlist.Count(); i++)
             {
-                testString = Lmlist[0].Action;
+                testString = Lmlist[17].Action;
 
             }
 
@@ -173,7 +175,7 @@ namespace WillAssure.Controllers
                 {
                     for (int i = 0; i < dt.Rows.Count; i++)
                     {
-                        data = data + "<tr class='nr'><td>" + dt.Rows[i]["rId"].ToString() + "</td>"
+                        data = data + "<tr class='nr'><td>" + dt.Rows[i]["Id"].ToString() + "</td>"
                           + "<td>" + dt.Rows[i]["Coupon_Number"].ToString() + "</td>"
                         + "<td>" + dt.Rows[i]["Discount_Percentge"].ToString() + "</td>"
                         + "<td>" + dt.Rows[i]["Description"].ToString() + "</td>"
@@ -267,7 +269,7 @@ namespace WillAssure.Controllers
 
             for (int i = 0; i < Lmlist.Count(); i++)
             {
-                testString = Lmlist[0].Action;
+                testString = Lmlist[17].Action;
 
             }
 

@@ -1,23 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using WillAssure.Models;
-using System.Data.Sql;
-using System.Data.SqlClient;
 using System.Configuration;
 using System.Data;
+using System.Data.SqlClient;
+using System.Web.Mvc;
+using WillAssure.Models;
+
 namespace WillAssure.Controllers
 {
-    public class UpdateAssetTypeController : Controller
+    public class UpdateDiscountController : Controller
     {
         public static string connectionString = ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString;
         SqlConnection con = new SqlConnection(connectionString);
 
-
-        // GET: UpdateAssetType
-        public ActionResult UpdateAssetTypeIndex(int NestId)
+        // GET: UpdateDiscount
+        public ActionResult UpdateDiscountIndex(int NestId)
         {
             if (Session.SessionID == null)
             {
@@ -57,11 +54,13 @@ namespace WillAssure.Controllers
 
             con.Close();
 
-            AssetTypeModel ATM = new AssetTypeModel();
+
+
+            CouponsModel CP = new CouponsModel();
 
 
             con.Open();
-            string query = "select * from AssetsType where atId = '" + NestId + "' ";
+            string query = "select * from discountCoupons where Id = '" + NestId + "' ";
             SqlDataAdapter da = new SqlDataAdapter(query, con);
             DataTable dt = new DataTable();
             da.Fill(dt);
@@ -70,9 +69,11 @@ namespace WillAssure.Controllers
 
             if (dt.Rows.Count > 0)
             {
-                ATM.atId = NestId;
-                ATM.AssetsType = dt.Rows[0]["AssetsType"].ToString();
-
+                CP.Id = NestId;
+                CP.Coupon_Number = Convert.ToInt32(dt.Rows[0]["Coupon_Number"]);
+                CP.Discount_Percentge = Convert.ToInt32(dt.Rows[0]["Discount_Percentge"]);
+                CP.Description = dt.Rows[0]["Description"].ToString();
+                CP.status = dt.Rows[0]["status"].ToString();
 
 
 
@@ -80,13 +81,17 @@ namespace WillAssure.Controllers
 
 
 
-            return View("~/Views/UpdateAssetType/UpdateAssetTypePageContent.cshtml", ATM);
+            return View("~/Views/UpdateDiscount/UpdateDiscountPageContent.cshtml", CP);
         }
 
 
-        public ActionResult UpdatingAssetTypes(AssetTypeModel ATM)
+        public ActionResult UpdateDiscountData(CouponsModel CP)
         {
-            // roleassignment
+
+            if (Session.SessionID == null)
+            {
+                return View("~/Views/LoginPage/LoginPageContent.cshtml");
+            }
             List<LoginModel> Lmlist = new List<LoginModel>();
             con.Open();
             string q = "select * from Assignment_Roles where RoleId = " + Convert.ToInt32(Session["rId"]) + "";
@@ -120,18 +125,26 @@ namespace WillAssure.Controllers
             con.Close();
 
 
-            //end
             con.Open();
-            SqlCommand cmd = new SqlCommand("SP_AssetsTypeCRUD", con);
-            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            SqlCommand cmd = new SqlCommand("SP_CRUDdiscountpercentage", con);
+            cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@condition", "update");
-            cmd.Parameters.AddWithValue("@atId ", ATM.atId);
-            cmd.Parameters.AddWithValue("@assettype ", ATM.AssetsType);
+            cmd.Parameters.AddWithValue("@Id", CP.Id);
+            cmd.Parameters.AddWithValue("@Coupon_Number", CP.Coupon_Number);
+            cmd.Parameters.AddWithValue("@Discount_Percentge", CP.Discount_Percentge);
+            cmd.Parameters.AddWithValue("@Description", CP.Description);
+            cmd.Parameters.AddWithValue("@status", CP.status);
             cmd.ExecuteNonQuery();
             con.Close();
 
-            ViewBag.Message = "Verified";
-            return View("~/Views/UpdateAssetType/UpdateAssetTypePageContent.cshtml");
+
+            ViewBag.Message = "Updated";
+            ModelState.Clear();
+
+
+            return View("~/Views/UpdateDiscount/UpdateDiscountPageContent.cshtml");
         }
+
+
     }
 }

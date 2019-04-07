@@ -22,7 +22,9 @@ namespace WillAssure.Controllers
         {
             if (Session.SessionID == null)
             {
-                return View("~/Views/LoginPage/LoginPageContent.cshtml");
+
+                return RedirectToAction("LoginPageIndex", "LoginPage");
+
             }
             List<LoginModel> Lmlist = new List<LoginModel>();
             con.Open();
@@ -70,7 +72,7 @@ namespace WillAssure.Controllers
             ABM.Last_Name =  dt.Rows[0]["Last_Name"].ToString();
             ABM.Middle_Name =dt.Rows[0]["Middle_Name"].ToString();
            
-            ABM.Dob = DateTime.ParseExact(dt.Rows[0]["DOB"].ToString(), "dd-MM-yyyy", CultureInfo.InvariantCulture).ToString(); 
+            ABM.Dob = dt.Rows[0]["DOB"].ToString(); 
             ABM.Mobile = dt.Rows[0]["Mobile"].ToString();
             ABM.Relationship =  dt.Rows[0]["Relationship"].ToString();
             ABM.Marital_Status = dt.Rows[0]["Marital_Status"].ToString();

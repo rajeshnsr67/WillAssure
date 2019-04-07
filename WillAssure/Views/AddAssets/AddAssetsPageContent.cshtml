@@ -424,10 +424,16 @@
     function bar(value) {
         var val = value;
 
+        var ex = /^[a-zA-Z\s]*$/;
 
-        $(".labelinput").attr("disabled", "disabled");
+        if (ex.test(val)) {
+            $(".labelinput").attr("disabled", "disabled");
 
-        $("#assetcolumnValues").append("" + value + "',");
+            $("#assetcolumnValues").append("" + value + "',");
+        }
+     
+
+      
 
 
 

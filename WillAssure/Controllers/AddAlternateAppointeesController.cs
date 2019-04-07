@@ -20,9 +20,10 @@ namespace WillAssure.Controllers
         // GET: AddAlternateAppointees
         public ActionResult AddAlternateAppointeesIndex()
         {
-            if (Session.SessionID == null)
-            {
-                return View("~/Views/LoginPage/LoginPageContent.cshtml");
+            if (Session.SessionID == null) {
+
+                return RedirectToAction("LoginPageIndex", "LoginPage");
+
             }
 
 

@@ -237,6 +237,7 @@
     <Compile Include="Controllers\UpdateAssetCategoryController.cs" />
     <Compile Include="Controllers\UpdateAssetTypeController.cs" />
     <Compile Include="Controllers\UpdateBeneficiaryController.cs" />
+    <Compile Include="Controllers\UpdateDiscountController.cs" />
     <Compile Include="Controllers\UpdateDistributorController.cs" />
     <Compile Include="Controllers\UpdateDistributorEmployeeController.cs" />
     <Compile Include="Controllers\UpdateEditFormController.cs" />
@@ -1178,6 +1179,7 @@
     <Content Include="Views\EditDistributorEmployee\EditDistributorEmployeePageContent.cshtml" />
     <Content Include="Views\UpdateDistributorEmployee\UpdateDistributorEmployeePageContent.cshtml" />
     <Content Include="Views\AddDocumentAllotment\AddDocumentAllotmentPageContent.cshtml" />
+    <Content Include="Views\UpdateDiscount\UpdateDiscountPageContent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
