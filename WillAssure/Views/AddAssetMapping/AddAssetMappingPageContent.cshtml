@@ -87,7 +87,7 @@
                                 <div class='col-sm-2'><div class='form-group' id="getidentifier"></div></div>
                                 <div class='col-sm-3'>
                                     <label for='input-1'>Instruments</label>
-                                    <select id='DDLAssetColumn' onchange="getDDLAssetColumn(this.value)" name="contentList" class='form-control'></select>
+                                    <select id='DDLAssetColumn1' onchange="getDDLAssetColumn(this.id)" name="contentList" class='form-control instrumentclass'></select>
                                     @Html.HiddenFor(m => m.InstrumentId, new { id = "InstrumentId" })
                                     @Html.HiddenFor(m => m.Instrumenttxt, new { id = "Instrumenttxt" })
                                 </div>
@@ -178,7 +178,7 @@
                 url: "../AddAssetMapping/ddlassetname",
                 data: { "send": "" + value + "" },
                 success: function (data) {
-                    $("#DDLAssetColumn").append(data);
+                    $("#DDLAssetColumn1").append(data);
                 }
             });
 
@@ -255,7 +255,7 @@
                 url: "../AddAssetMapping/ddlassetname",
                 data: { "send": "" + value + "" },
                 success: function (data) {
-                    $("#DDLAssetColumn").append(data);
+                    $("#DDLAssetColumn1").append(data);
 
                 }
             });
@@ -280,6 +280,11 @@
             $("#query").append(value + ",");
 
         });*/
+
+
+    
+
+
         function checkbeneficiaryduplicate(id) {
 
             var dt = '';
@@ -302,10 +307,10 @@
             });
 
 
-            alert(check);
+            
 
 
-            if (check=="active") {
+            if (check=='active') {
                 var v1 = id;
                 var v2 = v1.replace("ddlbeneficiary", "");
 
@@ -319,20 +324,46 @@
             }
           
 
-
-
+           
         }
 
 
 
 
-        function getDDLAssetColumn(value) {
-            //var value = $(this).children(":selected").attr("value");
-            var text = $("#DDLAssetColumn option:selected").html();
-          
-            $("#Instrumenttxt").val(text);
-            $("#Instrumenttxt").val(value);
-            $("#query").append("'" + value + "'" + ",");
+        function getDDLAssetColumn(id) {
+
+
+
+            var dt = '';
+            var lang_name = $('#' + id).val();
+            var selectedtext = $("#" + id + " option:selected").text();
+            var check = 'active';
+            $(".instrumentclass").each(function () {
+                var myid = $(this).attr('id');
+                var myval = $('#' + myid).val();
+                if (id != myid) {
+                    if (lang_name == myval && lang_name != '') {
+                        alert(selectedtext + ' already exists');
+                        $("#" + id).val('0');
+                        check = 'inactive'
+                    }
+
+                }
+
+
+            });
+
+           
+            if (check == 'active') {
+                //var value = $(this).children(":selected").attr("value");
+                var text = $("#DDLAssetColumn1 option:selected").html();
+
+                $("#Instrumenttxt").val(text);
+                $("#Instrumenttxt").val(id);
+                $("#query").append("'" + text + "'" + ",");
+            }
+
+         
         };
 
 
@@ -414,7 +445,7 @@
                 var el = $(this);
                  var id = el.attr('id') || null;
                
-                alert(id);
+                
                 if (id) {
 
                     //  var i = id.substr(id.length - 1);
@@ -444,7 +475,7 @@
                 var el = $(this);
                 var id = el.attr('id') || null;
 
-                alert(id);
+            
                 if (id) {
 
                     //  var i = id.substr(id.length - 1);
@@ -479,9 +510,9 @@
 
             var assettype = $("#ddlassettype").val();
             var assetcat = $("#ddlassetcat").val();
-            var beneficiary = $("#ddlbeneficiary").val();
-            var schemename = $("#schemename").val();
-            var instrument = $("#DDLAssetColumn option:selected").html();
+            var beneficiary = $("#ddlbeneficiary1").val();
+            var schemename = $("#schemename1").val();
+            var instrument = $("#DDLAssetColumn1 option:selected").html();
             var proportion = $("#txtproportion").val();
 
 
@@ -523,14 +554,14 @@
 
                 var assettype = $("#ddlassettype").val();
                 var assetcat = $("#ddlassetcat").val();
-                var beneficiary = $("#ddlbeneficiary").val();
-                var schemename = $("#schemename").val();
-                var instrument = $("#DDLAssetColumn option:selected").html();
+                var beneficiary = $("#ddlbeneficiary1").val();
+                var schemename = $("#schemename1").val();
+                var instrument = $("#DDLAssetColumn1 option:selected").html();
                 var proportion = $("#txtproportion").val();
 
 
                 var data = assettype + "~" + assetcat + "~" + beneficiary + "~" + schemename + "~" + instrument + "~" + proportion;
-
+            
                 $.ajax({
 
                     type: "POST",
@@ -549,7 +580,7 @@
 
                 var assettype = $("#ddlassettype").val();
                 var assetcat = $("#ddlassetcat").val();
-                var schemename = $("#schemename").val();
+                var schemename = $("#schemename1").val();
 
                 var data = $("#query").val();
                
@@ -580,7 +611,7 @@
             var dt = '';
             var lang_name = $('#' + id).val();
             var selectedtext = $("#" + id + " option:selected").text();
-
+            var check = 'active';
             $(".schemenameclass").each(function () {
                 var myid = $(this).attr('id');
                 var myval = $('#' + myid).val();
@@ -588,21 +619,25 @@
                     if (lang_name == myval && lang_name != '') {
                         alert(selectedtext + ' already exists');
                         $("#" + id).val('0');
-
+                        check = "inactive";
                     }
                 }
 
 
             });
 
+
+            if (check == 'active') {
+                var v1 = id;
+                var v2 = v1.replace("schemename", "");
+                var text = $("#schemename option:selected").html();
+
+
+                $("#query").append("'" + selectedtext + "'" + ",");
+            }
             
 
-            var v1 = id;
-            var v2 = v1.replace("schemename", "");
-            var text = $("#schemename option:selected").html();
-       
-
-            $("#query").append("'" + selectedtext + "'" + ",");
+           
         }
 
     </script>

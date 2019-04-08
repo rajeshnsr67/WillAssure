@@ -82,7 +82,7 @@ namespace WillAssure.Controllers
                 for (int i = 0; i < dt1.Rows.Count; i++)
                 {
 
-                    data = data + "<option value=" + dt1.Rows[i]["aiid"] + ">" + dt1.Rows[i]["First_Name"] + "</option>";
+                    data = data + "<option value=" + dt1.Rows[i]["bpId"] + ">" + dt1.Rows[i]["First_Name"] + "</option>";
 
                 }
 
@@ -675,7 +675,7 @@ namespace WillAssure.Controllers
             DataTable dt1 = new DataTable();
             da1.Fill(dt1);
             con.Close();
-
+            int index = 2;
             if (dt1.Rows.Count > 0)
             {
 
@@ -683,16 +683,17 @@ namespace WillAssure.Controllers
                 {
                     string getjson = dt1.Rows[i]["Json"].ToString();
                     var dict = JsonConvert.DeserializeObject<Dictionary<string, string>>(getjson);
+                    int count = index++;
                     foreach (var item in dict)
                     {
                         string testString = item.Key;
                         ArrayList result = new ArrayList(testString.Split('~'));
-
+                        
 
                         if (result[0].ToString() == "IssuedBy")
                         {
 
-                            bindddlname = bindddlname + "   <option value=" + item.Value + ">" + item.Value + "</option>    ";
+                            bindddlname = bindddlname + "   <option value=" + count + ">" + item.Value + "</option>    ";
 
 
                         }
@@ -700,7 +701,7 @@ namespace WillAssure.Controllers
                         if (result[0].ToString() == "Identifier")
                         {
 
-                            bindddlname = bindddlname + "   <option value=" + item.Value + ">" + item.Value + "</option>    ";
+                            bindddlname = bindddlname + "   <option value=" + count + ">" + item.Value + "</option>    ";
 
 
                         }

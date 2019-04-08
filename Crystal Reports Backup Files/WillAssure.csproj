@@ -207,6 +207,7 @@
     <Compile Include="Controllers\AddWillEmployeeController.cs" />
     <Compile Include="Controllers\AlternateBeneficiaryController.cs" />
     <Compile Include="Controllers\AssetTypeController.cs" />
+    <Compile Include="Controllers\CouponsAllotmentController.cs" />
     <Compile Include="Controllers\EditAlternateAppointeesController.cs" />
     <Compile Include="Controllers\EditAlternateBeneficiaryController.cs" />
     <Compile Include="Controllers\EditAppointeesController.cs" />
@@ -267,6 +268,7 @@
     <Compile Include="Models\AssetsModel.cs" />
     <Compile Include="Models\AssetTypeModel.cs" />
     <Compile Include="Models\BeneficiaryModel.cs" />
+    <Compile Include="Models\CouponAllotementModel.cs" />
     <Compile Include="Models\CouponsModel.cs" />
     <Compile Include="Models\DesingnationModel.cs" />
     <Compile Include="Models\DistributorFormModel.cs" />
@@ -1180,6 +1182,7 @@
     <Content Include="Views\UpdateDistributorEmployee\UpdateDistributorEmployeePageContent.cshtml" />
     <Content Include="Views\AddDocumentAllotment\AddDocumentAllotmentPageContent.cshtml" />
     <Content Include="Views\UpdateDiscount\UpdateDiscountPageContent.cshtml" />
+    <Content Include="Views\CouponsAllotment\AddCouponsAllotmentPageContent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
