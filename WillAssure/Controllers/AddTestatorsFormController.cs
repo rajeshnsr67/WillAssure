@@ -232,14 +232,28 @@ namespace WillAssure.Controllers
                     Session["Document_Created_By"] = TFM.Document_Created_By;
                 }
                 con.Close();
-                //end
+            //end
 
 
-                // document generation 
+            // document generation 
+
+            // get coupon id
+            con.Open();
+            string query5 = "select a.couponId  from couponAllotment a inner join users b on a.uId=b.uId where b.uId = "+Convert.ToInt32(Session["uuid"])+"";
+            SqlDataAdapter da4 = new SqlDataAdapter(query5,con);
+            DataTable dt4 = new DataTable();
+            da4.Fill(dt4);
+            int couponsid = 0;
+            if (dt4.Rows.Count > 0)
+            {
+                couponsid = Convert.ToInt32(dt4.Rows[0]["couponId"]);
+            }
+            con.Close();
+            //end
 
               
                 con.Open();
-                string q = "insert into documentMaster (tId,templateId,IsUpdatetable,uId,pId,created_by,testator_type) values (" + testatorid + " , " + templateid + " ,  'Yes' ,   "+Convert.ToInt32(Session["uuid"]) +" , 1 , '" + TFM.Document_Created_By_txt + "' , '" + testatortype + "')";
+                string q = "insert into documentMaster (tId,templateId,IsUpdatetable,uId,pId,created_by,testator_type,couponId) values (" + testatorid + " , " + templateid + " ,  'Yes' ,   "+Convert.ToInt32(Session["uuid"]) +" , 1 , '" + TFM.Document_Created_By_txt + "' , '" + testatortype + "' , "+couponsid+")";
                 SqlCommand c = new SqlCommand(q, con);
                 c.ExecuteNonQuery();
                 con.Close();
@@ -292,8 +306,8 @@ namespace WillAssure.Controllers
                     cmd2.ExecuteNonQuery();
                     con.Close();
 
-
-                }
+                return View("~/Views/AddTestatorsForm/AddTestatorPageContent.cshtml");
+            }
                 //end
                 //2nd condition 
                 if (TFM.Amt_Paid_By_txt == "Distributor" && TFM.Document_Created_By_txt == "Testator")

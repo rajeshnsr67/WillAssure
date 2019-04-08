@@ -204,7 +204,12 @@
                                                 <td><label class="checkbox-inline"><input type="checkbox" id="PaymentDelete">Delete</label></td>
                                             </tr>
 
-
+                                            <tr>
+                                                <td style="font-weight:bolder"><input type="checkbox" id="CouponAllotment">Coupon Allotment</td>
+                                                <td><label class="checkbox-inline"><input type="checkbox" id="CouponAllotmentAdd">Add</label></td>
+                                                <td><label class="checkbox-inline"><input type="checkbox" id="CouponAllotmentEdit">Edit</label></td>
+                                                <td><label class="checkbox-inline"><input type="checkbox" id="CouponAllotmentDelete">Delete</label></td>
+                                            </tr>
 
 
 
@@ -243,7 +248,7 @@
                     <input type="hidden" id="20" value="" />
                     <input type="hidden" id="21" value="" />
                     <input type="hidden" id="22" value="" />
-
+                    <input type="hidden" id="23" value="" />
 
 
 
@@ -423,6 +428,10 @@
 
         var status22 = "";
         var data22 = "";
+
+
+        var status23 = "";
+        var data23 = "";
 
         // for role
         if ($("#Roles").is(':checked')) {
@@ -1212,12 +1221,47 @@
 
 
 
+        // for coupon allotement
+        if ($("#CouponAllotment").is(':checked')) {
+            status23 = status23 + "Active";
+        }
+        else {
+            status23 = status23 + "Inactive";
+        }
+
+        if ($("#CouponAllotmentAdd").is(':checked')) {
+            data23 = data23 + "1,";
+        }
+        else {
+            data23 = data23 + "0,";
+        }
+        if ($("#CouponAllotmentEdit").is(':checked')) {
+            data23 = data23 + "2,";
+        }
+        else {
+            data23 = data23 + "0,";
+        }
+        if ($("#CouponAllotmentDelete").is(':checked')) {
+            data23 = data23 + "3";
+        }
+        else {
+            data23 = data23 + "0";
+        }
+
+
+        $("#23").val("update Assignment_Roles set  PageStatus= '" + status23 + "'  , Action = '" + data23 + "' where PageName = 'Coupon Allotment' and RoleId = " + roleid + " ");
+
+        //end
+
+
+
+
 
 
 
 
       //  + $("#2").val() + "~"
-        var AllData = $("#1").val() + "~" + $("#3").val() + "~" + $("#4").val() + "~" + $("#5").val() + "~" + $("#6").val() + "~" + $("#7").val() + "~" + $("#8").val() + "~" + $("#9").val() + "~" + $("#10").val() + "~" + $("#11").val() + "~" + $("#12").val() + "~" + $("#13").val() + "~" + $("#14").val() + "~" + $("#15").val() + "~" + $("#16").val() + "~" + $("#17").val() + "~" + $("#18").val() + "~" + $("#19").val() + "~" + $("#20").val() + "~" + $("#21").val() + "~" + $("#22").val();
+        var AllData = $("#1").val() + "~" + $("#3").val() + "~" + $("#4").val() + "~" + $("#5").val() + "~" + $("#6").val() + "~" + $("#7").val() + "~" + $("#8").val() + "~" + $("#9").val() + "~" + $("#10").val() + "~" + $("#11").val() + "~" + $("#12").val() + "~" + $("#13").val() + "~" + $("#14").val() + "~" + $("#15").val() + "~" + $("#16").val() + "~" + $("#17").val() + "~" + $("#18").val() + "~" + $("#19").val() + "~" + $("#20").val() + "~" + $("#21").val() + "~" + $("#22").val() + "~" + $("#23").val();
 
 
           $.ajax({

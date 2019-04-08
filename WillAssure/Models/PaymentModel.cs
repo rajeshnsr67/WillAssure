@@ -14,7 +14,11 @@ namespace WillAssure.Models
         public int documentid { get; set; }
         public string documenttxt { get; set; }
 
-       
+
+        public int companyid { get; set; }
+        public string companytxt { get; set; }
+
+
         public int NumberofDocument { get; set; }
 
         public string status { get; set; }

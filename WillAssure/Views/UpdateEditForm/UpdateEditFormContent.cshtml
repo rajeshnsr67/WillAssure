@@ -258,13 +258,20 @@
 
                             <button type="submit" id="UpdatingUserform" formaction="UpdatingUserform" class="btn btn-success shadow-success px-5"><i class="icon-lock"></i>Update Distributor</button>
                             <button type="button" id="UpdatingUserformUPDATE" style="display:none;" formaction="UpdatingUserform" class="btn btn-success shadow-success px-5"><i class="icon-lock"></i></button>
-                            <a href="@Url.Action("AddDistributorIndex","AddDistributor")"><button type="button" class="btn btn-danger" style="display:none;" id="btncompanyadd">Add Company</button></a>
 
 
-                            @if (ViewBag.type == "Update Distributor")
+                            @if (Convert.ToInt32(Session["upcompanyid"]) != 0)
                             {
                                 <a href="@Url.Action("UpdateDistributorIndex","UpdateDistributor",new { @NestId = Session["upcompanyid"]})"><button type="button" class="btn btn-danger" style="" id="btncompanyupdate">Update Company</button></a>
                             }
+                            @if (Convert.ToInt32(Session["upcompanyid"]) == 0)
+                            {
+                                <a href="@Url.Action("AddDistributorIndex","AddDistributor")"><button type="button" class="btn btn-danger" style="display:;" id="btncompanyadd">Add Company</button></a>
+                            }
+
+
+
+
 
 
                         </div>
@@ -298,15 +305,16 @@
         $('.radio').not(this).prop('checked', false);
         var val = $("input[name=radio]:checked").val()
 
-        //if (val == "Yes") {
-        //    $("#btncompanyupdate").removeAttr("style");
-        //    $("#showcompany").removeAttr("style");
-        //}
+        if (val == "Yes") {
+            $("#btncompanyupdate").removeAttr("style");
+            $("#btncompanyadd").removeAttr("style");
+        }
 
-        //if (val == "No") {
-        //    $("#btncompanyupdate").css("display", "none");
+        if (val == "No") {
+            $("#btncompanyupdate").css("display", "none");
+            $("#btncompanyadd").css("display", "none");
           
-        //}
+        }
 
 
     });
@@ -421,7 +429,11 @@
             success: function (data) {
                 $('#ddlRole').append(data);
             }
-        });
+            });
+
+
+
+               
 
 
     });
@@ -435,7 +447,7 @@
         $("#rtext").val(text);
         $("#rid").val(value);
 
-        if (text == "Distributor") {
+        @*if (text == "Distributor") {
 
 
             $.ajax({
@@ -448,13 +460,13 @@
                 if (data =="Update Distributor") {
 
                 
-                    $("#showcompany").removeAttr("style");
-
+                    //$("#showcompany").removeAttr("style");
+                    $("#btncompanyupdate").removeAttr("style");
                 }
 
-                //if (data == "Add Distributor") {
-                //    $("#btncompanyadd").removeAttr("style");
-                //}
+                if (data == "Add Distributor") {
+                    $("#btncompanyadd").removeAttr("style");
+                }
 
             }
 
@@ -467,7 +479,7 @@
         else {
             $("#showcompany").css('display', 'none');
             $("#btncompany").css('display', 'none');
-        }
+        }*@
        
     
 

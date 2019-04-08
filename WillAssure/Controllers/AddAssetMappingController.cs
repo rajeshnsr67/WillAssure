@@ -229,7 +229,7 @@ namespace WillAssure.Controllers
 
 
 
-                structure = "<label>Scheme</label><select class='form-control' id='schemename'  onchange=getschemename(this.value)><option value='0'>--Select--</option>" + ddlscheme + "</select>";
+                structure = "<label>Scheme</label><select class='form-control schemenameclass' id='schemename1'  onchange=getschemename(this.id)><option value='0'>--Select--</option>" + ddlscheme + "</select>";
 
 
 
@@ -670,7 +670,7 @@ namespace WillAssure.Controllers
 
             string bindddlname = "<option value='0'>--Select--</option>";
             con.Open();
-            string query1 = "select Json from AssetInformation";
+            string query1 = "select aiid , Json from AssetInformation";
             SqlDataAdapter da1 = new SqlDataAdapter(query1, con);
             DataTable dt1 = new DataTable();
             da1.Fill(dt1);
@@ -848,6 +848,40 @@ namespace WillAssure.Controllers
             ModelState.Clear();
             return View("~/Views/AddAssetMapping/AddAssetMappingPageContent.cshtml");
         }
+
+
+
+
+
+        public string Filterdata()
+        {
+            int response = Convert.ToInt32(Request["send"]);
+
+            string data = "<option value='0'>--Select--</option>";
+            con.Open();
+            string query1 = "select aiid, bpId , First_Name from BeneficiaryDetails where  bpId not in ("+ response + ")";
+            SqlDataAdapter da1 = new SqlDataAdapter(query1, con);
+            DataTable dt1 = new DataTable();
+            da1.Fill(dt1);
+            con.Close();
+
+
+            if (dt1.Rows.Count > 0)
+            {
+
+                for (int i = 0; i < dt1.Rows.Count; i++)
+                {
+
+                    data = data + "<option value=" + dt1.Rows[i]["aiid"] + ">" + dt1.Rows[i]["First_Name"] + "</option>";
+
+                }
+
+            }
+            return data;
+        }
+
+
+
 
     }
 }

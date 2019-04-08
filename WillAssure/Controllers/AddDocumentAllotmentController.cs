@@ -63,7 +63,7 @@ namespace WillAssure.Controllers
 
 
 
-        public String BindCompanyDDL()
+        public String BindDistributorDDL()
         {
             string data = "<option value=''>--Select --</option>";
           
@@ -148,7 +148,7 @@ namespace WillAssure.Controllers
             con.Close();
 
             con.Open();
-            string query = "insert into allotmentDistributor (uId,status,Document_Type,compId,Balance_Count) values (" + Convert.ToInt32(Session["uuid"])+" , '"+PM.status+"', '"+PM.documenttxt+"', " + Convert.ToInt32(Session["compId"]) + " , "+PM.NumberofDocument+" )   ";
+            string query = "insert into allotmentDistributor (uId,status,Document_Type,compId,Approved_Count) values (" + PM.distributorid +" , '"+PM.status+"', '"+PM.documenttxt+"', " + Convert.ToInt32(Session["compId"]) + " , "+PM.NumberofDocument+" )   ";
             SqlCommand cmd = new SqlCommand(query,con);
             cmd.ExecuteNonQuery();
             con.Close();
@@ -162,5 +162,57 @@ namespace WillAssure.Controllers
 
 
 
+
+
+        public String BindCompanyssDDL()
+        {
+            string data = "<option value=''>--Select --</option>";
+
+            con.Open();
+            string query = "select compId , companyName  from companyDetails ";
+            SqlDataAdapter da = new SqlDataAdapter(query, con);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            con.Close();
+
+
+            if (dt.Rows.Count > 0)
+            {
+
+
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+
+
+
+
+
+
+                    data = data + "<option value=" + dt.Rows[i]["compId"].ToString() + " >" + dt.Rows[i]["companyName"].ToString() + "</option>";
+
+
+
+                }
+
+
+
+
+            }
+
+            return data;
+
+
+
+
+
+
+        }
+
+
     }
+
+
+
+
+
 }

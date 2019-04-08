@@ -198,7 +198,7 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="input-3">Branch</label>
-                                        @Html.TextBoxFor(m => m.Branch, new { @class = "form-control validate[required] text-input", @id = "txtBranch", @placeholder = "Enter Branch", @autocomplete = "off" })
+                                        @Html.TextBoxFor(m => m.Branch, new { @class = "form-control validate[required,custom[characteronly]] text-input", @id = "txtBranch", @placeholder = "Enter Branch", @autocomplete = "off" })
                                     </div>
                                 </div>
 

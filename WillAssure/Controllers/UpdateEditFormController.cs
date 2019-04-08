@@ -422,17 +422,24 @@ namespace WillAssure.Controllers
 
 
         //        }
-               
+        //        else
+        //        {
+        //            buttonname = "Add Distributor";
+        //            ViewBag.type = buttonname;
+
+
+        //        }
 
 
 
-           
 
 
 
 
 
-                
+
+
+
         //    }
 
 

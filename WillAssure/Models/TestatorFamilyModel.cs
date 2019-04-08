@@ -43,5 +43,11 @@ namespace WillAssure.Models
       public string Is_Informed_Person{ get; set; }
 
 
+
+        public int ddltid { get; set; }
+
+        public string ddltestatorname { get; set; }
+
+
     };
 };

@@ -323,5 +323,46 @@ namespace WillAssure.Controllers
 
 
 
+
+        public string BindTestatorDDL()
+        {
+            con.Open();
+            string query = "select tId , First_Name from TestatorDetails where tId = " + Convert.ToInt32(Session["tId"]) + "  ";
+            SqlDataAdapter da = new SqlDataAdapter(query, con);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            con.Close();
+            string data = "";
+
+
+
+
+            if (dt.Rows.Count > 0)
+            {
+
+
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+
+
+
+
+                    data = dt.Rows[i]["First_Name"].ToString();
+
+
+
+                }
+
+
+
+
+            }
+
+            return data;
+        }
+
+
+
+
     }
 }

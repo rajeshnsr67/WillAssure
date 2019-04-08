@@ -197,24 +197,28 @@ namespace WillAssure.Controllers
                     string query2 = "select top 1 * from users order by uId desc";
                     SqlDataAdapter da2 = new SqlDataAdapter(query2, con);
                     DataTable dt2 = new DataTable();
-                    da.Fill(dt2);
+                    da2.Fill(dt2);
                     if (dt2.Rows.Count > 0)
                     {
                        
-                        Session["uid"] = Convert.ToInt32(dt.Rows[0]["uId"]);
+                        Session["uid"] = Convert.ToInt32(dt2.Rows[0]["uId"]);
                     }
                     con.Close();
 
 
-              
-
-                
 
 
 
+                con.Open();
+                string query3 = "update  users set Type='DistributorAdmin' where uId = " + Convert.ToInt32(Session["uid"]) + "  ";
+                SqlCommand cm = new SqlCommand(query3, con);
+                cm.ExecuteNonQuery();
+                con.Close();
 
 
-                    ViewBag.Message = "Verified";
+
+
+                ViewBag.Message = "Verified";
 
                 }
 

@@ -77,12 +77,14 @@
                                 <div class='col-sm-2'>
                                     <div class='form-group'>
                                         <label for='input-1'>Beneficiary</label>
-                                        <select id='ddlbeneficiary' onchange="getddlbeneficiary(this.value)" name="contentList" class='form-control'></select>
+                                        <select id='ddlbeneficiary1' onchange="checkbeneficiaryduplicate(this.id)" name="contentList" class='form-control beneficiaryclass'></select>
                                         @Html.HiddenFor(m => m.Beneficiaryid, new { id = "Beneficiaryid" })
                                         @Html.HiddenFor(m => m.Beneficiarytxt, new { id = "Beneficiarytxt" })
+
+                                        <input type="text" class="form-control" style="display:none" id="ddlbeneficiarytxt" name="name" value="" />
                                     </div>
                                 </div>
-                                <div id="getidentifier"></div>
+                                <div class='col-sm-2'><div class='form-group' id="getidentifier"></div></div>
                                 <div class='col-sm-3'>
                                     <label for='input-1'>Instruments</label>
                                     <select id='DDLAssetColumn' onchange="getDDLAssetColumn(this.value)" name="contentList" class='form-control'></select>
@@ -102,18 +104,18 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                                </div>
 
-                        <textarea id="query" style="display:none;" class="form-control">
+                                <textarea id="query" style="display:;" class="form-control">
                                
                            </textarea>
-                        <div class="form-group">
-                            <button type="button" id="btnadd" style="display:none;" class="btn btn-danger shadow-primary px-5"><i class="icon-lock"></i>Add</button>
-                            <button type="button" id="btnmappingsubmit" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i>Submit</button>
-                            <button type="button" id="btnmainassetsuccess" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
+                                <div class="form-group">
+                                    <button type="button" id="btnadd" style="display:none;" class="btn btn-danger shadow-primary px-5"><i class="icon-lock"></i>Add</button>
+                                    <button type="button" id="btnmappingsubmit" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i>Submit</button>
+                                    <button type="button" id="btnmainassetsuccess" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
 
-                        </div>
-                    </div>
+                                </div>
+                            </div>
                 </div>
 
             </div>
@@ -154,7 +156,7 @@
                 type: "POST",
                 url: "../AddAssetMapping/BindBeneficiaryDDL",
                 success: function (data) {
-                    $("#ddlbeneficiary").append(data);
+                    $("#ddlbeneficiary1").append(data);
                 }
             });
 
@@ -171,6 +173,14 @@
             });
 
 
+            $.ajax({
+                type: "POST",
+                url: "../AddAssetMapping/ddlassetname",
+                data: { "send": "" + value + "" },
+                success: function (data) {
+                    $("#DDLAssetColumn").append(data);
+                }
+            });
 
 
 
@@ -186,7 +196,7 @@
 
 
         function getbeneficiaryId(value) {
-            alert(value);
+       
         }
 
 
@@ -254,18 +264,64 @@
         }
 
 
-        function getddlbeneficiary(value) {
-            
+       /* $(document).on("change", "#ddlbeneficiary", function () {
+            var value = $(this).children(":selected").attr("value");
             var text = $("#ddlbeneficiary option:selected").html();
 
-            $("#Beneficiaryid").val(text);
-            $("#Beneficiarytxt").val(value);
-            $("#Beneficiarytxt").val(value).attr("disabled","disabled");
+
+            var parent = $(this).closest(".rowdiv").find("#ddlbeneficiary").val();
+
+            alert(parent);
+
+
+            $("#Beneficiarytxt").val(value).attr("disabled", "disabled");
 
 
             $("#query").append(value + ",");
 
-        };
+        });*/
+        function checkbeneficiaryduplicate(id) {
+
+            var dt = '';
+            var lang_name = $('#' + id).val();
+            var selectedtext = $("#" + id + " option:selected").text();
+            var check = 'active';
+            $(".beneficiaryclass").each(function () {
+                var myid = $(this).attr('id');
+                var myval = $('#' + myid).val();
+                if (id != myid) {
+                    if (lang_name == myval && lang_name != '') {
+                        alert(selectedtext + ' already exists');
+                        $("#" + id).val('0');
+                       check = 'inactive'
+                    }
+
+                }
+
+
+            });
+
+
+            alert(check);
+
+
+            if (check=="active") {
+                var v1 = id;
+                var v2 = v1.replace("ddlbeneficiary", "");
+
+
+
+                $("#Beneficiarytxt").val(id).attr("disabled", "disabled");
+
+
+                $("#query").append(v2 + ",");
+
+            }
+          
+
+
+
+        }
 
 
 
@@ -273,17 +329,10 @@
         function getDDLAssetColumn(value) {
             //var value = $(this).children(":selected").attr("value");
             var text = $("#DDLAssetColumn option:selected").html();
-
-
-
-            alert(value);
-
+          
             $("#Instrumenttxt").val(text);
             $("#Instrumenttxt").val(value);
-
             $("#query").append("'" + value + "'" + ",");
-
-
         };
 
 
@@ -323,7 +372,106 @@
         }
 
         $("#btnadd").click(function () {
-            var $clone = $("#beneficiarydetails").clone();
+
+            //get parentdiv last div element whose class name is rowdiv
+            var $clone = $("#parentdiv").find('.rowdiv:last').clone();
+
+            
+            
+         
+            // for beneficiary ddl id auto generate  getidentifier
+
+            $clone.find('.beneficiaryclass').each(function () {
+                var el = $(this);
+                
+                var id = el.attr('id') || null;
+              
+                if (id) {
+
+                    //  var i = id.substr(id.length - 1);
+
+                    //code for geting only number from alphanumer string
+                    number = id.replace(/\D/g, ''); // a string of only digits, or the empty string
+                    var i = parseInt(number, 10); // now it's a numeric value
+
+                    //code for getting only alpha character from alphanumer string
+                    var prefix = id.replace(/[^a-zA-Z]/g, '');
+                    //var prefix = id.substr(0, (id.length - 1));
+
+                    el.attr('id', prefix + (+i + 1));
+
+                }
+            });
+
+            // end
+
+
+
+
+            // for scheme ddl id auto generate
+
+             $clone.find('.schemenameclass').each(function () {
+                var el = $(this);
+                 var id = el.attr('id') || null;
+               
+                alert(id);
+                if (id) {
+
+                    //  var i = id.substr(id.length - 1);
+
+                    //code for geting only number from alphanumer string
+                    number = id.replace(/\D/g, ''); // a string of only digits, or the empty string
+                    var i = parseInt(number, 10); // now it's a numeric value
+
+                    //code for getting only alpha character from alphanumer string
+                    var prefix = id.replace(/[^a-zA-Z]/g, '');
+                    //var prefix = id.substr(0, (id.length - 1));
+
+                    el.attr('id', prefix + (+i + 1));
+
+                }
+            });
+
+            // end
+
+
+
+
+            // instument ddl
+
+
+            $clone.find('.instrumentclass').each(function () {
+                var el = $(this);
+                var id = el.attr('id') || null;
+
+                alert(id);
+                if (id) {
+
+                    //  var i = id.substr(id.length - 1);
+
+                    //code for geting only number from alphanumer string
+                    number = id.replace(/\D/g, ''); // a string of only digits, or the empty string
+                    var i = parseInt(number, 10); // now it's a numeric value
+
+                    //code for getting only alpha character from alphanumer string
+                    var prefix = id.replace(/[^a-zA-Z]/g, '');
+                    //var prefix = id.substr(0, (id.length - 1));
+
+                    el.attr('id', prefix + (+i + 1));
+
+                }
+            });
+
+
+
+
+
+            //
+
+
+
+
+
             $clone.find('.proportioninput').val('');
             $clone.find('.totalinput').val('');
             $clone.appendTo("#parentdiv");
@@ -351,7 +499,7 @@
 
             var row = $(this).closest(".grandparent");
             var input = $(row).find("input").val();
-            alert(input);
+         
 
             var total = $("#txttotal").val()
 
@@ -369,7 +517,7 @@
         $("#btnmappingsubmit").click(function () {
 
             var radioValue = $("input[name='optradio']:checked").val();
-            alert(radioValue);
+         
 
             if (radioValue == "Single") {
 
@@ -404,7 +552,7 @@
                 var schemename = $("#schemename").val();
 
                 var data = $("#query").val();
-                alert(data)
+               
                 $.ajax({
 
                     type: "POST",
@@ -426,8 +574,35 @@
         });
 
 
-        function getschemename(value) {
-            $("#query").append("'" + value + "'" + ",");
+        function getschemename(id) {
+
+
+            var dt = '';
+            var lang_name = $('#' + id).val();
+            var selectedtext = $("#" + id + " option:selected").text();
+
+            $(".schemenameclass").each(function () {
+                var myid = $(this).attr('id');
+                var myval = $('#' + myid).val();
+                if (id != myid) {
+                    if (lang_name == myval && lang_name != '') {
+                        alert(selectedtext + ' already exists');
+                        $("#" + id).val('0');
+
+                    }
+                }
+
+
+            });
+
+            
+
+            var v1 = id;
+            var v2 = v1.replace("schemename", "");
+            var text = $("#schemename option:selected").html();
+       
+
+            $("#query").append("'" + selectedtext + "'" + ",");
         }
 
     </script>

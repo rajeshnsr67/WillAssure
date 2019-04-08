@@ -187,7 +187,7 @@ namespace WillAssure.Controllers
                 qry = qry + "insert into Assignment_Roles (RoleId,PageName,Nav1,Nav2) values (" + roleid + " ,'Mapping','Mapping~AddAssetMappingIndex~AddAssetMapping','NULL~NULL~NULL')";
                 qry = qry + "insert into Assignment_Roles (RoleId,PageName,Nav1,Nav2) values (" + roleid + " ,'Document','View Document~ViewDocumentIndex~ViewDocument','NULL~NULL~NULL')";
                 qry = qry + "insert into Assignment_Roles (RoleId,PageName,Nav1,Nav2) values (" + roleid + " ,'Document Allotment','Allotment~AddDocumentAllotmentIndex~AddDocumentAllotment','NULL~NULL~NULL')";
-
+                qry = qry + "insert into Assignment_Roles (RoleId,PageName,Nav1,Nav2) values (" + roleid + " ,'Coupon Allotment','Allotment~CouponsAllotmentIndex~CouponsAllotment','NULL~NULL~NULL')";
 
 
                 SqlCommand cmd = new SqlCommand(qry,con);
