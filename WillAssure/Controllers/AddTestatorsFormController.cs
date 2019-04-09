@@ -157,7 +157,26 @@ namespace WillAssure.Controllers
 
             //if (Session["compId"] != null)
             //{
-                TFM.uId = Convert.ToInt32(Session["uuid"]);
+
+            // for getting latest distributor id
+            int distid = 0;
+            con.Open();
+            string distidquery = "select uId from users where userID = '" + Convert.ToInt32(Session["uid"]) + "'  ";
+            SqlDataAdapter da = new SqlDataAdapter(distidquery, con);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            if (dt.Rows.Count > 0)
+            {
+                distid = Convert.ToInt32(dt.Rows[0]["uId"]);
+
+               
+            }
+            con.Close();
+            //end
+
+
+
+            TFM.uId = Convert.ToInt32(Session["uuid"]);
                 DateTime dat = DateTime.ParseExact(TFM.Dob, "dd-MM-yyyy", CultureInfo.InvariantCulture);
                 con.Open();
                 SqlCommand cmd = new SqlCommand("SP_CRUDTestatorDetails", con);
@@ -713,7 +732,71 @@ namespace WillAssure.Controllers
 
 
 
+        public string BindDistributorDDL()
+        {
+            List<LoginModel> Lmlist = new List<LoginModel>();
+            con.Open();
+            string q = "select * from Assignment_Roles where RoleId = " + Convert.ToInt32(Session["rId"]) + "";
+            SqlDataAdapter da3 = new SqlDataAdapter(q, con);
+            DataTable dt3 = new DataTable();
+            da3.Fill(dt3);
+            if (dt3.Rows.Count > 0)
+            {
 
+                for (int i = 0; i < dt3.Rows.Count; i++)
+                {
+                    LoginModel lm = new LoginModel();
+                    lm.PageName = dt3.Rows[i]["PageName"].ToString();
+                    lm.PageStatus = dt3.Rows[i]["PageStatus"].ToString();
+                    lm.Action = dt3.Rows[i]["Action"].ToString();
+                    lm.Nav1 = dt3.Rows[i]["Nav1"].ToString();
+                    lm.Nav2 = dt3.Rows[i]["Nav2"].ToString();
+
+                    Lmlist.Add(lm);
+                }
+
+
+
+                ViewBag.PageName = Lmlist;
+
+
+
+
+            }
+
+            con.Close();
+
+            con.Open();
+            string query = "select uId , First_Name from users where Type = 'DistributorAdmin'  ";
+            SqlDataAdapter da = new SqlDataAdapter(query, con);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            con.Close();
+            string data = "<option value=''>--Select Distributor--</option>";
+
+            if (dt.Rows.Count > 0)
+            {
+
+
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+
+
+
+
+                    data = data + "<option value=" + dt.Rows[i]["uId"].ToString() + " >" + dt.Rows[i]["First_Name"].ToString() + "</option>";
+
+
+
+                }
+
+
+
+
+            }
+
+            return data;
+        }
 
 
     }

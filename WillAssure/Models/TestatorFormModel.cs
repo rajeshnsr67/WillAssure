@@ -109,6 +109,12 @@ namespace WillAssure.Models
         public string documenttype { get; set; }
         public string documentcategory { get; set; } 
 
+
+
+        public int distributor_id { get; set; }
+
+        public string distributor_txt { get; set; }
+
     }
 
 

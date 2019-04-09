@@ -178,19 +178,7 @@ namespace WillAssure.Controllers
                 da.Fill(dt);
 
 
-                if (dt.Rows.Count > 0)
-                {
-                    if (Convert.ToInt32(dt.Rows[0]["rId"]) == 1)
-                    {
-
-                        string update = "update users set Linked_user = 0 where  CompId = '" + UFM.CompId + "'";
-                        SqlCommand cmd2 = new SqlCommand(update, con);
-                        cmd2.ExecuteNonQuery();
-
-                    }
-
-
-                }
+      
 
                 con.Close();
 
@@ -216,7 +204,16 @@ namespace WillAssure.Controllers
                 con.Close();
 
 
+                //Linked Users Query
 
+                con.Open();
+
+                string LinkedQuery = "update users set Linked_user = " + Convert.ToInt32(Session["uuid"]) + " where uId = " + willempid + "  ";
+                SqlCommand LinkedCommand = new SqlCommand(LinkedQuery, con);
+                LinkedCommand.ExecuteNonQuery();
+                con.Close();
+
+                //end
 
 
 

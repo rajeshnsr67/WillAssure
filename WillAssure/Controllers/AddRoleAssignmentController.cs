@@ -228,7 +228,14 @@ namespace WillAssure.Controllers
             }
 
 
-           
+
+
+
+   
+     
+
+
+
 
 
 
@@ -275,10 +282,11 @@ namespace WillAssure.Controllers
 
         public string CheckRoleId()
         {
+            int response = Convert.ToInt32(Request["send"]);
             string data = "";
             if (Request["send"] != "")
             {
-                int response = Convert.ToInt32(Request["send"]);
+                
               
                 con.Open();
                 string query = "select count(RoleId) as total from Assignment_Roles where RoleId =" + response + "";
@@ -287,8 +295,23 @@ namespace WillAssure.Controllers
                 da.Fill(dt);
 
                 data = dt.Rows[0]["total"].ToString();
+                con.Close();
             }
+
+
+
+
             
+            con.Open();
+            string query2 = "select * from Assignment_Roles where RoleId=" + response + "  and PageStatus='Active'";
+            SqlDataAdapter da2 = new SqlDataAdapter(query2, con);
+            DataTable dt2 = new DataTable();
+            da2.Fill(dt2);
+            con.Close();
+
+
+
+
 
 
             return data;

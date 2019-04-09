@@ -108,6 +108,88 @@ namespace WillAssure.Controllers
             }
 
 
+
+            // for company data
+
+            con.Open();
+            string query1 = "select compId from users where uid = " + NestId + "";
+            SqlDataAdapter da1 = new SqlDataAdapter(query1, con);
+            DataTable dt1 = new DataTable();
+            da1.Fill(dt1);
+            int compid = 0;
+            con.Close();
+            if (dt1.Rows.Count > 0)
+            {
+
+
+                compid = Convert.ToInt32(dt1.Rows[0]["compId"]);
+
+                Session["upcompanyid"] = compid;
+
+
+
+            }
+
+
+
+
+
+            con.Open();
+            string query2 = "select * from companyDetails where compId = " + compid + " ";
+            SqlDataAdapter da2 = new SqlDataAdapter(query2, con);
+            DataTable dt2 = new DataTable();
+            da2.Fill(dt2);
+            con.Close();
+
+
+            if (dt2.Rows.Count > 0)
+            {
+                UFM.ccompId = NestId;
+                UFM.ccompanyName = dt2.Rows[0]["companyName"].ToString();
+                UFM.cownerName = dt2.Rows[0]["ownerName"].ToString();
+                UFM.cownerMobileNo = dt2.Rows[0]["ownerMobileNo"].ToString();
+                UFM.cAddress1 = dt2.Rows[0]["Address1"].ToString();
+                UFM.cAddress2 = dt2.Rows[0]["Address2"].ToString();
+                UFM.ccitytext = dt2.Rows[0]["City"].ToString();
+                UFM.cstatetext = dt2.Rows[0]["State"].ToString();
+                UFM.cPin = dt2.Rows[0]["Pin"].ToString();
+                UFM.cGST_NO = dt2.Rows[0]["GST_NO"].ToString();
+                UFM.cIdentity_Proof = dt2.Rows[0]["Identity_Proof"].ToString();
+                UFM.cIdentity_Proof_Value = dt2.Rows[0]["Identity_Proof_Value"].ToString();
+                UFM.cAlt_Identity_Proof = dt2.Rows[0]["Alt_Identity_Proof"].ToString();
+                UFM.cAlt_Identity_Proof_Value = dt2.Rows[0]["Alt_Identity_Proof_Value"].ToString();
+                UFM.ccontactPerson = dt2.Rows[0]["contactPerson"].ToString();
+                UFM.ccontactMobileNo = dt2.Rows[0]["contactMobileNo"].ToString();
+                UFM.ccontactMailId = dt2.Rows[0]["contactMailId"].ToString();
+                UFM.cbankName = dt2.Rows[0]["bankName"].ToString();
+                UFM.cBranch = dt2.Rows[0]["Branch"].ToString();
+                UFM.caccountNumber = dt2.Rows[0]["accountNumber"].ToString();
+                UFM.cIFSC_Code = dt2.Rows[0]["IFSC_Code"].ToString();
+                UFM.caccountName = dt2.Rows[0]["accountName"].ToString();
+                UFM.cReferred_By = dt2.Rows[0]["Referred_By"].ToString();
+                UFM.cleadgeneratedBy = dt2.Rows[0]["leadgeneratedBy"].ToString();
+                UFM.cleadconvertedBy = dt2.Rows[0]["leadconvertedBy"].ToString();
+                UFM.crelationshipManager = dt2.Rows[0]["relationshipManager"].ToString();
+                UFM.cleadStatus = dt2.Rows[0]["leadStatus"].ToString();
+                UFM.cleadRemark = dt2.Rows[0]["leadRemark"].ToString();
+
+
+
+            }
+
+
+
+
+
+
+            //end
+
+
+
+
+
+
+
             return View("~/Views/UpdateEditForm/UpdateEditFormContent.cshtml", UFM);
         }
 
@@ -218,6 +300,146 @@ namespace WillAssure.Controllers
             cmd.Parameters.AddWithValue("@Linked_user", UFM.rid);
             cmd.ExecuteNonQuery();
             con.Close();
+
+
+
+
+
+
+
+            // company data
+
+            if (Convert.ToInt32(Session["upcompanyid"]) != 0)
+            {
+                UFM.check = "true";
+            }
+
+
+            if (UFM.check == "true")
+            {
+
+                string s = "none";
+                string s2 = "none";
+                string s3 = "none";
+                string s4 = "none";
+
+                con.Open();
+                SqlCommand companycmd = new SqlCommand("SP_CrudcompanyDetails", con);
+                companycmd.CommandType = System.Data.CommandType.StoredProcedure;
+                companycmd.Parameters.AddWithValue("@condition", "update");
+                companycmd.Parameters.AddWithValue("@compId", Convert.ToInt32(Session["upcompanyid"]));
+                companycmd.Parameters.AddWithValue("@companyName ", UFM.ccompanyName);
+                companycmd.Parameters.AddWithValue("@ownerName", UFM.cownerName);
+                companycmd.Parameters.AddWithValue("@ownerMobileNo", UFM.cownerMobileNo);
+                companycmd.Parameters.AddWithValue("@Address1", UFM.cAddress1);
+                companycmd.Parameters.AddWithValue("@Address2", UFM.cAddress2);
+                companycmd.Parameters.AddWithValue("@City", UFM.ccitytext);
+                companycmd.Parameters.AddWithValue("@State", UFM.cstatetext);
+                companycmd.Parameters.AddWithValue("@Pin", UFM.cPin);
+                companycmd.Parameters.AddWithValue("@GST_NO", UFM.cGST_NO);
+                companycmd.Parameters.AddWithValue("@Identity_Proof", UFM.cIdentity_Proof);
+                companycmd.Parameters.AddWithValue("@Identity_Proof_Value", UFM.cIdentity_Proof_Value);
+                companycmd.Parameters.AddWithValue("@Alt_Identity_Proof", UFM.cAlt_Identity_Proof);
+                companycmd.Parameters.AddWithValue("@Alt_Identity_Proof_Value", UFM.cAlt_Identity_Proof_Value);
+                companycmd.Parameters.AddWithValue("@contactPerson", UFM.ccontactPerson);
+                companycmd.Parameters.AddWithValue("@contactMobileNo", UFM.ccontactMobileNo);
+                companycmd.Parameters.AddWithValue("@contactMailId", UFM.ccontactMailId);
+                companycmd.Parameters.AddWithValue("@bankName", UFM.cbankName);
+                companycmd.Parameters.AddWithValue("@Branch", UFM.cBranch);
+                companycmd.Parameters.AddWithValue("@accountNumber", UFM.caccountNumber);
+                companycmd.Parameters.AddWithValue("@IFSC_Code", UFM.cIFSC_Code);
+                companycmd.Parameters.AddWithValue("@accountName", UFM.caccountName);
+                companycmd.Parameters.AddWithValue("@Referred_By", UFM.cReferred_By);
+                companycmd.Parameters.AddWithValue("@leadgeneratedBy", s);
+                companycmd.Parameters.AddWithValue("@leadconvertedBy", s2);
+                companycmd.Parameters.AddWithValue("@relationshipManager", UFM.crelationshipManager);
+                companycmd.Parameters.AddWithValue("@leadStatus", s3);
+                companycmd.Parameters.AddWithValue("@leadRemark", s4);
+                companycmd.ExecuteNonQuery();
+                con.Close();
+
+
+                // get latest inserted userid
+
+                string companyquery4 = "select top 1 * from users order by uId desc";
+                SqlDataAdapter companyda4 = new SqlDataAdapter(companyquery4, con);
+                DataTable companydt4 = new DataTable();
+                companyda4.Fill(companydt4);
+                int userid = 0;
+                if (companydt4.Rows.Count > 0)
+                {
+                    userid = Convert.ToInt32(companydt4.Rows[0]["uId"]);
+                }
+                //end
+
+
+                // ASSIGN TYPE
+
+                con.Open();
+                string companyquery3 = "update  users set Type='DistributorAdmin' where uId = " + userid + "  ";
+                SqlCommand companycm = new SqlCommand(companyquery3, con);
+                companycm.ExecuteNonQuery();
+                con.Close();
+
+
+
+                //END
+
+
+
+
+
+                // get latest inserted compid
+                string companyquery5 = "select top 1 * from companyDetails order by compId desc";
+                SqlDataAdapter companyda5 = new SqlDataAdapter(companyquery5, con);
+                DataTable companydt5 = new DataTable();
+                companyda5.Fill(companydt5);
+                int compid = 0;
+                if (companydt5.Rows.Count > 0)
+                {
+                    compid = Convert.ToInt32(companydt5.Rows[0]["compId"]);
+                }
+                else
+                {
+                    compid = 0;
+                }
+                //end
+
+
+
+                // update user with latest compid
+                con.Open();
+                string companyquery6 = "update users set compId=" + compid + " where uId=" + userid + "";
+                SqlCommand companycmd2 = new SqlCommand(companyquery6, con);
+                companycmd2.ExecuteNonQuery();
+                con.Close();
+                //end
+
+
+
+
+            }
+
+
+
+
+
+
+
+            ModelState.Clear();
+
+
+
+
+
+
+
+
+            //end
+
+
+
+
 
 
 

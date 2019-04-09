@@ -117,7 +117,7 @@ namespace WillAssure.Controllers
 
 
             con.Open();
-            string query = "select a.uId , a.First_Name , a.Last_Name , a.Middle_Name , a.DOB , a.Mobile , a.eMail , a.Address1 , a.Address2 , a.Address3 , a.City , a.State , a.Pin , a.userID , a.userPwd , a.Linked_user , a.Designation , b.Role , a.dateCreated , a.active , a.compId from users a inner join Roles b on a.rId=b.rId where a.Type = 'DistributorAdmin'  and a.active = 1 ";
+            string query = "select a.uId , a.First_Name , a.Last_Name , a.Middle_Name , a.DOB , a.Mobile , a.eMail , a.Address1 , a.Address2 , a.Address3 , a.City , a.State , a.Pin , a.userID , a.userPwd , a.Linked_user , a.Designation , b.Role , a.dateCreated , a.active , a.compId from users a inner join Roles b on a.rId=b.rId where a.Linked_user = "+Convert.ToInt32(Session["uuid"])+"  and a.active = 1 ";
             SqlDataAdapter da = new SqlDataAdapter(query, con);
             DataTable dt = new DataTable();
             da.Fill(dt);
@@ -128,8 +128,7 @@ namespace WillAssure.Controllers
             if (dt.Rows.Count > 0)
             {
 
-                if (Convert.ToInt32(Session["rId"]) == 1)
-                {
+             
                     if (testString == "1,2,0" || testString == "0,2,0" || testString == "0,2,3" || testString == "0,2,3" || testString == "0,2,0")
                     {
                         for (int i = 0; i < dt.Rows.Count; i++)
@@ -314,7 +313,7 @@ namespace WillAssure.Controllers
 
                         }
                     }
-                }
+                
 
                 
 
@@ -325,395 +324,395 @@ namespace WillAssure.Controllers
 
 
 
-                // for distributor employee
-
-                if (Convert.ToInt32(Session["rId"]) == 2)
-                {
-                    if (distributoremployee == "1,2,0" || distributoremployee == "0,2,0" || distributoremployee == "0,2,3" || distributoremployee == "0,2,3" || distributoremployee == "0,2,0")
-                    {
-                        for (int i = 0; i < dt.Rows.Count; i++)
-                        {
-                            int Status = Convert.ToInt32(dt.Rows[i]["active"]);
-
-
-
-                            if (Status == 1)
-                            {
-                                a = "Active";
-                            }
-                            else
-                            {
-                                a = "InActive";
-                            }
+                //// for distributor employee
+
+                //if (Convert.ToInt32(Session["rId"]) == 2)
+                //{
+                //    if (distributoremployee == "1,2,0" || distributoremployee == "0,2,0" || distributoremployee == "0,2,3" || distributoremployee == "0,2,3" || distributoremployee == "0,2,0")
+                //    {
+                //        for (int i = 0; i < dt.Rows.Count; i++)
+                //        {
+                //            int Status = Convert.ToInt32(dt.Rows[i]["active"]);
+
+
+
+                //            if (Status == 1)
+                //            {
+                //                a = "Active";
+                //            }
+                //            else
+                //            {
+                //                a = "InActive";
+                //            }
 
-
-
-
-                            data = data + "<tr class='nr'><td>" + dt.Rows[i]["uId"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["First_Name"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Last_Name"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Middle_Name"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["DOB"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Mobile"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["eMail"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Address1"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Address2"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Address3"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["City"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["State"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Pin"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["userID"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["userPwd"].ToString() + "</td>"
-
-                                        + "<td>" + dt.Rows[i]["Designation"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["rId"].ToString() + "</td>"
-                                        + "<td>" + a + "</td>"
-                                         + "<td>" + Convert.ToInt32(dt.Rows[i]["compId"]) + "</td>"
-
-                                        + "<td><button type='button'   id='" + dt.Rows[i]["uId"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary'>Edit</button></td></tr>";
-
-                        }
-                    }
-
-                    if (distributoremployee == "1,0,3" || distributoremployee == "0,0,3" || distributoremployee == "0,2,3" || distributoremployee == "1,0,3" || distributoremployee == "0,0,3")
-                    {
-                        for (int i = 0; i < dt.Rows.Count; i++)
-                        {
-                            int Status = Convert.ToInt32(dt.Rows[i]["active"]);
-
-
-
-                            if (Status == 1)
-                            {
-                                a = "Active";
-                            }
-                            else
-                            {
-                                a = "InActive";
-                            }
+
+
+
+                //            data = data + "<tr class='nr'><td>" + dt.Rows[i]["uId"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["First_Name"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["Last_Name"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["Middle_Name"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["DOB"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["Mobile"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["eMail"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["Address1"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["Address2"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["Address3"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["City"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["State"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["Pin"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["userID"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["userPwd"].ToString() + "</td>"
+
+                //                        + "<td>" + dt.Rows[i]["Designation"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["rId"].ToString() + "</td>"
+                //                        + "<td>" + a + "</td>"
+                //                         + "<td>" + Convert.ToInt32(dt.Rows[i]["compId"]) + "</td>"
+
+                //                        + "<td><button type='button'   id='" + dt.Rows[i]["uId"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary'>Edit</button></td></tr>";
+
+                //        }
+                //    }
+
+                //    if (distributoremployee == "1,0,3" || distributoremployee == "0,0,3" || distributoremployee == "0,2,3" || distributoremployee == "1,0,3" || distributoremployee == "0,0,3")
+                //    {
+                //        for (int i = 0; i < dt.Rows.Count; i++)
+                //        {
+                //            int Status = Convert.ToInt32(dt.Rows[i]["active"]);
+
+
+
+                //            if (Status == 1)
+                //            {
+                //                a = "Active";
+                //            }
+                //            else
+                //            {
+                //                a = "InActive";
+                //            }
 
 
 
-
-                            data = data + "<tr class='nr'><td>" + dt.Rows[i]["uId"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["First_Name"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Last_Name"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Middle_Name"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["DOB"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Mobile"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["eMail"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Address1"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Address2"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Address3"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["City"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["State"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Pin"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["userID"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["userPwd"].ToString() + "</td>"
-
-                                        + "<td>" + dt.Rows[i]["Designation"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["rId"].ToString() + "</td>"
-                                        + "<td>" + a + "</td>"
-                                          + "<td>" + Convert.ToInt32(dt.Rows[i]["compId"]) + "</td>"
-                                        + "<td><button type='button'   id='" + dt.Rows[i]["uId"].ToString() + "'   class='btn btn-danger deletenotification'>Delete</button></td></tr>";
+
+                //            data = data + "<tr class='nr'><td>" + dt.Rows[i]["uId"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["First_Name"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["Last_Name"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["Middle_Name"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["DOB"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["Mobile"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["eMail"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["Address1"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["Address2"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["Address3"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["City"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["State"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["Pin"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["userID"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["userPwd"].ToString() + "</td>"
+
+                //                        + "<td>" + dt.Rows[i]["Designation"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["rId"].ToString() + "</td>"
+                //                        + "<td>" + a + "</td>"
+                //                          + "<td>" + Convert.ToInt32(dt.Rows[i]["compId"]) + "</td>"
+                //                        + "<td><button type='button'   id='" + dt.Rows[i]["uId"].ToString() + "'   class='btn btn-danger deletenotification'>Delete</button></td></tr>";
 
-                        }
-                    }
+                //        }
+                //    }
 
 
-                    if (distributoremployee == "1,2,3" || distributoremployee == "0,2,3")
-                    {
-                        for (int i = 0; i < dt.Rows.Count; i++)
-                        {
-                            int Status = Convert.ToInt32(dt.Rows[i]["active"]);
+                //    if (distributoremployee == "1,2,3" || distributoremployee == "0,2,3")
+                //    {
+                //        for (int i = 0; i < dt.Rows.Count; i++)
+                //        {
+                //            int Status = Convert.ToInt32(dt.Rows[i]["active"]);
 
 
 
-                            if (Status == 1)
-                            {
-                                a = "Active";
-                            }
-                            else
-                            {
-                                a = "InActive";
-                            }
+                //            if (Status == 1)
+                //            {
+                //                a = "Active";
+                //            }
+                //            else
+                //            {
+                //                a = "InActive";
+                //            }
 
 
 
 
-                            data = data + "<tr class='nr'><td>" + dt.Rows[i]["uId"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["First_Name"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Last_Name"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Middle_Name"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["DOB"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Mobile"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["eMail"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Address1"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Address2"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Address3"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["City"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["State"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Pin"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["userID"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["userPwd"].ToString() + "</td>"
+                //            data = data + "<tr class='nr'><td>" + dt.Rows[i]["uId"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["First_Name"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["Last_Name"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["Middle_Name"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["DOB"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["Mobile"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["eMail"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["Address1"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["Address2"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["Address3"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["City"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["State"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["Pin"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["userID"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["userPwd"].ToString() + "</td>"
 
-                                        + "<td>" + dt.Rows[i]["Designation"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Role"].ToString() + "</td>"
-                                        + "<td>" + a + "</td>"
-                                         + "<td>" + Convert.ToInt32(dt.Rows[i]["compId"]) + "</td>"
-                                        + "<td><button type='button'   id='" + dt.Rows[i]["uId"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary'>Edit</button><button type='button'   id='" + dt.Rows[i]["uId"].ToString() + "'   class='btn btn-danger deletenotification'>Delete</button></td></tr>";
+                //                        + "<td>" + dt.Rows[i]["Designation"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["Role"].ToString() + "</td>"
+                //                        + "<td>" + a + "</td>"
+                //                         + "<td>" + Convert.ToInt32(dt.Rows[i]["compId"]) + "</td>"
+                //                        + "<td><button type='button'   id='" + dt.Rows[i]["uId"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary'>Edit</button><button type='button'   id='" + dt.Rows[i]["uId"].ToString() + "'   class='btn btn-danger deletenotification'>Delete</button></td></tr>";
 
-                        }
+                //        }
 
-                    }
+                //    }
 
 
-                    if (distributoremployee == "0,0,0")
-                    {
-                        for (int i = 0; i < dt.Rows.Count; i++)
-                        {
-                            int Status = Convert.ToInt32(dt.Rows[i]["active"]);
+                //    if (distributoremployee == "0,0,0")
+                //    {
+                //        for (int i = 0; i < dt.Rows.Count; i++)
+                //        {
+                //            int Status = Convert.ToInt32(dt.Rows[i]["active"]);
 
 
 
-                            if (Status == 1)
-                            {
-                                a = "Active";
-                            }
-                            else
-                            {
-                                a = "InActive";
-                            }
+                //            if (Status == 1)
+                //            {
+                //                a = "Active";
+                //            }
+                //            else
+                //            {
+                //                a = "InActive";
+                //            }
 
 
 
 
-                            data = data + "<tr class='nr'><td>" + dt.Rows[i]["uId"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["First_Name"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Last_Name"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Middle_Name"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["DOB"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Mobile"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["eMail"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Address1"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Address2"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Address3"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["City"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["State"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Pin"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["userID"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["userPwd"].ToString() + "</td>"
+                //            data = data + "<tr class='nr'><td>" + dt.Rows[i]["uId"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["First_Name"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["Last_Name"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["Middle_Name"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["DOB"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["Mobile"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["eMail"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["Address1"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["Address2"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["Address3"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["City"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["State"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["Pin"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["userID"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["userPwd"].ToString() + "</td>"
 
-                                        + "<td>" + dt.Rows[i]["Designation"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Role"].ToString() + "</td>"
-                                        + "<td>" + a + "</td>"
-                                        + "<td>" + Convert.ToInt32(dt.Rows[i]["compId"]) + "</td>";
+                //                        + "<td>" + dt.Rows[i]["Designation"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["Role"].ToString() + "</td>"
+                //                        + "<td>" + a + "</td>"
+                //                        + "<td>" + Convert.ToInt32(dt.Rows[i]["compId"]) + "</td>";
 
 
 
-                        }
-                    }
+                //        }
+                //    }
 
-                }
+                //}
 
 
 
-                //end
+                ////end
 
 
 
 
 
 
-                //for will assure employee
+                ////for will assure employee
 
-                if (Convert.ToInt32(Session["rId"]) == 3)
-                {
-                    if (willemployee == "1,2,0" || willemployee == "0,2,0" || willemployee == "0,2,3" || willemployee == "0,2,3" || willemployee == "0,2,0")
-                    {
-                        for (int i = 0; i < dt.Rows.Count; i++)
-                        {
-                            int Status = Convert.ToInt32(dt.Rows[i]["active"]);
+                //if (Convert.ToInt32(Session["rId"]) == 3)
+                //{
+                //    if (willemployee == "1,2,0" || willemployee == "0,2,0" || willemployee == "0,2,3" || willemployee == "0,2,3" || willemployee == "0,2,0")
+                //    {
+                //        for (int i = 0; i < dt.Rows.Count; i++)
+                //        {
+                //            int Status = Convert.ToInt32(dt.Rows[i]["active"]);
 
 
 
-                            if (Status == 1)
-                            {
-                                a = "Active";
-                            }
-                            else
-                            {
-                                a = "InActive";
-                            }
+                //            if (Status == 1)
+                //            {
+                //                a = "Active";
+                //            }
+                //            else
+                //            {
+                //                a = "InActive";
+                //            }
 
 
 
 
-                            data = data + "<tr class='nr'><td>" + dt.Rows[i]["uId"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["First_Name"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Last_Name"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Middle_Name"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["DOB"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Mobile"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["eMail"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Address1"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Address2"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Address3"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["City"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["State"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Pin"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["userID"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["userPwd"].ToString() + "</td>"
+                //            data = data + "<tr class='nr'><td>" + dt.Rows[i]["uId"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["First_Name"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["Last_Name"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["Middle_Name"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["DOB"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["Mobile"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["eMail"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["Address1"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["Address2"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["Address3"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["City"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["State"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["Pin"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["userID"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["userPwd"].ToString() + "</td>"
 
-                                        + "<td>" + dt.Rows[i]["Designation"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["rId"].ToString() + "</td>"
-                                        + "<td>" + a + "</td>"
-                                         + "<td>" + Convert.ToInt32(dt.Rows[i]["compId"]) + "</td>"
+                //                        + "<td>" + dt.Rows[i]["Designation"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["rId"].ToString() + "</td>"
+                //                        + "<td>" + a + "</td>"
+                //                         + "<td>" + Convert.ToInt32(dt.Rows[i]["compId"]) + "</td>"
 
-                                        + "<td><button type='button'   id='" + dt.Rows[i]["uId"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary'>Edit</button></td></tr>";
+                //                        + "<td><button type='button'   id='" + dt.Rows[i]["uId"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary'>Edit</button></td></tr>";
 
-                        }
-                    }
+                //        }
+                //    }
 
-                    if (willemployee == "1,0,3" || willemployee == "0,0,3" || willemployee == "0,2,3" || willemployee == "1,0,3" || willemployee == "0,0,3")
-                    {
-                        for (int i = 0; i < dt.Rows.Count; i++)
-                        {
-                            int Status = Convert.ToInt32(dt.Rows[i]["active"]);
+                //    if (willemployee == "1,0,3" || willemployee == "0,0,3" || willemployee == "0,2,3" || willemployee == "1,0,3" || willemployee == "0,0,3")
+                //    {
+                //        for (int i = 0; i < dt.Rows.Count; i++)
+                //        {
+                //            int Status = Convert.ToInt32(dt.Rows[i]["active"]);
 
 
 
-                            if (Status == 1)
-                            {
-                                a = "Active";
-                            }
-                            else
-                            {
-                                a = "InActive";
-                            }
+                //            if (Status == 1)
+                //            {
+                //                a = "Active";
+                //            }
+                //            else
+                //            {
+                //                a = "InActive";
+                //            }
 
 
 
 
-                            data = data + "<tr class='nr'><td>" + dt.Rows[i]["uId"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["First_Name"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Last_Name"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Middle_Name"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["DOB"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Mobile"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["eMail"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Address1"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Address2"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Address3"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["City"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["State"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Pin"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["userID"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["userPwd"].ToString() + "</td>"
+                //            data = data + "<tr class='nr'><td>" + dt.Rows[i]["uId"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["First_Name"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["Last_Name"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["Middle_Name"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["DOB"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["Mobile"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["eMail"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["Address1"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["Address2"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["Address3"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["City"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["State"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["Pin"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["userID"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["userPwd"].ToString() + "</td>"
 
-                                        + "<td>" + dt.Rows[i]["Designation"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["rId"].ToString() + "</td>"
-                                        + "<td>" + a + "</td>"
-                                          + "<td>" + Convert.ToInt32(dt.Rows[i]["compId"]) + "</td>"
-                                        + "<td><button type='button'   id='" + dt.Rows[i]["uId"].ToString() + "'   class='btn btn-danger deletenotification'>Delete</button></td></tr>";
+                //                        + "<td>" + dt.Rows[i]["Designation"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["rId"].ToString() + "</td>"
+                //                        + "<td>" + a + "</td>"
+                //                          + "<td>" + Convert.ToInt32(dt.Rows[i]["compId"]) + "</td>"
+                //                        + "<td><button type='button'   id='" + dt.Rows[i]["uId"].ToString() + "'   class='btn btn-danger deletenotification'>Delete</button></td></tr>";
 
-                        }
-                    }
+                //        }
+                //    }
 
 
-                    if (willemployee == "1,2,3" || willemployee == "0,2,3")
-                    {
-                        for (int i = 0; i < dt.Rows.Count; i++)
-                        {
-                            int Status = Convert.ToInt32(dt.Rows[i]["active"]);
+                //    if (willemployee == "1,2,3" || willemployee == "0,2,3")
+                //    {
+                //        for (int i = 0; i < dt.Rows.Count; i++)
+                //        {
+                //            int Status = Convert.ToInt32(dt.Rows[i]["active"]);
 
 
 
-                            if (Status == 1)
-                            {
-                                a = "Active";
-                            }
-                            else
-                            {
-                                a = "InActive";
-                            }
+                //            if (Status == 1)
+                //            {
+                //                a = "Active";
+                //            }
+                //            else
+                //            {
+                //                a = "InActive";
+                //            }
 
 
 
 
-                            data = data + "<tr class='nr'><td>" + dt.Rows[i]["uId"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["First_Name"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Last_Name"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Middle_Name"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["DOB"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Mobile"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["eMail"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Address1"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Address2"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Address3"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["City"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["State"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Pin"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["userID"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["userPwd"].ToString() + "</td>"
+                //            data = data + "<tr class='nr'><td>" + dt.Rows[i]["uId"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["First_Name"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["Last_Name"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["Middle_Name"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["DOB"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["Mobile"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["eMail"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["Address1"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["Address2"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["Address3"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["City"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["State"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["Pin"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["userID"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["userPwd"].ToString() + "</td>"
 
-                                        + "<td>" + dt.Rows[i]["Designation"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Role"].ToString() + "</td>"
-                                        + "<td>" + a + "</td>"
-                                         + "<td>" + Convert.ToInt32(dt.Rows[i]["compId"]) + "</td>"
-                                        + "<td><button type='button'   id='" + dt.Rows[i]["uId"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary'>Edit</button><button type='button'   id='" + dt.Rows[i]["uId"].ToString() + "'   class='btn btn-danger deletenotification'>Delete</button></td></tr>";
+                //                        + "<td>" + dt.Rows[i]["Designation"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["Role"].ToString() + "</td>"
+                //                        + "<td>" + a + "</td>"
+                //                         + "<td>" + Convert.ToInt32(dt.Rows[i]["compId"]) + "</td>"
+                //                        + "<td><button type='button'   id='" + dt.Rows[i]["uId"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary'>Edit</button><button type='button'   id='" + dt.Rows[i]["uId"].ToString() + "'   class='btn btn-danger deletenotification'>Delete</button></td></tr>";
 
-                        }
+                //        }
 
-                    }
+                //    }
 
 
-                    if (willemployee == "0,0,0")
-                    {
-                        for (int i = 0; i < dt.Rows.Count; i++)
-                        {
-                            int Status = Convert.ToInt32(dt.Rows[i]["active"]);
+                //    if (willemployee == "0,0,0")
+                //    {
+                //        for (int i = 0; i < dt.Rows.Count; i++)
+                //        {
+                //            int Status = Convert.ToInt32(dt.Rows[i]["active"]);
 
 
 
-                            if (Status == 1)
-                            {
-                                a = "Active";
-                            }
-                            else
-                            {
-                                a = "InActive";
-                            }
+                //            if (Status == 1)
+                //            {
+                //                a = "Active";
+                //            }
+                //            else
+                //            {
+                //                a = "InActive";
+                //            }
 
 
 
 
-                            data = data + "<tr class='nr'><td>" + dt.Rows[i]["uId"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["First_Name"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Last_Name"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Middle_Name"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["DOB"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Mobile"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["eMail"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Address1"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Address2"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Address3"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["City"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["State"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Pin"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["userID"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["userPwd"].ToString() + "</td>"
+                //            data = data + "<tr class='nr'><td>" + dt.Rows[i]["uId"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["First_Name"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["Last_Name"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["Middle_Name"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["DOB"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["Mobile"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["eMail"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["Address1"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["Address2"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["Address3"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["City"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["State"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["Pin"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["userID"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["userPwd"].ToString() + "</td>"
 
-                                        + "<td>" + dt.Rows[i]["Designation"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Role"].ToString() + "</td>"
-                                        + "<td>" + a + "</td>"
-                                        + "<td>" + Convert.ToInt32(dt.Rows[i]["compId"]) + "</td>";
+                //                        + "<td>" + dt.Rows[i]["Designation"].ToString() + "</td>"
+                //                        + "<td>" + dt.Rows[i]["Role"].ToString() + "</td>"
+                //                        + "<td>" + a + "</td>"
+                //                        + "<td>" + Convert.ToInt32(dt.Rows[i]["compId"]) + "</td>";
 
 
 
-                        }
-                    }
-                }
+                //        }
+                //    }
+                //}
 
 
 
@@ -721,7 +720,7 @@ namespace WillAssure.Controllers
 
 
 
-                //end
+                ////end
 
         
 
@@ -824,7 +823,7 @@ namespace WillAssure.Controllers
 
 
             con.Open();
-            string query = "select a.uId , a.First_Name , a.Last_Name , a.Middle_Name , a.DOB , a.Mobile , a.eMail , a.Address1 , a.Address2 , a.Address3 , a.City , a.State , a.Pin , a.userID , a.userPwd , a.Linked_user , a.Designation , b.Role , a.dateCreated , a.active , a.compId from users a inner join Roles b on a.rId=b.rId where a.Type = 'DistributorAdmin'  and a.active = 1 ";
+            string query = "select a.uId , a.First_Name , a.Last_Name , a.Middle_Name , a.DOB , a.Mobile , a.eMail , a.Address1 , a.Address2 , a.Address3 , a.City , a.State , a.Pin , a.userID , a.userPwd , a.Linked_user , a.Designation , b.Role , a.dateCreated , a.active , a.compId from users a inner join Roles b on a.rId=b.rId where a.Linked_user = " + Convert.ToInt32(Session["uuid"]) + "  and a.active = 1 ";
             SqlDataAdapter da = new SqlDataAdapter(query, con);
             DataTable dt = new DataTable();
             da.Fill(dt);

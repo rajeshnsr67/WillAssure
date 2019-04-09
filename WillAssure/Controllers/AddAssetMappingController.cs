@@ -239,6 +239,10 @@ namespace WillAssure.Controllers
                 //structure = structure + "<div class='col-sm-4'><div class='form-group'>   <label for='input-1'>Instruments</label> <input type='text' class='form-control' placeholder='MF Scheme' />     </div></div>";
                 //structure = structure + "<div class='col-sm-4'><div class='form-group'>   <label for='input-1'>Proportion</label> <input type='text' class='form-control' />     </div></div>";
             }
+            else
+            {
+                structure = "<label>Scheme</label><select class='form-control schemenameclass' id='schemename1'  onchange=getschemename(this.id)><option value='0'>--Select--</option>" + ddlscheme + "</select>";
+            }
 
 
 

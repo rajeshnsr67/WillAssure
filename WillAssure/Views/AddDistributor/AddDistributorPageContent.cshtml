@@ -32,8 +32,7 @@
                     <div class="card-body">
                         <div class="card-title text-primary">Add Company</div>
                         <hr>
-                        @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "DistributorForm" }))
-                        {
+                       
                             <div class="row">
                                 <div class="col-sm-6">
 
@@ -61,7 +60,7 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="input-5">Address 1</label>
-                                        @Html.TextAreaFor(m => m.Address1, new { @class = "form-control validate[required] text-input", @id = "txtAddress1", @placeholder = "Enter Address 1", @autocomplete = "off" })
+                                        @Html.TextAreaFor(m => m., new { @class = "form-control validate[required] text-input", @id = "txtAddress1", @placeholder = "Enter Address 1", @autocomplete = "off" })
                                     </div>
                                 </div>
 
@@ -296,7 +295,7 @@
                                 <button type="submit" id="btnDistributorformsubmit" formaction="InsertDistributorFormData" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i>Add Company</button>
                               
                             </div>
-                        }
+                      
                     </div>
                 </div>
             </div>
