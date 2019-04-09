@@ -213,7 +213,7 @@ namespace WillAssure.Controllers
                 cmd.Parameters.AddWithValue("@State", BM.State_txt);
                 cmd.Parameters.AddWithValue("@Pin", BM.Pin);
                 cmd.Parameters.AddWithValue("@aid", BM.aid);
-                cmd.Parameters.AddWithValue("@tid", BM.tid);
+                cmd.Parameters.AddWithValue("@tid", BM.ddltid);
                 cmd.Parameters.AddWithValue("@beneficiary_type", BM.beneficiary_type);
                 cmd.ExecuteNonQuery();
                 con.Close();
@@ -298,12 +298,12 @@ namespace WillAssure.Controllers
         public string BindTestatorDDL()
         {
             con.Open();
-            string query = "select tId , First_Name from TestatorDetails where tId = " + Convert.ToInt32(Session["tId"]) + "  ";
+            string query = "select a.tId , a.First_Name from TestatorDetails a inner join users b on a.uId=b.uId where b.Linked_user  = " + Convert.ToInt32(Session["uuid"]) + " ";
             SqlDataAdapter da = new SqlDataAdapter(query, con);
             DataTable dt = new DataTable();
             da.Fill(dt);
             con.Close();
-            string data = "";
+            string data = "<option value='' >--Select--</option>";
 
 
 
@@ -318,7 +318,7 @@ namespace WillAssure.Controllers
 
 
 
-                    data = dt.Rows[i]["First_Name"].ToString();
+                    data = data + "<option value=" + dt.Rows[i]["tId"].ToString() + " >" + dt.Rows[i]["First_Name"].ToString() + "</option>";
 
 
 

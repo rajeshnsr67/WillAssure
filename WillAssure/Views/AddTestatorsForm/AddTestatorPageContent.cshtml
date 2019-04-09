@@ -40,13 +40,15 @@
                                 <select id="ddlDistributor" class="form-control validate[required]">
                                     <option value="">--Select Distributor--</option>
                                 </select>
-                                @Html.HiddenFor(m => m.distributor_id, new { id = "distributor_id" })
-                                @Html.HiddenFor(m => m.distributor_txt, new { id = "distributor_txt" })
-                           </div>
+
                             </div>
+                        </div>
                         <hr>
                         @using (Html.BeginForm(null, null, FormMethod.Post, new { name = "PopUp", id = "TestatorForm" }))
                         {
+
+                            @Html.HiddenFor(m => m.distributor_id, new { id = "distributor_id" })
+                            @Html.HiddenFor(m => m.distributor_txt, new { id = "distributor_txt" })
                             <div class="row">
                                 <div class="col-sm-6">
 
@@ -902,7 +904,7 @@
 
         $("#distributor_txt").val(text);
         $("#distributor_id").val(value);
-
+    
 
     });
 

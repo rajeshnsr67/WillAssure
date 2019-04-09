@@ -136,19 +136,37 @@ namespace WillAssure.Controllers
                 cmd.ExecuteNonQuery();
                 con.Close();
 
-
-            // get latest inserted userid
-
-            string query4 = "select top 1 * from users order by uId desc";
-            SqlDataAdapter da4 = new SqlDataAdapter(query4, con);
-            DataTable dt4 = new DataTable();
-            da4.Fill(dt4);
-            int userid = 0;
-            if (dt4.Rows.Count > 0)
+            // get latest uid by userid filter
+            string userid = "";
+            con.Open();
+            string query2 = "select top 1 * from users order by uId desc";
+            SqlDataAdapter da2 = new SqlDataAdapter(query2, con);
+            DataTable dt2 = new DataTable();
+            da2.Fill(dt2);
+            int newusers = 0;
+            if (dt2.Rows.Count > 0)
             {
-                userid = Convert.ToInt32(dt4.Rows[0]["uId"]);
+
+                userid = Convert.ToString(dt2.Rows[0]["userID"]);
+
+                string q1 = "select * from users where userID = '" + userid + "'  ";
+                SqlDataAdapter qda = new SqlDataAdapter(q1, con);
+                DataTable qdt = new DataTable();
+                qda.Fill(qdt);
+
+                if (qdt.Rows.Count > 0)
+                {
+                    newusers = Convert.ToInt32(qdt.Rows[0]["uId"]);
+                    Session["filterUid"] = newusers;
+                }
+
+
             }
+            con.Close();
+
+
             //end
+
 
 
             // ASSIGN TYPE
@@ -185,13 +203,7 @@ namespace WillAssure.Controllers
 
 
 
-            // update user with latest compid
-            con.Open();
-            string query6 = "update users set compId=" + compid + " where uId=" + userid + "";
-            SqlCommand cmd2 = new SqlCommand(query6, con);
-            cmd2.ExecuteNonQuery();
-            con.Close();
-            //end
+            
 
 
 

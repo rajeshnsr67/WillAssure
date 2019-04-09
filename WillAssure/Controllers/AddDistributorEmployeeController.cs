@@ -196,7 +196,7 @@ namespace WillAssure.Controllers
                 if (dt2.Rows.Count > 0)
                 {
 
-                    Session["uid"] = Convert.ToInt32(dt2.Rows[0]["uId"]);
+                 
                     distempid = Convert.ToInt32(dt2.Rows[0]["uId"]);
 
                 }

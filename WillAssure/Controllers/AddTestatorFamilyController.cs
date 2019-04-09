@@ -243,7 +243,7 @@ namespace WillAssure.Controllers
                 cmd.Parameters.AddWithValue("@City", TFM.City_txt);
                 cmd.Parameters.AddWithValue("@State", TFM.State_txt);
                 cmd.Parameters.AddWithValue("@Pin", TFM.Pin);
-                cmd.Parameters.AddWithValue("@tId", Convert.ToInt32(Session["tid"]));
+                cmd.Parameters.AddWithValue("@tId", TFM.ddltid);
                 cmd.Parameters.AddWithValue("@active", TFM.active);
                 cmd.Parameters.AddWithValue("@Identity_Proof", TFM.Identity_Proof);
                 cmd.Parameters.AddWithValue("@Identity_Proof_Value", TFM.Identity_Proof_Value);
@@ -270,15 +270,15 @@ namespace WillAssure.Controllers
         public string BindTestatorDDL()
         {
             con.Open();
-            string query = "select tId , First_Name from TestatorDetails where tId = "+ Convert.ToInt32(Session["tId"]) +"  ";
+            string query = "select a.tId , a.First_Name from TestatorDetails a inner join users b on a.uId=b.uId where b.Linked_user  = " + Convert.ToInt32(Session["uuid"])+" ";
             SqlDataAdapter da = new SqlDataAdapter(query, con);
             DataTable dt = new DataTable();
             da.Fill(dt);
             con.Close();
-            string data = "";
-          
+            string data = "<option value='' >--Select--</option>";
 
-            
+
+
 
             if (dt.Rows.Count > 0)
             {
@@ -290,7 +290,7 @@ namespace WillAssure.Controllers
 
 
 
-                    data =   dt.Rows[i]["First_Name"].ToString();
+                    data = data + "<option value=" + dt.Rows[i]["tId"].ToString() + " >" + dt.Rows[i]["First_Name"].ToString() + "</option>";
 
 
 

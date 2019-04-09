@@ -68,6 +68,7 @@ namespace WillAssure.Controllers
 
         public ActionResult GetUserFormData(UserFormModel UFM)
         {
+            int newusers = 0;
             // roleassignment
             List<LoginModel> Lmlist = new List<LoginModel>();
             con.Open();
@@ -167,36 +168,50 @@ namespace WillAssure.Controllers
 
 
 
-                cmd.Parameters.AddWithValue("@Linked_user", UFM.rid);
+                    cmd.Parameters.AddWithValue("@Linked_user", UFM.rid);
                     cmd.ExecuteNonQuery();
 
 
-                    string query = "SELEct * from users where compId = '" + UFM.CompId + "'";
-                    SqlDataAdapter da = new SqlDataAdapter(query, con);
-                    DataTable dt = new DataTable();
-                    da.Fill(dt);
+                
 
 
                
 
                     con.Close();
 
-
-
+                // get latest uid by userid filter
+                    string userid = ""; 
                     con.Open();
                     string query2 = "select top 1 * from users order by uId desc";
                     SqlDataAdapter da2 = new SqlDataAdapter(query2, con);
                     DataTable dt2 = new DataTable();
                     da2.Fill(dt2);
-                    int newusers = 0;
+                    
                     if (dt2.Rows.Count > 0)
                     {
-                       
-                        Session["uid"] = Convert.ToInt32(dt2.Rows[0]["uId"]);
-                        newusers = Convert.ToInt32(dt2.Rows[0]["uId"]);
+
+                        userid = Convert.ToString(dt2.Rows[0]["userID"]);
+              
+
                     }
                     con.Close();
 
+
+                con.Open();
+                string q1 = "select * from users where userID = '" + userid + "'  ";
+                SqlDataAdapter qda = new SqlDataAdapter(q1, con);
+                DataTable qdt = new DataTable();
+                qda.Fill(qdt);
+
+                if (qdt.Rows.Count > 0)
+                {
+                    newusers = Convert.ToInt32(qdt.Rows[0]["uId"]);
+                    Session["filterUid"] = newusers;
+                }
+                con.Close();
+
+
+                //end
 
 
                 //Linked Users Query
@@ -215,7 +230,7 @@ namespace WillAssure.Controllers
 
 
                 con.Open();
-                string query3 = "update  users set Type='DistributorAdmin' where uId = " + Convert.ToInt32(Session["uid"]) + "  ";
+                string query3 = "update  users set Type='DistributorAdmin' where uId = " + newusers + "  ";
                 SqlCommand cm = new SqlCommand(query3, con);
                 cm.ExecuteNonQuery();
                 con.Close();
@@ -274,24 +289,13 @@ namespace WillAssure.Controllers
                 con.Close();
 
 
-                // get latest inserted userid
-
-                string companyquery4 = "select top 1 * from users order by uId desc";
-                SqlDataAdapter companyda4 = new SqlDataAdapter(companyquery4, con);
-                DataTable companydt4 = new DataTable();
-                companyda4.Fill(companydt4);
-                int userid = 0;
-                if (companydt4.Rows.Count > 0)
-                {
-                    userid = Convert.ToInt32(companydt4.Rows[0]["uId"]);
-                }
-                //end
+       
 
 
                 // ASSIGN TYPE
 
                 con.Open();
-                string companyquery3 = "update  users set Type='DistributorAdmin' where uId = " + userid + "  ";
+                string companyquery3 = "update  users set Type='DistributorAdmin' where uId = " + newusers + "  ";
                 SqlCommand companycm = new SqlCommand(companyquery3, con);
                 companycm.ExecuteNonQuery();
                 con.Close();
@@ -324,7 +328,7 @@ namespace WillAssure.Controllers
 
                 // update user with latest compid
                 con.Open();
-                string companyquery6 = "update users set compId=" + compid + " where uId=" + userid + "";
+                string companyquery6 = "update users set compId=" + compid + " where uId=" + newusers + "";
                 SqlCommand companycmd2 = new SqlCommand(companyquery6, con);
                 companycmd2.ExecuteNonQuery();
                 con.Close();

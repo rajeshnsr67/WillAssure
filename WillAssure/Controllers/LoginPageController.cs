@@ -150,7 +150,7 @@ namespace WillAssure.Controllers
             Session["rId"] = "";
             Session["uid"] = "";
             Session["compId"] = "";
-          //  Session["ComparerrId"] = "";
+            Session["filterUid"] = "";
             Session["amId"] = "";
             Session["assetsCode"] = "";
             Session["aiid"] = "";

@@ -34,12 +34,11 @@
                         <div class="card-title text-primary">Add Family</div>
                         <div class="row">
                             <div class='col-sm-1'><label for='input-1' style="line-height:40px;">Testator</label></div>
-                                <div class="col-sm-3">
-                                @*<select id='DDLTestatorColumn' onchange="getDDLTestator(this.value)" name="contentList" class='form-control'></select>
-                                @Html.HiddenFor(m => m.ddltid, new { id = "ddltid" })
-                                @Html.HiddenFor(m => m.ddltestatorname, new { id = "ddltestatorname" })*@
+                            <div class="col-sm-3">
+                                <select id='DDLTestator' onchange="getDDLTestator(this.value)" name="contentList" class='form-control'></select>
 
-                                    <input type="text" name="name" class="form-control" id="ddltestatorname" readonly="readonly"value="" />
+
+
                             </div>
                         </div>
                         <hr>
@@ -48,7 +47,8 @@
                         {
 
 
-
+                            @Html.HiddenFor(m => m.ddltid, new { id = "ddltid" })
+                            @Html.HiddenFor(m => m.ddltestatorname, new { id = "ddltestatorname" })
 
 
                             <div class="row">
@@ -427,12 +427,9 @@
             url:"@Url.Action("BindTestatorDDL", "AddTestatorFamily")",
                   success: function (data) {
 
-                      if (data != "") {
-                          $('#ddltestatorname').val(data);
-                      }
-                      else {
-                          $('#ddltestatorname').val("No Testator Found");
-                      }
+                      $('#DDLTestator').append(data);
+                      
+
 
 
                 
@@ -582,7 +579,7 @@
 
     function getDDLTestator(value) {
         //var value = $(this).children(":selected").attr("value");
-        var text = $("#DDLTestatorColumn option:selected").html();
+        var text = $("#DDLTestator option:selected").html();
 
 
 

@@ -80,5 +80,10 @@ namespace WillAssure.Models
         public string beneficiary_type_txt { get; set; }
         public int beneficiary_type_id { get; set; }
 
+
+
+        public int ddltid { get; set; }
+        public string ddltestatorname { get; set; }
+
     }
 }

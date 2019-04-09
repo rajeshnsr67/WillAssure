@@ -155,28 +155,11 @@ namespace WillAssure.Controllers
             //END
 
 
-            //if (Session["compId"] != null)
-            //{
-
-            // for getting latest distributor id
-            int distid = 0;
-            con.Open();
-            string distidquery = "select uId from users where userID = '" + Convert.ToInt32(Session["uid"]) + "'  ";
-            SqlDataAdapter da = new SqlDataAdapter(distidquery, con);
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-            if (dt.Rows.Count > 0)
-            {
-                distid = Convert.ToInt32(dt.Rows[0]["uId"]);
-
-               
-            }
-            con.Close();
-            //end
+      
 
 
 
-            TFM.uId = Convert.ToInt32(Session["uuid"]);
+                TFM.uId = Convert.ToInt32(Session["filterUid"]);
                 DateTime dat = DateTime.ParseExact(TFM.Dob, "dd-MM-yyyy", CultureInfo.InvariantCulture);
                 con.Open();
                 SqlCommand cmd = new SqlCommand("SP_CRUDTestatorDetails", con);
@@ -210,7 +193,7 @@ namespace WillAssure.Controllers
                 cmd.Parameters.AddWithValue("@Mobile_Verification_Status", "0");
                 cmd.Parameters.AddWithValue("@Email_OTP", TFM.EmailOTP);
                 cmd.Parameters.AddWithValue("@Mobile_OTP", TFM.MobileOTP);
-                cmd.Parameters.AddWithValue("@uid", TFM.uId);
+                cmd.Parameters.AddWithValue("@uid", TFM.distributor_id);
                 cmd.ExecuteNonQuery();
                 con.Close();
 
@@ -218,47 +201,18 @@ namespace WillAssure.Controllers
                 int templateid = 0;
                 string testatortype = "";
 
-                // for storing testator id and created by in document master
-                con.Open();
-                string query = "select top 1 * from TestatorDetails order by tId desc ";
-                SqlDataAdapter da = new SqlDataAdapter(query, con);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-                if (dt.Rows.Count > 0)
-                {
-                    testatorid = Convert.ToInt32(dt.Rows[0]["tId"]);
-                    
-                    Session["tid"] = testatorid;
-                }
-                con.Close();
-                //end
 
 
 
-                // for storing templateMaster templateid and  testator id in document master
-                con.Open();
-                string q2 = "select * from templateMaster";
-                SqlDataAdapter da2 = new SqlDataAdapter(q2, con);
-                DataTable dt2 = new DataTable();
-                da2.Fill(dt2);
-                if (dt2.Rows.Count > 0)
-                {
-                    templateid = Convert.ToInt32(dt2.Rows[0]["templateid"]);
 
-                    Session["templateid"] = templateid;
-                    testatortype = dt2.Rows[0]["testator_type"].ToString();
-                    
-                    Session["Document_Created_By"] = TFM.Document_Created_By;
-                }
-                con.Close();
-            //end
+           
 
 
             // document generation 
 
             // get coupon id
             con.Open();
-            string query5 = "select a.couponId  from couponAllotment a inner join users b on a.uId=b.uId where b.uId = "+Convert.ToInt32(Session["uuid"])+"";
+            string query5 = "select a.couponId  from couponAllotment a inner join users b on a.uId=b.uId where b.uId = "+ TFM.distributor_id + "";
             SqlDataAdapter da4 = new SqlDataAdapter(query5,con);
             DataTable dt4 = new DataTable();
             da4.Fill(dt4);
@@ -272,7 +226,7 @@ namespace WillAssure.Controllers
 
               
                 con.Open();
-                string q = "insert into documentMaster (tId,templateId,IsUpdatetable,uId,pId,created_by,testator_type,couponId) values (" + testatorid + " , " + templateid + " ,  'Yes' ,   "+Convert.ToInt32(Session["uuid"]) +" , 1 , '" + TFM.Document_Created_By_txt + "' , '" + testatortype + "' , "+couponsid+")";
+                string q = "insert into documentMaster (tId,templateId,IsUpdatetable,uId,pId,created_by,testator_type,couponId) values (" + testatorid + " , " + templateid + " ,  'Yes' ,   "+ TFM.distributor_id + " , 1 , '" + TFM.Document_Created_By_txt + "' , '" + testatortype + "' , "+couponsid+")";
                 SqlCommand c = new SqlCommand(q, con);
                 c.ExecuteNonQuery();
                 con.Close();
@@ -324,7 +278,7 @@ namespace WillAssure.Controllers
                     SqlCommand cmd2 = new SqlCommand(query1, con);
                     cmd2.ExecuteNonQuery();
                     con.Close();
-
+                ModelState.Clear();
                 return View("~/Views/AddTestatorsForm/AddTestatorPageContent.cshtml");
             }
                 //end
@@ -767,7 +721,7 @@ namespace WillAssure.Controllers
             con.Close();
 
             con.Open();
-            string query = "select uId , First_Name from users where Type = 'DistributorAdmin'  ";
+            string query = "select uId , First_Name from users where Linked_user = "+Convert.ToInt32(Session["uuid"])+"  ";
             SqlDataAdapter da = new SqlDataAdapter(query, con);
             DataTable dt = new DataTable();
             da.Fill(dt);
