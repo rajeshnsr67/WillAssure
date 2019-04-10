@@ -47,5 +47,53 @@ namespace WillAssure.Models
         public int rid { get; set; }
 
 
+
+        // alternate appointees
+
+        public int altid { get; set; }
+        public int altapId { get; set; }
+        public int altdocumentId { get; set; }
+        public string altType { get; set; }
+        public string altsubType { get; set; }
+        public string altName { get; set; }
+        public string altmiddleName { get; set; }
+        public string altSurname { get; set; }
+        public string altIdentity_Proof { get; set; }
+        public string altIdentity_Proof_Value { get; set; }
+        public string altAlt_Identity_Proof { get; set; }
+        public string altAlt_Identity_Proof_Value { get; set; }
+        public string altDob { get; set; }
+        public string altGender { get; set; }
+        public string altOccupation { get; set; }
+
+        public string altRelationship { get; set; }
+        public int altRelationshipId { get; set; }
+        public string altRelationshipTxt { get; set; }
+
+        public string altAddress1 { get; set; }
+        public string altAddress2 { get; set; }
+        public string altAddress3 { get; set; }
+
+        public string altCity { get; set; }
+        public int altcityid { get; set; }
+        public string altcitytext { get; set; }
+
+        public string altState { get; set; }
+        public int altstateid { get; set; }
+        public string altstatetext { get; set; }
+
+        public string altPin { get; set; }
+
+
+
+
+        //end
+
+        public int ddltid { get; set; }
+        public string ddltestatorname { get; set; }
+
+
+        public string check { get; set; }
+
     }
 }

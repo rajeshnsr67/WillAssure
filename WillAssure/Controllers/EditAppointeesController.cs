@@ -111,7 +111,7 @@ namespace WillAssure.Controllers
 
 
             con.Open();
-            string query = "select * from Appointees a inner join  TestatorDetails b on a.tid=b.tid where b.uId = " + Convert.ToInt32(Session["uuid"]) + "";
+            string query = "select a.apId , a.documentId , a.Type , a.subType , a.Name , a.middleName  , a.Surname , a.Identity_Proof , a.Identity_Proof_Value , a.Alt_Identity_Proof , a.Alt_Identity_Proof_Value , a.DOB , a.Gender , a.Occupation , a.Relationship , a.Address1 , a.Address2 , a.Address3 , a.City , a.State , a.Pin , a.dateCreated, a.tid  from Appointees a inner join  TestatorDetails b on a.tid=b.tid inner join users c on b.uId=c.uId where c.Linked_user =" + Convert.ToInt32(Session["uuid"]) + "";
             SqlDataAdapter da = new SqlDataAdapter(query, con);
             DataTable dt = new DataTable();
             da.Fill(dt);
@@ -348,7 +348,7 @@ namespace WillAssure.Controllers
 
 
             con.Open();
-            string query = "select * from Appointees a inner join  TestatorDetails b on a.tid=b.tid where b.uId = " + Convert.ToInt32(Session["uuid"]) + "";
+            string query = "select a.apId , a.documentId , a.Type , a.subType , a.Name , a.middleName  , a.Surname , a.Identity_Proof , a.Identity_Proof_Value , a.Alt_Identity_Proof , a.Alt_Identity_Proof_Value , a.DOB , a.Gender , a.Occupation , a.Relationship , a.Address1 , a.Address2 , a.Address3 , a.City , a.State , a.Pin , a.dateCreated , a.tid  from Appointees a inner join  TestatorDetails b on a.tid=b.tid inner join users c on b.uId=c.uId where c.Linked_user =" + Convert.ToInt32(Session["uuid"]) + "";
             SqlDataAdapter da = new SqlDataAdapter(query, con);
             DataTable dt = new DataTable();
             da.Fill(dt);
@@ -504,6 +504,17 @@ namespace WillAssure.Controllers
         {
             int index = Convert.ToInt32(Request["send"]);
 
+
+            con.Open();
+            string query = "select apId from alternate_Appointees where apId = " + index + " ";
+            SqlDataAdapter da = new SqlDataAdapter(query, con);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            if (dt.Rows.Count > 0)
+            {
+                Session["upappointeesid"] = Convert.ToInt32(dt.Rows[0]["apId"]);
+            }
+            con.Close();
 
 
 

@@ -28,10 +28,10 @@ namespace WillAssure.Controllers
                 return RedirectToAction("LoginPageIndex", "LoginPage");
 
             }
-            if (Session["tid"]== null)
-            {
-                ViewBag.message = "link";
-            }
+            //if (Session["tid"]== null)
+            //{
+            //    ViewBag.message = "link";
+            //}
 
 
             List<LoginModel> Lmlist = new List<LoginModel>();
@@ -223,8 +223,8 @@ namespace WillAssure.Controllers
             //end
 
 
-            if (Session["tid"] != null)
-            {
+            //if (Session["tid"] != null)
+            //{
                 con.Open();
                 SqlCommand cmd = new SqlCommand("SP_CRUDtestatorfamily", con);
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
@@ -254,11 +254,11 @@ namespace WillAssure.Controllers
                 con.Close();
 
                 ViewBag.message = "Verified";
-            }
-            else
-            {
-                ViewBag.message = "link";
-            }
+            //}
+            //else
+            //{
+            //    ViewBag.message = "link";
+            //}
 
             ModelState.Clear();
 

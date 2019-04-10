@@ -101,6 +101,68 @@ namespace WillAssure.Controllers
                 }
             }
 
+
+
+
+            //  for alternate appointees
+
+            con.Open();
+            string query2 = "select * from alternate_Appointees where id = " + Convert.ToInt32(Session["upappointeesid"]) + "";
+            SqlDataAdapter da2 = new SqlDataAdapter(query2, con);
+            DataTable dt2 = new DataTable();
+            da2.Fill(dt2);
+            con.Close();
+           
+
+            if (dt2.Rows.Count > 0)
+            {
+
+
+                for (int i = 0; i < dt2.Rows.Count; i++)
+                {
+
+
+
+                    Am.altName = dt2.Rows[i]["Name"].ToString();
+                    Am.altmiddleName = dt2.Rows[i]["middleName"].ToString();
+                    Am.altSurname = dt2.Rows[i]["Surname"].ToString();
+                    Am.altIdentity_Proof = dt2.Rows[i]["Identity_Proof"].ToString();
+                    Am.altIdentity_Proof_Value = dt2.Rows[i]["Identity_Proof_Value"].ToString();
+                    Am.altAlt_Identity_Proof = dt2.Rows[i]["Alt_Identity_Proof"].ToString();
+                    Am.altAlt_Identity_Proof_Value = dt2.Rows[i]["Alt_Identity_Proof_Value"].ToString();
+
+                    Am.altDob = dt2.Rows[i]["DOB"].ToString();
+
+                    Am.altGender = dt2.Rows[i]["Gender"].ToString();
+                    Am.altOccupation = dt2.Rows[i]["Occupation"].ToString();
+                    Am.altRelationshipTxt = dt2.Rows[i]["Relationship"].ToString();
+                    Am.altAddress1 = dt2.Rows[i]["Address1"].ToString();
+                    Am.altAddress2 = dt2.Rows[i]["Address2"].ToString();
+                    Am.altAddress3 = dt2.Rows[i]["Address3"].ToString();
+                    Am.altcitytext = dt2.Rows[i]["City"].ToString();
+                    Am.altstatetext = dt2.Rows[i]["State"].ToString();
+                    Am.altPin = dt2.Rows[i]["Pin"].ToString();
+
+
+
+
+                }
+            }
+
+
+
+
+
+
+
+            //end
+
+
+
+
+
+
+
             return View("~/Views/UpdateAppointees/UpdateAppointeesPageContent.cshtml", Am);
         }
 
@@ -288,7 +350,53 @@ namespace WillAssure.Controllers
             cmd.Parameters.AddWithValue("@tid", "");
             cmd.ExecuteNonQuery();
             con.Close();
-            ViewBag.Message = "Verified";
+
+
+
+            if (Convert.ToInt32(Session["upappointeesid"]) != 0)
+            {
+                AM.check = "true";
+            }
+
+
+            if (AM.check == "true")
+            {
+                con.Open();
+                SqlCommand cmdd = new SqlCommand("SP_CRUDAlternateAppointees", con);
+                cmdd.CommandType = CommandType.StoredProcedure;
+                cmdd.Parameters.AddWithValue("@condition", "update");
+                cmdd.Parameters.AddWithValue("@id", AM.altid);
+                cmdd.Parameters.AddWithValue("@apId", AM.altapId);
+
+
+                cmdd.Parameters.AddWithValue("@Name", AM.altName);
+                cmdd.Parameters.AddWithValue("@middleName", AM.altmiddleName);
+                cmdd.Parameters.AddWithValue("@Surname", AM.altSurname);
+                cmdd.Parameters.AddWithValue("@Identity_proof", AM.altIdentity_Proof);
+                cmdd.Parameters.AddWithValue("@Identity_proof_value", AM.altIdentity_Proof_Value);
+                cmdd.Parameters.AddWithValue("@Alt_Identity_proof", AM.altAlt_Identity_Proof);
+                cmdd.Parameters.AddWithValue("@Alt_Identity_proof_value", AM.altAlt_Identity_Proof_Value);
+                DateTime dat2 = DateTime.ParseExact(AM.altDob, "dd-MM-yyyy", CultureInfo.InvariantCulture);
+                cmdd.Parameters.AddWithValue("@DOB", dat2);
+                cmdd.Parameters.AddWithValue("@Gender", AM.altGender);
+                cmdd.Parameters.AddWithValue("@Occupation", AM.altOccupation);
+                cmdd.Parameters.AddWithValue("@Relationship", AM.altRelationshipTxt);
+                cmdd.Parameters.AddWithValue("@Address1", AM.altAddress1);
+                cmdd.Parameters.AddWithValue("@Address2", AM.altAddress2);
+                cmdd.Parameters.AddWithValue("@Address3", AM.altAddress3);
+                cmdd.Parameters.AddWithValue("@City", AM.altcitytext);
+                cmdd.Parameters.AddWithValue("@State", AM.altstatetext);
+                cmdd.Parameters.AddWithValue("@Pin", AM.altPin);
+                cmdd.ExecuteNonQuery();
+                con.Close();
+            }
+
+
+
+
+
+
+                ViewBag.Message = "Verified";
             return View("~/Views/UpdateAppointees/UpdateAppointeesPageContent.cshtml");
         }
     }

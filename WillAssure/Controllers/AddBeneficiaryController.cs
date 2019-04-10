@@ -28,10 +28,10 @@ namespace WillAssure.Controllers
 
             }
 
-            if (Session["aiid"] == null && Session["tid"] == null)
-            {
-                ViewBag.Message = "link";
-            }
+            //if (Session["aiid"] == null && Session["tid"] == null)
+            //{
+            //    ViewBag.Message = "link";
+            //}
             List<LoginModel> Lmlist = new List<LoginModel>();
             con.Open();
             string q = "select * from Assignment_Roles where RoleId = " + Convert.ToInt32(Session["rId"]) + "";
@@ -183,11 +183,11 @@ namespace WillAssure.Controllers
 
             //end
 
-            if (Session["aiid"] != null && Session["tid"].ToString() != null)
-            {
-                BM.aid = Convert.ToInt32(Session["aiid"]);
-                BM.tid = Convert.ToInt32(Session["tid"]);
-
+            //if (Session["aiid"] != null && Session["tid"].ToString() != null)
+            //{
+            //BM.aid = Convert.ToInt32(Session["aiid"]);
+            //BM.tid = Convert.ToInt32(Session["tid"]);
+                BM.aid = 0;
 
                 con.Open();
                 SqlCommand cmd = new SqlCommand("SP_CRUDBeneficiaryDetails", con);
@@ -219,18 +219,59 @@ namespace WillAssure.Controllers
                 con.Close();
 
 
-                con.Open();
-                string query2 = "select top 1 * from BeneficiaryDetails order by bpId desc";
-                SqlDataAdapter da = new SqlDataAdapter(query2,con);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-                if (dt.Rows.Count > 0)
-                {
-                    
-                    Session["bpId"] = Convert.ToInt32(dt.Rows[0]["bpId"]);
-                }
-                con.Close();
+            // get latest bpid with filter
+            int bpid = 0;
+            con.Open();
+            string qq = "select top 1 * from BeneficiaryDetails order by bpId desc";
+            SqlDataAdapter da = new SqlDataAdapter(qq,con);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            if (dt.Rows.Count > 0)
+            {
+                bpid = Convert.ToInt32(dt.Rows[0]["bpId"]);
+            }
+            con.Close();
+            //end
 
+
+            if (BM.check == "true")
+            {
+                con.Open();
+                SqlCommand altcmd = new SqlCommand("SP_CRUD_alternate_Beneficiary", con);
+                altcmd.CommandType = CommandType.StoredProcedure;
+                altcmd.Parameters.AddWithValue("@condition", "insert");
+                if (bpid != 0)
+                {
+                    altcmd.Parameters.AddWithValue("@bpId", bpid);
+                }
+                else
+                {
+                    BM.altbpId = 0;
+                    altcmd.Parameters.AddWithValue("@bpId",BM.altbpId);
+                }
+                
+                altcmd.Parameters.AddWithValue("@First_Name", BM.altFirst_Name);
+                altcmd.Parameters.AddWithValue("@Last_Name", BM.altLast_Name);
+                altcmd.Parameters.AddWithValue("@Middle_Name", BM.altMiddle_Name);
+                DateTime altdat = DateTime.ParseExact(BM.altDob, "dd-MM-yyyy", CultureInfo.InvariantCulture);
+                altcmd.Parameters.AddWithValue("@DOB", altdat);
+                altcmd.Parameters.AddWithValue("@Mobile", BM.altMobile);
+                altcmd.Parameters.AddWithValue("@Relationship", BM.altRelationshipTxt);
+                altcmd.Parameters.AddWithValue("@Marital_Status", BM.altMarital_Status_Txt);
+                altcmd.Parameters.AddWithValue("@Religion", BM.altReligion_TXT);
+                altcmd.Parameters.AddWithValue("@Identity_Proof", BM.altIdentity_Proof);
+                altcmd.Parameters.AddWithValue("@Identity_Proof_Value", BM.altIdentity_Proof_Value);
+                altcmd.Parameters.AddWithValue("@Alt_Identity_Proof", BM.altAlt_Identity_Proof);
+                altcmd.Parameters.AddWithValue("@Alt_Identity_Proof_Value", BM.altAlt_Identity_Proof_Value);
+                altcmd.Parameters.AddWithValue("@Address1", BM.altAddress1);
+                altcmd.Parameters.AddWithValue("@Address2", BM.altAddress2);
+                altcmd.Parameters.AddWithValue("@Address3", BM.altAddress3);
+                altcmd.Parameters.AddWithValue("@City", BM.altcitytext);
+                altcmd.Parameters.AddWithValue("@State", BM.altstatetext);
+                altcmd.Parameters.AddWithValue("@Pin", BM.altPin);
+                altcmd.ExecuteNonQuery();
+                con.Close();
+            }
 
 
 
@@ -240,11 +281,11 @@ namespace WillAssure.Controllers
 
 
 
-            }
-            else
-            {
-                ViewBag.Message = "link";
-            }
+            //}
+            //else
+            //{
+            //    ViewBag.Message = "link";
+            //}
 
 
 

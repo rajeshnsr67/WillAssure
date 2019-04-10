@@ -85,5 +85,53 @@ namespace WillAssure.Models
         public int ddltid { get; set; }
         public string ddltestatorname { get; set; }
 
+
+
+
+        // alternate beneficiary property
+
+        public int altlnk_bd_id { get; set; }
+        public int altbpId { get; set; }
+        public string altFirst_Name { get; set; }
+        public string altLast_Name { get; set; }
+        public string altMiddle_Name { get; set; }
+        public string altDob { get; set; }
+        public string altMobile { get; set; }
+        public string altRelationship { get; set; }
+        public string altMarital_Status { get; set; }
+        public string altReligion { get; set; }
+        public string altIdentity_Proof { get; set; }
+        public string altIdentity_Proof_Value { get; set; }
+        public string altAlt_Identity_Proof { get; set; }
+        public string altAlt_Identity_Proof_Value { get; set; }
+        public string altAddress1 { get; set; }
+        public string altAddress2 { get; set; }
+        public string altAddress3 { get; set; }
+        public string altCity { get; set; }
+        public string altState { get; set; }
+        public string altPin { get; set; }
+
+        public int altRelationshipId { get; set; }
+        public string altRelationshipTxt { get; set; }
+
+
+        public int altstateid { get; set; }
+        public string altstatetext { get; set; }
+
+        public int altcityid { get; set; }
+        public string altcitytext { get; set; }
+
+
+        public int altMarital_Status_Id { get; set; }
+        public string altMarital_Status_Txt { get; set; }
+
+
+        public int altReligion_ID { get; set; }
+        public string altReligion_TXT { get; set; }
+
+
+
+        public string check { get; set; }
+
     }
 }

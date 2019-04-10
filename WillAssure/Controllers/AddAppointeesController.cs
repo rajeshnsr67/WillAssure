@@ -242,9 +242,87 @@ namespace WillAssure.Controllers
             cmd.Parameters.AddWithValue("@City", AM.citytext);
             cmd.Parameters.AddWithValue("@State", AM.statetext);
             cmd.Parameters.AddWithValue("@Pin", AM.Pin);
-            cmd.Parameters.AddWithValue("@tid", Convert.ToInt32(Session["tid"]));
+            cmd.Parameters.AddWithValue("@tid", AM.ddltid);
             cmd.ExecuteNonQuery();
             con.Close();
+
+
+
+            // latest appointees
+            int apid = 0;
+            con.Open();
+            string query = "select top 1 * from Appointees order by apId desc";
+            SqlDataAdapter da2 = new SqlDataAdapter(query, con);
+            DataTable dt2 = new DataTable();
+            da2.Fill(dt2);
+            if (dt2.Rows.Count > 0)
+            {
+
+               apid  = Convert.ToInt32(dt2.Rows[0]["apId"]);
+            }
+            con.Close();
+
+
+
+            //end
+
+
+
+
+            if (AM.check == "true")
+            {
+                // alternate appointees
+
+                con.Open();
+                SqlCommand cmdd = new SqlCommand("SP_CRUDAlternateAppointees", con);
+                cmdd.CommandType = CommandType.StoredProcedure;
+                cmdd.Parameters.AddWithValue("@condition", "insert");
+
+                if (apid != 0)
+                {
+                    cmdd.Parameters.AddWithValue("@apId", apid);
+                }
+                else
+                {
+                    apid = 0;
+                    cmdd.Parameters.AddWithValue("@apId", apid);
+                }
+
+                
+
+                cmdd.Parameters.AddWithValue("@Name", AM.altName);
+                cmdd.Parameters.AddWithValue("@middleName", AM.altmiddleName);
+                cmdd.Parameters.AddWithValue("@Surname", AM.altSurname);
+                cmdd.Parameters.AddWithValue("@Identity_proof", AM.altIdentity_Proof);
+                cmdd.Parameters.AddWithValue("@Identity_proof_value", AM.altIdentity_Proof_Value);
+                cmdd.Parameters.AddWithValue("@Alt_Identity_proof", AM.altAlt_Identity_Proof);
+                cmdd.Parameters.AddWithValue("@Alt_Identity_proof_value", AM.altAlt_Identity_Proof_Value);
+                DateTime dat2 = DateTime.ParseExact(AM.altDob, "dd-MM-yyyy", CultureInfo.InvariantCulture);
+                cmdd.Parameters.AddWithValue("@DOB", dat2);
+                cmdd.Parameters.AddWithValue("@Gender", AM.altGender);
+                cmdd.Parameters.AddWithValue("@Occupation", AM.altOccupation);
+                cmdd.Parameters.AddWithValue("@Relationship", AM.altRelationshipTxt);
+                cmdd.Parameters.AddWithValue("@Address1", AM.altAddress1);
+                cmdd.Parameters.AddWithValue("@Address2", AM.altAddress2);
+                cmdd.Parameters.AddWithValue("@Address3", AM.altAddress3);
+                cmdd.Parameters.AddWithValue("@City", AM.altcitytext);
+                cmdd.Parameters.AddWithValue("@State", AM.altstatetext);
+                cmdd.Parameters.AddWithValue("@Pin", AM.altPin);
+                cmdd.Parameters.AddWithValue("@tid", AM.ddltid);
+                cmdd.ExecuteNonQuery();
+                con.Close();
+
+
+
+
+
+                //end
+
+            }
+
+
+
+
             ViewBag.Message = "Verified";
 
             // dropdown selection
@@ -302,17 +380,7 @@ namespace WillAssure.Controllers
 
 
 
-            con.Open();
-            string query = "select top 1 * from Appointees order by apId desc";
-            SqlDataAdapter da2 = new SqlDataAdapter(query,con);
-            DataTable dt2 = new DataTable();
-            da2.Fill(dt2);
-            if (dt2.Rows.Count > 0)
-            {
-               
-                Session["apId"] = Convert.ToInt32(dt2.Rows[0]["apId"]);
-            }
-            con.Close();
+            
 
 
 
@@ -327,12 +395,12 @@ namespace WillAssure.Controllers
         public string BindTestatorDDL()
         {
             con.Open();
-            string query = "select tId , First_Name from TestatorDetails where tId = " + Convert.ToInt32(Session["tId"]) + "  ";
+            string query = "select a.tId , a.First_Name from TestatorDetails a inner join users b on a.uId=b.uId where b.Linked_user  = " + Convert.ToInt32(Session["uuid"]) + " ";
             SqlDataAdapter da = new SqlDataAdapter(query, con);
             DataTable dt = new DataTable();
             da.Fill(dt);
             con.Close();
-            string data = "";
+            string data = "<option value='' >--Select--</option>";
 
 
 
@@ -347,7 +415,7 @@ namespace WillAssure.Controllers
 
 
 
-                    data = dt.Rows[i]["First_Name"].ToString();
+                    data = data + "<option value=" + dt.Rows[i]["tId"].ToString() + " >" + dt.Rows[i]["First_Name"].ToString() + "</option>";
 
 
 

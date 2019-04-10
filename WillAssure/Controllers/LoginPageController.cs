@@ -161,7 +161,7 @@ namespace WillAssure.Controllers
             Session["userid"] = "";
             Session["uuid"] = "";
             Session["upcompanyid"] = "";
-
+            Session["upbeneficiaryid"] = "";
 
 
             return View("~/Views/LoginPage/LoginPageContent.cshtml");

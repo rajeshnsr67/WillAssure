@@ -888,7 +888,7 @@
         $.ajax({
 
             type: "POST",
-            url:"@Url.Action("BindDistributorDDL", "CouponsAllotment")",
+            url:"@Url.Action("BindDistributorDDL", "AddTestatorsForm")",
             success: function (data) {
                 $('#ddlDistributor').empty().append(data);
             }

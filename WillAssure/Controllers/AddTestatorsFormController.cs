@@ -721,7 +721,7 @@ namespace WillAssure.Controllers
             con.Close();
 
             con.Open();
-            string query = "select uId , First_Name from users where Linked_user = "+Convert.ToInt32(Session["uuid"])+"  ";
+            string query = "select uId , First_Name from users where Linked_user = "+Convert.ToInt32(Session["uuid"])+ "   and Type = 'DistributorAdmin'   ";
             SqlDataAdapter da = new SqlDataAdapter(query, con);
             DataTable dt = new DataTable();
             da.Fill(dt);

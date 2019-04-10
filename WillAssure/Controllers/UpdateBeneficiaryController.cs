@@ -101,6 +101,50 @@ namespace WillAssure.Controllers
 
 
 
+
+
+            // for alterbeneficiary
+
+            con.Open();
+            string query2 = "select * from alternate_Beneficiary where bpId = "+Convert.ToInt32(Session["upbeneficiaryid"]) +" ";
+            SqlDataAdapter da2 = new SqlDataAdapter(query2, con);
+            DataTable dt2 = new DataTable();
+            da2.Fill(dt2);
+
+            con.Close();
+            if (dt2.Rows.Count > 0)
+            {
+                BM.altFirst_Name = dt2.Rows[0]["First_Name"].ToString();
+                BM.altLast_Name = dt2.Rows[0]["Last_Name"].ToString();
+                BM.altMiddle_Name = dt2.Rows[0]["Middle_Name"].ToString();
+
+                BM.altDob = dt2.Rows[0]["DOB"].ToString();
+                BM.altMobile = dt2.Rows[0]["Mobile"].ToString();
+                BM.altRelationship = dt2.Rows[0]["Relationship"].ToString();
+                BM.altMarital_Status = dt2.Rows[0]["Marital_Status"].ToString();
+                BM.altReligion = dt2.Rows[0]["Religion"].ToString();
+                BM.altIdentity_Proof = dt2.Rows[0]["Identity_Proof"].ToString();
+                BM.altIdentity_Proof_Value = dt2.Rows[0]["Identity_Proof_Value"].ToString();
+                BM.altAlt_Identity_Proof = dt2.Rows[0]["Alt_Identity_Proof"].ToString();
+                BM.altAlt_Identity_Proof_Value = dt2.Rows[0]["Alt_Identity_Proof_Value"].ToString();
+                BM.altAddress1 = dt2.Rows[0]["Address1"].ToString();
+                BM.altAddress2 = dt2.Rows[0]["Address2"].ToString();
+                BM.altAddress3 = dt2.Rows[0]["Address3"].ToString();
+                BM.altcitytext = dt2.Rows[0]["City"].ToString();
+                BM.altState = dt2.Rows[0]["State"].ToString();
+                BM.altPin = dt2.Rows[0]["Pin"].ToString();
+            }
+            
+
+
+
+
+
+
+            //end
+
+
+
             return View("~/Views/UpdateBeneficiary/UpdateBeneficiary.cshtml",BM);
         }
 
@@ -173,7 +217,53 @@ namespace WillAssure.Controllers
             cmd.ExecuteNonQuery();
             con.Close();
 
-            ViewBag.Message = "Verified";
+
+
+
+            if (Convert.ToInt32(Session["upbeneficiaryid"]) != 0)
+            {
+                BM.check = "true";
+            }
+
+
+            if (BM.check == "true")
+            {
+
+                con.Open();
+                SqlCommand cmd2 = new SqlCommand("SP_CRUD_alternate_Beneficiary", con);
+                cmd2.CommandType = CommandType.StoredProcedure;
+                cmd2.Parameters.AddWithValue("@condition", "update");
+                cmd2.Parameters.AddWithValue("@lnk_bd_id", BM.altlnk_bd_id);
+                cmd2.Parameters.AddWithValue("@bpId", BM.altbpId);
+                cmd2.Parameters.AddWithValue("@First_Name", BM.altFirst_Name);
+                cmd2.Parameters.AddWithValue("@Last_Name", BM.altLast_Name);
+                cmd2.Parameters.AddWithValue("@Middle_Name", BM.altMiddle_Name);
+                DateTime dat2 = DateTime.ParseExact(BM.altDob, "dd-MM-yyyy", CultureInfo.InvariantCulture);
+                cmd2.Parameters.AddWithValue("@DOB", dat2);
+                cmd2.Parameters.AddWithValue("@Mobile", BM.altMobile);
+                cmd2.Parameters.AddWithValue("@Relationship", BM.altReligion_ID);
+                cmd2.Parameters.AddWithValue("@Marital_Status", BM.altMarital_Status);
+                cmd2.Parameters.AddWithValue("@Religion", BM.altReligion);
+                cmd2.Parameters.AddWithValue("@Identity_Proof", BM.altIdentity_Proof);
+                cmd2.Parameters.AddWithValue("@Identity_Proof_Value", BM.altIdentity_Proof_Value);
+                cmd2.Parameters.AddWithValue("@Alt_Identity_Proof", BM.altAlt_Identity_Proof);
+                cmd2.Parameters.AddWithValue("@Alt_Identity_Proof_Value", BM.altAlt_Identity_Proof_Value);
+                cmd2.Parameters.AddWithValue("@Address1", BM.altAddress1);
+                cmd2.Parameters.AddWithValue("@Address2", BM.altAddress2);
+                cmd2.Parameters.AddWithValue("@Address3", BM.altAddress3);
+                cmd2.Parameters.AddWithValue("@City", BM.altcitytext);
+                cmd2.Parameters.AddWithValue("@State", BM.altstatetext);
+                cmd2.Parameters.AddWithValue("@Pin", BM.altPin);
+                cmd2.ExecuteNonQuery();
+                con.Close();
+
+
+            }
+
+
+
+
+                ViewBag.Message = "Verified";
 
 
             return View("~/Views/UpdateDistributor/UpdateDistributorPageContent.cshtml");
@@ -289,6 +379,45 @@ namespace WillAssure.Controllers
 
             return data;
 
+        }
+
+
+
+        public string BindTestatorDDL()
+        {
+            con.Open();
+            string query = "select a.tId , a.First_Name from TestatorDetails a inner join users b on a.uId=b.uId where b.Linked_user  = " + Convert.ToInt32(Session["uuid"]) + " ";
+            SqlDataAdapter da = new SqlDataAdapter(query, con);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            con.Close();
+            string data = "<option value='' >--Select--</option>";
+
+
+
+
+            if (dt.Rows.Count > 0)
+            {
+
+
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+
+
+
+
+                    data = data + "<option value=" + dt.Rows[i]["tId"].ToString() + " >" + dt.Rows[i]["First_Name"].ToString() + "</option>";
+
+
+
+                }
+
+
+
+
+            }
+
+            return data;
         }
 
 
