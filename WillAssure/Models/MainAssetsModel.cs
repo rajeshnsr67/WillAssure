@@ -144,5 +144,10 @@ namespace WillAssure.Models
         public int? inputnumberofitems  { get; set; }
         public int? inputweight { get; set; }
 
+
+
+        public string ddltestatorname { get; set; }
+        public int ddltid { get; set; }
+
     }
 }

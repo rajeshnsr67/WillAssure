@@ -877,7 +877,26 @@
         $("#ddltestatorname").val(text);
         $("#ddltid").val(value);
 
+             $.ajax({
 
+            type: "POST",
+            url:"@Url.Action("CheckTestatorUsers", "AddBeneficiary")",
+            data: {"send":""+value+""},
+            success: function (data) {
+
+                if (data == 2) {
+                    var url = "/AddMainAssets/AddMainAssetsIndex/";
+                    window.location.href = url;
+                }
+
+               
+                      
+
+
+
+                
+            }
+        });
 
 
 

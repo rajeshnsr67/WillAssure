@@ -597,7 +597,12 @@
             data: {"send":""+value+""},
             success: function (data) {
 
-                      $('#DDLTestator').append(data);
+                if (data == 2) {
+                    var url = "/AddBeneficiary/AddBeneficiaryIndex/";
+                    window.location.href = url;
+                }
+
+               
                       
 
 

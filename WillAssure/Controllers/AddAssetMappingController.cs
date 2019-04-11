@@ -773,10 +773,10 @@ namespace WillAssure.Controllers
             string schemename = response.Split('~')[3];
             string instrument = response.Split('~')[4];
             string proportion = response.Split('~')[5];
-
+            int tid = Convert.ToInt32(response.Split('~')[6]);
 
             con.Open();
-            string query = "insert into BeneficiaryAssets (AssetType_ID , AssetCategory_ID ,  Beneficiary_ID , SchemeName , InstrumentName , Proportion , tid ) values   (" + assettype + " , " + assetcat + " , " + beneficiary + " , '" + schemename + "' , '" + instrument + "' , '" + proportion + "' , " + Convert.ToInt32(Session["tid"]) + ") ";
+            string query = "insert into BeneficiaryAssets (AssetType_ID , AssetCategory_ID ,  Beneficiary_ID , SchemeName , InstrumentName , Proportion , tid ) values   (" + assettype + " , " + assetcat + " , " + beneficiary + " , '" + schemename + "' , '" + instrument + "' , '" + proportion + "' , " + tid + ") ";
             SqlCommand cmd = new SqlCommand(query, con);
             cmd.ExecuteNonQuery();
             con.Close();
@@ -787,7 +787,7 @@ namespace WillAssure.Controllers
 
 
 
-        public ActionResult InsertMultipleAssetMappeddata(string data, string assettype, string assetcat)
+        public ActionResult InsertMultipleAssetMappeddata(string data, string assettype, string assetcat , string tid)
         {
 
             // roleassignment
@@ -837,7 +837,7 @@ namespace WillAssure.Controllers
                 {
                     con.Open();
                     result[i].ToString();
-                    string query = "insert into BeneficiaryAssets (AssetType_ID,AssetCategory_ID,Beneficiary_ID,SchemeName,InstrumentName,Proportion , tid) values (" + assettype+","+assetcat+","+ result[i].ToString() + "," + Convert.ToInt32(Session["tid"]) + ")";
+                    string query = "insert into BeneficiaryAssets (AssetType_ID,AssetCategory_ID,Beneficiary_ID,SchemeName,InstrumentName,Proportion , tid) values (" + assettype+","+assetcat+","+ result[i].ToString() + "," + Convert.ToInt32(tid) + ")";
                     SqlCommand cmd = new SqlCommand(query,con);
                     cmd.ExecuteNonQuery();
                     con.Close();
@@ -883,6 +883,119 @@ namespace WillAssure.Controllers
 
             }
             return data;
+        }
+
+
+
+
+
+        public string BindTestatorDDL()
+        {
+            con.Open();
+            string query = "select a.tId , a.First_Name from TestatorDetails a inner join users b on a.uId=b.uId where b.Linked_user  = " + Convert.ToInt32(Session["uuid"]) + " ";
+            SqlDataAdapter da = new SqlDataAdapter(query, con);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            con.Close();
+            string data = "<option value='' >--Select--</option>";
+
+
+
+
+            if (dt.Rows.Count > 0)
+            {
+
+
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+
+
+
+
+                    data = data + "<option value=" + dt.Rows[i]["tId"].ToString() + " >" + dt.Rows[i]["First_Name"].ToString() + "</option>";
+
+
+
+                }
+
+
+
+
+            }
+
+            return data;
+        }
+
+
+
+
+
+
+        public int CheckTestatorUsers()
+        {
+            int check = 0;
+            int Response = Convert.ToInt32(Request["send"]);
+
+            if (Request["send"] != "")
+            {
+                // check for data exists or not for testato family
+                con.Open();
+                string query1 = "select a.fId , a.First_Name , a.Last_Name , a.Middle_Name , a.DOB , a.Marital_Status , a.Religion , a.Relationship , a.Address1 , a.Address2 , a.Address3 , a.City , a.State , a.Pin , a.tId , a.active , a.Identity_Proof , a.Identity_Proof_Value , a.Alt_Identity_Proof , a.Alt_Identity_Proof_Value , a.Is_Informed_Person from testatorFamily a inner join TestatorDetails b on a.tId=b.tId inner join users c on b.uId = c.uId where c.Linked_user =  " + Convert.ToInt32(Session["uuid"]) + " ";
+                SqlDataAdapter da = new SqlDataAdapter(query1, con);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                //end
+
+                if (dt.Rows.Count > 0)
+                {
+                    string query2 = "Update PageActivity set ActID=1 , Tid=" + Response + " , PageStatus=2  ";
+                    SqlCommand cmd = new SqlCommand(query2, con);
+                    cmd.ExecuteNonQuery();
+                }
+                else
+                {
+                    string query2 = "Update PageActivity set ActID=1 , Tid=" + Response + " , PageStatus=1  ";
+                    SqlCommand cmd = new SqlCommand(query2, con);
+                    cmd.ExecuteNonQuery();
+                }
+
+
+
+
+                // if already exits page status 2 else 1
+
+                string query3 = "select * from PageActivity";
+                SqlDataAdapter da3 = new SqlDataAdapter(query3, con);
+                DataTable dt3 = new DataTable();
+                da3.Fill(dt3);
+
+                if (dt3.Rows.Count > 0)
+                {
+                    check = Convert.ToInt32(dt3.Rows[0]["PageStatus"]);
+
+
+
+
+                }
+
+
+                //end
+
+
+
+
+
+
+                con.Close();
+
+            }
+
+
+
+
+
+            return check;
+
         }
 
 

@@ -376,6 +376,76 @@ namespace WillAssure.Controllers
 
 
 
+        public int CheckTestatorUsers()
+        {
+            int check = 0;
+            int Response = Convert.ToInt32(Request["send"]);
+
+            if (Request["send"] != "")
+            {
+                // check for data exists or not for testato family
+                con.Open();
+                string query1 = "select a.bpId , a.First_Name , a.Last_Name , a.Middle_Name , a.DOB , a.Mobile , a.Relationship , a.Marital_Status , a.Religion , a.Identity_proof , a.Identity_proof_value , a.Alt_Identity_proof , a.Alt_Identity_proof_value , a.Address1 , a.Address2 , a.Address3 , a.City , a.State , a.Pin , a.aiid , a.tId , a.dateCreated , a.createdBy , a.documentId , a.beneficiary_type from BeneficiaryDetails a inner join TestatorDetails b on a.tId=b.tId inner join users c on b.uId = c.uId where c.Linked_user = " + Convert.ToInt32(Session["uuid"]) + "";
+                SqlDataAdapter da = new SqlDataAdapter(query1, con);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                //end
+
+                if (dt.Rows.Count > 0)
+                {
+                    string query2 = "Update PageActivity set ActID=1 , Tid=" + Response + " , PageStatus=2  ";
+                    SqlCommand cmd = new SqlCommand(query2, con);
+                    cmd.ExecuteNonQuery();
+                }
+                else
+                {
+                    string query2 = "Update PageActivity set ActID=1 , Tid=" + Response + " , PageStatus=1  ";
+                    SqlCommand cmd = new SqlCommand(query2, con);
+                    cmd.ExecuteNonQuery();
+                }
+
+
+
+
+                // if already exits page status 2 else 1
+
+                string query3 = "select * from PageActivity";
+                SqlDataAdapter da3 = new SqlDataAdapter(query3, con);
+                DataTable dt3 = new DataTable();
+                da3.Fill(dt3);
+
+                if (dt3.Rows.Count > 0)
+                {
+                    check = Convert.ToInt32(dt3.Rows[0]["PageStatus"]);
+
+
+
+
+                }
+
+
+                //end
+
+
+
+
+
+
+                con.Close();
+
+            }
+
+
+
+
+
+            return check;
+
+        }
+
+
+
+
 
     }
 }

@@ -155,5 +155,9 @@ namespace WillAssure.Models
         public int InstrumentId { get; set; }
         public int Instrumenttxt { get; set; }
 
+
+        public int ddltid { get; set; }
+        public string ddltestatorname { get; set; }
+
     }
 }

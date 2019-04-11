@@ -32,10 +32,23 @@
                     <div class="card-body">
 
                         <div class="card-title text-primary">Add Assets</div>
+                        <div class="row">
+                            <div class='col-sm-1'><label for='input-1' style="line-height:40px;">Testator</label></div>
+                            <div class="col-sm-3">
+                                <select id='DDLTestator' onchange="getDDLTestator(this.value)" name="contentList" class='form-control'></select>
+
+
+
+                            </div>
+                        </div>
                         <hr>
 
                         @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "mainassetinfo" }))
                         {
+
+                            @Html.HiddenFor(m => m.ddltid, new { id = "ddltid" , @name= "ddlTid" })
+                            @Html.HiddenFor(m => m.ddltestatorname, new { id = "ddltestatorname" })
+
 
                             <div class="row">
 
@@ -165,6 +178,24 @@
             success: function (data) {
                 $('#ddlasset').empty().append(data);
             }
+         });
+
+
+
+
+                  $.ajax({
+
+            type: "POST",
+            url:"@Url.Action("BindTestatorDDL", "AddTestatorFamily")",
+                  success: function (data) {
+
+                      $('#DDLTestator').append(data);
+                      
+
+
+
+                
+            }
         });
 
 
@@ -239,6 +270,52 @@
 
 
         });
+
     </script>
 
 }
+
+<script>
+     
+
+
+    function getDDLTestator(value) {
+      
+        var text = $("#DDLTestator option:selected").html();
+
+
+
+       
+
+        $("#ddltestatorname").val(text);
+        $("#ddltid").val(value);
+
+
+
+              $.ajax({
+
+            type: "POST",
+            url:"@Url.Action("CheckTestatorUsers", "AddMainAssets")",
+            data: {"send":""+value+""},
+            success: function (data) {
+               
+                if (data == 2) {
+                    var url = "/AddAssetMapping/AddAssetMappingIndex/";
+                    window.location.href = url;
+                }
+
+               
+                      
+
+
+
+                
+            }
+        });
+
+        
+
+
+    };
+
+</script>

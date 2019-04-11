@@ -29,10 +29,19 @@
                     <div class="card-body">
                         <div class="card-title text-primary">Asset Mapping</div>
                         <hr>
+                        <div class="row">
+                            <div class='col-sm-1'><label for='input-1' style="line-height:40px;">Testator</label></div>
+                            <div class="col-sm-3">
+                                <select id='DDLTestator' onchange="getDDLTestator(this.value)" name="contentList" class='form-control'></select>
 
+
+
+                            </div>
+                        </div>
 
                         <div class="row">
-
+                            @Html.HiddenFor(m => m.ddltid, new { id = "ddltid" })
+                            @Html.HiddenFor(m => m.ddltestatorname, new { id = "ddltestatorname" })
 
 
                             <div class='col-sm-6'>
@@ -104,18 +113,18 @@
                                     </div>
                                 </div>
                             </div>
-                                </div>
+                        </div>
 
-                                <textarea id="query" style="display:none;" class="form-control">
+                        <textarea id="query" style="display:none;" class="form-control">
                                
                            </textarea>
-                                <div class="form-group">
-                                    <button type="button" id="btnadd" style="display:none;" class="btn btn-danger shadow-primary px-5"><i class="icon-lock"></i>Add</button>
-                                    <button type="button" id="btnmappingsubmit" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i>Submit</button>
-                                    <button type="button" id="btnmainassetsuccess" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
+                        <div class="form-group">
+                            <button type="button" id="btnadd" style="display:none;" class="btn btn-danger shadow-primary px-5"><i class="icon-lock"></i>Add</button>
+                            <button type="button" id="btnmappingsubmit" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i>Submit</button>
+                            <button type="button" id="btnmainassetsuccess" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
 
-                                </div>
-                            </div>
+                        </div>
+                    </div>
                 </div>
 
             </div>
@@ -558,9 +567,10 @@
                 var schemename = $("#schemename1").val();
                 var instrument = $("#DDLAssetColumn1 option:selected").html();
                 var proportion = $("#txtproportion").val();
+                var tid = $("#ddltid").val();
+                
 
-
-                var data = assettype + "~" + assetcat + "~" + beneficiary + "~" + schemename + "~" + instrument + "~" + proportion;
+                var data = assettype + "~" + assetcat + "~" + beneficiary + "~" + schemename + "~" + instrument + "~" + proportion + "~" + tid;
             
                 $.ajax({
 
@@ -581,14 +591,14 @@
                 var assettype = $("#ddlassettype").val();
                 var assetcat = $("#ddlassetcat").val();
                 var schemename = $("#schemename1").val();
-
+                var tid = $("#ddltid").val();
                 var data = $("#query").val();
                
                 $.ajax({
 
                     type: "POST",
                     url: "../AddAssetMapping/InsertMultipleAssetMappeddata",
-                    data: { data: data, assettype: assettype, assetcat: assetcat },
+                    data: { data: data, assettype: assettype, assetcat: assetcat , tid: tid},
                     success: function (data) {
 
 
@@ -662,3 +672,79 @@
         </script>
 
     }
+
+
+
+    <script>
+
+
+        
+      $(document).ready(function () {
+
+
+
+
+
+              $.ajax({
+
+            type: "POST",
+            url:"@Url.Action("BindTestatorDDL", "AddAssetMapping")",
+                  success: function (data) {
+
+                      $('#DDLTestator').append(data);
+                      
+
+
+
+                
+            }
+        });
+
+
+    });
+
+
+
+        
+
+    function getDDLTestator(value) {
+      
+        var text = $("#DDLTestator option:selected").html();
+
+
+
+       
+
+        $("#ddltestatorname").val(text);
+        $("#ddltid").val(value);
+
+
+
+              $.ajax({
+
+            type: "POST",
+            url:"@Url.Action("CheckTestatorUsers", "AddAssetMapping")",
+            data: {"send":""+value+""},
+            success: function (data) {
+
+                if (data == 2) {
+                    var url = "/AddNominee/AddNomineeIndex/";
+                    window.location.href = url;
+                }
+
+               
+                      
+
+
+
+                
+            }
+        });
+
+        
+
+
+    };
+
+
+    </script>
