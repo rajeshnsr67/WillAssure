@@ -124,11 +124,17 @@
                                     <div class="form-group">
                                         <label for="input-1">State</label>
 
-                                        <select id="ddlstate" class="form-control validate[required]">
+                                        <select id="ddlstate" class="form-control validate[required]"  style="display:none;">
                                             <option value="">--Select State--</option>
                                         </select>
                                         @Html.HiddenFor(m => m.stateid, new { id = "stateid" })
-                                        @Html.HiddenFor(m => m.statetext, new { id = "statetext" })
+                                        @Html.TextBoxFor(m => m.statetext, new { id = "statetext", @class = "form-control" })
+                                        <script>
+                                            $("#statetext").focus(function () {
+                                                $("#statetext").hide();
+                                                $("#ddlstate").show();
+                                            });
+                                        </script>
                                     </div>
                                 </div>
 
@@ -137,12 +143,17 @@
 
                                     <div class="form-group">
                                         <label for="input-1">City</label>
-                                        <select id="ddlcity" class="form-control validate[required]">
+                                        <select id="ddlcity" class="form-control validate[required]"  style="display:none;">
                                             <option value="">--Select City--</option>
                                         </select>
                                         @Html.HiddenFor(m => m.cityid, new { id = "cityid" })
-                                        @Html.HiddenFor(m => m.citytext, new { id = "citytext" })
-
+                                        @Html.TextBoxFor(m => m.citytext, new { id = "citytext" , @class="form-control" } )
+                                        <script>
+                                            $("#citytext").focus(function () {
+                                                $("#citytext").hide();
+                                                $("#ddlcity").show();
+                                            });
+                                        </script>
                                     </div>
 
                                 </div>
@@ -176,12 +187,12 @@
 
 
 
-                                <div class="col-sm-6">
+                                @*<div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="input-3">Designation</label>
                                         @Html.TextBoxFor(m => m.Designation, new { @class = "form-control validate[required] text-input", @id = "txtDesignation", @placeholder = "Enter Designation", @autocomplete = "off" })
                                     </div>
-                                </div>
+                                </div>*@
 
 
                                 <div class="col-sm-6">
@@ -205,8 +216,8 @@
                                         <label for="input-3">Status</label>
                                         @Html.DropDownListFor(x => x.Active, new SelectListItem[]{
                                        new SelectListItem() {Text = "--Select--", Value=""},
-                                       new SelectListItem() {Text = "Active", Value="1"},
-                                       new SelectListItem() {Text = "Inactive", Value="2"}} , new { @class= "form-control validate[required]" })
+                                       new SelectListItem() {Text = "Active", Value="Active"},
+                                       new SelectListItem() {Text = "Inactive", Value="Inactive"}} , new { @class= "form-control validate[required]" })
                                     </div>
                                 </div>
 

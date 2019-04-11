@@ -9,6 +9,9 @@ using System.Data.SqlClient;
 using System.Configuration;
 using System.Data;
 using System.Globalization;
+using System.Net.Mail;
+using System.Net;
+
 namespace WillAssure.Controllers
 {
     public class AddWillEmployeeController : Controller
@@ -204,6 +207,37 @@ namespace WillAssure.Controllers
                 con.Close();
 
 
+
+
+                //generate Mail
+                string mailto = "";
+                string userid = "";
+
+                mailto = UFM.Email;
+                userid = UFM.UserId;
+                string subject = "Will Assure Login Credentials";
+
+                string text = "<font color='Green' style='font-size=3em;'>Your UserId And Password For Logging In Is <br> UserID : " + userid + " <br> Password : " + UFM.UserPassword + "</font>";
+                string body = "<font color='red'>" + text + "</font>";
+
+
+                MailMessage msg = new MailMessage();
+                msg.From = new MailAddress("info@drinco.in");
+                msg.To.Add(mailto);
+                msg.Subject = subject;
+                msg.Body = body;
+
+                msg.IsBodyHtml = true;
+                SmtpClient smtp = new SmtpClient("216.10.240.149", 25);
+                smtp.Credentials = new NetworkCredential("info@drinco.in", "95Bzf%s7");
+                smtp.EnableSsl = false;
+                smtp.Send(msg);
+                smtp.Dispose();
+
+
+                //end
+
+
                 //Linked Users Query
 
                 con.Open();
@@ -215,7 +249,7 @@ namespace WillAssure.Controllers
 
                 //end
 
-
+                ModelState.Clear();
 
 
                 ViewBag.Message = "Verified";

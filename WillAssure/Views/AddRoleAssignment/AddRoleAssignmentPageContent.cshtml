@@ -55,7 +55,7 @@
                                 <div class="col-sm-6">
                                     <input type="checkbox" id="checkAll">Check All
                                     <hr />
-                                    <table class="table">
+                                    <table class="table assigntbl">
 
                                         <tbody>
                                             <tr>
@@ -65,7 +65,7 @@
                                                 <td><label class="checkbox-inline"><input type="checkbox" id="RoleDelete">Delete</label></td>
                                             </tr>
                                             <tr>
-                                                <td style="font-weight:bolder"><input type="checkbox" id="RoleAssign">RoleAssign</td>
+                                                <td style="font-weight:bolder"><input type="checkbox" id="AssignRoles">RoleAssign</td>
                                                 <td><label class="checkbox-inline"><input type="checkbox" id="RoleAssignAdd">Add</label></td>
                                                 <td><label class="checkbox-inline"><input type="checkbox" id="RoleAssignEdit">Edit</label></td>
                                                 <td><label class="checkbox-inline"><input type="checkbox" id="RoleAssignDelete">Delete</label></td>
@@ -141,12 +141,12 @@
                                                 <td><label class="checkbox-inline"><input type="checkbox" id="BeneficiaryEdit">Edit</label></td>
                                                 <td><label class="checkbox-inline"><input type="checkbox" id="BeneficiaryDelete">Delete</label></td>
                                             </tr>
-                                            <tr>
+                                            @*<tr>
                                                 <td style="font-weight:bolder"><input type="checkbox" id="AlternateBeneficiary">Alternate Beneficiary</td>
                                                 <td><label class="checkbox-inline"><input type="checkbox" id="AlternateBeneficiaryAdd">Add</label></td>
                                                 <td><label class="checkbox-inline"><input type="checkbox" id="AlternateBeneficiaryEdit">Edit</label></td>
                                                 <td><label class="checkbox-inline"><input type="checkbox" id="AlternateBeneficiaryDelete">Delete</label></td>
-                                            </tr>
+                                            </tr>*@
 
                                             <tr>
                                                 <td style="font-weight:bolder"><input type="checkbox" id="Nominee">Nominee</td>
@@ -160,12 +160,12 @@
                                                 <td><label class="checkbox-inline"><input type="checkbox" id="AppointeesEdit">Edit</label></td>
                                                 <td><label class="checkbox-inline"><input type="checkbox" id="AppointeesDelete">Delete</label></td>
                                             </tr>
-                                            <tr>
+                                            @*<tr>
                                                 <td style="font-weight:bolder"><input type="checkbox" id="AlternateAppointees">Alternate Appointees</td>
                                                 <td><label class="checkbox-inline"><input type="checkbox" id="AlternateAppointeesAdd">Add</label></td>
                                                 <td><label class="checkbox-inline"><input type="checkbox" id="AlternateAppointeesEdit">Edit</label></td>
                                                 <td><label class="checkbox-inline"><input type="checkbox" id="AlternateAppointeesDelete">Delete</label></td>
-                                            </tr>
+                                            </tr>*@
 
 
                                             <tr>
@@ -220,7 +220,7 @@
 
                             <div class="form-group">
 
-                                <button type="submit" id="btnRoleAssignmentformsubmit" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i>Assign Roles</button>
+                                <button type="button" id="btnRoleAssignmentformsubmit" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i>Assign Roles</button>
                             </div>
 
                         }
@@ -317,7 +317,7 @@
 
         $("#ddlroletxt").val(text);
         $("#ddlroleid").val(value);
-
+     
 
           $.ajax({
 
@@ -325,12 +325,27 @@
             url:"@Url.Action("CheckRoleId", "AddRoleAssignment")",
               data: {"send":""+value+""},
               success: function (data) {
-                  if (data == "0") {
-                      $("#pagedata").css("display", "none");
-                      $("#btnassignpagecheck").on("click", function () { });
 
-                      $("#btnassignpagecheck").click(); //trigger event after listening to it.
+                  
+                  //if (data == "") {
+                  //    $('input:checkbox').prop('checked', false);
+
+                  //}
+
+                  for (var i = 0; i < data.length; i++) {
+
+                      //$("input[id=""]").not(this).prop('checked', this.checked);
+                      
+                      $("#"+data[i].PageName+"").prop("checked", true);
                   }
+
+                  
+                  //if (data == "0") {
+                      //$("#pagedata").css("display", "none");
+                      //$("#btnassignpagecheck").on("click", function () { });
+
+                      //$("#btnassignpagecheck").click(); //trigger event after listening to it.
+                  //}
             }
         });
 
@@ -977,7 +992,7 @@
 
 
         // for roleassignment
-        if ($("#RoleAssign").is(':checked')) {
+        if ($("#AssignRoles").is(':checked')) {
             status16 = status16 + "Active";
         }
         else {
@@ -1230,6 +1245,7 @@
             status23 = status23 + "Active";
         }
         else {
+            
             status23 = status23 + "Inactive";
         }
 
@@ -1280,7 +1296,7 @@
                   $("#btnRoleAssignmentCHECK").click(); //trigger event after listening to it.
 
                   $("#pagedata").css("display", "block");
-
+                  location.reload();
                 
             }
         });
@@ -1289,6 +1305,169 @@
 
 
     });
+
+
+
+
+
+
+
+    $("#Roles").click(function () {
+        $("input[id='RoleAdd']").not(this).prop('checked', this.checked);
+        $("input[id='RoleEdit']").not(this).prop('checked', this.checked);
+        $("input[id='RoleDelete']").not(this).prop('checked', this.checked);
+    });
+
+
+    $("#AssignRoles").click(function () {
+        $("input[id='RoleAssignAdd']").not(this).prop('checked', this.checked);
+        $("input[id='RoleAssignEdit']").not(this).prop('checked', this.checked);
+        $("input[id='RoleAssignDelete']").not(this).prop('checked', this.checked);
+    });
+
+
+
+    $("#Distributor").click(function () {
+        $("input[id='DistributorAdd']").not(this).prop('checked', this.checked);
+        $("input[id='DistributorEdit']").not(this).prop('checked', this.checked);
+        $("input[id='DistributorDelete']").not(this).prop('checked', this.checked);
+    });
+
+
+
+    $("#WillEmployee").click(function () {
+        $("input[id='WillEmployeeAdd']").not(this).prop('checked', this.checked);
+        $("input[id='WillEmployeeEdit']").not(this).prop('checked', this.checked);
+        $("input[id='WillEmployeeDelete']").not(this).prop('checked', this.checked);
+    });
+
+
+
+    $("#DistributorEmployee").click(function () {
+        $("input[id='DistributorEmployeeAdd']").not(this).prop('checked', this.checked);
+        $("input[id='DistributorEmployeeEdit']").not(this).prop('checked', this.checked);
+        $("input[id='DistributorEmployeeDelete']").not(this).prop('checked', this.checked);
+    });
+
+
+
+    $("#Testators").click(function () {
+        $("input[id='TestatorsAdd']").not(this).prop('checked', this.checked);
+        $("input[id='TestatorsEdit']").not(this).prop('checked', this.checked);
+        $("input[id='TestatorsDelete']").not(this).prop('checked', this.checked);
+    });
+
+
+
+    $("#TestatorsFamily").click(function () {
+        $("input[id='TestatorsFamilyAdd']").not(this).prop('checked', this.checked);
+        $("input[id='TestatorsFamilyEdit']").not(this).prop('checked', this.checked);
+        $("input[id='TestatorsFamilyDelete']").not(this).prop('checked', this.checked);
+    });
+
+
+
+    $("#AssetType").click(function () {
+        $("input[id='AssetTypeAdd']").not(this).prop('checked', this.checked);
+        $("input[id='AssetTypeEdit']").not(this).prop('checked', this.checked);
+        $("input[id='AssetTypeDelete']").not(this).prop('checked', this.checked);
+    });
+
+
+
+    $("#AssetCategory").click(function () {
+        $("input[id='AssetCategoryAdd']").not(this).prop('checked', this.checked);
+        $("input[id='AssetCategoryEdit']").not(this).prop('checked', this.checked);
+        $("input[id='AssetCategoryDelete']").not(this).prop('checked', this.checked);
+    });
+
+
+    $("#AssetControlsMapping").click(function () {
+        $("input[id='AssetControlsMappingAdd']").not(this).prop('checked', this.checked);
+        $("input[id='AssetControlsMappingEdit']").not(this).prop('checked', this.checked);
+        $("input[id='AssetControlsMappingDelete']").not(this).prop('checked', this.checked);
+    });
+
+
+
+    $("#AssetInformation").click(function () {
+        $("input[id='AssetInformationAdd']").not(this).prop('checked', this.checked);
+        $("input[id='AssetInformationEdit']").not(this).prop('checked', this.checked);
+        $("input[id='AssetInformationDelete']").not(this).prop('checked', this.checked);
+    });
+
+
+
+    $("#Relation").click(function () {
+        $("input[id='RelationAdd']").not(this).prop('checked', this.checked);
+        $("input[id='RelationEdit']").not(this).prop('checked', this.checked);
+        $("input[id='RelationDelete']").not(this).prop('checked', this.checked);
+    });
+
+
+
+    $("#Beneficiary").click(function () {
+        $("input[id='BeneficiaryAdd']").not(this).prop('checked', this.checked);
+        $("input[id='BeneficiaryEdit']").not(this).prop('checked', this.checked);
+        $("input[id='BeneficiaryDelete']").not(this).prop('checked', this.checked);
+    });
+
+
+
+    $("#Nominee").click(function () {
+        $("input[id='NomineeAdd']").not(this).prop('checked', this.checked);
+        $("input[id='NomineeEdit']").not(this).prop('checked', this.checked);
+        $("input[id='NomineeDelete']").not(this).prop('checked', this.checked);
+    });
+
+
+
+    $("#Appointees").click(function () {
+        $("input[id='AppointeesAdd']").not(this).prop('checked', this.checked);
+        $("input[id='AppointeesEdit']").not(this).prop('checked', this.checked);
+        $("input[id='AppointeesDelete']").not(this).prop('checked', this.checked);
+    });
+
+
+
+    $("#CreateCoupons").click(function () {
+        $("input[id='CreateCouponsAdd']").not(this).prop('checked', this.checked);
+        $("input[id='CreateCouponsEdit']").not(this).prop('checked', this.checked);
+        $("input[id='CreateCouponsDelete']").not(this).prop('checked', this.checked);
+    });
+
+
+
+    $("#Mapping").click(function () {
+        $("input[id='MappingAdd']").not(this).prop('checked', this.checked);
+        $("input[id='MappingEdit']").not(this).prop('checked', this.checked);
+        $("input[id='MappingDelete']").not(this).prop('checked', this.checked);
+    });
+
+
+
+    $("#Document").click(function () {
+        $("input[id='DocumentAdd']").not(this).prop('checked', this.checked);
+        $("input[id='DocumentEdit']").not(this).prop('checked', this.checked);
+        $("input[id='DocumentDelete']").not(this).prop('checked', this.checked);
+    });
+
+
+
+    $("#Payment").click(function () {
+        $("input[id='PaymentAdd']").not(this).prop('checked', this.checked);
+        $("input[id='PaymentEdit']").not(this).prop('checked', this.checked);
+        $("input[id='PaymentDelete']").not(this).prop('checked', this.checked);
+    });
+
+
+    $("#CouponAllotment").click(function () {
+        $("input[id='CouponAllotmentAdd']").not(this).prop('checked', this.checked);
+        $("input[id='CouponAllotmentEdit']").not(this).prop('checked', this.checked);
+        $("input[id='CouponAllotmentDelete']").not(this).prop('checked', this.checked);
+    });
+
+
 
 </script>
 

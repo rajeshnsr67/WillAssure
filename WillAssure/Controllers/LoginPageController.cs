@@ -64,7 +64,7 @@ namespace WillAssure.Controllers
             List<LoginModel> Lmlist = new List<LoginModel>();
 
             con.Open();
-            string query = "select * from users where userID = '"+LM.UserID+"' and userPwd = '"+LM.Password+"' and active = 1";
+            string query = "select * from users where userID = '"+LM.UserID+"' and userPwd = '"+LM.Password+ "' and active = 'Active'";
             SqlDataAdapter da = new SqlDataAdapter(query,con);
             DataTable dt = new DataTable();
             da.Fill(dt);
@@ -126,7 +126,7 @@ namespace WillAssure.Controllers
             
 
                 ViewBag.Message = "SUCCESS";
-                return View("~/Views/Home/Index.cshtml");
+                return View("~/Views/DashBoard/DashBoardPageContent.cshtml");
             }
             else
             {

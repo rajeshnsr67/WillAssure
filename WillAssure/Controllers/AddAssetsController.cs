@@ -432,6 +432,7 @@ namespace WillAssure.Controllers
 
 
                         con.Close();
+                        ModelState.Clear();
                         ViewBag.Message = "Verified";
 
                     }

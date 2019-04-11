@@ -274,8 +274,8 @@ namespace WillAssure.Controllers
             }
 
 
-
-                ViewBag.Message = "RecordsInsert";
+            ModelState.Clear();
+            ViewBag.Message = "RecordsInsert";
 
 
 
@@ -290,7 +290,7 @@ namespace WillAssure.Controllers
 
 
 
-            ModelState.Clear();
+            
             return View("~/Views/AddBeneficiary/AddBeneficiaryPageContent.cshtml");
         }
 

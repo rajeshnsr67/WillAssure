@@ -287,7 +287,7 @@ namespace WillAssure.Controllers
             cmd.Parameters.AddWithValue("@Pin", AM.Pin);
             cmd.ExecuteNonQuery();
             con.Close();
-
+      
             return View("~/Views/UpdateAlternateAppointees/UpdateAlternateAppointeesPageContent.cshtml");
         }
     }

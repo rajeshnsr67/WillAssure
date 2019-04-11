@@ -118,7 +118,7 @@ namespace WillAssure.Controllers
 
 
             con.Open();
-            string query = "select a.uId , a.First_Name , a.Last_Name , a.Middle_Name , a.DOB , a.Mobile , a.eMail , a.Address1 , a.Address2 , a.Address3 , a.City , a.State , a.Pin , a.userID , a.userPwd , a.Linked_user , a.Designation , b.Role , a.dateCreated , a.active , a.compId from users a inner join Roles b on a.rId=b.rId where a.Linked_user = " + Convert.ToInt32(Session["uuid"]) + " and a.Type = 'WillEmployee'    and a.active = 1 ";
+            string query = "select a.uId , a.First_Name , a.Last_Name , a.Middle_Name , a.DOB , a.Mobile , a.eMail , a.Address1 , a.Address2 , a.Address3 , a.City , a.State , a.Pin , a.userID , a.userPwd , a.Linked_user , a.Designation , b.Role , a.dateCreated , a.active , a.compId from users a inner join Roles b on a.rId=b.rId where a.Linked_user = " + Convert.ToInt32(Session["uuid"]) + " and a.Type = 'WillEmployee'    and a.active = 'Active' ";
             SqlDataAdapter da = new SqlDataAdapter(query, con);
             DataTable dt = new DataTable();
             da.Fill(dt);
@@ -135,11 +135,11 @@ namespace WillAssure.Controllers
                     {
                         for (int i = 0; i < dt.Rows.Count; i++)
                         {
-                            int Status = Convert.ToInt32(dt.Rows[i]["active"]);
+                            string Status= dt.Rows[i]["active"].ToString();
 
 
 
-                            if (Status == 1)
+                            if (Status == "Active")
                             {
                                 a = "Active";
                             }
@@ -181,11 +181,11 @@ namespace WillAssure.Controllers
                     {
                         for (int i = 0; i < dt.Rows.Count; i++)
                         {
-                            int Status = Convert.ToInt32(dt.Rows[i]["active"]);
+                            string Status= dt.Rows[i]["active"].ToString();
 
 
 
-                            if (Status == 1)
+                            if (Status == "Active")
                             {
                                 a = "Active";
                             }
@@ -227,11 +227,11 @@ namespace WillAssure.Controllers
                     {
                         for (int i = 0; i < dt.Rows.Count; i++)
                         {
-                            int Status = Convert.ToInt32(dt.Rows[i]["active"]);
+                            string Status= dt.Rows[i]["active"].ToString();
 
 
 
-                            if (Status == 1)
+                            if (Status == "Active")
                             {
                                 a = "Active";
                             }
@@ -274,11 +274,11 @@ namespace WillAssure.Controllers
                     {
                         for (int i = 0; i < dt.Rows.Count; i++)
                         {
-                            int Status = Convert.ToInt32(dt.Rows[i]["active"]);
+                            string Status= dt.Rows[i]["active"].ToString();
 
 
 
-                            if (Status == 1)
+                            if (Status == "Active")
                             {
                                 a = "Active";
                             }
@@ -334,11 +334,11 @@ namespace WillAssure.Controllers
                     {
                         for (int i = 0; i < dt.Rows.Count; i++)
                         {
-                            int Status = Convert.ToInt32(dt.Rows[i]["active"]);
+                            string Status= dt.Rows[i]["active"].ToString();
 
 
 
-                            if (Status == 1)
+                            if (Status == "Active")
                             {
                                 a = "Active";
                             }
@@ -380,11 +380,11 @@ namespace WillAssure.Controllers
                     {
                         for (int i = 0; i < dt.Rows.Count; i++)
                         {
-                            int Status = Convert.ToInt32(dt.Rows[i]["active"]);
+                            string Status= dt.Rows[i]["active"].ToString();
 
 
 
-                            if (Status == 1)
+                            if (Status == "Active")
                             {
                                 a = "Active";
                             }
@@ -426,11 +426,11 @@ namespace WillAssure.Controllers
                     {
                         for (int i = 0; i < dt.Rows.Count; i++)
                         {
-                            int Status = Convert.ToInt32(dt.Rows[i]["active"]);
+                            string Status= dt.Rows[i]["active"].ToString();
 
 
 
-                            if (Status == 1)
+                            if (Status == "Active")
                             {
                                 a = "Active";
                             }
@@ -473,11 +473,11 @@ namespace WillAssure.Controllers
                     {
                         for (int i = 0; i < dt.Rows.Count; i++)
                         {
-                            int Status = Convert.ToInt32(dt.Rows[i]["active"]);
+                            string Status= dt.Rows[i]["active"].ToString();
 
 
 
-                            if (Status == 1)
+                            if (Status == "Active")
                             {
                                 a = "Active";
                             }
@@ -534,11 +534,11 @@ namespace WillAssure.Controllers
                     {
                         for (int i = 0; i < dt.Rows.Count; i++)
                         {
-                            int Status = Convert.ToInt32(dt.Rows[i]["active"]);
+                            string Status= dt.Rows[i]["active"].ToString();
 
 
 
-                            if (Status == 1)
+                            if (Status == "Active")
                             {
                                 a = "Active";
                             }
@@ -580,11 +580,11 @@ namespace WillAssure.Controllers
                     {
                         for (int i = 0; i < dt.Rows.Count; i++)
                         {
-                            int Status = Convert.ToInt32(dt.Rows[i]["active"]);
+                            string Status= dt.Rows[i]["active"].ToString();
 
 
 
-                            if (Status == 1)
+                            if (Status == "Active")
                             {
                                 a = "Active";
                             }
@@ -626,11 +626,11 @@ namespace WillAssure.Controllers
                     {
                         for (int i = 0; i < dt.Rows.Count; i++)
                         {
-                            int Status = Convert.ToInt32(dt.Rows[i]["active"]);
+                            string Status= dt.Rows[i]["active"].ToString();
 
 
 
-                            if (Status == 1)
+                            if (Status == "Active")
                             {
                                 a = "Active";
                             }
@@ -673,11 +673,11 @@ namespace WillAssure.Controllers
                     {
                         for (int i = 0; i < dt.Rows.Count; i++)
                         {
-                            int Status = Convert.ToInt32(dt.Rows[i]["active"]);
+                            string Status= dt.Rows[i]["active"].ToString();
 
 
 
-                            if (Status == 1)
+                            if (Status == "Active")
                             {
                                 a = "Active";
                             }
@@ -825,7 +825,7 @@ namespace WillAssure.Controllers
 
 
             con.Open();
-            string query = "select a.uId , a.First_Name , a.Last_Name , a.Middle_Name , a.DOB , a.Mobile , a.eMail , a.Address1 , a.Address2 , a.Address3 , a.City , a.State , a.Pin , a.userID , a.userPwd , a.Linked_user , a.Designation , b.Role , a.dateCreated , a.active , a.compId from users a inner join Roles b on a.rId=b.rId where a.Linked_user = " + Convert.ToInt32(Session["uuid"]) + " and a.Type = 'WillEmployee'    and a.active = 1 ";
+            string query = "select a.uId , a.First_Name , a.Last_Name , a.Middle_Name , a.DOB , a.Mobile , a.eMail , a.Address1 , a.Address2 , a.Address3 , a.City , a.State , a.Pin , a.userID , a.userPwd , a.Linked_user , a.Designation , b.Role , a.dateCreated , a.active , a.compId from users a inner join Roles b on a.rId=b.rId where a.Linked_user = " + Convert.ToInt32(Session["uuid"]) + " and a.Type = 'WillEmployee'    and a.active = 'Active' ";
             SqlDataAdapter da = new SqlDataAdapter(query, con);
             DataTable dt = new DataTable();
             da.Fill(dt);
@@ -842,11 +842,11 @@ namespace WillAssure.Controllers
                     {
                         for (int i = 0; i < dt.Rows.Count; i++)
                         {
-                            int Status = Convert.ToInt32(dt.Rows[i]["active"]);
+                            string Status= dt.Rows[i]["active"].ToString();
 
 
 
-                            if (Status == 1)
+                            if (Status == "Active")
                             {
                                 a = "Active";
                             }
@@ -888,11 +888,11 @@ namespace WillAssure.Controllers
                     {
                         for (int i = 0; i < dt.Rows.Count; i++)
                         {
-                            int Status = Convert.ToInt32(dt.Rows[i]["active"]);
+                            string Status= dt.Rows[i]["active"].ToString();
 
 
 
-                            if (Status == 1)
+                            if (Status == "Active")
                             {
                                 a = "Active";
                             }
@@ -934,11 +934,11 @@ namespace WillAssure.Controllers
                     {
                         for (int i = 0; i < dt.Rows.Count; i++)
                         {
-                            int Status = Convert.ToInt32(dt.Rows[i]["active"]);
+                            string Status= dt.Rows[i]["active"].ToString();
 
 
 
-                            if (Status == 1)
+                            if (Status == "Active")
                             {
                                 a = "Active";
                             }
@@ -981,11 +981,11 @@ namespace WillAssure.Controllers
                     {
                         for (int i = 0; i < dt.Rows.Count; i++)
                         {
-                            int Status = Convert.ToInt32(dt.Rows[i]["active"]);
+                            string Status= dt.Rows[i]["active"].ToString();
 
 
 
-                            if (Status == 1)
+                            if (Status == "Active")
                             {
                                 a = "Active";
                             }
@@ -1041,11 +1041,11 @@ namespace WillAssure.Controllers
                     {
                         for (int i = 0; i < dt.Rows.Count; i++)
                         {
-                            int Status = Convert.ToInt32(dt.Rows[i]["active"]);
+                            string Status= dt.Rows[i]["active"].ToString();
 
 
 
-                            if (Status == 1)
+                            if (Status == "Active")
                             {
                                 a = "Active";
                             }
@@ -1087,11 +1087,11 @@ namespace WillAssure.Controllers
                     {
                         for (int i = 0; i < dt.Rows.Count; i++)
                         {
-                            int Status = Convert.ToInt32(dt.Rows[i]["active"]);
+                            string Status= dt.Rows[i]["active"].ToString();
 
 
 
-                            if (Status == 1)
+                            if (Status == "Active")
                             {
                                 a = "Active";
                             }
@@ -1133,11 +1133,11 @@ namespace WillAssure.Controllers
                     {
                         for (int i = 0; i < dt.Rows.Count; i++)
                         {
-                            int Status = Convert.ToInt32(dt.Rows[i]["active"]);
+                            string Status= dt.Rows[i]["active"].ToString();
 
 
 
-                            if (Status == 1)
+                            if (Status == "Active")
                             {
                                 a = "Active";
                             }
@@ -1180,11 +1180,11 @@ namespace WillAssure.Controllers
                     {
                         for (int i = 0; i < dt.Rows.Count; i++)
                         {
-                            int Status = Convert.ToInt32(dt.Rows[i]["active"]);
+                            string Status= dt.Rows[i]["active"].ToString();
 
 
 
-                            if (Status == 1)
+                            if (Status == "Active")
                             {
                                 a = "Active";
                             }
@@ -1241,11 +1241,11 @@ namespace WillAssure.Controllers
                     {
                         for (int i = 0; i < dt.Rows.Count; i++)
                         {
-                            int Status = Convert.ToInt32(dt.Rows[i]["active"]);
+                            string Status= dt.Rows[i]["active"].ToString();
 
 
 
-                            if (Status == 1)
+                            if (Status == "Active")
                             {
                                 a = "Active";
                             }
@@ -1287,11 +1287,11 @@ namespace WillAssure.Controllers
                     {
                         for (int i = 0; i < dt.Rows.Count; i++)
                         {
-                            int Status = Convert.ToInt32(dt.Rows[i]["active"]);
+                            string Status= dt.Rows[i]["active"].ToString();
 
 
 
-                            if (Status == 1)
+                            if (Status == "Active")
                             {
                                 a = "Active";
                             }
@@ -1333,11 +1333,11 @@ namespace WillAssure.Controllers
                     {
                         for (int i = 0; i < dt.Rows.Count; i++)
                         {
-                            int Status = Convert.ToInt32(dt.Rows[i]["active"]);
+                            string Status= dt.Rows[i]["active"].ToString();
 
 
 
-                            if (Status == 1)
+                            if (Status == "Active")
                             {
                                 a = "Active";
                             }
@@ -1380,11 +1380,11 @@ namespace WillAssure.Controllers
                     {
                         for (int i = 0; i < dt.Rows.Count; i++)
                         {
-                            int Status = Convert.ToInt32(dt.Rows[i]["active"]);
+                            string Status= dt.Rows[i]["active"].ToString();
 
 
 
-                            if (Status == 1)
+                            if (Status == "Active")
                             {
                                 a = "Active";
                             }

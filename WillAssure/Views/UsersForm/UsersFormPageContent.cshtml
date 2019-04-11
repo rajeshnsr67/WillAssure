@@ -195,12 +195,12 @@
 
 
 
-                                <div class="col-sm-6">
+                                @*<div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="input-3">Designation</label>
                                         @Html.TextBoxFor(m => m.Designation, new { @class = "form-control validate[required] text-input", @id = "txtDesignation", @placeholder = "Enter Designation", @autocomplete = "off" })
                                     </div>
-                                </div>
+                                </div>*@
 
 
 
@@ -249,8 +249,8 @@
                                         <label for="input-3">Status</label>
                                         @Html.DropDownListFor(x => x.Active, new SelectListItem[]{
                                        new SelectListItem() {Text = "--Select--", Value=""},
-                                       new SelectListItem() {Text = "Active", Value="1"},
-                                       new SelectListItem() {Text = "Inactive", Value="2"}} , new { @class= "form-control validate[required]" })
+                                       new SelectListItem() {Text = "Active", Value="Active"},
+                                       new SelectListItem() {Text = "Inactive", Value="Inactive"}} , new { @class= "form-control validate[required]" })
                                     </div>
                                 </div>
 

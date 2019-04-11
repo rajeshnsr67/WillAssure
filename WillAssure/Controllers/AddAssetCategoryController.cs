@@ -142,7 +142,7 @@ namespace WillAssure.Controllers
 
 
                 con.Close();
-
+                ModelState.Clear();
                 ViewBag.Message = "Verified";
 
             }
@@ -156,7 +156,7 @@ namespace WillAssure.Controllers
 
 
 
-            ModelState.Clear();
+           
 
             return View("~/Views/AddAssetCategory/AddAssetCategoryPageContent.cshtml");
         }

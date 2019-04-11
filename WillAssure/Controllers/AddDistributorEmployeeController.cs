@@ -9,7 +9,8 @@ using System.Data.SqlClient;
 using System.Configuration;
 using System.Data;
 using System.Globalization;
-
+using System.Net.Mail;
+using System.Net;
 
 namespace WillAssure.Controllers
 {
@@ -151,17 +152,17 @@ namespace WillAssure.Controllers
                 cmd.Parameters.AddWithValue("@Designation", UFM.Designation);
                 cmd.Parameters.AddWithValue("@Active", UFM.Active);
 
-                UFM.rid = 0;
-                if (Convert.ToInt32(Session["rId"]) == 1 || Convert.ToInt32(Session["rId"]) == 2)
-                {
-                    UFM.rid = 2;
+                //UFM.rid = 0;
+                //if (Convert.ToInt32(Session["rId"]) == 1 || Convert.ToInt32(Session["rId"]) == 2)
+                //{
+                //    UFM.rid = 2;
                     cmd.Parameters.AddWithValue("@rid", UFM.rid);
-                }
-                else
-                {
+                //}
+                //else
+                //{
 
-                    cmd.Parameters.AddWithValue("@rid", UFM.rid);
-                }
+                //    cmd.Parameters.AddWithValue("@rid", UFM.rid);
+                //}
 
 
                 UFM.CompId = 0;
@@ -175,6 +176,12 @@ namespace WillAssure.Controllers
 
                 cmd.Parameters.AddWithValue("@Linked_user", UFM.rid);
                 cmd.ExecuteNonQuery();
+
+
+
+
+
+
 
 
                 string query = "SELEct * from users where compId = '" + UFM.CompId + "'";
@@ -209,6 +216,43 @@ namespace WillAssure.Controllers
                 SqlCommand cm = new SqlCommand(query3,con);
                 cm.ExecuteNonQuery();
                 con.Close();
+
+
+
+
+
+
+                //generate Mail
+                string mailto = "";
+                string userid = "";
+
+                mailto = UFM.Email;
+                userid = UFM.UserId;
+                string subject = "Will Assure Login Credentials";
+
+                string text = "<font color='Green' style='font-size=3em;'>Your UserId And Password For Logging In Is <br> UserID : " + userid + " <br> Password : " + UFM.UserPassword + "</font>";
+                string body = "<font color='red'>" + text + "</font>";
+
+
+                MailMessage msg = new MailMessage();
+                msg.From = new MailAddress("info@drinco.in");
+                msg.To.Add(mailto);
+                msg.Subject = subject;
+                msg.Body = body;
+
+                msg.IsBodyHtml = true;
+                SmtpClient smtp = new SmtpClient("216.10.240.149", 25);
+                smtp.Credentials = new NetworkCredential("info@drinco.in", "95Bzf%s7");
+                smtp.EnableSsl = false;
+                smtp.Send(msg);
+                smtp.Dispose();
+
+
+                //end
+
+
+
+
 
 
                 //Linked Users Query

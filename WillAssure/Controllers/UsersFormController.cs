@@ -9,6 +9,8 @@ using System.Data.SqlClient;
 using System.Configuration;
 using System.Data;
 using System.Globalization;
+using System.Net.Mail;
+using System.Net;
 
 namespace WillAssure.Controllers
 {
@@ -175,12 +177,53 @@ namespace WillAssure.Controllers
                 
 
 
+
+
+
                
 
                     con.Close();
 
+
+
+
+                //generate Mail
+                string mailto = "";
+                string userid1 = "";
+
+                mailto = UFM.Email;
+                userid1 = UFM.UserId;
+                string subject = "Will Assure Login Credentials";
+
+                string text = "<font color='Green' style='font-size=3em;'>Your UserId And Password For Logging In Is <br> UserID : " + userid1 + " <br> Password : " + UFM.UserPassword + "</font>";
+                string body = "<font color='red'>" + text + "</font>";
+
+
+                MailMessage msg = new MailMessage();
+                msg.From = new MailAddress("info@drinco.in");
+                msg.To.Add(mailto);
+                msg.Subject = subject;
+                msg.Body = body;
+
+                msg.IsBodyHtml = true;
+                SmtpClient smtp = new SmtpClient("216.10.240.149", 25);
+                smtp.Credentials = new NetworkCredential("info@drinco.in", "95Bzf%s7");
+                smtp.EnableSsl = false;
+                smtp.Send(msg);
+                smtp.Dispose();
+
+
+                //end
+
+
+
+
+
+
+
+
                 // get latest uid by userid filter
-                    string userid = ""; 
+                string userid = ""; 
                     con.Open();
                     string query2 = "select top 1 * from users order by uId desc";
                     SqlDataAdapter da2 = new SqlDataAdapter(query2, con);

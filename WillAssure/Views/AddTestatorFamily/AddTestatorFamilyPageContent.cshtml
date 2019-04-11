@@ -225,7 +225,7 @@
                                         <label for="input-3">Status</label>
                                         @Html.DropDownListFor(x => x.active, new SelectListItem[]{
                                        new SelectListItem() {Text = "--Select--", Value=""},
-                                       new SelectListItem() {Text = "Active", Value="1"},
+                                       new SelectListItem() {Text = "Active", Value="Active"},
                                        new SelectListItem() {Text = "Inactive", Value="2"}}, new { @class = "form-control validate[required]" })
                                     </div>
                                 </div>
@@ -588,7 +588,25 @@
         $("#ddltestatorname").val(text);
         $("#ddltid").val(value);
 
-        alert(value);
+
+
+              $.ajax({
+
+            type: "POST",
+            url:"@Url.Action("CheckTestatorUsers", "AddTestatorFamily")",
+            data: {"send":""+value+""},
+            success: function (data) {
+
+                      $('#DDLTestator').append(data);
+                      
+
+
+
+                
+            }
+        });
+
+        
 
 
     };

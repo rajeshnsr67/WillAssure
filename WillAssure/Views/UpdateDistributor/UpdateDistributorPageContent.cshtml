@@ -79,11 +79,18 @@
                                     <div class="form-group">
                                         <label for="input-1">State</label>
 
-                                        <select id="ddlstate" class="form-control validate[required]">
+                                        <select id="ddlstate" class="form-control validate[required]" style="display:none">
                                             <option value="">--Select State--</option>
                                         </select>
                                         @Html.HiddenFor(m => m.stateid, new { id = "stateid" })
-                                        @Html.HiddenFor(m => m.statetext, new { id = "statetext" })
+                                        @Html.HiddenFor(m => m.statetext, new { id = "statetext", @class = "form-control" })
+
+                                        <script>
+                                            $("#statetext").focus(function () {
+                                                $("#statetext").hide();
+                                                $("#ddlstate").show();
+                                            });
+                                        </script>
                                     </div>
                                 </div>
 
@@ -92,12 +99,17 @@
 
                                     <div class="form-group">
                                         <label for="input-1">City</label>
-                                        <select id="ddlcity" class="form-control validate[required]">
+                                        <select id="ddlcity" class="form-control validate[required]" style="display:none">
                                             <option value="">--Select City--</option>
                                         </select>
                                         @Html.HiddenFor(m => m.cityid, new { id = "cityid" })
-                                        @Html.HiddenFor(m => m.citytext, new { id = "citytext" })
-
+                                        @Html.HiddenFor(m => m.citytext, new { id = "citytext" ,@class="form-control" })
+                                        <script>
+                                            $("#citytext").focus(function () {
+                                                $("#citytext").hide();
+                                                $("#ddlcity").show();
+                                            });
+                                        </script>
                                     </div>
 
                                 </div>

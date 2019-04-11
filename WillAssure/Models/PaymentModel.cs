@@ -23,5 +23,9 @@ namespace WillAssure.Models
 
         public string status { get; set; }
 
+
+
+        public string PageName { get; set; }
+
     }
 }
