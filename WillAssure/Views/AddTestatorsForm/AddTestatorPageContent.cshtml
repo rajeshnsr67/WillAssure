@@ -351,7 +351,14 @@
 
 
 
+                                <div class="col-sm-6">
 
+                                    <div class="form-group">
+                                        <label for="input-1">Enter Coupon Number</label>
+
+                                        @Html.TextBoxFor(m => m.txtCoupon, new { @class = "form-control validate[custom[integer]] text-input", @id = "txtcoupon", @placeholder = "Enter Coupon Number", @autocomplete = "off" })
+                                    </div>
+                                </div>
 
 
 
@@ -467,7 +474,7 @@
         </div>
         <button type="button" style="display:none;" id="ADDTestatorFormData" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
         <button type="button" style="display:none;" id="testatorlinkcheck" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
-
+        <button type="button" style="display:none;" id="btncouponcheck" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
 
     </div>
 
@@ -502,6 +509,23 @@
             $("#testatorlinkcheck").on("click", function () { });
 
             $("#testatorlinkcheck").click(); //trigger event after listening to it.
+
+        });
+    </script>
+
+}
+
+
+
+
+@if (ViewBag.Message == "checkCoupon")
+{
+    <script>
+
+        $(document).ready(function () {
+            $("#btncouponcheck").on("click", function () { });
+
+            $("#btncouponcheck").click(); //trigger event after listening to it.
 
         });
     </script>
@@ -713,7 +737,7 @@
         $("#Document_Created_By_txt").val(text);
         $("#Document_Created_By_ID").val(value);
 
-      
+
 
 
     });
@@ -727,7 +751,7 @@
         $("#documenttype").val(text);
         $("#documenttype").val(value);
 
- 
+
 
 
     });
@@ -759,7 +783,7 @@
 
         $("#Amt_Paid_By_txt").val(text);
         $("#Amt_Paid_By_ID").val(value);
-     
+
 
 
     });
@@ -904,7 +928,7 @@
 
         $("#distributor_txt").val(text);
         $("#distributor_id").val(value);
-    
+
 
     });
 

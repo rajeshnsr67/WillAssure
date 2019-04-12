@@ -38,6 +38,11 @@
 
 
                             </div>
+                            <div class="col-sm-2">
+                                <label class="checkbox-inline">
+                                    <input type="checkbox"  class="radio1" name="radio">Add Multiple
+                                </label>
+                            </div>
                         </div>
 
                         <hr />
@@ -54,7 +59,7 @@
 
                                     <div class="form-group">
                                         <label for="input-1">First Name</label>
-
+                                        <input type="hidden" id="txtcheck" value="" name="name" />
                                         @Html.TextBoxFor(m => m.First_Name, new { @class = "form-control validate[required] text-input", @id = "txtFirst_Name", @placeholder = "Enter First Name", @autocomplete = "off" })
                                     </div>
                                 </div>
@@ -285,10 +290,10 @@
                                         <label for="input-1">Add Alternate Beneficiary</label>
                                         <br />
                                         <label class="checkbox-inline">
-                                            <input type="checkbox" value="Yes" class="radio" name="radio">Yes
+                                            <input type="checkbox" value="Yes" class="radio" name="radio1">Yes
                                         </label>
                                         <label class="checkbox-inline">
-                                            <input type="checkbox" value="No" class="radio" name="radio">No
+                                            <input type="checkbox" value="No" class="radio" name="radio1">No
                                         </label>
 
 
@@ -876,12 +881,12 @@
 
         $("#ddltestatorname").val(text);
         $("#ddltid").val(value);
-
+        var checkstatus = $("#txtcheck").val();
              $.ajax({
 
             type: "POST",
             url:"@Url.Action("CheckTestatorUsers", "AddBeneficiary")",
-            data: {"send":""+value+""},
+                 data: { value: value, checkstatus: checkstatus },
             success: function (data) {
 
                 if (data == 2) {
@@ -914,7 +919,7 @@
     $('.radio').on('change', function () {
 
         $('.radio').not(this).prop('checked', false);
-        var val = $("input[name=radio]:checked").val()
+        var val = $("input[name=radio1]:checked").val()
 
         if (val == "Yes") {
 
@@ -1147,6 +1152,19 @@
 
         });
     });
+
+
+
+    $('.radio1').on('change', function () {
+        if (!$(this).is(':checked')) {
+            $('.radio1').prop('checked', false);
+            $("#txtcheck").val("false");
+
+        } else {
+            $('.radio1').prop('checked', true);
+            $("#txtcheck").val("true");
+        }
+    }); 
 </script>
 
 @*end*@

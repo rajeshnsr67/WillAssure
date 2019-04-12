@@ -28,10 +28,10 @@ namespace WillAssure.Controllers
                 return RedirectToAction("LoginPageIndex", "LoginPage");
 
             }
-            if (Session["aiid"] == null && Session["tid"] == null)
-            {
-                ViewBag.Message = "link";
-            }
+            //if (Session["aiid"] == null && Session["tid"] == null)
+            //{
+            //    ViewBag.Message = "link";
+            //}
             List<LoginModel> Lmlist = new List<LoginModel>();
             con.Open();
             string q = "select * from Assignment_Roles where RoleId = " + Convert.ToInt32(Session["rId"]) + "";
@@ -108,8 +108,8 @@ namespace WillAssure.Controllers
 
 
 
-            if (Session["aiid"] != null && Session["tid"] != null)
-            {
+            //if (Session["aiid"] != null && Session["tid"] != null)
+            //{
                 NM.aid = Convert.ToInt32(Session["aiid"]);
                 NM.tId = Convert.ToInt32(Session["tid"]);
                 con.Open();
@@ -136,7 +136,7 @@ namespace WillAssure.Controllers
                 cmd.Parameters.AddWithValue("@State", NM.statetext);
                 cmd.Parameters.AddWithValue("@Pin", NM.Pin);
                 cmd.Parameters.AddWithValue("@aid", NM.aid);
-                cmd.Parameters.AddWithValue("@tId", NM.tId);
+                cmd.Parameters.AddWithValue("@tId", NM.ddltid);
                 cmd.Parameters.AddWithValue("@createdBy", Convert.ToInt32(Session["uuid"]));
                 cmd.Parameters.AddWithValue("@documentId", NM.documentId);
                 cmd.Parameters.AddWithValue("@Description_of_Assets", NM.Description_of_Assets);
@@ -144,14 +144,14 @@ namespace WillAssure.Controllers
                 con.Close();
                 ModelState.Clear();
                 ViewBag.Message = "Verified";
-            }
-            else
-            {
+            //}
+            //else
+            //{
 
 
-                ViewBag.Message = "link";
+            //    ViewBag.Message = "link";
 
-            }
+            //}
 
 
 
@@ -279,12 +279,12 @@ namespace WillAssure.Controllers
         public string BindTestatorDDL()
         {
             con.Open();
-            string query = "select tId , First_Name from TestatorDetails where tId = " + Convert.ToInt32(Session["tId"]) + "  ";
+            string query = "select a.tId , a.First_Name from TestatorDetails a inner join users b on a.uId=b.uId where b.Linked_user  = " + Convert.ToInt32(Session["uuid"]) + " ";
             SqlDataAdapter da = new SqlDataAdapter(query, con);
             DataTable dt = new DataTable();
             da.Fill(dt);
             con.Close();
-            string data = "";
+            string data = "<option value='' >--Select--</option>";
 
 
 
@@ -299,7 +299,7 @@ namespace WillAssure.Controllers
 
 
 
-                    data = dt.Rows[i]["First_Name"].ToString();
+                    data = data + "<option value=" + dt.Rows[i]["tId"].ToString() + " >" + dt.Rows[i]["First_Name"].ToString() + "</option>";
 
 
 
@@ -311,6 +311,88 @@ namespace WillAssure.Controllers
             }
 
             return data;
+        }
+
+
+
+
+
+
+
+
+
+
+        public int CheckTestatorUsers(string value, string checkstatus)
+        {
+            int check = 0;
+            if (checkstatus != "true")
+            {
+
+                int Response = Convert.ToInt32(Request["send"]);
+
+                if (Request["send"] != "")
+                {
+                    // check for data exists or not for testato family
+                    con.Open();
+                    string query1 = "select * from Nominee where tId =  " + Convert.ToInt32(Session["uuid"]) + " ";
+                    SqlDataAdapter da = new SqlDataAdapter(query1, con);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    //end
+
+                    if (dt.Rows.Count > 0)
+                    {
+                        string query2 = "Update PageActivity set ActID=1 , Tid=" + Response + " , PageStatus=2  ";
+                        SqlCommand cmd = new SqlCommand(query2, con);
+                        cmd.ExecuteNonQuery();
+                    }
+                    else
+                    {
+                        string query2 = "Update PageActivity set ActID=1 , Tid=" + Response + " , PageStatus=1  ";
+                        SqlCommand cmd = new SqlCommand(query2, con);
+                        cmd.ExecuteNonQuery();
+                    }
+
+
+
+
+                    // if already exits page status 2 else 1
+
+                    string query3 = "select * from PageActivity";
+                    SqlDataAdapter da3 = new SqlDataAdapter(query3, con);
+                    DataTable dt3 = new DataTable();
+                    da3.Fill(dt3);
+
+                    if (dt3.Rows.Count > 0)
+                    {
+                        check = Convert.ToInt32(dt3.Rows[0]["PageStatus"]);
+
+
+
+
+                    }
+
+
+                    //end
+
+
+
+
+
+
+                    con.Close();
+
+                }
+
+
+
+
+
+                return check;
+            }
+
+            return check;
+
         }
 
 

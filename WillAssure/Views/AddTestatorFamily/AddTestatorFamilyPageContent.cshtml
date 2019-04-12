@@ -39,6 +39,15 @@
 
 
 
+
+
+
+
+                            </div>
+                            <div class="col-sm-2">
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" value="Yes" class="radio" name="radio">Add Multiple
+                                </label>
                             </div>
                         </div>
                         <hr>
@@ -46,7 +55,8 @@
                         @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "FamilyForm" }))
                         {
 
-
+                        <input type="hidden" id="txtcheck" value=""  name="name"  />
+                            
                             @Html.HiddenFor(m => m.ddltid, new { id = "ddltid" })
                             @Html.HiddenFor(m => m.ddltestatorname, new { id = "ddltestatorname" })
 
@@ -434,7 +444,10 @@
 
                 
             }
-        });
+          });
+
+
+         
 
 
     });
@@ -575,34 +588,47 @@
 
 
 
+    $('.radio').on('change', function () {
+        if (!$(this).is(':checked')) {
+            $('.radio').prop('checked', false);
+            $("#txtcheck").val("false");
+           
+        } else {
+            $('.radio').prop('checked', true);
+            $("#txtcheck").val("true");
+        }
+    }); 
 
 
-    function getDDLTestator(value) {
-      
+  
+
+
+
+      function getDDLTestator(value) {
+        //var value = $(this).children(":selected").attr("value");
         var text = $("#DDLTestator option:selected").html();
 
 
 
-       
+
 
         $("#ddltestatorname").val(text);
         $("#ddltid").val(value);
+        var checkstatus =  $("#txtcheck").val();
 
-
-
-              $.ajax({
+             $.ajax({
 
             type: "POST",
             url:"@Url.Action("CheckTestatorUsers", "AddTestatorFamily")",
-            data: {"send":""+value+""},
+                 data: { value: value, checkstatus: checkstatus },
             success: function (data) {
-
+              
                 if (data == 2) {
                     var url = "/AddBeneficiary/AddBeneficiaryIndex/";
                     window.location.href = url;
                 }
 
-               
+              
                       
 
 
@@ -611,10 +637,13 @@
             }
         });
 
-        
+
+
 
 
     };
+
+   
 
 
 

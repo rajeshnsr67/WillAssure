@@ -109,6 +109,24 @@ namespace WillAssure.Controllers
 
             //end
 
+
+
+
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             //generate MOBILE OTP
             TFM.MobileOTP = String.Empty;
             string[] saAllowedCharacters = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "0" };
@@ -159,7 +177,7 @@ namespace WillAssure.Controllers
 
 
 
-                TFM.uId = Convert.ToInt32(Session["filterUid"]);
+                //TFM.uId = Convert.ToInt32(Session["filterUid"]);
                 DateTime dat = DateTime.ParseExact(TFM.Dob, "dd-MM-yyyy", CultureInfo.InvariantCulture);
                 con.Open();
                 SqlCommand cmd = new SqlCommand("SP_CRUDTestatorDetails", con);
@@ -196,7 +214,8 @@ namespace WillAssure.Controllers
                 cmd.Parameters.AddWithValue("@uid", TFM.distributor_id);
                 cmd.ExecuteNonQuery();
                 con.Close();
-
+                ModelState.Clear();
+                ViewBag.Message = "Verified";
                 int testatorid = 0;
                 int templateid = 0;
                 string testatortype = "";
@@ -436,11 +455,53 @@ namespace WillAssure.Controllers
 
 
 
-            ModelState.Clear();
+
+            // get latest inserted tid
+            string tidquery = "select top 1 * from TestatorDetails order by tId desc";
+            SqlDataAdapter tiadp = new SqlDataAdapter(tidquery, con);
+            DataTable tidt = new DataTable();
+            tiadp.Fill(tidt);
+            int tid = 0;
+            if (tidt.Rows.Count > 0)
+            {
+                tid = Convert.ToInt32(tidt.Rows[0]["tId"]);
+            }
+            else
+            {
+                tid = 0;
+            }
+            //end
+
+
+
+            // coupon status
+
+            con.Open();
+            string checkcoupon = "select * from couponAllotment where Coupon_Number = " + TFM.txtCoupon + " and  Status = 'Active' ";
+            SqlDataAdapter da = new SqlDataAdapter(checkcoupon, con);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            if (dt.Rows.Count > 0)
+            {
+              
+                string upcoupon = "update couponAllotment set Status = 'Inactive' ,    Tid=" + tid+" ";
+                SqlCommand cmd2 = new SqlCommand(upcoupon, con);
+                cmd2.ExecuteNonQuery();
+            
+            }
+            else
+            {
+                ViewBag.Message = "checkCoupon";
+            }
+            con.Close();
+
+            //end
+
+
 
             string v1 = Eramake.eCryptography.Encrypt(TFM.EmailOTP);
 
-                ViewBag.Message = "Verified";
+                
 
                 return RedirectToAction("EmailVerificationIndex", "EmailVerification", new { v2 = v1 });
             //}

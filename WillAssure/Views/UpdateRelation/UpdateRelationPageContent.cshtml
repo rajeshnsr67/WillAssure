@@ -39,7 +39,7 @@
                                         <label for="input-1">Member Name</label>
                                         @{ string v = " data-errormessage-value-missing  = 'Email is required!' "; }
                                         @Html.HiddenFor(m => m.Rid)
-                                        @Html.TextBoxFor(m => m.MemberName, new { @class = "form-control validate[required] text-input", @id = "txtRole", @placeholder = "Enter Role", @autocomplete = "off", @v = v })
+                                        @Html.TextBoxFor(m => m.MemberName, new { @class = "form-control validate[required,custom[characteronly]] text-input", @id = "txtRole", @placeholder = "Enter Role", @autocomplete = "off", @v = v })
 
                                     </div>
                                 </div>

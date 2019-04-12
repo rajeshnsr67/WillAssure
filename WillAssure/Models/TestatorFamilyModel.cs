@@ -49,5 +49,9 @@ namespace WillAssure.Models
         public string ddltestatorname { get; set; }
 
 
+
+        public string chek { get; set; }
+
+
     };
 };

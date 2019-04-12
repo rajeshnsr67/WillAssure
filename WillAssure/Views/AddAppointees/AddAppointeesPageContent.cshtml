@@ -30,13 +30,18 @@
                     <div class="card-body">
                         <div class="card-title text-primary">Add Appointees</div>
                         <div class="row">
-
+                            <div class='col-sm-1'><label for='input-1' style="line-height:40px;">Testator</label></div>
                             <div class="col-sm-3">
                                 <select id='DDLTestator' onchange="getDDLTestator(this.value)" name="contentList" class='form-control'></select>
 
 
 
+
+
+
+
                             </div>
+                       
                         </div>
 
                         <hr>
@@ -47,6 +52,10 @@
 
                                     <div class="form-group">
                                         <label for="input-1">Type</label>
+                                        <input type="hidden" id="txtcheck" value="" name="name" />
+
+                                        @Html.HiddenFor(m => m.ddltid, new { id = "ddltid" })
+                                        @Html.HiddenFor(m => m.ddltestatorname, new { id = "ddltestatorname" })
                                         @Html.HiddenFor(m => m.check, new { @id = "txtcheck" })
                                         @Html.HiddenFor(m => m.ddltid, new { @id = "ddltid" })
                                         @Html.HiddenFor(m => m.ddltestatorname, new { id = "ddltestatorname" })
@@ -1047,8 +1056,11 @@
             success: function (data) {
                 $('#altddlrelation').empty().append(data);
             }
-        });
+          });
 
+
+
+              
 
     });
 
@@ -1164,7 +1176,13 @@
 
         });
     });
+
+
+
 </script>
+
+
+
 
 
 @*end*@

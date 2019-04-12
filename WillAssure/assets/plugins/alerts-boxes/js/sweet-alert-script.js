@@ -48,7 +48,9 @@
      });
 
 
-     
+     $("#btncouponcheck").click(function () {
+         swal("Failed", "Invalid Coupon Number", "error");
+     });
   
 
      //end

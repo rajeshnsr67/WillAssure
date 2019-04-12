@@ -40,15 +40,21 @@
 
 
                             </div>
+                            <div class="col-sm-2">
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" value="Yes" class="radio" name="radio">Add Multiple
+                                </label>
+                            </div>
                         </div>
                         <hr>
 
                         @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "mainassetinfo" }))
                         {
 
-                            @Html.HiddenFor(m => m.ddltid, new { id = "ddltid" , @name= "ddlTid" })
+                            @Html.HiddenFor(m => m.ddltid, new { id = "ddltid", @name = "ddlTid" })
                             @Html.HiddenFor(m => m.ddltestatorname, new { id = "ddltestatorname" })
 
+                           <input type="hidden" id="txtcheck" value="" name="name" />
 
                             <div class="row">
 
@@ -289,14 +295,14 @@
 
         $("#ddltestatorname").val(text);
         $("#ddltid").val(value);
-
+        var checkstatus = $("#txtcheck").val();
 
 
               $.ajax({
 
             type: "POST",
             url:"@Url.Action("CheckTestatorUsers", "AddMainAssets")",
-            data: {"send":""+value+""},
+                  data: { value: value, checkstatus: checkstatus },
             success: function (data) {
                
                 if (data == 2) {
@@ -317,5 +323,18 @@
 
 
     };
+
+
+
+    $('.radio').on('change', function () {
+        if (!$(this).is(':checked')) {
+            $('.radio').prop('checked', false);
+            $("#txtcheck").val("false");
+
+        } else {
+            $('.radio').prop('checked', true);
+            $("#txtcheck").val("true");
+        }
+    }); 
 
 </script>

@@ -309,7 +309,7 @@
 
                         ArrayList act = new ArrayList(Action.Split(','));
 
-                        if (item.PageStatus == "Active" || nav1[0].ToString() == "Add Users")
+                        if (item.PageStatus == "Active")
                         {
                             <li>
 
@@ -318,7 +318,7 @@
                                     <i class="fa fa-angle-left pull-right"></i>
                                 </a>
 
-                                @if (act[0].ToString() == "1" || nav1[0].ToString() == "Add Users")
+                                @if (act[0].ToString() == "1")
                                 {
 
                                     string pagename = @nav1[0].ToString();

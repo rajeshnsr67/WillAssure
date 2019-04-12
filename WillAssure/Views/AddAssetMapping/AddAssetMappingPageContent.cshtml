@@ -28,21 +28,32 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="card-title text-primary">Asset Mapping</div>
-                        <hr>
                         <div class="row">
+
                             <div class='col-sm-1'><label for='input-1' style="line-height:40px;">Testator</label></div>
                             <div class="col-sm-3">
-                                <select id='DDLTestator' onchange="getDDLTestator(this.value)" name="contentList" class='form-control'></select>
-
-
-
+                                <select id='DDLTestator' name="contentList" onchange="getDDLTestator(this.value)" class='form-control'></select>
+                                @Html.HiddenFor(m => m.ddltid, new { id = "ddltid" })
+                                @Html.HiddenFor(m => m.ddltestatorname, new { id = "ddltestatorname" })
                             </div>
+                            <div class="col-sm-2">
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" value="Yes" class="checkbox1" name="checkbox1">Add Multiple
+                                </label>
+                            </div>
+
                         </div>
+                        <hr>
+
 
                         <div class="row">
-                            @Html.HiddenFor(m => m.ddltid, new { id = "ddltid" })
-                            @Html.HiddenFor(m => m.ddltestatorname, new { id = "ddltestatorname" })
 
+
+
+
+
+
+                            <input type="hidden" id="txtcheck" value="" name="name" />
 
                             <div class='col-sm-6'>
                                 <div class='form-group'>
@@ -182,6 +193,17 @@
             });
 
 
+
+            $.ajax({
+
+                type: "POST",
+                url: "../AddAssetMapping/BindTestatorDDL",
+                success: function (data) {
+                    $("#DDLTestator").append(data);
+                }
+            });
+
+
             $.ajax({
                 type: "POST",
                 url: "../AddAssetMapping/ddlassetname",
@@ -191,6 +213,8 @@
                 }
             });
 
+
+       
 
 
 
@@ -678,55 +702,29 @@
     <script>
 
 
-        
-      $(document).ready(function () {
 
 
 
-
-
-              $.ajax({
-
-            type: "POST",
-            url:"@Url.Action("BindTestatorDDL", "AddAssetMapping")",
-                  success: function (data) {
-
-                      $('#DDLTestator').append(data);
-                      
-
-
-
-                
-            }
-        });
-
-
-    });
-
-
-
-        
-
-    function getDDLTestator(value) {
+function getDDLTestator(value) {
       
         var text = $("#DDLTestator option:selected").html();
 
 
-
+    
        
 
         $("#ddltestatorname").val(text);
         $("#ddltid").val(value);
-
+        var checkstatus = $("#txtcheck").val();
 
 
               $.ajax({
 
             type: "POST",
             url:"@Url.Action("CheckTestatorUsers", "AddAssetMapping")",
-            data: {"send":""+value+""},
+            data: { value: value, checkstatus: checkstatus },
             success: function (data) {
-
+             
                 if (data == 2) {
                     var url = "/AddNominee/AddNomineeIndex/";
                     window.location.href = url;
@@ -745,6 +743,19 @@
 
 
     };
+        
+
+
+        $('.checkbox1').on('change', function () {
+            if (!$(this).is(':checked')) {
+                $('.checkbox1').prop('checked', false);
+                $("#txtcheck").val("false");
+
+            } else {
+                $('.checkbox1').prop('checked', true);
+                $("#txtcheck").val("true");
+            }
+        }); 
 
 
     </script>

@@ -115,6 +115,8 @@ namespace WillAssure.Models
 
         public string distributor_txt { get; set; }
 
+        public string txtCoupon { get; set; }
+
     }
 
 

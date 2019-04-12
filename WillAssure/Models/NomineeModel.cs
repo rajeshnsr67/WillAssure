@@ -41,5 +41,9 @@ namespace WillAssure.Models
       public string Description_of_Assets { get; set;}
 
 
+        public int ddltid { get; set; }
+        public string ddltestatorname { get; set; }
+
+
     }
 }
