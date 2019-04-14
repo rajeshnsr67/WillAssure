@@ -20,9 +20,14 @@ namespace WillAssure.Controllers
         // GET: AddAlternateAppointees
         public ActionResult AddAlternateAppointeesIndex()
         {
-            if (Session.SessionID == null) {
+            if ()
+            {
+                RedirectToAction("LoginPageIndex", "LoginPage");
+            }
 
-                return RedirectToAction("LoginPageIndex", "LoginPage");
+            if (Session["rId"] == null || Session["uuid"] == null) {
+
+               RedirectToAction("LoginPageIndex", "LoginPage");
 
             }
 
@@ -33,7 +38,8 @@ namespace WillAssure.Controllers
             }
 
 
-          
+         
+
 
 
             List<LoginModel> Lmlist = new List<LoginModel>();
@@ -234,13 +240,14 @@ namespace WillAssure.Controllers
             int getAlternateExecutors = 0;
 
 
-            if (Session["apId"] != null)
-            {
+            //if (Session["apId"] != null)
+            //{
                 getAlternateExecutors = 1;
                 getAlternateGaurdian = 1;
 
-                string apid = Session["apId"].ToString();
-                con.Open();
+            //string apid = Session["apId"].ToString();
+            string apid = "";
+            con.Open();
                 SqlCommand cmd = new SqlCommand("SP_CRUDAlternateAppointees", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@condition", "insert");
@@ -264,7 +271,7 @@ namespace WillAssure.Controllers
                 cmd.Parameters.AddWithValue("@City", AM.citytext);
                 cmd.Parameters.AddWithValue("@State", AM.statetext);
                 cmd.Parameters.AddWithValue("@Pin", AM.Pin);
-                cmd.Parameters.AddWithValue("@tid",  Convert.ToInt32(Session["tid"]));
+                cmd.Parameters.AddWithValue("@tid",  "");
                 cmd.ExecuteNonQuery();
                 con.Close();
                 ViewBag.Message = "Verified";

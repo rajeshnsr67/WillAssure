@@ -16,10 +16,10 @@ namespace WillAssure.Controllers
         // GET: UpdateRoles
         public ActionResult UpdateRolesIndex(int NestId)
         {
-            if (Session.SessionID == null)
+            if (Session["rId"] == null || Session["uuid"] == null)
             {
 
-                return RedirectToAction("LoginPageIndex", "LoginPage");
+               RedirectToAction("LoginPageIndex", "LoginPage");
 
             }
             List<LoginModel> Lmlist = new List<LoginModel>();

@@ -24,12 +24,19 @@ namespace WillAssure.Controllers
         // GET: AddAssetMapping
         public ActionResult AddAssetMappingIndex()
         {
-            if (Session.SessionID == null)
+            if (Session["rId"] == null || Session["uuid"] == null)
             {
 
-                return RedirectToAction("LoginPageIndex", "LoginPage");
+               RedirectToAction("LoginPageIndex", "LoginPage");
 
             }
+
+
+
+
+         
+
+
             List<LoginModel> Lmlist = new List<LoginModel>();
             con.Open();
             string q = "select * from Assignment_Roles where RoleId = " + Convert.ToInt32(Session["rId"]) + "";
@@ -102,7 +109,7 @@ namespace WillAssure.Controllers
             DataTable dt = new DataTable();
             da.Fill(dt);
             con.Close();
-            string data = "<option value='0'>--Select--</option>";
+            string data = "<option value=''>--Select--</option>";
 
             if (dt.Rows.Count > 0)
             {
@@ -131,7 +138,7 @@ namespace WillAssure.Controllers
         public string bindassetcatDDL()
         {
             int response = Convert.ToInt32(Request["send"]);
-            string ddlassetcat = "<option value='0'>--Select--</option>";
+            string ddlassetcat = "<option value=''>--Select--</option>";
             con.Open();
             string query3 = "select * from AssetsCategory where atId = " + response + " ";
             SqlDataAdapter da3 = new SqlDataAdapter(query3, con);
@@ -765,7 +772,7 @@ namespace WillAssure.Controllers
 
             //end
 
-
+            string tid = "";
             string response = Request["send"];
             string assettype = response.Split('~')[0];
             string assetcat = response.Split('~')[1];
@@ -773,10 +780,10 @@ namespace WillAssure.Controllers
             string schemename = response.Split('~')[3];
             string instrument = response.Split('~')[4];
             string proportion = response.Split('~')[5];
-            int tid = Convert.ToInt32(response.Split('~')[6]);
+             tid = Convert.ToString(response.Split('~')[6]);
 
             con.Open();
-            string query = "insert into BeneficiaryAssets (AssetType_ID , AssetCategory_ID ,  Beneficiary_ID , SchemeName , InstrumentName , Proportion , tid ) values   (" + assettype + " , " + assetcat + " , " + beneficiary + " , '" + schemename + "' , '" + instrument + "' , '" + proportion + "' , " + tid + ") ";
+            string query = "insert into BeneficiaryAssets (AssetType_ID , AssetCategory_ID ,  Beneficiary_ID , SchemeName , InstrumentName , Proportion , tid ) values   (" + assettype + " , " + assetcat + " , " + beneficiary + " , '" + schemename + "' , '" + instrument + "' , '" + proportion + "' , " + Convert.ToInt32(tid) + ") ";
             SqlCommand cmd = new SqlCommand(query, con);
             cmd.ExecuteNonQuery();
             con.Close();
@@ -946,7 +953,7 @@ namespace WillAssure.Controllers
                     if (value != "")
                     {
                         con.Open();
-                        string query1 = "select * from BeneficiaryAssets where tid = " + value + " ";
+                        string query1 = "select a.Beneficiary_Asset_ID , a.AssetType_ID , a.AssetCategory_ID , a.SchemeName , a.InstrumentName , a.Beneficiary_ID , a.Proportion , a.tid from BeneficiaryAssets a inner join TestatorDetails b on a.tid=b.tId where b.tId = " + value +"" ;
                         SqlDataAdapter da = new SqlDataAdapter(query1, con);
                         DataTable dt = new DataTable();
                         da.Fill(dt);

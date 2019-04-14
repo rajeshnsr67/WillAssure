@@ -21,10 +21,10 @@ namespace WillAssure.Controllers
         // GET: UpdateTestators
         public ActionResult UpdateTestatorsIndex(int NestId)
         {
-            if (Session.SessionID == null)
+            if (Session["rId"] == null || Session["uuid"] == null)
             {
 
-                return RedirectToAction("LoginPageIndex", "LoginPage");
+               RedirectToAction("LoginPageIndex", "LoginPage");
 
             }
             List<LoginModel> Lmlist = new List<LoginModel>();
@@ -74,12 +74,13 @@ namespace WillAssure.Controllers
                        TFM.First_Name = dt.Rows[0]["First_Name"].ToString();
                        TFM.Last_Name =  dt.Rows[0]["Last_Name"].ToString();
                        TFM.Middle_Name = dt.Rows[0]["Middle_Name"].ToString();
-                       TFM.Dob = dt.Rows[0]["DOB"].ToString();
+                       TFM.Dob = Convert.ToDateTime(dt.Rows[0]["DOB"]).ToString("dd-MM-yyyy");
                        TFM.Occupation = dt.Rows[0]["Occupation"].ToString();
                        TFM.Mobile = dt.Rows[0]["Mobile"].ToString();
                        TFM.Email = dt.Rows[0]["Email"].ToString();
-                       TFM.Gendertext = dt.Rows[0]["maritalStatus"].ToString();
+                       TFM.material_status_txt = dt.Rows[0]["maritalStatus"].ToString();
                        TFM.Religiontext = dt.Rows[0]["Religion"].ToString();
+                       TFM.RelationshipTxt = dt.Rows[0]["RelationShip"].ToString();
                        TFM.Identity_Proof = dt.Rows[0]["Identity_Proof"].ToString();
                        TFM.Identity_proof_Value = dt.Rows[0]["Identity_proof_Value"].ToString();
                        TFM.Alt_Identity_Proof = dt.Rows[0]["Alt_Identity_Proof"].ToString();
@@ -143,40 +144,48 @@ namespace WillAssure.Controllers
 
             //end
             con.Open();
-            //SqlCommand cmd = new SqlCommand("SP_CRUDTestatorDetails", con);
-            //cmd.CommandType = System.Data.CommandType.StoredProcedure;
-            //cmd.Parameters.AddWithValue("@condition", "update");
-            //cmd.Parameters.AddWithValue("@tId", TFM.tId);
-            //cmd.Parameters.AddWithValue("@First_Name", TFM.First_Name);
-            //cmd.Parameters.AddWithValue("@Last_Name", TFM.Last_Name);
-            //cmd.Parameters.AddWithValue("@Middle_Name", TFM.Middle_Name);
-            //cmd.Parameters.AddWithValue("@DOB", TFM.DOB);
-            //cmd.Parameters.AddWithValue("@Occupation", TFM.Occupation);
-            //cmd.Parameters.AddWithValue("@Mobile", TFM.Mobile);
-            //cmd.Parameters.AddWithValue("@Email", TFM.Email);
-            //cmd.Parameters.AddWithValue("@maritalStatus", TFM.Gendertext);
-            //cmd.Parameters.AddWithValue("@Religion", TFM.Religiontext);
-            //cmd.Parameters.AddWithValue("@Identity_Proof", TFM.Identity_Proof);
-            //cmd.Parameters.AddWithValue("@Identity_proof_Value", TFM.Identity_proof_Value);
-            //cmd.Parameters.AddWithValue("@Alt_Identity_Proof", TFM.Alt_Identity_Proof);
-            //cmd.Parameters.AddWithValue("@Alt_Identity_proof_Value", TFM.Alt_Identity_proof_Value);
-            //cmd.Parameters.AddWithValue("@Gender", TFM.Gendertext);
-            //cmd.Parameters.AddWithValue("@Address1", TFM.Address1);
-            //cmd.Parameters.AddWithValue("@Address2", TFM.Address2);
-            //cmd.Parameters.AddWithValue("@Address3", TFM.Address3);
-            //cmd.Parameters.AddWithValue("@City", TFM.cityid);
-            //cmd.Parameters.AddWithValue("@State", TFM.stateid);
-            //cmd.Parameters.AddWithValue("@Country", TFM.countryid);
-            //cmd.Parameters.AddWithValue("@Pin", TFM.Pin);
-            //cmd.Parameters.AddWithValue("@active", TFM.active);
 
-
-            //cmd.ExecuteNonQuery();
             DateTime dat = DateTime.ParseExact(TFM.Dob, "dd-MM-yyyy", CultureInfo.InvariantCulture);
-            var sqlFormattedDate = dat;
-            string query = "update TestatorDetails set First_Name = '"+TFM.First_Name+"' , Last_Name='"+TFM.Last_Name+"' ,Middle_Name= '"+TFM.Middle_Name+"' , DOB = '"+ sqlFormattedDate + "' ,Occupation='"+TFM.Occupation+"' ,Mobile='"+TFM.Mobile+"' ,Email = '"+TFM.Email+"' ,maritalStatus='"+TFM.material_status +"' , Religion='"+TFM.Religiontext+ "' ,  Relationship = '"+TFM.RelationshipTxt + "'   ,Identity_Proof='" + TFM.Identity_Proof+"' ,Identity_proof_Value='"+TFM.Identity_proof_Value+"',Alt_Identity_Proof='"+TFM.Alt_Identity_Proof+"',Alt_Identity_proof_Value='"+TFM.Alt_Identity_proof_Value+"',Gender='"+TFM.Gendertext+"',Address1='"+TFM.Address1+"',Address2='"+TFM.Address2+"',Address3='"+TFM.Address3+"',Country='"+TFM.countrytext+"',State='"+TFM.statetext+"',City='"+TFM.citytext+"',Pin='"+TFM.Pin+"',active='"+TFM.active+ "'  where  tId = " + TFM.tId+"";
-            SqlCommand cmd = new SqlCommand(query,con);
+          
+            SqlCommand cmd = new SqlCommand("SP_CRUDTestatorDetails", con);
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@condition", "update");
+            cmd.Parameters.AddWithValue("@tId", TFM.tId);
+            cmd.Parameters.AddWithValue("@First_Name", TFM.First_Name);
+            cmd.Parameters.AddWithValue("@Last_Name", TFM.Last_Name);
+            cmd.Parameters.AddWithValue("@Middle_Name", TFM.Middle_Name);
+            cmd.Parameters.AddWithValue("@DOB", dat);
+            cmd.Parameters.AddWithValue("@Occupation", TFM.Occupation);
+            cmd.Parameters.AddWithValue("@Mobile", TFM.Mobile);
+            cmd.Parameters.AddWithValue("@Email", TFM.Email);
+            cmd.Parameters.AddWithValue("@maritalStatus", TFM.material_status_txt);
+            cmd.Parameters.AddWithValue("@Religion", TFM.Religiontext);
+            cmd.Parameters.AddWithValue("@Relationship", TFM.RelationshipTxt);
+            cmd.Parameters.AddWithValue("@Identity_Proof", TFM.Identity_Proof);
+            cmd.Parameters.AddWithValue("@Identity_proof_Value", TFM.Identity_proof_Value);
+            cmd.Parameters.AddWithValue("@Alt_Identity_Proof", TFM.Alt_Identity_Proof);
+            cmd.Parameters.AddWithValue("@Alt_Identity_proof_Value", TFM.Alt_Identity_proof_Value);
+            cmd.Parameters.AddWithValue("@Gender", TFM.Gendertext);
+            cmd.Parameters.AddWithValue("@Address1", TFM.Address1);
+            cmd.Parameters.AddWithValue("@Address2", TFM.Address2);
+            cmd.Parameters.AddWithValue("@Address3", TFM.Address3);
+            cmd.Parameters.AddWithValue("@City", TFM.citytext);
+            cmd.Parameters.AddWithValue("@State", TFM.statetext);
+            cmd.Parameters.AddWithValue("@Country", TFM.countrytext);
+            cmd.Parameters.AddWithValue("@Pin", TFM.Pin);
+            cmd.Parameters.AddWithValue("@active", TFM.active);
+            cmd.Parameters.AddWithValue("@Contact_Verification", "");
+            cmd.Parameters.AddWithValue("@Email_Verification", "");
+            cmd.Parameters.AddWithValue("@Mobile_Verification_Status", "");
+            cmd.Parameters.AddWithValue("@Email_OTP", "");
+            cmd.Parameters.AddWithValue("@Mobile_OTP", "");
+            cmd.Parameters.AddWithValue("@uid", "");
+
             cmd.ExecuteNonQuery();
+
+            //string query = "update TestatorDetails set First_Name = '"+TFM.First_Name+"' , Last_Name='"+TFM.Last_Name+"' ,Middle_Name= '"+TFM.Middle_Name+"' , DOB = '"+ sqlFormattedDate + "' ,Occupation='"+TFM.Occupation+"' ,Mobile='"+TFM.Mobile+"' ,Email = '"+TFM.Email+"' ,maritalStatus='"+TFM.material_status +"' , Religion='"+TFM.Religiontext+ "' ,  Relationship = '"+TFM.RelationshipTxt + "'   ,Identity_Proof='" + TFM.Identity_Proof+"' ,Identity_proof_Value='"+TFM.Identity_proof_Value+"',Alt_Identity_Proof='"+TFM.Alt_Identity_Proof+"',Alt_Identity_proof_Value='"+TFM.Alt_Identity_proof_Value+"',Gender='"+TFM.Gendertext+"',Address1='"+TFM.Address1+"',Address2='"+TFM.Address2+"',Address3='"+TFM.Address3+"',Country='"+TFM.countrytext+"',State='"+TFM.statetext+"',City='"+TFM.citytext+"',Pin='"+TFM.Pin+"',active='"+TFM.active+ "'  where  tId = " + TFM.tId+"";
+            //SqlCommand cmd = new SqlCommand(query,con);
+            //cmd.ExecuteNonQuery();
             con.Close();
 
             ViewBag.Message = "Verified";

@@ -21,10 +21,10 @@ namespace WillAssure.Controllers
         // GET: AddBeneficiary
         public ActionResult AddBeneficiaryIndex()
         {
-            if (Session.SessionID == null)
+            if (Session["rId"] == null || Session["uuid"] == null)
             {
 
-                return RedirectToAction("LoginPageIndex", "LoginPage");
+               RedirectToAction("LoginPageIndex", "LoginPage");
 
             }
 
@@ -388,7 +388,7 @@ namespace WillAssure.Controllers
                 {
                     // check for data exists or not for testato family
                     con.Open();
-                    string query1 = "select a.bpId , a.First_Name , a.Last_Name , a.Middle_Name , a.DOB , a.Mobile , a.Relationship , a.Marital_Status , a.Religion , a.Identity_proof , a.Identity_proof_value , a.Alt_Identity_proof , a.Alt_Identity_proof_value , a.Address1 , a.Address2 , a.Address3 , a.City , a.State , a.Pin , a.aiid , a.tId , a.dateCreated , a.createdBy , a.documentId , a.beneficiary_type from BeneficiaryDetails a inner join TestatorDetails b on a.tId=b.tId inner join users c on b.uId = c.uId where c.Linked_user = " + Convert.ToInt32(Session["uuid"]) + "";
+                    string query1 = "select a.bpId , a.First_Name , a.Last_Name , a.Middle_Name , a.DOB , a.Mobile , a.Relationship , a.Marital_Status , a.Religion , a.Identity_proof , a.Identity_proof_value , a.Alt_Identity_proof , a.Alt_Identity_proof_value , a.Address1 , a.Address2 , a.Address3 , a.City , a.State , a.Pin , a.aiid , a.tId , a.dateCreated , a.createdBy , a.documentId , a.beneficiary_type from BeneficiaryDetails a inner join TestatorDetails b on a.tId=b.tId where b.tId = " + value + "";
                     SqlDataAdapter da = new SqlDataAdapter(query1, con);
                     DataTable dt = new DataTable();
                     da.Fill(dt);

@@ -20,10 +20,10 @@ namespace WillAssure.Controllers
         // GET: EditAssetCategory
         public ActionResult EditAssetCategoryIndex()
         {
-            if (Session.SessionID == null)
+            if (Session["rId"] == null || Session["uuid"] == null)
             {
 
-                return RedirectToAction("LoginPageIndex", "LoginPage");
+               RedirectToAction("LoginPageIndex", "LoginPage");
 
             }
             List<LoginModel> Lmlist = new List<LoginModel>();
@@ -108,7 +108,7 @@ namespace WillAssure.Controllers
 
             for (int i = 0; i < Lmlist.Count(); i++)
             {
-                testString = Lmlist[7].Action;
+                testString = Lmlist[3].Action;
 
             }
 
@@ -257,7 +257,7 @@ namespace WillAssure.Controllers
 
             for (int i = 0; i < Lmlist.Count(); i++)
             {
-                testString = Lmlist[7].Action;
+                testString = Lmlist[3].Action;
 
             }
 

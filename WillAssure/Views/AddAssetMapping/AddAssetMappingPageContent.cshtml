@@ -133,6 +133,7 @@
                             <button type="button" id="btnadd" style="display:none;" class="btn btn-danger shadow-primary px-5"><i class="icon-lock"></i>Add</button>
                             <button type="button" id="btnmappingsubmit" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i>Submit</button>
                             <button type="button" id="btnmainassetsuccess" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
+                            <button type="button" id="btncheckExists" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
 
                         </div>
                     </div>
@@ -214,7 +215,7 @@
             });
 
 
-       
+
 
 
 
@@ -229,7 +230,7 @@
 
 
         function getbeneficiaryId(value) {
-       
+
         }
 
 
@@ -297,25 +298,25 @@
         }
 
 
-       /* $(document).on("change", "#ddlbeneficiary", function () {
-            var value = $(this).children(":selected").attr("value");
-            var text = $("#ddlbeneficiary option:selected").html();
+        /* $(document).on("change", "#ddlbeneficiary", function () {
+             var value = $(this).children(":selected").attr("value");
+             var text = $("#ddlbeneficiary option:selected").html();
 
 
-            var parent = $(this).closest(".rowdiv").find("#ddlbeneficiary").val();
+             var parent = $(this).closest(".rowdiv").find("#ddlbeneficiary").val();
 
-            alert(parent);
-
-
-            $("#Beneficiarytxt").val(value).attr("disabled", "disabled");
+             alert(parent);
 
 
-            $("#query").append(value + ",");
-
-        });*/
+             $("#Beneficiarytxt").val(value).attr("disabled", "disabled");
 
 
-    
+             $("#query").append(value + ",");
+
+         });*/
+
+
+
 
 
         function checkbeneficiaryduplicate(id) {
@@ -331,7 +332,7 @@
                     if (lang_name == myval && lang_name != '') {
                         alert(selectedtext + ' already exists');
                         $("#" + id).val('0');
-                       check = 'inactive'
+                        check = 'inactive'
                     }
 
                 }
@@ -340,10 +341,10 @@
             });
 
 
-            
 
 
-            if (check=='active') {
+
+            if (check == 'active') {
                 var v1 = id;
                 var v2 = v1.replace("ddlbeneficiary", "");
 
@@ -355,9 +356,9 @@
                 $("#query").append(v2 + ",");
 
             }
-          
 
-           
+
+
         }
 
 
@@ -386,7 +387,7 @@
 
             });
 
-           
+
             if (check == 'active') {
                 //var value = $(this).children(":selected").attr("value");
                 var text = $("#DDLAssetColumn1 option:selected").html();
@@ -396,7 +397,7 @@
                 $("#query").append("'" + text + "'" + ",");
             }
 
-         
+
         };
 
 
@@ -440,16 +441,16 @@
             //get parentdiv last div element whose class name is rowdiv
             var $clone = $("#parentdiv").find('.rowdiv:last').clone();
 
-            
-            
-         
+
+
+
             // for beneficiary ddl id auto generate  getidentifier
 
             $clone.find('.beneficiaryclass').each(function () {
                 var el = $(this);
-                
+
                 var id = el.attr('id') || null;
-              
+
                 if (id) {
 
                     //  var i = id.substr(id.length - 1);
@@ -474,11 +475,11 @@
 
             // for scheme ddl id auto generate
 
-             $clone.find('.schemenameclass').each(function () {
+            $clone.find('.schemenameclass').each(function () {
                 var el = $(this);
-                 var id = el.attr('id') || null;
-               
-                
+                var id = el.attr('id') || null;
+
+
                 if (id) {
 
                     //  var i = id.substr(id.length - 1);
@@ -508,7 +509,7 @@
                 var el = $(this);
                 var id = el.attr('id') || null;
 
-            
+
                 if (id) {
 
                     //  var i = id.substr(id.length - 1);
@@ -563,7 +564,7 @@
 
             var row = $(this).closest(".grandparent");
             var input = $(row).find("input").val();
-         
+
 
             var total = $("#txttotal").val()
 
@@ -581,7 +582,7 @@
         $("#btnmappingsubmit").click(function () {
 
             var radioValue = $("input[name='optradio']:checked").val();
-         
+
 
             if (radioValue == "Single") {
 
@@ -592,10 +593,10 @@
                 var instrument = $("#DDLAssetColumn1 option:selected").html();
                 var proportion = $("#txtproportion").val();
                 var tid = $("#ddltid").val();
-                
+
 
                 var data = assettype + "~" + assetcat + "~" + beneficiary + "~" + schemename + "~" + instrument + "~" + proportion + "~" + tid;
-            
+
                 $.ajax({
 
                     type: "POST",
@@ -617,12 +618,12 @@
                 var schemename = $("#schemename1").val();
                 var tid = $("#ddltid").val();
                 var data = $("#query").val();
-               
+
                 $.ajax({
 
                     type: "POST",
                     url: "../AddAssetMapping/InsertMultipleAssetMappeddata",
-                    data: { data: data, assettype: assettype, assetcat: assetcat , tid: tid},
+                    data: { data: data, assettype: assettype, assetcat: assetcat, tid: tid },
                     success: function (data) {
 
 
@@ -669,15 +670,15 @@
 
                 $("#query").append("'" + selectedtext + "'" + ",");
             }
-            
 
-           
+
+
         }
 
     </script>
 
 
-    
+
     @if (ViewBag.Message == "Verified")
     {
         <script>
@@ -689,7 +690,7 @@
 
                 $("#btnmainassetsuccess").click(); //trigger event after listening to it.
 
-           
+
 
 
             });
@@ -706,12 +707,12 @@
 
 
 function getDDLTestator(value) {
-      
+
         var text = $("#DDLTestator option:selected").html();
 
 
-    
-       
+
+
 
         $("#ddltestatorname").val(text);
         $("#ddltid").val(value);
@@ -724,26 +725,33 @@ function getDDLTestator(value) {
             url:"@Url.Action("CheckTestatorUsers", "AddAssetMapping")",
             data: { value: value, checkstatus: checkstatus },
             success: function (data) {
-             
+
                 if (data == 2) {
-                    var url = "/AddNominee/AddNomineeIndex/";
-                    window.location.href = url;
+                    $("#btncheckExists").on("click", function () { });
+
+                    $("#btncheckExists").click(); //trigger event after listening to it.
+
+
+                    setTimeout(function () {
+                        var url = "/AddNominee/AddNomineeIndex/";
+                        window.location.href = url;
+                    }, 2000);
                 }
 
-               
-                      
 
 
 
-                
+
+
+
             }
         });
 
-        
+
 
 
     };
-        
+
 
 
         $('.checkbox1').on('change', function () {
@@ -755,7 +763,7 @@ function getDDLTestator(value) {
                 $('.checkbox1').prop('checked', true);
                 $("#txtcheck").val("true");
             }
-        }); 
+        });
 
 
     </script>

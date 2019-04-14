@@ -22,10 +22,10 @@ namespace WillAssure.Controllers
 
         public ActionResult UpdateBeneficiaryIndex(int NestId)
         {
-            if (Session.SessionID == null)
+            if (Session["rId"] == null || Session["uuid"] == null)
             {
 
-                return RedirectToAction("LoginPageIndex", "LoginPage");
+               RedirectToAction("LoginPageIndex", "LoginPage");
 
             }
             List<LoginModel> Lmlist = new List<LoginModel>();
@@ -78,7 +78,7 @@ namespace WillAssure.Controllers
                 BM.Middle_Name = dt.Rows[0]["Middle_Name"].ToString();
                 BM.Dob = dt.Rows[0]["DOB"].ToString();
                 BM.Mobile = dt.Rows[0]["Mobile"].ToString();
-                BM.Relationship = dt.Rows[0]["Relationship"].ToString();
+                BM.RelationshipTxt = dt.Rows[0]["Relationship"].ToString();
                 BM.Marital_Status = dt.Rows[0]["Marital_Status"].ToString();
                 BM.Religion = dt.Rows[0]["Religion"].ToString();
                 BM.Identity_proof =  dt.Rows[0]["Identity_proof"].ToString();
@@ -88,8 +88,8 @@ namespace WillAssure.Controllers
                 BM.Address1 = dt.Rows[0]["Address1"].ToString();
                 BM.Address2 = dt.Rows[0]["Address2"].ToString();
                 BM.Address3 = dt.Rows[0]["Address3"].ToString();
-                BM.City = dt.Rows[0]["City"].ToString();
-                BM.State = dt.Rows[0]["State"].ToString();
+                BM.City_txt = dt.Rows[0]["City"].ToString();
+                BM.State_txt = dt.Rows[0]["State"].ToString();
                 BM.Pin = dt.Rows[0]["Pin"].ToString();
                 BM.aid = 0;
                 BM.tid = 0;
@@ -104,7 +104,10 @@ namespace WillAssure.Controllers
 
 
             // for alterbeneficiary
-
+            if (Session["upbeneficiaryid"] == null)
+            {
+                RedirectToAction("LoginPageIndex", "LoginPage");
+            }
             con.Open();
             string query2 = "select * from alternate_Beneficiary where bpId = "+Convert.ToInt32(Session["upbeneficiaryid"]) +" ";
             SqlDataAdapter da2 = new SqlDataAdapter(query2, con);
@@ -120,9 +123,9 @@ namespace WillAssure.Controllers
 
                 BM.altDob = dt2.Rows[0]["DOB"].ToString();
                 BM.altMobile = dt2.Rows[0]["Mobile"].ToString();
-                BM.altRelationship = dt2.Rows[0]["Relationship"].ToString();
-                BM.altMarital_Status = dt2.Rows[0]["Marital_Status"].ToString();
-                BM.altReligion = dt2.Rows[0]["Religion"].ToString();
+                BM.altRelationshipTxt = dt2.Rows[0]["Relationship"].ToString();
+                BM.altMarital_Status_Txt = dt2.Rows[0]["Marital_Status"].ToString();
+                BM.altReligion_TXT = dt2.Rows[0]["Religion"].ToString();
                 BM.altIdentity_Proof = dt2.Rows[0]["Identity_Proof"].ToString();
                 BM.altIdentity_Proof_Value = dt2.Rows[0]["Identity_Proof_Value"].ToString();
                 BM.altAlt_Identity_Proof = dt2.Rows[0]["Alt_Identity_Proof"].ToString();
@@ -131,7 +134,7 @@ namespace WillAssure.Controllers
                 BM.altAddress2 = dt2.Rows[0]["Address2"].ToString();
                 BM.altAddress3 = dt2.Rows[0]["Address3"].ToString();
                 BM.altcitytext = dt2.Rows[0]["City"].ToString();
-                BM.altState = dt2.Rows[0]["State"].ToString();
+                BM.altstatetext = dt2.Rows[0]["State"].ToString();
                 BM.altPin = dt2.Rows[0]["Pin"].ToString();
             }
             
@@ -195,14 +198,14 @@ namespace WillAssure.Controllers
             cmd.Parameters.AddWithValue("@First_Name ", BM.First_Name);
             cmd.Parameters.AddWithValue("@Last_Name", BM.Last_Name);
             cmd.Parameters.AddWithValue("@Middle_Name", BM.Middle_Name);
-            DateTime dat = DateTime.ParseExact(BM.Dob, "dd-MM-yyyy", CultureInfo.InvariantCulture);
-            cmd.Parameters.AddWithValue("@DOB", dat);
+          
+            cmd.Parameters.AddWithValue("@DOB",Convert.ToDateTime(BM.Dob).ToString("dd-MM-yyyy"));
             cmd.Parameters.AddWithValue("@Mobile", BM.Mobile);
             cmd.Parameters.AddWithValue("@Relationship", BM.RelationshipTxt);
             cmd.Parameters.AddWithValue("@Marital_Status", BM.Marital_Status);
             cmd.Parameters.AddWithValue("@Religion", BM.Religion);
             cmd.Parameters.AddWithValue("@Identity_proof", BM.Identity_proof);
-            cmd.Parameters.AddWithValue("@Identity_proof_value", BM.Identity_proof);
+            cmd.Parameters.AddWithValue("@Identity_proof_value", BM.Alt_Identity_proof_value);
             cmd.Parameters.AddWithValue("@Alt_Identity_proof", BM.Alt_Identity_proof);
             cmd.Parameters.AddWithValue("@Alt_Identity_proof_value", BM.Alt_Identity_proof_value);
             cmd.Parameters.AddWithValue("@Address1", BM.Address1);
@@ -212,7 +215,7 @@ namespace WillAssure.Controllers
             cmd.Parameters.AddWithValue("@State", BM.State_txt);
             cmd.Parameters.AddWithValue("@Pin", BM.Pin);
             cmd.Parameters.AddWithValue("@aid", "");
-            cmd.Parameters.AddWithValue("@tid", "");
+            cmd.Parameters.AddWithValue("@tid", BM.ddltid);
             cmd.Parameters.AddWithValue("@beneficiary_type", BM.beneficiary_type);
             cmd.ExecuteNonQuery();
             con.Close();
@@ -238,12 +241,12 @@ namespace WillAssure.Controllers
                 cmd2.Parameters.AddWithValue("@First_Name", BM.altFirst_Name);
                 cmd2.Parameters.AddWithValue("@Last_Name", BM.altLast_Name);
                 cmd2.Parameters.AddWithValue("@Middle_Name", BM.altMiddle_Name);
-                DateTime dat2 = DateTime.ParseExact(BM.altDob, "dd-MM-yyyy", CultureInfo.InvariantCulture);
-                cmd2.Parameters.AddWithValue("@DOB", dat2);
+                //DateTime dat2 = DateTime.ParseExact(BM.altDob, "dd-MM-yyyy", CultureInfo.InvariantCulture);
+                cmd2.Parameters.AddWithValue("@DOB", Convert.ToDateTime(BM.altDob).ToString("dd-MM-yyyy"));
                 cmd2.Parameters.AddWithValue("@Mobile", BM.altMobile);
-                cmd2.Parameters.AddWithValue("@Relationship", BM.altReligion_ID);
-                cmd2.Parameters.AddWithValue("@Marital_Status", BM.altMarital_Status);
-                cmd2.Parameters.AddWithValue("@Religion", BM.altReligion);
+                cmd2.Parameters.AddWithValue("@Relationship", BM.altRelationshipTxt);
+                cmd2.Parameters.AddWithValue("@Marital_Status", BM.altMarital_Status_Txt);
+                cmd2.Parameters.AddWithValue("@Religion", BM.altReligion_TXT);
                 cmd2.Parameters.AddWithValue("@Identity_Proof", BM.altIdentity_Proof);
                 cmd2.Parameters.AddWithValue("@Identity_Proof_Value", BM.altIdentity_Proof_Value);
                 cmd2.Parameters.AddWithValue("@Alt_Identity_Proof", BM.altAlt_Identity_Proof);

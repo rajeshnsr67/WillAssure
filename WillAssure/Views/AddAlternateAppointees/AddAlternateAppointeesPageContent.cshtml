@@ -34,10 +34,10 @@
                             <div class='col-sm-1'><label for='input-1' style="line-height:40px;">Testator</label></div>
                             <div class="col-sm-3">
                                 @*<select id='DDLTestatorColumn' onchange="getDDLTestator(this.value)" name="contentList" class='form-control'></select>
-                @Html.HiddenFor(m => m.ddltid, new { id = "ddltid" })
-                @Html.HiddenFor(m => m.ddltestatorname, new { id = "ddltestatorname" })*@
+                                    @Html.HiddenFor(m => m.ddltid, new { id = "ddltid" })
+                                    @Html.HiddenFor(m => m.ddltestatorname, new { id = "ddltestatorname" })*@
 
-                                <input type="text" name="name"  class="form-control" id="ddltestatorname" readonly="readonly" value="" />
+                                <input type="text" name="name" class="form-control" id="ddltestatorname" readonly="readonly" value="" />
                             </div>
                         </div>
 
@@ -315,7 +315,7 @@
                       }
 
 
-                
+
             }
         });
 

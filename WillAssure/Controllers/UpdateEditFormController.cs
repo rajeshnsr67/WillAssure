@@ -32,10 +32,10 @@ namespace WillAssure.Controllers
             }
 
 
-            if (Session.SessionID == null)
+            if (Session["rId"] == null || Session["uuid"] == null)
             {
 
-                return RedirectToAction("LoginPageIndex", "LoginPage");
+               RedirectToAction("LoginPageIndex", "LoginPage");
 
             }
             List<LoginModel> Lmlist = new List<LoginModel>();
@@ -87,7 +87,7 @@ namespace WillAssure.Controllers
                 UFM.FirstName = dt.Rows[0]["First_Name"].ToString();
                 UFM.LastName = dt.Rows[0]["Last_Name"].ToString();
                 UFM.MiddleName = dt.Rows[0]["Middle_Name"].ToString();
-                UFM.Dob = dt.Rows[0]["DOB"].ToString();
+                UFM.Dob = Convert.ToDateTime(dt.Rows[0]["DOB"]).ToString("dd-MM-yyyy");
                 UFM.Mobile = dt.Rows[0]["Mobile"].ToString();
                 UFM.Email = dt.Rows[0]["eMail"].ToString();
                 UFM.Address1 = dt.Rows[0]["Address1"].ToString();
@@ -100,7 +100,7 @@ namespace WillAssure.Controllers
                 UFM.UserPassword = dt.Rows[0]["userPwd"].ToString();
                 
                 UFM.Designation = dt.Rows[0]["Designation"].ToString();
-                UFM.rid = Convert.ToInt32(dt.Rows[0]["rId"]);
+                UFM.rtext = Convert.ToString(dt.Rows[0]["rId"]);
                 UFM.Active = dt.Rows[0]["active"].ToString();
                 
 
@@ -108,7 +108,10 @@ namespace WillAssure.Controllers
             }
 
 
-
+            if (Session["upcompanyid"] == null)
+            {
+                RedirectToAction("LoginPageIndex", "LoginPage");
+            }
             // for company data
 
             con.Open();

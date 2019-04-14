@@ -30,6 +30,13 @@
 
      
      // roles
+
+
+     $("#btncheckExists").click(function () {
+         swal("Failed", "Data Already Exist For Selected Testator", "error");
+     });
+
+
      $("#btnRoleformsubmitSUCCESS").click(function () {
          swal("Submitted", "Your Data has Been Submitted", "success");
      });

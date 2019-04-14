@@ -22,16 +22,16 @@ namespace WillAssure.Controllers
         // GET: AlternateBeneficiary
         public ActionResult AlternateBeneficiaryIndex()
         {
-            if (Session.SessionID == null)
+            if (Session["rId"] == null || Session["uuid"] == null)
             {
 
-                return RedirectToAction("LoginPageIndex", "LoginPage");
+               RedirectToAction("LoginPageIndex", "LoginPage");
 
             }
-            if (Session["bpId"] == null)
-            {
-                ViewBag.Message = "link";
-            }
+            //if (Session["bpId"] == null)
+            //{
+            //    ViewBag.Message = "link";
+            //}
 
             List<LoginModel> Lmlist = new List<LoginModel>();
             con.Open();
@@ -228,7 +228,7 @@ namespace WillAssure.Controllers
                 SqlCommand cmd = new SqlCommand("SP_CRUD_alternate_Beneficiary", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@condition", "insert");
-                cmd.Parameters.AddWithValue("@bpId", Convert.ToInt32(Session["bpId"]));
+                cmd.Parameters.AddWithValue("@bpId", "");
                 cmd.Parameters.AddWithValue("@First_Name", ABM.First_Name);
                 cmd.Parameters.AddWithValue("@Last_Name", ABM.Last_Name);
                 cmd.Parameters.AddWithValue("@Middle_Name", ABM.Middle_Name);

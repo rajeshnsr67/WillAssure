@@ -21,10 +21,10 @@ namespace WillAssure.Controllers
 
         public ActionResult UsersFormIndex()
         {
-            if (Session.SessionID == null)
+            if (Session["rId"] == null || Session["uuid"] == null)
             {
 
-                return RedirectToAction("LoginPageIndex", "LoginPage");
+               RedirectToAction("LoginPageIndex", "LoginPage");
 
             }
 
@@ -239,6 +239,11 @@ namespace WillAssure.Controllers
                     }
                     con.Close();
 
+
+                if (Session["filterUid"] == null)
+                {
+                    RedirectToAction("LoginPageIndex", "LoginPage");
+                }
 
                 con.Open();
                 string q1 = "select * from users where userID = '" + userid + "'  ";

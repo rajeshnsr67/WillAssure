@@ -42,7 +42,13 @@
             </div>
         </div>
         <!-- End Breadcrumb-->
-
+        @if (Session["compId"] == null)
+        {
+            <script>
+                var url = "/LoginPage/LoginPageIndex/";
+                window.location.href = url;
+            </script>
+        }
         <div class="row">
             <div class="col-lg-12">
                 <div class="card">
@@ -204,15 +210,15 @@
 
 
 
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label for="input-3">Role</label>
-                                            <select id="ddlRole" class="form-control validate[required]"></select>
-                                            @Html.HiddenFor(m => m.rid, new { id = "rid" })
-                                            @Html.HiddenFor(m => m.rtext, new { id = "rtext" })
-                                        </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="input-3">Role</label>
+                                        <select id="ddlRole" class="form-control validate[required]"></select>
+                                        @Html.HiddenFor(m => m.rid, new { id = "rid" })
+                                        @Html.HiddenFor(m => m.rtext, new { id = "rtext" })
                                     </div>
-                                
+                                </div>
+
 
 
 
@@ -234,10 +240,10 @@
 
 
                                         @*<select id="ddlcompany" class="form-control validate[required]">
-                                                <option value="">--Select--</option>
-                                            </select>
-                                            @Html.HiddenFor(m => m.CompId, new { id = "CompId" })
-                                            @Html.HiddenFor(m => m.CompIdtext, new { id = "CompIdtext" })*@
+                                            <option value="">--Select--</option>
+                                        </select>
+                                        @Html.HiddenFor(m => m.CompId, new { id = "CompId" })
+                                        @Html.HiddenFor(m => m.CompIdtext, new { id = "CompIdtext" })*@
                                     </div>
                                 </div>
 

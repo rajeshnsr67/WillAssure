@@ -79,13 +79,20 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="input-5">Date Of Birth</label>
-                                        @*@Html.TextBoxFor(m => m.Dob, new { @type = "date", @class = "form-control validate[required] text-input", @id = "txtDob", @placeholder = "Select Your Date Of Birth", @autocomplete = "off" })*@
+                                        @Html.TextBoxFor(m => m.Dob, new { @type = "text", @class = "form-control validate[required] text-input", @id = "txtDob", @placeholder = "Select Your Date Of Birth", @autocomplete = "off" })
 
 
                                         <div id="datepicker" class="input-group date" data-date-format="dd-mm-yyyy">
-                                            <input class="form-control validate[required]" type="text" id="DOB" name="DOB" autocomplete="off" placeholder="Select Date Of Birth" />
+                                            <input class="form-control validate[required]" type="text" id="DOB" style="display:none;" name="Dob" autocomplete="off" placeholder="Select Date Of Birth" />
                                             <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                                         </div>
+
+                                        <script>
+                                            $("#txtDob").focus(function () {
+                                                $("#txtDob").hide();
+                                                $("#DOB").show();
+                                            });
+                                        </script>
 
                                     </div>
                                 </div>
@@ -207,12 +214,12 @@
 
 
 
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="input-3">Designation</label>
-                                        @Html.TextBoxFor(m => m.Designation, new { @class = "form-control validate[required] text-input", @id = "txtDesignation", @placeholder = "Enter Designation", @autocomplete = "off" })
-                                    </div>
-                                </div>
+                                @*<div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="input-3">Designation</label>
+                        @Html.TextBoxFor(m => m.Designation, new { @class = "form-control validate[required] text-input", @id = "txtDesignation", @placeholder = "Enter Designation", @autocomplete = "off" })
+                    </div>
+                </div>*@
 
 
 
@@ -888,7 +895,13 @@
 
 
 
-
+                            if (Session["upcompanyid"] == null)
+                            {
+                                <script>
+                                    var url = "/LoginPage/LoginPageIndex/";
+                                    window.location.href = url;
+                                </script>
+                            }
 
 
 

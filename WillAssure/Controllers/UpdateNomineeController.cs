@@ -20,10 +20,10 @@ namespace WillAssure.Controllers
         // GET: UpdateNominee
         public ActionResult UpdateNomineeIndex(int NestId)
         {
-            if (Session.SessionID == null)
+            if (Session["rId"] == null || Session["uuid"] == null)
             {
 
-                return RedirectToAction("LoginPageIndex", "LoginPage");
+               RedirectToAction("LoginPageIndex", "LoginPage");
 
             }
             List<LoginModel> Lmlist = new List<LoginModel>();
@@ -78,7 +78,7 @@ namespace WillAssure.Controllers
                  NM.Middle_Name = dt.Rows[i]["Middle_Name"].ToString();
                  NM.Dob  = dt.Rows[0]["DOB"].ToString();
                  NM.Mobile = dt.Rows[i]["Mobile"].ToString();
-                 NM.Relationship = dt.Rows[i]["Relationship"].ToString();
+                 NM.RelationshipTxt = dt.Rows[i]["Relationship"].ToString();
                  NM.Marital_Status = dt.Rows[i]["Marital_Status"].ToString();
                  NM.Religion = dt.Rows[i]["Religion"].ToString();
                  NM.Identity_Proof = dt.Rows[i]["Identity_Proof"].ToString();
@@ -88,8 +88,8 @@ namespace WillAssure.Controllers
                  NM.Address1 = dt.Rows[i]["Address1"].ToString();
                  NM.Address2 = dt.Rows[i]["Address2"].ToString();
                  NM.Address3 = dt.Rows[i]["Address3"].ToString();
-                 NM.City = dt.Rows[i]["City"].ToString();
-                 NM.State =dt.Rows[i]["State"].ToString();
+                 NM.citytext = dt.Rows[i]["City"].ToString();
+                 NM.statetext =dt.Rows[i]["State"].ToString();
                  NM.Pin =dt.Rows[i]["Pin"].ToString();
                  NM.aid = Convert.ToInt32(dt.Rows[i]["aiid"]);
                  NM.tId = Convert.ToInt32(dt.Rows[i]["tId"]);
@@ -109,7 +109,41 @@ namespace WillAssure.Controllers
         }
 
 
+        public String BindRelationDDL()
+        {
 
+            con.Open();
+            string query = "select * from relationship";
+            SqlDataAdapter da = new SqlDataAdapter(query, con);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            con.Close();
+            string data = "<option value='' >--Select--</option>";
+
+            if (dt.Rows.Count > 0)
+            {
+
+
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+
+
+
+
+                    data = data + "<option value=" + dt.Rows[i]["Rid"].ToString() + " >" + dt.Rows[i]["MemberName"].ToString() + "</option>";
+
+
+
+                }
+
+
+
+
+            }
+
+            return data;
+
+        }
 
         public ActionResult UpdatingNominee(NomineeModel NM)
         {
@@ -159,16 +193,19 @@ namespace WillAssure.Controllers
                 NM.aid = 0;
             }
 
-            if (Session["tid"] != null)
-            {
-                NM.tId = Convert.ToInt32(Session["tid"]);
+            //if (Session["tid"] != null)
+            //{
+            //    NM.tId = Convert.ToInt32(Session["tid"]);
 
-            }
-            else
+            //}
+            //else
+            //{
+            //    NM.tId = 0;
+            //}
+            if (Session["Document_Created_By"] == null)
             {
-                NM.tId = 0;
+                RedirectToAction("LoginPageIndex", "LoginPage");
             }
-
             if (Session["Document_Created_By"] != null)
             {
                 NM.createdBy = Session["Document_Created_By"].ToString();
@@ -188,10 +225,10 @@ namespace WillAssure.Controllers
             cmd.Parameters.AddWithValue("@First_Name", NM.First_Name);
             cmd.Parameters.AddWithValue("@Last_Name", NM.Last_Name);
             cmd.Parameters.AddWithValue("@Middle_Name", NM.Middle_Name);
-            DateTime dat = DateTime.ParseExact(NM.Dob, "dd-MM-yyyy", CultureInfo.InvariantCulture);
-            cmd.Parameters.AddWithValue("@DOB", dat);
+            //DateTime dat = DateTime.ParseExact(Convert.ToDateTime(NM.Dob), "dd-MM-yyyy", CultureInfo.InvariantCulture);
+            cmd.Parameters.AddWithValue("@DOB", Convert.ToDateTime(NM.Dob).ToString("dd-MM-yyyy"));
             cmd.Parameters.AddWithValue("@Mobile", NM.Mobile);
-            cmd.Parameters.AddWithValue("@Relationship", NM.Relationship);
+            cmd.Parameters.AddWithValue("@Relationship", NM.RelationshipTxt);
             cmd.Parameters.AddWithValue("@Marital_Status", NM.Marital_Status);
             cmd.Parameters.AddWithValue("@Religion", NM.Religion);
             cmd.Parameters.AddWithValue("@Identity_Proof", NM.Identity_Proof);
@@ -205,7 +242,7 @@ namespace WillAssure.Controllers
             cmd.Parameters.AddWithValue("@State", NM.statetext);
             cmd.Parameters.AddWithValue("@Pin", NM.Pin);
             cmd.Parameters.AddWithValue("@aid", NM.aid);
-            cmd.Parameters.AddWithValue("@tId", NM.tId);
+            cmd.Parameters.AddWithValue("@tId", NM.ddltid);
             cmd.Parameters.AddWithValue("@createdBy", NM.createdBy);
             cmd.Parameters.AddWithValue("@documentId", NM.documentId);
             cmd.Parameters.AddWithValue("@Description_of_Assets", NM.Description_of_Assets);
@@ -284,6 +321,44 @@ namespace WillAssure.Controllers
 
 
                     data = data + "<option value=" + dt.Rows[i]["id"].ToString() + " >" + dt.Rows[i]["city_name"].ToString() + "</option>";
+
+
+
+                }
+
+
+
+
+            }
+
+            return data;
+        }
+
+
+        public string BindTestatorDDL()
+        {
+            con.Open();
+            string query = "select a.tId , a.First_Name from TestatorDetails a inner join users b on a.uId=b.uId where b.Linked_user  = " + Convert.ToInt32(Session["uuid"]) + " ";
+            SqlDataAdapter da = new SqlDataAdapter(query, con);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            con.Close();
+            string data = "<option value='' >--Select--</option>";
+
+
+
+
+            if (dt.Rows.Count > 0)
+            {
+
+
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+
+
+
+
+                    data = data + "<option value=" + dt.Rows[i]["tId"].ToString() + " >" + dt.Rows[i]["First_Name"].ToString() + "</option>";
 
 
 

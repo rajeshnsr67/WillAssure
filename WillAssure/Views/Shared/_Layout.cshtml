@@ -97,6 +97,9 @@
 
 </head>
 
+
+
+
 <body class="bg-dark">
     <!--Start topbar header-->
     <header class="topbar-nav">
@@ -114,7 +117,15 @@
                     </form>
                 </li>
             </ul>
-
+            @{ 
+                if (Session["Role"] == null)
+                {
+            <script>
+                var url = "/LoginPage/LoginPageIndex/";
+                window.location.href = url;
+            </script>
+                 }
+            }
             <ul class="navbar-nav align-items-center right-nav-link">
                 <li class="nav-item dropdown-lg">
 

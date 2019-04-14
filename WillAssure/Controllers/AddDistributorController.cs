@@ -19,10 +19,10 @@ namespace WillAssure.Controllers
         // GET: AddDistributor
         public ActionResult AddDistributorIndex()
         {
-            if (Session.SessionID == null)
+            if (Session["rId"] == null || Session["uuid"] == null)
             {
 
-                return RedirectToAction("LoginPageIndex", "LoginPage");
+               RedirectToAction("LoginPageIndex", "LoginPage");
 
             }
             List<LoginModel> Lmlist = new List<LoginModel>();
@@ -135,7 +135,10 @@ namespace WillAssure.Controllers
                 cmd.Parameters.AddWithValue("@leadRemark", s4);
                 cmd.ExecuteNonQuery();
                 con.Close();
-
+            if (Session["filterUid"] == null)
+            {
+                RedirectToAction("LoginPageIndex", "LoginPage");
+            }
             // get latest uid by userid filter
             string userid = "";
             con.Open();

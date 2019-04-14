@@ -19,10 +19,10 @@ namespace WillAssure.Controllers
         // GET: EditAppointees
         public ActionResult EditAppointeesIndex()
         {
-            if (Session.SessionID == null)
+            if (Session["rId"] == null || Session["uuid"] == null)
             {
 
-                return RedirectToAction("LoginPageIndex", "LoginPage");
+               RedirectToAction("LoginPageIndex", "LoginPage");
 
             }
             List<LoginModel> Lmlist = new List<LoginModel>();
@@ -104,7 +104,7 @@ namespace WillAssure.Controllers
 
             for (int i = 0; i < Lmlist.Count(); i++)
             {
-                testString = Lmlist[15].Action;
+                testString = Lmlist[18].Action;
 
             }
 
@@ -341,7 +341,7 @@ namespace WillAssure.Controllers
 
             for (int i = 0; i < Lmlist.Count(); i++)
             {
-                testString = Lmlist[15].Action;
+                testString = Lmlist[18].Action;
 
             }
 
@@ -506,13 +506,13 @@ namespace WillAssure.Controllers
 
 
             con.Open();
-            string query = "select apId from alternate_Appointees where apId = " + index + " ";
+            string query = "select id from alternate_Appointees where apId = " + index + " ";
             SqlDataAdapter da = new SqlDataAdapter(query, con);
             DataTable dt = new DataTable();
             da.Fill(dt);
             if (dt.Rows.Count > 0)
             {
-                Session["upappointeesid"] = Convert.ToInt32(dt.Rows[0]["apId"]);
+                Session["upappointeesid"] = Convert.ToInt32(dt.Rows[0]["id"]);
             }
             con.Close();
 

@@ -32,29 +32,29 @@
                     <div class="card-body">
 
                         <div class="card-title text-primary">Add Assets</div>
-                        <div class="row">
-                            <div class='col-sm-1'><label for='input-1' style="line-height:40px;">Testator</label></div>
-                            <div class="col-sm-3">
-                                <select id='DDLTestator' onchange="getDDLTestator(this.value)" name="contentList" class='form-control'></select>
 
-
-
-                            </div>
-                            <div class="col-sm-2">
-                                <label class="checkbox-inline">
-                                    <input type="checkbox" value="Yes" class="radio" name="radio">Add Multiple
-                                </label>
-                            </div>
-                        </div>
-                        <hr>
 
                         @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "mainassetinfo" }))
                         {
 
                             @Html.HiddenFor(m => m.ddltid, new { id = "ddltid", @name = "ddlTid" })
                             @Html.HiddenFor(m => m.ddltestatorname, new { id = "ddltestatorname" })
+                            <div class="row">
+                                <div class='col-sm-1'><label for='input-1' style="line-height:40px;">Testator</label></div>
+                                <div class="col-sm-3">
+                                    <select id='DDLTestator' onchange="getDDLTestator(this.value)" name="contentList" class='form-control validate[required]'></select>
 
-                           <input type="hidden" id="txtcheck" value="" name="name" />
+
+
+                                </div>
+                                <div class="col-sm-2">
+                                    <label class="checkbox-inline">
+                                        <input type="checkbox" value="Yes" class="radio" name="radio">Add Multiple
+                                    </label>
+                                </div>
+                            </div>
+                            <hr>
+                            <input type="hidden" id="txtcheck" value="" name="name" />
 
                             <div class="row">
 
@@ -132,6 +132,7 @@
             </div>
             <button type="button" id="btnassetinfosuccess" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
             <button type="button" id="mainassetlinkcheck" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
+            <button type="button" id="btncheckExists" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
 
         </div>
 
@@ -306,8 +307,16 @@
             success: function (data) {
                
                 if (data == 2) {
-                    var url = "/AddAssetMapping/AddAssetMappingIndex/";
-                    window.location.href = url;
+                    $("#btncheckExists").on("click", function () { });
+
+                    $("#btncheckExists").click(); //trigger event after listening to it.
+                   
+                   
+
+                    setTimeout(function () {
+                        var url = "/AddAssetMapping/AddAssetMappingIndex/";
+                        window.location.href = url;
+                    }, 2000);
                 }
 
                

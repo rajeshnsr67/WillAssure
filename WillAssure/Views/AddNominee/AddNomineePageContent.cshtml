@@ -294,6 +294,7 @@
 
 <button type="button" id="btnnomineeinsertsuccess" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
 <button type="button" id="btnnomineelinking" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
+<button type="button" id="btncheckExists" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
 
 
 
@@ -314,7 +315,7 @@
 
 
 
-  
+
 
 
         });
@@ -451,13 +452,13 @@
             type: "POST",
             url:"@Url.Action("BindTestatorDDL", "AddNominee")",
                   success: function (data) {
-                     
+
                       $('#DDLTestator').append(data);
-                      
 
 
 
-                
+
+
             }
           });
 
@@ -524,7 +525,7 @@
 }
 
 <script>
-    
+
       function getDDLTestator(value) {
         //var value = $(this).children(":selected").attr("value");
         var text = $("#DDLTestator option:selected").html();
@@ -543,18 +544,27 @@
             url:"@Url.Action("CheckTestatorUsers", "AddNominee")",
                  data: { value: value, checkstatus: checkstatus },
             success: function (data) {
-                alert(data);
+
                 if (data == 2) {
-                    var url = "/AddAppointees/AddAppointeesIndex/";
-                    window.location.href = url;
+                    $("#btncheckExists").on("click", function () { });
+
+                    $("#btncheckExists").click(); //trigger event after listening to it.
+                 
+                
+
+
+                    setTimeout(function () {
+                        var url = "/AddAppointees/AddAppointeesIndex/";
+                        window.location.href = url;
+                    }, 2000);
                 }
 
-              
-                      
 
 
 
-                
+
+
+
             }
         });
 
@@ -576,5 +586,5 @@
             $('.radio').prop('checked', true);
             $("#txtcheck").val("true");
         }
-    }); 
+    });
 </script>

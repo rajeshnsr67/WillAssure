@@ -22,10 +22,10 @@ namespace WillAssure.Controllers
         // GET: AddMainAssets
         public ActionResult AddMainAssetsIndex()
         {
-            if (Session.SessionID == null)
+            if (Session["rId"] == null || Session["uuid"] == null)
             {
 
-                return RedirectToAction("LoginPageIndex", "LoginPage");
+               RedirectToAction("LoginPageIndex", "LoginPage");
 
             }
             //if (Session["tid"] == null)
@@ -948,7 +948,10 @@ namespace WillAssure.Controllers
                 SqlDataAdapter da = new SqlDataAdapter(query2,con);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
-
+            if (Session["aiid"] == null)
+            {
+                RedirectToAction("LoginPageIndex", "LoginPage");
+            }
                 if (dt.Rows.Count > 0)
                 {
                  
@@ -1034,7 +1037,7 @@ namespace WillAssure.Controllers
                     // check for data exists or not for testato family
                     int Response = Convert.ToInt32(Request["send"]);
                     con.Open();
-                    string query1 = "select a.aiid , c.AssetsType , d.AssetsCategory , a.tid , a.docid , a.Json from AssetInformation a  inner join TestatorDetails b on a.tid=b.tId inner join AssetsType c on a.atId = c.atId inner join AssetsCategory d on a.amId=d.amId inner join users e on e.uId=b.uId  where e.Linked_user = " + Convert.ToInt32(Session["uuid"]) + "   ";
+                    string query1 = "select a.aiid , a.atId , a.amId , a.tid , a.docid , a.Json from AssetInformation a inner join TestatorDetails b on a.tid=b.tId where b.tId = "+value+"   ";
                     SqlDataAdapter da = new SqlDataAdapter(query1, con);
                     DataTable dt = new DataTable();
                     da.Fill(dt);

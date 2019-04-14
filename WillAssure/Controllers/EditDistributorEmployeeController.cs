@@ -20,10 +20,10 @@ namespace WillAssure.Controllers
         // GET: EditDistributorEmployee
         public ActionResult EditDistributorEmployeeIndex()
         {
-            if (Session.SessionID == null)
+            if (Session["rId"] == null || Session["uuid"] == null)
             {
 
-                return RedirectToAction("LoginPageIndex", "LoginPage");
+               RedirectToAction("LoginPageIndex", "LoginPage");
 
             }
             List<LoginModel> Lmlist = new List<LoginModel>();
@@ -111,9 +111,9 @@ namespace WillAssure.Controllers
 
             for (int i = 0; i < Lmlist.Count(); i++)
             {
-                testString = Lmlist[1].Action;
-                willemployee = Lmlist[2].Action;
-                distributoremployee = Lmlist[3].Action;
+                testString = Lmlist[10].Action;
+                willemployee = Lmlist[9].Action;
+                distributoremployee = Lmlist[11].Action;
 
             }
 
@@ -818,9 +818,9 @@ namespace WillAssure.Controllers
 
             for (int i = 0; i < Lmlist.Count(); i++)
             {
-                testString = Lmlist[1].Action;
-                willemployee = Lmlist[2].Action;
-                distributoremployee = Lmlist[3].Action;
+                testString = Lmlist[10].Action;
+                willemployee = Lmlist[9].Action;
+                distributoremployee = Lmlist[11].Action;
 
             }
 

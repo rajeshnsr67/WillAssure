@@ -19,10 +19,10 @@ namespace WillAssure.Controllers
         // GET: UpdateAppointees
         public ActionResult UpdateAppointeesIndex(int NestId)
         {
-            if (Session.SessionID == null)
+            if (Session["rId"] == null || Session["uuid"] == null)
             {
 
-                return RedirectToAction("LoginPageIndex", "LoginPage");
+               RedirectToAction("LoginPageIndex", "LoginPage");
 
             }
             List<LoginModel> Lmlist = new List<LoginModel>();
@@ -75,8 +75,8 @@ namespace WillAssure.Controllers
                 {
                       
                        
-                        Am.Type =dt.Rows[i]["Type"].ToString();
-                        Am.subType=dt.Rows[i]["subType"].ToString();
+                        Am.Typetxt =dt.Rows[i]["Type"].ToString();
+                        Am.subTypetxt=dt.Rows[i]["subType"].ToString();
                         Am.Name =dt.Rows[i]["Name"].ToString();
                         Am.middleName=dt.Rows[i]["middleName"].ToString();
                         Am.Surname=dt.Rows[i]["Surname"].ToString();
@@ -336,8 +336,9 @@ namespace WillAssure.Controllers
             cmd.Parameters.AddWithValue("@Identity_proof_value", AM.Identity_Proof_Value);
             cmd.Parameters.AddWithValue("@Alt_Identity_proof", AM.Alt_Identity_Proof);
             cmd.Parameters.AddWithValue("@Alt_Identity_proof_value", AM.Alt_Identity_Proof_Value);
-            DateTime dat = DateTime.ParseExact(AM.Dob, "dd-MM-yyyy", CultureInfo.InvariantCulture);
-            cmd.Parameters.AddWithValue("@DOB", dat);
+            //DateTime dat = DateTime.ParseExact(AM.Dob, "dd-MM-yyyy", CultureInfo.InvariantCulture);
+
+            cmd.Parameters.AddWithValue("@DOB", Convert.ToDateTime(AM.Dob).ToString("dd-MM-yyyy"));
             cmd.Parameters.AddWithValue("@Gender", AM.Gender);
             cmd.Parameters.AddWithValue("@Occupation", AM.Occupation);
             cmd.Parameters.AddWithValue("@Relationship", AM.RelationshipTxt);
@@ -365,7 +366,7 @@ namespace WillAssure.Controllers
                 SqlCommand cmdd = new SqlCommand("SP_CRUDAlternateAppointees", con);
                 cmdd.CommandType = CommandType.StoredProcedure;
                 cmdd.Parameters.AddWithValue("@condition", "update");
-                cmdd.Parameters.AddWithValue("@id", AM.altid);
+                cmdd.Parameters.AddWithValue("@id", Convert.ToInt32(Session["upappointeesid"]));
                 cmdd.Parameters.AddWithValue("@apId", AM.altapId);
 
 
@@ -376,8 +377,8 @@ namespace WillAssure.Controllers
                 cmdd.Parameters.AddWithValue("@Identity_proof_value", AM.altIdentity_Proof_Value);
                 cmdd.Parameters.AddWithValue("@Alt_Identity_proof", AM.altAlt_Identity_Proof);
                 cmdd.Parameters.AddWithValue("@Alt_Identity_proof_value", AM.altAlt_Identity_Proof_Value);
-                DateTime dat2 = DateTime.ParseExact(AM.altDob, "dd-MM-yyyy", CultureInfo.InvariantCulture);
-                cmdd.Parameters.AddWithValue("@DOB", dat2);
+                //DateTime dat2 = DateTime.ParseExact(AM.altDob, "dd-MM-yyyy", CultureInfo.InvariantCulture);
+                cmdd.Parameters.AddWithValue("@DOB", Convert.ToDateTime(AM.altDob).ToString("dd-MM-yyyy"));
                 cmdd.Parameters.AddWithValue("@Gender", AM.altGender);
                 cmdd.Parameters.AddWithValue("@Occupation", AM.altOccupation);
                 cmdd.Parameters.AddWithValue("@Relationship", AM.altRelationshipTxt);
@@ -387,6 +388,7 @@ namespace WillAssure.Controllers
                 cmdd.Parameters.AddWithValue("@City", AM.altcitytext);
                 cmdd.Parameters.AddWithValue("@State", AM.altstatetext);
                 cmdd.Parameters.AddWithValue("@Pin", AM.altPin);
+                cmdd.Parameters.AddWithValue("@tid", "");
                 cmdd.ExecuteNonQuery();
                 con.Close();
             }

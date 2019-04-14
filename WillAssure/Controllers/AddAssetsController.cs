@@ -29,10 +29,10 @@ namespace WillAssure.Controllers
         // GET: AddAssets
         public ActionResult AddAssetsIndex()
         {
-            if (Session.SessionID == null)
+            if (Session["rId"] == null || Session["uuid"] == null)
             {
 
-                return RedirectToAction("LoginPageIndex", "LoginPage");
+               RedirectToAction("LoginPageIndex", "LoginPage");
 
             }
 

@@ -20,10 +20,10 @@ namespace WillAssure.Controllers
         // GET: UpdateTestatorFamily
         public ActionResult UpdateTestatorFamilyIndex(int NestId)
         {
-            if (Session.SessionID == null)
+            if (Session["rId"] == null || Session["uuid"] == null)
             {
 
-                return RedirectToAction("LoginPageIndex", "LoginPage");
+               RedirectToAction("LoginPageIndex", "LoginPage");
 
             }
             List<LoginModel> Lmlist = new List<LoginModel>();
@@ -78,15 +78,15 @@ namespace WillAssure.Controllers
                            TFM.First_Name =  dt.Rows[i]["First_Name"].ToString() ;
                            TFM.Last_Name = dt.Rows[i]["Last_Name"].ToString() ;
                            TFM.Middle_Name =  dt.Rows[i]["Middle_Name"].ToString() ;
-                           TFM.Dob = dt.Rows[0]["DOB"].ToString();
+                           TFM.Dob = Convert.ToDateTime(dt.Rows[0]["DOB"]).ToString("dd-MM-yyyy");
                            TFM.Marital_Status =  dt.Rows[i]["Marital_Status"].ToString() ;
                            TFM.Religion =  dt.Rows[i]["Religion"].ToString() ;
-                           TFM.Relationship = dt.Rows[i]["Relationship"].ToString() ;
+                           TFM.RelationshipTxt = dt.Rows[i]["Relationship"].ToString() ;
                            TFM.Address1 = dt.Rows[i]["Address1"].ToString() ;
                            TFM.Address2 = dt.Rows[i]["Address2"].ToString() ;
                            TFM.Address3 = dt.Rows[i]["Address3"].ToString() ;
-                           TFM.City =  dt.Rows[i]["City"].ToString() ;
-                           TFM.State = dt.Rows[i]["State"].ToString() ;
+                           TFM.City_txt =  dt.Rows[i]["City"].ToString() ;
+                           TFM.State_txt = dt.Rows[i]["State"].ToString() ;
                            TFM.Pin =  dt.Rows[i]["Pin"].ToString() ;
                          
                            TFM.active = dt.Rows[i]["active"].ToString() ;
@@ -276,7 +276,7 @@ namespace WillAssure.Controllers
             cmd.Parameters.AddWithValue("@Address3", TFM.Address3);
             cmd.Parameters.AddWithValue("@City", TFM.City_txt);
             cmd.Parameters.AddWithValue("@State", TFM.State_txt);
-            cmd.Parameters.AddWithValue("@tId", "");
+            cmd.Parameters.AddWithValue("@tId", TFM.ddltid);
             cmd.Parameters.AddWithValue("@Pin", TFM.Pin);
             cmd.Parameters.AddWithValue("@active", TFM.active);
             cmd.Parameters.AddWithValue("@Identity_Proof", TFM.Identity_Proof);
@@ -292,6 +292,45 @@ namespace WillAssure.Controllers
 
 
             return View("~/Views/AddTestatorFamily/AddTestatorFamilyPageContent.cshtml");
+        }
+
+
+
+        public string BindTestatorDDL()
+        {
+            con.Open();
+            string query = "select a.tId , a.First_Name from TestatorDetails a inner join users b on a.uId=b.uId where b.Linked_user  = " + Convert.ToInt32(Session["uuid"]) + " ";
+            SqlDataAdapter da = new SqlDataAdapter(query, con);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            con.Close();
+            string data = "<option value='' >--Select--</option>";
+
+
+
+
+            if (dt.Rows.Count > 0)
+            {
+
+
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+
+
+
+
+                    data = data + "<option value=" + dt.Rows[i]["tId"].ToString() + " >" + dt.Rows[i]["First_Name"].ToString() + "</option>";
+
+
+
+                }
+
+
+
+
+            }
+
+            return data;
         }
 
     }

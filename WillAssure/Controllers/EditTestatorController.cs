@@ -20,10 +20,10 @@ namespace WillAssure.Controllers
         // GET: EditTestator
         public ActionResult EditTestatorIndex()
         {
-            if (Session.SessionID == null)
+            if (Session["rId"] == null || Session["uuid"] == null)
             {
 
-                return RedirectToAction("LoginPageIndex", "LoginPage");
+               RedirectToAction("LoginPageIndex", "LoginPage");
 
             }
             List<LoginModel> Lmlist = new List<LoginModel>();
@@ -108,7 +108,7 @@ namespace WillAssure.Controllers
 
             for (int i = 0; i < Lmlist.Count(); i++)
             {
-                testString = Lmlist[5].Action;
+                testString = Lmlist[12].Action;
 
             }
 
@@ -359,7 +359,7 @@ namespace WillAssure.Controllers
 
             for (int i = 0; i < Lmlist.Count(); i++)
             {
-                testString = Lmlist[5].Action;
+                testString = Lmlist[12].Action;
 
             }
 

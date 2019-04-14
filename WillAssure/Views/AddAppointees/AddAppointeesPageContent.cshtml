@@ -41,7 +41,7 @@
 
 
                             </div>
-                       
+
                         </div>
 
                         <hr>
@@ -52,7 +52,7 @@
 
                                     <div class="form-group">
                                         <label for="input-1">Type</label>
-                                        <input type="hidden" id="txtcheck" value="" name="name" />
+
 
                                         @Html.HiddenFor(m => m.ddltid, new { id = "ddltid" })
                                         @Html.HiddenFor(m => m.ddltestatorname, new { id = "ddltestatorname" })
@@ -883,14 +883,14 @@
         if (val == "Yes") {
 
             $("#showcompany").removeAttr("style");
-            $(".companyclass").removeAttr("style");
+            $(".appointeesclass").removeAttr("style");
             $("#txtcheck").val("true");
 
         }
 
         if (val == "No") {
 
-            $(".companyclass").css("display", "none");
+            $(".appointeesclass").css("display", "none");
             $("#txtcheck").val("false");
 
         }
@@ -921,30 +921,7 @@
 
 
 
-<script>
-    $('.radio').on('change', function () {
 
-        $('.radio').not(this).prop('checked', false);
-        var val = $("input[name=radio]:checked").val()
-
-        if (val == "Yes") {
-
-            $("#showcompany").removeAttr("style");
-            $(".appointeesclass").removeAttr("style");
-            $("#txtcheck").val("true");
-
-        }
-
-        if (val == "No") {
-
-            $(".appointeesclass").css("display", "none");
-            $("#txtcheck").val("false");
-
-        }
-
-
-    });
-</script>
 
 
 
@@ -1060,7 +1037,7 @@
 
 
 
-              
+
 
     });
 
@@ -1121,7 +1098,7 @@
         $("#ddltid").val(value);
 
 
-        alert(value);
+
 
 
 

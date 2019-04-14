@@ -24,10 +24,10 @@ namespace WillAssure.Controllers
         public ActionResult AddTestatorsFormIndex()
         {
 
-            if (Session.SessionID == null)
+            if (Session["rId"] == null || Session["uuid"] == null)
             {
 
-                return RedirectToAction("LoginPageIndex", "LoginPage");
+               RedirectToAction("LoginPageIndex", "LoginPage");
 
             }
             //if (Session["compId"] == null)
@@ -316,10 +316,16 @@ namespace WillAssure.Controllers
 
 
 
-
-
-                    // new mail code
-                    string mailto = TFM.Email;
+                if (Session["mailto"] == null)
+                {
+                    RedirectToAction("LoginPageIndex", "LoginPage");
+                }
+                if (Session["userid"] == null)
+                {
+                    RedirectToAction("LoginPageIndex", "LoginPage");
+                }
+                // new mail code
+                string mailto = TFM.Email;
                     string Userid = TFM.Identity_proof_Value;
                     Session["mailto"] = mailto;
                     Session["userid"] = Userid;

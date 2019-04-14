@@ -17,6 +17,8 @@ namespace WillAssure.Controllers
         // GET: LoginPage
         public ActionResult LoginPageIndex()
         {
+            
+
             List<LoginModel> Lmlist = new List<LoginModel>();
             con.Open();
             string q = "select * from Assignment_Roles where RoleId = " + Convert.ToInt32(Session["rId"]) + "";
@@ -72,6 +74,7 @@ namespace WillAssure.Controllers
 
             if (dt.Rows.Count > 0)
             {
+                //declaration
                 Session["rId"] = Convert.ToInt32(dt.Rows[0]["rId"]);
                 Session["uid"] = dt.Rows[0]["userID"].ToString();
                 Session["uuid"] = Convert.ToInt32(dt.Rows[0]["uId"]);
@@ -86,6 +89,7 @@ namespace WillAssure.Controllers
                 da2.Fill(dt2);
                 if (dt2.Rows.Count > 0)
                 {
+                    // declaration
                     Session["Role"] = dt2.Rows[0]["Role"].ToString();
                    
                 }
@@ -242,23 +246,59 @@ namespace WillAssure.Controllers
 
         public ActionResult Logout()
         {
+           
+
+            // used in master
             Session["Role"] = "";
-            Session["apId"] = "";
+
+            // alternate not req
+           // Session["apId"] = "";
+
+            // used in many
             Session["rId"] = "";
+
+            // only in login
             Session["uid"] = "";
+
+            // used in 3 users
             Session["compId"] = "";
+
+            // in controller
             Session["filterUid"] = "";
+
+            // in controller
             Session["amId"] = "";
-            Session["assetsCode"] = "";
+
+
+            // in controller
             Session["aiid"] = "";
-            Session["bpId"] = "";
-            Session["tid"] = "";
+
+            // alt bene not req
+            //Session["bpId"] = "";
+
+            // tid commented
+            //Session["tid"] = "";
+
+            // in controller
             Session["Document_Created_By"] = "";
+
+            // in controller
             Session["mailto"] = "";
+
+            // in controller
             Session["userid"] = "";
+
+
             Session["uuid"] = "";
+
+            // in controller
             Session["upcompanyid"] = "";
+
+            // in controller 
             Session["upbeneficiaryid"] = "";
+
+            // in controller 
+            Session["upappointeesid"] = "";
 
 
             return View("~/Views/LoginPage/LoginPageContent.cshtml");

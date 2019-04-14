@@ -20,10 +20,10 @@ namespace WillAssure.Controllers
         // GET: RoleAdd
         public ActionResult RoleAddIndex()
         {
-            if (Session.SessionID == null)
+            if (Session["rId"] == null || Session["uuid"] == null)
             {
 
-                return RedirectToAction("LoginPageIndex", "LoginPage");
+               RedirectToAction("LoginPageIndex", "LoginPage");
 
             }
             // roleassignment

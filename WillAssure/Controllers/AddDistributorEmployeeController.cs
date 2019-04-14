@@ -22,10 +22,10 @@ namespace WillAssure.Controllers
         // GET: AddDistributorEmployee
         public ActionResult AddDistributorEmployeeIndex()
         {
-            if (Session.SessionID == null)
+            if (Session["rId"] == null || Session["uuid"] == null)
             {
 
-                return RedirectToAction("LoginPageIndex", "LoginPage");
+               RedirectToAction("LoginPageIndex", "LoginPage");
 
             }
 

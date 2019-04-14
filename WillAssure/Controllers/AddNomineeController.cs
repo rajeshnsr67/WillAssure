@@ -22,10 +22,10 @@ namespace WillAssure.Controllers
         public ActionResult AddNomineeIndex()
         {
 
-            if (Session.SessionID == null)
+            if (Session["rId"] == null || Session["uuid"] == null)
             {
 
-                return RedirectToAction("LoginPageIndex", "LoginPage");
+               RedirectToAction("LoginPageIndex", "LoginPage");
 
             }
             //if (Session["aiid"] == null && Session["tid"] == null)
@@ -110,8 +110,27 @@ namespace WillAssure.Controllers
 
             //if (Session["aiid"] != null && Session["tid"] != null)
             //{
+            if (Session["aiid"] == null)
+            {
+                RedirectToAction("LoginPageIndex", "LoginPage");
+            }
+
+            //asset information id
+
+            
+
+            if (Session["aiid"].ToString() != "")
+            {
                 NM.aid = Convert.ToInt32(Session["aiid"]);
-                NM.tId = Convert.ToInt32(Session["tid"]);
+            }
+            else
+            {
+                NM.aid = 0;
+            }
+
+            //end
+
+                //NM.tId = Convert.ToInt32(Session["tid"]);
                 con.Open();
                 SqlCommand cmd = new SqlCommand("SP_CRUDNominee", con);
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -325,16 +344,17 @@ namespace WillAssure.Controllers
         public int CheckTestatorUsers(string value, string checkstatus)
         {
             int check = 0;
-            if (checkstatus != "true")
+            if (checkstatus != "true" )
             {
 
-                int Response = Convert.ToInt32(Request["send"]);
+                
 
-                if (Request["send"] != "")
+                if (value != "")
                 {
                     // check for data exists or not for testato family
+                   
                     con.Open();
-                    string query1 = "select * from Nominee where tId =  " + Convert.ToInt32(Session["uuid"]) + " ";
+                    string query1 = " select a.nId , a.First_Name , a.Last_Name , a.Middle_Name , a.DOB , a.Mobile , a.Relationship , a.Marital_Status , a.Religion , a.Identity_Proof , a.Identity_Proof_Value , a.Alt_Identity_Proof , a.Alt_Identity_Proof_Value , a.Address1 , a.Address2 , a.Address3 , a.City , a.State , a.Pin , a.aiid , a.tId , a.dateCreated , a.createdBy , a.documentId , a.Description_of_Assets from Nominee a inner join TestatorDetails b on a.tId=b.tId where b.tId = " + value+" ";
                     SqlDataAdapter da = new SqlDataAdapter(query1, con);
                     DataTable dt = new DataTable();
                     da.Fill(dt);
@@ -342,13 +362,13 @@ namespace WillAssure.Controllers
 
                     if (dt.Rows.Count > 0)
                     {
-                        string query2 = "Update PageActivity set ActID=1 , Tid=" + Response + " , PageStatus=2  ";
+                        string query2 = "Update PageActivity set ActID=1 , Tid=" + value + " , PageStatus=2  ";
                         SqlCommand cmd = new SqlCommand(query2, con);
                         cmd.ExecuteNonQuery();
                     }
                     else
                     {
-                        string query2 = "Update PageActivity set ActID=1 , Tid=" + Response + " , PageStatus=1  ";
+                        string query2 = "Update PageActivity set ActID=1 , Tid=" + value + " , PageStatus=1  ";
                         SqlCommand cmd = new SqlCommand(query2, con);
                         cmd.ExecuteNonQuery();
                     }

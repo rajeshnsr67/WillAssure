@@ -19,10 +19,10 @@ namespace WillAssure.Controllers
         // GET: AddAssetInfo
         public ActionResult AddAssetInfoIndex()
         {
-            if (Session.SessionID == null)
+            if (Session["rId"] == null || Session["uuid"] == null)
             {
 
-                return RedirectToAction("LoginPageIndex", "LoginPage");
+               RedirectToAction("LoginPageIndex", "LoginPage");
 
             }
 
@@ -32,6 +32,10 @@ namespace WillAssure.Controllers
 
         public ActionResult AddAssetInfoData(AssetsModel AM)
         {
+            if (Session["amId"] == null)
+            {
+                RedirectToAction("LoginPageIndex", "LoginPage");
+            }
 
             if (Session["amId"] != null)
             {

@@ -20,12 +20,19 @@ namespace WillAssure.Controllers
         // GET: AddAssetCategory
         public ActionResult AddAssetCategoryIndex()
         {
-            if (Session.SessionID == null)
+            if (Session["rId"] == null || Session["uuid"] == null)
             {
 
-                return RedirectToAction("LoginPageIndex", "LoginPage");
+               RedirectToAction("LoginPageIndex", "LoginPage");
 
             }
+
+
+
+
+         
+
+
 
             List<LoginModel> Lmlist = new List<LoginModel>();
             con.Open();
@@ -131,7 +138,10 @@ namespace WillAssure.Controllers
                 SqlDataAdapter da = new SqlDataAdapter(query, con);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
-
+                if (Session["amId"] == null)
+                {
+                    RedirectToAction("LoginPageIndex", "LoginPage");
+                }
                 if (dt.Rows.Count > 0)
                 {
                     string i = dt.Rows[0]["atId"].ToString();
