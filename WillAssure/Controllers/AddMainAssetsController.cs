@@ -30,7 +30,7 @@ namespace WillAssure.Controllers
             }
             //if (Session["tid"] == null)
             //{
-            //    ViewBag.Message = "link";
+            //    ViewBag.Message = "link"
             //}
 
             List<LoginModel> Lmlist = new List<LoginModel>();
