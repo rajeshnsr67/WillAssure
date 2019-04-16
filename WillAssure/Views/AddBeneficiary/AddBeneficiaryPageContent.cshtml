@@ -3,6 +3,11 @@
     ViewBag.Title = "AddBeneficiaryPageContent";
 }
 
+<style>
+    ul#menu li {
+        display: inline;
+    }
+</style>
 
 <div class="content-wrapper">
     <div class="container-fluid">
@@ -27,7 +32,21 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
+                        <h5>
+                            <ul id="menu" style="font-weight:bold;">
 
+                                <li >Testator ></li>
+                                <li>Testator Family ></li>
+                                <li style="color:#5e72e4">Beneficiary ></li>
+                                <li style="color:#e1e1e1">AssetInformation ></li>
+                                <li style="color:#e1e1e1">Mapping ></li>
+                                <li style="color:#e1e1e1">Nominee ></li>
+                                <li style="color:#e1e1e1">Appointees </li>
+
+
+                            </ul>
+                        </h5>
+                        <br />
                         <div class="card-title text-primary">Add Beneficiary</div>
 
 
@@ -615,7 +634,7 @@
         $("#altMarital_Status_TXT").val(text);
         $("#altMarital_Status_ID").val(value);
 
-        alert(text);
+
     });
 
 
@@ -637,10 +656,10 @@
         $("#altReligion_TXT").val(text);
         $("#altReligion_ID").val(value);
 
-        alert(value);
+        
     }
-       
-   
+
+
 
 
 
@@ -676,9 +695,9 @@
             url:"@Url.Action("BindTestatorDDL", "AddBeneficiary")",
                   success: function (data) {
 
-                     
+
                       $('#DDLTestator').empty().append(data);
-                   
+
 
 
 
@@ -687,7 +706,7 @@
 
 
 
-              
+
 
 
     });
@@ -869,7 +888,7 @@
 
     }
 
- 
+
 
 
     function getDDLTestator(value) {
@@ -893,8 +912,8 @@
                 if (data == 2) {
                     $("#btncheckExists").on("click", function () { });
                     $("#btncheckExists").click(); //trigger event after listening to it.
-                 
-                 
+
+
 
                     setTimeout(function () {
                         var url = "/AddMainAssets/AddMainAssetsIndex/";
@@ -902,12 +921,12 @@
                     }, 2000);
                 }
 
-               
-                      
 
 
 
-                
+
+
+
             }
         });
 
@@ -1003,11 +1022,11 @@
     $("#altddlrelation").change(function () {
         var value = $(this).children(":selected").attr("value");
         var text = $("#altddlrelation option:selected").html();
-       
+
         $("#altRelationshipTxt").val(text);
         $("#altRelationshipId").val(value);
 
-   
+
     });
 
 
@@ -1078,7 +1097,7 @@
 <script>
     function altgetIdentityselection(id) {
 
-        alert(id);
+       
 
         if (id == "Aadhaar Card") {
             $("#altappendtxt").empty().append("<input type='text' class='form-control validate[required,custom[adharCard]] text-input' id='altIdentity_Proof_Value' name='altIdentity_Proof_Value' placeholder='Enter Aadhaar Card' autocomplete='off'  />");
@@ -1172,7 +1191,7 @@
             $('.radio1').prop('checked', true);
             $("#txtcheck").val("true");
         }
-    }); 
+    });
 </script>
 
 @*end*@

@@ -95,5 +95,10 @@ namespace WillAssure.Models
 
         public string check { get; set; }
 
+
+        public string altguardian { get; set; }
+        public string altexecutor { get; set; }
+
+
     }
 }

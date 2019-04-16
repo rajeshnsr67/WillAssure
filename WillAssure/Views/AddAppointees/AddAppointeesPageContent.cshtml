@@ -2,7 +2,11 @@
 @{
     ViewBag.Title = "AddAppointeesPageContent";
 }
-
+<style>
+    ul#menu li {
+        display: inline;
+    }
+</style>
 
 @*Main Content*@
 <div class="content-wrapper">
@@ -28,6 +32,21 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
+                        <h5>
+                            <ul id="menu" style="font-weight:bold;">
+
+                                <li>Testator ></li>
+                                <li>Testator Family ></li>
+                                <li>Beneficiary ></li>
+                                <li>AssetInformation ></li>
+                                <li>Mapping ></li>
+                                <li>Nominee ></li>
+                                <li style="color:#5e72e4">Appointees </li>
+
+
+                            </ul>
+                        </h5>
+                        <br />
                         <div class="card-title text-primary">Add Appointees</div>
                         <div class="row">
                             <div class='col-sm-1'><label for='input-1' style="line-height:40px;">Testator</label></div>
@@ -313,6 +332,40 @@
                             @*alternate appointees*@
 
                             <div class="row appointeesclass" style="display:none;">
+
+
+
+
+
+
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="input-1">Type</label>
+                                        @Html.DropDownListFor(x => x.altguardian, new SelectListItem[]{
+                          new SelectListItem() {Text = "--Select--", Value=""},
+                          new SelectListItem() {Text = "Executor", Value="Executor"},
+                          new SelectListItem() {Text = "Guardian", Value="Guardian"},
+                          new SelectListItem() {Text = "Witness", Value="Witness"},
+                          new SelectListItem() {Text = "Agent", Value="Agent"},
+                          new SelectListItem() {Text = "Donee", Value="Donee"}}, new { @class = "form-control validate[required]", @id="ddltype" })
+                                    </div>
+                                </div>
+
+
+
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="input-1">subType</label>
+
+                                        @Html.DropDownListFor(x => x.altexecutor, new SelectListItem[]{
+                            new SelectListItem() {Text = "--Select--", Value=""},
+                            new SelectListItem() {Text = "Single", Value="Single"},
+                            new SelectListItem() {Text = "Many Joint", Value="Many Joint"},
+                            new SelectListItem() {Text = "Many Independent", Value="Many Independent"}}, new { @class = "form-control validate[required]", @id = "ddlsubtype" })
+                                  
+                                    </div>
+                                </div>
+
 
 
                                 <div class="col-sm-6">

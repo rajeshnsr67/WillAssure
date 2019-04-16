@@ -345,7 +345,7 @@ namespace WillAssure.Controllers
             con.Close();
 
 
-
+            int appid = 0;
             // latest appointees
             int apid = 0;
             con.Open();
@@ -355,8 +355,12 @@ namespace WillAssure.Controllers
             da2.Fill(dt2);
             if (dt2.Rows.Count > 0)
             {
-
-               apid  = Convert.ToInt32(dt2.Rows[0]["apId"]);
+                appid = Convert.ToInt32(dt2.Rows[0]["apId"]);
+                apid = 1; // for yes
+            }
+            else
+            {
+                apid = 2; //for no
             }
             con.Close();
 
@@ -365,6 +369,68 @@ namespace WillAssure.Controllers
             //end
 
 
+
+            // dropdown selection
+            int AppointmentofGuardian = 0;
+            if (AM.Typetxt == "Guardian")
+            {
+                AppointmentofGuardian = 1;    //yes
+            }
+            else
+            {
+                AppointmentofGuardian = 2;    // no
+            }
+
+            int Numberofexecutors = 0;
+            if (AM.subTypetxt == "Single")
+            {
+                Numberofexecutors = 1;
+            }
+            if (AM.subTypetxt == "Many Joint")
+            {
+                Numberofexecutors = 2;
+            }
+            if (AM.subTypetxt == "Many Independent")
+            {
+                Numberofexecutors = 3;
+            }
+
+            //end
+
+            // Document Rules
+
+            //get latest id first
+            con.Open();
+            string getquery = "select top 1 * from documentRules order by wdId desc";
+            SqlDataAdapter da = new SqlDataAdapter(getquery, con);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            int getruleid = 0;
+            if (dt.Rows.Count > 0)
+            {
+                getruleid = Convert.ToInt32(dt.Rows[0]["wdId"]);
+            }
+            con.Close();
+
+            //end
+
+
+
+            con.Open();
+            string rulequery = "update documentRules set guardian = " + AppointmentofGuardian + " ,executors_category = " + Numberofexecutors + " where wdId = " + getruleid + " ";
+            SqlCommand cmd2 = new SqlCommand(rulequery, con);
+            cmd2.ExecuteNonQuery();
+            con.Close();
+            //end
+
+
+
+
+
+
+
+
+           
 
 
             if (AM.check == "true")
@@ -376,14 +442,14 @@ namespace WillAssure.Controllers
                 cmdd.CommandType = CommandType.StoredProcedure;
                 cmdd.Parameters.AddWithValue("@condition", "insert");
 
-                if (apid != 0)
+                if (appid != 0)
                 {
-                    cmdd.Parameters.AddWithValue("@apId", apid);
+                    cmdd.Parameters.AddWithValue("@apId", appid);
                 }
                 else
                 {
-                    apid = 0;
-                    cmdd.Parameters.AddWithValue("@apId", apid);
+                    appid = 0;
+                    cmdd.Parameters.AddWithValue("@apId", appid);
                 }
 
                 
@@ -407,6 +473,8 @@ namespace WillAssure.Controllers
                 cmdd.Parameters.AddWithValue("@State", AM.altstatetext);
                 cmdd.Parameters.AddWithValue("@Pin", AM.altPin);
                 cmdd.Parameters.AddWithValue("@tid", AM.ddltid);
+                cmdd.Parameters.AddWithValue("@altguardian", AM.altguardian);
+                cmdd.Parameters.AddWithValue("@altexecutor", AM.altexecutor);
                 cmdd.ExecuteNonQuery();
                 con.Close();
 
@@ -419,33 +487,56 @@ namespace WillAssure.Controllers
             }
 
 
-
-
             ViewBag.Message = "Verified";
 
-            // dropdown selection
-            int AppointmentofGuardian = 0;
-            if (AM.Type == "Guardian")
+
+            // latest appointees
+            int altapid = 0;
+            con.Open();
+            string query4 = "select top 1 * from alternate_Appointees order by apId desc";
+            SqlDataAdapter da4 = new SqlDataAdapter(query4, con);
+            DataTable dt4 = new DataTable();
+            da4.Fill(dt4);
+            if (dt4.Rows.Count > 0)
             {
-                AppointmentofGuardian = 1;    //yes
+
+                altapid = 1; // for yes
             }
             else
             {
-                AppointmentofGuardian = 2;    // no
+                altapid = 2; //for no
+            }
+            con.Close();
+
+
+
+            //end
+
+
+
+            // dropdown selection
+            int AppointmentofaltGuardian = 0;
+            if (AM.altguardian == "Guardian")
+            {
+                AppointmentofaltGuardian = 1;    //yes
+            }
+            else
+            {
+                AppointmentofaltGuardian = 2;    // no
             }
 
-            int Numberofexecutors = 0;
-            if (AM.subType == "Single")
+            int altNumberofexecutors = 0;
+            if (AM.altexecutor == "Single")
             {
-                Numberofexecutors = 1;    
+                altNumberofexecutors = 1;
             }
-            if (AM.subType == "Many Joint")
+            if (AM.altexecutor == "Many Joint")
             {
-                Numberofexecutors = 2;    
+                altNumberofexecutors = 2;
             }
-            if (AM.subType == "Many Independent")
+            if (AM.altexecutor == "Many Independent")
             {
-                Numberofexecutors = 3;    
+                altNumberofexecutors = 3;
             }
 
             //end
@@ -454,14 +545,14 @@ namespace WillAssure.Controllers
 
             //get latest id first
             con.Open();
-            string getquery = "select top 1 * from documentRules order by wdId desc";
-            SqlDataAdapter da = new SqlDataAdapter(getquery,con);
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-            int getruleid = 0;
+            string getquery4 = "select top 1 * from documentRules order by wdId desc";
+            SqlDataAdapter da5 = new SqlDataAdapter(getquery4, con);
+            DataTable dt5 = new DataTable();
+            da5.Fill(dt5);
+            int getruleid2 = 0;
             if (dt.Rows.Count > 0)
             {
-                getruleid = Convert.ToInt32(dt.Rows[0]["wdId"]);
+                getruleid2 = Convert.ToInt32(dt5.Rows[0]["wdId"]);
             }
             con.Close();
 
@@ -470,15 +561,12 @@ namespace WillAssure.Controllers
 
 
             con.Open();
-            string rulequery = "update documentRules set guardian = "+AppointmentofGuardian+" ,executors_category = "+Numberofexecutors+ " where wdId = "+getruleid+" ";
-            SqlCommand cmd2 = new SqlCommand(rulequery,con);
-            cmd2.ExecuteNonQuery();
+            string rulequery2 = "update documentRules set AlternateGaurdian = " + AppointmentofaltGuardian + " , AlternateExecutors = " + altNumberofexecutors + " where wdId = " + getruleid2 + " ";
+            SqlCommand cmd6 = new SqlCommand(rulequery2, con);
+            cmd6.ExecuteNonQuery();
             con.Close();
             //end
 
-
-
-            
 
 
 

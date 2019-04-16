@@ -24,6 +24,8 @@ namespace WillAssure.Controllers
         public ActionResult AddTestatorsFormIndex()
         {
 
+           
+
             if (Session["rId"] == null || Session["uuid"] == null)
             {
 
@@ -221,7 +223,16 @@ namespace WillAssure.Controllers
                 string testatortype = "";
 
 
-
+            con.Open();
+            string gettid = "select top 1 tId from TestatorDetails order by tId desc";
+            SqlDataAdapter datid = new SqlDataAdapter(gettid,con);
+            DataTable dttid = new DataTable();
+            datid.Fill(dttid);
+            if (dttid.Rows.Count > 0)
+            {
+                testatorid = Convert.ToInt32(dttid.Rows[0]["tId"]);
+            }
+            con.Close();
 
 
            
@@ -275,7 +286,7 @@ namespace WillAssure.Controllers
 
 
                 con.Open();
-                string q1 = "insert into documentRules (documentType,category,templateId) values (" + typeid +" , "+typecat+" , "+templateid+" )";
+                string q1 = "insert into documentRules (documentType,category,tid) values (" + typeid +" , "+typecat+"  , "+testatorid+" )";
                 SqlCommand c1 = new SqlCommand(q1, con);
                 c1.ExecuteNonQuery();
                 con.Close();
@@ -481,25 +492,28 @@ namespace WillAssure.Controllers
 
 
             // coupon status
+            if (TFM.txtCoupon != null)
+            {
+                con.Open();
+                string checkcoupon = "select * from couponAllotment where Coupon_Number = " + TFM.txtCoupon + " and  Status = 'Active' ";
+                SqlDataAdapter da = new SqlDataAdapter(checkcoupon, con);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                if (dt.Rows.Count > 0)
+                {
 
-            con.Open();
-            string checkcoupon = "select * from couponAllotment where Coupon_Number = " + TFM.txtCoupon + " and  Status = 'Active' ";
-            SqlDataAdapter da = new SqlDataAdapter(checkcoupon, con);
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-            if (dt.Rows.Count > 0)
-            {
-              
-                string upcoupon = "update couponAllotment set Status = 'Inactive' ,    Tid=" + tid+" ";
-                SqlCommand cmd2 = new SqlCommand(upcoupon, con);
-                cmd2.ExecuteNonQuery();
-            
+                    string upcoupon = "update couponAllotment set Status = 'Inactive' ,    Tid=" + tid + " ";
+                    SqlCommand cmd2 = new SqlCommand(upcoupon, con);
+                    cmd2.ExecuteNonQuery();
+
+                }
+                else
+                {
+                    ViewBag.Message = "checkCoupon";
+                }
+                con.Close();
             }
-            else
-            {
-                ViewBag.Message = "checkCoupon";
-            }
-            con.Close();
+    
 
             //end
 

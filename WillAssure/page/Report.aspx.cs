@@ -45,7 +45,7 @@ namespace WillAssure.Views.ViewDocument
             string beneficiarysirname = "";
             string documenttype = "";
            
-            string query1 = "select top 1  a.First_Name as TestatorName , a.Last_Name as Testatorsirname , a.DOB as TestatorAge , a.RelationShip as TestatorRelationship , a.Address1 as TestatorAddress , b.First_Name as BeneficiaryName , b.Last_Name as Beneficiarysirname  , c.Name as executorname , d.Name as alternateexecutorname , e.Relationship as Relation , g.AssetsCategory , f.InstrumentName , b.First_Name as BeneficiaryName , f.Proportion     from TestatorDetails a inner join BeneficiaryDetails b on a.tId=b.tId inner join Appointees c on a.tId = c.tid  inner join Appointees d on a.tId=d.tid inner join testatorFamily e on a.tId=e.tId inner join BeneficiaryAssets f on a.tId=f.tid  inner join AssetsCategory g on g.amId=f.AssetCategory_ID inner join documentmaster h on h.uId=a.uid   where h.documentId  =  " + documentId + "";
+            string query1 = "select top 1  a.First_Name as TestatorName , a.Last_Name as Testatorsirname , a.DOB as TestatorAge , a.RelationShip as TestatorRelationship , a.Address1 as TestatorAddress , b.First_Name as BeneficiaryName , b.Last_Name as Beneficiarysirname  , c.Name as executorname , d.Name as alternateexecutorname , e.Relationship as Relation , g.AssetsCategory , f.InstrumentName , b.First_Name as BeneficiaryName , f.Proportion     from TestatorDetails a inner join BeneficiaryDetails b on a.tId=b.tId inner join Appointees c on a.tId = c.tid  inner join Appointees d on a.tId=d.tid inner join testatorFamily e on a.tId=e.tId inner join BeneficiaryAssets f on a.tId=f.tid  inner join AssetsCategory g on g.amId=f.AssetCategory_ID inner join documentmaster h on h.uId=a.uid   where a.tId =  " + documentId + "";
             SqlDataAdapter da = new SqlDataAdapter(query1,con);
             DataTable dt = new DataTable();
             da.Fill(dt);
@@ -107,7 +107,7 @@ namespace WillAssure.Views.ViewDocument
 
 
 
-            WillTestator rpt = new WillTestator();
+            WillTestator1 rpt = new WillTestator1();
 
             //ReportDocument rpt = new ReportDocument();
             rpt.SetParameterValue("testator", TestatorName);

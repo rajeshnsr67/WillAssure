@@ -451,7 +451,7 @@ namespace WillAssure.Controllers
             if (Convert.ToInt32(Session["rId"]) == 1)
             {
                 con.Open();
-                string query = "select uId , First_Name from users";
+                string query = "select uId , First_Name from users where Type in ('DistributorAdmin', 'SuperAdmin')";
                 SqlDataAdapter da = new SqlDataAdapter(query, con);
                 DataTable dt = new DataTable();
                 da.Fill(dt);

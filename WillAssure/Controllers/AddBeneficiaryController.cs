@@ -274,6 +274,60 @@ namespace WillAssure.Controllers
             }
 
 
+
+            // alternate beneficiary id
+
+            //get latest id first
+            int checkaltbeneid = 0;
+            con.Open();
+            string getquery = "select top 1 lnk_bd_id from alternate_Beneficiary order by lnk_bd_id desc";
+            SqlDataAdapter da2 = new SqlDataAdapter(getquery, con);
+            DataTable dt2 = new DataTable();
+            da2.Fill(dt2);
+           
+            if (dt2.Rows.Count > 0)
+            {
+                checkaltbeneid = 1;
+            }
+            else
+            {
+                checkaltbeneid = 0;
+            }
+            con.Close();
+
+            //end
+
+
+
+
+            // Document Rules
+
+            //get latest id first
+            con.Open();
+            string getquery2 = "select top 1 * from documentRules order by wdId desc";
+            SqlDataAdapter da4 = new SqlDataAdapter(getquery2, con);
+            DataTable dt4 = new DataTable();
+            da4.Fill(dt4);
+            int docid = 0;
+            if (dt4.Rows.Count > 0)
+            {
+                docid = Convert.ToInt32(dt4.Rows[0]["wdId"]);
+            }
+            con.Close();
+
+            //end
+
+
+
+            con.Open();
+            string rulequery = "update documentRules set AlternateBenficiaries = " + checkaltbeneid + "  where wdId = " + docid + " ";
+            SqlCommand cmd2 = new SqlCommand(rulequery, con);
+            cmd2.ExecuteNonQuery();
+            con.Close();
+            //end
+
+
+
             ModelState.Clear();
             ViewBag.Message = "RecordsInsert";
 

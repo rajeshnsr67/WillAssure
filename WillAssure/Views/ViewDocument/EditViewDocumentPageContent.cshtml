@@ -35,11 +35,12 @@
                                 <thead>
                                     <tr class="ui-widget-header">
 
-                                        <th>DocumentType</th>
+                                        <th>Tid</th>
                                         <th>TestatorName</th>
+                                        <th>DocumentType</th>
                                         <th>Action</th>
 
-                                
+
 
                                     </tr>
                                 </thead>
@@ -125,6 +126,34 @@
 
     }
 
+
+    function detailid(id) {
+
+
+        var id = id;
+
+
+
+            $.ajax({
+
+            type: "POST",
+            url: "@Url.Action("getdocumentdata", "ViewDocument")",
+            data: {  "send": "" + id + ""   },
+            success: function (data) {
+
+
+                var NestId = data
+                var url = "/WillDetails/WillDetailsIndex?NestId=" + NestId;
+                window.location.href = url;
+
+
+            }
+
+
+
+        });
+
+    }
 
 
 

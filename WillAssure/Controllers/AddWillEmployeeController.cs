@@ -382,7 +382,7 @@ namespace WillAssure.Controllers
                 if (roles == 1)
                 {
                     con.Open();
-                    string query = "select * from Roles";
+                    string query = "select a.rId , a.Role , a.Pid from Roles a inner join users b on a.rId = b.rId where b.Linked_user = 1  and  a.rId = 3";
                     SqlDataAdapter da = new SqlDataAdapter(query, con);
                     DataTable dt = new DataTable();
                     da.Fill(dt);
