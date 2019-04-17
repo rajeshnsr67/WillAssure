@@ -66,34 +66,87 @@ namespace WillAssure.Controllers
 
         public string BindDocumentData()
         {
-            con.Open();
-            string query = "select a.tId , a.First_Name  , b.beneficiary_type  from TestatorDetails a inner join BeneficiaryDetails b on a.tId=b.tId inner join Appointees c on a.tId = c.tid  inner join Appointees d on a.tId=d.tid inner join testatorFamily e on a.tId=e.tId inner join BeneficiaryAssets f on a.tId=f.tid  inner join AssetsCategory g on g.amId=f.AssetCategory_ID inner join users h on a.uId=h.uId where h.Linked_user =   " + Convert.ToInt32(Session["uuid"]) + "";
-            SqlDataAdapter da = new SqlDataAdapter(query, con);
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-            con.Close();
-
             string data = "";
-
-
-            if (dt.Rows.Count > 0)
+            if (Convert.ToInt32(Session["uuid"]) != 1)
             {
-                for (int i = 0; i < dt.Rows.Count; i++)
+
+               
+                 
+
+                        con.Open();
+                        string query = "select a.tId , a.First_Name  , b.beneficiary_type  from TestatorDetails a inner join BeneficiaryDetails b on a.tId=b.tId inner join Appointees c on a.tId = c.tid  inner join Appointees d on a.tId=d.tid inner join testatorFamily e on a.tId=e.tId inner join BeneficiaryAssets f on a.tId=f.tid  inner join AssetsCategory g on g.amId=f.AssetCategory_ID inner join users h on a.uId=h.uId  inner join documentMaster i on a.tId=i.tId where h.Linked_user =   " + Convert.ToInt32(Session["uuid"]) + " and i.adminVerification = 2";
+                        SqlDataAdapter da = new SqlDataAdapter(query, con);
+                        DataTable dt = new DataTable();
+                        da.Fill(dt);
+                        con.Close();
+
+
+
+
+                        if (dt.Rows.Count > 0)
+                        {
+                            for (int i = 0; i < dt.Rows.Count; i++)
+                            {
+
+                                data = data + "<tr class='nr'><td>" + dt.Rows[i]["tId"].ToString() + "</td>"
+        + "<td>" + dt.Rows[i]["beneficiary_type"].ToString() + "</td>"
+        + "<td>" + dt.Rows[i]["First_Name"].ToString() + "</td>"
+        + "<td> <button type='button'   id=" + dt.Rows[i]["tId"].ToString() + " onClick='detailid(this.id)'   class='btn btn-primary'>View Details</button></tr>";
+
+
+
+
+
+
+                            }
+
+
+
+
+
+
+
+                        }
+                    
+                
+
+
+
+
+            }
+            else
+            {
+
+
+                con.Open();
+                string query = "select a.tId , a.First_Name  , b.beneficiary_type  from TestatorDetails a inner join BeneficiaryDetails b on a.tId=b.tId inner join Appointees c on a.tId = c.tid  inner join Appointees d on a.tId=d.tid inner join testatorFamily e on a.tId=e.tId inner join BeneficiaryAssets f on a.tId=f.tid  inner join AssetsCategory g on g.amId=f.AssetCategory_ID inner join users h on a.uId=h.uId ";
+                SqlDataAdapter da = new SqlDataAdapter(query, con);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                con.Close();
+
+
+
+
+                if (dt.Rows.Count > 0)
                 {
-                    if (Convert.ToInt32(Session["uuid"]) != 1)
+                    for (int i = 0; i < dt.Rows.Count; i++)
                     {
-                        data = data + "<tr class='nr'><td>" + dt.Rows[i]["tId"].ToString() + "</td>"
-+ "<td>" + dt.Rows[i]["beneficiary_type"].ToString() + "</td>"
-+ "<td>" + dt.Rows[i]["First_Name"].ToString() + "</td>"
-+ "<td> <button type='button'   id=" + dt.Rows[i]["tId"].ToString() + " onClick='detailid(this.id)'   class='btn btn-primary'>View Details</button></tr>";
-                    }
-                    else
-                    {
+
                         data = data + "<tr class='nr'><td>" + dt.Rows[i]["tId"].ToString() + "</td>"
 + "<td>" + dt.Rows[i]["beneficiary_type"].ToString() + "</td>"
 + "<td>" + dt.Rows[i]["First_Name"].ToString() + "</td>"
 + "<td> <button type='button'   id=" + dt.Rows[i]["tId"].ToString() + " onClick='Edit(this.id)'   class='btn btn-primary'>View Document</button></tr>";
+
+
+
+
+
+
                     }
+
+
+
 
 
 
@@ -103,10 +156,10 @@ namespace WillAssure.Controllers
 
 
 
-
-
-
             }
+
+
+           
 
 
 

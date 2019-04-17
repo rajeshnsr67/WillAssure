@@ -568,6 +568,19 @@ namespace WillAssure.Controllers
             //end
 
 
+            // update document master with latest rule id
+
+            con.Open();
+            string rquery2 = "update documentMaster set wdId = "+ getruleid2 + " where tId =  " + AM.ddltid + "  ";
+            SqlCommand rcmd2 = new SqlCommand(rquery2, con);
+            rcmd2.ExecuteNonQuery();
+            con.Close();
+
+
+
+
+            //end
+
 
 
             ModelState.Clear();

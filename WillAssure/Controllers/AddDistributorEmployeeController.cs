@@ -447,9 +447,10 @@ namespace WillAssure.Controllers
 
         public String BindCompanyDDL()
         {
-            string data = "<option value=''>--Select --</option>";
+            
             if (Convert.ToInt32(Session["rId"]) == 1)
             {
+                string data = "<option value=''>--Select --</option>";
                 con.Open();
                 string query = "select uId , First_Name from users where Type in ('DistributorAdmin', 'SuperAdmin')";
                 SqlDataAdapter da = new SqlDataAdapter(query, con);
@@ -486,7 +487,7 @@ namespace WillAssure.Controllers
             }
             else
             {
-                string dd = "";
+                string dd = "<option value=''>--Select --</option>";
                 con.Open();
                 string query = "select a.uId , a.First_Name  from users a inner join roles b on a.rId=b.rId where a.rId = "+Convert.ToInt32(Session["rId"])+" and a.uId = "+ Convert.ToInt32(Session["uuid"]) + " ";
                 SqlDataAdapter da = new SqlDataAdapter(query, con);

@@ -15,15 +15,28 @@
 <body>
     <form id="form1" runat="server">
      
-        <center><h1>Created Will</h1></center>
+    
+
+
+        <center>
+
+               <h1>Created Will</h1>
 
         
-   
-        <CR:CrystalReportViewer ID="CrystalReportViewer1" runat="server" AutoDataBind="true" EnableDatabaseLogonPrompt="False" EnableParameterPrompt="False" ReportSourceID="CrystalReportSource1" Visible="true" ToolPanelView="None" />
+            <br />
+        <asp:Button CssClass="btn btn-success" ID="btnverify" Text="Verify" runat="server" OnClick="btnverify_Click" />
+        <asp:Button CssClass="btn btn-danger" ID="btncancel" Text="Cancel" runat="server" OnClick="btncancel_Click" />
+        <asp:Button CssClass="btn btn-primary" ID="btnChangeTemplate" Text="ChangeTemplate" runat="server" OnClick="btnChangeTemplate_Click"  />
+            <br />
+            <br />
+           
+              <CR:CrystalReportViewer ID="CrystalReportViewer1" runat="server" AutoDataBind="true" EnableDatabaseLogonPrompt="False" EnableParameterPrompt="False" ReportSourceID="CrystalReportSource1" Visible="true" ToolPanelView="None" />
         <CR:CrystalReportSource ID="CrystalReportSource1" runat="server" Visible="true">
             <Report FileName="D:\Will Assure\WillAssure\WillAssure\CrystalReports\WillTestator.rpt">
             </Report>
         </CR:CrystalReportSource>
+        </center>
+      
 
 
 

@@ -30,46 +30,57 @@
                     <div class="card-body">
 
                         @*<div class="card-title text-primary">Will Details</div>*@
-                      
-              
 
 
-                       
+
+
+
+
+
+
+                        @Html.HiddenFor(m => m.VerifyId, new { @id = "txtVerifyId" })
+
+
+
+
+
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="card">
                                     <div class="card-body">
                                         <ul class="nav nav-tabs nav-tabs-info nav-justified">
-                                            <li class="nav-item">
-                                                <a class="nav-link active" data-toggle="tab" href="#tabe-13"><i class="icon-user"></i> <span class="hidden-xs">Testator</span></a>
+
+                                            <li class="nav-item ">
+                                                <a class="nav-link active" data-toggle="tab" href="#tabe-1"><i class="icon-user"></i> <span class="hidden-xs">Testator</span></a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link" data-toggle="tab" href="#tabe-14"><i class="icon-user"></i> <span class="hidden-xs">Beneficiary</span></a>
+                                                <a class="nav-link" data-toggle="tab" href="#tabe-2"><i class="icon-user"></i> <span class="hidden-xs">Testator Family</span></a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link" data-toggle="tab" href="#tabe-15"><i class="icon-user"></i> <span class="hidden-xs">AltBeneficiary</span></a>
+                                                <a class="nav-link" data-toggle="tab" href="#tabe-3"><i class="icon-user"></i> <span class="hidden-xs">Beneficiary</span></a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link" data-toggle="tab" href="#tabe-16"><i class="icon-user"></i> <span class="hidden-xs">AssetMapped</span></a>
+                                                <a class="nav-link" data-toggle="tab" href="#tabe-4"><i class="icon-user"></i> <span class="hidden-xs">Alt Beneficiary</span></a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link" data-toggle="tab" href="#tabe-17"><i class="icon-user"></i> <span class="hidden-xs">Nominee</span></a>
+                                                <a class="nav-link" data-toggle="tab" href="#tabe-5"><i class="icon-user"></i> <span class="hidden-xs">Asset Mapped</span></a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link" data-toggle="tab" href="#tabe-18"><i class="icon-user"></i> <span class="hidden-xs">Appointees</span></a>
+                                                <a class="nav-link" data-toggle="tab" href="#tabe-6"><i class="icon-user"></i> <span class="hidden-xs">Nominee</span></a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link" data-toggle="tab" href="#tabe-19"><i class="icon-user"></i> <span class="hidden-xs">AltAppointees</span></a>
+                                                <a class="nav-link" data-toggle="tab" href="#tabe-7"><i class="icon-user"></i> <span class="hidden-xs">Appointees</span></a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link" data-toggle="tab" href="#tabe-20"><i class="icon-user"></i> <span class="hidden-xs"></span></a>
+                                                <a class="nav-link" data-toggle="tab" href="#tabe-8"><i class="icon-user"></i> <span class="hidden-xs">Alt Appointees</span></a>
                                             </li>
 
 
                                         </ul>
                                         <!-- Tab panes -->
                                         <div class="tab-content">
-                                            <div id="tabe-13" class="container tab-pane active">
+
+                                            <div id="tabe-1" class="container tab-pane active">
                                                 <div class="row">
 
                                                     <div class="col-sm-6">
@@ -307,69 +318,1317 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div id="tabe-2" class="container tab-pane fade">
+                                                <div class="row">
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> Name : </label>
+
+                                                        <div class="form-group">
+                                                            @Html.TextBoxFor(m => m.tffirstname, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> Last Name : </label>
+                                                        <div class="form-group">
+
+                                                            @Html.TextBoxFor(m => m.tflastname, new { @class = "form-control", @readonly = "true" })
+
+                                                        </div>
+                                                    </div>
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> Middle Name : </label>
+                                                        <div class="form-group">
+                                                            @Html.TextBoxFor(m => m.tfmiddlename, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
 
 
 
 
-                                            <div id="tabe-14" class="container tab-pane fade">
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> DOB : </label>
+                                                        <div class="form-group">
+                                                            @Html.TextBoxFor(m => m.tfdob, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
 
-                                              
 
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> Marital Status : </label>
+                                                        <div class="form-group">
+                                                            @Html.TextBoxFor(m => m.tfmaritalstatus, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> Religion : </label>
+                                                        <div class="form-group">
+                                                            @Html.TextBoxFor(m => m.tfreligion, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> RelationShip : </label>
+                                                        <div class="form-group">
+                                                            @Html.TextBoxFor(m => m.tfrelationship, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> Address 1 : </label>
+                                                        <div class="form-group">
+                                                            @Html.TextBoxFor(m => m.tfaddress1, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> Address 2 : </label>
+                                                        <div class="form-group">
+                                                            @Html.TextBoxFor(m => m.tfaddress2, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> Address 3 : </label>
+                                                        <div class="form-group">
+                                                            @Html.TextBoxFor(m => m.tfaddress3, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> City : </label>
+                                                        <div class="form-group">
+                                                            @Html.TextBoxFor(m => m.tfcity, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> State : </label>
+                                                        <div class="form-group">
+                                                            @Html.TextBoxFor(m => m.tfstate, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> Pin : </label>
+                                                        <div class="form-group">
+                                                            @Html.TextBoxFor(m => m.tfpin, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> Identity Proof : </label>
+                                                        <div class="form-group">
+                                                            @Html.TextBoxFor(m => m.tfidentityproof, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> Identity Proof Value : </label>
+                                                        <div class="form-group">
+                                                            @Html.TextBoxFor(m => m.tfidentityproofvalue, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> Alt Identity Proof : </label>
+                                                        <div class="form-group">
+                                                            @Html.TextAreaFor(m => m.tfaltidentityproof, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> Alt Identity Proof Value : </label>
+                                                        <div class="form-group">
+                                                            @Html.TextAreaFor(m => m.tfaltidentityproofvalue, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> InFormed : </label>
+                                                        <div class="form-group">
+                                                            @Html.TextAreaFor(m => m.tfisinformedperson, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+
+                                                </div>
+                                            </div>
+                                            <div id="tabe-3" class="container tab-pane fade">
+                                                <div class="row">
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> Name : </label>
+
+                                                        <div class="form-group">
+                                                            @Html.TextBoxFor(m => m.BeneficiaryName, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> Last Name : </label>
+                                                        <div class="form-group">
+
+                                                            @Html.TextBoxFor(m => m.BeneficiaryLastName, new { @class = "form-control", @readonly = "true" })
+
+                                                        </div>
+                                                    </div>
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> Middle Name : </label>
+                                                        <div class="form-group">
+                                                            @Html.TextBoxFor(m => m.BeneficiaryMiddleName, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> DOB : </label>
+                                                        <div class="form-group">
+                                                            @Html.TextBoxFor(m => m.BeneficiaryDOB, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> Mobile : </label>
+                                                        <div class="form-group">
+                                                            @Html.TextBoxFor(m => m.BeneficiaryMobile, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> RelationShip : </label>
+                                                        <div class="form-group">
+                                                            @Html.TextBoxFor(m => m.BeneficiaryRelationship, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> Martial Status : </label>
+                                                        <div class="form-group">
+                                                            @Html.TextBoxFor(m => m.BeneficiaryMartialStatus, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> Religion : </label>
+                                                        <div class="form-group">
+                                                            @Html.TextBoxFor(m => m.BeneficiaryReligion, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> Identity Proof : </label>
+                                                        <div class="form-group">
+                                                            @Html.TextBoxFor(m => m.BeneficiaryIdentityProof, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> Identity Proof Value : </label>
+                                                        <div class="form-group">
+                                                            @Html.TextBoxFor(m => m.BeneficiaryIdentityProofValue, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> Alt IdentityProof : </label>
+                                                        <div class="form-group">
+                                                            @Html.TextBoxFor(m => m.BeneficiaryaltidentityProof, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> Alt IdentityProofValue : </label>
+                                                        <div class="form-group">
+                                                            @Html.TextBoxFor(m => m.beneficiaryaltidentityproofvalue, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> Address 1 : </label>
+                                                        <div class="form-group">
+                                                            @Html.TextBoxFor(m => m.beneficiaryaddress1, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> Address 2 : </label>
+                                                        <div class="form-group">
+                                                            @Html.TextBoxFor(m => m.beneficiaryaddress2, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> Address 3 : </label>
+                                                        <div class="form-group">
+                                                            @Html.TextBoxFor(m => m.beneficiaryaddress3, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> City : </label>
+                                                        <div class="form-group">
+                                                            @Html.TextAreaFor(m => m.beneficiarycity, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> State : </label>
+                                                        <div class="form-group">
+                                                            @Html.TextAreaFor(m => m.beneficiarystate, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> Pin : </label>
+                                                        <div class="form-group">
+                                                            @Html.TextAreaFor(m => m.beneficiarypin, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+
+                                                </div>
+                                            </div>
+                                            <div id="tabe-4" class="container tab-pane fade">
+                                                <div class="row">
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> Name : </label>
+
+                                                        <div class="form-group">
+                                                            @Html.TextBoxFor(m => m.altbenefirstname, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> Last Name : </label>
+                                                        <div class="form-group">
+
+                                                            @Html.TextBoxFor(m => m.altbenelastname, new { @class = "form-control", @readonly = "true" })
+
+                                                        </div>
+                                                    </div>
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> Middle Name : </label>
+                                                        <div class="form-group">
+                                                            @Html.TextBoxFor(m => m.altbenemiddlename, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> DOB : </label>
+                                                        <div class="form-group">
+                                                            @Html.TextBoxFor(m => m.altbenedob, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> Mobile : </label>
+                                                        <div class="form-group">
+                                                            @Html.TextBoxFor(m => m.altbenemobile, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> RelationShip : </label>
+                                                        <div class="form-group">
+                                                            @Html.TextBoxFor(m => m.altbenerelationship, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> Martial Status : </label>
+                                                        <div class="form-group">
+                                                            @Html.TextBoxFor(m => m.altbenemaritalstatus, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> Religion : </label>
+                                                        <div class="form-group">
+                                                            @Html.TextBoxFor(m => m.altbenereligion, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> Identity Proof : </label>
+                                                        <div class="form-group">
+                                                            @Html.TextBoxFor(m => m.altbeneidentityproof, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> Identity Proof Value : </label>
+                                                        <div class="form-group">
+                                                            @Html.TextBoxFor(m => m.altbeneidentityproofvalue, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> Alt IdentityProof : </label>
+                                                        <div class="form-group">
+                                                            @Html.TextBoxFor(m => m.altbenealtidentityproof, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> Alt IdentityProofValue : </label>
+                                                        <div class="form-group">
+                                                            @Html.TextBoxFor(m => m.altbenealtidentityproofvalue, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> Address 1 : </label>
+                                                        <div class="form-group">
+                                                            @Html.TextBoxFor(m => m.altbeneaddress1, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> Address 2 : </label>
+                                                        <div class="form-group">
+                                                            @Html.TextBoxFor(m => m.altbeneaddress2, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> Address 3 : </label>
+                                                        <div class="form-group">
+                                                            @Html.TextBoxFor(m => m.altbeneaddress3, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> City : </label>
+                                                        <div class="form-group">
+                                                            @Html.TextAreaFor(m => m.altbenecity, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> State : </label>
+                                                        <div class="form-group">
+                                                            @Html.TextAreaFor(m => m.altbenestate, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> Pin : </label>
+                                                        <div class="form-group">
+                                                            @Html.TextAreaFor(m => m.altbenepin, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+
+                                                </div>
+                                            </div>
+                                            <div id="tabe-5" class="container tab-pane fade">
+                                                <div class="row">
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> Asset Type : </label>
+
+                                                        <div class="form-group">
+                                                            @Html.TextBoxFor(m => m.bmassettype, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> Asset Category: </label>
+                                                        <div class="form-group">
+
+                                                            @Html.TextBoxFor(m => m.bmassetcat, new { @class = "form-control", @readonly = "true" })
+
+                                                        </div>
+                                                    </div>
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> Scheme Name : </label>
+                                                        <div class="form-group">
+                                                            @Html.TextBoxFor(m => m.bmschemename, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> Instrument Name : </label>
+                                                        <div class="form-group">
+                                                            @Html.TextBoxFor(m => m.bminstrumentname, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> Proportion : </label>
+                                                        <div class="form-group">
+                                                            @Html.TextBoxFor(m => m.bmproportion, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+
+                                                </div>
+                                            </div>
+                                            <div id="tabe-6" class="container tab-pane fade">
+                                                <div class="row">
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> Name : </label>
+
+                                                        <div class="form-group">
+                                                            @Html.TextBoxFor(m => m.nomfirstname, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> Last Name : </label>
+                                                        <div class="form-group">
+
+                                                            @Html.TextBoxFor(m => m.nomlastname, new { @class = "form-control", @readonly = "true" })
+
+                                                        </div>
+                                                    </div>
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> Middle Name : </label>
+                                                        <div class="form-group">
+                                                            @Html.TextBoxFor(m => m.nommiddlename, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> DOB : </label>
+                                                        <div class="form-group">
+                                                            @Html.TextBoxFor(m => m.nomdob, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> Mobile : </label>
+                                                        <div class="form-group">
+                                                            @Html.TextBoxFor(m => m.nommobile, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> RelationShip : </label>
+                                                        <div class="form-group">
+                                                            @Html.TextBoxFor(m => m.nomrelationship, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> Martial Status : </label>
+                                                        <div class="form-group">
+                                                            @Html.TextBoxFor(m => m.nommaritalstatus, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> Religion : </label>
+                                                        <div class="form-group">
+                                                            @Html.TextBoxFor(m => m.nomreligion, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> Identity Proof : </label>
+                                                        <div class="form-group">
+                                                            @Html.TextBoxFor(m => m.nomidentityproof, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> Identity Proof Value : </label>
+                                                        <div class="form-group">
+                                                            @Html.TextBoxFor(m => m.nomidentityproofvalue, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> Alt IdentityProof : </label>
+                                                        <div class="form-group">
+                                                            @Html.TextBoxFor(m => m.nomaltidentityproof, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> Alt IdentityProofValue : </label>
+                                                        <div class="form-group">
+                                                            @Html.TextBoxFor(m => m.nomaltidentityproofvalue, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> Address 1 : </label>
+                                                        <div class="form-group">
+                                                            @Html.TextBoxFor(m => m.nomaddress1, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> Address 2 : </label>
+                                                        <div class="form-group">
+                                                            @Html.TextBoxFor(m => m.nomaddress2, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> Address 3 : </label>
+                                                        <div class="form-group">
+                                                            @Html.TextBoxFor(m => m.nomaddress3, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> City : </label>
+                                                        <div class="form-group">
+                                                            @Html.TextAreaFor(m => m.nomcity, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> State : </label>
+                                                        <div class="form-group">
+                                                            @Html.TextAreaFor(m => m.nomstate, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> Pin : </label>
+                                                        <div class="form-group">
+                                                            @Html.TextAreaFor(m => m.nompin, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+
+                                                </div>
+                                            </div>
+                                            <div id="tabe-7" class="container tab-pane fade">
+                                                <div class="row">
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> Type : </label>
+
+                                                        <div class="form-group">
+                                                            @Html.TextBoxFor(m => m.appointeesType, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> Subtype : </label>
+                                                        <div class="form-group">
+
+                                                            @Html.TextBoxFor(m => m.appointeesSubtype, new { @class = "form-control", @readonly = "true" })
+
+                                                        </div>
+                                                    </div>
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> Name : </label>
+                                                        <div class="form-group">
+                                                            @Html.TextBoxFor(m => m.appointeesName, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> Middle Name : </label>
+                                                        <div class="form-group">
+                                                            @Html.TextBoxFor(m => m.appointeesmiddle, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> Surname : </label>
+                                                        <div class="form-group">
+                                                            @Html.TextBoxFor(m => m.appointeessurname, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> Identityproof : </label>
+                                                        <div class="form-group">
+                                                            @Html.TextBoxFor(m => m.appointeesidentityproof, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> Identityproof Value : </label>
+                                                        <div class="form-group">
+                                                            @Html.TextBoxFor(m => m.appointeesIdentityproofvalue, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> Alt Identityproof : </label>
+                                                        <div class="form-group">
+                                                            @Html.TextBoxFor(m => m.appointeesaltidentityproof, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> Alt Identityproofvalue : </label>
+                                                        <div class="form-group">
+                                                            @Html.TextBoxFor(m => m.appointeesaltidentityproofvalue, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> DOB : </label>
+                                                        <div class="form-group">
+                                                            @Html.TextBoxFor(m => m.appointeesDOB, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> Gender : </label>
+                                                        <div class="form-group">
+                                                            @Html.TextBoxFor(m => m.appointeesGender, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> Occupation : </label>
+                                                        <div class="form-group">
+                                                            @Html.TextBoxFor(m => m.appointeesOccupation, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> Relationship: </label>
+                                                        <div class="form-group">
+                                                            @Html.TextBoxFor(m => m.appointeesrelationship, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> Address 1 : </label>
+                                                        <div class="form-group">
+                                                            @Html.TextBoxFor(m => m.appointeesaddress1, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> Address 2 : </label>
+                                                        <div class="form-group">
+                                                            @Html.TextBoxFor(m => m.appointeesaddress2, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> Address 3 : </label>
+                                                        <div class="form-group">
+                                                            @Html.TextAreaFor(m => m.appointeesaddress3, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> City : </label>
+                                                        <div class="form-group">
+                                                            @Html.TextAreaFor(m => m.appointeescity, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> State : </label>
+                                                        <div class="form-group">
+                                                            @Html.TextAreaFor(m => m.appointeesstate, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> Pin : </label>
+                                                        <div class="form-group">
+                                                            @Html.TextAreaFor(m => m.appointeespin, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+
+                                                </div>
+                                            </div>
+                                            <div id="tabe-8" class="container tab-pane fade">
+                                                <div class="row">
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> Name : </label>
+
+                                                        <div class="form-group">
+                                                            @Html.TextBoxFor(m => m.altappname, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> MiddleName : </label>
+                                                        <div class="form-group">
+
+                                                            @Html.TextBoxFor(m => m.altappmiddlename, new { @class = "form-control", @readonly = "true" })
+
+                                                        </div>
+                                                    </div>
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> SirName : </label>
+                                                        <div class="form-group">
+                                                            @Html.TextBoxFor(m => m.altappsurname, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> Identity proof : </label>
+                                                        <div class="form-group">
+                                                            @Html.TextBoxFor(m => m.altappidentityproof, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> Identity proof value : </label>
+                                                        <div class="form-group">
+                                                            @Html.TextBoxFor(m => m.altappidentityproofvalue, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> Alt Identityproof : </label>
+                                                        <div class="form-group">
+                                                            @Html.TextBoxFor(m => m.altappaltidentityproof, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> Alt Identityproof Value : </label>
+                                                        <div class="form-group">
+                                                            @Html.TextBoxFor(m => m.altappaltidentityproofvalue, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> Dob : </label>
+                                                        <div class="form-group">
+                                                            @Html.TextBoxFor(m => m.altappdob, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> Gender : </label>
+                                                        <div class="form-group">
+                                                            @Html.TextBoxFor(m => m.altappgender, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> Occupation : </label>
+                                                        <div class="form-group">
+                                                            @Html.TextBoxFor(m => m.altappoccupation, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> RelationShip : </label>
+                                                        <div class="form-group">
+                                                            @Html.TextBoxFor(m => m.altapprelationship, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> Address 1 : </label>
+                                                        <div class="form-group">
+                                                            @Html.TextBoxFor(m => m.altappaddress1, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> Address 2: </label>
+                                                        <div class="form-group">
+                                                            @Html.TextBoxFor(m => m.altappaddress2, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> Address 3 : </label>
+                                                        <div class="form-group">
+                                                            @Html.TextBoxFor(m => m.altappaddress3, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> City : </label>
+                                                        <div class="form-group">
+                                                            @Html.TextBoxFor(m => m.altappcity, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> State : </label>
+                                                        <div class="form-group">
+                                                            @Html.TextAreaFor(m => m.altappstate, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> Pin : </label>
+                                                        <div class="form-group">
+                                                            @Html.TextAreaFor(m => m.altapppin, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> Guardian : </label>
+                                                        <div class="form-group">
+                                                            @Html.TextAreaFor(m => m.altappaltguardian, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-sm-6">
+                                                        <label for="input-1" style="line-height:38px"> Executor : </label>
+                                                        <div class="form-group">
+                                                            @Html.TextAreaFor(m => m.altappaltexec, new { @class = "form-control", @readonly = "true" })
+                                                        </div>
+                                                    </div>
+
+
+
+
+                                                </div>
                                             </div>
 
-
-
-
-                                            <div id="tabe-15" class="container tab-pane fade">
-
-                                                
-                                            </div>
-
-
-
-
-
-                                            <div id="tabe-16" class="container tab-pane fade">
-                                              
-
-                                            </div>
-
-
-                                            <div id="tabe-17" class="container tab-pane fade">
-                                               
-
-                                            </div>
-
-                                            <div id="tabe-18" class="container tab-pane fade">
-                                               
-
-                                            </div>
-
-
-                                            <div id="tabe-19" class="container tab-pane fade">
-                                             
-
-                                            </div>
-
-
-                                            <div id="tabe-20" class="container tab-pane fade">
-                                                
-
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                       
+
                         </div><!--End Row-->
 
-                     
 
-                        <br />
+
+
+
 
                         <div class="form-group">
 
-                            <button type="submit" id="btnRoleformsubmit" formaction="InsertRoleFormData" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i> Add Roles</button>
+                            @if (Convert.ToInt32(Session["uuid"]) != 1)
+                            {
+                                <center><button type="button" id="btnwilldetails" class="btn btn-danger shadow-primary px-5"><i class="icon-lock"></i> Send For Verification</button></center>
+                            }
+                            else
+                            {
+
+                                <center><button type="button" id="btnwilldetails" class="btn btn-success shadow-primary px-5"><i class="icon-lock"></i>Approve Details</button></center>
+
+                            }
+
 
                         </div>
 
@@ -377,7 +1636,7 @@
                     </div>
                 </div>
             </div>
-            <button type="button" id="btnRoleformsubmitSUCCESS" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
+            <button type="button" id="btnsenddocument" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
             <button type="button" id="btnRoleformsubmitCHECK" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
 
         </div>
@@ -388,4 +1647,29 @@
 
 </div>
 @*end*@
+
+<script>
+
+    $("#btnwilldetails").click(function () {
+
+         var data =  $("#txtVerifyId").val();
+
+           $.ajax({
+
+            type: "POST",
+            url: "@Url.Action("GetTidForVerification", "WillDetails")",
+               data: { "send":""+data+""},
+            success: function (data) {
+                $("#btnsenddocument").on("click", function () { });
+
+                $("#btnsenddocument").click(); //trigger event after listening to it.
+            }
+        });
+
+    });
+
+</script>
+
+
+
 

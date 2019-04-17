@@ -10,7 +10,11 @@
               });
 
      //success Alert Button
+     
 
+     $("#btnsenddocument").click(function () {
+         swal("Verified!", "Details Has Been Send For Verification", "success");
+     });
 
               $("#btnOTPCheckSUCCESS").click(function(){
                   swal("Verified!", "Your OTP has Been Verified!,", "success");

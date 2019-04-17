@@ -7,6 +7,7 @@ namespace WillAssure.Models
 {
     public class WillDetailModel
     {
+        public int VerifyId { get; set; }
 
         public string TestatorName { get; set; }
         public string TestatorLastName { get; set; }

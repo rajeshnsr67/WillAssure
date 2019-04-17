@@ -216,16 +216,14 @@ namespace WillAssure.Controllers
                 cmd.Parameters.AddWithValue("@uid", TFM.distributor_id);
                 cmd.ExecuteNonQuery();
                 con.Close();
-                ModelState.Clear();
-                ViewBag.Message = "Verified";
-                int testatorid = 0;
-                int templateid = 0;
-                string testatortype = "";
 
+            int testatorid = 0;
+            int templateid = 0;
+            string testatortype = "";
 
             con.Open();
             string gettid = "select top 1 tId from TestatorDetails order by tId desc";
-            SqlDataAdapter datid = new SqlDataAdapter(gettid,con);
+            SqlDataAdapter datid = new SqlDataAdapter(gettid, con);
             DataTable dttid = new DataTable();
             datid.Fill(dttid);
             if (dttid.Rows.Count > 0)
@@ -235,7 +233,54 @@ namespace WillAssure.Controllers
             con.Close();
 
 
-           
+
+
+            // coupon status
+            if (TFM.txtCoupon != null)
+            {
+                con.Open();
+                string checkcoupon = "select * from couponAllotment where Coupon_Number = " + TFM.txtCoupon + " and  Status = 'Active' ";
+                SqlDataAdapter da = new SqlDataAdapter(checkcoupon, con);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                if (dt.Rows.Count > 0)
+                {
+
+                    string upcoupon = "update couponAllotment set Status = 'Inactive' ,    Tid=" + testatorid + " ";
+                    SqlCommand cmd2 = new SqlCommand(upcoupon, con);
+                    cmd2.ExecuteNonQuery();
+
+
+                
+
+                        string upcoupon2 = "update discountCoupons set status = 'Inactive' ,    Coupon_Number=" + TFM.txtCoupon + " ";
+                        SqlCommand cmd22 = new SqlCommand(upcoupon2, con);
+                        cmd22.ExecuteNonQuery();
+                    
+                           
+                    
+
+                }
+                else
+                {
+                    ViewBag.Message = "checkCoupon";
+                }
+                con.Close();
+            }
+
+
+            //end
+
+
+
+
+            ModelState.Clear();
+            ViewBag.Message = "Verified";
+              
+
+
+         
+
 
 
             // document generation 
@@ -256,7 +301,7 @@ namespace WillAssure.Controllers
 
               
                 con.Open();
-                string q = "insert into documentMaster (tId,templateId,IsUpdatetable,uId,pId,created_by,testator_type,couponId) values (" + testatorid + " , " + templateid + " ,  'Yes' ,   "+ TFM.distributor_id + " , 1 , '" + TFM.Document_Created_By_txt + "' , '" + testatortype + "' , "+couponsid+")";
+                string q = "insert into documentMaster (tId,templateId,IsUpdatetable,uId,pId,created_by,testator_type,couponId,adminVerification) values (" + testatorid + " , " + templateid + " ,  'Yes' ,   "+ TFM.distributor_id + " , 1 , '" + TFM.Document_Created_By_txt + "' , '" + testatortype + "' , "+couponsid+" , 2)";
                 SqlCommand c = new SqlCommand(q, con);
                 c.ExecuteNonQuery();
                 con.Close();
@@ -473,49 +518,7 @@ namespace WillAssure.Controllers
 
 
 
-            // get latest inserted tid
-            string tidquery = "select top 1 * from TestatorDetails order by tId desc";
-            SqlDataAdapter tiadp = new SqlDataAdapter(tidquery, con);
-            DataTable tidt = new DataTable();
-            tiadp.Fill(tidt);
-            int tid = 0;
-            if (tidt.Rows.Count > 0)
-            {
-                tid = Convert.ToInt32(tidt.Rows[0]["tId"]);
-            }
-            else
-            {
-                tid = 0;
-            }
-            //end
-
-
-
-            // coupon status
-            if (TFM.txtCoupon != null)
-            {
-                con.Open();
-                string checkcoupon = "select * from couponAllotment where Coupon_Number = " + TFM.txtCoupon + " and  Status = 'Active' ";
-                SqlDataAdapter da = new SqlDataAdapter(checkcoupon, con);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-                if (dt.Rows.Count > 0)
-                {
-
-                    string upcoupon = "update couponAllotment set Status = 'Inactive' ,    Tid=" + tid + " ";
-                    SqlCommand cmd2 = new SqlCommand(upcoupon, con);
-                    cmd2.ExecuteNonQuery();
-
-                }
-                else
-                {
-                    ViewBag.Message = "checkCoupon";
-                }
-                con.Close();
-            }
-    
-
-            //end
+        
 
 
 
