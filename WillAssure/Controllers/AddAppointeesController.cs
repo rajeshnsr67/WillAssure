@@ -417,7 +417,7 @@ namespace WillAssure.Controllers
 
 
             con.Open();
-            string rulequery = "update documentRules set guardian = " + AppointmentofGuardian + " ,executors_category = " + Numberofexecutors + " where wdId = " + getruleid + " ";
+            string rulequery = "update documentRules set guardian = " + AppointmentofGuardian + " ,executors_category = " + Numberofexecutors + " where tid = " + AM.ddltid + " ";
             SqlCommand cmd2 = new SqlCommand(rulequery, con);
             cmd2.ExecuteNonQuery();
             con.Close();
@@ -474,7 +474,17 @@ namespace WillAssure.Controllers
                 cmdd.Parameters.AddWithValue("@Pin", AM.altPin);
                 cmdd.Parameters.AddWithValue("@tid", AM.ddltid);
                 cmdd.Parameters.AddWithValue("@altguardian", AM.altguardian);
-                cmdd.Parameters.AddWithValue("@altexecutor", AM.altexecutor);
+                if (AM.altexecutor != null)
+                {
+                    cmdd.Parameters.AddWithValue("@altexecutor", AM.altexecutor);
+                }
+                else
+                {
+                    AM.altexecutor = "None";
+                    cmdd.Parameters.AddWithValue("@altexecutor", AM.altexecutor);
+                }
+             
+                
                 cmdd.ExecuteNonQuery();
                 con.Close();
 
@@ -525,18 +535,18 @@ namespace WillAssure.Controllers
                 AppointmentofaltGuardian = 2;    // no
             }
 
-            int altNumberofexecutors = 0;
+            int altNumberofexecutors = 2;
             if (AM.altexecutor == "Single")
             {
                 altNumberofexecutors = 1;
             }
             if (AM.altexecutor == "Many Joint")
             {
-                altNumberofexecutors = 2;
+                altNumberofexecutors = 1;
             }
             if (AM.altexecutor == "Many Independent")
             {
-                altNumberofexecutors = 3;
+                altNumberofexecutors = 1;
             }
 
             //end
@@ -561,7 +571,7 @@ namespace WillAssure.Controllers
 
 
             con.Open();
-            string rulequery2 = "update documentRules set AlternateGaurdian = " + AppointmentofaltGuardian + " , AlternateExecutors = " + altNumberofexecutors + " where wdId = " + getruleid2 + " ";
+            string rulequery2 = "update documentRules set AlternateGaurdian = " + AppointmentofaltGuardian + " , AlternateExecutors = " + altNumberofexecutors + " where tid = " + AM.ddltid + " ";
             SqlCommand cmd6 = new SqlCommand(rulequery2, con);
             cmd6.ExecuteNonQuery();
             con.Close();

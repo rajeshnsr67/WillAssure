@@ -26,6 +26,15 @@ namespace WillAssure.Models
 
 
         public string PageName { get; set; }
+        public string action { get; set; }
+        public string actinsert { get; set; }
+        public string actupdate { get; set; }
+        public string actdelete { get; set; }
+
+
+        public int tid { get; set; }
+        public string ddtemptxt { get; set; }
+        public int ddtempid { get; set; }
 
     }
 }

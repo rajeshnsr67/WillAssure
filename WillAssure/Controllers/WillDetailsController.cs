@@ -425,6 +425,66 @@ namespace WillAssure.Controllers
             con.Close();
 
 
+
+            //check document matches with rules
+            con.Open();
+            string checkquery = "select b.templateId , b.tId , a.documentType , a.category , a.guardian , a.executors_category , a.AlternateBenficiaries , a.AlternateGaurdian , a.AlternateExecutors from documentRules a inner join documentMaster b on a.wdId=b.wdId where a.tid =" + Response + "";
+            SqlDataAdapter checkda = new SqlDataAdapter(checkquery, con);
+            DataTable checkdt = new DataTable();
+            checkda.Fill(checkdt);
+
+            int documentType1 = 0;
+            int category = 0;
+            int guardian = 0;
+            int executors_category = 0;
+            int AlternateBenficiaries = 0;
+            int AlternateGaurdian = 0;
+            int AlternateExecutors = 0;
+            int Dmtemplateid = 0;
+
+            if (checkdt.Rows.Count > 0)
+            {
+
+                Dmtemplateid = Convert.ToInt32(checkdt.Rows[0]["templateId"]);
+                documentType1 = Convert.ToInt32(checkdt.Rows[0]["documentType"]);
+                category = Convert.ToInt32(checkdt.Rows[0]["category"]);
+                guardian = Convert.ToInt32(checkdt.Rows[0]["guardian"]);
+                executors_category = Convert.ToInt32(checkdt.Rows[0]["executors_category"]);
+                AlternateBenficiaries = Convert.ToInt32(checkdt.Rows[0]["AlternateBenficiaries"]);
+                AlternateGaurdian = Convert.ToInt32(checkdt.Rows[0]["AlternateGaurdian"]);
+                AlternateExecutors = Convert.ToInt32(checkdt.Rows[0]["AlternateExecutors"]);
+
+            }
+
+
+
+
+            con.Close();
+
+
+
+
+            // find match
+
+            con.Open();
+            string matchquery = "select TemplateID from DocumentIdentifier where DocumentType = " + documentType1 + " and TypeOfWill = " + category + " and AppointmentOfGuardian = " + guardian + " and NumberOfExecutors = " + executors_category + "  and AppointmentOfAltBeneficiary = " + AlternateBenficiaries + " and AppointmentOfAltGuardian = " + AlternateGaurdian + "  and AppointmentOfAltExecutor = " + AlternateExecutors + " ";
+            SqlDataAdapter matchda = new SqlDataAdapter(matchquery, con);
+            DataTable matchdt = new DataTable();
+            matchda.Fill(matchdt);
+            int TemplateID = 0;
+            if (matchdt.Rows.Count > 0)
+            {
+                // update documentmaster with match template id 
+
+                TemplateID = Convert.ToInt32(matchdt.Rows[0]["TemplateID"]);
+                string query3 = "update documentMaster set templateId = " + Convert.ToInt32(matchdt.Rows[0]["TemplateID"]) + " where tId= " + TemplateID + "  ";
+                SqlCommand cmd3 = new SqlCommand(query3, con);
+                cmd3.ExecuteNonQuery();
+
+                //
+            }
+
+
             ViewBag.Message = "Verified";
 
             return View("~/Views/WillDetails/WillDetailsPageContent.cshtml");

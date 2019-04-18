@@ -326,7 +326,7 @@
                 type: "POST",
                 url:"@Url.Action("BindStateDDL", "AddNominee")",
                 success: function (data) {
-                    $('#ddlstate').append(data);
+                    $('#ddlstate').empty().append(data);
                 }
               });
 
@@ -355,7 +355,7 @@
             url: "@Url.Action("OnChangeBindCity", "AddNominee")",
             data: { "send": "" + value+  ""},
             success: function (data) {
-
+              
                 $('#ddlcity').empty().append(data);
             }
 

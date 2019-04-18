@@ -320,7 +320,7 @@ namespace WillAssure.Controllers
 
 
             con.Open();
-            string rulequery = "update documentRules set AlternateBenficiaries = " + checkaltbeneid + "  where wdId = " + docid + " ";
+            string rulequery = "update documentRules set AlternateBenficiaries = " + checkaltbeneid + "  where tid = " + BM.ddltid + " ";
             SqlCommand cmd2 = new SqlCommand(rulequery, con);
             cmd2.ExecuteNonQuery();
             con.Close();

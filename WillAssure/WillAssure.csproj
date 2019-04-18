@@ -206,6 +206,7 @@
     <Compile Include="Controllers\AddWillEmployeeController.cs" />
     <Compile Include="Controllers\AlternateBeneficiaryController.cs" />
     <Compile Include="Controllers\AssetTypeController.cs" />
+    <Compile Include="Controllers\ChangeTemplateController.cs" />
     <Compile Include="Controllers\CouponsAllotmentController.cs" />
     <Compile Include="Controllers\DashBoardController.cs" />
     <Compile Include="Controllers\EditAlternateAppointeesController.cs" />
@@ -1218,9 +1219,11 @@
     <Content Include="Views\UpdateDiscount\UpdateDiscountPageContent.cshtml" />
     <Content Include="Views\DashBoard\DashBoardPageContent.cshtml" />
     <Content Include="Views\WillDetails\WillDetailsPageContent.cshtml" />
+    <Content Include="Views\ChangeTemplate\ChangeTemplatePageContent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="GeneratedPdf\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

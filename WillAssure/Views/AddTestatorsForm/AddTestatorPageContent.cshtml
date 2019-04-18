@@ -563,7 +563,7 @@
             type: "POST",
             url:"@Url.Action("BindCountryDDL", "AddTestatorsForm")",
             success: function (data) {
-                $('#ddlcountry').append(data);
+                $('#ddlcountry').empty().append(data);
             }
         });
 
@@ -589,7 +589,7 @@
             data: { "send": "" + value+  ""},
             success: function (data) {
 
-                $('#ddlstate').append(data);
+                $('#ddlstate').empty().append(data);
             }
 
 

@@ -14,6 +14,9 @@ using System.Data;
 using CrystalDecisions.CrystalReports;
 using WillAssure.CrystalReports;
 using System.IO;
+using System.Net.Mail;
+using System.Net;
+using System.Net.Mime;
 
 namespace WillAssure.Views.ViewDocument
 {
@@ -85,9 +88,9 @@ namespace WillAssure.Views.ViewDocument
                 // update documentmaster with match template id 
 
                 ViewState["TemplateID"] = Convert.ToInt32(matchdt.Rows[0]["TemplateID"]);
-                string query = "update documentMaster set templateId = "+ Convert.ToInt32(matchdt.Rows[0]["TemplateID"]) + " where tId= " + documentId + "  ";
-                SqlCommand cmd = new SqlCommand(query, con);
-                cmd.ExecuteNonQuery();
+                //string query = "update documentMaster set templateId = "+ Convert.ToInt32(matchdt.Rows[0]["TemplateID"]) + " where tId= " + documentId + "  ";
+                //SqlCommand cmd = new SqlCommand(query, con);
+                //cmd.ExecuteNonQuery();
              
                 //
 
@@ -202,8 +205,12 @@ namespace WillAssure.Views.ViewDocument
 
                     CrystalReportViewer1.ReportSource = rpt;
                     CrystalReportViewer1.Zoom(125);
-
+                    var path = Server.MapPath("~/GeneratedPdf/file.pdf");
+                    rpt.ExportToDisk(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat, path);
                 }
+                
+
+
                 if (Dmtemplateid == 2)
                 {
                     WillTestator2 rpt2 = new WillTestator2();
@@ -226,7 +233,11 @@ namespace WillAssure.Views.ViewDocument
 
                     CrystalReportViewer1.ReportSource = rpt2;
                     CrystalReportViewer1.Zoom(125);
+                    var path = Server.MapPath("~/GeneratedPdf/file.pdf");
+                    rpt2.ExportToDisk(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat, path);
                 }
+               
+
                 if (Dmtemplateid == 3)
                 {
                     WillTestator3 rpt3 = new WillTestator3();
@@ -249,7 +260,13 @@ namespace WillAssure.Views.ViewDocument
 
                     CrystalReportViewer1.ReportSource = rpt3;
                     CrystalReportViewer1.Zoom(125);
+                    var path = Server.MapPath("~/GeneratedPdf/file.pdf");
+                    rpt3.ExportToDisk(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat, path);
                 }
+                
+
+
+
                 if (Dmtemplateid == 4)
                 {
                     WillTestator4 rpt4 = new WillTestator4();
@@ -272,7 +289,12 @@ namespace WillAssure.Views.ViewDocument
 
                     CrystalReportViewer1.ReportSource = rpt4;
                     CrystalReportViewer1.Zoom(125);
+                    var path = Server.MapPath("~/GeneratedPdf/file.pdf");
+                    rpt4.ExportToDisk(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat, path);
                 }
+               
+
+
                 if (Dmtemplateid == 5)
                 {
                     WillTestator5 rpt5 = new WillTestator5();
@@ -295,18 +317,20 @@ namespace WillAssure.Views.ViewDocument
 
                     CrystalReportViewer1.ReportSource = rpt5;
                     CrystalReportViewer1.Zoom(125);
+                    var path = Server.MapPath("~/GeneratedPdf/file.pdf");
+                    rpt5.ExportToDisk(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat, path);
                 }
 
 
 
                 //ReportDocument rpt = new ReportDocument();
-          
 
 
-                //rpt.ExportToDisk(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat, @"~/CrystalReports/WillTestator1.rpt");
+
+               
 
 
-                
+
 
             }
             else
@@ -330,6 +354,8 @@ namespace WillAssure.Views.ViewDocument
         {
            
 
+
+
             con.Open();
             string query= "update DocumentVerification set Verification_Status = 'Active' where Tid= "+ Convert.ToInt32(ViewState["tid"]) + "  ";
             SqlCommand cmd = new SqlCommand(query,con);
@@ -342,6 +368,56 @@ namespace WillAssure.Views.ViewDocument
             SqlCommand cmd2 = new SqlCommand(query2, con);
             cmd2.ExecuteNonQuery();
             con.Close();
+
+
+
+
+
+
+
+
+            // new mail code
+
+            con.Open();
+            string query3 = "select Email  from testatordetails where tId =  " + Convert.ToInt32(ViewState["tid"]) + "  ";
+            SqlDataAdapter da = new SqlDataAdapter(query3,con);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            con.Close();
+            string mailto = "";
+            if (dt.Rows.Count > 0)
+            {
+                mailto = dt.Rows[0]["Email"].ToString();
+            }
+
+
+            
+           
+            string subject = "Will Assure";
+           
+            string body = "As Per Your Details Will Has Been Generated Please Check The Attachment Below";
+
+            var path = Server.MapPath("~/GeneratedPdf/file.pdf");
+            MailMessage msg = new MailMessage();
+            Attachment data = new Attachment(path, MediaTypeNames.Application.Octet);
+
+            msg.Attachments.Add(data);
+            msg.From = new MailAddress("info@drinco.in");
+            msg.To.Add(mailto);
+            msg.Subject = subject;
+            msg.Body = body;
+
+            msg.IsBodyHtml = true;
+            SmtpClient smtp = new SmtpClient("216.10.240.149", 25);
+            smtp.Credentials = new NetworkCredential("info@drinco.in", "95Bzf%s7");
+            smtp.EnableSsl = false;
+            smtp.Send(msg);
+            smtp.Dispose();
+
+
+
+            //end
+
 
 
 
@@ -370,7 +446,7 @@ namespace WillAssure.Views.ViewDocument
         protected void btnChangeTemplate_Click(object sender, EventArgs e)
         {
             int tempid = Convert.ToInt32(ViewState["tid"]);
-            Response.Redirect("ChangeTemplate.aspx?tempid="+tempid+"");
+            Response.Redirect("/ChangeTemplate/ChangeTemplateIndex?tempid=" + tempid+"");
         }
     }
 }

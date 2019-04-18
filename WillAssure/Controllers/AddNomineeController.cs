@@ -188,7 +188,7 @@ namespace WillAssure.Controllers
             DataTable dt = new DataTable();
             da.Fill(dt);
             con.Close();
-            string data = "<option value='0'>--Select--</option>";
+            string data = "<option value=''>--Select State--</option>";
 
             if (dt.Rows.Count > 0)
             {
@@ -229,7 +229,7 @@ namespace WillAssure.Controllers
             DataTable dt = new DataTable();
             da.Fill(dt);
             con.Close();
-            string data = "";
+            string data = "<option value=''>--Select City--</option>";
 
             if (dt.Rows.Count > 0)
             {
@@ -266,7 +266,7 @@ namespace WillAssure.Controllers
             DataTable dt = new DataTable();
             da.Fill(dt);
             con.Close();
-            string data = "<option value='0' >--Select--</option>";
+            string data = "<option value='' >--Select--</option>";
 
             if (dt.Rows.Count > 0)
             {
