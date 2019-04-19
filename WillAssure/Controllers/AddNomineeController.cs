@@ -119,7 +119,7 @@ namespace WillAssure.Controllers
 
             
 
-            if (Session["aiid"].ToString() != "")
+            if (Convert.ToInt32(Session["aiid"]) != 0)
             {
                 NM.aid = Convert.ToInt32(Session["aiid"]);
             }

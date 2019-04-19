@@ -382,7 +382,7 @@ namespace WillAssure.Controllers
                 if (roles == 1)
                 {
                     con.Open();
-                    string query = "select * from Roles where pid = 1 and rId not in(1,2,3)";
+                    string query = "select * from Roles where pid = 1 and rId not in(1,2,3,4,5)";
                     SqlDataAdapter da = new SqlDataAdapter(query, con);
                     DataTable dt = new DataTable();
                     da.Fill(dt);

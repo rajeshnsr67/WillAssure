@@ -89,7 +89,19 @@ namespace WillAssure.Controllers
                 UFM.UserPassword = dt.Rows[0]["userPwd"].ToString();
 
                 UFM.Designation = dt.Rows[0]["Designation"].ToString();
-                UFM.rid = Convert.ToInt32(dt.Rows[0]["rId"]);
+
+                con.Open();
+                string query2 = "select Role from Roles where rId = " + dt.Rows[0]["rId"].ToString() + " ";
+                SqlDataAdapter da2 = new SqlDataAdapter(query2,con);
+                DataTable dt2 = new DataTable();
+                da2.Fill(dt2);
+                if (dt2.Rows.Count > 0)
+                {
+                    UFM.rtext = dt2.Rows[0]["Role"].ToString();
+                }
+                con.Close();
+
+                
                 UFM.Active = dt.Rows[0]["active"].ToString();
 
 
@@ -209,7 +221,7 @@ namespace WillAssure.Controllers
 
 
             ViewBag.Message = "Verified";
-            return View("~/Views/UpdateEditForm/UpdateEditFormContent.cshtml");
+            return View("~/Views/UpdateWillEmployee/UpdateWillEmployeePageContent.cshtml");
         }
 
 
@@ -217,26 +229,81 @@ namespace WillAssure.Controllers
 
         public String BindRoleDDL()
         {
-
-            con.Open();
-            string query = "select * from Roles";
-            SqlDataAdapter da = new SqlDataAdapter(query, con);
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-            con.Close();
             string data = "";
 
-            if (dt.Rows.Count > 0)
+
+            data = "<option value=''>--Select Role--</option>";
+
+
+
+            if (Session["rId"] != null)
             {
+                int roles = 0;
+                roles = Convert.ToInt32(Session["rId"]);
+
+                if (roles == 1)
+                {
+                    con.Open();
+                    string query = "select * from Roles where pid = 1 and rId not in(1,2,3,4,5)";
+                    SqlDataAdapter da = new SqlDataAdapter(query, con);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    con.Close();
 
 
-                for (int i = 0; i < dt.Rows.Count; i++)
+                    if (dt.Rows.Count > 0)
+                    {
+
+
+                        for (int i = 0; i < dt.Rows.Count; i++)
+                        {
+
+
+
+
+                            data = data + "<option value=" + dt.Rows[i]["rid"].ToString() + " >" + dt.Rows[i]["Role"].ToString() + "</option>";
+
+
+
+                        }
+
+
+
+
+                    }
+                }
+                else
                 {
 
+                    con.Open();
+                    string query = "select a.rId , a.Role from Roles a inner join users b on a.Pid = b.uId where a.Pid = " + Convert.ToInt32(Session["uuid"]) + "";
+                    SqlDataAdapter da = new SqlDataAdapter(query, con);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    con.Close();
+
+
+                    if (dt.Rows.Count > 0)
+                    {
+
+
+                        for (int i = 0; i < dt.Rows.Count; i++)
+                        {
 
 
 
-                    data = data + "<option value=" + dt.Rows[i]["rid"].ToString() + " >" + dt.Rows[i]["Role"].ToString() + "</option>";
+
+                            data = data + "<option value=" + dt.Rows[i]["rid"].ToString() + " >" + dt.Rows[i]["Role"].ToString() + "</option>";
+
+
+
+                        }
+
+
+
+
+                    }
+
 
 
 
@@ -245,10 +312,12 @@ namespace WillAssure.Controllers
 
 
 
+
+
+
             }
 
             return data;
-
         }
 
 

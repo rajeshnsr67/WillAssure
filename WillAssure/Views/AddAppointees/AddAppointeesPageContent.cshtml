@@ -48,24 +48,25 @@
                         </h5>
                         <br />
                         <div class="card-title text-primary">Add Appointees</div>
-                        <div class="row">
-                            <div class='col-sm-1'><label for='input-1' style="line-height:40px;">Testator</label></div>
-                            <div class="col-sm-3">
-                                <select id='DDLTestator' onchange="getDDLTestator(this.value)" name="contentList" class='form-control'></select>
+
+                        @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "DistributorForm" }))
+                        {
+                            <div class="row">
+                                <div class='col-sm-1'><label for='input-1' style="line-height:40px;">Testator</label></div>
+                                <div class="col-sm-3">
+                                    <select id='DDLTestator' onchange="getDDLTestator(this.value)" name="contentList" class='form-control validate[required]'></select>
 
 
 
 
 
 
+
+                                </div>
 
                             </div>
 
-                        </div>
-
-                        <hr>
-                        @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "DistributorForm" }))
-                        {
+                            <hr>
                             <div class="row">
                                 <div class="col-sm-6">
 
@@ -161,7 +162,7 @@
                                     new SelectListItem() {Text = "Aadhaar Card", Value="Aadhaar Card"},
                                    new SelectListItem() {Text = "Passport", Value="Passport"},
                                    new SelectListItem() {Text = "Driving Licences", Value="Driving Licences"},
-                                   new SelectListItem() {Text = "Pan Card", Value="Pan Card"}}, new { @class= "form-control validate[required]", @id="ddlidentityproof" , @onchange= "getAltIdentityselection(this.options[this.selectedIndex].innerHTML)" })
+                                   new SelectListItem() {Text = "Pan Card", Value="Pan Card"}}, new { @class= "form-control ", @id="ddlidentityproof" , @onchange= "getAltIdentityselection(this.options[this.selectedIndex].innerHTML)" })
 
                                         @Html.HiddenFor(m => m.Alt_Identity_Proof, new { id = "Alt_Identity_Proof" })
                                     </div>
@@ -217,7 +218,7 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="input-3">Relationship</label>
-                                        <select id="ddlrelation" class="form-control">
+                                        <select id="ddlrelation" class="form-control validate[required]">
                                             <option value="">--Select--</option>
                                         </select>
                                         @Html.HiddenFor(m => m.RelationshipId, new { id = "relationid" })
@@ -238,7 +239,7 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="input-3">Address 2</label>
-                                        @Html.TextAreaFor(m => m.Address2, new { @class = "form-control  text-input validate[required]", @id = "txtaddress2", @placeholder = "Enter Address2", @autocomplete = "off" })
+                                        @Html.TextAreaFor(m => m.Address2, new { @class = "form-control  text-input ", @id = "txtaddress2", @placeholder = "Enter Address2", @autocomplete = "off" })
                                     </div>
                                 </div>
 
@@ -247,7 +248,7 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="input-3">Address 3</label>
-                                        @Html.TextAreaFor(m => m.Address3, new { @class = "form-control  text-input validate[required]", @id = "txtaddress3", @placeholder = "Enter Address3", @autocomplete = "off" })
+                                        @Html.TextAreaFor(m => m.Address3, new { @class = "form-control  text-input", @id = "txtaddress3", @placeholder = "Enter Address3", @autocomplete = "off" })
                                     </div>
                                 </div>
 
@@ -347,7 +348,7 @@
                           new SelectListItem() {Text = "Guardian", Value="Guardian"},
                           new SelectListItem() {Text = "Witness", Value="Witness"},
                           new SelectListItem() {Text = "Agent", Value="Agent"},
-                          new SelectListItem() {Text = "Donee", Value="Donee"}}, new { @class = "form-control validate[required]", @id="ddltype" })
+                          new SelectListItem() {Text = "Donee", Value="Donee"}}, new { @class = "form-control", @id="ddltype" })
                                     </div>
                                 </div>
 
@@ -362,7 +363,7 @@
                             new SelectListItem() {Text = "Single", Value="Single"},
                             new SelectListItem() {Text = "Many Joint", Value="Many Joint"},
                             new SelectListItem() {Text = "Many Independent", Value="Many Independent"}}, new { @class = "form-control", @id = "ddlsubtype" })
-                                  
+
                                     </div>
                                 </div>
 
@@ -371,7 +372,7 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="input-1">Name</label>
-                                        @Html.TextBoxFor(m => m.altName, new { @class = "form-control required validate[required]", @id = "txtname", @placeholder = "Enter Name", @autocomplete = "off" })
+                                        @Html.TextBoxFor(m => m.altName, new { @class = "form-control required validate[required]", @id = "txtname2", @placeholder = "Enter Name", @autocomplete = "off" })
                                     </div>
                                 </div>
 
@@ -379,7 +380,7 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="input-5">Middle Name</label>
-                                        @Html.TextBoxFor(m => m.altmiddleName, new { @class = "form-control validate[required] text-input", @id = "txtmiddlename", @placeholder = "Enter Middle Name", @autocomplete = "off" })
+                                        @Html.TextBoxFor(m => m.altmiddleName, new { @class = "form-control validate[required] text-input", @id = "txtmiddlename2", @placeholder = "Enter Middle Name", @autocomplete = "off" })
                                     </div>
                                 </div>
 
@@ -387,7 +388,7 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="input-3">Surname</label>
-                                        @Html.TextBoxFor(m => m.altSurname, new { @class = "form-control validate[required] text-input", @id = "txtsurname", @placeholder = "Enter Surname", @autocomplete = "off" })
+                                        @Html.TextBoxFor(m => m.altSurname, new { @class = "form-control validate[required] text-input", @id = "txtsurname2", @placeholder = "Enter Surname", @autocomplete = "off" })
                                     </div>
                                 </div>
 
@@ -427,7 +428,7 @@
                                           new SelectListItem() {Text = "Aadhaar Card", Value="Aadhaar Card"},
                                    new SelectListItem() {Text = "Passport", Value="Passport"},
                                    new SelectListItem() {Text = "Driving Licences", Value="Driving Licences"},
-                                   new SelectListItem() {Text = "Pan Card", Value="Pan Card"}}, new { @class= "form-control validate[required]", @id="ddlidentityproof" , @onchange= "altgetAltIdentityselection(this.options[this.selectedIndex].innerHTML)" })
+                                   new SelectListItem() {Text = "Pan Card", Value="Pan Card"}}, new { @class= "form-control", @id="ddlidentityproof" , @onchange= "altgetAltIdentityselection(this.options[this.selectedIndex].innerHTML)" })
 
                                         @Html.HiddenFor(m => m.altAlt_Identity_Proof_Value, new { id = "altAlt_Identity_Proof_Value" })
                                     </div>
@@ -452,7 +453,7 @@
                                         <label for="input-1">Date Of Birth</label>
 
                                         <div id="datepicker2" class="input-group date" data-date-format="dd-mm-yyyy">
-                                            <input class="form-control validate[required]" type="text" id="DOB" name="altDOB" autocomplete="off" placeholder="Select Date Of Birth" />
+                                            <input class="form-control validate[required]" type="text" id="DOB2" name="altDOB" autocomplete="off" placeholder="Select Date Of Birth" />
                                             <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                                         </div>
                                     </div>
@@ -474,7 +475,7 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="input-3">Occupation</label>
-                                        @Html.TextBoxFor(m => m.altOccupation, new { @class = "form-control  validate[required] text-input", @id = "txtoccupation", @placeholder = "Enter Occupation", @autocomplete = "off" })
+                                        @Html.TextBoxFor(m => m.altOccupation, new { @class = "form-control  validate[required] text-input", @id = "txtoccupation2", @placeholder = "Enter Occupation", @autocomplete = "off" })
                                     </div>
                                 </div>
 
@@ -483,7 +484,7 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="input-3">Relationship</label>
-                                        <select id="altddlrelation" class="form-control">
+                                        <select id="altddlrelation" class="form-control  validate[required]">
                                             <option value="">--Select--</option>
                                         </select>
                                         @Html.HiddenFor(m => m.altRelationshipId, new { id = "altRelationshipId" })
@@ -496,7 +497,7 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="input-3">Address 1</label>
-                                        @Html.TextAreaFor(m => m.altAddress1, new { @class = "form-control validate[required]  text-input", @id = "txtaddress1", @placeholder = "Enter Address1", @autocomplete = "off" })
+                                        @Html.TextAreaFor(m => m.altAddress1, new { @class = "form-control validate[required]  text-input", @id = "txtaddress2", @placeholder = "Enter Address1", @autocomplete = "off" })
                                     </div>
                                 </div>
 
@@ -504,7 +505,7 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="input-3">Address 2</label>
-                                        @Html.TextAreaFor(m => m.altAddress2, new { @class = "form-control validate[required]  text-input", @id = "txtaddress2", @placeholder = "Enter Address2", @autocomplete = "off" })
+                                        @Html.TextAreaFor(m => m.altAddress2, new { @class = "form-control   text-input", @id = "txtaddress2", @placeholder = "Enter Address2", @autocomplete = "off" })
                                     </div>
                                 </div>
 
@@ -513,7 +514,7 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="input-3">Address 3</label>
-                                        @Html.TextAreaFor(m => m.altAddress3, new { @class = "form-control validate[required]  text-input", @id = "txtaddress3", @placeholder = "Enter Address3", @autocomplete = "off" })
+                                        @Html.TextAreaFor(m => m.altAddress3, new { @class = "form-control  text-input", @id = "txtaddress3", @placeholder = "Enter Address3", @autocomplete = "off" })
                                     </div>
                                 </div>
 
@@ -791,13 +792,13 @@
 
 
         if (id == "Driving Licences") {
-            $("#appendtxt").empty().append("<input type='text' class='form-control validate[required] text-input' id='Identity_Proof_Value' name='Identity_Proof_Value' placeholder='Enter Driving Licences' autocomplete='off'  />");
+            $("#appendtxt").empty().append("<input type='text' class='form-control validate[required,custom[carnumber]] text-input' id='Identity_Proof_Value' name='Identity_Proof_Value' placeholder='Enter Driving Licences' autocomplete='off'  />");
         }
 
 
 
         if (id == "Pan Card") {
-            $("#appendtxt").empty().append("<input type='text' class='form-control validate[required] text-input' id='Identity_Proof_Value' name='Identity_Proof_Value' placeholder='Enter Pan Card' autocomplete='off'  />");
+            $("#appendtxt").empty().append("<input type='text' class='form-control validate[required,custom[pannumber]] text-input' id='Identity_Proof_Value' name='Identity_Proof_Value' placeholder='Enter Pan Card' autocomplete='off'  />");
         }
 
 
@@ -848,24 +849,24 @@
 
 
         if (id == "Aadhaar Card") {
-            $("#appendtxt2").empty().append("<input type='text' class='form-control validate[required,custom[adharCard]] text-input' id='Alt_Identity_proof_Value' name='Alt_Identity_proof_Value' placeholder='Enter Aadhaar Card' autocomplete='off'  />");
+            $("#appendtxt2").empty().append("<input type='text' class='form-control validate[custom[adharCard]] text-input' id='Alt_Identity_proof_Value' name='Alt_Identity_proof_Value' placeholder='Enter Aadhaar Card' autocomplete='off'  />");
         }
 
 
         if (id == "Passport") {
-            $("#appendtxt2").empty().append("<input type='text' class='form-control validate[required,custom[Passport]] text-input' id='Alt_Identity_proof_Value' name='Alt_Identity_proof_Value'  placeholder='Enter Passport Number' autocomplete='off'  />");
+            $("#appendtxt2").empty().append("<input type='text' class='form-control validate[custom[Passport]] text-input' id='Alt_Identity_proof_Value' name='Alt_Identity_proof_Value'  placeholder='Enter Passport Number' autocomplete='off'  />");
         }
 
 
 
         if (id == "Driving Licences") {
-            $("#appendtxt2").empty().append("<input type='text' class='form-control validate[required] text-input' id='Alt_Identity_proof_Value' name='Alt_Identity_proof_Value' placeholder='Enter Driving Licences' autocomplete='off'  />");
+            $("#appendtxt2").empty().append("<input type='text' class='form-control validate[custom[carnumber]] text-input' id='Alt_Identity_proof_Value' name='Alt_Identity_proof_Value' placeholder='Enter Driving Licences' autocomplete='off'  />");
         }
 
 
 
         if (id == "Pan Card") {
-            $("#appendtxt2").empty().append("<input type='text' class='form-control validate[required] text-input' id='Alt_Identity_proof_Value' name='Alt_Identity_proof_Value' placeholder='Enter Pan Card' autocomplete='off'  />");
+            $("#appendtxt2").empty().append("<input type='text' class='form-control validate[custom[pannumber]] text-input' id='Alt_Identity_proof_Value' name='Alt_Identity_proof_Value' placeholder='Enter Pan Card' autocomplete='off'  />");
         }
 
 
@@ -1009,13 +1010,13 @@
 
 
         if (id == "Driving Licences") {
-            $("#altappendtxt").empty().append("<input type='text' class='form-control validate[required] text-input' id='altIdentity_Proof_Value' name='altIdentity_Proof_Value' placeholder='Enter Driving Licences' autocomplete='off'  />");
+            $("#altappendtxt").empty().append("<input type='text' class='form-control validate[required,custom[carnumber]]  text-input' id='altIdentity_Proof_Value' name='altIdentity_Proof_Value' placeholder='Enter Driving Licences' autocomplete='off'  />");
         }
 
 
 
         if (id == "Pan Card") {
-            $("#altappendtxt").empty().append("<input type='text' class='form-control validate[required] text-input' id='altIdentity_Proof_Value' name='altIdentity_Proof_Value' placeholder='Enter Pan Card' autocomplete='off'  />");
+            $("#altappendtxt").empty().append("<input type='text' class='form-control validate[required,custom[pannumber]] text-input' id='altIdentity_Proof_Value' name='altIdentity_Proof_Value' placeholder='Enter Pan Card' autocomplete='off'  />");
         }
 
 
@@ -1033,24 +1034,24 @@
 
 
         if (id == "Aadhaar Card") {
-            $("#altappendtxt2").empty().append("<input type='text' class='form-control validate[required,custom[adharCard]] text-input' id='altAlt_Identity_Proof_Value' name='altAlt_Identity_Proof_Value' placeholder='Enter Aadhaar Card' autocomplete='off'  />");
+            $("#altappendtxt2").empty().append("<input type='text' class='form-control validate[custom[adharCard]] text-input' id='altAlt_Identity_Proof_Value' name='altAlt_Identity_Proof_Value' placeholder='Enter Aadhaar Card' autocomplete='off'  />");
         }
 
 
         if (id == "Passport") {
-            $("#altappendtxt2").empty().append("<input type='text' class='form-control validate[required,custom[Passport]] text-input' id='altAlt_Identity_Proof_Value' name='altAlt_Identity_Proof_Value'  placeholder='Enter Passport Number' autocomplete='off'  />");
+            $("#altappendtxt2").empty().append("<input type='text' class='form-control validate[custom[Passport]] text-input' id='altAlt_Identity_Proof_Value' name='altAlt_Identity_Proof_Value'  placeholder='Enter Passport Number' autocomplete='off'  />");
         }
 
 
 
         if (id == "Driving Licences") {
-            $("#altappendtxt2").empty().append("<input type='text' class='form-control validate[required] text-input' id='altAlt_Identity_Proof_Value' name='altAlt_Identity_Proof_Value' placeholder='Enter Driving Licences' autocomplete='off'  />");
+            $("#altappendtxt2").empty().append("<input type='text' class='form-control validate[custom[carnumber]] text-input' id='altAlt_Identity_Proof_Value' name='altAlt_Identity_Proof_Value' placeholder='Enter Driving Licences' autocomplete='off'  />");
         }
 
 
 
         if (id == "Pan Card") {
-            $("#altappendtxt2").empty().append("<input type='text' class='form-control validate[required] text-input' id='altAlt_Identity_Proof_Value' name='altAlt_Identity_Proof_Value' placeholder='Enter Pan Card' autocomplete='off'  />");
+            $("#altappendtxt2").empty().append("<input type='text' class='form-control validate[custom[pannumber]] text-input' id='altAlt_Identity_Proof_Value' name='altAlt_Identity_Proof_Value' placeholder='Enter Pan Card' autocomplete='off'  />");
         }
 
 

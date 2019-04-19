@@ -395,7 +395,7 @@
                                    new SelectListItem() {Text = "Aadhaar Card", Value="Aadhaar Card"},
                                    new SelectListItem() {Text = "Passport", Value="Passport"},
                                    new SelectListItem() {Text = "Driving Licences", Value="Driving Licences"},
-                                   new SelectListItem() {Text = "Pan Card", Value="Pan Card"}} , new { @class= "form-control validate[required]", @onchange= "getIdentityselection2(this.options[this.selectedIndex].innerHTML)" })
+                                   new SelectListItem() {Text = "Pan Card", Value="Pan Card"}} , new { @class= "form-control", @onchange= "getIdentityselection2(this.options[this.selectedIndex].innerHTML)" })
 
                                     </div>
                                 </div>
@@ -1097,13 +1097,13 @@
 
 
                 if (id == "Driving Licences") {
-                    $("#appendtxt").empty().append("<input type='text' class='form-control validate[required] text-input' id='cIdentity_Proof_Value' name='cIdentity_Proof_Value' placeholder='Enter Driving Licences' autocomplete='off'  />");
+                    $("#appendtxt").empty().append("<input type='text' class='form-control validate[required,custom[carnumber]] text-input' id='cIdentity_Proof_Value' name='cIdentity_Proof_Value' placeholder='Enter Driving Licences' autocomplete='off'  />");
                 }
 
 
 
                 if (id == "Pan Card") {
-                    $("#appendtxt").empty().append("<input type='text' class='form-control validate[required] text-input' id='cIdentity_Proof_Value' name='cIdentity_Proof_Value' placeholder='Enter Pan Card' autocomplete='off'  />");
+                    $("#appendtxt").empty().append("<input type='text' class='form-control validate[required,custom[pannumber]] text-input' id='cIdentity_Proof_Value' name='cIdentity_Proof_Value' placeholder='Enter Pan Card' autocomplete='off'  />");
                 }
 
 
@@ -1121,24 +1121,24 @@
         <script>
             function getIdentityselection2(id) {
                 if (id == "Aadhaar Card") {
-                    $("#appendtxt2").empty().append("<input type='text' class='form-control validate[required,custom[adharCard]] text-input' id='cAlt_Identity_Proof_Value' name='cAlt_Identity_Proof_Value' placeholder='Enter Aadhaar Card' autocomplete='off'  />");
+                    $("#appendtxt2").empty().append("<input type='text' class='form-control validate[custom[adharCard]] text-input' id='cAlt_Identity_Proof_Value' name='cAlt_Identity_Proof_Value' placeholder='Enter Aadhaar Card' autocomplete='off'  />");
                 }
 
 
                 if (id == "Passport") {
-                    $("#appendtxt2").empty().append("<input type='text' class='form-control validate[required,custom[Passport]] text-input' id='cAlt_Identity_Proof_Value' name='cAlt_Identity_Proof_Value'  placeholder='Enter Passport Number' autocomplete='off'  />");
+                    $("#appendtxt2").empty().append("<input type='text' class='form-control validate[custom[Passport]] text-input' id='cAlt_Identity_Proof_Value' name='cAlt_Identity_Proof_Value'  placeholder='Enter Passport Number' autocomplete='off'  />");
                 }
 
 
 
                 if (id == "Driving Licences") {
-                    $("#appendtxt2").empty().append("<input type='text' class='form-control validate[required] text-input' id='cAlt_Identity_Proof_Value' name='cAlt_Identity_Proof_Value' placeholder='Enter Driving Licences' autocomplete='off'  />");
+                    $("#appendtxt2").empty().append("<input type='text' class='form-control validate[custom[carnumber]] text-input' id='cAlt_Identity_Proof_Value' name='cAlt_Identity_Proof_Value' placeholder='Enter Driving Licences' autocomplete='off'  />");
                 }
 
 
 
                 if (id == "Pan Card") {
-                    $("#appendtxt2").empty().append("<input type='text' class='form-control validate[required] text-input' id='cAlt_Identity_Proof_Value' name='cAlt_Identity_Proof_Value' placeholder='Enter Pan Card' autocomplete='off'  />");
+                    $("#appendtxt2").empty().append("<input type='text' class='form-control validate[custom[pannumber]] text-input' id='cAlt_Identity_Proof_Value' name='cAlt_Identity_Proof_Value' placeholder='Enter Pan Card' autocomplete='off'  />");
                 }
 
 

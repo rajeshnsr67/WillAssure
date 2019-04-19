@@ -228,6 +228,11 @@ namespace WillAssure.Controllers
                 BM.check = "true";
             }
 
+            if (Session["upbeneficiaryid"] == null)
+            {
+                RedirectToAction("LoginPageIndex", "LoginPage");
+            }
+
 
             if (BM.check == "true")
             {
@@ -236,7 +241,7 @@ namespace WillAssure.Controllers
                 SqlCommand cmd2 = new SqlCommand("SP_CRUD_alternate_Beneficiary", con);
                 cmd2.CommandType = CommandType.StoredProcedure;
                 cmd2.Parameters.AddWithValue("@condition", "update");
-                cmd2.Parameters.AddWithValue("@lnk_bd_id", BM.altlnk_bd_id);
+                cmd2.Parameters.AddWithValue("@lnk_bd_id", Convert.ToInt32(Session["upbeneficiaryid"]));
                 cmd2.Parameters.AddWithValue("@bpId", BM.altbpId);
                 cmd2.Parameters.AddWithValue("@First_Name", BM.altFirst_Name);
                 cmd2.Parameters.AddWithValue("@Last_Name", BM.altLast_Name);
@@ -269,7 +274,7 @@ namespace WillAssure.Controllers
                 ViewBag.Message = "Verified";
 
 
-            return View("~/Views/UpdateDistributor/UpdateDistributorPageContent.cshtml");
+            return View("~/Views/UpdateBeneficiary/UpdateBeneficiary.cshtml");
         }
 
 

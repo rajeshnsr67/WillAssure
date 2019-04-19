@@ -8,61 +8,15 @@ using System.Data.Sql;
 using System.Data.SqlClient;
 using System.Configuration;
 using System.Data;
-
-
 namespace WillAssure.Controllers
 {
-    public class RoleAddController : Controller
+    public class DisplayCouponAllotedController : Controller
     {
         public static string connectionString = ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString;
         SqlConnection con = new SqlConnection(connectionString);
-
-        // GET: RoleAdd
-        public ActionResult RoleAddIndex()
+        // GET: DisplayCouponAlloted
+        public ActionResult DisplayCouponAllotedIndex()
         {
-            if (Session["rId"] == null || Session["uuid"] == null)
-            {
-
-               RedirectToAction("LoginPageIndex", "LoginPage");
-
-            }
-            // roleassignment
-            List<LoginModel> Lmlist = new List<LoginModel>();
-            string q = "select * from Assignment_Roles where RoleId = " + Convert.ToInt32(Session["rId"]) + "";
-            SqlDataAdapter da3 = new SqlDataAdapter(q, con);
-            DataTable dt3 = new DataTable();
-            da3.Fill(dt3);
-            if (dt3.Rows.Count > 0)
-            {
-
-                for (int i = 0; i < dt3.Rows.Count; i++)
-                {
-                    LoginModel lm = new LoginModel();
-                    lm.PageName = dt3.Rows[i]["PageName"].ToString();
-                    lm.PageStatus = dt3.Rows[i]["PageStatus"].ToString();
-                    lm.Action = dt3.Rows[i]["Action"].ToString();
-                    lm.Nav1 = dt3.Rows[i]["Nav1"].ToString();
-                    lm.Nav2 = dt3.Rows[i]["Nav2"].ToString();
-
-
-                    Lmlist.Add(lm);
-                }
-
-
-
-                ViewBag.PageName = Lmlist;
-                //end
-
-
-
-            }
-            return View("~/Views/RoleAdd/AddRoleContentPage.cshtml");
-        }
-
-        public ActionResult InsertRoleFormData(RoleFormModel RFM)
-        {
-
-            // roleassignment
             List<LoginModel> Lmlist = new List<LoginModel>();
             con.Open();
             string q = "select * from Assignment_Roles where RoleId = " + Convert.ToInt32(Session["rId"]) + "";
@@ -93,60 +47,95 @@ namespace WillAssure.Controllers
 
             }
 
+            return View("~/Views/DisplayCouponAlloted/DisplayCouponAllotedPageContent.cshtml");
+        }
+
+
+
+        public string BindCouponAllotment()
+        {
+
+            // check roles
+            List<LoginModel> Lmlist = new List<LoginModel>();
+            con.Open();
+            string q = "select * from Assignment_Roles where RoleId = " + Convert.ToInt32(Session["rId"]) + "";
+            SqlDataAdapter da3 = new SqlDataAdapter(q, con);
+            DataTable dt3 = new DataTable();
+            da3.Fill(dt3);
+            if (dt3.Rows.Count > 0)
+            {
+
+                for (int i = 0; i < dt3.Rows.Count; i++)
+                {
+                    LoginModel lm = new LoginModel();
+                    lm.PageName = dt3.Rows[i]["PageName"].ToString();
+                    lm.PageStatus = dt3.Rows[i]["PageStatus"].ToString();
+                    lm.Action = dt3.Rows[i]["Action"].ToString();
+                    lm.Nav1 = dt3.Rows[i]["Nav1"].ToString();
+                    lm.Nav2 = dt3.Rows[i]["Nav2"].ToString();
+
+                    Lmlist.Add(lm);
+                }
+
+
+
+
+
+
+
+
+            }
+
             con.Close();
+
+
+
 
 
             //end
 
 
 
-            int roles = 0;
-            roles = Convert.ToInt32(Session["rId"]);
+            con.Open();
+            string query = "select a.Coupon_Number , b.First_Name , a.validFrm , a.validTo , a.Status from couponAllotment a inner join users b on a.uId=b.uId";
+            SqlDataAdapter da = new SqlDataAdapter(query, con);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            con.Close();
+            string data = "";
+            string testString = "";
 
-            //main Roles
-
-            //con.Open();
-            //string query = "select count(*) from Roles  where Role = '" + RFM.Role + "'";
-            //SqlCommand cmd = new SqlCommand(query, con);
-            //int count = (int)cmd.ExecuteScalar();
-
-            //if (count > 0)
-            //{
-            //    ViewBag.Message = "Duplicate";
-            //}
-            //else
-            //{
-                    con.Open();
-                    SqlCommand cmd2 = new SqlCommand("SP_Roles", con);
-                    cmd2.CommandType = System.Data.CommandType.StoredProcedure;
-                    cmd2.Parameters.AddWithValue("@condition", "insert");
-                    cmd2.Parameters.AddWithValue("@role ", RFM.Role);
-                    cmd2.Parameters.AddWithValue("@pid ", Convert.ToInt32(Session["uuid"]));
-                    cmd2.ExecuteNonQuery();
-                    
-
-                    ViewBag.Message = "Verified";
-                //}
-
-                    con.Close();
-
-            
-          
-            
+       
 
 
 
+            if (dt.Rows.Count > 0)
+            {
+
+             
+                    for (int i = 0; i < dt.Rows.Count; i++)
+                    {
+                    data = data  +"<td>" + dt.Rows[i]["Coupon_Number"].ToString() + "</td>"
+                   
+                    + "<td>" + dt.Rows[i]["First_Name"].ToString() + "</td>"
+                     + "<td>" + dt.Rows[i]["validFrm"].ToString() + "</td>"
+                      + "<td>" + dt.Rows[i]["validTo"].ToString() + "</td>"
+                       + "<td>" + dt.Rows[i]["Status"].ToString() + "</td>";
+
+                    }
+                
 
 
            
-                
-               
-               
-            
 
-            
-            return View("~/Views/RoleAdd/AddRoleContentPage.cshtml");
+
+
+
+            }
+
+            return data;
         }
+
 
 
     }

@@ -198,10 +198,10 @@
 
 
                                             <tr>
-                                                <td style="font-weight:bolder"><input type="checkbox" id="Payment">Document Allotment</td>
-                                                <td><label class="checkbox-inline"><input type="checkbox" class="insert" id="PaymentAdd">Add</label></td>
-                                                <td><label class="checkbox-inline"><input type="checkbox" class="update" id="PaymentEdit">Edit</label></td>
-                                                <td><label class="checkbox-inline"><input type="checkbox" class="delete" id="PaymentDelete">Delete</label></td>
+                                                <td style="font-weight:bolder"><input type="checkbox" id="DocumentAllotment">Document Allotment</td>
+                                                <td><label class="checkbox-inline"><input type="checkbox" class="insert" id="DocumentAllotmentAdd">Add</label></td>
+                                                <td><label class="checkbox-inline"><input type="checkbox" class="update" id="DocumentAllotmentEdit">Edit</label></td>
+                                                <td><label class="checkbox-inline"><input type="checkbox" class="delete" id="DocumentAllotmentDelete">Delete</label></td>
                                             </tr>
 
                                             <tr>
@@ -1325,26 +1325,26 @@
 
 
         // for Payment
-        if ($("#Payment").is(':checked')) {
+        if ($("#DocumentAllotment").is(':checked')) {
             status22 = status22 + "Active";
         }
         else {
             status22 = status22 + "Inactive";
         }
 
-        if ($("#PaymentAdd").is(':checked')) {
+        if ($("#DocumentAllotmentAdd").is(':checked')) {
             data22 = data22 + "1,";
         }
         else {
             data22 = data22 + "0,";
         }
-        if ($("#PaymentEdit").is(':checked')) {
+        if ($("#DocumentAllotmentEdit").is(':checked')) {
             data22 = data22 + "2,";
         }
         else {
             data22 = data22 + "0,";
         }
-        if ($("#PaymentDelete").is(':checked')) {
+        if ($("#DocumentAllotmentDelete").is(':checked')) {
             data22 = data22 + "3";
         }
         else {
@@ -1352,7 +1352,7 @@
         }
 
 
-        $("#22").val("update Assignment_Roles set  PageStatus= '" + status22 + "'  , Action = '" + data22 + "' where PageName = 'Document Allotment' and RoleId = " + roleid + " ");
+        $("#22").val("update Assignment_Roles set  PageStatus= '" + status22 + "'  , Action = '" + data22 + "' where PageName = 'DocumentAllotment' and RoleId = " + roleid + " ");
 
         //end
 

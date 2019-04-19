@@ -209,6 +209,8 @@
     <Compile Include="Controllers\ChangeTemplateController.cs" />
     <Compile Include="Controllers\CouponsAllotmentController.cs" />
     <Compile Include="Controllers\DashBoardController.cs" />
+    <Compile Include="Controllers\DisplayCouponAllotedController.cs" />
+    <Compile Include="Controllers\EditAllotmentDistributorController.cs" />
     <Compile Include="Controllers\EditAlternateAppointeesController.cs" />
     <Compile Include="Controllers\EditAlternateBeneficiaryController.cs" />
     <Compile Include="Controllers\EditAppointeesController.cs" />
@@ -1220,6 +1222,9 @@
     <Content Include="Views\DashBoard\DashBoardPageContent.cshtml" />
     <Content Include="Views\WillDetails\WillDetailsPageContent.cshtml" />
     <Content Include="Views\ChangeTemplate\ChangeTemplatePageContent.cshtml" />
+    <Content Include="Views\CouponsAllotment\AddCouponsAllotmentPageContent.cshtml" />
+    <Content Include="Views\DisplayCouponAlloted\DisplayCouponAllotedPageContent.cshtml" />
+    <Content Include="Views\EditAllotmentDistributor\DisplayAllotmentDistributorPageContent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

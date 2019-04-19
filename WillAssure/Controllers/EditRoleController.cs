@@ -105,7 +105,7 @@ namespace WillAssure.Controllers
 
 
             con.Open();
-            string query = "select * from Roles where Pid = " + Convert.ToInt32(Session["uuid"]) + "   and rId  not in(1,2,3)";
+            string query = "select * from Roles where Pid = " + Convert.ToInt32(Session["uuid"]) + "   and rId  not in(1,2,3,4,5)";
             SqlDataAdapter da = new SqlDataAdapter(query, con);
             DataTable dt = new DataTable();
             da.Fill(dt);
@@ -243,7 +243,7 @@ namespace WillAssure.Controllers
 
 
             con.Open();
-            string query = "select * from Roles where Pid = " + Convert.ToInt32(Session["uuid"]) + "   and rId  not in(1,2,3)";
+            string query = "select * from Roles where Pid = " + Convert.ToInt32(Session["uuid"]) + "   and rId  not in(1,2,3,4,5)";
             SqlDataAdapter da = new SqlDataAdapter(query, con);
             DataTable dt = new DataTable();
             da.Fill(dt);

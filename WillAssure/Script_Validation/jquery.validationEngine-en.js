@@ -149,6 +149,16 @@
                     "regex": /^[1-9][0-9]{5}$/,
                     "alertText": "*Invalid Pin Number"
                 },
+                "carnumber": {
+                    // Number, including positive, negative, and floating decimal. credit: orefalo
+                    "regex": /^[0-3][0-9]{7}$/,
+                    "alertText": "*Invalid License Number"
+                },
+                "pannumber": {
+                    // Number, including positive, negative, and floating decimal. credit: orefalo
+                    "regex": /[a-zA-z]{5}\d{4}[a-zA-Z]{1}/,
+                    "alertText": "*Invalid Pan Number"
+                },
                 "date": {                    
                     //	Check if date is valid by leap year
 			"func": function (field) {

@@ -348,7 +348,7 @@ namespace WillAssure.Controllers
             cmd.Parameters.AddWithValue("@City", AM.citytext);
             cmd.Parameters.AddWithValue("@State", AM.statetext);
             cmd.Parameters.AddWithValue("@Pin", AM.Pin);
-            cmd.Parameters.AddWithValue("@tid", "");
+            cmd.Parameters.AddWithValue("@tid", AM.ddltid);
             cmd.ExecuteNonQuery();
             con.Close();
 
@@ -388,7 +388,7 @@ namespace WillAssure.Controllers
                 cmdd.Parameters.AddWithValue("@City", AM.altcitytext);
                 cmdd.Parameters.AddWithValue("@State", AM.altstatetext);
                 cmdd.Parameters.AddWithValue("@Pin", AM.altPin);
-                cmdd.Parameters.AddWithValue("@tid", "");
+                cmdd.Parameters.AddWithValue("@tid", AM.ddltid);
                 cmdd.ExecuteNonQuery();
                 con.Close();
             }
