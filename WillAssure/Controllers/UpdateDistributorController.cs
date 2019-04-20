@@ -180,6 +180,52 @@ namespace WillAssure.Controllers
             cmd.ExecuteNonQuery();
             con.Close();
 
+            // get latest uid by userid filter
+            string userid = "";
+            con.Open();
+            string query2 = "select top 1 * from users order by uId desc";
+            SqlDataAdapter da2 = new SqlDataAdapter(query2, con);
+            DataTable dt2 = new DataTable();
+            da2.Fill(dt2);
+            int newusers = 0;
+            if (dt2.Rows.Count > 0)
+            {
+
+                userid = Convert.ToString(dt2.Rows[0]["userID"]);
+
+                string q1 = "select * from users where userID = '" + userid + "'  ";
+                SqlDataAdapter qda = new SqlDataAdapter(q1, con);
+                DataTable qdt = new DataTable();
+                qda.Fill(qdt);
+
+                if (qdt.Rows.Count > 0)
+                {
+                    newusers = Convert.ToInt32(qdt.Rows[0]["uId"]);
+                    Session["filterUid"] = newusers;
+                }
+
+
+            }
+            con.Close();
+
+
+            //end
+
+
+
+            // ASSIGN TYPE
+
+            con.Open();
+            string query3 = "update  users set Type='DistributorAdmin' where uId = " + userid + "  ";
+            SqlCommand cm = new SqlCommand(query3, con);
+            cm.ExecuteNonQuery();
+            con.Close();
+
+
+
+            //END
+
+
             ViewBag.Message = "Verified";
             return View("~/Views/UpdateDistributor/UpdateDistributorPageContent.cshtml");
         }

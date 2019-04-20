@@ -240,10 +240,6 @@ namespace WillAssure.Controllers
                     con.Close();
 
 
-                if (Session["filterUid"] == null)
-                {
-                    RedirectToAction("LoginPageIndex", "LoginPage");
-                }
 
                 con.Open();
                 string q1 = "select * from users where userID = '" + userid + "'  ";

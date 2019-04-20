@@ -57,7 +57,7 @@
 
                         <hr>
 
-                        @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "NomineeForm" }))
+                        @using (Html.BeginForm("InsertNomineeData", null, FormMethod.Post, new { id = "NomineeForm" }))
                         {
 
                             <div class="row">
@@ -291,7 +291,7 @@
 
                             <div class="form-group">
 
-                                <button type="submit" id="btnRoleformsubmit" formaction="InsertNomineeData" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i> Add Nominee</button>
+                                <button type="submit" id="btnRoleformsubmit"  class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i> Add Nominee</button>
                             </div>
 
                         }

@@ -269,8 +269,10 @@ namespace WillAssure.Controllers
 
         public string BindTestatorDDL()
         {
+            
+
             con.Open();
-            string query = "select a.tId , a.First_Name from TestatorDetails a inner join users b on a.uId=b.uId where b.Linked_user  = " + Convert.ToInt32(Session["uuid"])+" ";
+            string query = "select * from TestatorDetails where  uId = " + Convert.ToInt32(Session["uuid"])+" ";
             SqlDataAdapter da = new SqlDataAdapter(query, con);
             DataTable dt = new DataTable();
             da.Fill(dt);

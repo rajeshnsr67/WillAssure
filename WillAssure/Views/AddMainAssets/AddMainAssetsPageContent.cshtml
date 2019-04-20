@@ -55,7 +55,7 @@
                         <div class="card-title text-primary">Add Assets</div>
 
 
-                        @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "mainassetinfo" }))
+                        @using (Html.BeginForm("InsertMainAsset", null, FormMethod.Post, new { id = "mainassetinfo" }))
                         {
 
                             @Html.HiddenFor(m => m.ddltid, new { id = "ddltid", @name = "ddlTid" })
@@ -143,7 +143,7 @@
 
                             <div class="form-group">
                                 @*<button type="button" id="btnadd" class="btn btn-danger shadow-primary px-5"><i class="icon-plus"></i>Add</button>*@
-                                <button type="submit" formaction="InsertMainAsset" name="Submit Asset Info" value="Submit Asset Info" id="btnmainassetsubmit" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i>Submit Asset Info</button>
+                                <button type="submit"  name="Submit Asset Info" value="Submit Asset Info" id="btnmainassetsubmit" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i>Submit Asset Info</button>
 
                             </div>
 

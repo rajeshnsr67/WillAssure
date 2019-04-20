@@ -174,13 +174,111 @@ namespace WillAssure.Controllers
             }
             //END
 
-
-      
-
+            // insert testator data on users
 
 
-                //TFM.uId = Convert.ToInt32(Session["filterUid"]);
-                DateTime dat = DateTime.ParseExact(TFM.Dob, "dd-MM-yyyy", CultureInfo.InvariantCulture);
+    
+
+
+
+            con.Open();
+            SqlCommand cm = new SqlCommand("SP_Users", con);
+            cm.CommandType = System.Data.CommandType.StoredProcedure;
+            cm.Parameters.AddWithValue("@condition", "insert");
+            cm.Parameters.AddWithValue("@FirstName", TFM.First_Name);
+            cm.Parameters.AddWithValue("@LastName", TFM.Last_Name);
+            cm.Parameters.AddWithValue("@MiddleName", TFM.Middle_Name);
+
+
+
+            DateTime dat2 = DateTime.ParseExact(TFM.Dob, "dd-MM-yyyy", CultureInfo.InvariantCulture);
+
+            cm.Parameters.AddWithValue("@Dob", dat2);
+            cm.Parameters.AddWithValue("@Mobile", TFM.Mobile);
+            cm.Parameters.AddWithValue("@Email", TFM.Email);
+            cm.Parameters.AddWithValue("@Address1", TFM.Address1);
+            cm.Parameters.AddWithValue("@Address2", TFM.Address2);
+            cm.Parameters.AddWithValue("@Address3", TFM.Address3);
+            cm.Parameters.AddWithValue("@City", TFM.citytext);
+            cm.Parameters.AddWithValue("@State ", TFM.statetext);
+            cm.Parameters.AddWithValue("@Pin", TFM.Pin);
+            cm.Parameters.AddWithValue("@Linked_user", TFM.distributor_id);
+            cm.Parameters.AddWithValue("@UserId", TFM.Email);
+            cm.Parameters.AddWithValue("@UserPassword", TFM.MobileOTP);
+            cm.Parameters.AddWithValue("@rid", 5);
+            cm.Parameters.AddWithValue("@Active", "Active");
+            cm.Parameters.AddWithValue("@compId", 0); 
+            cm.ExecuteNonQuery();
+            con.Close();
+
+
+
+
+            string userid = "";
+            con.Open();
+            string qery2 = "select top 1 * from users order by uId desc";
+            SqlDataAdapter da2 = new SqlDataAdapter(qery2, con);
+            DataTable dt2 = new DataTable();
+            da2.Fill(dt2);
+
+            if (dt2.Rows.Count > 0)
+            {
+
+                userid = Convert.ToString(dt2.Rows[0]["uId"]);
+
+
+            }
+            con.Close();
+
+
+            con.Open();
+            string qury3 = "update  users set Type='Testator' where uId = " + userid + "  ";
+            SqlCommand cm2 = new SqlCommand(qury3, con);
+            cm2.ExecuteNonQuery();
+            con.Close();
+
+            if (TFM.Email != "")
+            {
+                //generate Mail
+                string mailto2 = TFM.Email;
+                string userlogin = TFM.Email;
+
+        
+                string subject = "Will Assure Login Credentials";
+
+                string text = "<font color='Green' style='font-size=3em;'>Your UserId And Password For Logging In Is <br> UserID : " + userlogin + " <br> Password : " + TFM.MobileOTP + "</font>";
+                string body = "<font color='red'>" + text + "</font>";
+
+
+                MailMessage msg = new MailMessage();
+                msg.From = new MailAddress("info@drinco.in");
+                msg.To.Add(mailto2);
+                msg.Subject = subject;
+                msg.Body = body;
+
+                msg.IsBodyHtml = true;
+                SmtpClient smtp = new SmtpClient("216.10.240.149", 25);
+                smtp.Credentials = new NetworkCredential("info@drinco.in", "95Bzf%s7");
+                smtp.EnableSsl = false;
+                smtp.Send(msg);
+                smtp.Dispose();
+
+
+                //end
+
+            }
+
+
+
+
+
+            //end
+
+
+
+
+            //TFM.uId = Convert.ToInt32(Session["filterUid"]);
+            DateTime dat = DateTime.ParseExact(TFM.Dob, "dd-MM-yyyy", CultureInfo.InvariantCulture);
                 con.Open();
                 SqlCommand cmd = new SqlCommand("SP_CRUDTestatorDetails", con);
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
@@ -213,7 +311,7 @@ namespace WillAssure.Controllers
                 cmd.Parameters.AddWithValue("@Mobile_Verification_Status", "0");
                 cmd.Parameters.AddWithValue("@Email_OTP", TFM.EmailOTP);
                 cmd.Parameters.AddWithValue("@Mobile_OTP", TFM.MobileOTP);
-                cmd.Parameters.AddWithValue("@uid", TFM.distributor_id);
+                cmd.Parameters.AddWithValue("@uid", userid);
                 cmd.ExecuteNonQuery();
                 con.Close();
 
@@ -836,7 +934,7 @@ namespace WillAssure.Controllers
             {
 
                 con.Open();
-                string query2 = "select uId , First_Name from users where Linked_user = " + Convert.ToInt32(Session["uuid"]) + "  ";
+                string query2 = "select uId , First_Name from users where uId = " + Convert.ToInt32(Session["uuid"]) + "  ";
                 SqlDataAdapter da2 = new SqlDataAdapter(query2, con);
                 DataTable dt2 = new DataTable();
                 da2.Fill(dt2);

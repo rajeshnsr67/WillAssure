@@ -49,7 +49,7 @@
                         <br />
                         <div class="card-title text-primary">Add Appointees</div>
 
-                        @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "DistributorForm" }))
+                        @using (Html.BeginForm("InsertAppointeesFormData", null, FormMethod.Post, new { id = "DistributorForm" }))
                         {
                             <div class="row">
                                 <div class='col-sm-1'><label for='input-1' style="line-height:40px;">Testator</label></div>
@@ -303,10 +303,10 @@
                                         <label for="input-1">Add Alternate Appointees</label>
                                         <br />
                                         <label class="checkbox-inline">
-                                            <input type="checkbox" value="Yes" class="radio" name="radio">Yes
+                                            <input type="checkbox" value="Yes" class="radio validate[required]" name="radio">Yes
                                         </label>
                                         <label class="checkbox-inline">
-                                            <input type="checkbox" value="No" class="radio" name="radio">No
+                                            <input type="checkbox" value="No" class="radio validate[required]" name="radio">No
                                         </label>
 
 
@@ -572,7 +572,7 @@
 
 
                             <div class="form-group">
-                                <button type="submit" id="btnDistributorformsubmit" formaction="InsertAppointeesFormData" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i>Add Appointees</button>
+                                <button type="submit" id="btnDistributorformsubmit"  class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i>Add Appointees</button>
 
 
                             </div>

@@ -218,7 +218,11 @@ namespace WillAssure.Controllers
             cmd.ExecuteNonQuery();
             con.Close();
 
-
+            con.Open();
+            string query3 = "update  users set Type='WillEmployee' where uId = " + UFM.uid + "  ";
+            SqlCommand cm = new SqlCommand(query3, con);
+            cm.ExecuteNonQuery();
+            con.Close();
 
             ViewBag.Message = "Verified";
             return View("~/Views/UpdateWillEmployee/UpdateWillEmployeePageContent.cshtml");

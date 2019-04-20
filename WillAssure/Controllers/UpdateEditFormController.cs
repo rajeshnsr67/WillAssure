@@ -362,24 +362,13 @@ namespace WillAssure.Controllers
                 con.Close();
 
 
-                // get latest inserted userid
-
-                string companyquery4 = "select top 1 * from users order by uId desc";
-                SqlDataAdapter companyda4 = new SqlDataAdapter(companyquery4, con);
-                DataTable companydt4 = new DataTable();
-                companyda4.Fill(companydt4);
-                int userid = 0;
-                if (companydt4.Rows.Count > 0)
-                {
-                    userid = Convert.ToInt32(companydt4.Rows[0]["uId"]);
-                }
-                //end
+            
 
 
                 // ASSIGN TYPE
 
                 con.Open();
-                string companyquery3 = "update  users set Type='DistributorAdmin' where uId = " + userid + "  ";
+                string companyquery3 = "update  users set Type='DistributorAdmin' where uId = " + UFM.uid + "";
                 SqlCommand companycm = new SqlCommand(companyquery3, con);
                 companycm.ExecuteNonQuery();
                 con.Close();
@@ -412,7 +401,7 @@ namespace WillAssure.Controllers
 
                 // update user with latest compid
                 con.Open();
-                string companyquery6 = "update users set compId=" + compid + " where uId=" + userid + "";
+                string companyquery6 = "update users set compId=" + compid + " where uId=" + UFM.uid + "";
                 SqlCommand companycmd2 = new SqlCommand(companyquery6, con);
                 companycmd2.ExecuteNonQuery();
                 con.Close();

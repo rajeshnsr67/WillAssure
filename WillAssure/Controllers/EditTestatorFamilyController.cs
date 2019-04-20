@@ -60,6 +60,14 @@ namespace WillAssure.Controllers
             return View("/Views/EditTestatorFamily/EditTestatorFamilyPageContent.cshtml");
         }
 
+
+        public ActionResult filterdata()
+        {
+
+
+            return View("/Views/EditTestatorFamily/EditTestatorFamilyPageContent.cshtml");
+        }
+
         public string BindTestatorFamilyFormData()
         {
             // check roles
