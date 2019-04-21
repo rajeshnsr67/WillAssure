@@ -61,7 +61,7 @@ namespace WillAssure.Controllers
 
 
 
-        public string BindMappedFormData()
+        public string BindMappedFormData(int value)
         {
 
             // check roles
@@ -115,7 +115,7 @@ namespace WillAssure.Controllers
 
             string final = "";
             con.Open();
-            string query = "select a.aiid , c.AssetsType , d.AssetsCategory , a.tid , a.docid , a.Json from AssetInformation a  inner join TestatorDetails b on a.tid=b.tId inner join AssetsType c on a.atId = c.atId inner join AssetsCategory d on a.amId=d.amId inner join users e on e.uId=b.uId  where e.Linked_user = " + Convert.ToInt32(Session["uuid"]) + "   ";
+            string query = "select a.aiid , c.AssetsType , d.AssetsCategory , a.tid , a.docid , a.Json from AssetInformation a  inner join TestatorDetails b on a.tid=b.tId inner join AssetsType c on a.atId = c.atId inner join AssetsCategory d on a.amId=d.amId where a.tid =" + value + "   ";
             SqlDataAdapter da = new SqlDataAdapter(query, con);
             DataTable dt = new DataTable();
             da.Fill(dt);
@@ -361,5 +361,48 @@ namespace WillAssure.Controllers
 
             return index;
         }
+
+
+
+
+        public string BindTestatorDDL()
+        {
+
+
+            con.Open();
+            string query = "select * from TestatorDetails where  uId = " + Convert.ToInt32(Session["uuid"]) + " ";
+            SqlDataAdapter da = new SqlDataAdapter(query, con);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            con.Close();
+            string data = "<option value='' >--Select--</option>";
+
+
+
+
+            if (dt.Rows.Count > 0)
+            {
+
+
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+
+
+
+
+                    data = data + "<option value=" + dt.Rows[i]["tId"].ToString() + " >" + dt.Rows[i]["First_Name"].ToString() + "</option>";
+
+
+
+                }
+
+
+
+
+            }
+
+            return data;
+        }
+
     }
 }

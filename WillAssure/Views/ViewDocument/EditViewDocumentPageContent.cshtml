@@ -3,6 +3,16 @@
     ViewBag.Title = "EditAppointeesPageContent";
 }
 
+  @if (Convert.ToInt32(Session["uuid"]) != 1)
+    {
+
+        <script>
+            
+            var url = "/WillDetails/WillDetailsIndex/";
+            window.location.href = url;
+        </script>
+
+    }
 
 @*Main Content*@
 <div class="content-wrapper">

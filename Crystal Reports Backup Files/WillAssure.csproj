@@ -206,8 +206,11 @@
     <Compile Include="Controllers\AddWillEmployeeController.cs" />
     <Compile Include="Controllers\AlternateBeneficiaryController.cs" />
     <Compile Include="Controllers\AssetTypeController.cs" />
+    <Compile Include="Controllers\ChangeTemplateController.cs" />
     <Compile Include="Controllers\CouponsAllotmentController.cs" />
     <Compile Include="Controllers\DashBoardController.cs" />
+    <Compile Include="Controllers\DisplayCouponAllotedController.cs" />
+    <Compile Include="Controllers\EditAllotmentDistributorController.cs" />
     <Compile Include="Controllers\EditAlternateAppointeesController.cs" />
     <Compile Include="Controllers\EditAlternateBeneficiaryController.cs" />
     <Compile Include="Controllers\EditAppointeesController.cs" />
@@ -250,10 +253,35 @@
     <Compile Include="Controllers\UpdateWillEmployeeController.cs" />
     <Compile Include="Controllers\UsersFormController.cs" />
     <Compile Include="Controllers\ViewDocumentController.cs" />
-    <Compile Include="CrystalReports\WillTestator.cs">
+    <Compile Include="Controllers\WillDetailsController.cs" />
+    <Compile Include="CrystalReports\WillTestator5.cs">
+      <DependentUpon>WillTestator5.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="CrystalReports\WillTestator4.cs">
+      <DependentUpon>WillTestator4.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="CrystalReports\WillTestator3.cs">
+      <DependentUpon>WillTestator3.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="CrystalReports\WillTestator2.cs">
+      <DependentUpon>WillTestator2.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="CrystalReports\WillTestator1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>WillTestator.rpt</DependentUpon>
+      <DependentUpon>WillTestator1.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Global.asax.cs">
@@ -287,6 +315,14 @@
     <Compile Include="Controllers\UpdateAssetsController.cs" />
     <Compile Include="Controllers\UpdateRelationController.cs" />
     <Compile Include="Models\UserFormModel.cs" />
+    <Compile Include="Models\WillDetailModel.cs" />
+    <Compile Include="page\ChangeTemplate.aspx.cs">
+      <DependentUpon>ChangeTemplate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="page\ChangeTemplate.aspx.designer.cs">
+      <DependentUpon>ChangeTemplate.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="page\Report.aspx.cs">
       <DependentUpon>Report.aspx</DependentUpon>
@@ -1064,6 +1100,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="page\ChangeTemplate.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="assets\fonts\fontawesome-webfont3e6e.eot" />
@@ -1182,11 +1219,16 @@
     <Content Include="Views\UpdateDistributorEmployee\UpdateDistributorEmployeePageContent.cshtml" />
     <Content Include="Views\AddDocumentAllotment\AddDocumentAllotmentPageContent.cshtml" />
     <Content Include="Views\UpdateDiscount\UpdateDiscountPageContent.cshtml" />
-    <Content Include="Views\CouponsAllotment\AddCouponsAllotmentPageContent.cshtml" />
     <Content Include="Views\DashBoard\DashBoardPageContent.cshtml" />
+    <Content Include="Views\WillDetails\WillDetailsPageContent.cshtml" />
+    <Content Include="Views\ChangeTemplate\ChangeTemplatePageContent.cshtml" />
+    <Content Include="Views\CouponsAllotment\AddCouponsAllotmentPageContent.cshtml" />
+    <Content Include="Views\DisplayCouponAlloted\DisplayCouponAllotedPageContent.cshtml" />
+    <Content Include="Views\EditAllotmentDistributor\DisplayAllotmentDistributorPageContent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="GeneratedPdf\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -1202,9 +1244,25 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="CrystalReports\WillTestator.rpt">
+    <EmbeddedResource Include="CrystalReports\WillTestator5.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>WillTestator.cs</LastGenOutput>
+      <LastGenOutput>WillTestator5.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\WillTestator4.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>WillTestator4.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\WillTestator3.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>WillTestator3.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\WillTestator2.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>WillTestator2.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReports\WillTestator1.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>WillTestator1.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

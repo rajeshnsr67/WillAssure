@@ -1,18 +1,14 @@
-﻿@model WillAssure.Models.WillDetailModel
+﻿﻿@model WillAssure.Models.WillDetailModel
 @{
     ViewBag.Title = "WillDetailsPageContent";
 }
 
-
 @*Main Content*@
 <div class="content-wrapper">
     <div class="container-fluid">
-
         <div class="row pt-2 pb-2">
-
             <div class="col-sm-3">
                 <div class="btn-group float-sm-right">
-
                     <div class="dropdown-menu">
                         <a href="javaScript:void();" class="dropdown-item">Action</a>
                         <a href="javaScript:void();" class="dropdown-item">Another action</a>
@@ -24,1622 +20,1606 @@
             </div>
         </div>
         <!-- End Breadcrumb-->
-       
+        @*<div class="card-title text-primary">Will Details</div>*@
+
+
+
+
+        @Html.HiddenFor(m => m.VerifyId, new { @id = "txtVerifyId" })
+
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <ul class="nav nav-tabs nav-tabs-info nav-justified" style="white-space:nowrap;">
+                            <li class="nav-item ">
+                                <a class="nav-link active" data-toggle="tab" href="#tabe-1"><i class="icon-user"></i> <span class="hidden-xs">Testator</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#tabe-2"><i class="icon-user"></i> <span class="hidden-xs">Testator Family</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#tabe-3"><i class="icon-user"></i> <span class="hidden-xs">Beneficiary</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#tabe-4"><i class="icon-user"></i> <span class="hidden-xs">Alt Beneficiary</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#tabe-5"><i class="icon-user"></i> <span class="hidden-xs">Asset Mapped</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#tabe-6"><i class="icon-user"></i> <span class="hidden-xs">Nominee</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#tabe-7"><i class="icon-user"></i> <span class="hidden-xs">Appointees</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#tabe-8"><i class="icon-user"></i> <span class="hidden-xs">Alt Appointees</span></a>
+                            </li>
+
+                        </ul>
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            <div id="tabe-1" class="container tab-pane active">
+                                <div class="row">
+
+                                    @foreach (var item in ViewBag.TestatorDetails)
+                                    {
+
+
+                                        <div class="col-sm-6">
+                                            <label for="input-1" style="line-height:38px"> Name : </label>
 
-                        @*<div class="card-title text-primary">Will Details</div>*@
-
-
-
-
-
-
-
-
-                        @Html.HiddenFor(m => m.VerifyId, new { @id = "txtVerifyId" })
-
-
-
-
-
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <ul class="nav nav-tabs nav-tabs-info nav-justified" style="white-space:nowrap;">
-
-                                            <li class="nav-item ">
-                                                <a class="nav-link active" data-toggle="tab" href="#tabe-1"><i class="icon-user"></i> <span class="hidden-xs">Testator</span></a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" data-toggle="tab" href="#tabe-2"><i class="icon-user"></i> <span class="hidden-xs">Testator Family</span></a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" data-toggle="tab" href="#tabe-3"><i class="icon-user"></i> <span class="hidden-xs">Beneficiary</span></a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" data-toggle="tab" href="#tabe-4"><i class="icon-user"></i> <span class="hidden-xs">Alt Beneficiary</span></a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" data-toggle="tab" href="#tabe-5"><i class="icon-user"></i> <span class="hidden-xs">Asset Mapped</span></a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" data-toggle="tab" href="#tabe-6"><i class="icon-user"></i> <span class="hidden-xs">Nominee</span></a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" data-toggle="tab" href="#tabe-7"><i class="icon-user"></i> <span class="hidden-xs">Appointees</span></a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" data-toggle="tab" href="#tabe-8"><i class="icon-user"></i> <span class="hidden-xs">Alt Appointees</span></a>
-                                            </li>
-
-
-                                        </ul>
-                                        <!-- Tab panes -->
-                                        <div class="tab-content">
-
-                                            <div id="tabe-1" class="container tab-pane active">
-                                                <div class="row">
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Name : </label>
-
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.TestatorName, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Last Name : </label>
-                                                        <div class="form-group">
-
-                                                            @Html.TextBoxFor(m => m.TestatorLastName, new { @class = "form-control", @readonly = "true" })
-
-                                                        </div>
-                                                    </div>
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Middle Name : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.TestatorMiddleName, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> DOB : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.TestatorDOB, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Occupation : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.TestatorOccupation, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Mobile : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.TestatorMobile, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Email : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.TestatorEmail, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Marital Status : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.TestatorMaritalStatus, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Relationship : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.TestatorRelationship, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Religion : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.TestatorReligion, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> IdentityProof : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.TestatorIdentityProof, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> ProofValue : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.TestatorIdentityProofValue, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> AltIdentity Proof : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.TestatorAltIdentityProof, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> ProofValue : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.TestatorAltIdentityProofValue, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Gender : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.TestatorGender, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Address1 : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextAreaFor(m => m.TestatorAddress1, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Address2 : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextAreaFor(m => m.TestatorAddress2, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Address3 : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextAreaFor(m => m.TestatorAddress3, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Country : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.TestatorCountry, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> State : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.TestatorState, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> City : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.TestatorCity, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Pin : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.TestatorPin, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div id="tabe-2" class="container tab-pane fade">
-                                                <div class="row">
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Name : </label>
-
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.tffirstname, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Last Name : </label>
-                                                        <div class="form-group">
-
-                                                            @Html.TextBoxFor(m => m.tflastname, new { @class = "form-control", @readonly = "true" })
-
-                                                        </div>
-                                                    </div>
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Middle Name : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.tfmiddlename, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> DOB : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.tfdob, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Marital Status : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.tfmaritalstatus, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Religion : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.tfreligion, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> RelationShip : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.tfrelationship, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Address 1 : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.tfaddress1, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Address 2 : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.tfaddress2, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Address 3 : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.tfaddress3, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> City : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.tfcity, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> State : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.tfstate, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Pin : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.tfpin, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Identity Proof : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.tfidentityproof, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Identity Proof Value : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.tfidentityproofvalue, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Alt Identity Proof : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextAreaFor(m => m.tfaltidentityproof, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Alt Identity Proof Value : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextAreaFor(m => m.tfaltidentityproofvalue, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> InFormed : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextAreaFor(m => m.tfisinformedperson, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-                                                </div>
-                                            </div>
-                                            <div id="tabe-3" class="container tab-pane fade">
-                                                <div class="row">
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Name : </label>
-
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.BeneficiaryName, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Last Name : </label>
-                                                        <div class="form-group">
-
-                                                            @Html.TextBoxFor(m => m.BeneficiaryLastName, new { @class = "form-control", @readonly = "true" })
-
-                                                        </div>
-                                                    </div>
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Middle Name : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.BeneficiaryMiddleName, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> DOB : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.BeneficiaryDOB, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Mobile : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.BeneficiaryMobile, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> RelationShip : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.BeneficiaryRelationship, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Martial Status : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.BeneficiaryMartialStatus, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Religion : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.BeneficiaryReligion, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Identity Proof : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.BeneficiaryIdentityProof, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Identity Proof Value : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.BeneficiaryIdentityProofValue, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Alt IdentityProof : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.BeneficiaryaltidentityProof, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Alt IdentityProofValue : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.beneficiaryaltidentityproofvalue, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Address 1 : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.beneficiaryaddress1, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Address 2 : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.beneficiaryaddress2, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Address 3 : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.beneficiaryaddress3, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> City : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextAreaFor(m => m.beneficiarycity, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> State : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextAreaFor(m => m.beneficiarystate, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Pin : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextAreaFor(m => m.beneficiarypin, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-                                                </div>
-                                            </div>
-                                            <div id="tabe-4" class="container tab-pane fade">
-                                                <div class="row">
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Name : </label>
-
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.altbenefirstname, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Last Name : </label>
-                                                        <div class="form-group">
-
-                                                            @Html.TextBoxFor(m => m.altbenelastname, new { @class = "form-control", @readonly = "true" })
-
-                                                        </div>
-                                                    </div>
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Middle Name : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.altbenemiddlename, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> DOB : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.altbenedob, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Mobile : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.altbenemobile, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> RelationShip : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.altbenerelationship, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Martial Status : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.altbenemaritalstatus, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Religion : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.altbenereligion, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Identity Proof : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.altbeneidentityproof, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Identity Proof Value : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.altbeneidentityproofvalue, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Alt IdentityProof : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.altbenealtidentityproof, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Alt IdentityProofValue : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.altbenealtidentityproofvalue, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Address 1 : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.altbeneaddress1, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Address 2 : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.altbeneaddress2, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Address 3 : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.altbeneaddress3, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> City : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextAreaFor(m => m.altbenecity, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> State : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextAreaFor(m => m.altbenestate, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Pin : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextAreaFor(m => m.altbenepin, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-                                                </div>
-                                            </div>
-                                            <div id="tabe-5" class="container tab-pane fade">
-                                                <div class="row">
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Asset Type : </label>
-
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.bmassettype, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Asset Category: </label>
-                                                        <div class="form-group">
-
-                                                            @Html.TextBoxFor(m => m.bmassetcat, new { @class = "form-control", @readonly = "true" })
-
-                                                        </div>
-                                                    </div>
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Scheme Name : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.bmschemename, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Instrument Name : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.bminstrumentname, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Proportion : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.bmproportion, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-
-
-                                                </div>
-                                            </div>
-                                            <div id="tabe-6" class="container tab-pane fade">
-                                                <div class="row">
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Name : </label>
-
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.nomfirstname, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Last Name : </label>
-                                                        <div class="form-group">
-
-                                                            @Html.TextBoxFor(m => m.nomlastname, new { @class = "form-control", @readonly = "true" })
-
-                                                        </div>
-                                                    </div>
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Middle Name : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.nommiddlename, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> DOB : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.nomdob, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Mobile : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.nommobile, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> RelationShip : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.nomrelationship, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Martial Status : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.nommaritalstatus, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Religion : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.nomreligion, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Identity Proof : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.nomidentityproof, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Identity Proof Value : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.nomidentityproofvalue, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Alt IdentityProof : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.nomaltidentityproof, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Alt IdentityProofValue : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.nomaltidentityproofvalue, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Address 1 : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.nomaddress1, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Address 2 : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.nomaddress2, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Address 3 : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.nomaddress3, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> City : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextAreaFor(m => m.nomcity, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> State : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextAreaFor(m => m.nomstate, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Pin : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextAreaFor(m => m.nompin, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-                                                </div>
-                                            </div>
-                                            <div id="tabe-7" class="container tab-pane fade">
-                                                <div class="row">
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Type : </label>
-
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.appointeesType, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Subtype : </label>
-                                                        <div class="form-group">
-
-                                                            @Html.TextBoxFor(m => m.appointeesSubtype, new { @class = "form-control", @readonly = "true" })
-
-                                                        </div>
-                                                    </div>
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Name : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.appointeesName, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Middle Name : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.appointeesmiddle, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Surname : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.appointeessurname, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Identityproof : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.appointeesidentityproof, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Identityproof Value : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.appointeesIdentityproofvalue, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Alt Identityproof : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.appointeesaltidentityproof, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Alt Identityproofvalue : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.appointeesaltidentityproofvalue, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> DOB : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.appointeesDOB, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Gender : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.appointeesGender, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Occupation : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.appointeesOccupation, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Relationship: </label>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.appointeesrelationship, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Address 1 : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.appointeesaddress1, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Address 2 : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.appointeesaddress2, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Address 3 : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextAreaFor(m => m.appointeesaddress3, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> City : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextAreaFor(m => m.appointeescity, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> State : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextAreaFor(m => m.appointeesstate, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Pin : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextAreaFor(m => m.appointeespin, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-                                                </div>
-                                            </div>
-                                            <div id="tabe-8" class="container tab-pane fade">
-                                                <div class="row">
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Name : </label>
-
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.altappname, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> MiddleName : </label>
-                                                        <div class="form-group">
-
-                                                            @Html.TextBoxFor(m => m.altappmiddlename, new { @class = "form-control", @readonly = "true" })
-
-                                                        </div>
-                                                    </div>
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> SirName : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.altappsurname, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Identity proof : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.altappidentityproof, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Identity proof value : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.altappidentityproofvalue, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Alt Identityproof : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.altappaltidentityproof, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Alt Identityproof Value : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.altappaltidentityproofvalue, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Dob : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.altappdob, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Gender : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.altappgender, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Occupation : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.altappoccupation, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> RelationShip : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.altapprelationship, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Address 1 : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.altappaddress1, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Address 2: </label>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.altappaddress2, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Address 3 : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.altappaddress3, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> City : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(m => m.altappcity, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> State : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextAreaFor(m => m.altappstate, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Pin : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextAreaFor(m => m.altapppin, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Guardian : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextAreaFor(m => m.altappaltguardian, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="col-sm-6">
-                                                        <label for="input-1" style="line-height:38px"> Executor : </label>
-                                                        <div class="form-group">
-                                                            @Html.TextAreaFor(m => m.altappaltexec, new { @class = "form-control", @readonly = "true" })
-                                                        </div>
-                                                    </div>
-
-
-
-
-                                                </div>
-                                            </div>
                                             <div class="form-group">
 
-                                                @if (Convert.ToInt32(Session["uuid"]) != 1)
-                                                {
-                                                    <center><button type="button" id="btnwilldetails" class="btn btn-danger shadow-primary px-5"><i class="icon-lock"></i> Send For Verification</button></center>
-                                                }
-                                                else
-                                                {
+                                                <input type="text" name="name" value="@item.TestatorName" class="form-control" />
+                                            </div>
+                                        </div>
 
-                                                    <center><button type="button" id="btnwilldetails" class="btn btn-success shadow-primary px-5"><i class="icon-lock"></i>Approve Details</button></center>
 
-                                                }
 
-                                                <button type="button" id="btnsenddocument" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
-                                                <button type="button" id="btnRoleformsubmitCHECK" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
+
+                                        <div class="col-sm-6">
+                                            <label for="input-1" style="line-height:38px"> Last Name : </label>
+                                            <div class="form-group">
+
+
+                                                <input type="text" name="name" value="@item.TestatorLastName" class="form-control" />
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="col-sm-6">
+                                            <label for="input-1" style="line-height:38px"> Middle Name : </label>
+                                            <div class="form-group">
+
+                                                <input type="text" name="name" value="@item.TestatorMiddleName" class="form-control" />
+                                            </div>
+                                        </div>
+
+
+
+
+                                        <div class="col-sm-6">
+                                            <label for="input-1" style="line-height:38px"> DOB : </label>
+                                            <div class="form-group">
+
+                                                <input type="text" name="name" value="@item.TestatorDOB" class="form-control" />
+                                            </div>
+                                        </div>
+
+
+
+
+
+                                        <div class="col-sm-6">
+                                            <label for="input-1" style="line-height:38px"> Occupation : </label>
+                                            <div class="form-group">
+
+                                                <input type="text" name="name" value="@item.TestatorOccupation" class="form-control" />
+                                            </div>
+                                        </div>
+
+
+
+
+
+                                        <div class="col-sm-6">
+                                            <label for="input-1" style="line-height:38px"> Mobile : </label>
+                                            <div class="form-group">
+
+                                                <input type="text" name="name" value="@item.TestatorMobile" class="form-control" />
+                                            </div>
+                                        </div>
+
+
+
+
+
+                                        <div class="col-sm-6">
+                                            <label for="input-1" style="line-height:38px"> Email : </label>
+                                            <div class="form-group">
+
+                                                <input type="text" name="name" value="@item.TestatorEmail" class="form-control" />
+                                            </div>
+                                        </div>
+
+
+
+
+
+
+                                        <div class="col-sm-6">
+                                            <label for="input-1" style="line-height:38px"> Marital Status : </label>
+                                            <div class="form-group">
+
+                                                <input type="text" name="name" value="@item.TestatorMaritalStatus" class="form-control" />
+                                            </div>
+                                        </div>
+
+
+
+
+
+                                        <div class="col-sm-6">
+                                            <label for="input-1" style="line-height:38px"> Relationship : </label>
+                                            <div class="form-group">
+
+                                                <input type="text" name="name" value="@item.TestatorRelationship" class="form-control" />
+                                            </div>
+                                        </div>
+
+
+
+
+
+
+                                        <div class="col-sm-6">
+                                            <label for="input-1" style="line-height:38px"> Religion : </label>
+                                            <div class="form-group">
+
+                                                <input type="text" name="name" value="@item.TestatorReligion" class="form-control" />
+                                            </div>
+                                        </div>
+
+
+
+
+
+
+                                        <div class="col-sm-6">
+                                            <label for="input-1" style="line-height:38px"> IdentityProof : </label>
+                                            <div class="form-group">
+
+                                                <input type="text" name="name" value="@item.TestatorIdentityProof" class="form-control" />
+                                            </div>
+                                        </div>
+
+
+
+
+
+                                        <div class="col-sm-6">
+                                            <label for="input-1" style="line-height:38px"> ProofValue : </label>
+                                            <div class="form-group">
+
+                                                <input type="text" name="name" value="@item.TestatorIdentityProofValue" class="form-control" />
+                                            </div>
+                                        </div>
+
+
+
+
+
+                                        <div class="col-sm-6">
+                                            <label for="input-1" style="line-height:38px"> AltIdentity Proof : </label>
+                                            <div class="form-group">
+
+                                                <input type="text" name="name" value="@item.TestatorAltIdentityProof" class="form-control" />
+                                            </div>
+                                        </div>
+
+
+
+
+
+                                        <div class="col-sm-6">
+                                            <label for="input-1" style="line-height:38px"> ProofValue : </label>
+                                            <div class="form-group">
+
+                                                <input type="text" name="name" value="@item.TestatorAltIdentityProofValue" class="form-control" />
+                                            </div>
+                                        </div>
+
+
+
+
+
+                                        <div class="col-sm-6">
+                                            <label for="input-1" style="line-height:38px"> Gender : </label>
+                                            <div class="form-group">
+
+                                                <input type="text" name="name" value="@item.TestatorGender" class="form-control" />
+                                            </div>
+                                        </div>
+
+
+
+
+
+                                        <div class="col-sm-6">
+                                            <label for="input-1" style="line-height:38px"> Address1 : </label>
+                                            <div class="form-group">
+
+                                                <input type="text" name="name" value="@item.TestatorAddress1" class="form-control" />
+                                            </div>
+                                        </div>
+
+
+
+
+
+                                        <div class="col-sm-6">
+                                            <label for="input-1" style="line-height:38px"> Address2 : </label>
+                                            <div class="form-group">
+
+                                                <input type="text" name="name" value="@item.TestatorAddress2" class="form-control" />
+                                            </div>
+                                        </div>
+
+
+
+
+                                        <div class="col-sm-6">
+                                            <label for="input-1" style="line-height:38px"> Address3 : </label>
+                                            <div class="form-group">
+
+                                                <input type="text" name="name" value="@item.TestatorAddress3" class="form-control" />
+                                            </div>
+                                        </div>
+
+
+
+
+                                        <div class="col-sm-6">
+                                            <label for="input-1" style="line-height:38px"> Country : </label>
+                                            <div class="form-group">
+
+                                                <input type="text" name="name" value="@item.TestatorCountry" class="form-control" />
+                                            </div>
+                                        </div>
+
+
+
+
+                                        <div class="col-sm-6">
+                                            <label for="input-1" style="line-height:38px"> State : </label>
+                                            <div class="form-group">
+
+                                                <input type="text" name="name" value="@item.TestatorState" class="form-control" />
+                                            </div>
+                                        </div>
+
+
+
+
+                                        <div class="col-sm-6">
+                                            <label for="input-1" style="line-height:38px"> City : </label>
+                                            <div class="form-group">
+
+                                                <input type="text" name="name" value="@item.TestatorCity" class="form-control" />
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="col-sm-6">
+                                            <label for="input-1" style="line-height:38px"> Pin : </label>
+                                            <div class="form-group">
+
+                                                <input type="text" name="name" value="@item.TestatorPin" class="form-control" />
+                                            </div>
+
+                                        </div>
+
+
+                                    }
+                                </div>
+                            </div>
+                            <div id="tabe-2" class="container tab-pane fade">
+                                <div class="row">
+                                    @foreach (var item in ViewBag.testatorFamily)
+                                    {
+
+
+                                        <div class="col-sm-6">
+                                            <label for="input-1" style="line-height:38px"> Name : </label>
+
+                                            <div class="form-group">
+
+                                                <input type="text" name="name" value="@item.tffirstname" class="form-control" />
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="col-sm-6">
+                                            <label for="input-1" style="line-height:38px"> Last Name : </label>
+                                            <div class="form-group">
+
+                                                <input type="text" name="name" value="@item.tflastname" class="form-control" />
 
                                             </div>
                                         </div>
+
+
+
+                                        <div class="col-sm-6">
+                                            <label for="input-1" style="line-height:38px"> Middle Name : </label>
+                                            <div class="form-group">
+
+                                                <input type="text" name="name" value="@item.tfmiddlename" class="form-control" />
+                                            </div>
+                                        </div>
+
+
+
+
+                                        <div class="col-sm-6">
+                                            <label for="input-1" style="line-height:38px"> DOB : </label>
+                                            <div class="form-group">
+
+                                                <input type="text" name="name" value="@item.tfdob" class="form-control" />
+                                            </div>
+                                        </div>
+
+
+
+
+
+                                        <div class="col-sm-6">
+                                            <label for="input-1" style="line-height:38px"> Marital Status : </label>
+                                            <div class="form-group">
+
+                                                <input type="text" name="name" value="@item.tfmaritalstatus" class="form-control" />
+                                            </div>
+                                        </div>
+
+
+
+
+
+                                        <div class="col-sm-6">
+                                            <label for="input-1" style="line-height:38px"> Religion : </label>
+                                            <div class="form-group">
+
+                                                <input type="text" name="name" value="@item.tfreligion" class="form-control" />
+                                            </div>
+                                        </div>
+
+
+
+
+
+                                        <div class="col-sm-6">
+                                            <label for="input-1" style="line-height:38px"> RelationShip : </label>
+                                            <div class="form-group">
+
+                                                <input type="text" name="name" value="@item.tfrelationship" class="form-control" />
+                                            </div>
+                                        </div>
+
+
+
+
+
+
+                                        <div class="col-sm-6">
+                                            <label for="input-1" style="line-height:38px"> Address 1 : </label>
+                                            <div class="form-group">
+
+                                                <input type="text" name="name" value="@item.tfaddress1" class="form-control" />
+                                            </div>
+                                        </div>
+
+
+
+
+
+                                        <div class="col-sm-6">
+                                            <label for="input-1" style="line-height:38px"> Address 2 : </label>
+                                            <div class="form-group">
+
+                                                <input type="text" name="name" value="@item.tfaddress2" class="form-control" />
+                                            </div>
+                                        </div>
+
+
+
+
+
+
+                                        <div class="col-sm-6">
+                                            <label for="input-1" style="line-height:38px"> Address 3 : </label>
+                                            <div class="form-group">
+
+                                                <input type="text" name="name" value="@item.tfaddress3" class="form-control" />
+                                            </div>
+                                        </div>
+
+
+
+
+
+
+                                        <div class="col-sm-6">
+                                            <label for="input-1" style="line-height:38px"> City : </label>
+                                            <div class="form-group">
+
+                                                <input type="text" name="name" value="@item.tfcity" class="form-control" />
+                                            </div>
+                                        </div>
+
+
+
+
+
+                                        <div class="col-sm-6">
+                                            <label for="input-1" style="line-height:38px"> State : </label>
+                                            <div class="form-group">
+
+                                                <input type="text" name="name" value="@item.tfstate" class="form-control" />
+                                            </div>
+                                        </div>
+
+
+
+
+
+                                        <div class="col-sm-6">
+                                            <label for="input-1" style="line-height:38px"> Pin : </label>
+                                            <div class="form-group">
+
+                                                <input type="text" name="name" value="@item.tfpin" class="form-control" />
+                                            </div>
+                                        </div>
+
+
+
+
+
+                                        <div class="col-sm-6">
+                                            <label for="input-1" style="line-height:38px"> Identity Proof : </label>
+                                            <div class="form-group">
+
+                                                <input type="text" name="name" value="@item.tfidentityproof" class="form-control" />
+                                            </div>
+                                        </div>
+
+
+
+
+
+                                        <div class="col-sm-6">
+                                            <label for="input-1" style="line-height:38px"> Identity Proof Value : </label>
+                                            <div class="form-group">
+
+                                                <input type="text" name="name" value="@item.tfidentityproofvalue" class="form-control" />
+                                            </div>
+                                        </div>
+
+
+
+
+
+                                        <div class="col-sm-6">
+                                            <label for="input-1" style="line-height:38px"> Alt Identity Proof : </label>
+                                            <div class="form-group">
+
+                                                <input type="text" name="name" value="@item.tfaltidentityproof" class="form-control" />
+                                            </div>
+                                        </div>
+
+
+
+
+
+                                        <div class="col-sm-6">
+                                            <label for="input-1" style="line-height:38px"> Alt Identity Proof Value : </label>
+                                            <div class="form-group">
+
+                                                <input type="text" name="name" value="@item.tfaltidentityproofvalue" class="form-control" />
+                                            </div>
+                                        </div>
+
+
+
+
+                                        <div class="col-sm-6">
+                                            <label for="input-1" style="line-height:38px"> InFormed : </label>
+                                            <div class="form-group">
+
+
+                                                <input type="text" name="name" value="@item.tfisinformedperson" class="form-control" />
+                                            </div>
+                                        </div>
+                                    }
+
+
+                                </div>
+                            </div>
+                            <div id="tabe-3" class="container tab-pane fade">
+                                <div class="row">
+                                    @foreach (var item in ViewBag.beneficiary)
+                                    {
+
+
+                                        <div class="col-sm-6">
+                                            <label for="input-1" style="line-height:38px"> Name : </label>
+
+                                            <div class="form-group">
+
+                                                <input type="text" name="name" value="@item.BeneficiaryName" class="form-control" />
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="col-sm-6">
+                                            <label for="input-1" style="line-height:38px"> Last Name : </label>
+                                            <div class="form-group">
+
+
+                                                <input type="text" name="name" value="@item.BeneficiaryLastName" class="form-control" />
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="col-sm-6">
+                                            <label for="input-1" style="line-height:38px"> Middle Name : </label>
+                                            <div class="form-group">
+
+                                                <input type="text" name="name" value="@item.BeneficiaryMiddleName" class="form-control" />
+                                            </div>
+                                        </div>
+
+
+
+
+                                        <div class="col-sm-6">
+                                            <label for="input-1" style="line-height:38px"> DOB : </label>
+                                            <div class="form-group">
+
+                                                <input type="text" name="name" value="@item.BeneficiaryDOB" class="form-control" />
+                                            </div>
+                                        </div>
+
+
+
+
+
+                                        <div class="col-sm-6">
+                                            <label for="input-1" style="line-height:38px"> Mobile : </label>
+                                            <div class="form-group">
+
+                                                <input type="text" name="name" value="@item.BeneficiaryMobile" class="form-control" />
+                                            </div>
+                                        </div>
+
+
+
+
+
+                                        <div class="col-sm-6">
+                                            <label for="input-1" style="line-height:38px"> RelationShip : </label>
+                                            <div class="form-group">
+
+                                                <input type="text" name="name" value="@item.BeneficiaryRelationship" class="form-control" />
+                                            </div>
+                                        </div>
+
+
+
+
+
+                                        <div class="col-sm-6">
+                                            <label for="input-1" style="line-height:38px"> Martial Status : </label>
+                                            <div class="form-group">
+
+                                                <input type="text" name="name" value="@item.BeneficiaryMartialStatus" class="form-control" />
+                                            </div>
+                                        </div>
+
+
+
+
+
+
+                                        <div class="col-sm-6">
+                                            <label for="input-1" style="line-height:38px"> Religion : </label>
+                                            <div class="form-group">
+
+                                                <input type="text" name="name" value="@item.BeneficiaryReligion" class="form-control" />
+                                            </div>
+                                        </div>
+
+
+
+
+
+                                        <div class="col-sm-6">
+                                            <label for="input-1" style="line-height:38px"> Identity Proof : </label>
+                                            <div class="form-group">
+
+                                                <input type="text" name="name" value="@item.BeneficiaryIdentityProof" class="form-control" />
+                                            </div>
+                                        </div>
+
+
+
+
+
+
+                                        <div class="col-sm-6">
+                                            <label for="input-1" style="line-height:38px"> Identity Proof Value : </label>
+                                            <div class="form-group">
+
+                                                <input type="text" name="name" value="@item.BeneficiaryIdentityProofValue" class="form-control" />
+                                            </div>
+                                        </div>
+
+
+
+
+
+
+                                        <div class="col-sm-6">
+                                            <label for="input-1" style="line-height:38px"> Alt IdentityProof : </label>
+                                            <div class="form-group">
+
+                                                <input type="text" name="name" value="@item.BeneficiaryaltidentityProof" class="form-control" />
+                                            </div>
+                                        </div>
+
+
+
+
+
+                                        <div class="col-sm-6">
+                                            <label for="input-1" style="line-height:38px"> Alt IdentityProofValue : </label>
+                                            <div class="form-group">
+
+                                                <input type="text" name="name" value="@item.beneficiaryaltidentityproofvalue" class="form-control" />
+                                            </div>
+                                        </div>
+
+
+
+
+
+                                        <div class="col-sm-6">
+                                            <label for="input-1" style="line-height:38px"> Address 1 : </label>
+                                            <div class="form-group">
+
+                                                <input type="text" name="name" value="@item.beneficiaryaddress1" class="form-control" />
+                                            </div>
+                                        </div>
+
+
+
+
+
+                                        <div class="col-sm-6">
+                                            <label for="input-1" style="line-height:38px"> Address 2 : </label>
+                                            <div class="form-group">
+
+                                                <input type="text" name="name" value="@item.beneficiaryaddress2" class="form-control" />
+                                            </div>
+                                        </div>
+
+
+
+
+
+                                        <div class="col-sm-6">
+                                            <label for="input-1" style="line-height:38px"> Address 3 : </label>
+                                            <div class="form-group">
+
+                                                <input type="text" name="name" value="@item.beneficiaryaddress3" class="form-control" />
+                                            </div>
+                                        </div>
+
+
+
+
+
+                                        <div class="col-sm-6">
+                                            <label for="input-1" style="line-height:38px"> City : </label>
+                                            <div class="form-group">
+
+                                                <input type="text" name="name" value="@item.beneficiarycity" class="form-control" />
+                                            </div>
+                                        </div>
+
+
+
+
+
+                                        <div class="col-sm-6">
+                                            <label for="input-1" style="line-height:38px"> State : </label>
+                                            <div class="form-group">
+
+                                                <input type="text" name="name" value="@item.beneficiarystate" class="form-control" />
+                                            </div>
+                                        </div>
+
+
+
+
+                                        <div class="col-sm-6">
+                                            <label for="input-1" style="line-height:38px"> Pin : </label>
+                                            <div class="form-group">
+
+                                                <input type="text" name="name" value="@item.beneficiarypin" class="form-control" />
+                                            </div>
+                                        </div>
+
+                                    }
+
+
+                                </div>
+                            </div>
+                            <div id="tabe-4" class="container tab-pane fade">
+                                <div class="row">
+                                    @foreach (var item in ViewBag.altbene)
+                                    {
+                                        <div class="col-sm-6">
+                                            <label for="input-1" style="line-height:38px"> Name : </label>
+                                            <div class="form-group">
+                                               
+                                                <input type="text" name="name" value="@item.altbenefirstname" class="form-control" />
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-6">
+                                            <label for="input-1" style="line-height:38px"> Last Name : </label>
+                                            <div class="form-group">
+                                                
+                                                <input type="text" name="name" value="@item.altbenelastname" class="form-control" />
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-6">
+                                            <label for="input-1" style="line-height:38px"> Middle Name : </label>
+                                            <div class="form-group">
+                                               
+                                                <input type="text" name="name" value="@item.altbenemiddlename" class="form-control" />
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-sm-6">
+                                            <label for="input-1" style="line-height:38px"> DOB : </label>
+                                            <div class="form-group">
+                                             
+                                                <input type="text" name="name" value="@item.altbenedob" class="form-control" />
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-sm-6">
+                                            <label for="input-1" style="line-height:38px"> Mobile : </label>
+                                            <div class="form-group">
+                                                
+                                                <input type="text" name="name" value="@item.altbenemobile" class="form-control" />
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-sm-6">
+                                            <label for="input-1" style="line-height:38px"> RelationShip : </label>
+                                            <div class="form-group">
+                                                
+                                                <input type="text" name="name" value="@item.altbenerelationship" class="form-control" />
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-sm-6">
+                                            <label for="input-1" style="line-height:38px"> Martial Status : </label>
+                                            <div class="form-group">
+                                              
+                                                <input type="text" name="name" value="@item.altbenemaritalstatus" class="form-control" />
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="col-sm-6">
+                                            <label for="input-1" style="line-height:38px"> Religion : </label>
+                                            <div class="form-group">
+                                               
+                                                <input type="text" name="name" value="@item.altbenereligion" class="form-control" />
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-sm-6">
+                                            <label for="input-1" style="line-height:38px"> Identity Proof : </label>
+                                            <div class="form-group">
+                                             
+                                                <input type="text" name="name" value="@item.altbeneidentityproof" class="form-control" />
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="col-sm-6">
+                                            <label for="input-1" style="line-height:38px"> Identity Proof Value : </label>
+                                            <div class="form-group">
+                                               
+                                                <input type="text" name="name" value="@item.altbeneidentityproofvalue" class="form-control" />
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="col-sm-6">
+                                            <label for="input-1" style="line-height:38px"> Alt IdentityProof : </label>
+                                            <div class="form-group">
+                                              
+                                                <input type="text" name="name" value="@item.altbenealtidentityproof" class="form-control" />
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-sm-6">
+                                            <label for="input-1" style="line-height:38px"> Alt IdentityProofValue : </label>
+                                            <div class="form-group">
+                                              
+                                                <input type="text" name="name" value="@item.altbenealtidentityproofvalue" class="form-control" />
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-sm-6">
+                                            <label for="input-1" style="line-height:38px"> Address 1 : </label>
+                                            <div class="form-group">
+                                               
+
+                                                <input type="text" name="name" value="@item.altbeneaddress1" class="form-control" />
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-sm-6">
+                                            <label for="input-1" style="line-height:38px"> Address 2 : </label>
+                                            <div class="form-group">
+                                             
+                                                <input type="text" name="name" value="@item.altbeneaddress2" class="form-control" />
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-sm-6">
+                                            <label for="input-1" style="line-height:38px"> Address 3 : </label>
+                                            <div class="form-group">
+                                               
+                                                <input type="text" name="name" value="@item.altbeneaddress3" class="form-control" />
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-sm-6">
+                                            <label for="input-1" style="line-height:38px"> City : </label>
+                                            <div class="form-group">
+                                               
+                                                <input type="text" name="name" value="@item.altbenecity" class="form-control" />
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-sm-6">
+                                            <label for="input-1" style="line-height:38px"> State : </label>
+                                            <div class="form-group">
+                                              
+                                                <input type="text" name="name" value="@item.altbenestate" class="form-control" />
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-sm-6">
+                                            <label for="input-1" style="line-height:38px"> Pin : </label>
+                                            <div class="form-group">
+                                               
+                                                <input type="text" name="name" value="@item.altbenepin" class="form-control" />
+                                            </div>
+                                        </div>
+
+                                    }
                                     </div>
                                 </div>
+                                <div id="tabe-5" class="container tab-pane fade">
+                                    <div class="row">
+                                        @foreach (var item in ViewBag.BeneficiaryMapping)
+                                        {
 
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Asset Type : </label>
+
+                                                <div class="form-group">
+
+                                                    <input type="text" value="@item.bmassettype" name="name" class="form-control" />
+                                                </div>
+                                            </div>
+
+
+
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Asset Category: </label>
+                                                <div class="form-group">
+
+
+                                                    <input type="text" value="@item.bmassetcat" name="name" class="form-control" />
+                                                </div>
+                                            </div>
+
+
+
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Scheme Name : </label>
+                                                <div class="form-group">
+
+                                                    <input type="text" value="@item.bmschemename" name="name" class="form-control" />
+                                                </div>
+                                            </div>
+
+
+
+
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Instrument Name : </label>
+                                                <div class="form-group">
+
+                                                    <input type="text" value="@item.bminstrumentname" name="name" class="form-control" />
+                                                </div>
+                                            </div>
+
+
+
+
+
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Proportion : </label>
+                                                <div class="form-group">
+
+                                                    <input type="text" value="@item.bmproportion" name="name" class="form-control" />
+                                                </div>
+                                            </div>
+
+
+
+                                        }
+
+
+
+
+
+                                    </div>
+                                </div>
+                                <div id="tabe-6" class="container tab-pane fade">
+                                    <div class="row">
+                                        @foreach (var item in ViewBag.nominee)
+                                        {
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Name : </label>
+                                                <div class="form-group">
+                                                  
+                                                    <input type="text" name="name" value="@item.nomfirstname" class="form-control" />
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Last Name : </label>
+                                                <div class="form-group">
+                                                   
+                                                    <input type="text" name="name" value="@item.nomlastname" class="form-control" />
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Middle Name : </label>
+                                                <div class="form-group">
+                                                   
+                                                    <input type="text" name="name" value="@item.nommiddlename" class="form-control" />
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> DOB : </label>
+                                                <div class="form-group">
+                                                   
+                                                    <input type="text" name="name" value="@item.nomdob" class="form-control" />
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Mobile : </label>
+                                                <div class="form-group">
+                                                  
+                                                    <input type="text" name="name" value="@item.nommobile" class="form-control" />
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> RelationShip : </label>
+                                                <div class="form-group">
+                                                   
+                                                    <input type="text" name="name" value="@item.nomrelationship" class="form-control" />
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Martial Status : </label>
+                                                <div class="form-group">
+                                                   
+                                                    <input type="text" name="name" value="@item.nommaritalstatus" class="form-control" />
+                                                </div>
+                                            </div>
+
+
+
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Religion : </label>
+                                                <div class="form-group">
+                                                    
+                                                    <input type="text" name="name" value="@item.nomreligion" class="form-control" />
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Identity Proof : </label>
+                                                <div class="form-group">
+                                                   
+                                                    <input type="text" name="name" value="@item.nomidentityproof" class="form-control" />
+                                                </div>
+                                            </div>
+
+
+
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Identity Proof Value : </label>
+                                                <div class="form-group">
+                                                   
+                                                    <input type="text" name="name" value="@item.nomidentityproofvalue" class="form-control" />
+                                                </div>
+                                            </div>
+
+
+
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Alt IdentityProof : </label>
+                                                <div class="form-group">
+                                                   
+                                                    <input type="text" name="name" value="@item.nomaltidentityproof" class="form-control" />
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Alt IdentityProofValue : </label>
+                                                <div class="form-group">
+                                                   
+                                                    <input type="text" name="name" value="@item.nomaltidentityproofvalue" class="form-control" />
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Address 1 : </label>
+                                                <div class="form-group">
+                                                  
+                                                    <input type="text" name="name" value="@item.nomaddress1" class="form-control" />
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Address 2 : </label>
+                                                <div class="form-group">
+                                                 
+                                                    <input type="text" name="name" value="@item.nomaddress2" class="form-control" />
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Address 3 : </label>
+                                                <div class="form-group">
+                                                   
+                                                    <input type="text" name="name" value="@item.nomaddress3" class="form-control" />
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> City : </label>
+                                                <div class="form-group">
+                                                   
+                                                    <input type="text" name="name" value="@item.nomcity" class="form-control" />
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> State : </label>
+                                                <div class="form-group">
+                                                    
+                                                    <input type="text" name="name" value="@item.nomstate" class="form-control" />
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Pin : </label>
+                                                <div class="form-group">
+                                                    
+                                                    <input type="text" name="name" value="@item.nompin" class="form-control" />
+                                                </div>
+                                            </div>
+                                        }
+
+
+
+
+
+                                    </div>
+                                </div>
+                                <div id="tabe-7" class="container tab-pane fade">
+                                    <div class="row">
+                                        @foreach (var item in ViewBag.appointees)
+                                        {
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Type : </label>
+
+                                                <div class="form-group">
+
+                                                    <input type="text" value="@item.appointeesType" name="name" class="form-control" />
+                                                </div>
+                                            </div>
+
+
+
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Subtype : </label>
+                                                <div class="form-group">
+
+
+                                                    <input type="text" value="@item.appointeesSubtype" name="name" class="form-control" />
+                                                </div>
+                                            </div>
+
+
+
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Name : </label>
+                                                <div class="form-group">
+
+                                                    <input type="text" value="@item.appointeesName" name="name" class="form-control" />
+                                                </div>
+                                            </div>
+
+
+
+
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Middle Name : </label>
+                                                <div class="form-group">
+
+                                                    <input type="text" value="@item.appointeesmiddle" name="name" class="form-control" />
+                                                </div>
+                                            </div>
+
+
+
+
+
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Surname : </label>
+                                                <div class="form-group">
+
+                                                    <input type="text" value="@item.appointeessurname" name="name" class="form-control" />
+                                                </div>
+                                            </div>
+
+
+
+
+
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Identityproof : </label>
+                                                <div class="form-group">
+
+                                                    <input type="text" value="@item.appointeesidentityproof" name="name" class="form-control" />
+                                                </div>
+                                            </div>
+
+
+
+
+
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Identityproof Value : </label>
+                                                <div class="form-group">
+
+                                                    <input type="text" value="@item.appointeesIdentityproofvalue" name="name" class="form-control" />
+                                                </div>
+                                            </div>
+
+
+
+
+
+
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Alt Identityproof : </label>
+                                                <div class="form-group">
+
+                                                    <input type="text" value="@item.appointeesaltidentityproof" name="name" class="form-control" />
+                                                </div>
+                                            </div>
+
+
+
+
+
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Alt Identityproofvalue : </label>
+                                                <div class="form-group">
+
+                                                    <input type="text" value="@item.appointeesaltidentityproofvalue" name="name" class="form-control" />
+                                                </div>
+                                            </div>
+
+
+
+
+
+
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> DOB : </label>
+                                                <div class="form-group">
+
+                                                    <input type="text" value="@item.appointeesDOB" name="name" class="form-control" />
+                                                </div>
+                                            </div>
+
+
+
+
+
+
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Gender : </label>
+                                                <div class="form-group">
+
+                                                    <input type="text" value="@item.appointeesGender" name="name" class="form-control" />
+                                                </div>
+                                            </div>
+
+
+
+
+
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Occupation : </label>
+                                                <div class="form-group">
+
+                                                    <input type="text" value="@item.appointeesOccupation" name="name" class="form-control" />
+                                                </div>
+                                            </div>
+
+
+
+
+
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Relationship: </label>
+                                                <div class="form-group">
+
+                                                    <input type="text" value="@item.appointeesrelationship" name="name" class="form-control" />
+                                                </div>
+                                            </div>
+
+
+
+
+
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Address 1 : </label>
+                                                <div class="form-group">
+
+                                                    <input type="text" value="@item.appointeesaddress1" name="name" class="form-control" />
+                                                </div>
+                                            </div>
+
+
+
+
+
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Address 2 : </label>
+                                                <div class="form-group">
+
+                                                    <input type="text" value="@item.appointeesaddress2" name="name" class="form-control" />
+                                                </div>
+                                            </div>
+
+
+
+
+
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Address 3 : </label>
+                                                <div class="form-group">
+
+                                                    <input type="text" value="@item.appointeesaddress3" name="name" class="form-control" />
+                                                </div>
+                                            </div>
+
+
+
+
+
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> City : </label>
+                                                <div class="form-group">
+
+                                                    <input type="text" value="@item.appointeescity" name="name" class="form-control" />
+                                                </div>
+                                            </div>
+
+
+
+
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> State : </label>
+                                                <div class="form-group">
+
+                                                    <input type="text" value="@item.appointeesstate" name="name" class="form-control" />
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Pin : </label>
+                                                <div class="form-group">
+
+                                                    <input type="text" value="@item.appointeespin" name="name" class="form-control" />
+                                                </div>
+                                            </div>
+
+                                        }
+
+
+
+                                    </div>
+                                </div>
+                                <div id="tabe-8" class="container tab-pane fade">
+                                    <div class="row">
+                                        @foreach (var item in ViewBag.altappointment)
+                                        {
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Name : </label>
+                                                <div class="form-group">
+                                                 
+                                                    <input type="text" value="@item.altappname" name="name" class="form-control" />
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> MiddleName : </label>
+                                                <div class="form-group">
+                                                  
+                                                    <input type="text" value="@item.altappmiddlename" name="name" class="form-control" />
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> SirName : </label>
+                                                <div class="form-group">
+                                                  
+                                                    <input type="text" value="@item.altappsurname" name="name" class="form-control" />
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Identity proof : </label>
+                                                <div class="form-group">
+                                                  
+                                                    <input type="text" value="@item.altappidentityproof" name="name" class="form-control" />
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Identity proof value : </label>
+                                                <div class="form-group">
+                                                 
+                                                    <input type="text" value="@item.altappidentityproofvalue" name="name" class="form-control" />
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Alt Identityproof : </label>
+                                                <div class="form-group">
+                                                 
+                                                    <input type="text" value="@item.altappaltidentityproof" name="name" class="form-control" />
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Alt Identityproof Value : </label>
+                                                <div class="form-group">
+                                                   
+                                                    <input type="text" value="@item.altappaltidentityproofvalue" name="name" class="form-control" />
+                                                </div>
+                                            </div>
+
+
+
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Dob : </label>
+                                                <div class="form-group">
+                                                 
+                                                    <input type="text" value="@item.altappdob" name="name" class="form-control" />
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Gender : </label>
+                                                <div class="form-group">
+                                                   
+                                                    <input type="text" value="@item.altappgender" name="name" class="form-control" />
+                                                </div>
+                                            </div>
+
+
+
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Occupation : </label>
+                                                <div class="form-group">
+                                                   
+                                                    <input type="text" value="@item.altappoccupation" name="name" class="form-control" />
+                                                </div>
+                                            </div>
+
+
+
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> RelationShip : </label>
+                                                <div class="form-group">
+                                                 
+                                                    <input type="text" value="@item.altapprelationship" name="name" class="form-control" />
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Address 1 : </label>
+                                                <div class="form-group">
+                                                   
+                                                    <input type="text" value="@item.altappaddress1" name="name" class="form-control" />
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Address 2: </label>
+                                                <div class="form-group">
+                                                    
+                                                    <input type="text" value="@item.altappaddress2" name="name" class="form-control" />
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Address 3 : </label>
+                                                <div class="form-group">
+                                                   
+                                                    <input type="text" value="@item.altappaddress3" name="name" class="form-control" />
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> City : </label>
+                                                <div class="form-group">
+                                               
+                                                    <input type="text" value="@item.altappcity" name="name" class="form-control" />
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> State : </label>
+                                                <div class="form-group">
+                                                   
+                                                    <input type="text" value="@item.altappstate" name="name" class="form-control" />
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Pin : </label>
+                                                <div class="form-group">
+                                                   
+                                                    <input type="text" value="@item.altapppin" name="name" class="form-control" />
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Guardian : </label>
+                                                <div class="form-group">
+                                                  
+                                                    <input type="text" value="@item.altappaltguardian" name="name" class="form-control" />
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Executor : </label>
+                                                <div class="form-group">
+                                                   
+                                                    <input type="text" value="@item.altappaltexec" name="name" class="form-control" />
+                                                </div>
+                                            </div>
+                                        }
+
+
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @if (Convert.ToInt32(Session["uuid"]) != 1)
+                                    {
+                                        <center><button type="button" id="btnwilldetails" class="btn btn-danger shadow-primary px-5"><i class="icon-lock"></i> Send For Verification</button></center>
+                                    }
+                                    else
+                                    {
+
+                                        <center><button type="button" id="btnwilldetails" class="btn btn-success shadow-primary px-5"><i class="icon-lock"></i>Approve Details</button></center>
+
+                                    }
+                                    <button type="button" id="btnsenddocument" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
+                                    <button type="button" id="btnRoleformsubmitCHECK" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
+                                </div>
                             </div>
-
-                        </div><!--End Row-->
-
-
-
-
-
-
-                 
-
-
                     </div>
                 </div>
-            
-     
-  
-@*end*@
+            </div>
+        </div><!--End Row-->
 
+
+
+
+
+    </div>
+</div>
+
+
+
+@*end*@
 <script>
 
     $("#btnwilldetails").click(function () {
@@ -1661,7 +1641,5 @@
     });
 
 </script>
-
-
 
 

@@ -68,7 +68,7 @@ namespace WillAssure.Controllers
             return View("/Views/EditTestatorFamily/EditTestatorFamilyPageContent.cshtml");
         }
 
-        public string BindTestatorFamilyFormData()
+        public string BindTestatorFamilyFormData(int value)
         {
             // check roles
             List<LoginModel> Lmlist = new List<LoginModel>();
@@ -119,7 +119,7 @@ namespace WillAssure.Controllers
 
 
             con.Open();
-            string query = "select a.fId , a.First_Name , a.Last_Name , a.Middle_Name , a.DOB , a.Marital_Status , a.Religion , a.Relationship , a.Address1 , a.Address2 , a.Address3 , a.City , a.State , a.Pin , a.tId , a.active , a.Identity_Proof , a.Identity_Proof_Value , a.Alt_Identity_Proof , a.Alt_Identity_Proof_Value , a.Is_Informed_Person from testatorFamily a inner join TestatorDetails b on a.tId=b.tId inner join users c on b.uId = c.uId where c.Linked_user =  " + Convert.ToInt32(Session["uuid"]) + " ";
+            string query = "select a.fId , a.First_Name , a.Last_Name , a.Middle_Name , a.DOB , a.Marital_Status , a.Religion , a.Relationship , a.Address1 , a.Address2 , a.Address3 , a.City , a.State , a.Pin , a.tId , a.active , a.Identity_Proof , a.Identity_Proof_Value , a.Alt_Identity_Proof , a.Alt_Identity_Proof_Value , a.Is_Informed_Person from testatorFamily a inner join TestatorDetails b on a.tId=b.tId where a.tId =  " + value + " ";
             SqlDataAdapter da = new SqlDataAdapter(query, con);
             DataTable dt = new DataTable();
             da.Fill(dt);
@@ -505,6 +505,47 @@ namespace WillAssure.Controllers
 
 
             return index;
+        }
+
+
+
+        public string BindTestatorDDL()
+        {
+
+
+            con.Open();
+            string query = "select * from TestatorDetails where  uId = " + Convert.ToInt32(Session["uuid"]) + " ";
+            SqlDataAdapter da = new SqlDataAdapter(query, con);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            con.Close();
+            string data = "<option value='' >--Select--</option>";
+
+
+
+
+            if (dt.Rows.Count > 0)
+            {
+
+
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+
+
+
+
+                    data = data + "<option value=" + dt.Rows[i]["tId"].ToString() + " >" + dt.Rows[i]["First_Name"].ToString() + "</option>";
+
+
+
+                }
+
+
+
+
+            }
+
+            return data;
         }
 
 
