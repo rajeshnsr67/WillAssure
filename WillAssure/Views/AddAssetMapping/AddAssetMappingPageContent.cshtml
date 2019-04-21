@@ -3,12 +3,7 @@
     ViewBag.Title = "AddAssetMappingPageContent";
 }
 
-@if (ViewBag.reload == "true")
-{
-    <script>
-        location.reload();
-    </script>
-}
+
 
 <style>
     ul#menu li {
@@ -177,6 +172,68 @@
 
 
     <script>
+
+        $(document).ready(function () {
+            
+            $.ajax({
+
+                type: "POST",
+            
+                url: "@Url.Action("BindBeneficiaryDDL", "AddAssetMapping")",
+                success: function (data) {
+                    $("#ddlbeneficiary1").append(data);
+                }
+            });
+
+
+
+
+            $.ajax({
+
+                type: "POST",
+             
+                 url: "@Url.Action("BindAssetTypeDDL", "AddAssetMapping")",
+                success: function (data) {
+                    $("#ddlassettype").append(data);
+                }
+            });
+
+
+
+            $.ajax({
+
+                type: "POST",
+           
+                url: "@Url.Action("BindTestatorDDL", "AddAssetMapping")",
+                success: function (data) {
+                    $("#DDLTestator").append(data);
+                }
+            });
+
+
+            $.ajax({
+                type: "POST",
+              
+                 url: "@Url.Action("ddlassetname", "AddAssetMapping")",
+                data: { "send": "" + value + "" },
+                success: function (data) {
+                    $("#DDLAssetColumn1").append(data);
+                }
+            });
+
+
+
+
+
+
+
+        });
+
+
+
+
+
+
         function isNumberKey(evt) {
             var charCode = (evt.which) ? evt.which : event.keyCode
             if (charCode > 31 && (charCode < 48 || charCode > 57))
@@ -224,72 +281,12 @@
             alert(prevtotalinputval);
         }
         });
-        $(document).ready(function () {
-
-            $.ajax({
-
-                type: "POST",
-                url: "../AddAssetMapping/BindBeneficiaryDDL",
-                success: function (data) {
-                    $("#ddlbeneficiary1").append(data);
-                }
-            });
+       
 
 
 
 
-            $.ajax({
-
-                type: "POST",
-                url: "../AddAssetMapping/BindAssetTypeDDL",
-                success: function (data) {
-                    $("#ddlassettype").append(data);
-                }
-            });
-
-
-
-            $.ajax({
-
-                type: "POST",
-                url: "../AddAssetMapping/BindTestatorDDL",
-                success: function (data) {
-                    $("#DDLTestator").append(data);
-                }
-            });
-
-
-            $.ajax({
-                type: "POST",
-                url: "../AddAssetMapping/ddlassetname",
-                data: { "send": "" + value + "" },
-                success: function (data) {
-                    $("#DDLAssetColumn1").append(data);
-                }
-            });
-
-
-
-
-
-
-
-        });
-
-
-
-
-
-
-
-
-        function getbeneficiaryId(value) {
-
-        }
-
-
-
-
+    
         function getassettypeid(value) {
 
 
