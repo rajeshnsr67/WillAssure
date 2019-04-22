@@ -100,14 +100,14 @@
 
     $(document).ready(function () {
 
-        @*$.ajax({
+        $.ajax({
 
             type: "POST",
-            url:"@Url.Action("BindBeneficiaryFormData", "EditBeneficiary")",
+            url:"@Url.Action("LoadData", "EditBeneficiary")",
             success: function (data) {
                 $('#BeneficiaryData').empty().append(data);
             }
-        });*@
+        });
 
 
         

@@ -393,40 +393,139 @@ namespace WillAssure.Controllers
 
         public string BindTestatorDDL()
         {
-            con.Open();
-            string query = "select a.tId , a.First_Name from TestatorDetails a inner join users b on a.uId=b.uId where b.Linked_user  = " + Convert.ToInt32(Session["uuid"]) + " ";
-            SqlDataAdapter da = new SqlDataAdapter(query, con);
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-            con.Close();
-            string data = "<option value='' >--Select--</option>";
 
-
-
-
-            if (dt.Rows.Count > 0)
+            if (Convert.ToInt32(Session["uuid"]) != 1)
             {
-
-
-                for (int i = 0; i < dt.Rows.Count; i++)
+                string ck = "select type from users where uId =" + Convert.ToInt32(Session["uuid"]) + "";
+                SqlDataAdapter cda = new SqlDataAdapter(ck, con);
+                DataTable cdt = new DataTable();
+                cda.Fill(cdt);
+                string type = "";
+                if (cdt.Rows.Count > 0)
                 {
+                    type = cdt.Rows[0]["type"].ToString();
+
+                }
+
+                if (type != "Testator")
+                {
+                    con.Open();
+                    string query = "select * from TestatorDetails a   inner join users b on a.uId = b.uId  where b.Linked_user = " + Convert.ToInt32(Session["uuid"]) + " ";
+                    SqlDataAdapter da = new SqlDataAdapter(query, con);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    con.Close();
+                    string data = "<option value='' >--Select--</option>";
 
 
 
 
-                    data = data + "<option value=" + dt.Rows[i]["tId"].ToString() + " >" + dt.Rows[i]["First_Name"].ToString() + "</option>";
+                    if (dt.Rows.Count > 0)
+                    {
 
+
+                        for (int i = 0; i < dt.Rows.Count; i++)
+                        {
+
+
+
+
+                            data = data + "<option value=" + dt.Rows[i]["tId"].ToString() + " >" + dt.Rows[i]["First_Name"].ToString() + "</option>";
+
+
+
+                        }
+
+
+
+
+                    }
+
+                    return data;
+                }
+                else
+                {
+                    con.Open();
+                    string query = "select * from TestatorDetails a   inner join users b on a.uId = b.uId  where b.uId = " + Convert.ToInt32(Session["uuid"]) + " ";
+                    SqlDataAdapter da = new SqlDataAdapter(query, con);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    con.Close();
+                    string data = "";
+
+
+
+
+                    if (dt.Rows.Count > 0)
+                    {
+
+
+                        for (int i = 0; i < dt.Rows.Count; i++)
+                        {
+
+
+
+
+                            data = data + "<option value=" + dt.Rows[i]["tId"].ToString() + " >" + dt.Rows[i]["First_Name"].ToString() + "</option>";
+
+
+
+                        }
+
+
+
+
+                    }
+
+                    return data;
 
 
                 }
 
 
 
+            }
+            else
+            {
+                con.Open();
+                string query = "select * from TestatorDetails";
+                SqlDataAdapter da = new SqlDataAdapter(query, con);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                con.Close();
+                string data = "<option value='' >--Select--</option>";
+
+
+
+
+                if (dt.Rows.Count > 0)
+                {
+
+
+                    for (int i = 0; i < dt.Rows.Count; i++)
+                    {
+
+
+
+
+                        data = data + "<option value=" + dt.Rows[i]["tId"].ToString() + " >" + dt.Rows[i]["First_Name"].ToString() + "</option>";
+
+
+
+                    }
+
+
+
+
+                }
+
+                return data;
 
             }
 
-            return data;
+
         }
+
 
 
 

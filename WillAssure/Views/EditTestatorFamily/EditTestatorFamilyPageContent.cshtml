@@ -99,15 +99,15 @@
 <script>
 
     $(document).ready(function () {
-
-        @*$.ajax({
+        
+        $.ajax({
 
             type: "POST",
-            url:"@Url.Action("BindTestatorFamilyFormData", "EditTestatorFamily")",
+            url:"@Url.Action("LoadData", "EditTestatorFamily")",
             success: function (data) {
                 $('#TesttatorFamilyBind').empty().append(data);
             }
-        });*@
+        });
 
 
 

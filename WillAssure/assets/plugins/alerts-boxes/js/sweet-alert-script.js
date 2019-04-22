@@ -26,6 +26,12 @@
      });
 
 
+
+     $("#btnDeleteTestatorData").click(function () {
+         swal("Deleted!", "Your Data has Been Deleted!,", "success");
+     });
+
+
      
 
 
@@ -505,7 +511,13 @@
                     }
                   });
 
-              });
+     });
+
+
+
+
+
+    
 
 });
 

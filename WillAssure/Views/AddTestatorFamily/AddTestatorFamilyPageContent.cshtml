@@ -10,6 +10,8 @@
     }
 </style>
 
+
+
 @*Main Content*@
 <div class="content-wrapper">
     <div class="container-fluid">
@@ -345,7 +347,7 @@
             <button type="button" id="btntestatorfamilysubmitSUCCESS" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
             <button type="button" id="testatorfamilylinkcheck" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
             <button type="button" id="btncheckExists" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
-
+            <button type="button" style="display:none" id="confirmtestatorfamily"></button>
         </div>
 
 
@@ -456,16 +458,16 @@
                   success: function (data) {
 
                       $('#DDLTestator').append(data);
-                      
 
 
 
-                
+
+
             }
           });
 
 
-         
+
 
 
     });
@@ -610,12 +612,12 @@
         if (!$(this).is(':checked')) {
             $('.radio').prop('checked', false);
             $("#txtcheck").val("false");
-           
+
         } else {
             $('.radio').prop('checked', true);
             $("#txtcheck").val("true");
         }
-    }); 
+    });
 
 
 
@@ -640,9 +642,9 @@
             url:"@Url.Action("CheckTestatorUsers", "AddTestatorFamily")",
                  data: { value: value, checkstatus: checkstatus },
             success: function (data) {
-                
+
                 if (data == 2) {
-                    
+
                     $("#btncheckExists").on("click", function () { });
 
                     $("#btncheckExists").click(); //trigger event after listening to it.
@@ -656,12 +658,12 @@
                     //window.location.href = url;
                 }
 
-              
-                      
 
 
 
-                
+
+
+
             }
         });
 
@@ -671,13 +673,65 @@
 
     };
 
-   
 
+
+
+    $("#confirmtestatorfamily").click(function () {
+
+        swal({
+
+            text: 'Testator Data Already Exists Do You Want To Add More!',
+            icon: 'warning',
+            buttons: true,
+            dangerMode: true,
+            buttons: ['No', 'Yes']
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+
+                  
+                 
+                } else {
+
+
+
+         
+                
+                        var url = "/AddBeneficiary/AddBeneficiaryIndex/";
+                        window.location.href = url;
+                 
+
+
+
+                }
+            });
+
+    });
 
 
 </script>
+ 
 
 
 
+@if (ViewBag.popup == "true")
+{
+    <script>
+
+        $(document).ready(function () {
+
+
+            $("#confirmtestatorfamily").on("click", function () { });
+
+            $("#confirmtestatorfamily").click(); //trigger event after listening to it.
+
+
+
+
+        });
+    </script>
+
+
+}
 
 @*end*@

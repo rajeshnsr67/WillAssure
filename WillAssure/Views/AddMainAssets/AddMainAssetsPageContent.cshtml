@@ -143,7 +143,7 @@
 
                             <div class="form-group">
                                 @*<button type="button" id="btnadd" class="btn btn-danger shadow-primary px-5"><i class="icon-plus"></i>Add</button>*@
-                                <button type="submit"  name="Submit Asset Info" value="Submit Asset Info" id="btnmainassetsubmit" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i>Submit Asset Info</button>
+                                <button type="submit" name="Submit Asset Info" value="Submit Asset Info" id="btnmainassetsubmit" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i>Submit Asset Info</button>
 
                             </div>
 
@@ -154,6 +154,7 @@
             <button type="button" id="btnassetinfosuccess" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
             <button type="button" id="mainassetlinkcheck" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
             <button type="button" id="btncheckExists" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
+            <button type="button" style="display:none" id="confirmtestatorfamily"></button>
 
         </div>
 
@@ -214,7 +215,7 @@
                   $.ajax({
 
             type: "POST",
-            url:"@Url.Action("BindTestatorDDL", "AddTestatorFamily")",
+            url:"@Url.Action("BindTestatorDDL", "AddMainAssets")",
                   success: function (data) {
 
                       $('#DDLTestator').append(data);
@@ -353,6 +354,66 @@
 
 
     };
+
+
+     $("#confirmtestatorfamily").click(function () {
+
+        swal({
+
+            text: 'Testator Data Already Exists Do You Want To Add More!',
+            icon: 'warning',
+            buttons: true,
+            dangerMode: true,
+            buttons: ['No', 'Yes']
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+
+
+
+                } else {
+
+
+
+
+
+                    var url = "/AddAssetMapping/AddAssetMappingIndex/";
+                    window.location.href = url;
+
+
+
+
+                }
+            });
+
+    });
+
+
+</script>
+
+
+
+
+@if (ViewBag.popup == "true")
+{
+    <script>
+
+        $(document).ready(function () {
+
+
+            $("#confirmtestatorfamily").on("click", function () { });
+
+            $("#confirmtestatorfamily").click(); //trigger event after listening to it.
+
+
+
+
+        });
+    </script>
+
+
+}
+
 
 
 

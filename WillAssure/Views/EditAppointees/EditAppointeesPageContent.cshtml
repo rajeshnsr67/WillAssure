@@ -100,14 +100,14 @@
 
     $(document).ready(function () {
 
-        @*$.ajax({
+        $.ajax({
 
             type: "POST",
-            url:"@Url.Action("BindAppointeesFormData", "EditAppointees")",
+            url:"@Url.Action("LoadData", "EditAppointees")",
             success: function (data) {
                 $('#AppointeesData').empty().append(data);
             }
-        });*@
+        });
 
 
 

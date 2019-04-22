@@ -29,142 +29,142 @@
         </div>
         <!-- End Breadcrumb-->
         @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "RoleForm" }))
-            {
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="card">
-                    <div class="card-body">
-                        <h5>
-                            <ul id="menu" style="font-weight:bold;">
+        {
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5>
+                                <ul id="menu" style="font-weight:bold;">
 
-                                <li>Testator ></li>
-                                <li>Testator Family ></li>
-                                <li>Beneficiary ></li>
-                                <li>AssetInformation ></li>
-                                <li style="color:#5e72e4">Mapping ></li>
-                                <li style="color:#e1e1e1">Nominee ></li>
-                                <li style="color:#e1e1e1">Appointees </li>
-
-
-                            </ul>
-                        </h5>
-                        <br>
-                        <div class="card-title text-primary">Asset Mapping</div>
-                        <div class="row">
-
-                            <div class='col-sm-1'><label for='input-1' style="line-height:40px;">Testator</label></div>
-                            <div class="col-sm-3">
-                                <select id='DDLTestator' name="contentList" onchange="getDDLTestator(this.value)" class='form-control'></select>
-                                @Html.HiddenFor(m => m.ddltid, new { id = "ddltid" })
-                                @Html.HiddenFor(m => m.ddltestatorname, new { id = "ddltestatorname" })
-                            </div>
-                            <div class="col-sm-2">
-                                <label class="checkbox-inline">
-                                    <input type="checkbox" value="Yes" class="checkbox1" name="checkbox1">Add Multiple
-                                </label>
-                            </div>
-
-                        </div>
-                        <hr>
+                                    <li>Testator ></li>
+                                    <li>Testator Family ></li>
+                                    <li>Beneficiary ></li>
+                                    <li>AssetInformation ></li>
+                                    <li style="color:#5e72e4">Mapping ></li>
+                                    <li style="color:#e1e1e1">Nominee ></li>
+                                    <li style="color:#e1e1e1">Appointees </li>
 
 
-                        <div class="row">
+                                </ul>
+                            </h5>
+                            <br>
+                            <div class="card-title text-primary">Asset Mapping</div>
+                            <div class="row">
 
-
-
-
-
-
-                            <input type="hidden" id="txtcheck" value="" name="name" />
-
-                            <div class='col-sm-6'>
-                                <div class='form-group'>
-                                    <label for='input-1'>Assets Type</label>
-                                    <select id='ddlassettype' name="contentList" onChange='getassettypeid(this.value)' class='form-control'></select>
-                                    @Html.HiddenFor(m => m.assettypeid, new { id = "assettypeid" })
-                                    @Html.HiddenFor(m => m.assettypetext, new { id = "assettypetext" })
+                                <div class='col-sm-1'><label for='input-1' style="line-height:40px;">Testator</label></div>
+                                <div class="col-sm-3">
+                                    <select id='DDLTestator' name="contentList" onchange="getDDLTestator(this.value)" class='form-control'></select>
+                                    @Html.HiddenFor(m => m.ddltid, new { id = "ddltid" })
+                                    @Html.HiddenFor(m => m.ddltestatorname, new { id = "ddltestatorname" })
                                 </div>
-                            </div>
-
-                            <div class='col-sm-6'>
-                                <div class='form-group'>
-                                    <label for='input-1'>Assets Category</label>
-                                    <select id='ddlassetcat' name="contentList" onChange='getassetcatid(this.value)' class='form-control'></select>
-                                    @Html.HiddenFor(m => m.assetcatid, new { id = "assetcatid" })
-                                    @Html.HiddenFor(m => m.assetcattext, new { id = "assetcattext" })
+                                <div class="col-sm-2">
+                                    <label class="checkbox-inline">
+                                        <input type="checkbox" value="Yes" class="checkbox1" name="checkbox1">Add Multiple
+                                    </label>
                                 </div>
+
                             </div>
-                        </div>
-
-                        <div class='col-sm-3' id="type" style="display:none;">
-                            <div class='form-group'>
-                                <label for='input-1'>Type</label>
-                                <br />
-                                <form>
-                                    <label class="radio-inline">
-                                        <input type="radio" onchange="getvalone(this.value)" name="optradio" value="Single" checked>Single
-                                    </label>
-                                    <label class="radio-inline">
-                                        <input type="radio" onchange="getvaltwo(this.value)" name="optradio" value="Multiple">Multiple
-                                    </label>
-                                </form>
-                            </div>
-                        </div>
+                            <hr>
 
 
-                        <div id="parentdiv">
-                            <div class="row rowdiv" id="beneficiarydetails" style="display:none;">
+                            <div class="row">
 
 
-                                <div class='col-sm-2'>
+
+
+
+
+                                <input type="hidden" id="txtcheck" value="" name="name" />
+
+                                <div class='col-sm-6'>
                                     <div class='form-group'>
-                                        <label for='input-1'>Beneficiary</label>
-                                        <select id='ddlbeneficiary1' onchange="checkbeneficiaryduplicate(this.id)" name="contentList" class='form-control beneficiaryclass'></select>
-                                        @Html.HiddenFor(m => m.Beneficiaryid, new { id = "Beneficiaryid" })
-                                        @Html.HiddenFor(m => m.Beneficiarytxt, new { id = "Beneficiarytxt" })
+                                        <label for='input-1'>Assets Type</label>
+                                        <select id='ddlassettype' name="contentList" onChange='getassettypeid(this.value)' class='form-control'></select>
+                                        @Html.HiddenFor(m => m.assettypeid, new { id = "assettypeid" })
+                                        @Html.HiddenFor(m => m.assettypetext, new { id = "assettypetext" })
+                                    </div>
+                                </div>
 
-                                        <input type="text" class="form-control" style="display:none" id="ddlbeneficiarytxt" name="name" value="" />
-                                    </div>
-                                </div>
-                                <div class='col-sm-2'><div class='form-group' id="getidentifier"></div></div>
-                                <div class='col-sm-3'>
-                                    <label for='input-1'>Instruments</label>
-                                    <select id='DDLAssetColumn1' onchange="getDDLAssetColumn(this.id)" name="contentList" class='form-control instrumentclass'></select>
-                                    @Html.HiddenFor(m => m.InstrumentId, new { id = "InstrumentId" })
-                                    @Html.HiddenFor(m => m.Instrumenttxt, new { id = "Instrumenttxt" })
-                                </div>
-                                <div class='col-sm-2 grandparent'>
-                                    <div class='form-group parent'>
-                                        <label for='input-1'>Proportion</label>
-                                        <input type='text' class='form-control proportioninput' onkeypress="return isNumberKey(event)" onchange="gettxtproportion(this.value)" name="rank" id="txtproportion" />
-                                    </div>
-                                </div>
-                                <div class='col-sm-2'>
-                                    <div class='form-group start'>
-                                        <label for='input-1'>Total</label>
-                                        <input type='text' id="txttotal" class='form-control totalinput' readonly />
-                                        <input type="hidden" id="txttotalval" name="name" value="" />
+                                <div class='col-sm-6'>
+                                    <div class='form-group'>
+                                        <label for='input-1'>Assets Category</label>
+                                        <select id='ddlassetcat' name="contentList" onChange='getassetcatid(this.value)' class='form-control'><option value="">--Select--</option></select>
+                                        @Html.HiddenFor(m => m.assetcatid, new { id = "assetcatid" })
+                                        @Html.HiddenFor(m => m.assetcattext, new { id = "assetcattext" })
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        
-                        <textarea id="query" style="display:none;" class="form-control">
+
+                            <div class='col-sm-3' id="type" style="display:none;">
+                                <div class='form-group'>
+                                    <label for='input-1'>Type</label>
+                                    <br />
+                                    <form>
+                                        <label class="radio-inline">
+                                            <input type="radio" onchange="getvalone(this.value)" name="optradio" value="Single" checked>Single
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" onchange="getvaltwo(this.value)" name="optradio" value="Multiple">Multiple
+                                        </label>
+                                    </form>
+                                </div>
+                            </div>
+
+
+                            <div id="parentdiv">
+                                <div class="row rowdiv" id="beneficiarydetails" style="display:none;">
+
+
+                                    <div class='col-sm-2'>
+                                        <div class='form-group'>
+                                            <label for='input-1'>Beneficiary</label>
+                                            <select id='ddlbeneficiary1' onchange="checkbeneficiaryduplicate(this.id)" name="contentList" class='form-control beneficiaryclass'></select>
+                                            @Html.HiddenFor(m => m.Beneficiaryid, new { id = "Beneficiaryid" })
+                                            @Html.HiddenFor(m => m.Beneficiarytxt, new { id = "Beneficiarytxt" })
+
+                                            <input type="text" class="form-control" style="display:none" id="ddlbeneficiarytxt" name="name" value="" />
+                                        </div>
+                                    </div>
+                                    <div class='col-sm-2'><div class='form-group' id="getidentifier"></div></div>
+                                    <div class='col-sm-3'>
+                                        <label for='input-1'>Instruments</label>
+                                        <select id='DDLAssetColumn1' onchange="getDDLAssetColumn(this.id)" name="contentList" class='form-control instrumentclass'></select>
+                                        @Html.HiddenFor(m => m.InstrumentId, new { id = "InstrumentId" })
+                                        @Html.HiddenFor(m => m.Instrumenttxt, new { id = "Instrumenttxt" })
+                                    </div>
+                                    <div class='col-sm-2 grandparent'>
+                                        <div class='form-group parent'>
+                                            <label for='input-1'>Proportion</label>
+                                            <input type='text' class='form-control proportioninput' onkeypress="return isNumberKey(event)" onchange="gettxtproportion(this.value)" name="rank" id="txtproportion" />
+                                        </div>
+                                    </div>
+                                    <div class='col-sm-2'>
+                                        <div class='form-group start'>
+                                            <label for='input-1'>Total</label>
+                                            <input type='text' id="txttotal" class='form-control totalinput' readonly />
+                                            <input type="hidden" id="txttotalval" name="name" value="" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <textarea id="query" style="display:none;" class="form-control">
                                
                            </textarea>
-                        <div class="form-group">
-                            <button type="button" id="btnadd" style="display:none;" class="btn btn-danger shadow-primary px-5"><i class="icon-lock"></i>Add</button>
-                            <button type="submit" id="btnmappingsubmit" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i>Submit</button>
-                            <button type="button" id="btnmainassetsuccess" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
-                            <button type="button" id="btncheckExists" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
-
+                            <div class="form-group">
+                                <button type="button" id="btnadd" style="display:none;" class="btn btn-danger shadow-primary px-5"><i class="icon-lock"></i>Add</button>
+                                <button type="submit" id="btnmappingsubmit" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i>Submit</button>
+                                <button type="button" id="btnmainassetsuccess" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
+                                <button type="button" id="btncheckExists" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
+                                <button type="button" style="display:none" id="confirmtestatorfamily"></button>
+                            </div>
                         </div>
                     </div>
+
                 </div>
 
             </div>
-
-        </div>
         }
 
     </div>
@@ -174,11 +174,11 @@
     <script>
 
         $(document).ready(function () {
-            
+
             $.ajax({
 
                 type: "POST",
-            
+
                 url: "@Url.Action("BindBeneficiaryDDL", "AddAssetMapping")",
                 success: function (data) {
                     $("#ddlbeneficiary1").append(data);
@@ -191,7 +191,7 @@
             $.ajax({
 
                 type: "POST",
-             
+
                  url: "@Url.Action("BindAssetTypeDDL", "AddAssetMapping")",
                 success: function (data) {
                     $("#ddlassettype").append(data);
@@ -203,7 +203,7 @@
             $.ajax({
 
                 type: "POST",
-           
+
                 url: "@Url.Action("BindTestatorDDL", "AddAssetMapping")",
                 success: function (data) {
                     $("#DDLTestator").append(data);
@@ -213,7 +213,7 @@
 
             $.ajax({
                 type: "POST",
-              
+
                  url: "@Url.Action("ddlassetname", "AddAssetMapping")",
                 data: { "send": "" + value + "" },
                 success: function (data) {
@@ -275,18 +275,18 @@
                 $rowdiv.find('.totalinput').val('100');
 
             }
-           
+
             if ($prevdiv.length > 0) {
                 var prevtotalinputval = $prevdiv.find('.totalinput').val();
-            alert(prevtotalinputval);
+
         }
         });
-       
 
 
 
 
-    
+
+
         function getassettypeid(value) {
 
 
@@ -295,7 +295,8 @@
             $.ajax({
 
                 type: "POST",
-                url: "../AddAssetMapping/bindassetcatDDL",
+
+                 url: "@Url.Action("bindassetcatDDL", "AddAssetMapping")",
                 data: { "send": "" + value + "" },
                 success: function (data) {
                     $("#ddlassetcat").empty().append(data);
@@ -320,7 +321,8 @@
             $.ajax({
 
                 type: "POST",
-                url: "../AddAssetMapping/getassetcolumndata",
+
+                 url: "@Url.Action("getassetcolumndata", "AddAssetMapping")",
                 data: { "send": "" + value + "" },
                 success: function (data) {
                     $("#getidentifier").append(data);
@@ -337,7 +339,8 @@
             $.ajax({
 
                 type: "POST",
-                url: "../AddAssetMapping/ddlassetname",
+
+                   url: "@Url.Action("ddlassetname", "AddAssetMapping")",
                 data: { "send": "" + value + "" },
                 success: function (data) {
                     $("#DDLAssetColumn1").append(data);
@@ -821,4 +824,77 @@ function getDDLTestator(value) {
         });
 
 
+
+
+
+
+
+
+
     </script>
+    <script>
+        $("#confirmtestatorfamily").click(function () {
+
+            swal({
+
+                text: 'Testator Data Already Exists Do You Want To Add More!',
+                icon: 'warning',
+                buttons: true,
+                dangerMode: true,
+                buttons: ['No', 'Yes']
+            })
+                .then((willDelete) => {
+                    if (willDelete) {
+
+
+
+                    } else {
+
+
+
+
+
+                        var url = "/AddNominee/AddNomineeIndex/";
+                        window.location.href = url;
+
+
+
+
+                    }
+                });
+
+        });
+
+
+    </script>
+
+
+
+
+    @if (ViewBag.popup == "true")
+    {
+        <script>
+
+            $(document).ready(function () {
+
+
+                $("#confirmtestatorfamily").on("click", function () { });
+
+                $("#confirmtestatorfamily").click(); //trigger event after listening to it.
+
+
+
+
+            });
+        </script>
+
+
+    }
+
+
+
+
+
+
+
+

@@ -61,22 +61,22 @@
 <script>
 
     $(document).ready(function () {
-
-        @*$.ajax({
+       
+        $.ajax({
 
             type: "POST",
-            url:"@Url.Action("BindMappedFormData", "EditMainAssets")",
+            url:"@Url.Action("LoadData","EditMainAssets")",
             success: function (data) {
                 $('#MappedData').empty().append(data);
             }
-        });*@
+        });
 
 
 
          $.ajax({
 
             type: "POST",
-            url:"@Url.Action("BindTestatorDDL", "EditMainAssets")",
+            url:"@Url.Action("BindTestatorDDL","EditMainAssets")",
                   success: function (data) {
 
                       $('#DDLTestator').append(data);

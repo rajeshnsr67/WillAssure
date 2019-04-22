@@ -1,5 +1,7 @@
 ﻿@model WillAssure.Models.NomineeModel
 @{
+    /**/
+
     ViewBag.Title = "AddNomineePageContent";
 }
 
@@ -291,7 +293,7 @@
 
                             <div class="form-group">
 
-                                <button type="submit" id="btnRoleformsubmit"  class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i> Add Nominee</button>
+                                <button type="submit" id="btnRoleformsubmit" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i> Add Nominee</button>
                             </div>
 
                         }
@@ -313,7 +315,7 @@
 <button type="button" id="btnnomineeinsertsuccess" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
 <button type="button" id="btnnomineelinking" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
 <button type="button" id="btncheckExists" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
-
+<button type="button" style="display:none" id="confirmtestatorfamily"></button>
 
 
 <script>
@@ -355,7 +357,7 @@
             url: "@Url.Action("OnChangeBindCity", "AddNominee")",
             data: { "send": "" + value+  ""},
             success: function (data) {
-              
+
                 $('#ddlcity').empty().append(data);
             }
 
@@ -606,3 +608,66 @@
         }
     });
 </script>
+
+
+
+
+
+<script>
+    $("#confirmtestatorfamily").click(function () {
+
+        swal({
+
+            text: 'Testator Data Already Exists Do You Want To Add More!',
+            icon: 'warning',
+            buttons: true,
+            dangerMode: true,
+            buttons: ['No', 'Yes']
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+
+
+
+                } else {
+
+
+
+
+
+                    var url = "/AddAppointees/AddAppointeesIndex/";
+                    window.location.href = url;
+
+
+
+
+                }
+            });
+
+    });
+
+
+</script>
+
+
+
+
+@if (ViewBag.popup == "true")
+{
+    <script>
+
+        $(document).ready(function () {
+
+
+            $("#confirmtestatorfamily").on("click", function () { });
+
+            $("#confirmtestatorfamily").click(); //trigger event after listening to it.
+
+
+
+
+        });
+    </script>
+
+
+}

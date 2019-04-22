@@ -62,710 +62,726 @@
                         <!-- Tab panes -->
                         <div class="tab-content">
                             <div id="tabe-1" class="container tab-pane active">
+                         
+                                <a href="@Url.Action("EditTestatorIndex","EditTestator")"><input type="button" class="btn btn-primary" name="name" value="Edit TestatorDetails" /></a>
                                 <div class="row">
-
-                                    @foreach (var item in ViewBag.TestatorDetails)
+                                    @if (ViewBag.TestatorDetails != null)
                                     {
+                                        foreach (var item in ViewBag.TestatorDetails)
+                                        {
 
 
-                                        <div class="col-sm-6">
-                                            <label for="input-1" style="line-height:38px"> Name : </label>
 
-                                            <div class="form-group">
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Name : </label>
 
-                                                <input type="text" name="name" value="@item.TestatorName" class="form-control" />
-                                            </div>
-                                        </div>
+                                                <div class="form-group">
 
-
-
-
-                                        <div class="col-sm-6">
-                                            <label for="input-1" style="line-height:38px"> Last Name : </label>
-                                            <div class="form-group">
-
-
-                                                <input type="text" name="name" value="@item.TestatorLastName" class="form-control" />
-                                            </div>
-                                        </div>
-
-
-
-                                        <div class="col-sm-6">
-                                            <label for="input-1" style="line-height:38px"> Middle Name : </label>
-                                            <div class="form-group">
-
-                                                <input type="text" name="name" value="@item.TestatorMiddleName" class="form-control" />
-                                            </div>
-                                        </div>
-
-
-
-
-                                        <div class="col-sm-6">
-                                            <label for="input-1" style="line-height:38px"> DOB : </label>
-                                            <div class="form-group">
-
-                                                <input type="text" name="name" value="@item.TestatorDOB" class="form-control" />
-                                            </div>
-                                        </div>
-
-
-
-
-
-                                        <div class="col-sm-6">
-                                            <label for="input-1" style="line-height:38px"> Occupation : </label>
-                                            <div class="form-group">
-
-                                                <input type="text" name="name" value="@item.TestatorOccupation" class="form-control" />
-                                            </div>
-                                        </div>
-
-
-
-
-
-                                        <div class="col-sm-6">
-                                            <label for="input-1" style="line-height:38px"> Mobile : </label>
-                                            <div class="form-group">
-
-                                                <input type="text" name="name" value="@item.TestatorMobile" class="form-control" />
-                                            </div>
-                                        </div>
-
-
-
-
-
-                                        <div class="col-sm-6">
-                                            <label for="input-1" style="line-height:38px"> Email : </label>
-                                            <div class="form-group">
-
-                                                <input type="text" name="name" value="@item.TestatorEmail" class="form-control" />
-                                            </div>
-                                        </div>
-
-
-
-
-
-
-                                        <div class="col-sm-6">
-                                            <label for="input-1" style="line-height:38px"> Marital Status : </label>
-                                            <div class="form-group">
-
-                                                <input type="text" name="name" value="@item.TestatorMaritalStatus" class="form-control" />
-                                            </div>
-                                        </div>
-
-
-
-
-
-                                        <div class="col-sm-6">
-                                            <label for="input-1" style="line-height:38px"> Relationship : </label>
-                                            <div class="form-group">
-
-                                                <input type="text" name="name" value="@item.TestatorRelationship" class="form-control" />
-                                            </div>
-                                        </div>
-
-
-
-
-
-
-                                        <div class="col-sm-6">
-                                            <label for="input-1" style="line-height:38px"> Religion : </label>
-                                            <div class="form-group">
-
-                                                <input type="text" name="name" value="@item.TestatorReligion" class="form-control" />
-                                            </div>
-                                        </div>
-
-
-
-
-
-
-                                        <div class="col-sm-6">
-                                            <label for="input-1" style="line-height:38px"> IdentityProof : </label>
-                                            <div class="form-group">
-
-                                                <input type="text" name="name" value="@item.TestatorIdentityProof" class="form-control" />
-                                            </div>
-                                        </div>
-
-
-
-
-
-                                        <div class="col-sm-6">
-                                            <label for="input-1" style="line-height:38px"> ProofValue : </label>
-                                            <div class="form-group">
-
-                                                <input type="text" name="name" value="@item.TestatorIdentityProofValue" class="form-control" />
-                                            </div>
-                                        </div>
-
-
-
-
-
-                                        <div class="col-sm-6">
-                                            <label for="input-1" style="line-height:38px"> AltIdentity Proof : </label>
-                                            <div class="form-group">
-
-                                                <input type="text" name="name" value="@item.TestatorAltIdentityProof" class="form-control" />
-                                            </div>
-                                        </div>
-
-
-
-
-
-                                        <div class="col-sm-6">
-                                            <label for="input-1" style="line-height:38px"> ProofValue : </label>
-                                            <div class="form-group">
-
-                                                <input type="text" name="name" value="@item.TestatorAltIdentityProofValue" class="form-control" />
-                                            </div>
-                                        </div>
-
-
-
-
-
-                                        <div class="col-sm-6">
-                                            <label for="input-1" style="line-height:38px"> Gender : </label>
-                                            <div class="form-group">
-
-                                                <input type="text" name="name" value="@item.TestatorGender" class="form-control" />
-                                            </div>
-                                        </div>
-
-
-
-
-
-                                        <div class="col-sm-6">
-                                            <label for="input-1" style="line-height:38px"> Address1 : </label>
-                                            <div class="form-group">
-
-                                                <input type="text" name="name" value="@item.TestatorAddress1" class="form-control" />
-                                            </div>
-                                        </div>
-
-
-
-
-
-                                        <div class="col-sm-6">
-                                            <label for="input-1" style="line-height:38px"> Address2 : </label>
-                                            <div class="form-group">
-
-                                                <input type="text" name="name" value="@item.TestatorAddress2" class="form-control" />
-                                            </div>
-                                        </div>
-
-
-
-
-                                        <div class="col-sm-6">
-                                            <label for="input-1" style="line-height:38px"> Address3 : </label>
-                                            <div class="form-group">
-
-                                                <input type="text" name="name" value="@item.TestatorAddress3" class="form-control" />
-                                            </div>
-                                        </div>
-
-
-
-
-                                        <div class="col-sm-6">
-                                            <label for="input-1" style="line-height:38px"> Country : </label>
-                                            <div class="form-group">
-
-                                                <input type="text" name="name" value="@item.TestatorCountry" class="form-control" />
-                                            </div>
-                                        </div>
-
-
-
-
-                                        <div class="col-sm-6">
-                                            <label for="input-1" style="line-height:38px"> State : </label>
-                                            <div class="form-group">
-
-                                                <input type="text" name="name" value="@item.TestatorState" class="form-control" />
-                                            </div>
-                                        </div>
-
-
-
-
-                                        <div class="col-sm-6">
-                                            <label for="input-1" style="line-height:38px"> City : </label>
-                                            <div class="form-group">
-
-                                                <input type="text" name="name" value="@item.TestatorCity" class="form-control" />
-                                            </div>
-                                        </div>
-
-
-
-                                        <div class="col-sm-6">
-                                            <label for="input-1" style="line-height:38px"> Pin : </label>
-                                            <div class="form-group">
-
-                                                <input type="text" name="name" value="@item.TestatorPin" class="form-control" />
+                                                    <input type="text" name="name" value="@item.TestatorName" class="form-control" />
+                                                </div>
                                             </div>
 
-                                        </div>
 
 
+
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Last Name : </label>
+                                                <div class="form-group">
+
+
+                                                    <input type="text" name="name" value="@item.TestatorLastName" class="form-control" />
+                                                </div>
+                                            </div>
+
+
+
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Middle Name : </label>
+                                                <div class="form-group">
+
+                                                    <input type="text" name="name" value="@item.TestatorMiddleName" class="form-control" />
+                                                </div>
+                                            </div>
+
+
+
+
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> DOB : </label>
+                                                <div class="form-group">
+
+                                                    <input type="text" name="name" value="@item.TestatorDOB" class="form-control" />
+                                                </div>
+                                            </div>
+
+
+
+
+
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Occupation : </label>
+                                                <div class="form-group">
+
+                                                    <input type="text" name="name" value="@item.TestatorOccupation" class="form-control" />
+                                                </div>
+                                            </div>
+
+
+
+
+
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Mobile : </label>
+                                                <div class="form-group">
+
+                                                    <input type="text" name="name" value="@item.TestatorMobile" class="form-control" />
+                                                </div>
+                                            </div>
+
+
+
+
+
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Email : </label>
+                                                <div class="form-group">
+
+                                                    <input type="text" name="name" value="@item.TestatorEmail" class="form-control" />
+                                                </div>
+                                            </div>
+
+
+
+
+
+
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Marital Status : </label>
+                                                <div class="form-group">
+
+                                                    <input type="text" name="name" value="@item.TestatorMaritalStatus" class="form-control" />
+                                                </div>
+                                            </div>
+
+
+
+
+
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Relationship : </label>
+                                                <div class="form-group">
+
+                                                    <input type="text" name="name" value="@item.TestatorRelationship" class="form-control" />
+                                                </div>
+                                            </div>
+
+
+
+
+
+
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Religion : </label>
+                                                <div class="form-group">
+
+                                                    <input type="text" name="name" value="@item.TestatorReligion" class="form-control" />
+                                                </div>
+                                            </div>
+
+
+
+
+
+
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> IdentityProof : </label>
+                                                <div class="form-group">
+
+                                                    <input type="text" name="name" value="@item.TestatorIdentityProof" class="form-control" />
+                                                </div>
+                                            </div>
+
+
+
+
+
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> ProofValue : </label>
+                                                <div class="form-group">
+
+                                                    <input type="text" name="name" value="@item.TestatorIdentityProofValue" class="form-control" />
+                                                </div>
+                                            </div>
+
+
+
+
+
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> AltIdentity Proof : </label>
+                                                <div class="form-group">
+
+                                                    <input type="text" name="name" value="@item.TestatorAltIdentityProof" class="form-control" />
+                                                </div>
+                                            </div>
+
+
+
+
+
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> ProofValue : </label>
+                                                <div class="form-group">
+
+                                                    <input type="text" name="name" value="@item.TestatorAltIdentityProofValue" class="form-control" />
+                                                </div>
+                                            </div>
+
+
+
+
+
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Gender : </label>
+                                                <div class="form-group">
+
+                                                    <input type="text" name="name" value="@item.TestatorGender" class="form-control" />
+                                                </div>
+                                            </div>
+
+
+
+
+
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Address1 : </label>
+                                                <div class="form-group">
+
+                                                    <input type="text" name="name" value="@item.TestatorAddress1" class="form-control" />
+                                                </div>
+                                            </div>
+
+
+
+
+
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Address2 : </label>
+                                                <div class="form-group">
+
+                                                    <input type="text" name="name" value="@item.TestatorAddress2" class="form-control" />
+                                                </div>
+                                            </div>
+
+
+
+
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Address3 : </label>
+                                                <div class="form-group">
+
+                                                    <input type="text" name="name" value="@item.TestatorAddress3" class="form-control" />
+                                                </div>
+                                            </div>
+
+
+
+
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Country : </label>
+                                                <div class="form-group">
+
+                                                    <input type="text" name="name" value="@item.TestatorCountry" class="form-control" />
+                                                </div>
+                                            </div>
+
+
+
+
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> State : </label>
+                                                <div class="form-group">
+
+                                                    <input type="text" name="name" value="@item.TestatorState" class="form-control" />
+                                                </div>
+                                            </div>
+
+
+
+
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> City : </label>
+                                                <div class="form-group">
+
+                                                    <input type="text" name="name" value="@item.TestatorCity" class="form-control" />
+                                                </div>
+                                            </div>
+
+
+
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Pin : </label>
+                                                <div class="form-group">
+
+                                                    <input type="text" name="name" value="@item.TestatorPin" class="form-control" />
+                                                </div>
+
+                                            </div>
+
+
+                                        }
                                     }
+
                                 </div>
                             </div>
                             <div id="tabe-2" class="container tab-pane fade">
+                                <a href="@Url.Action("EditTestatorFamilyIndex","EditTestatorFamily")"><input type="button" class="btn btn-primary" name="name" value="Edit TestatorFamily" /></a>
                                 <div class="row">
-                                    @foreach (var item in ViewBag.testatorFamily)
+                                    @if (ViewBag.testatorFamily != null)
                                     {
+                                        foreach (var item in ViewBag.testatorFamily)
+                                        {
 
 
-                                        <div class="col-sm-6">
-                                            <label for="input-1" style="line-height:38px"> Name : </label>
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Name : </label>
 
-                                            <div class="form-group">
+                                                <div class="form-group">
 
-                                                <input type="text" name="name" value="@item.tffirstname" class="form-control" />
+                                                    <input type="text" name="name" value="@item.tffirstname" class="form-control" />
+                                                </div>
                                             </div>
-                                        </div>
 
 
 
-                                        <div class="col-sm-6">
-                                            <label for="input-1" style="line-height:38px"> Last Name : </label>
-                                            <div class="form-group">
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Last Name : </label>
+                                                <div class="form-group">
 
-                                                <input type="text" name="name" value="@item.tflastname" class="form-control" />
+                                                    <input type="text" name="name" value="@item.tflastname" class="form-control" />
 
+                                                </div>
                                             </div>
-                                        </div>
 
 
 
-                                        <div class="col-sm-6">
-                                            <label for="input-1" style="line-height:38px"> Middle Name : </label>
-                                            <div class="form-group">
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Middle Name : </label>
+                                                <div class="form-group">
 
-                                                <input type="text" name="name" value="@item.tfmiddlename" class="form-control" />
+                                                    <input type="text" name="name" value="@item.tfmiddlename" class="form-control" />
+                                                </div>
                                             </div>
-                                        </div>
 
 
 
 
-                                        <div class="col-sm-6">
-                                            <label for="input-1" style="line-height:38px"> DOB : </label>
-                                            <div class="form-group">
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> DOB : </label>
+                                                <div class="form-group">
 
-                                                <input type="text" name="name" value="@item.tfdob" class="form-control" />
+                                                    <input type="text" name="name" value="@item.tfdob" class="form-control" />
+                                                </div>
                                             </div>
-                                        </div>
 
 
 
 
 
-                                        <div class="col-sm-6">
-                                            <label for="input-1" style="line-height:38px"> Marital Status : </label>
-                                            <div class="form-group">
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Marital Status : </label>
+                                                <div class="form-group">
 
-                                                <input type="text" name="name" value="@item.tfmaritalstatus" class="form-control" />
+                                                    <input type="text" name="name" value="@item.tfmaritalstatus" class="form-control" />
+                                                </div>
                                             </div>
-                                        </div>
 
 
 
 
 
-                                        <div class="col-sm-6">
-                                            <label for="input-1" style="line-height:38px"> Religion : </label>
-                                            <div class="form-group">
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Religion : </label>
+                                                <div class="form-group">
 
-                                                <input type="text" name="name" value="@item.tfreligion" class="form-control" />
+                                                    <input type="text" name="name" value="@item.tfreligion" class="form-control" />
+                                                </div>
                                             </div>
-                                        </div>
 
 
 
 
 
-                                        <div class="col-sm-6">
-                                            <label for="input-1" style="line-height:38px"> RelationShip : </label>
-                                            <div class="form-group">
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> RelationShip : </label>
+                                                <div class="form-group">
 
-                                                <input type="text" name="name" value="@item.tfrelationship" class="form-control" />
+                                                    <input type="text" name="name" value="@item.tfrelationship" class="form-control" />
+                                                </div>
                                             </div>
-                                        </div>
 
 
 
 
 
 
-                                        <div class="col-sm-6">
-                                            <label for="input-1" style="line-height:38px"> Address 1 : </label>
-                                            <div class="form-group">
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Address 1 : </label>
+                                                <div class="form-group">
 
-                                                <input type="text" name="name" value="@item.tfaddress1" class="form-control" />
+                                                    <input type="text" name="name" value="@item.tfaddress1" class="form-control" />
+                                                </div>
                                             </div>
-                                        </div>
 
 
 
 
 
-                                        <div class="col-sm-6">
-                                            <label for="input-1" style="line-height:38px"> Address 2 : </label>
-                                            <div class="form-group">
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Address 2 : </label>
+                                                <div class="form-group">
 
-                                                <input type="text" name="name" value="@item.tfaddress2" class="form-control" />
+                                                    <input type="text" name="name" value="@item.tfaddress2" class="form-control" />
+                                                </div>
                                             </div>
-                                        </div>
 
 
 
 
 
 
-                                        <div class="col-sm-6">
-                                            <label for="input-1" style="line-height:38px"> Address 3 : </label>
-                                            <div class="form-group">
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Address 3 : </label>
+                                                <div class="form-group">
 
-                                                <input type="text" name="name" value="@item.tfaddress3" class="form-control" />
+                                                    <input type="text" name="name" value="@item.tfaddress3" class="form-control" />
+                                                </div>
                                             </div>
-                                        </div>
 
 
 
 
 
 
-                                        <div class="col-sm-6">
-                                            <label for="input-1" style="line-height:38px"> City : </label>
-                                            <div class="form-group">
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> City : </label>
+                                                <div class="form-group">
 
-                                                <input type="text" name="name" value="@item.tfcity" class="form-control" />
+                                                    <input type="text" name="name" value="@item.tfcity" class="form-control" />
+                                                </div>
                                             </div>
-                                        </div>
 
 
 
 
 
-                                        <div class="col-sm-6">
-                                            <label for="input-1" style="line-height:38px"> State : </label>
-                                            <div class="form-group">
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> State : </label>
+                                                <div class="form-group">
 
-                                                <input type="text" name="name" value="@item.tfstate" class="form-control" />
+                                                    <input type="text" name="name" value="@item.tfstate" class="form-control" />
+                                                </div>
                                             </div>
-                                        </div>
 
 
 
 
 
-                                        <div class="col-sm-6">
-                                            <label for="input-1" style="line-height:38px"> Pin : </label>
-                                            <div class="form-group">
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Pin : </label>
+                                                <div class="form-group">
 
-                                                <input type="text" name="name" value="@item.tfpin" class="form-control" />
+                                                    <input type="text" name="name" value="@item.tfpin" class="form-control" />
+                                                </div>
                                             </div>
-                                        </div>
 
 
 
 
 
-                                        <div class="col-sm-6">
-                                            <label for="input-1" style="line-height:38px"> Identity Proof : </label>
-                                            <div class="form-group">
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Identity Proof : </label>
+                                                <div class="form-group">
 
-                                                <input type="text" name="name" value="@item.tfidentityproof" class="form-control" />
+                                                    <input type="text" name="name" value="@item.tfidentityproof" class="form-control" />
+                                                </div>
                                             </div>
-                                        </div>
 
 
 
 
 
-                                        <div class="col-sm-6">
-                                            <label for="input-1" style="line-height:38px"> Identity Proof Value : </label>
-                                            <div class="form-group">
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Identity Proof Value : </label>
+                                                <div class="form-group">
 
-                                                <input type="text" name="name" value="@item.tfidentityproofvalue" class="form-control" />
+                                                    <input type="text" name="name" value="@item.tfidentityproofvalue" class="form-control" />
+                                                </div>
                                             </div>
-                                        </div>
 
 
 
 
 
-                                        <div class="col-sm-6">
-                                            <label for="input-1" style="line-height:38px"> Alt Identity Proof : </label>
-                                            <div class="form-group">
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Alt Identity Proof : </label>
+                                                <div class="form-group">
 
-                                                <input type="text" name="name" value="@item.tfaltidentityproof" class="form-control" />
+                                                    <input type="text" name="name" value="@item.tfaltidentityproof" class="form-control" />
+                                                </div>
                                             </div>
-                                        </div>
 
 
 
 
 
-                                        <div class="col-sm-6">
-                                            <label for="input-1" style="line-height:38px"> Alt Identity Proof Value : </label>
-                                            <div class="form-group">
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Alt Identity Proof Value : </label>
+                                                <div class="form-group">
 
-                                                <input type="text" name="name" value="@item.tfaltidentityproofvalue" class="form-control" />
+                                                    <input type="text" name="name" value="@item.tfaltidentityproofvalue" class="form-control" />
+                                                </div>
                                             </div>
-                                        </div>
 
 
 
 
-                                        <div class="col-sm-6">
-                                            <label for="input-1" style="line-height:38px"> InFormed : </label>
-                                            <div class="form-group">
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> InFormed : </label>
+                                                <div class="form-group">
 
 
-                                                <input type="text" name="name" value="@item.tfisinformedperson" class="form-control" />
+                                                    <input type="text" name="name" value="@item.tfisinformedperson" class="form-control" />
+                                                </div>
                                             </div>
-                                        </div>
+                                        }
+
                                     }
 
 
                                 </div>
                             </div>
                             <div id="tabe-3" class="container tab-pane fade">
+                                <a href="@Url.Action("EditBeneficiaryIndex","EditBeneficiary")"><input type="button" class="btn btn-primary" name="name" value="Edit Beneficiary" /></a>
                                 <div class="row">
-                                    @foreach (var item in ViewBag.beneficiary)
+                                    @if (ViewBag.beneficiary != null)
                                     {
+                                        foreach (var item in ViewBag.beneficiary)
+                                        {
 
 
-                                        <div class="col-sm-6">
-                                            <label for="input-1" style="line-height:38px"> Name : </label>
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Name : </label>
 
-                                            <div class="form-group">
+                                                <div class="form-group">
 
-                                                <input type="text" name="name" value="@item.BeneficiaryName" class="form-control" />
+                                                    <input type="text" name="name" value="@item.BeneficiaryName" class="form-control" />
+                                                </div>
                                             </div>
-                                        </div>
 
 
 
-                                        <div class="col-sm-6">
-                                            <label for="input-1" style="line-height:38px"> Last Name : </label>
-                                            <div class="form-group">
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Last Name : </label>
+                                                <div class="form-group">
 
 
-                                                <input type="text" name="name" value="@item.BeneficiaryLastName" class="form-control" />
+                                                    <input type="text" name="name" value="@item.BeneficiaryLastName" class="form-control" />
+                                                </div>
                                             </div>
-                                        </div>
 
 
 
-                                        <div class="col-sm-6">
-                                            <label for="input-1" style="line-height:38px"> Middle Name : </label>
-                                            <div class="form-group">
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Middle Name : </label>
+                                                <div class="form-group">
 
-                                                <input type="text" name="name" value="@item.BeneficiaryMiddleName" class="form-control" />
+                                                    <input type="text" name="name" value="@item.BeneficiaryMiddleName" class="form-control" />
+                                                </div>
                                             </div>
-                                        </div>
 
 
 
 
-                                        <div class="col-sm-6">
-                                            <label for="input-1" style="line-height:38px"> DOB : </label>
-                                            <div class="form-group">
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> DOB : </label>
+                                                <div class="form-group">
 
-                                                <input type="text" name="name" value="@item.BeneficiaryDOB" class="form-control" />
+                                                    <input type="text" name="name" value="@item.BeneficiaryDOB" class="form-control" />
+                                                </div>
                                             </div>
-                                        </div>
 
 
 
 
 
-                                        <div class="col-sm-6">
-                                            <label for="input-1" style="line-height:38px"> Mobile : </label>
-                                            <div class="form-group">
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Mobile : </label>
+                                                <div class="form-group">
 
-                                                <input type="text" name="name" value="@item.BeneficiaryMobile" class="form-control" />
+                                                    <input type="text" name="name" value="@item.BeneficiaryMobile" class="form-control" />
+                                                </div>
                                             </div>
-                                        </div>
 
 
 
 
 
-                                        <div class="col-sm-6">
-                                            <label for="input-1" style="line-height:38px"> RelationShip : </label>
-                                            <div class="form-group">
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> RelationShip : </label>
+                                                <div class="form-group">
 
-                                                <input type="text" name="name" value="@item.BeneficiaryRelationship" class="form-control" />
+                                                    <input type="text" name="name" value="@item.BeneficiaryRelationship" class="form-control" />
+                                                </div>
                                             </div>
-                                        </div>
 
 
 
 
 
-                                        <div class="col-sm-6">
-                                            <label for="input-1" style="line-height:38px"> Martial Status : </label>
-                                            <div class="form-group">
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Martial Status : </label>
+                                                <div class="form-group">
 
-                                                <input type="text" name="name" value="@item.BeneficiaryMartialStatus" class="form-control" />
+                                                    <input type="text" name="name" value="@item.BeneficiaryMartialStatus" class="form-control" />
+                                                </div>
                                             </div>
-                                        </div>
 
 
 
 
 
 
-                                        <div class="col-sm-6">
-                                            <label for="input-1" style="line-height:38px"> Religion : </label>
-                                            <div class="form-group">
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Religion : </label>
+                                                <div class="form-group">
 
-                                                <input type="text" name="name" value="@item.BeneficiaryReligion" class="form-control" />
+                                                    <input type="text" name="name" value="@item.BeneficiaryReligion" class="form-control" />
+                                                </div>
                                             </div>
-                                        </div>
 
 
 
 
 
-                                        <div class="col-sm-6">
-                                            <label for="input-1" style="line-height:38px"> Identity Proof : </label>
-                                            <div class="form-group">
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Identity Proof : </label>
+                                                <div class="form-group">
 
-                                                <input type="text" name="name" value="@item.BeneficiaryIdentityProof" class="form-control" />
+                                                    <input type="text" name="name" value="@item.BeneficiaryIdentityProof" class="form-control" />
+                                                </div>
                                             </div>
-                                        </div>
 
 
 
 
 
 
-                                        <div class="col-sm-6">
-                                            <label for="input-1" style="line-height:38px"> Identity Proof Value : </label>
-                                            <div class="form-group">
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Identity Proof Value : </label>
+                                                <div class="form-group">
 
-                                                <input type="text" name="name" value="@item.BeneficiaryIdentityProofValue" class="form-control" />
+                                                    <input type="text" name="name" value="@item.BeneficiaryIdentityProofValue" class="form-control" />
+                                                </div>
                                             </div>
-                                        </div>
 
 
 
 
 
 
-                                        <div class="col-sm-6">
-                                            <label for="input-1" style="line-height:38px"> Alt IdentityProof : </label>
-                                            <div class="form-group">
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Alt IdentityProof : </label>
+                                                <div class="form-group">
 
-                                                <input type="text" name="name" value="@item.BeneficiaryaltidentityProof" class="form-control" />
+                                                    <input type="text" name="name" value="@item.BeneficiaryaltidentityProof" class="form-control" />
+                                                </div>
                                             </div>
-                                        </div>
 
 
 
 
 
-                                        <div class="col-sm-6">
-                                            <label for="input-1" style="line-height:38px"> Alt IdentityProofValue : </label>
-                                            <div class="form-group">
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Alt IdentityProofValue : </label>
+                                                <div class="form-group">
 
-                                                <input type="text" name="name" value="@item.beneficiaryaltidentityproofvalue" class="form-control" />
+                                                    <input type="text" name="name" value="@item.beneficiaryaltidentityproofvalue" class="form-control" />
+                                                </div>
                                             </div>
-                                        </div>
 
 
 
 
 
-                                        <div class="col-sm-6">
-                                            <label for="input-1" style="line-height:38px"> Address 1 : </label>
-                                            <div class="form-group">
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Address 1 : </label>
+                                                <div class="form-group">
 
-                                                <input type="text" name="name" value="@item.beneficiaryaddress1" class="form-control" />
+                                                    <input type="text" name="name" value="@item.beneficiaryaddress1" class="form-control" />
+                                                </div>
                                             </div>
-                                        </div>
 
 
 
 
 
-                                        <div class="col-sm-6">
-                                            <label for="input-1" style="line-height:38px"> Address 2 : </label>
-                                            <div class="form-group">
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Address 2 : </label>
+                                                <div class="form-group">
 
-                                                <input type="text" name="name" value="@item.beneficiaryaddress2" class="form-control" />
+                                                    <input type="text" name="name" value="@item.beneficiaryaddress2" class="form-control" />
+                                                </div>
                                             </div>
-                                        </div>
 
 
 
 
 
-                                        <div class="col-sm-6">
-                                            <label for="input-1" style="line-height:38px"> Address 3 : </label>
-                                            <div class="form-group">
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Address 3 : </label>
+                                                <div class="form-group">
 
-                                                <input type="text" name="name" value="@item.beneficiaryaddress3" class="form-control" />
+                                                    <input type="text" name="name" value="@item.beneficiaryaddress3" class="form-control" />
+                                                </div>
                                             </div>
-                                        </div>
 
 
 
 
 
-                                        <div class="col-sm-6">
-                                            <label for="input-1" style="line-height:38px"> City : </label>
-                                            <div class="form-group">
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> City : </label>
+                                                <div class="form-group">
 
-                                                <input type="text" name="name" value="@item.beneficiarycity" class="form-control" />
+                                                    <input type="text" name="name" value="@item.beneficiarycity" class="form-control" />
+                                                </div>
                                             </div>
-                                        </div>
 
 
 
 
 
-                                        <div class="col-sm-6">
-                                            <label for="input-1" style="line-height:38px"> State : </label>
-                                            <div class="form-group">
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> State : </label>
+                                                <div class="form-group">
 
-                                                <input type="text" name="name" value="@item.beneficiarystate" class="form-control" />
+                                                    <input type="text" name="name" value="@item.beneficiarystate" class="form-control" />
+                                                </div>
                                             </div>
-                                        </div>
 
 
 
 
-                                        <div class="col-sm-6">
-                                            <label for="input-1" style="line-height:38px"> Pin : </label>
-                                            <div class="form-group">
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Pin : </label>
+                                                <div class="form-group">
 
-                                                <input type="text" name="name" value="@item.beneficiarypin" class="form-control" />
+                                                    <input type="text" name="name" value="@item.beneficiarypin" class="form-control" />
+                                                </div>
                                             </div>
-                                        </div>
+
+                                        }
 
                                     }
 
@@ -773,178 +789,186 @@
                                 </div>
                             </div>
                             <div id="tabe-4" class="container tab-pane fade">
+                                <a href="@Url.Action("","")"><input type="button" class="btn btn-primary" name="name" value="Edit Alternate Beneficiary" /></a>
                                 <div class="row">
-                                    @foreach (var item in ViewBag.altbene)
+                                    @if (ViewBag.altbene != null)
                                     {
-                                        <div class="col-sm-6">
-                                            <label for="input-1" style="line-height:38px"> Name : </label>
-                                            <div class="form-group">
-                                               
-                                                <input type="text" name="name" value="@item.altbenefirstname" class="form-control" />
+                                        foreach (var item in ViewBag.altbene)
+                                        {
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Name : </label>
+                                                <div class="form-group">
+
+                                                    <input type="text" name="name" value="@item.altbenefirstname" class="form-control" />
+                                                </div>
                                             </div>
-                                        </div>
 
-                                        <div class="col-sm-6">
-                                            <label for="input-1" style="line-height:38px"> Last Name : </label>
-                                            <div class="form-group">
-                                                
-                                                <input type="text" name="name" value="@item.altbenelastname" class="form-control" />
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Last Name : </label>
+                                                <div class="form-group">
+
+                                                    <input type="text" name="name" value="@item.altbenelastname" class="form-control" />
+                                                </div>
                                             </div>
-                                        </div>
 
-                                        <div class="col-sm-6">
-                                            <label for="input-1" style="line-height:38px"> Middle Name : </label>
-                                            <div class="form-group">
-                                               
-                                                <input type="text" name="name" value="@item.altbenemiddlename" class="form-control" />
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Middle Name : </label>
+                                                <div class="form-group">
+
+                                                    <input type="text" name="name" value="@item.altbenemiddlename" class="form-control" />
+                                                </div>
                                             </div>
-                                        </div>
 
 
-                                        <div class="col-sm-6">
-                                            <label for="input-1" style="line-height:38px"> DOB : </label>
-                                            <div class="form-group">
-                                             
-                                                <input type="text" name="name" value="@item.altbenedob" class="form-control" />
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> DOB : </label>
+                                                <div class="form-group">
+
+                                                    <input type="text" name="name" value="@item.altbenedob" class="form-control" />
+                                                </div>
                                             </div>
-                                        </div>
 
 
-                                        <div class="col-sm-6">
-                                            <label for="input-1" style="line-height:38px"> Mobile : </label>
-                                            <div class="form-group">
-                                                
-                                                <input type="text" name="name" value="@item.altbenemobile" class="form-control" />
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Mobile : </label>
+                                                <div class="form-group">
+
+                                                    <input type="text" name="name" value="@item.altbenemobile" class="form-control" />
+                                                </div>
                                             </div>
-                                        </div>
 
 
-                                        <div class="col-sm-6">
-                                            <label for="input-1" style="line-height:38px"> RelationShip : </label>
-                                            <div class="form-group">
-                                                
-                                                <input type="text" name="name" value="@item.altbenerelationship" class="form-control" />
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> RelationShip : </label>
+                                                <div class="form-group">
+
+                                                    <input type="text" name="name" value="@item.altbenerelationship" class="form-control" />
+                                                </div>
                                             </div>
-                                        </div>
 
 
-                                        <div class="col-sm-6">
-                                            <label for="input-1" style="line-height:38px"> Martial Status : </label>
-                                            <div class="form-group">
-                                              
-                                                <input type="text" name="name" value="@item.altbenemaritalstatus" class="form-control" />
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Martial Status : </label>
+                                                <div class="form-group">
+
+                                                    <input type="text" name="name" value="@item.altbenemaritalstatus" class="form-control" />
+                                                </div>
                                             </div>
-                                        </div>
 
 
 
-                                        <div class="col-sm-6">
-                                            <label for="input-1" style="line-height:38px"> Religion : </label>
-                                            <div class="form-group">
-                                               
-                                                <input type="text" name="name" value="@item.altbenereligion" class="form-control" />
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Religion : </label>
+                                                <div class="form-group">
+
+                                                    <input type="text" name="name" value="@item.altbenereligion" class="form-control" />
+                                                </div>
                                             </div>
-                                        </div>
 
 
-                                        <div class="col-sm-6">
-                                            <label for="input-1" style="line-height:38px"> Identity Proof : </label>
-                                            <div class="form-group">
-                                             
-                                                <input type="text" name="name" value="@item.altbeneidentityproof" class="form-control" />
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Identity Proof : </label>
+                                                <div class="form-group">
+
+                                                    <input type="text" name="name" value="@item.altbeneidentityproof" class="form-control" />
+                                                </div>
                                             </div>
-                                        </div>
 
 
 
-                                        <div class="col-sm-6">
-                                            <label for="input-1" style="line-height:38px"> Identity Proof Value : </label>
-                                            <div class="form-group">
-                                               
-                                                <input type="text" name="name" value="@item.altbeneidentityproofvalue" class="form-control" />
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Identity Proof Value : </label>
+                                                <div class="form-group">
+
+                                                    <input type="text" name="name" value="@item.altbeneidentityproofvalue" class="form-control" />
+                                                </div>
                                             </div>
-                                        </div>
 
 
 
-                                        <div class="col-sm-6">
-                                            <label for="input-1" style="line-height:38px"> Alt IdentityProof : </label>
-                                            <div class="form-group">
-                                              
-                                                <input type="text" name="name" value="@item.altbenealtidentityproof" class="form-control" />
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Alt IdentityProof : </label>
+                                                <div class="form-group">
+
+                                                    <input type="text" name="name" value="@item.altbenealtidentityproof" class="form-control" />
+                                                </div>
                                             </div>
-                                        </div>
 
 
-                                        <div class="col-sm-6">
-                                            <label for="input-1" style="line-height:38px"> Alt IdentityProofValue : </label>
-                                            <div class="form-group">
-                                              
-                                                <input type="text" name="name" value="@item.altbenealtidentityproofvalue" class="form-control" />
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Alt IdentityProofValue : </label>
+                                                <div class="form-group">
+
+                                                    <input type="text" name="name" value="@item.altbenealtidentityproofvalue" class="form-control" />
+                                                </div>
                                             </div>
-                                        </div>
 
 
-                                        <div class="col-sm-6">
-                                            <label for="input-1" style="line-height:38px"> Address 1 : </label>
-                                            <div class="form-group">
-                                               
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Address 1 : </label>
+                                                <div class="form-group">
 
-                                                <input type="text" name="name" value="@item.altbeneaddress1" class="form-control" />
+
+                                                    <input type="text" name="name" value="@item.altbeneaddress1" class="form-control" />
+                                                </div>
                                             </div>
-                                        </div>
 
 
-                                        <div class="col-sm-6">
-                                            <label for="input-1" style="line-height:38px"> Address 2 : </label>
-                                            <div class="form-group">
-                                             
-                                                <input type="text" name="name" value="@item.altbeneaddress2" class="form-control" />
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Address 2 : </label>
+                                                <div class="form-group">
+
+                                                    <input type="text" name="name" value="@item.altbeneaddress2" class="form-control" />
+                                                </div>
                                             </div>
-                                        </div>
 
 
-                                        <div class="col-sm-6">
-                                            <label for="input-1" style="line-height:38px"> Address 3 : </label>
-                                            <div class="form-group">
-                                               
-                                                <input type="text" name="name" value="@item.altbeneaddress3" class="form-control" />
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Address 3 : </label>
+                                                <div class="form-group">
+
+                                                    <input type="text" name="name" value="@item.altbeneaddress3" class="form-control" />
+                                                </div>
                                             </div>
-                                        </div>
 
 
-                                        <div class="col-sm-6">
-                                            <label for="input-1" style="line-height:38px"> City : </label>
-                                            <div class="form-group">
-                                               
-                                                <input type="text" name="name" value="@item.altbenecity" class="form-control" />
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> City : </label>
+                                                <div class="form-group">
+
+                                                    <input type="text" name="name" value="@item.altbenecity" class="form-control" />
+                                                </div>
                                             </div>
-                                        </div>
 
 
-                                        <div class="col-sm-6">
-                                            <label for="input-1" style="line-height:38px"> State : </label>
-                                            <div class="form-group">
-                                              
-                                                <input type="text" name="name" value="@item.altbenestate" class="form-control" />
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> State : </label>
+                                                <div class="form-group">
+
+                                                    <input type="text" name="name" value="@item.altbenestate" class="form-control" />
+                                                </div>
                                             </div>
-                                        </div>
 
 
-                                        <div class="col-sm-6">
-                                            <label for="input-1" style="line-height:38px"> Pin : </label>
-                                            <div class="form-group">
-                                               
-                                                <input type="text" name="name" value="@item.altbenepin" class="form-control" />
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Pin : </label>
+                                                <div class="form-group">
+
+                                                    <input type="text" name="name" value="@item.altbenepin" class="form-control" />
+                                                </div>
                                             </div>
-                                        </div>
 
+                                        }
                                     }
-                                    </div>
+
                                 </div>
-                                <div id="tabe-5" class="container tab-pane fade">
-                                    <div class="row">
-                                        @foreach (var item in ViewBag.BeneficiaryMapping)
+                            </div>
+                            <div id="tabe-5" class="container tab-pane fade">
+                                <a href="@Url.Action("","")"><input type="button" class="btn btn-primary" name="name" value="Edit Beneficiary Mapping" /></a>
+                                <div class="row">
+                                    @if (ViewBag.BeneficiaryMapping != null)
+                                    {
+                                        foreach (var item in ViewBag.BeneficiaryMapping)
                                         {
 
                                             <div class="col-sm-6">
@@ -1004,20 +1028,26 @@
 
                                         }
 
+                                    }
 
 
 
 
-                                    </div>
+
                                 </div>
-                                <div id="tabe-6" class="container tab-pane fade">
-                                    <div class="row">
-                                        @foreach (var item in ViewBag.nominee)
+                            </div>
+                            <div id="tabe-6" class="container tab-pane fade">
+                                
+                                <a href="@Url.Action("","")"><input type="button" class="btn btn-primary" name="name" value="Edit Nominee" /></a>
+                                <div class="row">
+                                    @if (ViewBag.nominee != null)
+                                    {
+                                        foreach (var item in ViewBag.nominee)
                                         {
                                             <div class="col-sm-6">
                                                 <label for="input-1" style="line-height:38px"> Name : </label>
                                                 <div class="form-group">
-                                                  
+
                                                     <input type="text" name="name" value="@item.nomfirstname" class="form-control" />
                                                 </div>
                                             </div>
@@ -1025,7 +1055,7 @@
                                             <div class="col-sm-6">
                                                 <label for="input-1" style="line-height:38px"> Last Name : </label>
                                                 <div class="form-group">
-                                                   
+
                                                     <input type="text" name="name" value="@item.nomlastname" class="form-control" />
                                                 </div>
                                             </div>
@@ -1033,7 +1063,7 @@
                                             <div class="col-sm-6">
                                                 <label for="input-1" style="line-height:38px"> Middle Name : </label>
                                                 <div class="form-group">
-                                                   
+
                                                     <input type="text" name="name" value="@item.nommiddlename" class="form-control" />
                                                 </div>
                                             </div>
@@ -1042,7 +1072,7 @@
                                             <div class="col-sm-6">
                                                 <label for="input-1" style="line-height:38px"> DOB : </label>
                                                 <div class="form-group">
-                                                   
+
                                                     <input type="text" name="name" value="@item.nomdob" class="form-control" />
                                                 </div>
                                             </div>
@@ -1051,7 +1081,7 @@
                                             <div class="col-sm-6">
                                                 <label for="input-1" style="line-height:38px"> Mobile : </label>
                                                 <div class="form-group">
-                                                  
+
                                                     <input type="text" name="name" value="@item.nommobile" class="form-control" />
                                                 </div>
                                             </div>
@@ -1060,7 +1090,7 @@
                                             <div class="col-sm-6">
                                                 <label for="input-1" style="line-height:38px"> RelationShip : </label>
                                                 <div class="form-group">
-                                                   
+
                                                     <input type="text" name="name" value="@item.nomrelationship" class="form-control" />
                                                 </div>
                                             </div>
@@ -1069,7 +1099,7 @@
                                             <div class="col-sm-6">
                                                 <label for="input-1" style="line-height:38px"> Martial Status : </label>
                                                 <div class="form-group">
-                                                   
+
                                                     <input type="text" name="name" value="@item.nommaritalstatus" class="form-control" />
                                                 </div>
                                             </div>
@@ -1079,7 +1109,7 @@
                                             <div class="col-sm-6">
                                                 <label for="input-1" style="line-height:38px"> Religion : </label>
                                                 <div class="form-group">
-                                                    
+
                                                     <input type="text" name="name" value="@item.nomreligion" class="form-control" />
                                                 </div>
                                             </div>
@@ -1088,7 +1118,7 @@
                                             <div class="col-sm-6">
                                                 <label for="input-1" style="line-height:38px"> Identity Proof : </label>
                                                 <div class="form-group">
-                                                   
+
                                                     <input type="text" name="name" value="@item.nomidentityproof" class="form-control" />
                                                 </div>
                                             </div>
@@ -1098,7 +1128,7 @@
                                             <div class="col-sm-6">
                                                 <label for="input-1" style="line-height:38px"> Identity Proof Value : </label>
                                                 <div class="form-group">
-                                                   
+
                                                     <input type="text" name="name" value="@item.nomidentityproofvalue" class="form-control" />
                                                 </div>
                                             </div>
@@ -1108,7 +1138,7 @@
                                             <div class="col-sm-6">
                                                 <label for="input-1" style="line-height:38px"> Alt IdentityProof : </label>
                                                 <div class="form-group">
-                                                   
+
                                                     <input type="text" name="name" value="@item.nomaltidentityproof" class="form-control" />
                                                 </div>
                                             </div>
@@ -1117,7 +1147,7 @@
                                             <div class="col-sm-6">
                                                 <label for="input-1" style="line-height:38px"> Alt IdentityProofValue : </label>
                                                 <div class="form-group">
-                                                   
+
                                                     <input type="text" name="name" value="@item.nomaltidentityproofvalue" class="form-control" />
                                                 </div>
                                             </div>
@@ -1126,7 +1156,7 @@
                                             <div class="col-sm-6">
                                                 <label for="input-1" style="line-height:38px"> Address 1 : </label>
                                                 <div class="form-group">
-                                                  
+
                                                     <input type="text" name="name" value="@item.nomaddress1" class="form-control" />
                                                 </div>
                                             </div>
@@ -1135,7 +1165,7 @@
                                             <div class="col-sm-6">
                                                 <label for="input-1" style="line-height:38px"> Address 2 : </label>
                                                 <div class="form-group">
-                                                 
+
                                                     <input type="text" name="name" value="@item.nomaddress2" class="form-control" />
                                                 </div>
                                             </div>
@@ -1144,7 +1174,7 @@
                                             <div class="col-sm-6">
                                                 <label for="input-1" style="line-height:38px"> Address 3 : </label>
                                                 <div class="form-group">
-                                                   
+
                                                     <input type="text" name="name" value="@item.nomaddress3" class="form-control" />
                                                 </div>
                                             </div>
@@ -1153,7 +1183,7 @@
                                             <div class="col-sm-6">
                                                 <label for="input-1" style="line-height:38px"> City : </label>
                                                 <div class="form-group">
-                                                   
+
                                                     <input type="text" name="name" value="@item.nomcity" class="form-control" />
                                                 </div>
                                             </div>
@@ -1162,7 +1192,7 @@
                                             <div class="col-sm-6">
                                                 <label for="input-1" style="line-height:38px"> State : </label>
                                                 <div class="form-group">
-                                                    
+
                                                     <input type="text" name="name" value="@item.nomstate" class="form-control" />
                                                 </div>
                                             </div>
@@ -1171,21 +1201,26 @@
                                             <div class="col-sm-6">
                                                 <label for="input-1" style="line-height:38px"> Pin : </label>
                                                 <div class="form-group">
-                                                    
+
                                                     <input type="text" name="name" value="@item.nompin" class="form-control" />
                                                 </div>
                                             </div>
                                         }
 
+                                    }
 
 
 
 
-                                    </div>
+
                                 </div>
-                                <div id="tabe-7" class="container tab-pane fade">
-                                    <div class="row">
-                                        @foreach (var item in ViewBag.appointees)
+                            </div>
+                            <div id="tabe-7" class="container tab-pane fade">
+                                <a href="@Url.Action("","")"><input type="button" class="btn btn-primary" name="name" value="Edit Appointees" /></a>
+                                <div class="row">
+                                    @if (ViewBag.appointees != null)
+                                    {
+                                        foreach (var item in ViewBag.appointees)
                                         {
                                             <div class="col-sm-6">
                                                 <label for="input-1" style="line-height:38px"> Type : </label>
@@ -1409,17 +1444,22 @@
                                         }
 
 
+                                    }
 
-                                    </div>
+
                                 </div>
-                                <div id="tabe-8" class="container tab-pane fade">
-                                    <div class="row">
-                                        @foreach (var item in ViewBag.altappointment)
+                            </div>
+                            <div id="tabe-8" class="container tab-pane fade">
+                                <a href="@Url.Action("","")"><input type="button" class="btn btn-primary" name="name" value="Edit Alternate Appointees" /></a>
+                                <div class="row">
+                                    @if (ViewBag.altappointment != null)
+                                    {
+                                        foreach (var item in ViewBag.altappointment)
                                         {
                                             <div class="col-sm-6">
                                                 <label for="input-1" style="line-height:38px"> Name : </label>
                                                 <div class="form-group">
-                                                 
+
                                                     <input type="text" value="@item.altappname" name="name" class="form-control" />
                                                 </div>
                                             </div>
@@ -1427,7 +1467,7 @@
                                             <div class="col-sm-6">
                                                 <label for="input-1" style="line-height:38px"> MiddleName : </label>
                                                 <div class="form-group">
-                                                  
+
                                                     <input type="text" value="@item.altappmiddlename" name="name" class="form-control" />
                                                 </div>
                                             </div>
@@ -1435,7 +1475,7 @@
                                             <div class="col-sm-6">
                                                 <label for="input-1" style="line-height:38px"> SirName : </label>
                                                 <div class="form-group">
-                                                  
+
                                                     <input type="text" value="@item.altappsurname" name="name" class="form-control" />
                                                 </div>
                                             </div>
@@ -1444,7 +1484,7 @@
                                             <div class="col-sm-6">
                                                 <label for="input-1" style="line-height:38px"> Identity proof : </label>
                                                 <div class="form-group">
-                                                  
+
                                                     <input type="text" value="@item.altappidentityproof" name="name" class="form-control" />
                                                 </div>
                                             </div>
@@ -1453,7 +1493,7 @@
                                             <div class="col-sm-6">
                                                 <label for="input-1" style="line-height:38px"> Identity proof value : </label>
                                                 <div class="form-group">
-                                                 
+
                                                     <input type="text" value="@item.altappidentityproofvalue" name="name" class="form-control" />
                                                 </div>
                                             </div>
@@ -1462,7 +1502,7 @@
                                             <div class="col-sm-6">
                                                 <label for="input-1" style="line-height:38px"> Alt Identityproof : </label>
                                                 <div class="form-group">
-                                                 
+
                                                     <input type="text" value="@item.altappaltidentityproof" name="name" class="form-control" />
                                                 </div>
                                             </div>
@@ -1471,7 +1511,7 @@
                                             <div class="col-sm-6">
                                                 <label for="input-1" style="line-height:38px"> Alt Identityproof Value : </label>
                                                 <div class="form-group">
-                                                   
+
                                                     <input type="text" value="@item.altappaltidentityproofvalue" name="name" class="form-control" />
                                                 </div>
                                             </div>
@@ -1481,7 +1521,7 @@
                                             <div class="col-sm-6">
                                                 <label for="input-1" style="line-height:38px"> Dob : </label>
                                                 <div class="form-group">
-                                                 
+
                                                     <input type="text" value="@item.altappdob" name="name" class="form-control" />
                                                 </div>
                                             </div>
@@ -1490,7 +1530,7 @@
                                             <div class="col-sm-6">
                                                 <label for="input-1" style="line-height:38px"> Gender : </label>
                                                 <div class="form-group">
-                                                   
+
                                                     <input type="text" value="@item.altappgender" name="name" class="form-control" />
                                                 </div>
                                             </div>
@@ -1500,7 +1540,7 @@
                                             <div class="col-sm-6">
                                                 <label for="input-1" style="line-height:38px"> Occupation : </label>
                                                 <div class="form-group">
-                                                   
+
                                                     <input type="text" value="@item.altappoccupation" name="name" class="form-control" />
                                                 </div>
                                             </div>
@@ -1510,7 +1550,7 @@
                                             <div class="col-sm-6">
                                                 <label for="input-1" style="line-height:38px"> RelationShip : </label>
                                                 <div class="form-group">
-                                                 
+
                                                     <input type="text" value="@item.altapprelationship" name="name" class="form-control" />
                                                 </div>
                                             </div>
@@ -1519,7 +1559,7 @@
                                             <div class="col-sm-6">
                                                 <label for="input-1" style="line-height:38px"> Address 1 : </label>
                                                 <div class="form-group">
-                                                   
+
                                                     <input type="text" value="@item.altappaddress1" name="name" class="form-control" />
                                                 </div>
                                             </div>
@@ -1528,7 +1568,7 @@
                                             <div class="col-sm-6">
                                                 <label for="input-1" style="line-height:38px"> Address 2: </label>
                                                 <div class="form-group">
-                                                    
+
                                                     <input type="text" value="@item.altappaddress2" name="name" class="form-control" />
                                                 </div>
                                             </div>
@@ -1537,7 +1577,7 @@
                                             <div class="col-sm-6">
                                                 <label for="input-1" style="line-height:38px"> Address 3 : </label>
                                                 <div class="form-group">
-                                                   
+
                                                     <input type="text" value="@item.altappaddress3" name="name" class="form-control" />
                                                 </div>
                                             </div>
@@ -1546,7 +1586,7 @@
                                             <div class="col-sm-6">
                                                 <label for="input-1" style="line-height:38px"> City : </label>
                                                 <div class="form-group">
-                                               
+
                                                     <input type="text" value="@item.altappcity" name="name" class="form-control" />
                                                 </div>
                                             </div>
@@ -1555,7 +1595,7 @@
                                             <div class="col-sm-6">
                                                 <label for="input-1" style="line-height:38px"> State : </label>
                                                 <div class="form-group">
-                                                   
+
                                                     <input type="text" value="@item.altappstate" name="name" class="form-control" />
                                                 </div>
                                             </div>
@@ -1564,7 +1604,7 @@
                                             <div class="col-sm-6">
                                                 <label for="input-1" style="line-height:38px"> Pin : </label>
                                                 <div class="form-group">
-                                                   
+
                                                     <input type="text" value="@item.altapppin" name="name" class="form-control" />
                                                 </div>
                                             </div>
@@ -1573,23 +1613,25 @@
                                             <div class="col-sm-6">
                                                 <label for="input-1" style="line-height:38px"> Guardian : </label>
                                                 <div class="form-group">
-                                                  
+
                                                     <input type="text" value="@item.altappaltguardian" name="name" class="form-control" />
                                                 </div>
                                             </div>
                                             <div class="col-sm-6">
                                                 <label for="input-1" style="line-height:38px"> Executor : </label>
                                                 <div class="form-group">
-                                                   
+
                                                     <input type="text" value="@item.altappaltexec" name="name" class="form-control" />
                                                 </div>
                                             </div>
                                         }
 
+                                    }
 
 
-                                    </div>
+
                                 </div>
+                            </div>
                                 <div class="form-group">
                                     @if (Convert.ToInt32(Session["uuid"]) != 1)
                                     {

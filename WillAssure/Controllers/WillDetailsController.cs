@@ -64,7 +64,7 @@ namespace WillAssure.Controllers
             if (Convert.ToInt32(Session["uuid"]) != 1)
             {
                 con.Open();
-                string query = "select * from TestatorDetails";
+                string query = "select * from TestatorDetails where uId = "+Convert.ToInt32(Session["uuid"])+"";
                 SqlDataAdapter da = new SqlDataAdapter(query, con);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
@@ -117,8 +117,21 @@ namespace WillAssure.Controllers
 
 
                 // beneficiary 
+
                 con.Open();
-                string query2 = "select * from BeneficiaryDetails";
+                string checkuid = "select tId from TestatorDetails  where uId = " + Convert.ToInt32(Session["uuid"]) + " ";
+                SqlDataAdapter checkda = new SqlDataAdapter(checkuid, con);
+                DataTable checkdt = new DataTable();
+                checkda.Fill(checkdt);
+                int chktid = 0;
+                if (checkdt.Rows.Count > 0)
+                {
+                    chktid = Convert.ToInt32(checkdt.Rows[0]["tId"]);
+                }
+                con.Close();
+
+                con.Open();
+                string query2 = "select a.bpId , a.First_Name , a.Last_Name , a.Middle_Name , a.DOB , a.Mobile , a.Relationship , a.Marital_Status , a.Religion , a.Identity_proof , a.Identity_proof_value , a.Alt_Identity_proof , a.Alt_Identity_proof_value , a.Address1 , a.Address2 , a.Address3 , a.City , a.State , a.Pin , a.aiid , a.tId , a.dateCreated , a.createdBy , a.documentId , a.beneficiary_type from BeneficiaryDetails a inner join TestatorDetails b on a.tId=b.tId where b.tId = " + chktid +"";
                 SqlDataAdapter da2 = new SqlDataAdapter(query2, con);
                 DataTable dt2 = new DataTable();
                 da2.Fill(dt2);
@@ -173,8 +186,12 @@ namespace WillAssure.Controllers
 
 
                 // appointees 
+
+
+
+
                 con.Open();
-                string query3 = "select * from Appointees ";
+                string query3 = "select a.apId , a.documentId , a.Type , a.subType , a.Name , a.middleName  , a.Surname , a.Identity_Proof , a.Identity_Proof_Value , a.Alt_Identity_Proof , a.Alt_Identity_Proof_Value , a.DOB , a.Gender , a.Occupation , a.Relationship , a.Address1 , a.Address2 , a.Address3 , a.City , a.State , a.Pin , a.dateCreated, a.tid  from Appointees a inner join  TestatorDetails b on a.tid=b.tid where b.tId = " + chktid + "  ";
                 SqlDataAdapter da4 = new SqlDataAdapter(query3, con);
                 DataTable dt4 = new DataTable();
                 da4.Fill(dt4);
@@ -227,7 +244,7 @@ namespace WillAssure.Controllers
 
                 // Testator Family 
                 con.Open();
-                string query5 = "select * from testatorFamily";
+                string query5 = "select a.fId , a.First_Name , a.Last_Name , a.Middle_Name , a.DOB , a.Marital_Status , a.Religion , a.Relationship , a.Address1 , a.Address2 , a.Address3 , a.City , a.State , a.Pin , a.tId , a.active , a.Identity_Proof , a.Identity_Proof_Value , a.Alt_Identity_Proof , a.Alt_Identity_Proof_Value , a.Is_Informed_Person from testatorFamily a inner join TestatorDetails b on a.tId=b.tId where b.tId = " + chktid + " ";
                 SqlDataAdapter da5 = new SqlDataAdapter(query5, con);
                 DataTable dt5 = new DataTable();
                 da5.Fill(dt5);
@@ -280,7 +297,7 @@ namespace WillAssure.Controllers
 
                 // Beneficiary Mapping
                 con.Open();
-                string query6 = "select c.AssetsType , b.AssetsCategory , a.SchemeName , a.InstrumentName , a.Proportion from BeneficiaryAssets a inner join AssetsCategory b on a.AssetCategory_ID=b.amId inner join AssetsType c on b.atId = c.atId";
+                string query6 = "select c.AssetsType , b.AssetsCategory , a.SchemeName , a.InstrumentName , a.Proportion from BeneficiaryAssets a inner join AssetsCategory b on a.AssetCategory_ID=b.amId inner join AssetsType c on b.atId = c.atId inner join TestatorDetails d on a.tid = d.tId where a.tid =  " + chktid+"";
                 SqlDataAdapter da6 = new SqlDataAdapter(query6, con);
                 DataTable dt6 = new DataTable();
                 da6.Fill(dt6);
@@ -322,7 +339,7 @@ namespace WillAssure.Controllers
               
 
                 con.Open();
-                string query7 = "select * from alternate_Beneficiary";
+                string query7 = "select a.lnk_bd_id , a.bpId , a.First_Name , a.Last_Name , a.Middle_Name , a.DOB , a.Mobile , a.Relationship , a.Marital_Status , a.Religion , a.Identity_Proof , a.Identity_Proof_Value , a.Alt_Identity_Proof , a.Alt_Identity_Proof_Value , a.Address1 , a.Address2 , a.Address3 , a.City , a.State , a.Pin   from alternate_Beneficiary a inner join BeneficiaryDetails b on a.bpId=b.bpId inner join TestatorDetails c on b.tId=c.tId where c.tId = " + chktid+ "";
                 SqlDataAdapter da7 = new SqlDataAdapter(query7, con);
                 DataTable dt7 = new DataTable();
                 da7.Fill(dt7);
@@ -375,7 +392,7 @@ namespace WillAssure.Controllers
 
                 
                 con.Open();
-                string query8 = "select * from Nominee";
+                string query8 = "select a.nId , a.First_Name , a.Last_Name , a.Middle_Name , a.DOB , a.Mobile , a.Relationship , a.Marital_Status , a.Religion , a.Identity_Proof , a.Identity_Proof_Value , a.Alt_Identity_Proof , a.Alt_Identity_Proof_Value , a.Address1 , a.Address2 , a.Address3 , a.City , a.State , a.Pin , a.aiid , a.tId , a.dateCreated , a.createdBy , a.documentId , a.Description_of_Assets from Nominee a inner join TestatorDetails b on a.tId=b.tId where b.tId = " + chktid+"";
                 SqlDataAdapter da8 = new SqlDataAdapter(query8, con);
                 DataTable dt8 = new DataTable();
                 da8.Fill(dt8);
@@ -430,7 +447,7 @@ namespace WillAssure.Controllers
                
 
                 con.Open();
-                string query9 = "select * from alternate_Appointees";
+                string query9 = "select a.id , a.apId , a.Name , a.MiddleName , a.Surname , a.Identity_proof , a.Identity_proof_value , a.Alt_Identity_proof , a.Alt_Identity_proof_value , a.DOB , a.Gender , a.Occupation , a.Relationship , a.Address1 , a.Address2 , a.Address3 , a.City , a.State , a.Pin , a.tid from alternate_Appointees a inner join TestatorDetails b on a.tid=b.tId where a.tid = " + chktid + "";
                 SqlDataAdapter da9 = new SqlDataAdapter(query9, con);
                 DataTable dt9 = new DataTable();
                 da9.Fill(dt9);
