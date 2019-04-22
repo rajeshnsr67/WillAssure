@@ -317,7 +317,7 @@ namespace WillAssure.Controllers
 
 
             con.Open();
-            string checkuid = "select tId from TestatorDetails  where uId = "+Convert.ToInt32(Session["uuid"])+" ";
+            string checkuid = "select * from TestatorDetails a inner join users b on a.tId=b.uId  where b.uId = " + Convert.ToInt32(Session["uuid"])+" ";
             SqlDataAdapter checkda = new SqlDataAdapter(checkuid, con);
             DataTable checkdt = new DataTable();
             checkda.Fill(checkdt);

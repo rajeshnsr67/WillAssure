@@ -60,7 +60,7 @@
                                 <div class='col-sm-1'><label for='input-1' style="line-height:40px;">Testator</label></div>
                                 <div class="col-sm-3">
                                     <select id='DDLTestator' onchange="getDDLTestator(this.value)" name="contentList" class='form-control validate[required]'></select>
-
+                                    
 
 
 
@@ -456,10 +456,12 @@
             type: "POST",
             url:"@Url.Action("BindTestatorDDL", "AddTestatorFamily")",
                   success: function (data) {
+                      var splitted = data.split("~"); 
+                      $("#DDLTestator").append(splitted[0]); 
+                      $("#ddltid").val(splitted[1]);
+                      //$('#DDLTestator').append(data);
 
-                      $('#DDLTestator').append(data);
-
-
+                     
 
 
 

@@ -447,7 +447,7 @@ namespace WillAssure.Controllers
                
 
                 con.Open();
-                string query9 = "select a.id , a.apId , a.Name , a.MiddleName , a.Surname , a.Identity_proof , a.Identity_proof_value , a.Alt_Identity_proof , a.Alt_Identity_proof_value , a.DOB , a.Gender , a.Occupation , a.Relationship , a.Address1 , a.Address2 , a.Address3 , a.City , a.State , a.Pin , a.tid from alternate_Appointees a inner join TestatorDetails b on a.tid=b.tId where a.tid = " + chktid + "";
+                string query9 = "select a.id , a.apId , a.Name , a.MiddleName , a.Surname , a.Identity_proof , a.Identity_proof_value , a.Alt_Identity_proof , a.Alt_Identity_proof_value , a.DOB , a.Gender , a.Occupation , a.Relationship , a.Address1 , a.Address2 , a.Address3 , a.City , a.State , a.Pin , a.altguardian , a.altexec from alternate_Appointees a inner join TestatorDetails b on a.tid=b.tId where a.tid = " + chktid + "";
                 SqlDataAdapter da9 = new SqlDataAdapter(query9, con);
                 DataTable dt9 = new DataTable();
                 da9.Fill(dt9);

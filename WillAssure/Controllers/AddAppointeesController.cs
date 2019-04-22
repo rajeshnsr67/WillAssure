@@ -670,13 +670,14 @@ namespace WillAssure.Controllers
                     {
 
 
+
                         for (int i = 0; i < dt.Rows.Count; i++)
                         {
 
 
 
 
-                            data = data + "<option value=" + dt.Rows[i]["tId"].ToString() + " >" + dt.Rows[i]["First_Name"].ToString() + "</option>";
+                            data = data + "<option value=" + dt.Rows[i]["tId"].ToString() + " >" + dt.Rows[i]["First_Name"].ToString() + "</option> " + "~" + dt.Rows[i]["tId"].ToString();
 
 
 
