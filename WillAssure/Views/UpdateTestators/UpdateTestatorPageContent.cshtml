@@ -43,6 +43,7 @@
                                 <div class="form-group">
                                     <label for="input-1">First Name</label>
                                     @Html.HiddenFor(m => m.tId)
+                                    @Html.HiddenFor(m => m.uId)
                                     @Html.TextBoxFor(m => m.First_Name, new { @class = "form-control validate[required] text-input", @id = "txtFirstName", @placeholder = "Enter First Name", @autocomplete = "off" })
                                 </div>
                             </div>

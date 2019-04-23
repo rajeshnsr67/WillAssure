@@ -1,0 +1,131 @@
+﻿@model WillAssure.Models.MainAssetsModel
+@{
+                /**/
+
+                ViewBag.Title = "UpdateBeneficiaryMappingPageContent";
+}
+
+
+
+@*Main Content*@
+<div class="content-wrapper">
+    <div class="container-fluid">
+
+        <div class="row pt-2 pb-2">
+
+            <div class="col-sm-3">
+                <div class="btn-group float-sm-right">
+
+                    <div class="dropdown-menu">
+                        <a href="javaScript:void();" class="dropdown-item">Action</a>
+                        <a href="javaScript:void();" class="dropdown-item">Another action</a>
+                        <a href="javaScript:void();" class="dropdown-item">Something else here</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="javaScript:void();" class="dropdown-item">Separated link</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Breadcrumb-->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+
+                        <div class="card-title text-primary">Update Beneficiary Mapping</div>
+                        <hr>
+
+                        @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "RoleForm" }))
+                        {
+
+                            <div class="row">
+                                <div class="col-sm-6">
+
+
+
+                                    @Html.HiddenFor(m => m.Beneficiary_Asset_ID, new { @class = "form-control validate[required,custom[characteronly]] text-input", @id = "txtRole", @placeholder = "Enter Role", @autocomplete = "off", alert = "LabourCost is requried" })
+
+
+
+
+
+                                    <div class="form-group">
+                                        <label for="input-1">Assets Type</label>
+
+                                        @Html.TextBoxFor(m => m.AssetsType, new { @class = "form-control validate[required,custom[characteronly]] text-input", @id = "txtRole", @placeholder = "Enter Role", @autocomplete = "off", alert = "LabourCost is requried" })
+                                    </div>
+                                </div>
+
+
+                                <div class="col-sm-6">
+
+                                    <div class="form-group">
+                                        <label for="input-1">Assets Category</label>
+
+                                        @Html.TextBoxFor(m => m.AssetsCategory, new { @class = "form-control validate[required,custom[characteronly]] text-input", @id = "txtRole", @placeholder = "Enter Role", @autocomplete = "off", alert = "LabourCost is requried" })
+                                    </div>
+                                </div>
+
+
+
+                                <div class="col-sm-6">
+
+                                    <div class="form-group">
+                                        <label for="input-1">Scheme Name</label>
+
+                                        @Html.TextBoxFor(m => m.SchemeName, new { @class = "form-control validate[required,custom[characteronly]] text-input", @id = "txtRole", @placeholder = "Enter Role", @autocomplete = "off", alert = "LabourCost is requried" })
+                                    </div>
+                                </div>
+
+
+                                <div class="col-sm-6">
+
+                                    <div class="form-group">
+                                        <label for="input-1">Instrument Name</label>
+
+                                        @Html.TextBoxFor(m => m.InstrumentName, new { @class = "form-control validate[required,custom[characteronly]] text-input", @id = "txtRole", @placeholder = "Enter Role", @autocomplete = "off", alert = "LabourCost is requried" })
+                                    </div>
+                                </div>
+
+
+                                <div class="col-sm-6">
+
+                                    <div class="form-group">
+                                        <label for="input-1">Proportion</label>
+
+                                        @Html.TextBoxFor(m => m.Proportion, new { @class = "form-control validate[required,custom[characteronly]] text-input", @id = "txtRole", @placeholder = "Enter Role", @autocomplete = "off", alert = "LabourCost is requried" })
+                                    </div>
+                                </div>
+
+
+
+
+
+
+
+
+
+
+
+                            </div>
+
+                            <br />
+                            <div class="form-group">
+
+                                <button type="submit" id="btnRoleformsubmit" formaction="UpdateBeneficiaryMapping" class="btn btn-success shadow-primary px-5"><i class="icon-lock"></i>Update Beneficiary Mapping</button>
+
+                            </div>
+                        }
+                    </div>
+            </div>
+            <button type="button" id="btnRoleformsubmitSUCCESS" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
+            <button type="button" id="btnRoleformsubmitCHECK" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
+
+        </div>
+
+
+    </div>
+
+
+</div>
+@*end*@

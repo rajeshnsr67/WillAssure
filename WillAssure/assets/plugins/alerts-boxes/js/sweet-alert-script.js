@@ -65,6 +65,15 @@
      });
 
 
+     $("#emailchk").click(function () {
+         swal("Failed","Email Limit Has Been Exceeds...!", "warning");
+     });
+
+     $("#mobilechk").click(function () {
+         swal("Failed", "Mobile Limit Has Been Exceeds...!", "warning");
+     });
+
+
      $("#btncouponcheck").click(function () {
          swal("Failed", "Invalid Coupon Number", "error");
      });

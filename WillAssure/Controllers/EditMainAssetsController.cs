@@ -365,7 +365,7 @@ namespace WillAssure.Controllers
 
         public string LoadData()
         {
-
+            string data = "";
             // check roles
             List<LoginModel> Lmlist = new List<LoginModel>();
             con.Open();
@@ -415,7 +415,7 @@ namespace WillAssure.Controllers
            
 
             con.Open();
-            string checkuid = "select * from TestatorDetails a inner join users b on a.tId=b.uId  where b.uId = " + Convert.ToInt32(Session["uuid"]) + " ";
+            string checkuid = "select tId from TestatorDetails  where uId = " + Convert.ToInt32(Session["uuid"]) + " ";
             SqlDataAdapter checkda = new SqlDataAdapter(checkuid, con);
             DataTable checkdt = new DataTable();
             checkda.Fill(checkdt);
@@ -435,70 +435,153 @@ namespace WillAssure.Controllers
                 DataTable dt = new DataTable();
                 da.Fill(dt);
                 con.Close();
-                string data = "";
 
-                for (int i = 0; i < dt.Rows.Count; i++)
+
+                if (dt.Rows.Count > 0)
                 {
-                    string getjson = dt.Rows[i]["Json"].ToString();
-
-
-                    var dict = JsonConvert.DeserializeObject<Dictionary<string, string>>(getjson);
-                    foreach (var kv in dict)
+                    for (int i = 0; i < dt.Rows.Count; i++)
                     {
-                        final = final + kv.Key + ":" + kv.Value;
+                        string getjson = dt.Rows[i]["Json"].ToString();
+
+
+                        var dict = JsonConvert.DeserializeObject<Dictionary<string, string>>(getjson);
+                        foreach (var kv in dict)
+                        {
+                            final = final + kv.Key + ":" + kv.Value;
+                        }
+
+
+
+                        if (testString == "1,2,0" || testString == "0,2,0" || testString == "0,2,3" || testString == "0,2,3" || testString == "0,2,0")
+                        {
+                            data = data + "<tr class='nr'><td>" + dt.Rows[i]["aiid"].ToString() + "</td>";
+                            data += "<td>" + dt.Rows[i]["AssetsType"].ToString() + "</td>";
+                            data += "<td>" + dt.Rows[i]["AssetsCategory"].ToString() + "</td>";
+                            data += "<td>" + final + "</td>";
+                            data += "<td><button type='button'   id='" + dt.Rows[i]["aiid"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary'>Edit</button></td></tr>";
+
+                        }
+
+                        if (testString == "1,0,3" || testString == "0,0,3" || testString == "0,2,3" || testString == "1,0,3" || testString == "0,0,3")
+                        {
+                            data = data + "<tr class='nr'><td>" + dt.Rows[i]["aiid"].ToString() + "</td>";
+                            data += "<td>" + dt.Rows[i]["AssetsType"].ToString() + "</td>";
+                            data += "<td>" + dt.Rows[i]["AssetsCategory"].ToString() + "</td>";
+                            data += "<td>" + final + "</td>";
+                            data += "<td><button type='button'   id='" + dt.Rows[i]["aiid"].ToString() + "'    class='btn btn-danger deletenotification'>Delete</button>  </td></tr>";
+
+                        }
+
+
+                        if (testString == "1,2,3" || testString == "0,2,3")
+                        {
+                            data = data + "<tr class='nr'><td>" + dt.Rows[i]["aiid"].ToString() + "</td>";
+                            data += "<td>" + dt.Rows[i]["AssetsType"].ToString() + "</td>";
+                            data += "<td>" + dt.Rows[i]["AssetsCategory"].ToString() + "</td>";
+                            data += "<td>" + final + "</td>";
+                            data += "<td><button type='button'   id='" + dt.Rows[i]["aiid"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary'>Edit</button><button type='button'   id='" + dt.Rows[i]["aiid"].ToString() + "'    class='btn btn-danger deletenotification'>Delete</button>  </td></tr>";
+
+
+                        }
+
+
+                        if (testString == "0,0,0")
+                        {
+                            data = data + "<tr class='nr'><td>" + dt.Rows[i]["aiid"].ToString() + "</td>";
+                            data += "<td>" + dt.Rows[i]["AssetsType"].ToString() + "</td>";
+                            data += "<td>" + dt.Rows[i]["AssetsCategory"].ToString() + "</td>";
+                            data += "<td>" + final + "</td>";
+
+
+                        }
+
+
+
+
+
                     }
+                }
+                else // for distributor
+                {
+
+                    con.Open();
+                    string query22 = "select a.aiid , c.AssetsType , d.AssetsCategory , a.tid , a.docid , a.Json from AssetInformation a  inner join TestatorDetails b on a.tid=b.tId inner join AssetsType c on a.atId = c.atId inner join AssetsCategory d on a.amId=d.amId inner join TestatorDetails e on a.tid=e.tId inner join users f on e.uId=f.uId where f.Linked_user  = " + Convert.ToInt32(Session["uuid"]) + "   ";
+                    SqlDataAdapter da22 = new SqlDataAdapter(query22, con);
+                    DataTable dt22 = new DataTable();
+                    da22.Fill(dt22);
+                    con.Close();
 
 
-
-                    if (testString == "1,2,0" || testString == "0,2,0" || testString == "0,2,3" || testString == "0,2,3" || testString == "0,2,0")
+                    if (dt22.Rows.Count > 0)
                     {
-                        data = data + "<tr class='nr'><td>" + dt.Rows[i]["aiid"].ToString() + "</td>";
-                        data += "<td>" + dt.Rows[i]["AssetsType"].ToString() + "</td>";
-                        data += "<td>" + dt.Rows[i]["AssetsCategory"].ToString() + "</td>";
-                        data += "<td>" + final + "</td>";
-                        data += "<td><button type='button'   id='" + dt.Rows[i]["aiid"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary'>Edit</button></td></tr>";
+                        for (int i = 0; i < dt22.Rows.Count; i++)
+                        {
+                            string getjson = dt22.Rows[i]["Json"].ToString();
 
+
+                            var dict = JsonConvert.DeserializeObject<Dictionary<string, string>>(getjson);
+                            foreach (var kv in dict)
+                            {
+                                final = final + kv.Key + ":" + kv.Value;
+                            }
+
+
+
+                            if (testString == "1,2,0" || testString == "0,2,0" || testString == "0,2,3" || testString == "0,2,3" || testString == "0,2,0")
+                            {
+                                data = data + "<tr class='nr'><td>" + dt22.Rows[i]["aiid"].ToString() + "</td>";
+                                data += "<td>" + dt22.Rows[i]["AssetsType"].ToString() + "</td>";
+                                data += "<td>" + dt22.Rows[i]["AssetsCategory"].ToString() + "</td>";
+                                data += "<td>" + final + "</td>";
+                                data += "<td><button type='button'   id='" + dt22.Rows[i]["aiid"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary'>Edit</button></td></tr>";
+
+                            }
+
+                            if (testString == "1,0,3" || testString == "0,0,3" || testString == "0,2,3" || testString == "1,0,3" || testString == "0,0,3")
+                            {
+                                data = data + "<tr class='nr'><td>" + dt22.Rows[i]["aiid"].ToString() + "</td>";
+                                data += "<td>" + dt22.Rows[i]["AssetsType"].ToString() + "</td>";
+                                data += "<td>" + dt22.Rows[i]["AssetsCategory"].ToString() + "</td>";
+                                data += "<td>" + final + "</td>";
+                                data += "<td><button type='button'   id='" + dt22.Rows[i]["aiid"].ToString() + "'    class='btn btn-danger deletenotification'>Delete</button>  </td></tr>";
+
+                            }
+
+
+                            if (testString == "1,2,3" || testString == "0,2,3")
+                            {
+                                data = data + "<tr class='nr'><td>" + dt22.Rows[i]["aiid"].ToString() + "</td>";
+                                data += "<td>" + dt22.Rows[i]["AssetsType"].ToString() + "</td>";
+                                data += "<td>" + dt22.Rows[i]["AssetsCategory"].ToString() + "</td>";
+                                data += "<td>" + final + "</td>";
+                                data += "<td><button type='button'   id='" + dt22.Rows[i]["aiid"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary'>Edit</button><button type='button'   id='" + dt22.Rows[i]["aiid"].ToString() + "'    class='btn btn-danger deletenotification'>Delete</button>  </td></tr>";
+
+
+                            }
+
+
+                            if (testString == "0,0,0")
+                            {
+                                data = data + "<tr class='nr'><td>" + dt22.Rows[i]["aiid"].ToString() + "</td>";
+                                data += "<td>" + dt22.Rows[i]["AssetsType"].ToString() + "</td>";
+                                data += "<td>" + dt22.Rows[i]["AssetsCategory"].ToString() + "</td>";
+                                data += "<td>" + final + "</td>";
+
+
+                            }
+
+
+
+
+
+                        }
                     }
-
-                    if (testString == "1,0,3" || testString == "0,0,3" || testString == "0,2,3" || testString == "1,0,3" || testString == "0,0,3")
-                    {
-                        data = data + "<tr class='nr'><td>" + dt.Rows[i]["aiid"].ToString() + "</td>";
-                        data += "<td>" + dt.Rows[i]["AssetsType"].ToString() + "</td>";
-                        data += "<td>" + dt.Rows[i]["AssetsCategory"].ToString() + "</td>";
-                        data += "<td>" + final + "</td>";
-                        data += "<td><button type='button'   id='" + dt.Rows[i]["aiid"].ToString() + "'    class='btn btn-danger deletenotification'>Delete</button>  </td></tr>";
-
-                    }
-
-
-                    if (testString == "1,2,3" || testString == "0,2,3")
-                    {
-                        data = data + "<tr class='nr'><td>" + dt.Rows[i]["aiid"].ToString() + "</td>";
-                        data += "<td>" + dt.Rows[i]["AssetsType"].ToString() + "</td>";
-                        data += "<td>" + dt.Rows[i]["AssetsCategory"].ToString() + "</td>";
-                        data += "<td>" + final + "</td>";
-                        data += "<td><button type='button'   id='" + dt.Rows[i]["aiid"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary'>Edit</button><button type='button'   id='" + dt.Rows[i]["aiid"].ToString() + "'    class='btn btn-danger deletenotification'>Delete</button>  </td></tr>";
-
-
-                    }
-
-
-                    if (testString == "0,0,0")
-                    {
-                        data = data + "<tr class='nr'><td>" + dt.Rows[i]["aiid"].ToString() + "</td>";
-                        data += "<td>" + dt.Rows[i]["AssetsType"].ToString() + "</td>";
-                        data += "<td>" + dt.Rows[i]["AssetsCategory"].ToString() + "</td>";
-                        data += "<td>" + final + "</td>";
-
-
-                    }
-
-
 
 
 
                 }
 
+               
 
 
 
@@ -511,7 +594,8 @@ namespace WillAssure.Controllers
 
 
 
-                return data;
+
+              
             }
             else
             {
@@ -522,7 +606,7 @@ namespace WillAssure.Controllers
                 DataTable dt = new DataTable();
                 da.Fill(dt);
                 con.Close();
-                string data = "";
+             
 
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
@@ -598,9 +682,10 @@ namespace WillAssure.Controllers
 
 
 
-                return data;
+                
             }
-          
+            return data;
+
         }
 
 

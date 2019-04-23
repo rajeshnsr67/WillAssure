@@ -104,10 +104,10 @@ namespace WillAssure.Controllers
 
 
             // for alterbeneficiary
-            if (Session["upbeneficiaryid"] == null)
-            {
-                RedirectToAction("LoginPageIndex", "LoginPage");
-            }
+            //if (Session["upbeneficiaryid"] == null)
+            //{
+            //    RedirectToAction("LoginPageIndex", "LoginPage");
+            //}
             con.Open();
             string query2 = "select * from alternate_Beneficiary where bpId = "+Convert.ToInt32(Session["upbeneficiaryid"]) +" ";
             SqlDataAdapter da2 = new SqlDataAdapter(query2, con);
@@ -460,13 +460,14 @@ namespace WillAssure.Controllers
                     {
 
 
+
                         for (int i = 0; i < dt.Rows.Count; i++)
                         {
 
 
 
 
-                            data = data + "<option value=" + dt.Rows[i]["tId"].ToString() + " >" + dt.Rows[i]["First_Name"].ToString() + "</option>";
+                            data = data + "<option value=" + dt.Rows[i]["tId"].ToString() + " >" + dt.Rows[i]["First_Name"].ToString() + "</option> " + "~" + dt.Rows[i]["tId"].ToString();
 
 
 

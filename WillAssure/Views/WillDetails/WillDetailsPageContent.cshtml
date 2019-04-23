@@ -63,7 +63,7 @@
                         <div class="tab-content">
                             <div id="tabe-1" class="container tab-pane active">
                          
-                                <a href="@Url.Action("EditTestatorIndex","EditTestator")"><input type="button" class="btn btn-primary" name="name" value="Edit TestatorDetails" /></a>
+                               <center><a href="@Url.Action("UpdateTestatorsIndex","UpdateTestators", new {NestId=ViewBag.tid})"><input type="button" class="btn btn-primary" name="name" value="Edit TestatorDetails" /></a></center> 
                                 <div class="row">
                                     @if (ViewBag.TestatorDetails != null)
                                     {
@@ -335,7 +335,8 @@
                                 </div>
                             </div>
                             <div id="tabe-2" class="container tab-pane fade">
-                                <a href="@Url.Action("EditTestatorFamilyIndex","EditTestatorFamily")"><input type="button" class="btn btn-primary" name="name" value="Edit TestatorFamily" /></a>
+                                <center><a href="@Url.Action("EditTestatorFamilyIndex","EditTestatorFamily")"><input type="button" class="btn btn-primary" name="name" value="Edit TestatorFamily" /></a></center>
+                                
                                 <div class="row">
                                     @if (ViewBag.testatorFamily != null)
                                     {
@@ -562,7 +563,8 @@
                                 </div>
                             </div>
                             <div id="tabe-3" class="container tab-pane fade">
-                                <a href="@Url.Action("EditBeneficiaryIndex","EditBeneficiary")"><input type="button" class="btn btn-primary" name="name" value="Edit Beneficiary" /></a>
+                                
+                                <center><a href="@Url.Action("EditBeneficiaryIndex","EditBeneficiary")"><input type="button" class="btn btn-primary" name="name" value="Edit Beneficiary" /></a></center>
                                 <div class="row">
                                     @if (ViewBag.beneficiary != null)
                                     {
@@ -789,7 +791,8 @@
                                 </div>
                             </div>
                             <div id="tabe-4" class="container tab-pane fade">
-                                <a href="@Url.Action("","")"><input type="button" class="btn btn-primary" name="name" value="Edit Alternate Beneficiary" /></a>
+                                <center> <a href="@Url.Action("EditAlternateBeneficiaryIndex","EditAlternateBeneficiary")"><input type="button" class="btn btn-primary" name="name" value="Edit Alternate Beneficiary" /></a></center>
+                               
                                 <div class="row">
                                     @if (ViewBag.altbene != null)
                                     {
@@ -964,7 +967,8 @@
                                 </div>
                             </div>
                             <div id="tabe-5" class="container tab-pane fade">
-                                <a href="@Url.Action("","")"><input type="button" class="btn btn-primary" name="name" value="Edit Beneficiary Mapping" /></a>
+                                <center> <a href="@Url.Action("EditBeneficiaryMappingIndex","EditBeneficiaryMapping")"><input type="button" class="btn btn-primary" name="name" value="Edit Beneficiary Mapping" /></a></center>
+                               
                                 <div class="row">
                                     @if (ViewBag.BeneficiaryMapping != null)
                                     {
@@ -1037,8 +1041,8 @@
                                 </div>
                             </div>
                             <div id="tabe-6" class="container tab-pane fade">
+                                <center><a href="@Url.Action("EditNomineeIndex","EditNominee")"><input type="button" class="btn btn-primary" name="name" value="Edit Nominee" /></a></center>
                                 
-                                <a href="@Url.Action("","")"><input type="button" class="btn btn-primary" name="name" value="Edit Nominee" /></a>
                                 <div class="row">
                                     @if (ViewBag.nominee != null)
                                     {
@@ -1216,7 +1220,7 @@
                                 </div>
                             </div>
                             <div id="tabe-7" class="container tab-pane fade">
-                                <a href="@Url.Action("","")"><input type="button" class="btn btn-primary" name="name" value="Edit Appointees" /></a>
+                                <center><a href="@Url.Action("EditAppointeesIndex","EditAppointees")"><input type="button" class="btn btn-primary" name="name" value="Edit Appointees" /></a></center>
                                 <div class="row">
                                     @if (ViewBag.appointees != null)
                                     {
@@ -1450,7 +1454,8 @@
                                 </div>
                             </div>
                             <div id="tabe-8" class="container tab-pane fade">
-                                <a href="@Url.Action("","")"><input type="button" class="btn btn-primary" name="name" value="Edit Alternate Appointees" /></a>
+                                <center><a href="@Url.Action("EditAlternateAppointeesIndex","EditAlternateAppointees")"><input type="button" class="btn btn-primary" name="name" value="Edit Alternate Appointees" /></a></center>
+                                
                                 <div class="row">
                                     @if (ViewBag.altappointment != null)
                                     {

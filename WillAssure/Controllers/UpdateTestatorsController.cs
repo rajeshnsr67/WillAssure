@@ -93,8 +93,8 @@ namespace WillAssure.Controllers
                        TFM.statetext = dt.Rows[0]["State"].ToString();
                        TFM.countrytext = dt.Rows[0]["Country"].ToString();
                        TFM.Pin = dt.Rows[0]["Pin"].ToString();
-                       TFM.active = dt.Rows[0]["active"].ToString(); 
-
+                       TFM.active = dt.Rows[0]["active"].ToString();
+                       TFM.uId = Convert.ToInt32(dt.Rows[0]["uId"]);
 
 
 
@@ -142,6 +142,14 @@ namespace WillAssure.Controllers
             con.Close();
 
 
+
+
+            
+          
+
+
+
+
             //end
             con.Open();
 
@@ -186,6 +194,10 @@ namespace WillAssure.Controllers
             //string query = "update TestatorDetails set First_Name = '"+TFM.First_Name+"' , Last_Name='"+TFM.Last_Name+"' ,Middle_Name= '"+TFM.Middle_Name+"' , DOB = '"+ sqlFormattedDate + "' ,Occupation='"+TFM.Occupation+"' ,Mobile='"+TFM.Mobile+"' ,Email = '"+TFM.Email+"' ,maritalStatus='"+TFM.material_status +"' , Religion='"+TFM.Religiontext+ "' ,  Relationship = '"+TFM.RelationshipTxt + "'   ,Identity_Proof='" + TFM.Identity_Proof+"' ,Identity_proof_Value='"+TFM.Identity_proof_Value+"',Alt_Identity_Proof='"+TFM.Alt_Identity_Proof+"',Alt_Identity_proof_Value='"+TFM.Alt_Identity_proof_Value+"',Gender='"+TFM.Gendertext+"',Address1='"+TFM.Address1+"',Address2='"+TFM.Address2+"',Address3='"+TFM.Address3+"',Country='"+TFM.countrytext+"',State='"+TFM.statetext+"',City='"+TFM.citytext+"',Pin='"+TFM.Pin+"',active='"+TFM.active+ "'  where  tId = " + TFM.tId+"";
             //SqlCommand cmd = new SqlCommand(query,con);
             //cmd.ExecuteNonQuery();
+
+            string query2 = "update users set First_Name= '" + TFM.First_Name + "' , Last_Name='" + TFM.Last_Name + "' ,  Middle_Name='" + TFM.Middle_Name + "' , DOB = '" + TFM.Dob + "' , Mobile = '" + TFM.Mobile + "' ,  eMail = '" + TFM.Email + "' , Address1='" + TFM.Address1 + "' , Address2='" + TFM.Address2 + "' , Address3 = '" + TFM.Address3 + "' , City='" + TFM.citytext + "' ,State= '" + TFM.statetext + "' , Pin='" + TFM.Pin + "' where uId = "+TFM.uId+"   ";
+            SqlCommand cdd = new SqlCommand(query2,con);
+            cdd.ExecuteNonQuery();
             con.Close();
 
             ViewBag.Message = "Verified";

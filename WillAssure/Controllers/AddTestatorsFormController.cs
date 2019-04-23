@@ -73,6 +73,114 @@ namespace WillAssure.Controllers
             return View("~/Views/AddTestatorsForm/AddTestatorPageContent.cshtml");
         }
 
+
+        public string onchangeemailtxt()
+        {
+            // check count for email and mobile
+
+            con.Open();
+            string chkmobilemail = "select Value from Settings_vals";
+            SqlDataAdapter chkmobilemailda = new SqlDataAdapter(chkmobilemail, con);
+            DataTable chkmobilemaildt = new DataTable();
+            chkmobilemailda.Fill(chkmobilemaildt);
+            int chkcount = 0;
+            if (chkmobilemaildt.Rows.Count > 0)
+            {
+                chkcount = Convert.ToInt32(chkmobilemaildt.Rows[0]["Value"]);
+
+            }
+            con.Close();
+
+
+
+
+
+            con.Open();
+            string chkmobilemail2 = "select count(Email) as EmailCount from TestatorDetails";
+            SqlDataAdapter chkmobilemailda2 = new SqlDataAdapter(chkmobilemail2, con);
+            DataTable chkmobilemaildt2 = new DataTable();
+            chkmobilemailda2.Fill(chkmobilemaildt2);
+            int emailcount = 0;
+            if (chkmobilemaildt2.Rows.Count > 0)
+            {
+                emailcount = Convert.ToInt32(chkmobilemaildt2.Rows[0]["EmailCount"]);
+
+            }
+            con.Close();
+
+            string msg = "";
+            if (chkcount == emailcount)
+            {
+                msg = "true";
+            }
+
+
+            return msg;
+
+
+
+
+            
+
+
+        }
+
+
+
+
+        public string onchangemobiletxt()
+        {
+            // check count for email and mobile
+
+            con.Open();
+            string chkmobilemail = "select Value from Settings_vals";
+            SqlDataAdapter chkmobilemailda = new SqlDataAdapter(chkmobilemail, con);
+            DataTable chkmobilemaildt = new DataTable();
+            chkmobilemailda.Fill(chkmobilemaildt);
+            int chkcount = 0;
+            if (chkmobilemaildt.Rows.Count > 0)
+            {
+                chkcount = Convert.ToInt32(chkmobilemaildt.Rows[0]["Value"]);
+
+            }
+            con.Close();
+
+
+
+
+
+            con.Open();
+            string chkmobilemail2 = "select count(Mobile) as MobileCount from TestatorDetails";
+            SqlDataAdapter chkmobilemailda2 = new SqlDataAdapter(chkmobilemail2, con);
+            DataTable chkmobilemaildt2 = new DataTable();
+            chkmobilemailda2.Fill(chkmobilemaildt2);
+            int mobilecount = 0;
+            if (chkmobilemaildt2.Rows.Count > 0)
+            {
+                mobilecount = Convert.ToInt32(chkmobilemaildt2.Rows[0]["MobileCount"]);
+
+            }
+            con.Close();
+
+            string msg = "";
+            if (chkcount == mobilecount)
+            {
+                msg = "true";
+            }
+
+
+            return msg;
+
+
+
+
+
+
+
+        }
+
+
+
         public ActionResult InsertTestatorFormData(TestatorFormModel TFM)
         {
             // roleassignment
@@ -274,7 +382,7 @@ namespace WillAssure.Controllers
 
             //end
 
-
+           
 
 
             //TFM.uId = Convert.ToInt32(Session["filterUid"]);

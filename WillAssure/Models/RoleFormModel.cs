@@ -12,5 +12,13 @@ namespace WillAssure.Models
         public string Role { get; set; }
 
 
+
+        public int svid { get; set; }
+
+        public string documenttype { get; set; }
+
+        public string value { get; set; }
+
+
     }
 }

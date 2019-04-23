@@ -149,5 +149,15 @@ namespace WillAssure.Models
         public string ddltestatorname { get; set; }
         public int ddltid { get; set; }
 
+
+
+        public int Beneficiary_Asset_ID { get; set; }
+        public string AssetsType { get; set; }
+        public string AssetsCategory { get; set; }
+        public string SchemeName { get; set; }
+        public string InstrumentName { get; set; }
+        public string Proportion { get; set; }
+
+
     }
 }

@@ -336,20 +336,22 @@
 
 
 
-              	   $.ajax({
+           $.ajax({
 
             type: "POST",
-            url:"@Url.Action("BindTestatorDDL", "UpdateNominee")",
+            url:"@Url.Action("BindTestatorDDL", "AddTestatorFamily")",
                   success: function (data) {
+                      var splitted = data.split("~"); 
+                      $("#DDLTestator").append(splitted[0]); 
+                      $("#ddltid").val(splitted[1]);
+                      //$('#DDLTestator').append(data);
 
-                      $('#DDLTestator').append(data);
-                      
+                     
 
 
 
-                
             }
-              });
+          });
 
 
 

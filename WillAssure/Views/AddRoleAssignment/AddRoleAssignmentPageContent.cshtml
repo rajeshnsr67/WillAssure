@@ -142,11 +142,11 @@
                                                 <td><label class="checkbox-inline"><input type="checkbox" class="delete" id="BeneficiaryDelete">Delete</label></td>
                                             </tr>
                                             @*<tr>
-                                                <td style="font-weight:bolder"><input type="checkbox" id="AlternateBeneficiary">Alternate Beneficiary</td>
-                                                <td><label class="checkbox-inline"><input type="checkbox" id="AlternateBeneficiaryAdd">Add</label></td>
-                                                <td><label class="checkbox-inline"><input type="checkbox" id="AlternateBeneficiaryEdit">Edit</label></td>
-                                                <td><label class="checkbox-inline"><input type="checkbox" id="AlternateBeneficiaryDelete">Delete</label></td>
-                                            </tr>*@
+                                    <td style="font-weight:bolder"><input type="checkbox" id="AlternateBeneficiary">Alternate Beneficiary</td>
+                                    <td><label class="checkbox-inline"><input type="checkbox" id="AlternateBeneficiaryAdd">Add</label></td>
+                                    <td><label class="checkbox-inline"><input type="checkbox" id="AlternateBeneficiaryEdit">Edit</label></td>
+                                    <td><label class="checkbox-inline"><input type="checkbox" id="AlternateBeneficiaryDelete">Delete</label></td>
+                                </tr>*@
 
                                             <tr>
                                                 <td style="font-weight:bolder"><input type="checkbox" id="Nominee">Nominee</td>
@@ -161,11 +161,11 @@
                                                 <td><label class="checkbox-inline"><input type="checkbox" class="delete" id="AppointeesDelete">Delete</label></td>
                                             </tr>
                                             @*<tr>
-                                                <td style="font-weight:bolder"><input type="checkbox" id="AlternateAppointees">Alternate Appointees</td>
-                                                <td><label class="checkbox-inline"><input type="checkbox" id="AlternateAppointeesAdd">Add</label></td>
-                                                <td><label class="checkbox-inline"><input type="checkbox" id="AlternateAppointeesEdit">Edit</label></td>
-                                                <td><label class="checkbox-inline"><input type="checkbox" id="AlternateAppointeesDelete">Delete</label></td>
-                                            </tr>*@
+                                    <td style="font-weight:bolder"><input type="checkbox" id="AlternateAppointees">Alternate Appointees</td>
+                                    <td><label class="checkbox-inline"><input type="checkbox" id="AlternateAppointeesAdd">Add</label></td>
+                                    <td><label class="checkbox-inline"><input type="checkbox" id="AlternateAppointeesEdit">Edit</label></td>
+                                    <td><label class="checkbox-inline"><input type="checkbox" id="AlternateAppointeesDelete">Delete</label></td>
+                                </tr>*@
 
 
                                             <tr>
@@ -211,6 +211,13 @@
                                                 <td><label class="checkbox-inline"><input type="checkbox" class="delete" id="CouponAllotmentDelete">Delete</label></td>
                                             </tr>
 
+                                            <tr>
+                                                <td style="font-weight:bolder"><input type="checkbox" id="Setting">Setting</td>
+                                                <td><label class="checkbox-inline"><input type="checkbox" class="insert" id="SettingAdd">Add</label></td>
+                                                <td><label class="checkbox-inline"><input type="checkbox" class="update" id="SettingEdit">Edit</label></td>
+                                                <td><label class="checkbox-inline"><input type="checkbox" class="delete" id="SettingDelete">Delete</label></td>
+                                            </tr>
+
 
 
                                         </tbody>
@@ -249,6 +256,7 @@
                     <input type="hidden" id="21" value="" />
                     <input type="hidden" id="22" value="" />
                     <input type="hidden" id="23" value="" />
+                    <input type="hidden" id="24" value="" />
 
 
 
@@ -338,6 +346,7 @@
         $("#Document").prop("checked", false);
         $("#Payment").prop("checked", false);
         $("#CouponAllotment").prop("checked", false);
+        $("#Setting").prop("checked", false);
 
 
 
@@ -361,7 +370,7 @@
         $("#DocumentAdd").prop("checked", false);
         $("#PaymentAdd").prop("checked", false);
         $("#CouponAllotmentAdd").prop("checked", false);
-
+        $("#SettingAdd").prop("checked", false);
 
 
 
@@ -385,7 +394,7 @@
         $("#DocumentEdit").prop("checked", false);
         $("#PaymentEdit").prop("checked", false);
         $("#CouponAllotmentEdit").prop("checked", false);
-
+        $("#SettingEdit").prop("checked", false);
 
         $("#RolesDelete").prop("checked", false);
         $("#AssignRolesDelete").prop("checked", false);
@@ -407,7 +416,7 @@
         $("#DocumentDelete").prop("checked", false);
         $("#PaymentDelete").prop("checked", false);
         $("#CouponAllotmentDelete").prop("checked", false);
-
+        $("#SettingDelete").prop("checked", false);
 
    
         
@@ -570,6 +579,9 @@
 
         var status23 = "";
         var data23 = "";
+
+        var status24 = "";
+        var data24 = "";
 
         // for role
         if ($("#Roles").is(':checked')) {
@@ -1394,13 +1406,48 @@
 
 
 
+        // for setting
+        if ($("#Setting").is(':checked')) {
+            status24 = status24 + "Active";
+        }
+        else {
+
+            status24 = status24 + "Inactive";
+        }
+
+        if ($("#SettingAdd").is(':checked')) {
+            data24 = data24 + "1,";
+        }
+        else {
+            data24 = data24 + "0,";
+        }
+        if ($("#SettingEdit").is(':checked')) {
+            data24 = data24 + "2,";
+        }
+        else {
+            data24 = data24 + "0,";
+        }
+        if ($("#SettingDelete").is(':checked')) {
+            data24 = data24 + "3";
+        }
+        else {
+            data24 = data24 + "0";
+        }
+
+
+        $("#24").val("update Assignment_Roles set  PageStatus= '" + status24 + "'  , Action = '" + data24 + "' where PageName = 'Settings' and RoleId = " + roleid + " ");
+
+        //end
+
+
+
 
 
 
 
 
       //  + $("#2").val() + "~"
-        var AllData = $("#1").val() + "~" + $("#3").val() + "~" + $("#4").val() + "~" + $("#5").val() + "~" + $("#6").val() + "~" + $("#7").val() + "~" + $("#8").val() + "~" + $("#9").val() + "~" + $("#10").val() + "~" + $("#11").val() + "~" + $("#12").val() + "~" + $("#13").val() + "~" + $("#14").val() + "~" + $("#15").val() + "~" + $("#16").val() + "~" + $("#17").val() + "~" + $("#18").val() + "~" + $("#19").val() + "~" + $("#20").val() + "~" + $("#21").val() + "~" + $("#22").val() + "~" + $("#23").val();
+        var AllData = $("#1").val() + "~" + $("#3").val() + "~" + $("#4").val() + "~" + $("#5").val() + "~" + $("#6").val() + "~" + $("#7").val() + "~" + $("#8").val() + "~" + $("#9").val() + "~" + $("#10").val() + "~" + $("#11").val() + "~" + $("#12").val() + "~" + $("#13").val() + "~" + $("#14").val() + "~" + $("#15").val() + "~" + $("#16").val() + "~" + $("#17").val() + "~" + $("#18").val() + "~" + $("#19").val() + "~" + $("#20").val() + "~" + $("#21").val() + "~" + $("#22").val() + "~" + $("#23").val() + "~" + $("#24").val();
 
 
           $.ajax({
@@ -1590,6 +1637,12 @@
         $("input[id='CouponAllotmentDelete']").not(this).prop('checked', this.checked);
     });
 
+
+    $("#Setting").click(function () {
+        $("input[id='SettingAdd']").not(this).prop('checked', this.checked);
+        $("input[id='SettingEdit']").not(this).prop('checked', this.checked);
+        $("input[id='SettingDelete']").not(this).prop('checked', this.checked);
+    });
 
 
 </script>

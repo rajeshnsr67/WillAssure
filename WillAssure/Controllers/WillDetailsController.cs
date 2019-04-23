@@ -80,8 +80,8 @@ namespace WillAssure.Controllers
                     {
                         WillDetailModel WDM1 = new WillDetailModel();
 
+                       ViewBag.tid = Convert.ToInt32(dt.Rows[i]["tId"]);
                         WDM1.TestatorName = dt.Rows[i]["First_Name"].ToString();
-
                         WDM1.TestatorLastName = dt.Rows[i]["Last_Name"].ToString();
                         WDM1.TestatorMiddleName = dt.Rows[i]["Middle_Name"].ToString();
                         WDM1.TestatorDOB = dt.Rows[i]["DOB"].ToString();

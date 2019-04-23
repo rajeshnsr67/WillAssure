@@ -219,6 +219,7 @@
     <Compile Include="Controllers\EditAssetsController.cs" />
     <Compile Include="Controllers\EditAssetTypeController.cs" />
     <Compile Include="Controllers\EditBeneficiaryController.cs" />
+    <Compile Include="Controllers\EditBeneficiaryMappingController.cs" />
     <Compile Include="Controllers\EditCouponsController.cs" />
     <Compile Include="Controllers\EditDistributorController.cs" />
     <Compile Include="Controllers\EditDistributorEmployeeController.cs" />
@@ -227,6 +228,7 @@
     <Compile Include="Controllers\EditNomineeController.cs" />
     <Compile Include="Controllers\EditRelationController.cs" />
     <Compile Include="Controllers\EditRoleController.cs" />
+    <Compile Include="Controllers\EditSettingController.cs" />
     <Compile Include="Controllers\EditTestatorController.cs" />
     <Compile Include="Controllers\EditTestatorFamilyController.cs" />
     <Compile Include="Controllers\EditUserFormController.cs" />
@@ -235,12 +237,14 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginPageController.cs" />
     <Compile Include="Controllers\RoleAddController.cs" />
+    <Compile Include="Controllers\SettingsController.cs" />
     <Compile Include="Controllers\UpdateAlternateAppointeesController.cs" />
     <Compile Include="Controllers\UpdateAlternateBeneficiaryController.cs" />
     <Compile Include="Controllers\UpdateAppointeesController.cs" />
     <Compile Include="Controllers\UpdateAssetCategoryController.cs" />
     <Compile Include="Controllers\UpdateAssetTypeController.cs" />
     <Compile Include="Controllers\UpdateBeneficiaryController.cs" />
+    <Compile Include="Controllers\UpdateBeneficiaryMappingController.cs" />
     <Compile Include="Controllers\UpdateDiscountController.cs" />
     <Compile Include="Controllers\UpdateDistributorController.cs" />
     <Compile Include="Controllers\UpdateDistributorEmployeeController.cs" />
@@ -1225,6 +1229,10 @@
     <Content Include="Views\CouponsAllotment\AddCouponsAllotmentPageContent.cshtml" />
     <Content Include="Views\DisplayCouponAlloted\DisplayCouponAllotedPageContent.cshtml" />
     <Content Include="Views\EditAllotmentDistributor\DisplayAllotmentDistributorPageContent.cshtml" />
+    <Content Include="Views\Settings\SettingsPageContent.cshtml" />
+    <Content Include="Views\EditSetting\EditSettingsPageContent.cshtml" />
+    <Content Include="Views\EditBeneficiaryMapping\EditBeneficiaryMappingPageContent.cshtml" />
+    <Content Include="Views\UpdateBeneficiaryMapping\UpdateBeneficiaryMappingPageContent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
