@@ -206,6 +206,7 @@
     <Compile Include="Controllers\AddWillEmployeeController.cs" />
     <Compile Include="Controllers\AlternateBeneficiaryController.cs" />
     <Compile Include="Controllers\AssetTypeController.cs" />
+    <Compile Include="Controllers\ChangePasswordController.cs" />
     <Compile Include="Controllers\ChangeTemplateController.cs" />
     <Compile Include="Controllers\CouponsAllotmentController.cs" />
     <Compile Include="Controllers\DashBoardController.cs" />
@@ -252,6 +253,7 @@
     <Compile Include="Controllers\UpdateMainAssetsController.cs" />
     <Compile Include="Controllers\UpdateNomineeController.cs" />
     <Compile Include="Controllers\UpdateRolesController.cs" />
+    <Compile Include="Controllers\UpdateSettingController.cs" />
     <Compile Include="Controllers\UpdateTestatorFamilyController.cs" />
     <Compile Include="Controllers\UpdateTestatorsController.cs" />
     <Compile Include="Controllers\UpdateWillEmployeeController.cs" />
@@ -1233,6 +1235,8 @@
     <Content Include="Views\EditSetting\EditSettingsPageContent.cshtml" />
     <Content Include="Views\EditBeneficiaryMapping\EditBeneficiaryMappingPageContent.cshtml" />
     <Content Include="Views\UpdateBeneficiaryMapping\UpdateBeneficiaryMappingPageContent.cshtml" />
+    <Content Include="Views\UpdateSetting\UpdateSettingPageContent.cshtml" />
+    <Content Include="Views\ChangePassword\ChangePasswordPageContent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

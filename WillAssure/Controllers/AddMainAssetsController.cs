@@ -23,16 +23,7 @@ namespace WillAssure.Controllers
         public ActionResult AddMainAssetsIndex()
         {
 
-            con.Open();
-            string query2 = "select count(*) as total from TestatorDetails a   inner join users b on a.uId = b.uId  where b.uId = " + Convert.ToInt32(Session["uuid"]) + " ";
-            SqlDataAdapter da2 = new SqlDataAdapter(query2, con);
-            DataTable dt2 = new DataTable();
-            da2.Fill(dt2);
-            con.Close();
-            if (Convert.ToInt32(dt2.Rows[0]["total"]) == 1)
-            {
-                ViewBag.popup = "true";
-            }
+    
 
             if (Session["rId"] == null || Session["uuid"] == null)
             {
@@ -318,7 +309,7 @@ namespace WillAssure.Controllers
                             string testString = dt3.Rows[i]["CurrentStatusValues"].ToString();
                             ArrayList result = new ArrayList(testString.Split('/'));
 
-                            column = column + " <br> <label class='radio-inline' >  <input type='radio' name='Currentradio' value="+ result[0]+" checked> " + result[0]+ "</label>  <label class='radio - inline'> <input type='radio' name='Currentradio'  value=" + result[1] + ">" + result[1]+ "</label></div></div>";
+                            column = column + " <br> <label class='radio-inline' >  <input type='radio'  id='ddlrole' name='Currentradio' value=" + result[0]+" checked> " + result[0]+ "</label>  <label class='radio - inline'> <input type='radio' id='ddlrole' name='Currentradio'  value=" + result[1] + ">" + result[1]+ "</label></div></div>";
                            
 
                         }
@@ -484,7 +475,7 @@ namespace WillAssure.Controllers
                             string testString = dt3.Rows[i]["OwnerShipValues"].ToString();
                             ArrayList result = new ArrayList(testString.Split('/'));
 
-                            column = column + " <br> <label class='radio-inline' >  <input type='radio' name='ownershipRadio' value="+ result[0] + " checked> " + result[0] + "</label>  <label class='radio - inline'> <input type='radio' name='ownershipRadio' value="+ result[1] + ">" + result[1] + "</label></div></div>";
+                            column = column + " <br> <label class='radio-inline' >  <input type='radio' id='ddlrole' name='ownershipRadio' value=" + result[0] + " checked> " + result[0] + "</label>  <label class='radio - inline'> <input type='radio' id='ddlrole' name='ownershipRadio' value=" + result[1] + ">" + result[1] + "</label></div></div>";
 
 
                         }
@@ -524,7 +515,7 @@ namespace WillAssure.Controllers
                             string testString = dt3.Rows[i]["NominationValues"].ToString();
                             ArrayList result = new ArrayList(testString.Split('/'));
 
-                            column = column + " <br> <label class='radio-inline' >  <input type='radio' name='nominationradio' value=" + result[0] + " checked> " + result[0] + "</label>  <label class='radio - inline'> <input type='radio' name='nominationradio' value=" + result[1] + ">" + result[1] + "</label></div></div>";
+                            column = column + " <br> <label class='radio-inline' >  <input type='radio' id='ddlrole' name='nominationradio' value=" + result[0] + " checked> " + result[0] + "</label>  <label class='radio - inline'> <input type='radio' id='ddlrole' name='nominationradio' value=" + result[1] + ">" + result[1] + "</label></div></div>";
 
 
 
@@ -756,7 +747,7 @@ namespace WillAssure.Controllers
             var radio2 = Convert.ToString(Request.Form["ownershipRadio"]);
             var radio3 = Convert.ToString(Request.Form["nominationradio"]);
             var tid = Convert.ToString(collection["ddlTid"]);
-
+            string ttid = tid.Replace("true", "");
             string c = "";
 
             if (obj.dueDate != null)
@@ -949,7 +940,7 @@ namespace WillAssure.Controllers
                 string json = JsonConvert.SerializeObject(dd);
                 int amid = Convert.ToInt32(TempData["amid"]);
                 con.Open();
-                string query = "insert into AssetInformation (atId,amId,Json,tid) values (" + TempData["atid"] + " , " + amid + " ,'" + json + "' , " + tid + ")";
+                string query = "insert into AssetInformation (atId,amId,Json,tid) values (" + TempData["atid"] + " , " + amid + " ,'" + json + "' , " + ttid + ")";
                 SqlCommand cmd = new SqlCommand(query, con);
                 cmd.ExecuteNonQuery();
                 con.Close();
@@ -1058,6 +1049,19 @@ namespace WillAssure.Controllers
                     con.Close();
                     string data = "";
 
+                    con.Open();
+                    string query2 = "select * from AssetInformation where tId =  " + Convert.ToInt32(dt.Rows[0]["tId"]) + " ";
+                    SqlDataAdapter da2 = new SqlDataAdapter(query2, con);
+                    DataTable dt2 = new DataTable();
+                    da2.Fill(dt2);
+                    con.Close();
+                    string popup = "";
+                    if (dt2.Rows.Count > 0)
+                    {
+                        popup = "true";
+
+                    }
+
 
 
 
@@ -1072,7 +1076,7 @@ namespace WillAssure.Controllers
 
 
 
-                            data = data + "<option value=" + dt.Rows[i]["tId"].ToString() + " >" + dt.Rows[i]["First_Name"].ToString() + "</option> " + "~" + dt.Rows[i]["tId"].ToString();
+                            data = data + "<option value=" + dt.Rows[i]["tId"].ToString() + " >" + dt.Rows[i]["First_Name"].ToString() + "</option> " + "~" + dt.Rows[i]["tId"].ToString() + "~" + popup;
 
 
 

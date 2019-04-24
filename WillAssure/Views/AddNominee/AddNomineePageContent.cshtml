@@ -475,7 +475,14 @@
                       var splitted = data.split("~"); 
                       $("#DDLTestator").append(splitted[0]); 
                       $("#ddltid").val(splitted[1]);
+                      var pop = splitted[2];
                       //$('#DDLTestator').append(data);
+                      if (pop == "true") {
+
+                          $("#confirmtestatorfamily").on("click", function () { });
+
+                          $("#confirmtestatorfamily").click(); //trigger event after listening to it.
+                      }
 
                      
 
@@ -654,22 +661,4 @@
 
 
 
-@if (ViewBag.popup == "true")
-{
-    <script>
 
-        $(document).ready(function () {
-
-
-            $("#confirmtestatorfamily").on("click", function () { });
-
-            $("#confirmtestatorfamily").click(); //trigger event after listening to it.
-
-
-
-
-        });
-    </script>
-
-
-}

@@ -199,7 +199,7 @@ namespace WillAssure.Controllers
             cmd.Parameters.AddWithValue("@Last_Name", BM.Last_Name);
             cmd.Parameters.AddWithValue("@Middle_Name", BM.Middle_Name);
           
-            cmd.Parameters.AddWithValue("@DOB",Convert.ToDateTime(BM.Dob).ToString("dd-MM-yyyy"));
+            cmd.Parameters.AddWithValue("@DOB",Convert.ToDateTime(BM.Dob));
             cmd.Parameters.AddWithValue("@Mobile", BM.Mobile);
             cmd.Parameters.AddWithValue("@Relationship", BM.RelationshipTxt);
             cmd.Parameters.AddWithValue("@Marital_Status", BM.Marital_Status);
@@ -247,7 +247,7 @@ namespace WillAssure.Controllers
                 cmd2.Parameters.AddWithValue("@Last_Name", BM.altLast_Name);
                 cmd2.Parameters.AddWithValue("@Middle_Name", BM.altMiddle_Name);
                 //DateTime dat2 = DateTime.ParseExact(BM.altDob, "dd-MM-yyyy", CultureInfo.InvariantCulture);
-                cmd2.Parameters.AddWithValue("@DOB", Convert.ToDateTime(BM.altDob).ToString("dd-MM-yyyy"));
+                cmd2.Parameters.AddWithValue("@DOB", Convert.ToDateTime(BM.altDob));
                 cmd2.Parameters.AddWithValue("@Mobile", BM.altMobile);
                 cmd2.Parameters.AddWithValue("@Relationship", BM.altRelationshipTxt);
                 cmd2.Parameters.AddWithValue("@Marital_Status", BM.altMarital_Status_Txt);

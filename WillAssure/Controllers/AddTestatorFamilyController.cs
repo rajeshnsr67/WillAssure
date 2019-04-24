@@ -23,16 +23,6 @@ namespace WillAssure.Controllers
         public ActionResult AddTestatorFamilyIndex()
         {
 
-            con.Open();
-            string query2 = "select count(*) as total from TestatorDetails a   inner join users b on a.uId = b.uId  where b.uId = " + Convert.ToInt32(Session["uuid"]) + " ";
-            SqlDataAdapter da2 = new SqlDataAdapter(query2, con);
-            DataTable dt2 = new DataTable();
-            da2.Fill(dt2);
-            con.Close();
-            if (Convert.ToInt32(dt2.Rows[0]["total"]) == 1)
-            {
-                ViewBag.popup = "true";
-            }
 
 
 
@@ -346,6 +336,18 @@ namespace WillAssure.Controllers
                     string data = "";
 
 
+                    con.Open();
+                    string query2 = "select * from testatorFamily where tId =  " + Convert.ToInt32(dt.Rows[0]["tId"]) + " ";
+                    SqlDataAdapter da2 = new SqlDataAdapter(query2, con);
+                    DataTable dt2 = new DataTable();
+                    da2.Fill(dt2);
+                    con.Close();
+                    string popup = "";
+                    if (dt2.Rows.Count > 0)
+                    {
+                        popup = "true";
+
+                    }
 
 
                     if (dt.Rows.Count > 0)
@@ -359,7 +361,7 @@ namespace WillAssure.Controllers
 
 
 
-                            data = data + "<option value=" + dt.Rows[i]["tId"].ToString() + " >" + dt.Rows[i]["First_Name"].ToString() + "</option> " +"~"+ dt.Rows[i]["tId"].ToString();
+                            data = data + "<option value=" + dt.Rows[i]["tId"].ToString() + " >" + dt.Rows[i]["First_Name"].ToString() + "</option> " +"~"+ dt.Rows[i]["tId"].ToString() + "~" + popup;
 
 
 

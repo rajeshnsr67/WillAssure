@@ -33,9 +33,29 @@ namespace WillAssure.Views.ViewDocument
             int documentId = Convert.ToInt32(Request.QueryString["NestId"]);
 
 
+            con.Open();
+
+           
+            string docstatus = "select adminVerification from documentMaster where tId =" + documentId + "";
+            SqlDataAdapter checkverify = new SqlDataAdapter(docstatus, con);
+            DataTable checkverifydt = new DataTable();
+            checkverify.Fill(checkverifydt);
+
+            if (checkverifydt.Rows.Count > 0)
+            {
+                if (Convert.ToInt32(checkverifydt.Rows[0]["adminVerification"]) == 1)
+                {
+                    btnverify.Visible = false;
+                }
+            }
+
+            con.Close();
+
+
+
             //check document matches with rules
             con.Open();
-            string checkquery = "select b.templateId , b.tId , a.documentType , a.category , a.guardian , a.executors_category , a.AlternateBenficiaries , a.AlternateGaurdian , a.AlternateExecutors from documentRules a inner join documentMaster b on a.wdId=b.wdId where a.tid =" + documentId+"";
+            string checkquery = "select b.templateId , b.tId , a.documentType , a.category , a.guardian , a.executors_category , a.AlternateBenficiaries , a.AlternateGaurdian , a.AlternateExecutors from documentRules a inner join documentMaster b on a.tid=b.tId where a.tid =" + documentId+"";
             SqlDataAdapter checkda = new SqlDataAdapter(checkquery, con);
             DataTable checkdt = new DataTable();
             checkda.Fill(checkdt);
@@ -115,7 +135,7 @@ namespace WillAssure.Views.ViewDocument
                 string beneficiarysirname = "";
                 string documenttype = "";
 
-                string query1 = "select top 1  a.First_Name as TestatorName , a.Last_Name as Testatorsirname , a.DOB as TestatorAge , a.RelationShip as TestatorRelationship , a.Address1 as TestatorAddress , b.First_Name as BeneficiaryName , b.Last_Name as Beneficiarysirname  , c.Name as executorname , d.Name as alternateexecutorname , e.Relationship as Relation , g.AssetsCategory , f.InstrumentName , b.First_Name as BeneficiaryName , f.Proportion     from TestatorDetails a inner join BeneficiaryDetails b on a.tId=b.tId inner join Appointees c on a.tId = c.tid  inner join Appointees d on a.tId=d.tid inner join testatorFamily e on a.tId=e.tId inner join BeneficiaryAssets f on a.tId=f.tid  inner join AssetsCategory g on g.amId=f.AssetCategory_ID inner join documentmaster h on h.uId=a.uid   where a.tId =  " + documentId + "";
+                string query1 = "select   a.First_Name as TestatorName , a.Last_Name as Testatorsirname , a.DOB as TestatorAge , a.RelationShip as TestatorRelationship , a.Address1 as TestatorAddress , b.First_Name as BeneficiaryName , b.Last_Name as Beneficiarysirname  , c.Name as executorname , d.Name as alternateexecutorname , e.Relationship as Relation , g.AssetsCategory , f.InstrumentName , b.First_Name as BeneficiaryName , f.Proportion  from TestatorDetails a inner join BeneficiaryDetails b on a.tId=b.tId inner join Appointees c on a.tId = c.tid inner join alternate_Appointees d on a.tId=d.tid   inner join testatorFamily e on a.tId=e.tId inner join BeneficiaryAssets f on a.tId=f.tid  inner join AssetsCategory g on g.amId=f.AssetCategory_ID    where a.tId =   " + documentId + "";
                 SqlDataAdapter da = new SqlDataAdapter(query1, con);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
@@ -419,7 +439,7 @@ namespace WillAssure.Views.ViewDocument
             //end
 
 
-
+            btnverify.Visible = false;
 
 
         }

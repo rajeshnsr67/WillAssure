@@ -20,5 +20,9 @@ namespace WillAssure.Models
         public string value { get; set; }
 
 
+        public string EmailId { get; set; }
+        public string Password { get; set; }
+
+
     }
 }

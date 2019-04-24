@@ -39,8 +39,9 @@
                             <table id="default-datatable" class="table table-bordered">
                                 <thead>
                                     <tr class="ui-widget-header">
-                                        <th>RoleId</th>
-                                        <th>RoleName</th>
+                                        <th>Id</th>
+                                        <th>Document Type</th>
+                                        <th>Value</th>
                                         <th id="title">Action</th>
 
                                     </tr>
@@ -115,7 +116,7 @@
 
 
                 var NestId = data
-                var url = "/UpdateRoles/UpdateRolesIndex?NestId=" + NestId;
+                var url = "/UpdateSetting/UpdateSettingIndex?NestId=" + NestId;
                 window.location.href = url;
 
 

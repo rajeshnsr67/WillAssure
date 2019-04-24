@@ -25,16 +25,7 @@ namespace WillAssure.Controllers
         public ActionResult AddAssetMappingIndex()
         {
 
-            con.Open();
-            string qery3 = "select count(*) as total from TestatorDetails a   inner join users b on a.uId = b.uId  where b.uId = " + Convert.ToInt32(Session["uuid"]) + " ";
-            SqlDataAdapter daw3 = new SqlDataAdapter(qery3, con);
-            DataTable dtw3 = new DataTable();
-            daw3.Fill(dtw3);
-            con.Close();
-            if (Convert.ToInt32(dtw3.Rows[0]["total"]) == 1)
-            {
-                ViewBag.popup = "true";
-            }
+      
 
             con.Open();
             string query2 = "select count(*) as total from TestatorDetails a   inner join users b on a.uId = b.uId  where b.uId = " + Convert.ToInt32(Session["uuid"]) + " ";
@@ -983,7 +974,21 @@ namespace WillAssure.Controllers
                     con.Close();
                     string data = "";
 
+                   
+                        con.Open();
+                        string query2 = "select * from BeneficiaryAssets where tid =  " + Convert.ToInt32(dt.Rows[0]["tId"]) + " ";
+                        SqlDataAdapter da2 = new SqlDataAdapter(query2, con);
+                        DataTable dt2 = new DataTable();
+                        da2.Fill(dt2);
+                        con.Close();
+                        string popup = "";
+                        if (dt2.Rows.Count > 0)
+                        {
+                            popup = "true";
 
+                        }
+
+                    
 
 
                     if (dt.Rows.Count > 0)
@@ -997,7 +1002,7 @@ namespace WillAssure.Controllers
 
 
 
-                            data = data + "<option value=" + dt.Rows[i]["tId"].ToString() + " >" + dt.Rows[i]["First_Name"].ToString() + "</option> " + "~" + dt.Rows[i]["tId"].ToString();
+                            data = data + "<option value=" + dt.Rows[i]["tId"].ToString() + " >" + dt.Rows[i]["First_Name"].ToString() + "</option> " + "~" + dt.Rows[i]["tId"].ToString() + "~" + popup;
 
 
 
@@ -1007,6 +1012,7 @@ namespace WillAssure.Controllers
 
 
                     }
+                   
 
                     return data;
 

@@ -337,8 +337,9 @@ namespace WillAssure.Controllers
             cmd.Parameters.AddWithValue("@Alt_Identity_proof", AM.Alt_Identity_Proof);
             cmd.Parameters.AddWithValue("@Alt_Identity_proof_value", AM.Alt_Identity_Proof_Value);
             //DateTime dat = DateTime.ParseExact(AM.Dob, "dd-MM-yyyy", CultureInfo.InvariantCulture);
-
-            cmd.Parameters.AddWithValue("@DOB", Convert.ToDateTime(AM.Dob).ToString("dd-MM-yyyy"));
+           
+    
+            cmd.Parameters.AddWithValue("@DOB", Convert.ToDateTime(AM.Dob));
             cmd.Parameters.AddWithValue("@Gender", AM.Gender);
             cmd.Parameters.AddWithValue("@Occupation", AM.Occupation);
             cmd.Parameters.AddWithValue("@Relationship", AM.RelationshipTxt);

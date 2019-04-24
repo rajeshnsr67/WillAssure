@@ -22,16 +22,7 @@ namespace WillAssure.Controllers
         public ActionResult AddNomineeIndex()
         {
 
-            con.Open();
-            string query2 = "select count(*) as total from TestatorDetails a   inner join users b on a.uId = b.uId  where b.uId = " + Convert.ToInt32(Session["uuid"]) + " ";
-            SqlDataAdapter da2 = new SqlDataAdapter(query2, con);
-            DataTable dt2 = new DataTable();
-            da2.Fill(dt2);
-            con.Close();
-            if (Convert.ToInt32(dt2.Rows[0]["total"]) == 1)
-            {
-                ViewBag.popup = "true";
-            }
+        
 
             if (Session["rId"] == null || Session["uuid"] == null)
             {
@@ -130,14 +121,14 @@ namespace WillAssure.Controllers
 
             
 
-            if (Convert.ToInt32(Session["aiid"]) != 0)
-            {
-                NM.aid = Convert.ToInt32(Session["aiid"]);
-            }
-            else
-            {
+            //if (Convert.ToInt32(Session["aiid"]) != 0)
+            //{
+            //    NM.aid = Convert.ToInt32(Session["aiid"]);
+            //}
+            //else
+            //{
                 NM.aid = 0;
-            }
+            //}
 
             //end
 
@@ -368,6 +359,18 @@ namespace WillAssure.Controllers
                     con.Close();
                     string data = "";
 
+                    con.Open();
+                    string query2 = "select * from Nominee where tId =  " + Convert.ToInt32(dt.Rows[0]["tId"]) + " ";
+                    SqlDataAdapter da2 = new SqlDataAdapter(query2, con);
+                    DataTable dt2 = new DataTable();
+                    da2.Fill(dt2);
+                    con.Close();
+                    string popup = "";
+                    if (dt2.Rows.Count > 0)
+                    {
+                        popup = "true";
+
+                    }
 
 
 
@@ -382,7 +385,7 @@ namespace WillAssure.Controllers
 
 
 
-                            data = data + "<option value=" + dt.Rows[i]["tId"].ToString() + " >" + dt.Rows[i]["First_Name"].ToString() + "</option> " + "~" + dt.Rows[i]["tId"].ToString();
+                            data = data + "<option value=" + dt.Rows[i]["tId"].ToString() + " >" + dt.Rows[i]["First_Name"].ToString() + "</option> " + "~" + dt.Rows[i]["tId"].ToString() +"~" + popup;
 
 
 

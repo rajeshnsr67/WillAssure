@@ -572,8 +572,8 @@
 
 
                             <div class="form-group">
-                                <button type="submit" id="btnDistributorformsubmit"  class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i>Add Appointees</button>
-
+                                <button type="submit" id="btnDistributorformsubmit" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i>Add Appointees</button>
+                                <button type="button" style="display:none;" id="confirmtestatorfamily"></button>
 
                             </div>
                         }
@@ -718,7 +718,14 @@
                       var splitted = data.split("~"); 
                       $("#DDLTestator").append(splitted[0]); 
                       $("#ddltid").val(splitted[1]);
+                      var pop = splitted[2];
                       //$('#DDLTestator').append(data);
+                      if (pop == "true") {
+
+                          $("#confirmtestatorfamily").on("click", function () { });
+
+                          $("#confirmtestatorfamily").click(); //trigger event after listening to it.
+                      }
 
                      
 
@@ -1209,6 +1216,43 @@
         });
     });
 
+
+
+
+
+
+
+    $("#confirmtestatorfamily").click(function () {
+
+        swal({
+
+            text: 'Testator Data Already Exists Do You Want To Add More!',
+            icon: 'warning',
+            buttons: true,
+            dangerMode: true,
+            buttons: ['No', 'Yes']
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+
+
+
+                } else {
+
+
+
+
+
+                    var url = "/WillDetails/WillDetailsIndex/";
+                    window.location.href = url;
+
+
+
+
+                }
+            });
+
+    });
 
 
 </script>

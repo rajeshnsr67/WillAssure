@@ -20,6 +20,8 @@ namespace WillAssure.Models
         public string Nav1 { get; set; }
         public string Nav2 { get; set; }
 
+        public string EmailID { get; set; }
+
 
     }
 }

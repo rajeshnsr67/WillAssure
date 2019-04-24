@@ -664,6 +664,20 @@ namespace WillAssure.Controllers
                     string data = "";
 
 
+                    con.Open();
+                    string query2 = "select * from Appointees where tId =  " + Convert.ToInt32(dt.Rows[0]["tId"]) + " ";
+                    SqlDataAdapter da2 = new SqlDataAdapter(query2, con);
+                    DataTable dt2 = new DataTable();
+                    da2.Fill(dt2);
+                    con.Close();
+                    string popup = "";
+                    if (dt2.Rows.Count > 0)
+                    {
+                        popup = "true";
+
+                    }
+
+
 
 
                     if (dt.Rows.Count > 0)
@@ -677,7 +691,7 @@ namespace WillAssure.Controllers
 
 
 
-                            data = data + "<option value=" + dt.Rows[i]["tId"].ToString() + " >" + dt.Rows[i]["First_Name"].ToString() + "</option> " + "~" + dt.Rows[i]["tId"].ToString();
+                            data = data + "<option value=" + dt.Rows[i]["tId"].ToString() + " >" + dt.Rows[i]["First_Name"].ToString() + "</option> " + "~" + dt.Rows[i]["tId"].ToString() +"~"+popup;
 
 
 

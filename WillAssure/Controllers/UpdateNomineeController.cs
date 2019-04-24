@@ -226,7 +226,7 @@ namespace WillAssure.Controllers
             cmd.Parameters.AddWithValue("@Last_Name", NM.Last_Name);
             cmd.Parameters.AddWithValue("@Middle_Name", NM.Middle_Name);
             //DateTime dat = DateTime.ParseExact(Convert.ToDateTime(NM.Dob), "dd-MM-yyyy", CultureInfo.InvariantCulture);
-            cmd.Parameters.AddWithValue("@DOB", Convert.ToDateTime(NM.Dob).ToString("dd-MM-yyyy"));
+            cmd.Parameters.AddWithValue("@DOB", Convert.ToDateTime(NM.Dob));
             cmd.Parameters.AddWithValue("@Mobile", NM.Mobile);
             cmd.Parameters.AddWithValue("@Relationship", NM.RelationshipTxt);
             cmd.Parameters.AddWithValue("@Marital_Status", NM.Marital_Status);
