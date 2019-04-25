@@ -112,5 +112,69 @@ namespace WillAssure.Controllers
 
 
 
+        public String BindAssetTypeDDL()
+        {
+
+            con.Open();
+            string query = "select * from AssetsType";
+            SqlDataAdapter da = new SqlDataAdapter(query, con);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            con.Close();
+            string data = "<option value=''>--Select--</option>";
+
+            if (dt.Rows.Count > 0)
+            {
+
+
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+
+
+
+
+                    data = data + "<option value=" + dt.Rows[i]["atId"].ToString() + " >" + dt.Rows[i]["AssetsType"].ToString() + "</option> ";
+
+
+
+                }
+
+
+
+            }
+
+            return data;
+
+        }
+
+        public string bindassetcatDDL()
+        {
+            int response = Convert.ToInt32(Request["send"]);
+            string ddlassetcat = "<option value=''>--Select--</option>";
+            con.Open();
+            string query3 = "select * from AssetsCategory where atId = " + response + " ";
+            SqlDataAdapter da3 = new SqlDataAdapter(query3, con);
+            DataTable dt3 = new DataTable();
+            da3.Fill(dt3);
+            con.Close();
+
+
+            if (dt3.Rows.Count > 0)
+            {
+
+                for (int i = 0; i < dt3.Rows.Count; i++)
+                {
+
+                    ddlassetcat = ddlassetcat + "<option value=" + dt3.Rows[i]["amId"] + "  onchange='getassetcatid(this.value)'  >" + dt3.Rows[i]["AssetsCategory"] + "</option>";
+
+                }
+
+            }
+
+            return ddlassetcat;
+        }
+
+
+
     }
 }

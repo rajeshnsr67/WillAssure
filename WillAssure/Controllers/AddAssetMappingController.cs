@@ -90,10 +90,41 @@ namespace WillAssure.Controllers
 
         public String BindBeneficiaryDDL()
         {
+
+            string ck = "select type from users where uId =" + Convert.ToInt32(Session["uuid"]) + "";
+            SqlDataAdapter cda = new SqlDataAdapter(ck, con);
+            DataTable cdt = new DataTable();
+            cda.Fill(cdt);
+            string type = "";
+            if (cdt.Rows.Count > 0)
+            {
+                type = cdt.Rows[0]["type"].ToString();
+
+            }
+            string d = "";
+
+            if (type == "Testator")
+            {
+                d = "select a.aiid, a.bpId , a.First_Name from BeneficiaryDetails a inner join TestatorDetails b on a.tId = b.tId inner join users c on b.uId=c.uId where c.uId = " + Convert.ToInt32(Session["uuid"]) + " ";
+            }
+            else if (type == "SuperAdmin")
+            {
+                d = "select a.aiid, a.bpId , a.First_Name from BeneficiaryDetails a inner join TestatorDetails b on a.tId = b.tId  ";
+            }
+            else
+            {
+                
+                d = "select a.aiid, a.bpId , a.First_Name from BeneficiaryDetails a inner join TestatorDetails b on a.tId = b.tId inner join users c on b.uId=c.uId where c.Linked_user = " + Convert.ToInt32(Session["uuid"]) + " ";
+            }
+
+
+           
+
+
             string data = "<option value='0'>--Select--</option>";
             con.Open();
-            string query1 = "select aiid, bpId , First_Name from BeneficiaryDetails";
-            SqlDataAdapter da1 = new SqlDataAdapter(query1, con);
+
+            SqlDataAdapter da1 = new SqlDataAdapter(d, con);
             DataTable dt1 = new DataTable();
             da1.Fill(dt1);
             con.Close();
@@ -192,6 +223,32 @@ namespace WillAssure.Controllers
         {
             int response = Convert.ToInt32(Request["send"]);
 
+
+            string ck = "select type from users where uId =" + Convert.ToInt32(Session["uuid"]) + "";
+            SqlDataAdapter cda = new SqlDataAdapter(ck, con);
+            DataTable cdt = new DataTable();
+            cda.Fill(cdt);
+            string type = "";
+            if (cdt.Rows.Count > 0)
+            {
+                type = cdt.Rows[0]["type"].ToString();
+
+            }
+            string d = "";
+
+            if (type == "Testator")
+            {
+                d = "select a.aiid , a.atId , a.amId  , a.tid , a.docid , a.Json from  AssetInformation a inner join TestatorDetails b on a.tid=b.tId inner join users c on b.uId=c.uId where c.uId = " + Convert.ToInt32(Session["uuid"]) + " ";
+            }
+            else if (type == "SuperAdmin")
+            {
+                d = "select a.aiid , a.atId , a.amId  , a.tid , a.docid , a.Json from AssetInformation a inner join TestatorDetails b on a.tid=b.tId  ";
+            }
+            else
+            {
+
+                d = "select a.aiid , a.atId , a.amId  , a.tid , a.docid , a.Json from AssetInformation a inner join TestatorDetails b on a.tid=b.tId inner join users c on b.uId=c.uId where c.Linked_user = " + Convert.ToInt32(Session["uuid"]) + " ";
+            }
 
 
 
