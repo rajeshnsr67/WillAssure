@@ -153,6 +153,8 @@ namespace WillAssure.Controllers
                 qry = qry + "insert into Assignment_Roles (RoleId,PageName,Nav1,Nav2) values (" + roleid + " ,'Beneficiary','Add Beneficiary~AddBeneficiaryIndex~AddBeneficiary','View Beneficiary~EditBeneficiaryIndex~EditBeneficiary')";
                 qry = qry + "insert into Assignment_Roles (RoleId,PageName,Nav1,Nav2) values (" + roleid + " ,'AssetInformation','Add Assets~AddMainAssetsIndex~AddMainAssets','View Assets~EditMainAssetsIndex~EditMainAssets')";
                 qry = qry + "insert into Assignment_Roles (RoleId,PageName,Nav1,Nav2) values (" + roleid + " ,'Mapping','Mapping~AddAssetMappingIndex~AddAssetMapping','NULL~NULL~NULL')";
+                qry = qry + "insert into Assignment_Roles (RoleId,PageName,Nav1,Nav2) values (" + roleid + " ,'Liabilities','Add Liabilities~AddLiabilitiesIndex~AddLiabilities','View Liabilities~EditLiabilitiesIndex~EditLiabilities')";
+                qry = qry + "insert into Assignment_Roles (RoleId,PageName,Nav1,Nav2) values (" + roleid + " ,'PetCare','Add PetCare~AddPetCareIndex~AddPetCare','View PetCare~EditPetCareIndex~EditPetCare')";
                 qry = qry + "insert into Assignment_Roles (RoleId,PageName,Nav1,Nav2) values (" + roleid + " ,'Nominee','Add Nominee~AddNomineeIndex~AddNominee','View Nominee~EditNomineeIndex~EditNominee')";
                 qry = qry + "insert into Assignment_Roles (RoleId,PageName,Nav1,Nav2) values (" + roleid + " ,'Appointees','Add Appointees~AddAppointeesIndex~AddAppointees','View Appointees~EditAppointeesIndex~EditAppointees')";
                 qry = qry + "insert into Assignment_Roles (RoleId,PageName,Nav1,Nav2) values (" + roleid + " ,'Document','View Document~ViewDocumentIndex~ViewDocument','NULL~NULL~NULL')";
@@ -279,7 +281,7 @@ namespace WillAssure.Controllers
                 {
                     con.Open();
                     string qry = "";
-                
+
 
                     qry = qry + "insert into Assignment_Roles (RoleId,PageName,Nav1,Nav2) values (" + response + " , 'Roles',' Add Roles~RoleAddIndex~RoleAdd','Edit Roles~EditRoleIndex~EditRole')";
                     qry = qry + "insert into Assignment_Roles (RoleId,PageName,Nav1,Nav2) values (" + response + " ,'AssignRoles','Assign~AddRoleAssignmentIndex~AddRoleAssignment','NULL~NULL~NULL')";
@@ -299,10 +301,11 @@ namespace WillAssure.Controllers
                     qry = qry + "insert into Assignment_Roles (RoleId,PageName,Nav1,Nav2) values (" + response + " ,'Beneficiary','Add Beneficiary~AddBeneficiaryIndex~AddBeneficiary','View Beneficiary~EditBeneficiaryIndex~EditBeneficiary')";
                     qry = qry + "insert into Assignment_Roles (RoleId,PageName,Nav1,Nav2) values (" + response + " ,'AssetInformation','Add Assets~AddMainAssetsIndex~AddMainAssets','View Assets~EditMainAssetsIndex~EditMainAssets')";
                     qry = qry + "insert into Assignment_Roles (RoleId,PageName,Nav1,Nav2) values (" + response + " ,'Mapping','Mapping~AddAssetMappingIndex~AddAssetMapping','NULL~NULL~NULL')";
+                    qry = qry + "insert into Assignment_Roles (RoleId,PageName,Nav1,Nav2) values (" + response + " ,'Liabilities','Add Liabilities~AddLiabilitiesIndex~AddLiabilities','View Liabilities~EditLiabilitiesIndex~EditLiabilities')";
+                    qry = qry + "insert into Assignment_Roles (RoleId,PageName,Nav1,Nav2) values (" + response + " ,'PetCare','Add PetCare~AddPetCareIndex~AddPetCare','View PetCare~EditPetCareIndex~EditPetCare')";
                     qry = qry + "insert into Assignment_Roles (RoleId,PageName,Nav1,Nav2) values (" + response + " ,'Nominee','Add Nominee~AddNomineeIndex~AddNominee','View Nominee~EditNomineeIndex~EditNominee')";
                     qry = qry + "insert into Assignment_Roles (RoleId,PageName,Nav1,Nav2) values (" + response + " ,'Appointees','Add Appointees~AddAppointeesIndex~AddAppointees','View Appointees~EditAppointeesIndex~EditAppointees')";
                     qry = qry + "insert into Assignment_Roles (RoleId,PageName,Nav1,Nav2) values (" + response + " ,'Document','View Document~ViewDocumentIndex~ViewDocument','NULL~NULL~NULL')";
-
 
 
                     SqlCommand cmd = new SqlCommand(qry, con);

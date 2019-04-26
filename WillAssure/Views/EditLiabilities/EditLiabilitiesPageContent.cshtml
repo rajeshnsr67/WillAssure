@@ -1,0 +1,206 @@
+﻿
+@{
+    ViewBag.Title = "EditLiabilitiesPageContent";
+}
+
+
+
+@*Main Content*@
+<div class="content-wrapper">
+    <div class="container-fluid">
+
+        <div class="row pt-2 pb-2">
+
+            <div class="col-sm-3">
+                <div class="btn-group float-sm-right">
+
+                    <div class="dropdown-menu">
+                        <a href="javaScript:void();" class="dropdown-item">Action</a>
+                        <a href="javaScript:void();" class="dropdown-item">Another action</a>
+                        <a href="javaScript:void();" class="dropdown-item">Something else here</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="javaScript:void();" class="dropdown-item">Separated link</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Breadcrumb-->
+
+
+
+
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header"><i class="fa fa-table"></i>Role Data</div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="default-datatable" class="table table-bordered">
+                                <thead>
+                                    <tr class="ui-widget-header">
+                                        <th>lId</th>
+                                        <th>Amount</th>
+                                        <th>Type</th>
+                                        <th>Name</th>
+                                        <th>address</th>
+                                        <th>city</th>
+                                        <th>state</th>
+                                        <th>pin</th>
+                                        <th>Mobile</th>
+                                        <th>Details</th>
+                                        <th id="title">Action</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody id="LiabilitieData"></tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- End Row-->
+
+        <input type="button" style="display:none" id="btndeleteroles" name="name" value="" />
+
+    </div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+@*end*@
+
+
+
+
+
+<script>
+
+    $(document).ready(function () {
+
+        $.ajax({
+
+            type: "POST",
+            url:"@Url.Action("BindLiabilitiesFormData", "EditLiabilities")",
+            success: function (data) {
+                $('#LiabilitieData').empty().append(data);
+            }
+        });
+
+
+    });
+
+
+
+
+</script>
+
+<script>
+
+
+    function Edit(id) {
+
+
+        var id = id;
+
+
+
+            $.ajax({
+
+            type: "POST",
+            url: "@Url.Action("UpdateLiabilities", "EditLiabilities")",
+            data: {  "send": "" + id + ""   },
+            success: function (data) {
+
+
+                var NestId = data
+                var url = "/UpdateLiabilities/UpdateLiabilitiesIndex?NestId=" + NestId;
+                window.location.href = url;
+
+
+            }
+
+
+
+        });
+
+    }
+
+
+
+    $(document).on('click', '.deletenotification', function () {
+
+        var $tr = $(this).closest('tr');
+        var id = $(this).attr('id');
+
+        swal({
+            title: "Are you sure?",
+            text: "Once deleted, you will not be able to recover this record!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+            .then(name => {
+                if (!name) throw null;
+
+                  $.ajax({
+
+            type: "POST",
+            url: "@Url.Action("DeleteLiabilitiesRecords", "EditLiabilities")",
+            data: {  "send": "" + id + ""   },
+            success: function (data) {
+                $("#btndeleteroles").on("click", function () { });
+
+                $("#btndeleteroles").click(); //trigger event after listening to it.
+
+                $('#LiabilitieData').empty().append(data).reload();
+               }
+                 });
+            })
+            .then(results => {
+                return results.json();
+            })
+            .then(json => {
+                const message = json.message;
+                const response = json.response;
+                if (response == 0) {
+                    $tr.fadeOut();
+                    swal({
+                        title: 'Deleted',
+                        text: message,
+                        icon: "success",
+                    })
+                        .then(willDelete => {
+
+                        })
+                }
+            })
+            //.catch(err => {
+            //    if (err) {
+            //        swal("Oh noes!", "The AJAX request failed!", "error");
+            //    } else {
+            //        swal.stopLoading();
+            //        swal.close();
+            //    }
+            //});
+    });
+
+
+
+
+
+</script>
+
+
+
+
+

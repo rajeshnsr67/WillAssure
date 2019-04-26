@@ -218,6 +218,20 @@
                                                 <td><label class="checkbox-inline"><input type="checkbox" class="delete" id="SettingDelete">Delete</label></td>
                                             </tr>
 
+                                            <tr>
+                                                <td style="font-weight:bolder"><input type="checkbox" id="Liabilities">Liabilities</td>
+                                                <td><label class="checkbox-inline"><input type="checkbox" class="insert" id="LiabilitiesAdd">Add</label></td>
+                                                <td><label class="checkbox-inline"><input type="checkbox" class="update" id="LiabilitiesEdit">Edit</label></td>
+                                                <td><label class="checkbox-inline"><input type="checkbox" class="delete" id="LiabilitiesDelete">Delete</label></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td style="font-weight:bolder"><input type="checkbox" id="PetCare">PetCare</td>
+                                                <td><label class="checkbox-inline"><input type="checkbox" class="insert" id="PetCareAdd">Add</label></td>
+                                                <td><label class="checkbox-inline"><input type="checkbox" class="update" id="PetCareEdit">Edit</label></td>
+                                                <td><label class="checkbox-inline"><input type="checkbox" class="delete" id="PetCareDelete">Delete</label></td>
+                                            </tr>
+
 
 
                                         </tbody>
@@ -257,8 +271,8 @@
                     <input type="hidden" id="22" value="" />
                     <input type="hidden" id="23" value="" />
                     <input type="hidden" id="24" value="" />
-
-
+                    <input type="hidden" id="25" value="" />
+                    <input type="hidden" id="26" value="" />
 
                 </div>
             </div>
@@ -347,6 +361,8 @@
         $("#Payment").prop("checked", false);
         $("#CouponAllotment").prop("checked", false);
         $("#Setting").prop("checked", false);
+        $("#Liabilities").prop("checked", false);
+        $("#PetCare").prop("checked", false);
 
 
 
@@ -371,8 +387,8 @@
         $("#PaymentAdd").prop("checked", false);
         $("#CouponAllotmentAdd").prop("checked", false);
         $("#SettingAdd").prop("checked", false);
-
-
+        $("#LiabilitiesAdd").prop("checked", false); 
+        $("#PetCareAdd").prop("checked", false);
 
          $("#RolesEdit").prop("checked", false);
         $("#AssignRolesEdit").prop("checked", false);
@@ -395,6 +411,9 @@
         $("#PaymentEdit").prop("checked", false);
         $("#CouponAllotmentEdit").prop("checked", false);
         $("#SettingEdit").prop("checked", false);
+        $("#LiabilitiesEdit").prop("checked", false); 
+        $("#PetCareEdit").prop("checked", false);
+
 
         $("#RolesDelete").prop("checked", false);
         $("#AssignRolesDelete").prop("checked", false);
@@ -417,8 +436,8 @@
         $("#PaymentDelete").prop("checked", false);
         $("#CouponAllotmentDelete").prop("checked", false);
         $("#SettingDelete").prop("checked", false);
-
-   
+        $("#LiabilitiesDelete").prop("checked", false); 
+        $("#PetCareDelete").prop("checked", false);
         
 
           $.ajax({
@@ -582,6 +601,14 @@
 
         var status24 = "";
         var data24 = "";
+
+
+        var status25 = "";
+        var data25 = "";
+
+        var status26 = "";
+        var data26 = "";
+       
 
         // for role
         if ($("#Roles").is(':checked')) {
@@ -1442,12 +1469,79 @@
 
 
 
+        // for Liabilities
+        if ($("#Liabilities").is(':checked')) {
+            status25 = status25 + "Active";
+        }
+        else {
+
+            status25 = status25 + "Inactive";
+        }
+
+        if ($("#LiabilitiesAdd").is(':checked')) {
+            data25 = data25 + "1,";
+        }
+        else {
+            data25 = data25 + "0,";
+        }
+        if ($("#LiabilitiesEdit").is(':checked')) {
+            data25 = data25 + "2,";
+        }
+        else {
+            data25 = data25 + "0,";
+        }
+        if ($("#LiabilitiesDelete").is(':checked')) {
+            data25 = data25 + "3";
+        }
+        else {
+            data25 = data25 + "0";
+        }
+
+
+        $("#25").val("update Assignment_Roles set  PageStatus= '" + status25 + "'  , Action = '" + data25 + "' where PageName = 'Liabilities' and RoleId = " + roleid + " ");
+
+        //end
+
+
+        // for PetCare
+        if ($("#PetCare").is(':checked')) {
+            status26 = status26 + "Active";
+        }
+        else {
+
+            status26 = status26 + "Inactive";
+        }
+
+        if ($("#PetCareAdd").is(':checked')) {
+            data26 = data26 + "1,";
+        }
+        else {
+            data26 = data26 + "0,";
+        }
+        if ($("#PetCareEdit").is(':checked')) {
+            data26 = data26 + "2,";
+        }
+        else {
+            data26 = data26 + "0,";
+        }
+        if ($("#PetCareDelete").is(':checked')) {
+            data26 = data26 + "3";
+        }
+        else {
+            data26 = data26 + "0";
+        }
+
+
+        $("#26").val("update Assignment_Roles set  PageStatus= '" + status26 + "'  , Action = '" + data26 + "' where PageName = 'PetCare' and RoleId = " + roleid + " ");
+
+        //end
+
 
 
 
 
       //  + $("#2").val() + "~"
-        var AllData = $("#1").val() + "~" + $("#3").val() + "~" + $("#4").val() + "~" + $("#5").val() + "~" + $("#6").val() + "~" + $("#7").val() + "~" + $("#8").val() + "~" + $("#9").val() + "~" + $("#10").val() + "~" + $("#11").val() + "~" + $("#12").val() + "~" + $("#13").val() + "~" + $("#14").val() + "~" + $("#15").val() + "~" + $("#16").val() + "~" + $("#17").val() + "~" + $("#18").val() + "~" + $("#19").val() + "~" + $("#20").val() + "~" + $("#21").val() + "~" + $("#22").val() + "~" + $("#23").val() + "~" + $("#24").val();
+        var AllData = $("#1").val() + "~" + $("#3").val() + "~" + $("#4").val() + "~" + $("#5").val() + "~" + $("#6").val() + "~" + $("#7").val() + "~" + $("#8").val() + "~" + $("#9").val() + "~" + $("#10").val() + "~" + $("#11").val() + "~" + $("#12").val() + "~" + $("#13").val() + "~" + $("#14").val() + "~" + $("#15").val() + "~" + $("#16").val() + "~" + $("#17").val() + "~" + $("#18").val() + "~" + $("#19").val() + "~" + $("#20").val() + "~" + $("#21").val() + "~" + $("#22").val() + "~" + $("#23").val() + "~" + $("#24").val() + "~" + $("#25").val() + "~" + $("#26").val(); 
 
 
           $.ajax({
@@ -1642,9 +1736,20 @@
         $("input[id='SettingAdd']").not(this).prop('checked', this.checked);
         $("input[id='SettingEdit']").not(this).prop('checked', this.checked);
         $("input[id='SettingDelete']").not(this).prop('checked', this.checked);
+    }); 
+
+    $("#Liabilities").click(function () {
+        $("input[id='LiabilitiesAdd']").not(this).prop('checked', this.checked);
+        $("input[id='LiabilitiesEdit']").not(this).prop('checked', this.checked);
+        $("input[id='LiabilitiesDelete']").not(this).prop('checked', this.checked);
+    }); 
+
+
+    $("#PetCare").click(function () {
+        $("input[id='PetCareAdd']").not(this).prop('checked', this.checked);
+        $("input[id='PetCareEdit']").not(this).prop('checked', this.checked);
+        $("input[id='PetCareDelete']").not(this).prop('checked', this.checked);
     });
-
-
 </script>
 
 

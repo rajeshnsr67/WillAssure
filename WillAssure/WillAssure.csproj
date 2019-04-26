@@ -195,9 +195,11 @@
     <Compile Include="Controllers\AddDistributorController.cs" />
     <Compile Include="Controllers\AddDistributorEmployeeController.cs" />
     <Compile Include="Controllers\AddDocumentController.cs" />
+    <Compile Include="Controllers\AddLiabilitiesController.cs" />
     <Compile Include="Controllers\AddMainAssetsController.cs" />
     <Compile Include="Controllers\AddNomineeController.cs" />
     <Compile Include="Controllers\AddDocumentAllotmentController.cs" />
+    <Compile Include="Controllers\AddPetCareController.cs" />
     <Compile Include="Controllers\AddRelationController.cs" />
     <Compile Include="Controllers\AddRoleAssignmentController.cs" />
     <Compile Include="Controllers\AddTemplateMasterController.cs" />
@@ -225,8 +227,10 @@
     <Compile Include="Controllers\EditDistributorController.cs" />
     <Compile Include="Controllers\EditDistributorEmployeeController.cs" />
     <Compile Include="Controllers\EditDocumentController.cs" />
+    <Compile Include="Controllers\EditLiabilitiesController.cs" />
     <Compile Include="Controllers\EditMainAssetsController.cs" />
     <Compile Include="Controllers\EditNomineeController.cs" />
+    <Compile Include="Controllers\EditPetCareController.cs" />
     <Compile Include="Controllers\EditRelationController.cs" />
     <Compile Include="Controllers\EditRoleController.cs" />
     <Compile Include="Controllers\EditSettingController.cs" />
@@ -250,6 +254,7 @@
     <Compile Include="Controllers\UpdateDistributorController.cs" />
     <Compile Include="Controllers\UpdateDistributorEmployeeController.cs" />
     <Compile Include="Controllers\UpdateEditFormController.cs" />
+    <Compile Include="Controllers\UpdateLiabilitiesController.cs" />
     <Compile Include="Controllers\UpdateMainAssetsController.cs" />
     <Compile Include="Controllers\UpdateNomineeController.cs" />
     <Compile Include="Controllers\UpdateRolesController.cs" />
@@ -308,11 +313,13 @@
     <Compile Include="Models\DistributorFormModel.cs" />
     <Compile Include="Models\DynamicMenuModel.cs" />
     <Compile Include="Models\EmailVerificationModel.cs" />
+    <Compile Include="Models\LiabilitiesModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\MainAssetsModel.cs" />
     <Compile Include="Models\MemberModelcs.cs" />
     <Compile Include="Models\NomineeModel.cs" />
     <Compile Include="Models\PaymentModel.cs" />
+    <Compile Include="Models\PetCareModel.cs" />
     <Compile Include="Models\RoleAssignModel.cs" />
     <Compile Include="Models\RoleFormModel.cs" />
     <Compile Include="Models\TemplateMasterModel.cs" />
@@ -1237,6 +1244,11 @@
     <Content Include="Views\UpdateBeneficiaryMapping\UpdateBeneficiaryMappingPageContent.cshtml" />
     <Content Include="Views\UpdateSetting\UpdateSettingPageContent.cshtml" />
     <Content Include="Views\ChangePassword\ChangePasswordPageContent.cshtml" />
+    <Content Include="Views\AddLiabilities\AddLiabilitiesPageContent.cshtml" />
+    <Content Include="Views\EditLiabilities\EditLiabilitiesPageContent.cshtml" />
+    <Content Include="Views\AddPetCare\AddPetCarePageContent.cshtml" />
+    <Content Include="Views\EditPetCare\EditPetCarePageContent.cshtml" />
+    <Content Include="Views\UpdateLiabilities\UpdateLiabilitiesPageContent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,396 @@
+﻿
+@model WillAssure.Models.LiabilitiesModel
+@{
+    ViewBag.Title = "UpdateLiabilitiesPageContent";
+}
+
+
+
+@*Main Content*@
+<div class="content-wrapper">
+    <div class="container-fluid">
+
+        <div class="row pt-2 pb-2">
+
+            <div class="col-sm-3">
+                <div class="btn-group float-sm-right">
+
+                    <div class="dropdown-menu">
+                        <a href="javaScript:void();" class="dropdown-item">Action</a>
+                        <a href="javaScript:void();" class="dropdown-item">Another action</a>
+                        <a href="javaScript:void();" class="dropdown-item">Something else here</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="javaScript:void();" class="dropdown-item">Separated link</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Breadcrumb-->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+
+                        <div class="card-title text-primary">Update Liabilities</div>
+
+                        <hr>
+
+                        @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "RoleForm" }))
+                        {
+                            <div class="row">
+                                <div class='col-sm-1'><label for='input-1' style="line-height:40px;">Testator</label></div>
+                                <div class="col-sm-3">
+                                    <select id='DDLTestator' onchange="getDDLTestator(this.value)" name="contentList" class='form-control validate[required]'></select>
+
+
+
+
+
+
+
+                                </div>
+
+                            </div>
+                            <hr>
+                            <input type="hidden" id="txtcheck" value="" name="name" />
+
+                            @Html.HiddenFor(m => m.ddltid, new { id = "ddltid" })
+                            @Html.HiddenFor(m => m.ddltestatorname, new { id = "ddltestatorname" })
+
+                            <div class="row">
+                                <div class="col-sm-6">
+
+                                    <div class="form-group">
+                                        <label for="input-1">Amount</label>
+
+                                        @Html.TextBoxFor(m => m.Amount, new { @class = "form-control validate[required,custom[number]] text-input", @id = "txtAmount", @placeholder = "Enter Amount", @autocomplete = "off", alert = "LabourCost is requried" })
+                                    </div>
+                                </div>
+
+
+                                <div class="col-sm-6">
+
+                                    <div class="form-group">
+                                        <label for="input-1">Type</label>
+
+                                        @Html.TextBoxFor(m => m.Type, new { @class = "form-control validate[required,custom[characteronly]] text-input", @id = "txtType", @placeholder = "Enter Type", @autocomplete = "off", alert = "LabourCost is requried" })
+                                    </div>
+                                </div>
+
+
+
+                                <div class="col-sm-6">
+
+                                    <div class="form-group">
+                                        <label for="input-1">Name</label>
+
+                                        @Html.TextBoxFor(m => m.Name1, new { @class = "form-control validate[required,custom[characteronly]] text-input", @id = "txtName", @placeholder = "Enter Name", @autocomplete = "off", alert = "LabourCost is requried" })
+                                    </div>
+                                </div>
+
+
+
+                                <div class="col-sm-6">
+
+                                    <div class="form-group">
+                                        <label for="input-1">Address</label>
+
+                                        @Html.TextAreaFor(m => m.address, new { @class = "form-control validate[required,custom[characteronly]] text-input", @id = "txtAddress", @placeholder = "Enter Address", @autocomplete = "off", alert = "LabourCost is requried" })
+                                    </div>
+                                </div>
+
+
+
+                                <div class="col-sm-6">
+
+                                    <div class="form-group">
+                                        <label for="input-1">State</label>
+
+                                        <select id="ddlstate" class="form-control validate[required]">
+                                            <option value="">--Select State--</option>
+                                        </select>
+                                        @Html.HiddenFor(m => m.stateid, new { id = "stateid" })
+                                        @Html.HiddenFor(m => m.statetext, new { id = "statetext" })
+                                    </div>
+                                </div>
+
+
+
+
+                                <div class="col-sm-6">
+
+                                    <div class="form-group">
+                                        <label for="input-1">City</label>
+                                        <select id="ddlcity" onchange="ddlcity(value)" class="form-control validate[required]">
+                                            <option value="">--Select City--</option>
+                                        </select>
+                                        @Html.HiddenFor(m => m.cityid, new { id = "cityid" })
+                                        @Html.HiddenFor(m => m.citytext, new { id = "citytext" })
+
+                                    </div>
+
+                                </div>
+
+
+
+                                <div class="col-sm-6">
+
+                                    <div class="form-group">
+                                        <label for="input-1">Pin</label>
+
+                                        @Html.TextBoxFor(m => m.pin, new { @class = "form-control validate[required,custom[PinCode]] text-input", @id = "txtRole", @placeholder = "Enter Pin", @autocomplete = "off", alert = "LabourCost is requried" })
+                                    </div>
+                                </div>
+
+
+                                <div class="col-sm-6">
+
+                                    <div class="form-group">
+                                        <label for="input-1">Mobile</label>
+
+                                        @Html.TextBoxFor(m => m.Mobile, new { @class = "form-control validate[required,custom[Mobile]] text-input", @id = "txtRole", @placeholder = "Enter Mobile", @autocomplete = "off", alert = "LabourCost is requried" })
+                                    </div>
+                                </div>
+
+
+
+
+                                <div class="col-sm-6">
+
+                                    <div class="form-group">
+                                        <label for="input-1">Details</label>
+
+                                        @Html.TextAreaFor(m => m.Details, new { @class = "form-control validate[required,custom[characteronly]] text-input", @id = "txtDetails", @placeholder = "Enter Details", @autocomplete = "off", alert = "LabourCost is requried" })
+                                    </div>
+                                </div>
+
+
+
+
+                            </div>
+
+
+
+                            <div class="form-group">
+
+                                <button type="submit" id="btnRoleformsubmit" formaction="InsertLiabilitiesDetails" class="btn btn-success shadow-primary px-5"><i class="icon-lock"></i> Update Liabilities</button>
+
+                            </div>
+
+                        }
+                    </div>
+                </div>
+            </div>
+            <button type="button" id="btnRoleformsubmitSUCCESS" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
+            <button type="button" id="btnRoleformsubmitCHECK" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
+
+        </div>
+
+
+    </div>
+
+
+</div>
+@*end*@
+
+<!--Start Back To Top Button-->
+<a href="javaScript:void();" class="back-to-top"><i class="fa fa-angle-double-up"></i> </a>
+<!--End Back To Top Button-->
+
+
+
+
+<script>
+    $(document).ready(function () {
+        $("#RoleForm").validationEngine();
+    });
+
+
+</script>
+
+
+
+
+
+@if (ViewBag.Message == "Duplicate")
+{
+    <script>
+
+        $(document).ready(function () {
+
+
+            $("#btnRoleformsubmitCHECK").on("click", function () { });
+
+            $("#btnRoleformsubmitCHECK").click(); //trigger event after listening to it.
+
+
+
+
+        });
+    </script>
+
+}
+
+
+@if (ViewBag.Message == "Verified")
+{
+    <script>
+
+        $(document).ready(function () {
+
+
+            $("#btnRoleformsubmitSUCCESS").on("click", function () { });
+
+            $("#btnRoleformsubmitSUCCESS").click(); //trigger event after listening to it.
+
+            $("#txtRole").val("");
+
+
+        });
+    </script>
+
+}
+
+
+
+
+
+<script>
+
+  $(document).ready(function () {
+
+            $.ajax({
+
+                type: "POST",
+                url:"@Url.Action("BindStateDDL", "UpdateLiabilities")",
+                success: function (data) {
+                    $('#ddlstate').empty().append(data);
+                }
+              });
+
+
+
+
+
+
+
+    });
+
+
+    $("#ddlstate").change(function () {
+        var value = $(this).children(":selected").attr("value");
+        var text = $("#ddlstate option:selected").html();
+
+        $("#statetext").val(text);
+        $("#stateid").val(value);
+
+
+
+        $.ajax({
+
+            type: "POST",
+            url: "@Url.Action("OnChangeBindCity", "UpdateLiabilities")",
+            data: { "send": "" + value+  ""},
+            success: function (data) {
+
+                $('#ddlcity').empty().append(data);
+            }
+
+
+
+        });
+
+
+
+
+
+    });
+</script>
+
+
+<script>
+    $("#ddlcity").change(function () {
+        var value = $(this).children(":selected").attr("value");
+        var text = $("#ddlcity option:selected").html();
+
+        $("#citytext").val(text);
+        $("#cityid").val(value);
+    });
+</script>
+
+
+<script>
+
+     $.ajax({
+
+            type: "POST",
+            url:"@Url.Action("BindTestatorDDL", "UpdateLiabilities")",
+                  success: function (data) {
+                      var splitted = data.split("~");
+                      $("#DDLTestator").append(splitted[0]);
+                      $("#ddltid").val(splitted[1]);
+                      var pop = splitted[2];
+                      //$('#DDLTestator').append(data);
+                      if (pop == "true") {
+
+                          $("#confirmtestatorfamily").on("click", function () { });
+
+                          $("#confirmtestatorfamily").click(); //trigger event after listening to it.
+                      }
+
+
+
+            }
+          });
+
+
+      function getDDLTestator(value) {
+        //var value = $(this).children(":selected").attr("value");
+        var text = $("#DDLTestator option:selected").html();
+
+
+
+
+
+        $("#ddltestatorname").val(text);
+        $("#ddltid").val(value);
+        var checkstatus =  $("#txtcheck").val();
+
+             $.ajax({
+
+            type: "POST",
+            url:"@Url.Action("CheckTestatorUsers", "UpdateLiabilities")",
+                 data: { value: value, checkstatus: checkstatus },
+            success: function (data) {
+
+                if (data == 2) {
+                    $("#btncheckExists").on("click", function () { });
+
+                    $("#btncheckExists").click(); //trigger event after listening to it.
+
+
+
+
+                    setTimeout(function () {
+                        var url = "/AddAppointees/AddAppointeesIndex/";
+                        window.location.href = url;
+                    }, 2000);
+                }
+
+
+
+
+
+
+
+            }
+        });
+
+
+
+
+
+    };
+
+</script>
+
