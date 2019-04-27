@@ -1,0 +1,261 @@
+﻿@model WillAssure.Models.TestatorFormModel
+@{
+    ViewBag.Title = "DocumentPgPageContent";
+}
+
+
+
+
+@*Main Content*@
+<div class="content-wrapper">
+    <div class="container-fluid">
+
+        <div class="row pt-2 pb-2">
+
+            <div class="col-sm-3">
+                <div class="btn-group float-sm-right">
+
+                    <div class="dropdown-menu">
+                        <a href="javaScript:void();" class="dropdown-item">Action</a>
+                        <a href="javaScript:void();" class="dropdown-item">Another action</a>
+                        <a href="javaScript:void();" class="dropdown-item">Something else here</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="javaScript:void();" class="dropdown-item">Separated link</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Breadcrumb-->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+
+                        <div class="card-title text-primary">Document Details</div>
+
+
+                        @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "RoleForm" }))
+                        {
+                            <div class="row">
+                                <div class='col-sm-2'><label for='input-1' style="line-height:40px;">Distributor</label></div>
+                                <div class='col-sm-3'>
+                                    <select id="ddlDistributor" class="form-control validate[required]">
+                                        <option value="">--Select Distributor--</option>
+                                    </select>
+
+                                </div>
+                            </div>
+                            <hr>
+                            @Html.HiddenFor(m => m.distributor_id, new { id = "distributor_id" })
+                            @Html.HiddenFor(m => m.distributor_txt, new { id = "distributor_txt" })
+
+                            <div class="row">
+
+                                <div class="col-sm-3">
+
+                                    <label style="line-height:41px;">Category</label>
+
+
+                                </div>
+
+                                <div class="col-sm-3">
+                                    @Html.DropDownListFor(x => x.documentcategory, new SelectListItem[]{
+                                    new SelectListItem() {Text = "--Select--", Value=""},
+                                    new SelectListItem() {Text = "Quick", Value="Quick"},
+                                    new SelectListItem() {Text = "Detailed", Value="Detailed"}}, new { @class = "form-control validate[required]", id= "DDLAmtPaidBY2" })
+
+
+
+
+                                </div>
+
+
+
+                                <div class="col-sm-3">
+
+                                    <label style="line-height:41px;">Document Type</label>
+
+
+                                </div>
+
+                                <div class="col-sm-3">
+                                    @Html.DropDownListFor(x => x.documenttype, new SelectListItem[]{
+                                     new SelectListItem() {Text = "--Select--", Value=""},
+
+                                     new SelectListItem() {Text = "Will", Value="Will"}}, new { @class = "form-control validate[required]", @id="ddldocumenttype" })
+
+                                    @Html.HiddenFor(m => m.Document_Created_By_ID, new { id = "Document_Created_By_ID" })
+                                    @Html.HiddenFor(m => m.Document_Created_By_txt, new { id = "Document_Created_By_txt" })
+
+                                </div>
+
+
+
+
+                            </div>
+
+                            <hr>
+
+                            <hr>
+                            <div class="row">
+
+
+
+
+                                <div class="col-sm-3">
+
+                                    <label style="line-height:41px;">Document Created By</label>
+
+
+                                </div>
+
+                                <div class="col-sm-3">
+                                    @Html.DropDownListFor(x => x.Document_Created_By, new SelectListItem[]{
+                                     new SelectListItem() {Text = "--Select--", Value=""},
+                                     new SelectListItem() {Text = "Distributor", Value="1"},
+                                     new SelectListItem() {Text = "Testator", Value="2"}}, new { @class = "form-control validate[required]", @id= "ddldocumentcreatedby1" })
+
+                                    @Html.HiddenFor(m => m.Document_Created_By_ID, new { id = "Document_Created_By_ID" })
+                                    @Html.HiddenFor(m => m.Document_Created_By_txt, new { id = "Document_Created_By_txt" })
+
+
+
+                                </div>
+
+
+
+                                <div class="col-sm-3">
+
+                                    <label style="line-height:41px;">Amount Paid By</label>
+
+
+                                </div>
+
+                                <div class="col-sm-3">
+                                    @Html.DropDownListFor(x => x.Amt_Paid_By, new SelectListItem[]{
+                                    new SelectListItem() {Text = "--Select--", Value=""},
+                                    new SelectListItem() {Text = "Distributor", Value="1"},
+                                    new SelectListItem() {Text = "Testator", Value="2"}}, new { @class = "form-control validate[required]", id= "DDLAmtPaidBY3" })
+
+                                    @Html.HiddenFor(m => m.Amt_Paid_By_By_ID, new { id = "Amt_Paid_By_By_ID" })
+                                    @Html.HiddenFor(m => m.Amt_Paid_By_txt, new { id = "Amt_Paid_By_txt" })
+
+
+                                </div>
+
+
+
+
+
+
+
+
+
+                            </div>
+
+                            <hr>
+
+
+                            <div class="row">
+
+
+                                <div class="col-sm-3">
+
+                                    <label for="input-1">Enter Coupon Number</label>
+
+
+                                </div>
+                                <div class="col-sm-3">
+                                    @Html.TextBoxFor(m => m.txtCoupon, new { @class = "form-control validate[custom[integer]] text-input", @id = "txtcoupon", @placeholder = "Enter Coupon Number", @autocomplete = "off" })
+
+
+
+                                </div>
+
+                            </div>
+                            <hr>
+
+                            <div class="form-group">
+                                <button type="submit" id="alert-success" formaction="insertDocumentDetails" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i>Submit</button>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+            <button type="button" id="btnRoleformsubmitSUCCESS" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
+            <button type="button" id="btnRoleformsubmitCHECK" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
+
+        </div>
+
+
+    </div>
+
+
+</div>
+@*end*@
+
+
+
+<script>
+
+    	$(document).ready(function () {
+
+        $.ajax({
+
+            type: "POST",
+            url:"@Url.Action("BindDistributorDDL", "Documentpg")",
+            success: function (data) {
+                $('#ddlDistributor').empty().append(data);
+            }
+        });
+
+
+    });
+
+
+    $("#ddlDistributor").change(function () {
+            var value = $(this).children(":selected").attr("value");
+        var text = $("#ddlDistributor option:selected").html();
+
+        $("#distributor_txt").val(text);
+        $("#distributor_id").val(value);
+
+
+    });
+
+
+
+
+    $("#ddldocumentcreatedby1").change(function () {
+        var value = $(this).children(":selected").attr("value");
+        var text = $("#ddldocumentcreatedby1 option:selected").html();
+
+        $("#Document_Created_By_txt").val(text);
+        $("#Document_Created_By_ID").val(value);
+
+
+
+
+    });
+
+
+
+
+
+
+</script>
+
+
+<script>
+    $("#DDLAmtPaidBY3").change(function () {
+        var value = $(this).children(":selected").attr("value");
+        var text = $("#DDLAmtPaidBY3 option:selected").html();
+
+        $("#Amt_Paid_By_txt").val(text);
+        $("#Amt_Paid_By_ID").val(value);
+
+
+
+    });
+</script>
+

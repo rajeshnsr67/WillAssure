@@ -23,5 +23,8 @@ namespace WillAssure.Models
         public string EmailID { get; set; }
 
 
+        public string OTP { get; set; }
+
+
     }
 }

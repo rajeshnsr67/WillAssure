@@ -373,14 +373,6 @@
 
 
 
-                                <div class="col-sm-6">
-
-                                    <div class="form-group">
-                                        <label for="input-1">Enter Coupon Number</label>
-
-                                        @Html.TextBoxFor(m => m.txtCoupon, new { @class = "form-control validate[custom[integer]] text-input", @id = "txtcoupon", @placeholder = "Enter Coupon Number", @autocomplete = "off" })
-                                    </div>
-                                </div>
 
 
 
@@ -391,94 +383,7 @@
 
                             </div>
                             <hr>
-                            <div class="row">
-                                <div class="col-sm-3">
-
-                                    <label style="line-height:41px;">Document Type</label>
-
-
-                                </div>
-
-                                <div class="col-sm-3">
-                                    @Html.DropDownListFor(x => x.documenttype, new SelectListItem[]{
-                                     new SelectListItem() {Text = "--Select--", Value=""},
-
-                                     new SelectListItem() {Text = "Will", Value="Will"}}, new { @class = "form-control validate[required]", @id="ddldocumenttype" })
-
-                                    @Html.HiddenFor(m => m.Document_Created_By_ID, new { id = "Document_Created_By_ID" })
-                                    @Html.HiddenFor(m => m.Document_Created_By_txt, new { id = "Document_Created_By_txt" })
-
-                                </div>
-
-
-
-                                <div class="col-sm-3">
-
-                                    <label style="line-height:41px;">Category</label>
-
-
-                                </div>
-
-                                <div class="col-sm-3">
-                                    @Html.DropDownListFor(x => x.documentcategory, new SelectListItem[]{
-                                    new SelectListItem() {Text = "--Select--", Value=""},
-                                    new SelectListItem() {Text = "Quick", Value="Quick"},
-                                    new SelectListItem() {Text = "Detailed", Value="Detailed"}}, new { @class = "form-control validate[required]", id= "DDLAmtPaidBY2" })
-
-
-
-
-                                </div>
-                            </div>
-
-                            <hr>
-
-                            <hr>
-                            <div class="row">
-                                <div class="col-sm-3">
-
-                                    <label style="line-height:41px;">Document Created By</label>
-
-
-                                </div>
-
-                                <div class="col-sm-3">
-                                    @Html.DropDownListFor(x => x.Document_Created_By, new SelectListItem[]{
-                                     new SelectListItem() {Text = "--Select--", Value=""},
-                                     new SelectListItem() {Text = "Distributor", Value="1"},
-                                     new SelectListItem() {Text = "Testator", Value="2"}}, new { @class = "form-control validate[required]", @id= "ddldocumentcreatedby1" })
-
-                                    @Html.HiddenFor(m => m.Document_Created_By_ID, new { id = "Document_Created_By_ID" })
-                                    @Html.HiddenFor(m => m.Document_Created_By_txt, new { id = "Document_Created_By_txt" })
-
-
-
-                                </div>
-
-
-
-                                <div class="col-sm-3">
-
-                                    <label style="line-height:41px;">Amount Paid By</label>
-
-
-                                </div>
-
-                                <div class="col-sm-3">
-                                    @Html.DropDownListFor(x => x.Amt_Paid_By, new SelectListItem[]{
-                                    new SelectListItem() {Text = "--Select--", Value=""},
-                                    new SelectListItem() {Text = "Distributor", Value="1"},
-                                    new SelectListItem() {Text = "Testator", Value="2"}}, new { @class = "form-control validate[required]", id= "DDLAmtPaidBY3" })
-
-                                    @Html.HiddenFor(m => m.Amt_Paid_By_By_ID, new { id = "Amt_Paid_By_By_ID" })
-                                    @Html.HiddenFor(m => m.Amt_Paid_By_txt, new { id = "Amt_Paid_By_txt" })
-
-
-                                </div>
-                            </div>
-
-                            <hr>
-
+                         
 
 
 

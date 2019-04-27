@@ -58,11 +58,7 @@
                                     @Html.HiddenFor(m => m.ddltid, new { id = "ddltid" })
                                     @Html.HiddenFor(m => m.ddltestatorname, new { id = "ddltestatorname" })
                                 </div>
-                                <div class="col-sm-2">
-                                    <label class="checkbox-inline">
-                                        <input type="checkbox" value="Yes" class="checkbox1" name="checkbox1">Add Multiple
-                                    </label>
-                                </div>
+                             
 
                             </div>
                             <hr>
@@ -799,15 +795,12 @@ function getDDLTestator(value) {
             success: function (data) {
 
                 if (data == 2) {
-                    $("#btncheckExists").on("click", function () { });
+                    $("#confirmtestatorfamily").on("click", function () { });
 
-                    $("#btncheckExists").click(); //trigger event after listening to it.
+                    $("#confirmtestatorfamily").click(); //trigger event after listening to it.
 
 
-                    setTimeout(function () {
-                        var url = "/AddNominee/AddNomineeIndex/";
-                        window.location.href = url;
-                    }, 2000);
+                  
                 }
 
 

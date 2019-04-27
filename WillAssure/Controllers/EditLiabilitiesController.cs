@@ -133,7 +133,7 @@ namespace WillAssure.Controllers
                     {
                         data = data + "<tr class='nr'><td>" + dt.Rows[i]["lId"].ToString() + "</td>"
                         + "<td>" + dt.Rows[i]["Amount"].ToString() + "</td>"
-                        + "<td>" + dt.Rows[i]["Type"].ToString() + "</td>"
+                      
                         + "<td>" + dt.Rows[i]["Name"].ToString() + "</td>"
                         + "<td>" + dt.Rows[i]["address"].ToString() + "</td>"
                         + "<td>" + dt.Rows[i]["city"].ToString() + "</td>"
@@ -152,7 +152,7 @@ namespace WillAssure.Controllers
                     {
                         data = data + "<tr class='nr'><td>" + dt.Rows[i]["lId"].ToString() + "</td>"
                          + "<td>" + dt.Rows[i]["Amount"].ToString() + "</td>"
-                         + "<td>" + dt.Rows[i]["Type"].ToString() + "</td>"
+                      
                          + "<td>" + dt.Rows[i]["Name"].ToString() + "</td>"
                          + "<td>" + dt.Rows[i]["address"].ToString() + "</td>"
                          + "<td>" + dt.Rows[i]["city"].ToString() + "</td>"
@@ -172,7 +172,7 @@ namespace WillAssure.Controllers
                     {
                         data = data + "<tr class='nr'><td>" + dt.Rows[i]["lId"].ToString() + "</td>"
                         + "<td>" + dt.Rows[i]["Amount"].ToString() + "</td>"
-                        + "<td>" + dt.Rows[i]["Type"].ToString() + "</td>"
+                       
                         + "<td>" + dt.Rows[i]["Name"].ToString() + "</td>"
                         + "<td>" + dt.Rows[i]["address"].ToString() + "</td>"
                         + "<td>" + dt.Rows[i]["city"].ToString() + "</td>"
@@ -193,7 +193,7 @@ namespace WillAssure.Controllers
                     {
                         data = data + "<tr class='nr'><td>" + dt.Rows[i]["lId"].ToString() + "</td>"
                       + "<td>" + dt.Rows[i]["Amount"].ToString() + "</td>"
-                      + "<td>" + dt.Rows[i]["Type"].ToString() + "</td>"
+                   
                       + "<td>" + dt.Rows[i]["Name"].ToString() + "</td>"
                       + "<td>" + dt.Rows[i]["address"].ToString() + "</td>"
                       + "<td>" + dt.Rows[i]["city"].ToString() + "</td>"
@@ -303,7 +303,7 @@ namespace WillAssure.Controllers
                     {
                         data = data + "<tr class='nr'><td>" + dt.Rows[i]["lId"].ToString() + "</td>"
                         + "<td>" + dt.Rows[i]["Amount"].ToString() + "</td>"
-                        + "<td>" + dt.Rows[i]["Type"].ToString() + "</td>"
+                       
                         + "<td>" + dt.Rows[i]["Name"].ToString() + "</td>"
                         + "<td>" + dt.Rows[i]["address"].ToString() + "</td>"
                         + "<td>" + dt.Rows[i]["city"].ToString() + "</td>"
@@ -322,7 +322,7 @@ namespace WillAssure.Controllers
                     {
                         data = data + "<tr class='nr'><td>" + dt.Rows[i]["lId"].ToString() + "</td>"
                          + "<td>" + dt.Rows[i]["Amount"].ToString() + "</td>"
-                         + "<td>" + dt.Rows[i]["Type"].ToString() + "</td>"
+                 
                          + "<td>" + dt.Rows[i]["Name"].ToString() + "</td>"
                          + "<td>" + dt.Rows[i]["address"].ToString() + "</td>"
                          + "<td>" + dt.Rows[i]["city"].ToString() + "</td>"
@@ -342,7 +342,7 @@ namespace WillAssure.Controllers
                     {
                         data = data + "<tr class='nr'><td>" + dt.Rows[i]["lId"].ToString() + "</td>"
                         + "<td>" + dt.Rows[i]["Amount"].ToString() + "</td>"
-                        + "<td>" + dt.Rows[i]["Type"].ToString() + "</td>"
+                      
                         + "<td>" + dt.Rows[i]["Name"].ToString() + "</td>"
                         + "<td>" + dt.Rows[i]["address"].ToString() + "</td>"
                         + "<td>" + dt.Rows[i]["city"].ToString() + "</td>"
@@ -363,7 +363,7 @@ namespace WillAssure.Controllers
                     {
                         data = data + "<tr class='nr'><td>" + dt.Rows[i]["lId"].ToString() + "</td>"
                       + "<td>" + dt.Rows[i]["Amount"].ToString() + "</td>"
-                      + "<td>" + dt.Rows[i]["Type"].ToString() + "</td>"
+                   
                       + "<td>" + dt.Rows[i]["Name"].ToString() + "</td>"
                       + "<td>" + dt.Rows[i]["address"].ToString() + "</td>"
                       + "<td>" + dt.Rows[i]["city"].ToString() + "</td>"

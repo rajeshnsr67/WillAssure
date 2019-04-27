@@ -62,11 +62,7 @@
 
 
                                 </div>
-                                <div class="col-sm-2">
-                                    <label class="checkbox-inline">
-                                        <input type="checkbox" class="radio1" name="radio">Add Multiple
-                                    </label>
-                                </div>
+                         
                             </div>
 
                             <hr />
@@ -919,15 +915,12 @@
             success: function (data) {
 
                 if (data == 2) {
-                    $("#btncheckExists").on("click", function () { });
-                    $("#btncheckExists").click(); //trigger event after listening to it.
+                    $("#confirmtestatorfamily").on("click", function () { });
+                    $("#confirmtestatorfamily").click(); //trigger event after listening to it.
 
 
 
-                    setTimeout(function () {
-                        var url = "/AddMainAssets/AddMainAssetsIndex/";
-                        window.location.href = url;
-                    }, 2000);
+                
                 }
 
 

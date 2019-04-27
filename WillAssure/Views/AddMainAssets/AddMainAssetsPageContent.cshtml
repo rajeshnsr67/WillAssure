@@ -68,11 +68,7 @@
 
 
                                 </div>
-                                <div class="col-sm-2">
-                                    <label class="checkbox-inline">
-                                        <input type="checkbox" value="Yes" class="radio" name="radio">Add Multiple
-                                    </label>
-                                </div>
+                             
                             </div>
                             <hr>
                             <input type="hidden" id="txtcheck" value="" name="name" />
@@ -338,16 +334,12 @@
             success: function (data) {
 
                 if (data == 2) {
-                    $("#btncheckExists").on("click", function () { });
+                    $("#confirmtestatorfamily").on("click", function () { });
 
-                    $("#btncheckExists").click(); //trigger event after listening to it.
+                    $("#confirmtestatorfamily").click(); //trigger event after listening to it.
 
 
 
-                    setTimeout(function () {
-                        var url = "/AddAssetMapping/AddAssetMappingIndex/";
-                        window.location.href = url;
-                    }, 2000);
                 }
 
 

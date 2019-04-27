@@ -226,6 +226,23 @@ namespace WillAssure.Controllers
 
 
 
+               
+
+                if (dt.Rows[0]["Type"].ToString() == "Testator")
+                {
+                    //string v1 = Eramake.eCryptography.Encrypt(dta.Rows[0]["Email_OTP"].ToString());
+
+
+
+                    //return RedirectToAction("EmailVerificationIndex", "EmailVerification", new { v2 = v1 });
+                   
+                    ViewBag.Testatorpopup = "true";
+                    return View("~/Views/LoginPage/LoginPageContent.cshtml");
+                }
+
+
+
+
                 ViewBag.Message = "SUCCESS";
                 return View("~/Views/DashBoard/DashBoardPageContent.cshtml");
             }
@@ -301,6 +318,14 @@ namespace WillAssure.Controllers
             Session["upappointeesid"] = "";
 
 
+            // testator email session on documentpg
+
+           
+
+            // used in login otp
+
+            Session["enteredOTP"] = "";
+
             return View("~/Views/LoginPage/LoginPageContent.cshtml");
         }
 
@@ -362,6 +387,103 @@ namespace WillAssure.Controllers
 
 
             return View("~/Views/LoginPage/DynamicMenuPageContent.cshtml");
+        }
+
+
+
+
+        public ActionResult VerifyOTP(LoginModel EVM)
+        {
+
+            con.Open();
+            string qt = "select Email_OTP from TestatorDetails where uId = " + Convert.ToInt32(Session["uuid"]) + "  ";
+            SqlDataAdapter dat = new SqlDataAdapter(qt, con);
+            DataTable dta = new DataTable();
+            dat.Fill(dta);
+            con.Close();
+
+
+            //string OTP = Session["OTP"].ToString();
+
+            if (dta.Rows[0]["Email_OTP"].ToString() == EVM.OTP)
+            {
+                con.Open();
+                string query = "update TestatorDetails set Contact_Verification =1 , Email_Verification = 1 , Mobile_Verification_Status = 1 where Email_OTP = '" + ViewBag.enteredOTP + "'";
+                SqlCommand cmd = new SqlCommand(query, con);
+                cmd.ExecuteNonQuery();
+                con.Close();
+
+                con.Open();
+                string query2 = "select * from TestatorDetails where Email_OTP = '" + ViewBag.enteredOTP + "'";
+                SqlDataAdapter da = new SqlDataAdapter(query2, con);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                con.Close();
+
+
+                string PanNumber = "";
+                string Password = "";
+
+                Password = String.Empty;
+                string[] saAllowedCharacters = { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0" };
+                int iOTPLength = 5;
+
+                string sTempChars = String.Empty;
+                Random rand = new Random();
+
+                for (int i = 0; i < iOTPLength; i++)
+
+                {
+
+                    int p = rand.Next(0, saAllowedCharacters.Length);
+
+                    sTempChars = saAllowedCharacters[rand.Next(0, saAllowedCharacters.Length)];
+
+                    Password += sTempChars;
+
+                }
+
+
+                if (dt.Rows.Count > 0)
+                {
+
+
+
+                    if (dt.Rows[0]["Identity_Proof"].ToString() == "4")
+                    {
+                        PanNumber = dt.Rows[0]["Identity_Proof_Value"].ToString();
+
+
+
+                    }
+
+
+
+
+                    
+
+                }
+
+
+
+                Response.Redirect("~/DashBoard/DashBoardIndex");
+
+                
+            }
+            else
+            {
+                con.Open();
+                string query = "update TestatorDetails set Contact_Verification =2 , Email_Verification = 2 , Mobile_Verification_Status = 2 where Email_OTP = '" + ViewBag.enteredOTP + "'";
+                SqlCommand cmd = new SqlCommand(query, con);
+                cmd.ExecuteNonQuery();
+                con.Close();
+
+                ViewBag.Message = "Failed";
+                
+            }
+
+            return View("~/Views/LoginPage/LoginPageContent.cshtml");
+
         }
 
 

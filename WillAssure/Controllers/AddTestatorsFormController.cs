@@ -222,38 +222,23 @@ namespace WillAssure.Controllers
 
 
 
-          
+            //generate Password OTP
+            TFM.userPassword = String.Empty;
+            string[] saAllowedCharacters3 = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "0" };
+            int iOTPLength3 = 5;
 
+            string sTempChars3 = String.Empty;
+            Random rand3 = new Random();
 
-
-
-
-
-
-
-
-
-
-
-
-
-            //generate MOBILE OTP
-            TFM.MobileOTP = String.Empty;
-            string[] saAllowedCharacters = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "0" };
-            int iOTPLength = 5;
-
-            string sTempChars = String.Empty;
-            Random rand = new Random();
-
-            for (int i = 0; i < iOTPLength; i++)
+            for (int i = 0; i < iOTPLength3; i++)
 
             {
 
-                int p = rand.Next(0, saAllowedCharacters.Length);
+                int p = rand3.Next(0, saAllowedCharacters3.Length);
 
-                sTempChars = saAllowedCharacters[rand.Next(0, saAllowedCharacters.Length)];
+                sTempChars3 = saAllowedCharacters3[rand3.Next(0, saAllowedCharacters3.Length)];
 
-                TFM.MobileOTP += sTempChars;
+                TFM.userPassword += sTempChars3;
 
             }
             //END
@@ -261,26 +246,18 @@ namespace WillAssure.Controllers
 
 
 
-            //generate EMAIL OTP
-            TFM.EmailOTP = String.Empty;
-            string[] saAllowedCharacters2 = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "0" };
-            int iOTPLength2 = 5;
 
-            string sTempChars2 = String.Empty;
-            Random rand2 = new Random();
 
-            for (int i = 0; i < iOTPLength2; i++)
 
-            {
 
-                int p = rand.Next(0, saAllowedCharacters2.Length);
 
-                sTempChars2 = saAllowedCharacters2[rand.Next(0, saAllowedCharacters2.Length)];
 
-                TFM.EmailOTP += sTempChars2;
 
-            }
-            //END
+
+
+
+
+           
 
             // insert testator data on users
 
@@ -312,7 +289,7 @@ namespace WillAssure.Controllers
             cm.Parameters.AddWithValue("@Pin", TFM.Pin);
             cm.Parameters.AddWithValue("@Linked_user", TFM.distributor_id);
             cm.Parameters.AddWithValue("@UserId", TFM.Email);
-            cm.Parameters.AddWithValue("@UserPassword", TFM.MobileOTP);
+            cm.Parameters.AddWithValue("@UserPassword", TFM.userPassword);
             cm.Parameters.AddWithValue("@rid", 5);
             cm.Parameters.AddWithValue("@Active", "Active");
             cm.Parameters.AddWithValue("@compId", 0); 
@@ -398,6 +375,7 @@ namespace WillAssure.Controllers
                 cmd.Parameters.AddWithValue("@Occupation", TFM.Occupation);
                 cmd.Parameters.AddWithValue("@Mobile", TFM.Mobile);
                 cmd.Parameters.AddWithValue("@Email", TFM.Email);
+                Session["TestatorEmail"] = TFM.Email;
                 cmd.Parameters.AddWithValue("@maritalStatus", TFM.material_status_txt);
                 cmd.Parameters.AddWithValue("@Religion", TFM.Religiontext);
                 cmd.Parameters.AddWithValue("@Relationship", TFM.RelationshipTxt);
@@ -414,12 +392,13 @@ namespace WillAssure.Controllers
                 cmd.Parameters.AddWithValue("@Country", TFM.countrytext);
                 cmd.Parameters.AddWithValue("@Pin", TFM.Pin);
                 cmd.Parameters.AddWithValue("@active", TFM.active);
-                cmd.Parameters.AddWithValue("@Contact_Verification", "0");
-                cmd.Parameters.AddWithValue("@Email_Verification", "0");
-                cmd.Parameters.AddWithValue("@Mobile_Verification_Status", "0");
-                cmd.Parameters.AddWithValue("@Email_OTP", TFM.EmailOTP);
-                cmd.Parameters.AddWithValue("@Mobile_OTP", TFM.MobileOTP);
+                //cmd.Parameters.AddWithValue("@Contact_Verification", "0");
+                //cmd.Parameters.AddWithValue("@Email_Verification", "0");
+                //cmd.Parameters.AddWithValue("@Mobile_Verification_Status", "0");
+                //cmd.Parameters.AddWithValue("@Email_OTP", TFM.EmailOTP);
+                //cmd.Parameters.AddWithValue("@Mobile_OTP", TFM.MobileOTP);
                 cmd.Parameters.AddWithValue("@uid", userid);
+                Session["userid"] = userid;
                 cmd.ExecuteNonQuery();
                 con.Close();
 
@@ -441,41 +420,7 @@ namespace WillAssure.Controllers
 
 
 
-            // coupon status
-            if (TFM.txtCoupon != null)
-            {
-                con.Open();
-                string checkcoupon = "select * from couponAllotment where Coupon_Number = " + TFM.txtCoupon + " and  Status = 'Active' ";
-                SqlDataAdapter da = new SqlDataAdapter(checkcoupon, con);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-                if (dt.Rows.Count > 0)
-                {
-
-                    string upcoupon = "update couponAllotment set Status = 'Inactive' ,    Tid=" + testatorid + " ";
-                    SqlCommand cmd2 = new SqlCommand(upcoupon, con);
-                    cmd2.ExecuteNonQuery();
-
-
-                
-
-                        string upcoupon2 = "update discountCoupons set status = 'Inactive' ,    Coupon_Number=" + TFM.txtCoupon + " ";
-                        SqlCommand cmd22 = new SqlCommand(upcoupon2, con);
-                        cmd22.ExecuteNonQuery();
-                    
-                           
-                    
-
-                }
-                else
-                {
-                    ViewBag.Message = "checkCoupon";
-                }
-                con.Close();
-            }
-
-
-            //end
+          
 
 
 
@@ -491,145 +436,95 @@ namespace WillAssure.Controllers
 
             // document generation 
 
-            // get coupon id
-            con.Open();
-            string query5 = "select a.couponId  from couponAllotment a inner join users b on a.uId=b.uId where b.uId = "+ TFM.distributor_id + "";
-            SqlDataAdapter da4 = new SqlDataAdapter(query5,con);
-            DataTable dt4 = new DataTable();
-            da4.Fill(dt4);
-            int couponsid = 0;
-            if (dt4.Rows.Count > 0)
-            {
-                couponsid = Convert.ToInt32(dt4.Rows[0]["couponId"]);
-            }
-            con.Close();
-            //end
+        
 
               
-                con.Open();
-                string q = "insert into documentMaster (tId,templateId,IsUpdatetable,uId,pId,created_by,testator_type,couponId,adminVerification) values (" + testatorid + " , " + templateid + " ,  'Yes' ,   "+ TFM.distributor_id + " , 1 , '" + TFM.Document_Created_By_txt + "' , '" + testatortype + "' , "+couponsid+" , 2)";
-                SqlCommand c = new SqlCommand(q, con);
-                c.ExecuteNonQuery();
-                con.Close();
+            
+
+
+            //    //1st condition
+            //    if (TFM.Amt_Paid_By_txt == "Distributor" && TFM.Document_Created_By_txt == "Distributor")
+            //    {
+            //        TFM.Authentication_Required = 0;
+            //        TFM.Link_Required = 0;
+            //        TFM.Login_Required = 0;
+
+            //        con.Open();
+            //        string query1 = "insert into Authorization_Rules (Document_Created_By,Distributor_Id,Amt_Paid_By,Testator_Id,Authentication_Required,Link_Required,Login_Required) values ('" + TFM.Document_Created_By_txt + "' , '" + TFM.Document_Created_By_ID + "' , '" + TFM.Amt_Paid_By_txt + "' , '" + TFM.Amt_Paid_By + "'  , '" + TFM.Authentication_Required + "' , '" + TFM.Link_Required + "' , '" + TFM.Login_Required + "') ";
+            //        SqlCommand cmd2 = new SqlCommand(query1, con);
+            //        cmd2.ExecuteNonQuery();
+            //        con.Close();
+            //    ModelState.Clear();
+            //    return View("~/Views/AddTestatorsForm/AddTestatorPageContent.cshtml");
+            //}
+            //    //end
+            //    //2nd condition 
+            //    if (TFM.Amt_Paid_By_txt == "Distributor" && TFM.Document_Created_By_txt == "Testator")
+            //    {
+            //        TFM.Authentication_Required = 1;
+            //        TFM.Link_Required = 1;
+            //        TFM.Login_Required = 1;
+
+            //        con.Open();
+            //        string query2 = "insert into Authorization_Rules (Document_Created_By,Distributor_Id,Amt_Paid_By,Testator_Id,Authentication_Required,Link_Required,Login_Required) values ('" + TFM.Document_Created_By_txt + "' , '" + TFM.Document_Created_By_ID + "' , '" + TFM.Amt_Paid_By_txt + "' , '" + TFM.Amt_Paid_By + "'  , '" + TFM.Authentication_Required + "' , '" + TFM.Link_Required + "' , '" + TFM.Login_Required + "') ";
+            //        SqlCommand cmd2 = new SqlCommand(query2, con);
+            //        cmd2.ExecuteNonQuery();
+            //        con.Close();
 
 
 
-                //end
+            //    if (Session["mailto"] == null)
+            //    {
+            //        RedirectToAction("LoginPageIndex", "LoginPage");
+            //    }
+            //    if (Session["userid"] == null)
+            //    {
+            //        RedirectToAction("LoginPageIndex", "LoginPage");
+            //    }
+            //    // new mail code
+            //    string mailto = TFM.Email;
+            //        string Userid = TFM.Identity_proof_Value;
+            //        Session["mailto"] = mailto;
+            //        Session["userid"] = Userid;
+            //        string subject = "Testing Mail Sending";
+            //        string OTP = "<font color='Green' style='font-size=3em;'>" + TFM.EmailOTP + "</font>";
+            //        string text = "Your OTP for Verification Is " + OTP + "";
+            //        string body = "<font color='red'>" + text + "</font>";
+
+
+            //        MailMessage msg = new MailMessage();
+            //        msg.From = new MailAddress("info@drinco.in");
+            //        msg.To.Add(mailto);
+            //        msg.Subject = subject;
+            //        msg.Body = body;
+
+            //        msg.IsBodyHtml = true;
+            //        SmtpClient smtp = new SmtpClient("216.10.240.149", 25);
+            //        smtp.Credentials = new NetworkCredential("info@drinco.in", "95Bzf%s7");
+            //        smtp.EnableSsl = false;
+            //        smtp.Send(msg);
+            //        smtp.Dispose();
 
 
 
-                // DOCUMENT RULES
-                int typeid = 0;
-                int typecat = 0;
-
-                if (TFM.documenttype == "Will")
-                {
-                    typeid = 1;
-                }
-                if (TFM.documentcategory == "Quick")
-                {
-                    typecat = 1;
-                }
-                if (TFM.documentcategory == "Detailed")
-                {
-                    typecat = 2;
-                }
-
-
-                con.Open();
-                string q1 = "insert into documentRules (documentType,category,tid) values (" + typeid +" , "+typecat+"  , "+testatorid+" )";
-                SqlCommand c1 = new SqlCommand(q1, con);
-                c1.ExecuteNonQuery();
-                con.Close();
+            //        //end
 
 
 
-                //
+            //    }
+            //    //end
+            //    // 3rd condtion
+            //    if (TFM.Amt_Paid_By_txt == "Testator" && TFM.Document_Created_By_txt == "Distributor")
+            //    {
+            //        TFM.Authentication_Required = 1;
+            //        TFM.Link_Required = 1;
+            //        TFM.Login_Required = 1;
 
-
-                //1st condition
-                if (TFM.Amt_Paid_By_txt == "Distributor" && TFM.Document_Created_By_txt == "Distributor")
-                {
-                    TFM.Authentication_Required = 0;
-                    TFM.Link_Required = 0;
-                    TFM.Login_Required = 0;
-
-                    con.Open();
-                    string query1 = "insert into Authorization_Rules (Document_Created_By,Distributor_Id,Amt_Paid_By,Testator_Id,Authentication_Required,Link_Required,Login_Required) values ('" + TFM.Document_Created_By_txt + "' , '" + TFM.Document_Created_By_ID + "' , '" + TFM.Amt_Paid_By_txt + "' , '" + TFM.Amt_Paid_By + "'  , '" + TFM.Authentication_Required + "' , '" + TFM.Link_Required + "' , '" + TFM.Login_Required + "') ";
-                    SqlCommand cmd2 = new SqlCommand(query1, con);
-                    cmd2.ExecuteNonQuery();
-                    con.Close();
-                ModelState.Clear();
-                return View("~/Views/AddTestatorsForm/AddTestatorPageContent.cshtml");
-            }
-                //end
-                //2nd condition 
-                if (TFM.Amt_Paid_By_txt == "Distributor" && TFM.Document_Created_By_txt == "Testator")
-                {
-                    TFM.Authentication_Required = 1;
-                    TFM.Link_Required = 1;
-                    TFM.Login_Required = 1;
-
-                    con.Open();
-                    string query2 = "insert into Authorization_Rules (Document_Created_By,Distributor_Id,Amt_Paid_By,Testator_Id,Authentication_Required,Link_Required,Login_Required) values ('" + TFM.Document_Created_By_txt + "' , '" + TFM.Document_Created_By_ID + "' , '" + TFM.Amt_Paid_By_txt + "' , '" + TFM.Amt_Paid_By + "'  , '" + TFM.Authentication_Required + "' , '" + TFM.Link_Required + "' , '" + TFM.Login_Required + "') ";
-                    SqlCommand cmd2 = new SqlCommand(query2, con);
-                    cmd2.ExecuteNonQuery();
-                    con.Close();
-
-
-
-                if (Session["mailto"] == null)
-                {
-                    RedirectToAction("LoginPageIndex", "LoginPage");
-                }
-                if (Session["userid"] == null)
-                {
-                    RedirectToAction("LoginPageIndex", "LoginPage");
-                }
-                // new mail code
-                string mailto = TFM.Email;
-                    string Userid = TFM.Identity_proof_Value;
-                    Session["mailto"] = mailto;
-                    Session["userid"] = Userid;
-                    string subject = "Testing Mail Sending";
-                    string OTP = "<font color='Green' style='font-size=3em;'>" + TFM.EmailOTP + "</font>";
-                    string text = "Your OTP for Verification Is " + OTP + "";
-                    string body = "<font color='red'>" + text + "</font>";
-
-
-                    MailMessage msg = new MailMessage();
-                    msg.From = new MailAddress("info@drinco.in");
-                    msg.To.Add(mailto);
-                    msg.Subject = subject;
-                    msg.Body = body;
-
-                    msg.IsBodyHtml = true;
-                    SmtpClient smtp = new SmtpClient("216.10.240.149", 25);
-                    smtp.Credentials = new NetworkCredential("info@drinco.in", "95Bzf%s7");
-                    smtp.EnableSsl = false;
-                    smtp.Send(msg);
-                    smtp.Dispose();
-
-
-
-                    //end
-
-
-
-                }
-                //end
-                // 3rd condtion
-                if (TFM.Amt_Paid_By_txt == "Testator" && TFM.Document_Created_By_txt == "Distributor")
-                {
-                    TFM.Authentication_Required = 1;
-                    TFM.Link_Required = 1;
-                    TFM.Login_Required = 1;
-
-                    con.Open();
-                    string query3 = "insert into Authorization_Rules (Document_Created_By,Distributor_Id,Amt_Paid_By,Testator_Id,Authentication_Required,Link_Required,Login_Required) values ('" + TFM.Document_Created_By_txt + "' , '" + TFM.Document_Created_By_ID + "' , '" + TFM.Amt_Paid_By_txt + "' , '" + TFM.Amt_Paid_By + "'  , '" + TFM.Authentication_Required + "' , '" + TFM.Link_Required + "' , '" + TFM.Login_Required + "') ";
-                    SqlCommand cmd2 = new SqlCommand(query3, con);
-                    cmd2.ExecuteNonQuery();
-                    con.Close();
+            //        con.Open();
+            //        string query3 = "insert into Authorization_Rules (Document_Created_By,Distributor_Id,Amt_Paid_By,Testator_Id,Authentication_Required,Link_Required,Login_Required) values ('" + TFM.Document_Created_By_txt + "' , '" + TFM.Document_Created_By_ID + "' , '" + TFM.Amt_Paid_By_txt + "' , '" + TFM.Amt_Paid_By + "'  , '" + TFM.Authentication_Required + "' , '" + TFM.Link_Required + "' , '" + TFM.Login_Required + "') ";
+            //        SqlCommand cmd2 = new SqlCommand(query3, con);
+            //        cmd2.ExecuteNonQuery();
+            //        con.Close();
 
 
 
@@ -639,87 +534,87 @@ namespace WillAssure.Controllers
 
 
 
-                    // new mail code
-                    string mailto = TFM.Email;
-                    string Userid = TFM.Identity_proof_Value;
-                    Session["mailto"] = mailto;
-                    Session["userid"] = Userid;
-                    string subject = "Testing Mail Sending";
-                    string OTP = "<font color='Green' style='font-size=3em;'>" + TFM.EmailOTP + "</font>";
-                    string text = "Your OTP for Verification Is " + OTP + "";
-                    string body = "<font color='red'>" + text + "</font>";
+            //        // new mail code
+            //        string mailto = TFM.Email;
+            //        string Userid = TFM.Identity_proof_Value;
+            //        Session["mailto"] = mailto;
+            //        Session["userid"] = Userid;
+            //        string subject = "Testing Mail Sending";
+            //        string OTP = "<font color='Green' style='font-size=3em;'>" + TFM.EmailOTP + "</font>";
+            //        string text = "Your OTP for Verification Is " + OTP + "";
+            //        string body = "<font color='red'>" + text + "</font>";
 
 
-                    MailMessage msg = new MailMessage();
-                    msg.From = new MailAddress("info@drinco.in");
-                    msg.To.Add(mailto);
-                    msg.Subject = subject;
-                    msg.Body = body;
+            //        MailMessage msg = new MailMessage();
+            //        msg.From = new MailAddress("info@drinco.in");
+            //        msg.To.Add(mailto);
+            //        msg.Subject = subject;
+            //        msg.Body = body;
                     
-                    msg.IsBodyHtml = true;
-                    SmtpClient smtp = new SmtpClient("216.10.240.149", 25);
-                    smtp.Credentials = new NetworkCredential("info@drinco.in", "95Bzf%s7");
-                    smtp.EnableSsl = false;
-                    smtp.Send(msg);
-                    smtp.Dispose();
+            //        msg.IsBodyHtml = true;
+            //        SmtpClient smtp = new SmtpClient("216.10.240.149", 25);
+            //        smtp.Credentials = new NetworkCredential("info@drinco.in", "95Bzf%s7");
+            //        smtp.EnableSsl = false;
+            //        smtp.Send(msg);
+            //        smtp.Dispose();
 
 
 
-                //end
-
-
-
-
-                }
-                //end
-                //4th condition
-                if (TFM.Amt_Paid_By_txt == "Testator" && TFM.Document_Created_By_txt == "Testator")
-                {
-                    TFM.Authentication_Required = 1;
-                    TFM.Link_Required = 1;
-                    TFM.Login_Required = 1;
-
-                    con.Open();
-                    string query4 = "insert into Authorization_Rules (Document_Created_By,Distributor_Id,Amt_Paid_By,Testator_Id,Authentication_Required,Link_Required,Login_Required) values ('" + TFM.Document_Created_By_txt + "' , '" + TFM.Document_Created_By_ID + "' , '" + TFM.Amt_Paid_By_txt + "' , '" + TFM.Amt_Paid_By + "'  , '" + TFM.Authentication_Required + "' , '" + TFM.Link_Required + "' , '" + TFM.Login_Required + "') ";
-                    SqlCommand cmd2 = new SqlCommand(query4, con);
-                    cmd2.ExecuteNonQuery();
-                    con.Close();
+            //    //end
 
 
 
 
+            //    }
+            //    //end
+            //    //4th condition
+            //    if (TFM.Amt_Paid_By_txt == "Testator" && TFM.Document_Created_By_txt == "Testator")
+            //    {
+            //        TFM.Authentication_Required = 1;
+            //        TFM.Link_Required = 1;
+            //        TFM.Login_Required = 1;
 
-
-                    // new mail code
-                    string mailto = TFM.Email;
-                    string Userid = TFM.Identity_proof_Value;
-                    Session["mailto"] = mailto;
-                    Session["userid"] = Userid;
-                    string subject = "Testing Mail Sending";
-                    string OTP = "<font color='Green' style='font-size=3em;'>" + TFM.EmailOTP + "</font>";
-                    string text = "Your OTP for Verification Is " + OTP + "";
-                    string body = "<font color='red'>" + text + "</font>";
-
-
-                    MailMessage msg = new MailMessage();
-                    msg.From = new MailAddress("info@drinco.in");
-                    msg.To.Add(mailto);
-                    msg.Subject = subject;
-                    msg.Body = body;
-
-                    msg.IsBodyHtml = true;
-                    SmtpClient smtp = new SmtpClient("216.10.240.149", 25);
-                    smtp.Credentials = new NetworkCredential("info@drinco.in", "95Bzf%s7");
-                    smtp.EnableSsl = false;
-                    smtp.Send(msg);
-                    smtp.Dispose();
+            //        con.Open();
+            //        string query4 = "insert into Authorization_Rules (Document_Created_By,Distributor_Id,Amt_Paid_By,Testator_Id,Authentication_Required,Link_Required,Login_Required) values ('" + TFM.Document_Created_By_txt + "' , '" + TFM.Document_Created_By_ID + "' , '" + TFM.Amt_Paid_By_txt + "' , '" + TFM.Amt_Paid_By + "'  , '" + TFM.Authentication_Required + "' , '" + TFM.Link_Required + "' , '" + TFM.Login_Required + "') ";
+            //        SqlCommand cmd2 = new SqlCommand(query4, con);
+            //        cmd2.ExecuteNonQuery();
+            //        con.Close();
 
 
 
-                    //end
 
-                }
-            //end
+
+
+            //        // new mail code
+            //        string mailto = TFM.Email;
+            //        string Userid = TFM.Identity_proof_Value;
+            //        Session["mailto"] = mailto;
+            //        Session["userid"] = Userid;
+            //        string subject = "Testing Mail Sending";
+            //        string OTP = "<font color='Green' style='font-size=3em;'>" + TFM.EmailOTP + "</font>";
+            //        string text = "Your OTP for Verification Is " + OTP + "";
+            //        string body = "<font color='red'>" + text + "</font>";
+
+
+            //        MailMessage msg = new MailMessage();
+            //        msg.From = new MailAddress("info@drinco.in");
+            //        msg.To.Add(mailto);
+            //        msg.Subject = subject;
+            //        msg.Body = body;
+
+            //        msg.IsBodyHtml = true;
+            //        SmtpClient smtp = new SmtpClient("216.10.240.149", 25);
+            //        smtp.Credentials = new NetworkCredential("info@drinco.in", "95Bzf%s7");
+            //        smtp.EnableSsl = false;
+            //        smtp.Send(msg);
+            //        smtp.Dispose();
+
+
+
+            //        //end
+
+            //    }
+            ////end
 
 
 
@@ -728,11 +623,11 @@ namespace WillAssure.Controllers
 
 
 
-            string v1 = Eramake.eCryptography.Encrypt(TFM.EmailOTP);
+            //string v1 = Eramake.eCryptography.Encrypt(TFM.EmailOTP);
 
                 
 
-                return RedirectToAction("EmailVerificationIndex", "EmailVerification", new { v2 = v1 });
+                return RedirectToAction("DocumentpgIndex", "Documentpg");
             //}
             //else
             //{

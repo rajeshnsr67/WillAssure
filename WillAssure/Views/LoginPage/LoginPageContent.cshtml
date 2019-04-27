@@ -41,6 +41,7 @@
     @*Master end*@
 
 
+
 </head>
 <body class="bg-dark">
     <!-- Start wrapper-->
@@ -81,7 +82,7 @@
                             </div>
                         </div>
                         <button type="submit" formaction="@Url.Action("LoginPageData","LoginPage")" id="btnlogin" class="btn btn-primary shadow-primary btn-block waves-effect waves-light">Sign In</button>
-
+                        <button type="button" id="btnOTPCheckFAILED" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
                         <button type="button" id="btnloginSUCCESS" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
                         <button type="button" id="btnloginFAILED" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
                     }
@@ -96,13 +97,13 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                
+
                             </div>
                             <div class="modal-body">
                                 <div class="card">
                                     <div class="card-body">
 
-                                      
+
 
                                         @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "RoleForm" }))
                                         {
@@ -133,54 +134,122 @@
                                     </div>
                                 </div>
                             </div>
-                        
+
                         </div>
                     </div>
                 </div>
             </div>
-            </div>
-
-                @*SUCCESS AND FAILED MESSAGE*@
-
-
-                @if (ViewBag.Message == "SUCCESS")
-                {
-                    <script>
-
-                        $(document).ready(function () {
-                            $("#btnloginSUCCESS").on("click", function () { });
-
-                            $("#btnloginSUCCESS").click(); //trigger event after listening to it.
-
-                        });
-                    </script>
-
-                }
-                @if (ViewBag.Message == "FAILED")
-                {
-                    <script>
-
-                        $(document).ready(function () {
-                    
-                            $("#btnloginFAILED").on("click", function () { });
-
-                            $("#btnloginFAILED").click(); 
-
-                        });
-
-                    </script>
-
-                }
-
-                @*END*@
-
-            </div>
-          
         </div>
 
-        <!--Start Back To Top Button-->
-        <a href="javaScript:void();" class="back-to-top"><i class="fa fa-angle-double-up"></i> </a>
-        <!--End Back To Top Button-->
+
+        @*otp screen*@
+
+        <!--Primary Modal -->
+        <button style="display:none;" class="btn btn-outline-primary btn-block m-1" id="btnotp" data-toggle="modal" data-target="#primarymodal">Primary</button>
+        <div class="modal fade" id="primarymodal">
+            <div class="modal-dialog">
+                <div class="modal-content border-primary">
+                    <div class="modal-header bg-primary">
+                        <h5 class="modal-title text-white">Please Enter OTP For Login</h5>
+                        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        @using (Html.BeginForm())
+                        {
+
+
+                            <div class="row">
+                                <div class="col-sm-6">
+
+                                    <div class="form-group">
+                                        <label for="input-1">Enter OTP:</label>
+
+                                        @Html.TextBoxFor(m => m.OTP, new { @class = "form-control validate[required,custom[characteronly]] text-input", @id = "txtRole", @placeholder = "Enter OTP Number", @style = "width:241px;", @autocomplete = "off", alert = "LabourCost is requried" })
+                                    </div>
+                                </div>
+
+
+
+
+                            </div>
+
+
+
+                            <div class="form-group">
+                                <input type="submit" formaction="VerifyOTP" name="name" class="btn btn-success" value="Verify OTP" />
+
+                            </div>
+
+                        }
+
+                    </div>
+
+                </div>
+            </div>
+        </div><!--End Modal -->
+        @*end*@
+
+
+
+
+        @*SUCCESS AND FAILED MESSAGE*@
+
+
+        @if (ViewBag.Message == "SUCCESS")
+        {
+            <script>
+
+                $(document).ready(function () {
+                    $("#btnloginSUCCESS").on("click", function () { });
+
+                    $("#btnloginSUCCESS").click(); //trigger event after listening to it.
+
+                });
+            </script>
+
+        }
+        @if (ViewBag.Message == "FAILED")
+        {
+            <script>
+
+                $(document).ready(function () {
+
+                    $("#btnloginFAILED").on("click", function () { });
+
+                    $("#btnloginFAILED").click();
+
+                });
+
+            </script>
+
+        }
+
+
+        @if (ViewBag.Message == "Failed")
+        {
+            <script>
+
+                $(document).ready(function () {
+                    $("#btnOTPCheckFAILED").on("click", function () { });
+
+                    $("#btnOTPCheckFAILED").click(); //trigger event after listening to it.
+
+                });
+            </script>
+
+        }
+
+        @*END*@
+
+    </div>
+
+    </div>
+
+    <!--Start Back To Top Button-->
+    <a href="javaScript:void();" class="back-to-top"><i class="fa fa-angle-double-up"></i> </a>
+    <!--End Back To Top Button-->
     </div><!--wrapper-->
     @*Master Scripts Links*@
     <!-- Bootstrap core JavaScript-->
@@ -212,7 +281,7 @@
     <script src="~/assets/plugins/bootstrap-datatable/js/buttons.html5.min.js"></script>
     <script src="~/assets/plugins/bootstrap-datatable/js/buttons.print.min.js"></script>
     <script src="~/assets/plugins/bootstrap-datatable/js/buttons.colVis.min.js"></script>
-    
+
     @*Master Scripts Link End*@
 
 
@@ -229,6 +298,14 @@
     @*END*@
 
 
+    @if (ViewBag.Testatorpopup == "true")
+    {
+        <script type="text/javascript">
+            $("#btnotp").on("click", function () { });
+
+            $("#btnotp").click();
+        </script>
+    }
 
 
 </body>

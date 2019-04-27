@@ -104,6 +104,7 @@ namespace WillAssure.Models
 
         public string EmailOTP { get; set; }
         public string MobileOTP { get; set; }
+        public string userPassword { get; set; }
 
 
         public string documenttype { get; set; }

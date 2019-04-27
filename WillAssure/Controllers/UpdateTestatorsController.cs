@@ -9,6 +9,8 @@ using System.Data.SqlClient;
 using System.Configuration;
 using System.Data;
 using System.Globalization;
+using System.Net.Mail;
+using System.Net;
 
 namespace WillAssure.Controllers
 {
@@ -144,13 +146,72 @@ namespace WillAssure.Controllers
 
 
 
-            
-          
+
+
 
 
 
 
             //end
+            
+
+
+
+            //generate MOBILE OTP
+            TFM.MobileOTP = String.Empty;
+            string[] saAllowedCharacters = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "0" };
+            int iOTPLength = 5;
+
+            string sTempChars = String.Empty;
+            Random rand = new Random();
+
+            for (int i = 0; i < iOTPLength; i++)
+
+            {
+
+                int p = rand.Next(0, saAllowedCharacters.Length);
+
+                sTempChars = saAllowedCharacters[rand.Next(0, saAllowedCharacters.Length)];
+
+                TFM.MobileOTP += sTempChars;
+
+            }
+            //END
+
+
+
+
+            //generate EMAIL OTP
+            TFM.EmailOTP = String.Empty;
+            string[] saAllowedCharacters2 = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "0" };
+            int iOTPLength2 = 5;
+
+            string sTempChars2 = String.Empty;
+            Random rand2 = new Random();
+
+            for (int i = 0; i < iOTPLength2; i++)
+
+            {
+
+                int p = rand.Next(0, saAllowedCharacters2.Length);
+
+                sTempChars2 = saAllowedCharacters2[rand.Next(0, saAllowedCharacters2.Length)];
+
+                TFM.EmailOTP += sTempChars2;
+
+            }
+            //END
+
+
+
+
+
+      
+
+
+
+
+
             con.Open();
 
             DateTime dat = DateTime.ParseExact(TFM.Dob, "dd-MM-yyyy", CultureInfo.InvariantCulture);
@@ -185,8 +246,8 @@ namespace WillAssure.Controllers
             cmd.Parameters.AddWithValue("@Contact_Verification", "");
             cmd.Parameters.AddWithValue("@Email_Verification", "");
             cmd.Parameters.AddWithValue("@Mobile_Verification_Status", "");
-            cmd.Parameters.AddWithValue("@Email_OTP", "");
-            cmd.Parameters.AddWithValue("@Mobile_OTP", "");
+            cmd.Parameters.AddWithValue("@Email_OTP",TFM.EmailOTP);
+            cmd.Parameters.AddWithValue("@Mobile_OTP",TFM.MobileOTP);
             cmd.Parameters.AddWithValue("@uid", "");
 
             cmd.ExecuteNonQuery();
@@ -199,6 +260,35 @@ namespace WillAssure.Controllers
             SqlCommand cdd = new SqlCommand(query2,con);
             cdd.ExecuteNonQuery();
             con.Close();
+
+
+            // new mail code
+            string mailto = TFM.Email;
+            string Userid = TFM.Identity_proof_Value;
+
+            Session["userid"] = Userid;
+            string subject = "Testing Mail Sending";
+            string OTP = "<font color='Green' style='font-size=3em;'>" + TFM.EmailOTP + "</font>";
+            string text = "Your OTP for Verification Is " + OTP + "";
+            string body = "<font color='red'>" + text + "</font>";
+
+
+            MailMessage msg = new MailMessage();
+            msg.From = new MailAddress("info@drinco.in");
+            msg.To.Add(mailto);
+            msg.Subject = subject;
+            msg.Body = body;
+
+            msg.IsBodyHtml = true;
+            SmtpClient smtp = new SmtpClient("216.10.240.149", 25);
+            smtp.Credentials = new NetworkCredential("info@drinco.in", "95Bzf%s7");
+            smtp.EnableSsl = false;
+            smtp.Send(msg);
+            smtp.Dispose();
+
+
+
+            //end
 
             ViewBag.Message = "Verified";
 

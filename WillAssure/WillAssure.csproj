@@ -213,6 +213,7 @@
     <Compile Include="Controllers\CouponsAllotmentController.cs" />
     <Compile Include="Controllers\DashBoardController.cs" />
     <Compile Include="Controllers\DisplayCouponAllotedController.cs" />
+    <Compile Include="Controllers\DocumentpgController.cs" />
     <Compile Include="Controllers\EditAllotmentDistributorController.cs" />
     <Compile Include="Controllers\EditAlternateAppointeesController.cs" />
     <Compile Include="Controllers\EditAlternateBeneficiaryController.cs" />
@@ -257,6 +258,7 @@
     <Compile Include="Controllers\UpdateLiabilitiesController.cs" />
     <Compile Include="Controllers\UpdateMainAssetsController.cs" />
     <Compile Include="Controllers\UpdateNomineeController.cs" />
+    <Compile Include="Controllers\UpdatePetCareController.cs" />
     <Compile Include="Controllers\UpdateRolesController.cs" />
     <Compile Include="Controllers\UpdateSettingController.cs" />
     <Compile Include="Controllers\UpdateTestatorFamilyController.cs" />
@@ -1249,6 +1251,8 @@
     <Content Include="Views\AddPetCare\AddPetCarePageContent.cshtml" />
     <Content Include="Views\EditPetCare\EditPetCarePageContent.cshtml" />
     <Content Include="Views\UpdateLiabilities\UpdateLiabilitiesPageContent.cshtml" />
+    <Content Include="Views\UpdatePetCare\UpdatePetCarePageContent.cshtml" />
+    <Content Include="Views\Documentpg\DocumentPgPageContent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

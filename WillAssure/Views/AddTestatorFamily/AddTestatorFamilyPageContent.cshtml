@@ -68,11 +68,7 @@
 
 
                                 </div>
-                                <div class="col-sm-2">
-                                    <label class="checkbox-inline">
-                                        <input type="checkbox" value="Yes" class="radio" name="radio">Add Multiple
-                                    </label>
-                                </div>
+                              
                             </div>
                             <hr>
                             <input type="hidden" id="txtcheck" value="" name="name" />
@@ -652,17 +648,12 @@
 
                 if (data == 2) {
 
-                    $("#btncheckExists").on("click", function () { });
+                    $("#confirmtestatorfamily").on("click", function () { });
 
-                    $("#btncheckExists").click(); //trigger event after listening to it.
+                    $("#confirmtestatorfamily").click(); 
 
 
-                    setTimeout(function () {
-                        var url = "/AddBeneficiary/AddBeneficiaryIndex/";
-                        window.location.href = url;
-                    }, 2000);
-                    //var url = "/AddBeneficiary/AddBeneficiaryIndex/";
-                    //window.location.href = url;
+                 
                 }
 
 

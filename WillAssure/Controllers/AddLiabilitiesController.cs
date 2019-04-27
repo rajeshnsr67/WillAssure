@@ -105,7 +105,7 @@ namespace WillAssure.Controllers
 
 
             con.Open();
-            string query = "insert into Liabilities (Amount , Type , Name , address , city , state , pin ,  Mobile , Details , tid) values ("+LM.Amount+" , '"+LM.Type+"' , '"+LM.Name1 + "' , '"+LM.address+"' , '"+LM.citytext+"' , '"+LM.statetext+"' , '"+LM.pin+"' , '"+LM.Mobile+"' , '"+LM.Details+"' , "+LM.ddltid+" )  ";
+            string query = "insert into Liabilities (Amount  , Name , address , city , state , pin ,  Mobile , Details , tid) values ("+LM.Amount+"  , '"+LM.Name1 + "' , '"+LM.address+"' , '"+LM.citytext+"' , '"+LM.statetext+"' , '"+LM.pin+"' , '"+LM.Mobile+"' , '"+LM.Details+"' , "+LM.ddltid+" )  ";
             SqlCommand cmd = new SqlCommand(query,con);
             cmd.ExecuteNonQuery();
             con.Close();

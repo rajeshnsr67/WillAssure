@@ -416,7 +416,7 @@
      //Failed Alert Button
 
      $("#btnOTPCheckFAILED").click(function(){
-                  swal("Failed!", "Please Enter Correct OTP!,", "error");
+                  swal("Invalid OTP Number", "Please Enter Correct OTP", "warning");
               });
 
 

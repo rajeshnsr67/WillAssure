@@ -8,21 +8,16 @@ using System.Data.Sql;
 using System.Data.SqlClient;
 using System.Configuration;
 using System.Data;
-using System.Net.Mail;
-using System.Net;
 using System.Collections;
-
 namespace WillAssure.Controllers
 {
-    public class AddPetCareController : Controller
+    public class UpdatePetCareController : Controller
     {
-
         public static string connectionString = ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString;
         SqlConnection con = new SqlConnection(connectionString);
-        // GET: AddPetCare
-        public ActionResult AddPetCareIndex()
+        // GET: UpdatePetCare
+        public ActionResult UpdatePetCareIndex()
         {
-
             List<LoginModel> Lmlist = new List<LoginModel>();
             con.Open();
             string q = "select * from Assignment_Roles where RoleId = " + Convert.ToInt32(Session["rId"]) + "";
@@ -56,13 +51,44 @@ namespace WillAssure.Controllers
             con.Close();
 
 
+            PetCareModel PM = new PetCareModel();
 
-            return View("~/Views/AddPetCare/AddPetCarePageContent.cshtml");
+
+            con.Open();
+            string query = "select * from PetCare";
+            SqlDataAdapter da = new SqlDataAdapter(query, con);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            con.Close();
+            
+
+        
+
+
+
+            if (dt.Rows.Count > 0)
+            {
+
+               
+                    
+                    PM.petid =    Convert.ToInt32(dt.Rows[0]["petid"]);
+                    PM.petname =    dt.Rows[0]["petname"].ToString();
+                    PM.petage =    dt.Rows[0]["petage"].ToString();
+                    PM.typeofpet =    dt.Rows[0]["typeofpet"].ToString();
+                    PM.amtforpet =    dt.Rows[0]["amtforpet"].ToString();
+                    PM.amtfromwhichasset =    dt.Rows[0]["amtfromwhichasset"].ToString();
+                    PM.responsibelpersonforpet =    dt.Rows[0]["responsibelpersonforpet"].ToString();
+                       
+                    
+                
+            }
+
+
+                return View("~/Views/UpdatePetCare/UpdatePetCarePageContent.cshtml",PM);
         }
 
 
-
-        public ActionResult InsertPetcaredata(PetCareModel PM)
+        public ActionResult UpdatePetCareFormData(PetCareModel PM)
         {
             List<LoginModel> Lmlist = new List<LoginModel>();
             con.Open();
@@ -97,21 +123,21 @@ namespace WillAssure.Controllers
             con.Close();
 
 
-
-
             con.Open();
-            string query = "insert into PetCare (petname,petage,typeofpet,amtforpet,amtfromwhichasset,responsibelpersonforpet,tid) values ('"+PM.petname+"' , "+PM.petage+" , '"+PM.typeofpet+"' , "+PM.amtforpet+" ,'"+PM.amtfromwhichasset+"' , '"+PM.responsibelpersonforpet+"' , "+PM.ddltid+")";
+            string query = "update PetCare set petname = '"+PM.petname+ "' , petage="+PM.petage+ " ,typeofpet='"+PM.typeofpet+ "' , amtforpet = "+PM.amtforpet+ " , amtfromwhichasset = "+PM.amtfromwhichasset+ " , responsibelpersonforpet="+PM.responsibelpersonforpet+" , tid="+PM.tid+ " where petid ="+PM.petid+"  ";
             SqlCommand cmd = new SqlCommand(query,con);
-            cmd.ExecuteNonQuery();
+            cmd.ExecuteNonQuery();  
             con.Close();
+
 
 
             ViewBag.Message = "Verified";
-            ModelState.Clear();
 
-            return View("~/Views/AddPetCare/AddPetCarePageContent.cshtml");
+
+
+            return View("~/Views/UpdatePetCare/UpdatePetCarePageContent.cshtml");
+
         }
-
 
 
         public string BindTestatorDDL()
@@ -263,6 +289,56 @@ namespace WillAssure.Controllers
         }
 
 
+        public ActionResult UpdatePetcareDetails(PetCareModel PM)
+        {
+            List<LoginModel> Lmlist = new List<LoginModel>();
+            con.Open();
+            string q = "select * from Assignment_Roles where RoleId = " + Convert.ToInt32(Session["rId"]) + "";
+            SqlDataAdapter da3 = new SqlDataAdapter(q, con);
+            DataTable dt3 = new DataTable();
+            da3.Fill(dt3);
+            if (dt3.Rows.Count > 0)
+            {
 
+                for (int i = 0; i < dt3.Rows.Count; i++)
+                {
+                    LoginModel lm = new LoginModel();
+                    lm.PageName = dt3.Rows[i]["PageName"].ToString();
+                    lm.PageStatus = dt3.Rows[i]["PageStatus"].ToString();
+                    lm.Action = dt3.Rows[i]["Action"].ToString();
+                    lm.Nav1 = dt3.Rows[i]["Nav1"].ToString();
+                    lm.Nav2 = dt3.Rows[i]["Nav2"].ToString();
+
+                    Lmlist.Add(lm);
+                }
+
+
+
+                ViewBag.PageName = Lmlist;
+
+
+
+
+            }
+
+            con.Close();
+
+
+
+
+            con.Open();
+
+            string query = "update PetCare set petname='"+PM.petname+ "'  , petage="+PM.petage+ " , typeofpet='"+PM.typeofpet+ "' , amtforpet = "+PM.amtforpet+ "  , amtfromwhichasset='"+PM.amtfromwhichasset+ "' , responsibelpersonforpet='"+PM.responsibelpersonforpet+ "' , tid="+PM.ddltid+" where petid="+PM.petid+"  ";
+            SqlCommand cmd = new SqlCommand(query,con);
+            cmd.ExecuteNonQuery();
+            con.Close();
+
+            ViewBag.Message = "Verified";
+
+
+
+
+            return View("~/Views/UpdatePetCare/UpdatePetCarePageContent.cshtml");
+        }
     }
 }

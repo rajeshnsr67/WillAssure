@@ -116,7 +116,7 @@ namespace WillAssure.Controllers
 
 
             con.Open();
-            string query = "select * from AssetsCategory";
+            string query = "select a.amId , b.AssetsType , a.AssetsCategory , a.assetsCode from AssetsCategory a inner join AssetsType b on a.atId=b.atId";
             SqlDataAdapter da = new SqlDataAdapter(query, con);
             DataTable dt = new DataTable();
             da.Fill(dt);
@@ -131,7 +131,7 @@ namespace WillAssure.Controllers
                     for (int i = 0; i < dt.Rows.Count; i++)
                     {
                         data = data + "<tr class='nr'><td>" + dt.Rows[i]["amId"].ToString() + "</td>"
-
+                                    + "<td>" + dt.Rows[i]["AssetsType"].ToString() + "</td>"
                                     + "<td>" + dt.Rows[i]["AssetsCategory"].ToString() + "</td>"
                                     + "<td>" + dt.Rows[i]["assetsCode"].ToString() + "</td>"
                                     + "<td><button type='button'   id='" + dt.Rows[i]["amId"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary'>Edit</button></td>    </tr>";
@@ -144,7 +144,7 @@ namespace WillAssure.Controllers
                     for (int i = 0; i < dt.Rows.Count; i++)
                     {
                         data = data + "<tr class='nr'><td>" + dt.Rows[i]["amId"].ToString() + "</td>"
-
+                                    + "<td>" + dt.Rows[i]["AssetsType"].ToString() + "</td>"
                                     + "<td>" + dt.Rows[i]["AssetsCategory"].ToString() + "</td>"
                                     + "<td>" + dt.Rows[i]["assetsCode"].ToString() + "</td>"
                                     + "<td><button type='button'   id='" + dt.Rows[i]["amId"].ToString() + "'    class='btn btn-danger deletenotification'>Delete</button></td>    </tr>";
@@ -158,7 +158,7 @@ namespace WillAssure.Controllers
                     for (int i = 0; i < dt.Rows.Count; i++)
                     {
                         data = data + "<tr class='nr'><td>" + dt.Rows[i]["amId"].ToString() + "</td>"
-
+                                    + "<td>" + dt.Rows[i]["AssetsType"].ToString() + "</td>"
                                     + "<td>" + dt.Rows[i]["AssetsCategory"].ToString() + "</td>"
                                     + "<td>" + dt.Rows[i]["assetsCode"].ToString() + "</td>"
                                     + "<td><button type='button'   id='" + dt.Rows[i]["amId"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary'>Edit</button><button type='button'   id='" + dt.Rows[i]["amId"].ToString() + "'   class='btn btn-danger deletenotification'>Delete</button></td>    </tr>";
@@ -173,7 +173,7 @@ namespace WillAssure.Controllers
                     for (int i = 0; i < dt.Rows.Count; i++)
                     {
                         data = data + "<tr class='nr'><td>" + dt.Rows[i]["amId"].ToString() + "</td>"
-
+                                    + "<td>" + dt.Rows[i]["AssetsType"].ToString() + "</td>"
                                     + "<td>" + dt.Rows[i]["AssetsCategory"].ToString() + "</td>"
                                     + "<td>" + dt.Rows[i]["assetsCode"].ToString() + "</td>";
                                    
@@ -264,8 +264,9 @@ namespace WillAssure.Controllers
 
 
 
+
             con.Open();
-            string query = "select * from AssetsCategory";
+            string query = "select a.amId , b.AssetsType , a.AssetsCategory , a.assetsCode from AssetsCategory a inner join AssetsType b on a.atId=b.atId";
             SqlDataAdapter da = new SqlDataAdapter(query, con);
             DataTable dt = new DataTable();
             da.Fill(dt);
@@ -280,7 +281,7 @@ namespace WillAssure.Controllers
                     for (int i = 0; i < dt.Rows.Count; i++)
                     {
                         data = data + "<tr class='nr'><td>" + dt.Rows[i]["amId"].ToString() + "</td>"
-
+                                    + "<td>" + dt.Rows[i]["AssetsType"].ToString() + "</td>"
                                     + "<td>" + dt.Rows[i]["AssetsCategory"].ToString() + "</td>"
                                     + "<td>" + dt.Rows[i]["assetsCode"].ToString() + "</td>"
                                     + "<td><button type='button'   id='" + dt.Rows[i]["amId"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary'>Edit</button></td>    </tr>";
@@ -293,7 +294,7 @@ namespace WillAssure.Controllers
                     for (int i = 0; i < dt.Rows.Count; i++)
                     {
                         data = data + "<tr class='nr'><td>" + dt.Rows[i]["amId"].ToString() + "</td>"
-
+                                    + "<td>" + dt.Rows[i]["AssetsType"].ToString() + "</td>"
                                     + "<td>" + dt.Rows[i]["AssetsCategory"].ToString() + "</td>"
                                     + "<td>" + dt.Rows[i]["assetsCode"].ToString() + "</td>"
                                     + "<td><button type='button'   id='" + dt.Rows[i]["amId"].ToString() + "'    class='btn btn-danger deletenotification'>Delete</button></td>    </tr>";
@@ -307,7 +308,7 @@ namespace WillAssure.Controllers
                     for (int i = 0; i < dt.Rows.Count; i++)
                     {
                         data = data + "<tr class='nr'><td>" + dt.Rows[i]["amId"].ToString() + "</td>"
-
+                                    + "<td>" + dt.Rows[i]["AssetsType"].ToString() + "</td>"
                                     + "<td>" + dt.Rows[i]["AssetsCategory"].ToString() + "</td>"
                                     + "<td>" + dt.Rows[i]["assetsCode"].ToString() + "</td>"
                                     + "<td><button type='button'   id='" + dt.Rows[i]["amId"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary'>Edit</button><button type='button'   id='" + dt.Rows[i]["amId"].ToString() + "'   class='btn btn-danger deletenotification'>Delete</button></td>    </tr>";
@@ -322,7 +323,7 @@ namespace WillAssure.Controllers
                     for (int i = 0; i < dt.Rows.Count; i++)
                     {
                         data = data + "<tr class='nr'><td>" + dt.Rows[i]["amId"].ToString() + "</td>"
-
+                                    + "<td>" + dt.Rows[i]["AssetsType"].ToString() + "</td>"
                                     + "<td>" + dt.Rows[i]["AssetsCategory"].ToString() + "</td>"
                                     + "<td>" + dt.Rows[i]["assetsCode"].ToString() + "</td>";
 

@@ -28,37 +28,7 @@ namespace WillAssure.Controllers
                RedirectToAction("LoginPageIndex", "LoginPage");
 
             }
-            List<LoginModel> Lmlist = new List<LoginModel>();
-            con.Open();
-            string q = "select * from Assignment_Roles where RoleId = " + Convert.ToInt32(Session["rId"]) + "";
-            SqlDataAdapter da3 = new SqlDataAdapter(q, con);
-            DataTable dt3 = new DataTable();
-            da3.Fill(dt3);
-            if (dt3.Rows.Count > 0)
-            {
-
-                for (int i = 0; i < dt3.Rows.Count; i++)
-                {
-                    LoginModel lm = new LoginModel();
-                    lm.PageName = dt3.Rows[i]["PageName"].ToString();
-                    lm.PageStatus = dt3.Rows[i]["PageStatus"].ToString();
-                    lm.Action = dt3.Rows[i]["Action"].ToString();
-                    lm.Nav1 = dt3.Rows[i]["Nav1"].ToString();
-                    lm.Nav2 = dt3.Rows[i]["Nav2"].ToString();
-
-                    Lmlist.Add(lm);
-                }
-
-
-
-                ViewBag.PageName = Lmlist;
-
-
-
-
-            }
-
-            con.Close();
+         
             string OTP = Eramake.eCryptography.Decrypt(v2);
             Session["OTP"] = OTP;
             return View("~/Views/EmailVerification/EmailVerificationPageContent.cshtml");
@@ -160,10 +130,10 @@ namespace WillAssure.Controllers
 
 
                     //generate Mail
-                    string mailto = "";
+                    string TestatorEmail = "";
                     string userid = "";
                   
-                    mailto = Session["mailto"].ToString();
+                    TestatorEmail = Session["TestatorEmail"].ToString();
                     userid = Session["userid"].ToString();
                     string subject = "Will Assure Login Credentials";
 
@@ -173,7 +143,7 @@ namespace WillAssure.Controllers
 
                     MailMessage msg = new MailMessage();
                     msg.From = new MailAddress("info@drinco.in");
-                    msg.To.Add(mailto);
+                    msg.To.Add(TestatorEmail);
                     msg.Subject = subject;
                     msg.Body = body;
 

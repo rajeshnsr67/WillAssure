@@ -68,14 +68,7 @@
                                 </div>
 
 
-                                <div class="col-sm-6">
-
-                                    <div class="form-group">
-                                        <label for="input-1">Type</label>
-
-                                        @Html.TextBoxFor(m => m.Type, new { @class = "form-control validate[required,custom[characteronly]] text-input", @id = "txtType", @placeholder = "Enter Type", @autocomplete = "off", alert = "LabourCost is requried" })
-                                    </div>
-                                </div>
+                           
 
 
 
@@ -106,11 +99,19 @@
                                     <div class="form-group">
                                         <label for="input-1">State</label>
 
-                                        <select id="ddlstate" class="form-control validate[required]">
+                                        <select id="ddlstate" style="display:none;" class="form-control validate[required]">
                                             <option value="">--Select State--</option>
                                         </select>
                                         @Html.HiddenFor(m => m.stateid, new { id = "stateid" })
-                                        @Html.HiddenFor(m => m.statetext, new { id = "statetext" })
+                                        @Html.TextBoxFor(m => m.statetext, new { id = "statetext" , @class="form-control" })
+
+
+                                        <script>
+                                            $("#statetext").focus(function () {
+                                                $("#statetext").hide();
+                                                $("#ddlstate").show();
+                                            });
+                                        </script>
                                     </div>
                                 </div>
 
@@ -121,12 +122,18 @@
 
                                     <div class="form-group">
                                         <label for="input-1">City</label>
-                                        <select id="ddlcity" onchange="ddlcity(value)" class="form-control validate[required]">
+                                        <select id="ddlcity" style="display:none;" onchange="ddlcity(value)" class="form-control validate[required]">
                                             <option value="">--Select City--</option>
                                         </select>
                                         @Html.HiddenFor(m => m.cityid, new { id = "cityid" })
-                                        @Html.HiddenFor(m => m.citytext, new { id = "citytext" })
+                                        @Html.TextBoxFor(m => m.citytext, new { id = "citytext", @class = "form-control" })
 
+                                        <script>
+                                            $("#citytext").focus(function () {
+                                                $("#citytext").hide();
+                                                $("#ddlcity").show();
+                                            });
+                                        </script>
                                     </div>
 
                                 </div>
@@ -173,7 +180,7 @@
 
                             <div class="form-group">
 
-                                <button type="submit" id="btnRoleformsubmit" formaction="InsertLiabilitiesDetails" class="btn btn-success shadow-primary px-5"><i class="icon-lock"></i> Update Liabilities</button>
+                                <button type="submit" id="btnRoleformsubmit" formaction="UpdateLiabilitiesdetails" class="btn btn-success shadow-primary px-5"><i class="icon-lock"></i> Update Liabilities</button>
 
                             </div>
 
