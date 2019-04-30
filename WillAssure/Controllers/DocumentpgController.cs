@@ -65,6 +65,44 @@ namespace WillAssure.Controllers
         public ActionResult insertDocumentDetails(TestatorFormModel TFM)
         {
 
+            List<LoginModel> Lmlist = new List<LoginModel>();
+            con.Open();
+            string q = "select * from Assignment_Roles where RoleId = " + Convert.ToInt32(Session["rId"]) + "";
+            SqlDataAdapter da3 = new SqlDataAdapter(q, con);
+            DataTable dt3 = new DataTable();
+            da3.Fill(dt3);
+            if (dt3.Rows.Count > 0)
+            {
+
+                for (int i = 0; i < dt3.Rows.Count; i++)
+                {
+                    LoginModel lm = new LoginModel();
+                    lm.PageName = dt3.Rows[i]["PageName"].ToString();
+                    lm.PageStatus = dt3.Rows[i]["PageStatus"].ToString();
+                    lm.Action = dt3.Rows[i]["Action"].ToString();
+                    lm.Nav1 = dt3.Rows[i]["Nav1"].ToString();
+                    lm.Nav2 = dt3.Rows[i]["Nav2"].ToString();
+
+                    Lmlist.Add(lm);
+                }
+
+
+
+                ViewBag.PageName = Lmlist;
+
+
+
+
+            }
+
+            con.Close();
+
+
+
+
+
+
+
             int testatorid = 0;
             int templateid = 0;
             string testatortype = "";
@@ -181,6 +219,24 @@ namespace WillAssure.Controllers
             con.Close();
 
 
+            // get distributor id
+
+            con.Open();
+            string gedistid = "select uId from TestatorDetails where tId="+testatorid+" ";
+            SqlDataAdapter distid = new SqlDataAdapter(gedistid, con);
+            DataTable distdt = new DataTable();
+            distid.Fill(distdt);
+            int distidd = 0;
+            if (distdt.Rows.Count > 0)
+            {
+                distidd = Convert.ToInt32(distdt.Rows[0]["uId"]);
+            }
+            con.Close();
+
+
+            //end
+
+
 
             // update otp for email and mobile
 
@@ -201,8 +257,8 @@ namespace WillAssure.Controllers
 
 
             con.Open();
-            string q = "insert into documentMaster (tId,templateId,IsUpdatetable,uId,pId,created_by,testator_type,couponId,adminVerification) values (" + testatorid + " , " + templateid + " ,  'Yes' ,   " + TFM.distributor_id + " , 1 , '" + TFM.Document_Created_By_txt + "' , '" + testatortype + "' , "+couponsid+"  , 2)";
-            SqlCommand c = new SqlCommand(q, con);
+            string q1 = "insert into documentMaster (tId,templateId,IsUpdatetable,uId,pId,created_by,testator_type,couponId,adminVerification) values (" + testatorid + " , " + templateid + " ,  'Yes' ,   " + TFM.distributor_id + " , 1 , '" + TFM.Document_Created_By_txt + "' , '" + testatortype + "' , "+couponsid+"  , 2)";
+            SqlCommand c = new SqlCommand(q1, con);
             c.ExecuteNonQuery();
             con.Close();
 
@@ -231,8 +287,8 @@ namespace WillAssure.Controllers
 
 
             con.Open();
-            string q1 = "insert into documentRules (documentType,category,tid) values (" + typeid + " , " + typecat + "  , " + testatorid + " )";
-            SqlCommand c1 = new SqlCommand(q1, con);
+            string q2 = "insert into documentRules (documentType,category,tid) values (" + typeid + " , " + typecat + "  , " + testatorid + " )";
+            SqlCommand c1 = new SqlCommand(q2, con);
             c1.ExecuteNonQuery();
             con.Close();
 
@@ -248,7 +304,7 @@ namespace WillAssure.Controllers
                 TFM.Login_Required = 0;
 
                 con.Open();
-                string query1 = "insert into Authorization_Rules (Document_Created_By,Distributor_Id,Amt_Paid_By,Testator_Id,Authentication_Required,Link_Required,Login_Required) values ('" + TFM.Document_Created_By_txt + "' , '" + TFM.Document_Created_By_ID + "' , '" + TFM.Amt_Paid_By_txt + "' , '" + TFM.Amt_Paid_By + "'  , '" + TFM.Authentication_Required + "' , '" + TFM.Link_Required + "' , '" + TFM.Login_Required + "') ";
+                string query1 = "insert into Authorization_Rules (Document_Created_By,Distributor_Id,Amt_Paid_By,Testator_Id,Authentication_Required,Link_Required,Login_Required) values ('" + TFM.Document_Created_By_txt + "' , " + distidd + " , '" + TFM.Amt_Paid_By_txt + "' , " + testatorid + "  , '" + TFM.Authentication_Required + "' , '" + TFM.Link_Required + "' , '" + TFM.Login_Required + "') ";
                 SqlCommand cmd2 = new SqlCommand(query1, con);
                 cmd2.ExecuteNonQuery();
                 con.Close();
@@ -264,7 +320,7 @@ namespace WillAssure.Controllers
                 TFM.Login_Required = 1;
 
                 con.Open();
-                string query2 = "insert into Authorization_Rules (Document_Created_By,Distributor_Id,Amt_Paid_By,Testator_Id,Authentication_Required,Link_Required,Login_Required) values ('" + TFM.Document_Created_By_txt + "' , '" + TFM.Document_Created_By_ID + "' , '" + TFM.Amt_Paid_By_txt + "' , '" + TFM.Amt_Paid_By + "'  , '" + TFM.Authentication_Required + "' , '" + TFM.Link_Required + "' , '" + TFM.Login_Required + "') ";
+                string query2 = "insert into Authorization_Rules (Document_Created_By,Distributor_Id,Amt_Paid_By,Testator_Id,Authentication_Required,Link_Required,Login_Required) values ('" + TFM.Document_Created_By_txt + "' , " + distidd + " , '" + TFM.Amt_Paid_By_txt + "' , " + testatorid + "  , '" + TFM.Authentication_Required + "' , '" + TFM.Link_Required + "' , '" + TFM.Login_Required + "')  ";
                 SqlCommand cmd2 = new SqlCommand(query2, con);
                 cmd2.ExecuteNonQuery();
                 con.Close();
@@ -319,7 +375,7 @@ namespace WillAssure.Controllers
                 TFM.Login_Required = 1;
 
                 con.Open();
-                string query3 = "insert into Authorization_Rules (Document_Created_By,Distributor_Id,Amt_Paid_By,Testator_Id,Authentication_Required,Link_Required,Login_Required) values ('" + TFM.Document_Created_By_txt + "' , '" + TFM.Document_Created_By_ID + "' , '" + TFM.Amt_Paid_By_txt + "' , '" + TFM.Amt_Paid_By + "'  , '" + TFM.Authentication_Required + "' , '" + TFM.Link_Required + "' , '" + TFM.Login_Required + "') ";
+                string query3 = "insert into Authorization_Rules (Document_Created_By,Distributor_Id,Amt_Paid_By,Testator_Id,Authentication_Required,Link_Required,Login_Required) values ('" + TFM.Document_Created_By_txt + "' , " + distidd + " , '" + TFM.Amt_Paid_By_txt + "' , " + testatorid + "  , '" + TFM.Authentication_Required + "' , '" + TFM.Link_Required + "' , '" + TFM.Login_Required + "') ";
                 SqlCommand cmd2 = new SqlCommand(query3, con);
                 cmd2.ExecuteNonQuery();
                 con.Close();
@@ -373,7 +429,7 @@ namespace WillAssure.Controllers
                 TFM.Login_Required = 1;
 
                 con.Open();
-                string query4 = "insert into Authorization_Rules (Document_Created_By,Distributor_Id,Amt_Paid_By,Testator_Id,Authentication_Required,Link_Required,Login_Required) values ('" + TFM.Document_Created_By_txt + "' , '" + TFM.Document_Created_By_ID + "' , '" + TFM.Amt_Paid_By_txt + "' , '" + TFM.Amt_Paid_By + "'  , '" + TFM.Authentication_Required + "' , '" + TFM.Link_Required + "' , '" + TFM.Login_Required + "') ";
+                string query4 = "insert into Authorization_Rules (Document_Created_By,Distributor_Id,Amt_Paid_By,Testator_Id,Authentication_Required,Link_Required,Login_Required) values ('" + TFM.Document_Created_By_txt + "' , " + distidd + " , '" + TFM.Amt_Paid_By_txt + "' , " + testatorid + "  , '" + TFM.Authentication_Required + "' , '" + TFM.Link_Required + "' , '" + TFM.Login_Required + "')  ";
                 SqlCommand cmd2 = new SqlCommand(query4, con);
                 cmd2.ExecuteNonQuery();
                 con.Close();
@@ -523,6 +579,18 @@ namespace WillAssure.Controllers
             }
 
             return data;
+        }
+
+
+
+
+        public ActionResult VerifyOTP(LoginModel EVM)
+        {
+
+           
+
+            return View("~/Views/LoginPage/LoginPageContent.cshtml");
+
         }
 
 

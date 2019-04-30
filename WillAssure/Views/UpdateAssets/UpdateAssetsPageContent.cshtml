@@ -31,7 +31,8 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-
+                            <div class="card-title text-primary">Update Asset Control</div>
+                            <hr>
                             @Html.HiddenFor(m => m.aiId, new { @id = "aid" })
                             <input type="button" id="btnload" style="display:none;" />
                             <div id="listdata" class="row">
@@ -84,6 +85,18 @@
 
 
         <script>
+
+
+            $('input[name=control]').change(function () {
+
+                $('input[name=control]').hide();
+
+                $('ddlcontrols').hide();
+
+
+            });
+
+
 
                 function getAssetColumnValue(ENTITY) {
 

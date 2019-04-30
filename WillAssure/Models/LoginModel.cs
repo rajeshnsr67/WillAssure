@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -22,7 +23,7 @@ namespace WillAssure.Models
 
         public string EmailID { get; set; }
 
-
+        [Required(ErrorMessage = "OTP is Required")]
         public string OTP { get; set; }
 
 

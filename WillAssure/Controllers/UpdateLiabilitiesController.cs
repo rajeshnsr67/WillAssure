@@ -59,7 +59,7 @@ namespace WillAssure.Controllers
             LiabilitiesModel LM = new LiabilitiesModel();
 
             con.Open();
-            string query = "select * from Liabilities ";
+            string query = "select * from Liabilities where lId = "+NestId+" ";
             SqlDataAdapter da = new SqlDataAdapter(query, con);
             DataTable dt = new DataTable();
             da.Fill(dt);
@@ -350,7 +350,7 @@ namespace WillAssure.Controllers
 
 
             con.Open();
-            string query = "update Liabilities set Amount= "+LM.Amount+ " , Name = "+LM.Name1+ " , address="+LM.address+ " , city = "+LM.citytext+ " state = "+LM.statetext+ " , pin="+LM.pin+ " , Mobile="+LM.Mobile+ " , Details="+LM.Details+ " , tid="+LM.tid+"   ";
+            string query = "update Liabilities set Amount= "+LM.Amount+ " , Name = "+LM.Name1+ " , address="+LM.address+ " , city = "+LM.citytext+ " state = "+LM.statetext+ " , pin="+LM.pin+ " , Mobile="+LM.Mobile+ " , Details="+LM.Details+ " , tid="+LM.tid+ "  where lId ="+ LM.libid + "  ";
             SqlCommand cmd = new SqlCommand(query,con);
             cmd.ExecuteNonQuery();
             con.Close();

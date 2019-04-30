@@ -28,7 +28,7 @@
                 <div class="card">
                     <div class="card-body">
 
-                        <div class="card-title text-primary">Add Beneficiary</div>
+                        <div class="card-title text-primary">Update Beneficiary</div>
 
 
                         @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "BeneficiaryForm" }))
@@ -217,7 +217,7 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="input-3">Address1</label>
-                                        @Html.TextAreaFor(m => m.Address1, new { @class = "form-control validate[required] text-input", @id = "txtAddress1", @placeholder = "Enter Your Address 1", @autocomplete = "off" })
+                                        @Html.TextAreaFor(m => m.Address1, new { @class = "form-control validate[required] text-input", @id = "txtAddress1", @placeholder = "Enter Address 1", @autocomplete = "off" })
                                     </div>
                                 </div>
 

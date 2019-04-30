@@ -16,37 +16,74 @@ namespace WillAssure.Controllers
         public static string connectionString = ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString;
         SqlConnection con = new SqlConnection(connectionString);
         // GET: DashBoard
-        public ActionResult DashBoardIndex()
+        public ActionResult DashBoardIndex(string v2)
         {
-            List<LoginModel> Lmlist = new List<LoginModel>();
-            con.Open();
-            string q = "select * from Assignment_Roles where RoleId = " + Convert.ToInt32(Session["rId"]) + "";
-            SqlDataAdapter da3 = new SqlDataAdapter(q, con);
-            DataTable dt3 = new DataTable();
-            da3.Fill(dt3);
-            if (dt3.Rows.Count > 0)
+            string OTP = "";
+            if (v2 != null)
             {
+                OTP = Eramake.eCryptography.Decrypt(v2);
+                Session["enteredOTP"] = OTP;
+            }
+            
+            con.Open();
+            string query = "select Designation  from users where uId = " + Convert.ToInt32(Session["uuid"])+"  ";
+            SqlDataAdapter da = new SqlDataAdapter(query,con);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            string type = "";
 
-                for (int i = 0; i < dt3.Rows.Count; i++)
+            if (dt.Rows.Count > 0)
+            {
+               type =  dt.Rows[0]["Designation"].ToString();
+            }
+            con.Close();
+
+
+            if (type != "2")
+            {
+                List<LoginModel> Lmlist = new List<LoginModel>();
+                con.Open();
+                string q = "select * from Assignment_Roles where RoleId = " + Convert.ToInt32(Session["rId"]) + "";
+                SqlDataAdapter da3 = new SqlDataAdapter(q, con);
+                DataTable dt3 = new DataTable();
+                da3.Fill(dt3);
+                if (dt3.Rows.Count > 0)
                 {
-                    LoginModel lm = new LoginModel();
-                    lm.PageName = dt3.Rows[i]["PageName"].ToString();
-                    lm.PageStatus = dt3.Rows[i]["PageStatus"].ToString();
-                    lm.Action = dt3.Rows[i]["Action"].ToString();
-                    lm.Nav1 = dt3.Rows[i]["Nav1"].ToString();
-                    lm.Nav2 = dt3.Rows[i]["Nav2"].ToString();
 
-                    Lmlist.Add(lm);
+                    for (int i = 0; i < dt3.Rows.Count; i++)
+                    {
+                        LoginModel lm = new LoginModel();
+                        lm.PageName = dt3.Rows[i]["PageName"].ToString();
+                        lm.PageStatus = dt3.Rows[i]["PageStatus"].ToString();
+                        lm.Action = dt3.Rows[i]["Action"].ToString();
+                        lm.Nav1 = dt3.Rows[i]["Nav1"].ToString();
+                        lm.Nav2 = dt3.Rows[i]["Nav2"].ToString();
+
+                        Lmlist.Add(lm);
+                    }
+
+
+
+                    ViewBag.PageName = Lmlist;
+
+
+
+
                 }
 
 
-
-                ViewBag.PageName = Lmlist;
 
 
 
 
             }
+            else
+            {
+
+                ViewBag.Testatorpopup = "true";
+
+            }
+
 
 
 
@@ -149,5 +186,96 @@ namespace WillAssure.Controllers
 
             return View("~/Views/DashBoard/DashBoardPageContent.cshtml");
         }
+
+
+
+
+        public ActionResult VerifyOTP(LoginModel EVM)
+        {
+            if (Session["enteredOTP"] != null)
+            {
+                if (Session["enteredOTP"].ToString() == EVM.OTP)
+                {
+                    con.Open();
+                    string query = "update TestatorDetails set Contact_Verification =1 , Email_Verification = 1 , Mobile_Verification_Status = 1 where Email_OTP = '" + ViewBag.OTP + "'";
+                    SqlCommand cmd = new SqlCommand(query, con);
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+
+
+
+
+                    con.Open();
+                    string updateotp = "update users set Designation = 1 where uid = " + Convert.ToInt32(Session["uuid"]) + "  ";
+                    SqlCommand cmdot = new SqlCommand(updateotp, con);
+                    cmdot.ExecuteNonQuery();
+                    con.Close();
+
+
+                    con.Open();
+
+                    string qq = "select a.Amt_Paid_By from Authorization_Rules a inner join TestatorDetails b on  a.Testator_Id=b.tId where b.Email_OTP = " + Session["enteredOTP"].ToString() + " ";
+                    SqlDataAdapter dda = new SqlDataAdapter(qq,con);
+                    DataTable ddt = new DataTable();
+                    dda.Fill(ddt);
+                    string amtpaidby = "";
+                    if (ddt.Rows.Count > 0)
+                    {
+                       amtpaidby = ddt.Rows[0]["Amt_Paid_By"].ToString();
+                    }
+                    con.Close();
+
+                    if (amtpaidby == "Testator")
+                    {
+                        ViewBag.PaymentLink = "true";
+                    }
+                    else
+                    {
+                      return  RedirectToAction("DashBoardIndex", "DashBoard");
+                    }
+
+
+
+
+                    ViewBag.Message = "Verified";
+                }
+                else
+                {
+                    con.Open();
+                    string query = "update TestatorDetails set Contact_Verification =2 , Email_Verification = 2 , Mobile_Verification_Status = 2 where Email_OTP = '" + Session["enteredOTP"].ToString() + "'";
+                    SqlCommand cmd = new SqlCommand(query, con);
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                    ViewBag.Testatorpopup = "true";
+                    ViewBag.Message = "Failed";
+                }
+
+
+               
+
+
+
+
+
+
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+            return View("~/Views/DashBoard/DashBoardPageContent.cshtml");
+
+        }
+
+
+
     }
 }

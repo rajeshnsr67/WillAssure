@@ -16,7 +16,7 @@ namespace WillAssure.Controllers
         public static string connectionString = ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString;
         SqlConnection con = new SqlConnection(connectionString);
         // GET: UpdatePetCare
-        public ActionResult UpdatePetCareIndex()
+        public ActionResult UpdatePetCareIndex(int NestId)
         {
             List<LoginModel> Lmlist = new List<LoginModel>();
             con.Open();
@@ -55,7 +55,7 @@ namespace WillAssure.Controllers
 
 
             con.Open();
-            string query = "select * from PetCare";
+            string query = "select * from PetCare where petid = "+NestId+" ";
             SqlDataAdapter da = new SqlDataAdapter(query, con);
             DataTable dt = new DataTable();
             da.Fill(dt);
@@ -328,7 +328,7 @@ namespace WillAssure.Controllers
 
             con.Open();
 
-            string query = "update PetCare set petname='"+PM.petname+ "'  , petage="+PM.petage+ " , typeofpet='"+PM.typeofpet+ "' , amtforpet = "+PM.amtforpet+ "  , amtfromwhichasset='"+PM.amtfromwhichasset+ "' , responsibelpersonforpet='"+PM.responsibelpersonforpet+ "' , tid="+PM.ddltid+" where petid="+PM.petid+"  ";
+            string query = "update PetCare set petname='"+PM.petname+ "'  , petage="+PM.petage+ " , typeofpet='"+PM.typeofpet+ "' , amtforpet = "+PM.amtforpet+ "  , amtfromwhichasset='"+PM.amtfromwhichasset+ "' , responsibelpersonforpet='"+PM.responsibelpersonforpet+ "' , tid="+PM.ddltid+ " where petid=" + PM.petid+"  ";
             SqlCommand cmd = new SqlCommand(query,con);
             cmd.ExecuteNonQuery();
             con.Close();

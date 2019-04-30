@@ -101,7 +101,11 @@
                                     <div class="form-group">
                                         <label for="input-1">Amount From Which Asset</label>
 
-                                        @Html.TextBoxFor(m => m.amtfromwhichasset, new { @class = "form-control validate[required,custom[characteronly]] text-input", @id = "txtamountfromwhichasset", @placeholder = "Enter Amount From Which Asset", @autocomplete = "off", alert = "LabourCost is requried" })
+                                        @Html.DropDownListFor(x => x.amtfromwhichasset, new SelectListItem[]{
+                                     new SelectListItem() {Text = "--Select--", Value=""},
+                                    new SelectListItem() {Text = "Finacial Assets", Value="Finacial Assets"},
+                                    new SelectListItem() {Text = "Non Financial  Assets", Value="Non Financial  Assets"}}, new { @class = "form-control validate[required]" , @id="ddlmaritalstatus" })
+
                                     </div>
                                 </div>
 

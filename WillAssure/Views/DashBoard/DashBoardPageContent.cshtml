@@ -1,4 +1,4 @@
-﻿
+﻿@model WillAssure.Models.LoginModel
 @{
     ViewBag.Title = "DashBoardPageContent";
 }
@@ -189,10 +189,157 @@
 
 
         </div>
+        <button type="button" id="btnOTPCheckFAILED" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
+        <button style="display:none;" class="btn btn-outline-primary btn-block m-1" id="btnotp" data-toggle="modal" data-target="#primarymodal">Primary</button>
 
-
+        <button style="display:none;" class="btn btn-outline-primary btn-block m-1" id="btnpay" data-toggle="modal" data-target="#primarymodal2">Primary</button>
     </div>
 
 
 </div>
 @*end*@
+
+
+@*otp screen*@
+
+
+
+<!--Primary Modal -->
+
+<div class="modal fade" id="primarymodal">
+    <div class="modal-dialog">
+        <div class="modal-content border-primary">
+            <div class="modal-header bg-primary">
+                <h5 class="modal-title text-white">Please Enter OTP For Login</h5>
+                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @using (Html.BeginForm())
+                {
+
+
+                    <div class="row">
+                        <div class="col-sm-6">
+
+                            <div class="form-group">
+                                <label for="input-1">Enter OTP:</label>
+
+                                @Html.TextBoxFor(m => m.OTP, new { @class = "form-control validate[required,custom[characteronly]] text-input", @id = "txtRole", @placeholder = "Enter OTP Number", @style = "width:241px;", @autocomplete = "off", alert = "LabourCost is requried" })
+                                <span style="color:red;" id="lblerror">@Html.ValidationMessageFor(m => m.OTP)</span>
+                            </div>
+                        </div>
+
+
+
+
+                    </div>
+
+
+
+                    <div class="form-group">
+                        <input type="submit" formaction="@Url.Action("VerifyOTP","DashBoard")" name="name" class="btn btn-success" value="Verify OTP" />
+
+                    </div>
+
+                }
+
+            </div>
+
+        </div>
+    </div>
+</div><!--End Modal -->
+@*payment popup*@
+<div class="modal fade" id="primarymodal2">
+    <div class="modal-dialog">
+        <div class="modal-content border-primary">
+            <div class="modal-header bg-primary">
+                <h5 class="modal-title text-white"> Payment</h5>
+                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+
+
+                <div class="row">
+                    <div class="col-sm-6">
+
+                        <div class="form-group">
+                            <label for="input-1" style="white-space: nowrap;">Click On The Below Link For Payment :</label>
+                            <a href="https://razorpay.com/">Make A Payment</a>
+
+                        </div>
+
+
+
+
+                    </div>
+
+
+
+
+
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@*end*@
+
+
+
+@*end*@
+
+
+
+@if (ViewBag.Testatorpopup == "true")
+{
+    <script>
+
+        $(document).ready(function () {
+            $("#btnotp").on("click", function () { });
+
+            $("#btnotp").click(); //trigger event after listening to it.
+
+        });
+    </script>
+    
+}
+
+
+@if (ViewBag.PaymentLink == "true")
+{
+    <script>
+
+        $(document).ready(function () {
+            $("#btnpay").on("click", function () { });
+
+            $("#btnpay").click(); //trigger event after listening to it.
+
+        });
+    </script>
+   
+}
+
+
+
+@if (ViewBag.Message == "Failed")
+{
+    <script>
+
+        $(document).ready(function () {
+            $("#lblerror").html("Invalid OTP Number");
+
+        });
+    </script>
+
+}

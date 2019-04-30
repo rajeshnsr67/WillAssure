@@ -292,7 +292,8 @@ namespace WillAssure.Controllers
             cm.Parameters.AddWithValue("@UserPassword", TFM.userPassword);
             cm.Parameters.AddWithValue("@rid", 5);
             cm.Parameters.AddWithValue("@Active", "Active");
-            cm.Parameters.AddWithValue("@compId", 0); 
+            cm.Parameters.AddWithValue("@compId", 0);
+            cm.Parameters.AddWithValue("@Designation", 2);
             cm.ExecuteNonQuery();
             con.Close();
 
@@ -331,7 +332,7 @@ namespace WillAssure.Controllers
         
                 string subject = "Will Assure Login Credentials";
 
-                string text = "<font color='Green' style='font-size=3em;'>Your UserId And Password For Logging In Is <br> UserID : " + userlogin + " <br> Password : " + TFM.MobileOTP + "</font>";
+                string text = "<font color='Green' style='font-size=3em;'>Your UserId And Password For Logging In Is <br> UserID : " + userlogin + " <br> Password : " + TFM.userPassword + "</font>";
                 string body = "<font color='red'>" + text + "</font>";
 
 
