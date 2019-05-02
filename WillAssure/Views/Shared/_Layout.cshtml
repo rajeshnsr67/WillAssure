@@ -117,15 +117,7 @@
                     </form>
                 </li>
             </ul>
-            @{ 
-                if (Session["Role"] == null)
-                {
-            <script>
-                var url = "/LoginPage/LoginPageIndex/";
-                window.location.href = url;
-            </script>
-                 }
-            }
+      
             <ul class="navbar-nav align-items-center right-nav-link">
                 <li class="nav-item dropdown-lg">
 
@@ -270,8 +262,8 @@
         <div id="sidebar-wrapper" data-simplebar="" data-simplebar-auto-hide="true" class="shadow-none">
             <div class="brand-logo">
                 <a href="#">
-                    <img src="~/assets/images/logo-icon.png" class="logo-icon" alt="logo icon">
-                    <h5 class="logo-text">Will Assure</h5>
+                    <img src="~/assets/images/logo-icon.png" style="width:200px;" class="logo-icon" alt="logo icon">
+                    @*<h5 class="logo-text">Will Assure</h5>*@
 
                 </a>
             </div>

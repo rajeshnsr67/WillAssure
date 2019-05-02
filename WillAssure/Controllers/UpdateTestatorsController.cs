@@ -153,60 +153,202 @@ namespace WillAssure.Controllers
 
 
             //end
-            
 
 
 
-            //generate MOBILE OTP
-            TFM.MobileOTP = String.Empty;
-            string[] saAllowedCharacters = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "0" };
-            int iOTPLength = 5;
+            // update email and password 
+            con.Open();
 
-            string sTempChars = String.Empty;
-            Random rand = new Random();
-
-            for (int i = 0; i < iOTPLength; i++)
-
+            string chkmail = "select Email from testatordetails where uId = " + TFM.uId + " ";
+            SqlDataAdapter chkmailadp = new SqlDataAdapter(chkmail, con);
+            DataTable chkmaildt = new DataTable();
+            chkmailadp.Fill(chkmaildt);
+            if (chkmaildt.Rows.Count > 0)
             {
 
-                int p = rand.Next(0, saAllowedCharacters.Length);
+                if (chkmaildt.Rows[0]["Email"].ToString() != TFM.Email)
+                {
 
-                sTempChars = saAllowedCharacters[rand.Next(0, saAllowedCharacters.Length)];
 
-                TFM.MobileOTP += sTempChars;
+                    //generate MOBILE OTP
+                    TFM.MobileOTP = String.Empty;
+                    string[] saAllowedCharacters = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "0" };
+                    int iOTPLength = 5;
+
+                    string sTempChars = String.Empty;
+                    Random rand = new Random();
+
+                    for (int i = 0; i < iOTPLength; i++)
+
+                    {
+
+                        int p = rand.Next(0, saAllowedCharacters.Length);
+
+                        sTempChars = saAllowedCharacters[rand.Next(0, saAllowedCharacters.Length)];
+
+                        TFM.MobileOTP += sTempChars;
+
+                    }
+                    //END
+
+
+
+
+                    //generate EMAIL OTP
+                    TFM.EmailOTP = String.Empty;
+                    string[] saAllowedCharacters2 = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "0" };
+                    int iOTPLength2 = 5;
+
+                    string sTempChars2 = String.Empty;
+                    Random rand2 = new Random();
+
+                    for (int i = 0; i < iOTPLength2; i++)
+
+                    {
+
+                        int p = rand.Next(0, saAllowedCharacters2.Length);
+
+                        sTempChars2 = saAllowedCharacters2[rand.Next(0, saAllowedCharacters2.Length)];
+
+                        TFM.EmailOTP += sTempChars2;
+
+                    }
+                    //END
+
+
+                    //generate Password OTP
+                    TFM.userPassword = String.Empty;
+                    string[] saAllowedCharacters3 = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "0" };
+                    int iOTPLength3 = 5;
+
+                    string sTempChars3 = String.Empty;
+                    Random rand3 = new Random();
+
+                    for (int i = 0; i < iOTPLength3; i++)
+
+                    {
+
+                        int p = rand3.Next(0, saAllowedCharacters3.Length);
+
+                        sTempChars3 = saAllowedCharacters3[rand3.Next(0, saAllowedCharacters3.Length)];
+
+                        TFM.userPassword += sTempChars3;
+
+                    }
+                    //END
+
+                    con.Close();
+
+
+
+
+                    con.Open();
+                    string query33 = "update users set  userID= '" + TFM.Email + "' , userPwd='" + TFM.userPassword + "'   where uId = " + TFM.uId + "";
+                    SqlCommand cmd33 = new SqlCommand(query33, con);
+                    cmd33.ExecuteNonQuery();
+                    con.Close();
+
+
+                    // update otp for email and mobile
+
+
+
+
+
+                    con.Open();
+                    string qq = "update TestatorDetails set Contact_Verification = 0 ,Email_Verification = 0 , Mobile_Verification_Status = 0 , Email_OTP = '" + TFM.EmailOTP + "' , Mobile_OTP = '" + TFM.MobileOTP + "' where  uId = " + TFM.uId + " ";
+                    SqlCommand cmddd = new SqlCommand(qq, con);
+                    cmddd.ExecuteNonQuery();
+                    con.Close();
+
+
+
+
+
+                    //end
+
+
+                    if (TFM.Email != "")
+                    {
+                        //generate Mail
+                        string mailto2 = TFM.Email;
+                        string userlogin = TFM.Email;
+
+
+                        string subject2 = "Will Assure Login Credentials";
+
+                        string text2 = "<font color='Green' style='font-size=3em;'>Your UserId And Password For Logging In Is <br> UserID : " + TFM.Email + " <br> Password : " + TFM.userPassword + "</font>";
+                        string body2 = "<font color='red'>" + text2 + "</font>";
+
+
+                        MailMessage msg3 = new MailMessage();
+                        msg3.From = new MailAddress("info@drinco.in");
+                        msg3.To.Add(mailto2);
+                        msg3.Subject = subject2;
+                        msg3.Body = body2;
+
+                        msg3.IsBodyHtml = true;
+                        SmtpClient smtp2 = new SmtpClient("216.10.240.149", 25);
+                        smtp2.Credentials = new NetworkCredential("info@drinco.in", "95Bzf%s7");
+                        smtp2.EnableSsl = false;
+                        smtp2.Send(msg3);
+                        smtp2.Dispose();
+
+
+                        //end
+
+                    }
+
+
+
+
+                    // email otp
+                    string mailto = TFM.Email;
+                    string Userid = TFM.Identity_proof_Value;
+
+                    Session["userid"] = Userid;
+                    string subject = "Testing Mail Sending";
+                    string OTP = "<font color='Green' style='font-size=3em;'>" + TFM.EmailOTP + "</font>";
+                    string text = "Your OTP for Verification Is " + OTP + "";
+                    string body = "<font color='red'>" + text + "</font>";
+
+
+                    MailMessage msg = new MailMessage();
+                    msg.From = new MailAddress("info@drinco.in");
+                    msg.To.Add(mailto);
+                    msg.Subject = subject;
+                    msg.Body = body;
+
+                    msg.IsBodyHtml = true;
+                    SmtpClient smtp = new SmtpClient("216.10.240.149", 25);
+                    smtp.Credentials = new NetworkCredential("info@drinco.in", "95Bzf%s7");
+                    smtp.EnableSsl = false;
+                    smtp.Send(msg);
+                    smtp.Dispose();
+
+
+
+                    //end
+
+
+
+
+                    con.Close();
+                }
 
             }
-            //END
-
-
-
-
-            //generate EMAIL OTP
-            TFM.EmailOTP = String.Empty;
-            string[] saAllowedCharacters2 = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "0" };
-            int iOTPLength2 = 5;
-
-            string sTempChars2 = String.Empty;
-            Random rand2 = new Random();
-
-            for (int i = 0; i < iOTPLength2; i++)
-
-            {
-
-                int p = rand.Next(0, saAllowedCharacters2.Length);
-
-                sTempChars2 = saAllowedCharacters2[rand.Next(0, saAllowedCharacters2.Length)];
-
-                TFM.EmailOTP += sTempChars2;
-
-            }
-            //END
+            con.Close();
 
 
 
 
 
-      
+
+
+
+            //end
+
+
 
 
 
@@ -256,39 +398,26 @@ namespace WillAssure.Controllers
             //SqlCommand cmd = new SqlCommand(query,con);
             //cmd.ExecuteNonQuery();
 
-            string query2 = "update users set First_Name= '" + TFM.First_Name + "' , Last_Name='" + TFM.Last_Name + "' ,  Middle_Name='" + TFM.Middle_Name + "' , DOB = '" + Convert.ToDateTime(TFM.Dob) + "' , Mobile = '" + TFM.Mobile + "' ,  eMail = '" + TFM.Email + "' , Address1='" + TFM.Address1 + "' , Address2='" + TFM.Address2 + "' , Address3 = '" + TFM.Address3 + "' , City='" + TFM.citytext + "' ,State= '" + TFM.statetext + "' , Pin='" + TFM.Pin + "' where uId = "+TFM.uId+"   ";
+         
+
+
+
+
+            string query2 = "update users set First_Name= '" + TFM.First_Name + "' , Last_Name='" + TFM.Last_Name + "' ,  Middle_Name='" + TFM.Middle_Name + "' , DOB = '" + dat + "' , Mobile = '" + TFM.Mobile + "' ,  eMail = '" + TFM.Email + "' , Address1='" + TFM.Address1 + "' , Address2='" + TFM.Address2 + "' , Address3 = '" + TFM.Address3 + "' , City='" + TFM.citytext + "' ,State= '" + TFM.statetext + "' , Pin='" + TFM.Pin + "' , Designation = '2'   where uId = " + TFM.uId+ "     ";
             SqlCommand cdd = new SqlCommand(query2,con);
             cdd.ExecuteNonQuery();
             con.Close();
 
 
-            // new mail code
-            string mailto = TFM.Email;
-            string Userid = TFM.Identity_proof_Value;
 
-            Session["userid"] = Userid;
-            string subject = "Testing Mail Sending";
-            string OTP = "<font color='Green' style='font-size=3em;'>" + TFM.EmailOTP + "</font>";
-            string text = "Your OTP for Verification Is " + OTP + "";
-            string body = "<font color='red'>" + text + "</font>";
-
-
-            MailMessage msg = new MailMessage();
-            msg.From = new MailAddress("info@drinco.in");
-            msg.To.Add(mailto);
-            msg.Subject = subject;
-            msg.Body = body;
-
-            msg.IsBodyHtml = true;
-            SmtpClient smtp = new SmtpClient("216.10.240.149", 25);
-            smtp.Credentials = new NetworkCredential("info@drinco.in", "95Bzf%s7");
-            smtp.EnableSsl = false;
-            smtp.Send(msg);
-            smtp.Dispose();
+            
+          
 
 
 
-            //end
+
+
+
 
             ViewBag.Message = "Verified";
 
@@ -524,6 +653,7 @@ namespace WillAssure.Controllers
 
 
 
+       
 
 
     }

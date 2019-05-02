@@ -1,84 +1,87 @@
-﻿
-@{
-    ViewBag.Title = "EditTestatorPageContent";
-}
+﻿@model WillAssure.Models.TestatorFormModel
+
+    @{
+        ViewBag.Title = "EditTestatorPageContent";
+    }
 
 
 
 
-@*Main Content*@
-<div class="content-wrapper">
-    <div class="container-fluid">
+    @*Main Content*@
+    <div class="content-wrapper">
+        <div class="container-fluid">
 
-        <div class="row pt-2 pb-2">
+            <div class="row pt-2 pb-2">
 
-            <div class="col-sm-3">
-                <div class="btn-group float-sm-right">
+                <div class="col-sm-3">
+                    <div class="btn-group float-sm-right">
 
-                    <div class="dropdown-menu">
-                        <a href="javaScript:void();" class="dropdown-item">Action</a>
-                        <a href="javaScript:void();" class="dropdown-item">Another action</a>
-                        <a href="javaScript:void();" class="dropdown-item">Something else here</a>
-                        <div class="dropdown-divider"></div>
-                        <a href="javaScript:void();" class="dropdown-item">Separated link</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- End Breadcrumb-->
-
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="card">
-                    <div class="card-header"><i class="fa fa-table"></i>Testator Data</div>
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table id="default-datatable" class="table table-bordered">
-                                <thead>
-                                    <tr class="ui-widget-header">
-                                        <th>tId</th>
-                                        <th>First_Name</th>
-                                        <th>Last_Name</th>
-                                        <th>Middle_Name</th>
-                                        <th>DOB</th>
-                                        <th>Occupation</th>
-                                        <th>Mobile</th>
-                                        <th>Email</th>
-                                        <th>maritalStatus</th>
-                                        <th>Relationship</th>
-                                        <th>Religion</th>
-                                        <th>Identity_Proof</th>
-                                        <th>Identity_proof_Value</th>
-                                        <th>Alt_Identity_Proof</th>
-                                        <th>Alt_Identity_proof_Value</th>
-                                        <th>Gender</th>
-                                        <th>Address1</th>
-                                        <th>Address2</th>
-                                        <th>Address3</th>
-                                        <th>City</th>
-                                        <th>State</th>
-                                        <th>Country</th>
-                                        <th>Pin</th>
-                                        <th>active</th>
-
-                                        <th>Action</th>
-
-                                    </tr>
-                                </thead>
-                                <tbody id="TestatorFormData"></tbody>
-                            </table>
+                        <div class="dropdown-menu">
+                            <a href="javaScript:void();" class="dropdown-item">Action</a>
+                            <a href="javaScript:void();" class="dropdown-item">Another action</a>
+                            <a href="javaScript:void();" class="dropdown-item">Something else here</a>
+                            <div class="dropdown-divider"></div>
+                            <a href="javaScript:void();" class="dropdown-item">Separated link</a>
                         </div>
                     </div>
                 </div>
             </div>
-        </div><!-- End Row-->
+            <!-- End Breadcrumb-->
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-header"><i class="fa fa-table"></i>Testator Data</div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table id="default-datatable" class="table table-bordered">
+                                    <thead>
+                                        <tr class="ui-widget-header">
+                                            <th>tId</th>
+                                            <th>First_Name</th>
+                                            <th>Last_Name</th>
+                                            <th>Middle_Name</th>
+                                            <th>DOB</th>
+                                            <th>Occupation</th>
+                                            <th>Mobile</th>
+                                            <th>Email</th>
+                                            <th>maritalStatus</th>
+                                            <th>Relationship</th>
+                                            <th>Religion</th>
+                                            <th>Identity_Proof</th>
+                                            <th>Identity_proof_Value</th>
+                                            <th>Alt_Identity_Proof</th>
+                                            <th>Alt_Identity_proof_Value</th>
+                                            <th>Gender</th>
+                                            <th>Address1</th>
+                                            <th>Address2</th>
+                                            <th>Address3</th>
+                                            <th>City</th>
+                                            <th>State</th>
+                                            <th>Country</th>
+                                            <th>Pin</th>
+                                            <th>active</th>
+
+                                            <th>Action</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody id="TestatorFormData"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- End Row-->
 
 
-        <input type="button" style="display:none;" id="btndeletetestator" name="name" value="" />
+            <input type="button" style="display:none;" id="btndeletetestator" name="name" value="" />
+        </div>
+
+
     </div>
 
 
-</div>
 
 
 
@@ -86,14 +89,12 @@
 
 
 
-
-
-@*end*@
+    @*end*@
 
 
 
 
-<script>
+    <script>
 
     $(document).ready(function () {
 
@@ -110,9 +111,9 @@
     });
 
 
-</script>
+    </script>
 
-<script>
+    <script>
 
 
     function Edit(id) {
@@ -128,7 +129,7 @@
             url: "@Url.Action("UpdateTestatorForm", "EditTestator")",
             data: {  "send": "" + id + ""   },
             success: function (data) {
-            
+
 
                 var NestId = data
                 var url = "/UpdateTestators/UpdateTestatorsIndex?NestId=" + NestId;
@@ -141,16 +142,17 @@
 
         });
 
-    }
+        }
 
 
+        
 
 
       $(document).on('click', '.deletenotification', function () {
 
         var $tr = $(this).closest('tr');
         var id = $(this).attr('id');
-      
+
         swal({
             title: "Are you sure?",
             text: "Once deleted, you will not be able to recover this record!",
@@ -176,8 +178,8 @@
 
 
                 $('#TestatorFormData').empty().append(data).reload();
-              
-              
+
+
             }
 
 
@@ -218,38 +220,282 @@
 
 
 
+    </script>
+
+
+
+    @*SUCCESS AND FAILED MESSAGE*@
+
+
+    @if (ViewBag.Message == "Verified")
+    {
+        <script>
+
+            $(document).ready(function () {
+                $("#btnOTPCheckSUCCESS").on("click", function () { });
+
+                $("#btnOTPCheckSUCCESS").click(); //trigger event after listening to it.
+
+            });
+        </script>
+
+    }
+    @if (ViewBag.Message == "Failed")
+    {
+        <script>
+
+            $(document).ready(function () {
+                $("#btnOTPCheckFAILED").on("click", function () { });
+
+                $("#btnOTPCheckFAILED").click(); //trigger event after listening to it.
+
+            });
+        </script>
+
+    }
+
+
+
+
+
+
+    <div class="modal fade primarymodal"  >
+        <div class="modal-dialog"  >
+            <div class="modal-content border-primary" style="width:196%; position:relative; right:38%">
+                <div class="modal-header bg-primary">
+                    <h5 class="modal-title text-white">Create Document</h5>
+                    <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                @using (Html.BeginForm())
+                {
+                <div class="modal-body">
+
+                    @Html.HiddenFor(m => m.tId, new { @id = "tId" })
+                    @Html.HiddenFor(m => m.documenttype, new { @id = "documenttype" })
+                    @Html.HiddenFor(m => m.documentcategory, new { @id = "documentcategory" })
+
+                    <div class="row">
+
+
+                        <div class="col-sm-3">
+
+                            <label style="line-height:41px;">Document Type</label>
+
+
+                        </div>
+
+                        <div class="col-sm-3">
+                            <span style="line-height:36px;">
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" id="checkone" value="Will">Will
+                                </label>
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" id="checktwo" value="Codocil">Codocil
+                                </label>
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" id="checkthree" value="POA">POA
+                                </label>
+
+                            </span>
+
+                            @Html.HiddenFor(m => m.Document_Created_By_ID, new { id = "Document_Created_By_ID" })
+                            @Html.HiddenFor(m => m.Document_Created_By_txt, new { id = "Document_Created_By_txt" })
+
+                        </div>
+
+
+
+
+                        <div class="col-sm-3">
+
+                            <label style="line-height:41px;">Category</label>
+
+
+                        </div>
+
+                        <div class="col-sm-3">
+                            @Html.DropDownListFor(x => x.documentcategory, new SelectListItem[]{
+                            new SelectListItem() {Text = "--Select--", Value=""},
+                            new SelectListItem() {Text = "Quick", Value="Quick"},
+                            new SelectListItem() {Text = "Detailed", Value="Detailed"}}, new { @class = "form-control validate[required]", id = "DDLAmtPaidBY2", @disabled = "disabled" })
+
+
+
+
+                        </div>
+
+
+
+
+
+
+
+
+
+
+
+                    </div>
+                    <hr>
+
+
+                    <div class="row">
+
+
+
+
+                        <div class="col-sm-3">
+
+                            <label style="line-height:41px;">Document Created By</label>
+
+
+                        </div>
+
+                        <div class="col-sm-3">
+                            @Html.DropDownListFor(x => x.Document_Created_By, new SelectListItem[]{
+                             new SelectListItem() {Text = "--Select--", Value=""},
+                             new SelectListItem() {Text = "Distributor", Value="Distributor"},
+                             new SelectListItem() {Text = "Testator", Value="Testator"}}, new { @class = "form-control validate[required]", @id = "ddldocumentcreatedby1" })
+
+                            @Html.HiddenFor(m => m.Document_Created_By_ID, new { id = "Document_Created_By_ID" })
+                            @Html.HiddenFor(m => m.Document_Created_By_txt, new { id = "Document_Created_By_txt" })
+
+
+
+                        </div>
+
+
+
+                        <div class="col-sm-3">
+
+                            <label style="line-height:41px;">Amount Paid By</label>
+
+
+                        </div>
+
+                        <div class="col-sm-3">
+                            @Html.DropDownListFor(x => x.Amt_Paid_By, new SelectListItem[]{
+                            new SelectListItem() {Text = "--Select--", Value=""},
+                            new SelectListItem() {Text = "Distributor", Value="Distributor"},
+                            new SelectListItem() {Text = "Testator", Value="Testator"}}, new { @class = "form-control validate[required]", id = "DDLAmtPaidBY3" })
+
+                            @Html.HiddenFor(m => m.Amt_Paid_By_By_ID, new { id = "Amt_Paid_By_By_ID" })
+                            @Html.HiddenFor(m => m.Amt_Paid_By_txt, new { id = "Amt_Paid_By_txt" })
+
+
+                        </div>
+
+
+
+
+
+
+
+
+
+                    </div>
+
+                    <hr>
+
+
+                    <div class="row">
+
+
+                        <div class="col-sm-3">
+
+                            <label for="input-1">Enter Coupon Number</label>
+
+
+                        </div>
+                        <div class="col-sm-3">
+                            @Html.TextBoxFor(m => m.txtCoupon, new { @class = "form-control validate[custom[integer]] text-input", @id = "txtcoupon", @placeholder = "Enter Coupon Number", @autocomplete = "off" })
+
+
+
+                        </div>
+
+                    </div>
+                    <hr>
+
+                    <div class="form-group">
+                        <button type="submit" id="alert-success" formaction="insertDocumentDetails" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i>Submit</button>
+                    </div>
+                </div>
+                }
+                </div>
+        </div>
+    </div>
+    @*END*@
+
+
+
+<script>
+  
+
+    $("#checkone").click(function () {
+
+        if ($("#checkone").is(":checked")) {
+            var x = $("#checkone").val();
+            $("#documenttype").val(x);
+           
+            $('#DDLAmtPaidBY2').prop('disabled', false);
+        }
+        else {
+           
+            $('#DDLAmtPaidBY2').prop('disabled', true);
+        }
+      
+    
+        
+    }); 
+
+
+
+
+    $("#checktwo").click(function () {
+
+
+
+        if ($("#checktwo").is(":checked")) {
+            var x = $("#checktwo").val();
+            $("#documenttype").val(x);
+            $('#DDLAmtPaidBY2').prop('disabled', false);
+        }
+      
+
+
+    }); 
+
+
+
+    $("#checkthree").click(function () {
+
+        if ($("#checkthree").is(":checked")) {
+            var x = $("#checkthree").val();
+            $("#documenttype").val(x);
+            $('#DDLAmtPaidBY2').prop('disabled', false);
+        }
+      
+
+
+
+    }); 
+
+
+
+
+
+    function getclickedid(id) {
+
+
+        var id = id;
+
+        $("#tId").val(id);
+
+
+
+    }
+
+ 
 </script>
-
-
-
-@*SUCCESS AND FAILED MESSAGE*@
-
-
-@if (ViewBag.Message == "Verified")
-{
-    <script>
-
-        $(document).ready(function () {
-            $("#btnOTPCheckSUCCESS").on("click", function () { });
-
-            $("#btnOTPCheckSUCCESS").click(); //trigger event after listening to it.
-
-        });
-    </script>
-
-}
-@if (ViewBag.Message == "Failed")
-{
-    <script>
-
-        $(document).ready(function () {
-            $("#btnOTPCheckFAILED").on("click", function () { });
-
-            $("#btnOTPCheckFAILED").click(); //trigger event after listening to it.
-
-        });
-    </script>
-
-}
-
-@*END*@

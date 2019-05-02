@@ -108,51 +108,7 @@ namespace WillAssure.Controllers
             string testatortype = "";
 
 
-            //generate MOBILE OTP
-            TFM.MobileOTP = String.Empty;
-            string[] saAllowedCharacters = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "0" };
-            int iOTPLength = 5;
-
-            string sTempChars = String.Empty;
-            Random rand = new Random();
-
-            for (int i = 0; i < iOTPLength; i++)
-
-            {
-
-                int p = rand.Next(0, saAllowedCharacters.Length);
-
-                sTempChars = saAllowedCharacters[rand.Next(0, saAllowedCharacters.Length)];
-
-                TFM.MobileOTP += sTempChars;
-
-            }
-            //END
-
-
-
-
-            //generate EMAIL OTP
-            TFM.EmailOTP = String.Empty;
-            string[] saAllowedCharacters2 = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "0" };
-            int iOTPLength2 = 5;
-
-            string sTempChars2 = String.Empty;
-            Random rand2 = new Random();
-
-            for (int i = 0; i < iOTPLength2; i++)
-
-            {
-
-                int p = rand.Next(0, saAllowedCharacters2.Length);
-
-                sTempChars2 = saAllowedCharacters2[rand.Next(0, saAllowedCharacters2.Length)];
-
-                TFM.EmailOTP += sTempChars2;
-
-            }
-            //END
-
+          
 
 
 
@@ -238,19 +194,7 @@ namespace WillAssure.Controllers
 
 
 
-            // update otp for email and mobile
-
-            con.Open();
-            string qq = "update TestatorDetails set Contact_Verification = 0 ,Email_Verification = 0 , Mobile_Verification_Status = 0 , Email_OTP = '"+TFM.EmailOTP+"' , Mobile_OTP = '"+TFM.MobileOTP+"' where  tId = "+testatorid+" ";
-            SqlCommand cmddd = new SqlCommand(qq,con);
-            cmddd.ExecuteNonQuery();
-            con.Close();
-
-
-
-
-
-            //end
+        
 
 
 
@@ -335,33 +279,33 @@ namespace WillAssure.Controllers
                 {
                     RedirectToAction("LoginPageIndex", "LoginPage");
                 }
-                // new mail code
-                string mailto = TFM.Email;
-                string Userid = TFM.Identity_proof_Value;
-                mailto = Session["TestatorEmail"].ToString();
-                Session["userid"] = Userid;
-                string subject = "Testing Mail Sending";
-                string OTP = "<font color='Green' style='font-size=3em;'>" + TFM.EmailOTP + "</font>";
-                string text = "Your OTP for Verification Is " + OTP + "";
-                string body = "<font color='red'>" + text + "</font>";
+                //// new mail code
+                //string mailto = TFM.Email;
+                //string Userid = TFM.Identity_proof_Value;
+                //mailto = Session["TestatorEmail"].ToString();
+                //Session["userid"] = Userid;
+                //string subject = "Testing Mail Sending";
+                //string OTP = "<font color='Green' style='font-size=3em;'>" + TFM.EmailOTP + "</font>";
+                //string text = "Your OTP for Verification Is " + OTP + "";
+                //string body = "<font color='red'>" + text + "</font>";
 
 
-                MailMessage msg = new MailMessage();
-                msg.From = new MailAddress("info@drinco.in");
-                msg.To.Add(mailto);
-                msg.Subject = subject;
-                msg.Body = body;
+                //MailMessage msg = new MailMessage();
+                //msg.From = new MailAddress("info@drinco.in");
+                //msg.To.Add(mailto);
+                //msg.Subject = subject;
+                //msg.Body = body;
 
-                msg.IsBodyHtml = true;
-                SmtpClient smtp = new SmtpClient("216.10.240.149", 25);
-                smtp.Credentials = new NetworkCredential("info@drinco.in", "95Bzf%s7");
-                smtp.EnableSsl = false;
-                smtp.Send(msg);
-                smtp.Dispose();
+                //msg.IsBodyHtml = true;
+                //SmtpClient smtp = new SmtpClient("216.10.240.149", 25);
+                //smtp.Credentials = new NetworkCredential("info@drinco.in", "95Bzf%s7");
+                //smtp.EnableSsl = false;
+                //smtp.Send(msg);
+                //smtp.Dispose();
 
 
 
-                //end
+                ////end
 
 
 

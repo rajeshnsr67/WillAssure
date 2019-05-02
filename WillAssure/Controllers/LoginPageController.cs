@@ -58,7 +58,7 @@ namespace WillAssure.Controllers
             return View("~/Views/LoginPage/DynamicMenuPageContent.cshtml");
         }
 
-
+        [HttpPost]
         public ActionResult LoginPageData(LoginModel LM)
         {
 
@@ -92,6 +92,10 @@ namespace WillAssure.Controllers
                     // declaration
                     Session["Role"] = dt2.Rows[0]["Role"].ToString();
                    
+                }
+                else
+                {
+                    Session["Role"] = dt.Rows[0]["Type"].ToString();
                 }
 
 
@@ -247,19 +251,15 @@ namespace WillAssure.Controllers
                     }
 
 
-                    //string query5 = "update TestatorDetails set Designation = 1 where tId="+testid+"";
-                    //SqlCommand cmd5 = new SqlCommand(query5,con);
-                    //cmd5.ExecuteNonQuery();
 
-                    string v1 = Eramake.eCryptography.Encrypt(dta.Rows[0]["Email_OTP"].ToString());
-
+                    Session["LoginOTP"] = dta.Rows[0]["Email_OTP"].ToString();
+                    //string v1 = Eramake.eCryptography.Encrypt(dta.Rows[0]["Email_OTP"].ToString());
+                    //v1 = v1.Replace("+", "").Replace("==", "");
 
 
-                    //return RedirectToAction("EmailVerificationIndex", "EmailVerification", new { v2 = v1 });
+                    //Session["TestatorOTP"] = v1;
 
-                    //ViewBag.Testatorpopup = "true";
-                    //return View("~/Views/LoginPage/LoginPageContent.cshtml");
-                    return RedirectToAction("DashBoardIndex", "DashBoard", new { v2 = v1 });
+                    return RedirectToAction("DashBoardIndex", "DashBoard");
                 }
                 else
                 {
@@ -269,8 +269,6 @@ namespace WillAssure.Controllers
 
 
 
-                //ViewBag.Message = "SUCCESS";
-                //return View("~/Views/DashBoard/DashBoardPageContent.cshtml");
             }
             else
             {
@@ -344,13 +342,17 @@ namespace WillAssure.Controllers
             Session["upappointeesid"] = "";
 
 
-            // testator email session on documentpg
+            // in Dashboard
+            Session["LoginOTP"] = "";
 
-           
 
-            // used in login otp
-
+            // in Dashboard
             Session["enteredOTP"] = "";
+
+            // in add testator for mail sending
+
+            Session["TestatorEmail"] = "";
+
 
             return View("~/Views/LoginPage/LoginPageContent.cshtml");
         }

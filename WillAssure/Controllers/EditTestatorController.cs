@@ -10,6 +10,8 @@ using System.Configuration;
 using System.Data;
 using System.Collections;
 using System.Globalization;
+using System.Net.Mail;
+using System.Net;
 
 namespace WillAssure.Controllers
 {
@@ -154,7 +156,7 @@ namespace WillAssure.Controllers
                                         + "<td>" + dt.Rows[i]["Pin"].ToString() + "</td>"
                                         + "<td>" + dt.Rows[i]["active"].ToString() + "</td>"
 
-                                        + "<td><button type='button'   id='" + dt.Rows[i]["tId"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary'>Edit</button></td></tr>";
+                                        + "<td><button type='button'   id='" + dt.Rows[i]["tId"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary'>Edit</button><button type='button'   id='" + dt.Rows[i]["tId"].ToString() + "' onClick='getclickedid(this.id)'   class='btn btn-success'  data-toggle='modal' data-target='.primarymodal'>Create Document</button></td></tr>";
 
                         }
                     }
@@ -188,7 +190,7 @@ namespace WillAssure.Controllers
                                         + "<td>" + dt.Rows[i]["Pin"].ToString() + "</td>"
                                         + "<td>" + dt.Rows[i]["active"].ToString() + "</td>"
 
-                                        + "<td><button type='button'   id='" + dt.Rows[i]["tId"].ToString() + "'    class='btn btn-danger deletenotification'>Delete</button></td></tr>";
+                                        + "<td><button type='button'   id='" + dt.Rows[i]["tId"].ToString() + "'    class='btn btn-danger deletenotification'>Delete</button><button type='button'   id='" + dt.Rows[i]["tId"].ToString() + "' onClick='getclickedid(this.id)'   class='btn btn-success'  data-toggle='modal' data-target='.primarymodal'>Create Document</button></td></tr>";
 
                         }
                     }
@@ -223,7 +225,7 @@ namespace WillAssure.Controllers
                                         + "<td>" + dt.Rows[i]["Pin"].ToString() + "</td>"
                                         + "<td>" + dt.Rows[i]["active"].ToString() + "</td>"
 
-                                        + "<td><button type='button'   id='" + dt.Rows[i]["tId"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary '>Edit</button><button type='button'   id='" + dt.Rows[i]["tId"].ToString() + "'    class='btn btn-danger deletenotification'>Delete</button></td></tr>";
+                                        + "<td><button type='button'   id='" + dt.Rows[i]["tId"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary '>Edit</button><button type='button'   id='" + dt.Rows[i]["tId"].ToString() + "'    class='btn btn-danger deletenotification'>Delete</button><button type='button'   id='" + dt.Rows[i]["tId"].ToString() + "' onClick='getclickedid(this.id)'   class='btn btn-success'  data-toggle='modal' data-target='.primarymodal'>Create Document</button></td></tr>";
 
                         }
 
@@ -316,7 +318,7 @@ namespace WillAssure.Controllers
                                         + "<td>" + dt.Rows[i]["Pin"].ToString() + "</td>"
                                         + "<td>" + dt.Rows[i]["active"].ToString() + "</td>"
 
-                                        + "<td><button type='button'   id='" + dt.Rows[i]["tId"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary'>Edit</button></td></tr>";
+                                        + "<td><button type='button'   id='" + dt.Rows[i]["tId"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary'>Edit</button><button type='button'   id='" + dt.Rows[i]["tId"].ToString() + "' onClick='getclickedid(this.id)'   class='btn btn-success'  data-toggle='modal' data-target='.primarymodal'>Create Document</button></td></tr>";
 
                         }
                     }
@@ -350,7 +352,7 @@ namespace WillAssure.Controllers
                                         + "<td>" + dt.Rows[i]["Pin"].ToString() + "</td>"
                                         + "<td>" + dt.Rows[i]["active"].ToString() + "</td>"
 
-                                        + "<td><button type='button'   id='" + dt.Rows[i]["tId"].ToString() + "'    class='btn btn-danger deletenotification'>Delete</button></td></tr>";
+                                        + "<td><button type='button'   id='" + dt.Rows[i]["tId"].ToString() + "'    class='btn btn-danger deletenotification'>Delete</button><button type='button'   id='" + dt.Rows[i]["tId"].ToString() + "' onClick='getclickedid(this.id)'   class='btn btn-success'  data-toggle='modal' data-target='.primarymodal'>Create Document</button></td></tr>";
 
                         }
                     }
@@ -385,7 +387,7 @@ namespace WillAssure.Controllers
                                         + "<td>" + dt.Rows[i]["Pin"].ToString() + "</td>"
                                         + "<td>" + dt.Rows[i]["active"].ToString() + "</td>"
 
-                                        + "<td><button type='button'   id='" + dt.Rows[i]["tId"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary '>Edit</button><button type='button'   id='" + dt.Rows[i]["tId"].ToString() + "'    class='btn btn-danger deletenotification'>Delete</button></td></tr>";
+                                        + "<td><button type='button'   id='" + dt.Rows[i]["tId"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary '>Edit</button><button type='button'   id='" + dt.Rows[i]["tId"].ToString() + "'    class='btn btn-danger deletenotification'>Delete</button><button type='button'   id='" + dt.Rows[i]["tId"].ToString() + "' onClick='getclickedid(this.id)'   class='btn btn-success'  data-toggle='modal' data-target='.primarymodal'>Create Document</button></td></tr>";
 
                         }
 
@@ -570,7 +572,7 @@ namespace WillAssure.Controllers
                                     + "<td>" + dt.Rows[i]["Pin"].ToString() + "</td>"
                                     + "<td>" + dt.Rows[i]["active"].ToString() + "</td>"
 
-                                    + "<td><button type='button'   id='" + dt.Rows[i]["tId"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary'>Edit</button></td></tr>";
+                                    + "<td><button type='button'   id='" + dt.Rows[i]["tId"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary'>Edit</button><button type='button'   id='" + dt.Rows[i]["tId"].ToString() + "' onClick='getclickedid(this.id)'   class='btn btn-success'  data-toggle='modal' data-target='.primarymodal'>Create Document</button></td></tr>";
 
                     }
                 }
@@ -604,7 +606,7 @@ namespace WillAssure.Controllers
                                     + "<td>" + dt.Rows[i]["Pin"].ToString() + "</td>"
                                     + "<td>" + dt.Rows[i]["active"].ToString() + "</td>"
 
-                                    + "<td><button type='button'   id='" + dt.Rows[i]["tId"].ToString() + "'    class='btn btn-danger deletenotification'>Delete</button></td></tr>";
+                                    + "<td><button type='button'   id='" + dt.Rows[i]["tId"].ToString() + "'    class='btn btn-danger deletenotification'>Delete</button><button type='button'   id='" + dt.Rows[i]["tId"].ToString() + "' onClick='getclickedid(this.id)'   class='btn btn-success'  data-toggle='modal' data-target='.primarymodal'>Create Document</button></td></tr>";
 
                     }
                 }
@@ -639,7 +641,7 @@ namespace WillAssure.Controllers
                                     + "<td>" + dt.Rows[i]["Pin"].ToString() + "</td>"
                                     + "<td>" + dt.Rows[i]["active"].ToString() + "</td>"
 
-                                    + "<td><button type='button'   id='" + dt.Rows[i]["tId"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary'>Edit</button><button type='button'   id='" + dt.Rows[i]["tId"].ToString() + "'   class='btn btn-danger deletenotification'>Delete</button></td></tr>";
+                                    + "<td><button type='button'   id='" + dt.Rows[i]["tId"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary'>Edit</button><button type='button'   id='" + dt.Rows[i]["tId"].ToString() + "'   class='btn btn-danger deletenotification'>Delete</button><button type='button'   id='" + dt.Rows[i]["tId"].ToString() + "' onClick='getclickedid(this.id)'   class='btn btn-success'  data-toggle='modal' data-target='.primarymodal'>Create Document</button></td></tr>";
 
                     }
 
@@ -703,6 +705,402 @@ namespace WillAssure.Controllers
 
 
             return index;
+        }
+
+
+
+
+        public ActionResult insertDocumentDetails(TestatorFormModel TFM)
+        {
+
+            List<LoginModel> Lmlist = new List<LoginModel>();
+            con.Open();
+            string q = "select * from Assignment_Roles where RoleId = " + Convert.ToInt32(Session["rId"]) + "";
+            SqlDataAdapter da3 = new SqlDataAdapter(q, con);
+            DataTable dt3 = new DataTable();
+            da3.Fill(dt3);
+            if (dt3.Rows.Count > 0)
+            {
+
+                for (int i = 0; i < dt3.Rows.Count; i++)
+                {
+                    LoginModel lm = new LoginModel();
+                    lm.PageName = dt3.Rows[i]["PageName"].ToString();
+                    lm.PageStatus = dt3.Rows[i]["PageStatus"].ToString();
+                    lm.Action = dt3.Rows[i]["Action"].ToString();
+                    lm.Nav1 = dt3.Rows[i]["Nav1"].ToString();
+                    lm.Nav2 = dt3.Rows[i]["Nav2"].ToString();
+
+                    Lmlist.Add(lm);
+                }
+
+
+
+                ViewBag.PageName = Lmlist;
+
+
+
+
+            }
+
+            con.Close();
+
+
+
+
+
+
+
+            int testatorid = TFM.tId;
+            int templateid = 0;
+            string testatortype = "";
+            string Email = "";
+
+
+            // identitfy email of testator
+
+            con.Open();
+            string tquery = "select Email from testatordetails where tId = "+testatorid+" ";
+            SqlDataAdapter tda = new SqlDataAdapter(tquery,con);
+            DataTable tdt = new DataTable();
+            tda.Fill(tdt);
+            if (tdt.Rows.Count > 0)
+            {
+                Email = tdt.Rows[0]["Email"].ToString();
+
+            }
+            con.Close();
+
+
+
+
+            //end
+
+
+
+
+
+            // coupon status
+            if (TFM.txtCoupon != null)
+            {
+                con.Open();
+                string checkcoupon = "select * from couponAllotment where Coupon_Number = " + TFM.txtCoupon + " and  Status = 'Active' ";
+                SqlDataAdapter da = new SqlDataAdapter(checkcoupon, con);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                if (dt.Rows.Count > 0)
+                {
+
+                    string upcoupon = "update couponAllotment set Status = 'Inactive' ,    Tid=" + testatorid + " ";
+                    SqlCommand cmd2 = new SqlCommand(upcoupon, con);
+                    cmd2.ExecuteNonQuery();
+
+
+
+
+                    string upcoupon2 = "update discountCoupons set status = 'Inactive' ,    Coupon_Number=" + TFM.txtCoupon + " ";
+                    SqlCommand cmd22 = new SqlCommand(upcoupon2, con);
+                    cmd22.ExecuteNonQuery();
+
+
+
+
+                }
+                else
+                {
+                    ViewBag.Message = "checkCoupon";
+                }
+                con.Close();
+            }
+
+
+            //end
+
+            // get coupon id
+            con.Open();
+            string query5 = "select a.couponId  from couponAllotment a inner join users b on a.uId=b.uId where b.uId = " + TFM.distributor_id + "";
+            SqlDataAdapter da4 = new SqlDataAdapter(query5, con);
+            DataTable dt4 = new DataTable();
+            da4.Fill(dt4);
+            int couponsid = 0;
+            if (dt4.Rows.Count > 0)
+            {
+                couponsid = Convert.ToInt32(dt4.Rows[0]["couponId"]);
+            }
+            con.Close();
+            //end
+
+
+            
+
+
+            // get distributor id
+
+            con.Open();
+            string gedistid = "select uId from TestatorDetails where tId=" + testatorid + " ";
+            SqlDataAdapter distid = new SqlDataAdapter(gedistid, con);
+            DataTable distdt = new DataTable();
+            distid.Fill(distdt);
+            int distidd = 0;
+            if (distdt.Rows.Count > 0)
+            {
+                distidd = Convert.ToInt32(distdt.Rows[0]["uId"]);
+            }
+            con.Close();
+
+
+            //end
+
+
+
+
+
+
+
+
+
+            con.Open();
+            string q1 = "insert into documentMaster (tId,templateId,IsUpdatetable,uId,pId,created_by,testator_type,couponId,adminVerification) values (" + testatorid + " , " + templateid + " ,  'Yes' ,   " + TFM.distributor_id + " , 1 , '" + TFM.Document_Created_By_txt + "' , '" + testatortype + "' , " + couponsid + "  , 2)";
+            SqlCommand c = new SqlCommand(q1, con);
+            c.ExecuteNonQuery();
+            con.Close();
+
+
+
+            //end
+
+
+
+            // DOCUMENT RULES
+            int typeid = 0;
+            int typecat = 0;
+
+            if (TFM.documenttype == "Will")
+            {
+                typeid = 1;
+            }
+            if (TFM.documentcategory == "Quick")
+            {
+                typecat = 1;
+            }
+            if (TFM.documentcategory == "Detailed")
+            {
+                typecat = 2;
+            }
+
+
+            con.Open();
+            string q2 = "insert into documentRules (documentType,category,tid) values (" + typeid + " , " + typecat + "  , " + testatorid + " )";
+            SqlCommand c1 = new SqlCommand(q2, con);
+            c1.ExecuteNonQuery();
+            con.Close();
+
+
+
+            //
+
+            //1st condition
+            if (TFM.Amt_Paid_By == "Distributor" && TFM.Document_Created_By == "Distributor")
+            {
+                TFM.Authentication_Required = 0;
+                TFM.Link_Required = 0;
+                TFM.Login_Required = 0;
+
+                con.Open();
+                string query1 = "insert into Authorization_Rules (Document_Created_By,Distributor_Id,Amt_Paid_By,Testator_Id,Authentication_Required,Link_Required,Login_Required) values ('" + TFM.Document_Created_By_txt + "' , " + distidd + " , '" + TFM.Amt_Paid_By_txt + "' , " + testatorid + "  , '" + TFM.Authentication_Required + "' , '" + TFM.Link_Required + "' , '" + TFM.Login_Required + "') ";
+                SqlCommand cmd2 = new SqlCommand(query1, con);
+                cmd2.ExecuteNonQuery();
+                con.Close();
+                ModelState.Clear();
+                return View("~/Views/AddTestatorsForm/AddTestatorPageContent.cshtml");
+            }
+            //end
+            //2nd condition 
+            if (TFM.Amt_Paid_By == "Distributor" && TFM.Document_Created_By == "Testator")
+            {
+                TFM.Authentication_Required = 1;
+                TFM.Link_Required = 1;
+                TFM.Login_Required = 1;
+
+                con.Open();
+                string query2 = "insert into Authorization_Rules (Document_Created_By,Distributor_Id,Amt_Paid_By,Testator_Id,Authentication_Required,Link_Required,Login_Required) values ('" + TFM.Document_Created_By_txt + "' , " + distidd + " , '" + TFM.Amt_Paid_By_txt + "' , " + testatorid + "  , '" + TFM.Authentication_Required + "' , '" + TFM.Link_Required + "' , '" + TFM.Login_Required + "')  ";
+                SqlCommand cmd2 = new SqlCommand(query2, con);
+                cmd2.ExecuteNonQuery();
+                con.Close();
+
+
+
+                if (Session["mailto"] == null)
+                {
+                    RedirectToAction("LoginPageIndex", "LoginPage");
+                }
+                if (Session["userid"] == null)
+                {
+                    RedirectToAction("LoginPageIndex", "LoginPage");
+                }
+                // new mail code
+                string mailto = TFM.Email;
+                string Userid = TFM.Identity_proof_Value;
+                mailto = Email;
+               
+                string subject = "Will Assure Link For Payment";
+                string body = "<font color='Green' style='font-size=3em;'> Click the Link To Make A Payment For The Document :</font> <a href='https://razorpay.com/'>Payment</a> ";
+
+
+
+                MailMessage msg = new MailMessage();
+                msg.From = new MailAddress("info@drinco.in");
+                msg.To.Add(mailto);
+                msg.Subject = subject;
+                msg.Body = body;
+
+                msg.IsBodyHtml = true;
+                SmtpClient smtp = new SmtpClient("216.10.240.149", 25);
+                smtp.Credentials = new NetworkCredential("info@drinco.in", "95Bzf%s7");
+                smtp.EnableSsl = false;
+                smtp.Send(msg);
+                smtp.Dispose();
+
+
+
+                //end
+
+
+
+                // payment info
+                con.Open();
+                string paymentquery = "insert into PaymentInfo (uId,tId,transactionStatus) values (" + distidd + " , "+testatorid+" , 1)  ";
+                SqlCommand paymentcmd = new SqlCommand(paymentquery,con);
+                paymentcmd.ExecuteNonQuery();
+                con.Close();
+              //end
+
+
+            }
+            //end
+            // 3rd condtion
+            if (TFM.Amt_Paid_By == "Testator" && TFM.Document_Created_By == "Distributor")
+            {
+                TFM.Authentication_Required = 1;
+                TFM.Link_Required = 1;
+                TFM.Login_Required = 1;
+
+                con.Open();
+                string query3 = "insert into Authorization_Rules (Document_Created_By,Distributor_Id,Amt_Paid_By,Testator_Id,Authentication_Required,Link_Required,Login_Required) values ('" + TFM.Document_Created_By_txt + "' , " + distidd + " , '" + TFM.Amt_Paid_By_txt + "' , " + testatorid + "  , '" + TFM.Authentication_Required + "' , '" + TFM.Link_Required + "' , '" + TFM.Login_Required + "') ";
+                SqlCommand cmd2 = new SqlCommand(query3, con);
+                cmd2.ExecuteNonQuery();
+                con.Close();
+
+
+
+
+
+
+
+
+
+                // new mail code
+                string mailto = TFM.Email;
+                string Userid = TFM.Identity_proof_Value;
+                mailto = Email;
+                string subject = "Will Assure Link For Payment";
+                string body = "<font color='Green' style='font-size=3em;'> Click the Link To Make A Payment For The Document :</font> <a href='https://razorpay.com/'>Payment</a> ";
+          
+
+
+                MailMessage msg = new MailMessage();
+                msg.From = new MailAddress("info@drinco.in");
+                msg.To.Add(mailto);
+                msg.Subject = subject;
+                msg.Body = body;
+
+                msg.IsBodyHtml = true;
+                SmtpClient smtp = new SmtpClient("216.10.240.149", 25);
+                smtp.Credentials = new NetworkCredential("info@drinco.in", "95Bzf%s7");
+                smtp.EnableSsl = false;
+                smtp.Send(msg);
+                smtp.Dispose();
+
+
+
+                //end
+
+                // payment info
+                con.Open();
+                string paymentquery = "insert into PaymentInfo (uId,tId,transactionStatus) values (" + distidd + " , " + testatorid + " , 1)  ";
+                SqlCommand paymentcmd = new SqlCommand(paymentquery, con);
+                paymentcmd.ExecuteNonQuery();
+                con.Close();
+                //end
+
+
+            }
+            //end
+            //4th condition
+            if (TFM.Amt_Paid_By == "Testator" && TFM.Document_Created_By == "Testator")
+            {
+                TFM.Authentication_Required = 1;
+                TFM.Link_Required = 1;
+                TFM.Login_Required = 1;
+
+                con.Open();
+                string query4 = "insert into Authorization_Rules (Document_Created_By,Distributor_Id,Amt_Paid_By,Testator_Id,Authentication_Required,Link_Required,Login_Required) values ('" + TFM.Document_Created_By_txt + "' , " + distidd + " , '" + TFM.Amt_Paid_By_txt + "' , " + testatorid + "  , '" + TFM.Authentication_Required + "' , '" + TFM.Link_Required + "' , '" + TFM.Login_Required + "')  ";
+                SqlCommand cmd2 = new SqlCommand(query4, con);
+                cmd2.ExecuteNonQuery();
+                con.Close();
+
+
+
+
+
+                // new mail code
+                string mailto = TFM.Email;
+                string Userid = TFM.Identity_proof_Value;
+                mailto = Email;
+                string subject = "Will Assure Link For Payment";
+                string body = "<font color='Green' style='font-size=3em;'> Click the Link To Make A Payment For The Document :</font> <a href='https://razorpay.com/'>Payment</a> ";
+
+
+
+                MailMessage msg = new MailMessage();
+                msg.From = new MailAddress("info@drinco.in");
+                msg.To.Add(mailto);
+                msg.Subject = subject;
+                msg.Body = body;
+
+                msg.IsBodyHtml = true;
+                SmtpClient smtp = new SmtpClient("216.10.240.149", 25);
+                smtp.Credentials = new NetworkCredential("info@drinco.in", "95Bzf%s7");
+                smtp.EnableSsl = false;
+                smtp.Send(msg);
+                smtp.Dispose();
+
+
+
+                //end
+                // payment info
+                con.Open();
+                string paymentquery = "insert into PaymentInfo (uId,tId,transactionStatus) values (" + distidd + " , " + testatorid + " , 1)  ";
+                SqlCommand paymentcmd = new SqlCommand(paymentquery, con);
+                paymentcmd.ExecuteNonQuery();
+                con.Close();
+                //end
+            }
+            //end
+
+
+
+
+
+
+
+
+
+
+
+
+            return View("~/Views/EditTestator/EditTestatorPageContent.cshtml");
+
         }
 
 

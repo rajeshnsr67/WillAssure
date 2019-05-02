@@ -324,8 +324,16 @@
             $("#btnpay").on("click", function () { });
 
             $("#btnpay").click(); //trigger event after listening to it.
-
+            getmenufortestator();
         });
+
+
+        function getmenufortestator() {
+            var url = "/DashBoard/DashBoardIndex/";
+            window.location.href = url;
+        }
+
+
     </script>
    
 }

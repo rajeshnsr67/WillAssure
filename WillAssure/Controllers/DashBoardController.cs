@@ -16,15 +16,28 @@ namespace WillAssure.Controllers
         public static string connectionString = ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString;
         SqlConnection con = new SqlConnection(connectionString);
         // GET: DashBoard
-        public ActionResult DashBoardIndex(string v2)
+        public ActionResult DashBoardIndex()
         {
+
+
+
             string OTP = "";
-            if (v2 != null)
+            if (Session["LoginOTP"] != null)
             {
-                OTP = Eramake.eCryptography.Decrypt(v2);
+                OTP = Session["LoginOTP"].ToString();
+                //Session["LoginOTP"] = Eramake.eCryptography.Decrypt(OTP);
                 Session["enteredOTP"] = OTP;
             }
-            
+            else
+            {
+                RedirectToAction("LoginPageIndex", "LoginPage");
+            }
+
+            if (Session["enteredOTP"] == null)
+            {
+                RedirectToAction("LoginPageIndex", "LoginPage");
+            }
+
             con.Open();
             string query = "select Designation  from users where uId = " + Convert.ToInt32(Session["uuid"])+"  ";
             SqlDataAdapter da = new SqlDataAdapter(query,con);
