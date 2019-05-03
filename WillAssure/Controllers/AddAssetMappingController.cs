@@ -182,12 +182,13 @@ namespace WillAssure.Controllers
 
         }
 
-        public string bindassetcatDDL()
+        public JsonResult bindassetcatDDL()
         {
-            int response = Convert.ToInt32(Request["send"]);
-            string ddlassetcat = "<option value=''>--Select--</option>";
+            //int response = Convert.ToInt32(Request["send"]);
+            List<LoginModel> assetcatlist = new List<LoginModel>();
+            string ddlassetcat = "";
             con.Open();
-            string query3 = "select * from AssetsCategory where atId = " + response + " ";
+            string query3 = "select * from AssetsCategory  ";
             SqlDataAdapter da3 = new SqlDataAdapter(query3, con);
             DataTable dt3 = new DataTable();
             da3.Fill(dt3);
@@ -199,14 +200,19 @@ namespace WillAssure.Controllers
 
                 for (int i = 0; i < dt3.Rows.Count; i++)
                 {
+                    LoginModel assetcatdata = new LoginModel();
 
-                    ddlassetcat = ddlassetcat + "<option value=" + dt3.Rows[i]["amId"] + "  onchange='getassetcatid(this.value)'  >" + dt3.Rows[i]["AssetsCategory"] + "</option>";
+                    assetcatdata.assetcatid = Convert.ToInt32(dt3.Rows[i]["amId"]);
+                    assetcatdata.AssetsCategory = dt3.Rows[i]["AssetsCategory"].ToString();
+
+                    assetcatlist.Add(assetcatdata);
+
 
                 }
 
             }
 
-            return ddlassetcat;
+            return Json(assetcatlist);
         }
 
 

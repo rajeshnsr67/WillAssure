@@ -30,6 +30,12 @@
         <!-- End Breadcrumb-->
         @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "RoleForm" }))
         {
+
+            @Html.HiddenFor(m => m.Beneficiaryid, new { id = "Beneficiaryid" })
+            @Html.HiddenFor(m => m.Beneficiarytxt, new { id = "Beneficiarytxt" })
+
+            @Html.HiddenFor(m => m.InstrumentId, new { id = "InstrumentId" })
+            @Html.HiddenFor(m => m.Instrumenttxt, new { id = "Instrumenttxt" })
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
@@ -58,13 +64,13 @@
                                     @Html.HiddenFor(m => m.ddltid, new { id = "ddltid" })
                                     @Html.HiddenFor(m => m.ddltestatorname, new { id = "ddltestatorname" })
                                 </div>
-                             
+
 
                             </div>
-                            <hr>
 
 
-                            <div class="row">
+
+                            @*<div class="row">
 
 
 
@@ -90,9 +96,9 @@
                                         @Html.HiddenFor(m => m.assetcattext, new { id = "assetcattext" })
                                     </div>
                                 </div>
-                            </div>
+                            </div>*@
 
-                            <div class='col-sm-3' id="type" style="display:none;">
+                            @*<div class='col-sm-3' id="type" style="display:none;">
                                 <div class='form-group'>
                                     <label for='input-1'>Type</label>
                                     <br />
@@ -105,56 +111,42 @@
                                         </label>
                                     </form>
                                 </div>
-                            </div>
+                            </div>*@
+
+                            <hr>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div id="accordion8">
 
 
-                            <div id="parentdiv">
-                                <div class="row rowdiv" id="beneficiarydetails" style="display:none;">
 
 
-                                    <div class='col-sm-2'>
-                                        <div class='form-group'>
-                                            <label for='input-1'>Beneficiary</label>
-                                            <select id='ddlbeneficiary1' onchange="checkbeneficiaryduplicate(this.id)" name="contentList" class='form-control beneficiaryclass'></select>
-                                            @Html.HiddenFor(m => m.Beneficiaryid, new { id = "Beneficiaryid" })
-                                            @Html.HiddenFor(m => m.Beneficiarytxt, new { id = "Beneficiarytxt" })
 
-                                            <input type="text" class="form-control" style="display:none" id="ddlbeneficiarytxt" name="name" value="" />
-                                        </div>
+
+
+
+
+
+
+
                                     </div>
-                                    <div class='col-sm-2'><div class='form-group' id="getidentifier"></div></div>
-                                    <div class='col-sm-3'>
-                                        <label for='input-1'>Instruments</label>
-                                        <select id='DDLAssetColumn1' onchange="getDDLAssetColumn(this.id)" name="contentList" class='form-control instrumentclass'></select>
-                                        @Html.HiddenFor(m => m.InstrumentId, new { id = "InstrumentId" })
-                                        @Html.HiddenFor(m => m.Instrumenttxt, new { id = "Instrumenttxt" })
-                                    </div>
-                                    <div class='col-sm-2 grandparent'>
-                                        <div class='form-group parent'>
-                                            <label for='input-1'>Proportion</label>
-                                            <input type='text' class='form-control proportioninput' onkeypress="return isNumberKey(event)" onchange="gettxtproportion(this.value)" name="rank" id="txtproportion" />
-                                        </div>
-                                    </div>
-                                    <div class='col-sm-2'>
-                                        <div class='form-group start'>
-                                            <label for='input-1'>Total</label>
-                                            <input type='text' id="txttotal" class='form-control totalinput' readonly />
-                                            <input type="hidden" id="txttotalval" name="name" value="" />
-                                        </div>
-                                    </div>
+
+
+
+
+
+
                                 </div>
                             </div>
+
+
+
+
 
                             <textarea id="query" style="display:none;" class="form-control">
                                
                            </textarea>
-                            <div class="form-group">
-                                <button type="button" id="btnadd" style="display:none;" class="btn btn-danger shadow-primary px-5"><i class="icon-lock"></i>Add</button>
-                                <button type="submit" id="btnmappingsubmit" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i>Submit</button>
-                                <button type="button" id="btnmainassetsuccess" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
-                                <button type="button" id="btncheckExists" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
-                                <button type="button" style="display:none" id="confirmtestatorfamily"></button>
-                            </div>
+
                         </div>
                     </div>
 
@@ -162,7 +154,9 @@
 
             </div>
         }
-
+        <button type="button" id="btnmainassetsuccess" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
+        <button type="button" id="btncheckExists" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
+        <button type="button" style="display:none" id="confirmtestatorfamily"></button>
     </div>
     @*end*@
 
@@ -171,13 +165,141 @@
 
         $(document).ready(function () {
 
+
+
+                 $.ajax({
+
+                type: "POST",
+
+                 url: "@Url.Action("bindassetcatDDL", "AddAssetMapping")",
+               
+                     success: function (data) {
+                     
+                         for (var i = 0; i < data.length; i++) {
+
+                     
+
+                             var  res = "<div class='card mb-2 border border-danger'>";
+                             res +=  "<div class='card-header'>";
+                             res += "<button type='button' class='btn btn-link shadow-none text-danger collapsed' data-toggle='collapse' data-target='#accordio" + data[i].assetcatid +"' aria-expanded='false' aria-controls='collapse-23'>";
+                             res += data[i].AssetsCategory;
+                             res += "</button>";
+                             res += "</div>";
+                             res += "<div id='accordio" + data[i].assetcatid +"' class='collapse' data-parent='#accordion8'";
+                             res +=  "<div class='card-body'>";
+                             res +=  "<div class='col-sm-3' id='type'>";  
+                             res += "<div class='form-group'>";      
+                             res += "<label for='input-1'>Type</label>";         
+                             res += "<br />";              
+                             res += "<form>";                  
+                             res += "<label class='radio - inline'>";                  
+                             res += "<input type='radio' onchange='getvalone(this.value)' name='optradio' value='Single' checked>Single";                  
+                             res += "</label>";                      
+                             res += "<label class='radio - inline'>";                          
+                             res += "<input type='radio' onchange='getvaltwo(this.value)' name='optradio' value='Multiple'>Multiple";                      
+                             res +=  "</label>";                      
+                             res +=  "</form>";                          
+                             res +=  "</div>";                     
+                             res +=  "</div>";                  
+                             res +=  "<div id='parentdiv'>";              
+                             res +=  "<div class='row rowdiv' id='beneficiarydetails' >";         
+                             res += "&nbsp;&nbsp;&nbsp;&nbsp;"; 
+                             res += "<div class='col-sm-2'>";          
+                             res +=  "<div class='form-group'>";             
+                             res += "<label for='input-1'>Beneficiary</label>";
+                             res += "<select id='ddlbeneficiarycpy' onchange='checkbeneficiaryduplicate(this.id)' name='contentList' class='form-control beneficiaryclass'></select>";
+                             res +=  "<input type='text' class='form-control' style='display: none' id='ddlbeneficiarytxt' name='name' value='' />";                  
+                             res += "</div>";                     
+                             res += "</div>";                          
+                             res +=  "<div class='col-sm-2'><div class='form-group' id='getidentifier'></div></div>";                          
+                             res += "<div class='col-sm-3'>";                         
+                             res += "<label for='input-1'>Instruments</label>";
+                             res +=  "<select id='DDLAssetColumn1' onchange='getDDLAssetColumn(this.id)' name='contentList' class='form-control instrumentclass'></select>";                         
+                             res +=  "</div>";                    
+                             res += "<div class='col-sm-2 grandparent'>";                 
+                             res += "<div class='form-group parent'>";                 
+                             res += "<label for='input-1'>Proportion</label>";                 
+                             res += "<input type='text' class='form-control proportioninput' onkeypress='return isNumberKey(event)' onchange='gettxtproportion(this.value)' name='rank' id='txtproportion' />";                      
+                             res += "</div>";                     
+                             res += "</div>";                   
+                             res += "<div class='col-sm-2'>";                  
+                             res += "<div class='form-group start'>";                  
+                             res += "<label for='input-1'>Total</label>";                      
+                             res += "<input type='text' id='txttotal' class='form-control totalinput' readonly />";                           
+                             res += "<input type='hidden' id='txttotalval' name='name' value='' />";                         
+                             res += "</div>";                      
+                             res += "</div>";                  
+                             res +=  "</div>";                  
+                             res += "</div>";                      
+                             res += "<div class='form - group'>";                          
+                             res +=  "<button type='submit' id='btnmappingsubmit' class='btn btn-primary shadow-primary px-5'><i class='icon-lock'></i>Submit</button>";                          
+                             res += "<button type='button' id='btnadd' style='display: none; ' class='btn btn-danger shadow-primary px-5'><i class='icon-lock'></i>Add</button>";                                 
+                             res += " </div>";                       
+                             res += " </div>";                
+                             res += " </div>";                     
+                             res += " </div>"; 
+                             
+                                                
+                             /*var res = "<div class='card mb-2 border border - success'>";
+                             res += "<div class='card-header'>";
+                             res += "<button type='button' class='btn btn-link shadow-none text-success' data-toggle='collapse' data-target='#collapse-" + data[i].assetcatid +"' aria-expanded='true' aria-controls='collapse-22'>";
+                             res += "Accordion Group Item #1";
+                             res += "</button>";
+                             res += "</div>";
+
+                             res += "<div id='collapse-" + data[i].assetcatid +"' class='collapse show' data-parent='#accordion8'>";
+                             res += " <div class='card-body'>";
+                             res += data[i].assetcatid +" Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably havent heard of them accusamus labore sustainable VHS.";
+                             res += " </div>";
+                             res += "   </div>";
+                             res +="</div >"; */   
+
+                           //  var res = '<div class="card mb-2 border border-success"> <div class="card-header"> <button class="btn btn-link shadow-none text-success" data-toggle="collapse" data-target="#collapse-22" aria-expanded="true" aria-controls="collapse-22"> Accordion Group Item #1 </button> </div><div id="collapse-22" class="collapse show" data-parent="#accordion8"> <div class="card-body"> Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven heard of them accusamus labore sustainable VHS. </div ></div ></div >';
+
+                             console.log(res);
+                           
+                             $("#accordion8").append(res);
+
+                         }
+
+                         
+
+                         
+
+
+                }
+            });
+
+
+
+
+                    $.ajax({
+
+                type: "POST",
+
+                 url: "@Url.Action("getassetcolumndata", "AddAssetMapping")",
+                //data: { "send": "" + value + "" },
+                success: function (data) {
+                    $("#getidentifier").append(data);
+                    var r = data;
+                    var str = data;
+                    var res = str.replace("<label for='input-1'>Scheme</label> <input type='text' class='form-control' id='schemename'  value=", "").replace("/>", "");
+
+
+                }
+            });
+
+
+
             $.ajax({
 
                 type: "POST",
 
                 url: "@Url.Action("BindBeneficiaryDDL", "AddAssetMapping")",
                 success: function (data) {
-                    $("#ddlbeneficiary1").append(data);
+
+                    $("#ddlbeneficiary1").append(data).clone().appendTo("#ddlbeneficiarycpy");
+                
                 }
             });
 
@@ -225,7 +347,7 @@
                 type: "POST",
 
                  url: "@Url.Action("ddlassetname", "AddAssetMapping")",
-                data: { "send": "" + value + "" },
+                //data: { "send": "" + value + "" },
                 success: function (data) {
                     $("#DDLAssetColumn1").append(data);
                 }
@@ -346,17 +468,7 @@
 
 
 
-            $.ajax({
-
-                type: "POST",
-
-                   url: "@Url.Action("ddlassetname", "AddAssetMapping")",
-                data: { "send": "" + value + "" },
-                success: function (data) {
-                    $("#DDLAssetColumn1").append(data);
-
-                }
-            });
+         
 
 
         }

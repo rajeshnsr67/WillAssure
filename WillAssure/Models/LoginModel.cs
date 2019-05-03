@@ -27,5 +27,18 @@ namespace WillAssure.Models
         public string OTP { get; set; }
 
 
+
+       public int Beneficiary_Asset_ID { get; set; }
+       public int assettypeid { get; set; }
+       public string AssetsType { get; set; }
+       public int assetcatid { get; set; }
+       public string AssetsCategory { get; set; }
+       public int Beneficiaryid { get; set; }
+       public string Beneficiarytxt { get; set; }
+       public string SchemeName { get; set; }
+       public int InstrumentId { get; set; }
+       public string InstrumentName { get; set; }
+       public string Proportion { get; set; }
+
     }
 }

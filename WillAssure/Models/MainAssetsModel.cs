@@ -7,6 +7,12 @@ namespace WillAssure.Models
 {
     public class MainAssetsModel
     {
+
+        public int assettypeid { get; set; }
+        public string assettypetext { get; set; }
+
+        public string assetcattext { get; set; }
+
         public int aiid { get; set; }
         public string dueDate { get; set; }
         public string dueDateControls { get; set; }
@@ -157,6 +163,16 @@ namespace WillAssure.Models
         public string SchemeName { get; set; }
         public string InstrumentName { get; set; }
         public string Proportion { get; set; }
+
+
+
+        public int Beneficiaryid { get; set; }
+        public string Beneficiarytxt { get; set; }
+
+
+        public int InstrumentId { get; set; }
+        public string Instrumenttxt { get; set; }
+
 
 
     }

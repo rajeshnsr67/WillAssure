@@ -98,14 +98,25 @@
 
     $(document).ready(function () {
 
+
+        
+
         $.ajax({
 
             type: "POST",
             url:"@Url.Action("BindTestatorFormData", "EditTestator")",
             success: function (data) {
+                
+                
                 $('#TestatorFormData').empty().append(data);
+
+                $(".1").hide();
+
             }
         });
+
+
+     
 
 
     });
@@ -235,6 +246,10 @@
                 $("#btnOTPCheckSUCCESS").on("click", function () { });
 
                 $("#btnOTPCheckSUCCESS").click(); //trigger event after listening to it.
+
+
+               
+              
 
             });
         </script>

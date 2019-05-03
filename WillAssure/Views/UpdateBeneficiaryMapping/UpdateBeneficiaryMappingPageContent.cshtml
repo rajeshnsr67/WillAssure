@@ -1,4 +1,4 @@
-﻿﻿@model WillAssure.Models.MainAssetsModel
+﻿﻿@model WillAssure.Models.LoginModel
 @{
     /**/
 
@@ -31,55 +31,113 @@
                         @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "RoleForm" }))
                         {
 
-                            <div class="row">
-                                <div class="col-sm-6">
+                        <div class="row">
+                            <div class="col-sm-6">
 
-                                    @Html.HiddenFor(m => m.Beneficiary_Asset_ID, new { @class = "form-control validate[required,custom[characteronly]] text-input", @id = "txtRole", @placeholder = "Enter Role", @autocomplete = "off", alert = "LabourCost is requried" })
+                                @Html.HiddenFor(m => m.Beneficiary_Asset_ID, new { @class = "form-control validate[required,custom[characteronly]] text-input", @id = "txtRole", @placeholder = "Enter Role", @autocomplete = "off", alert = "LabourCost is requried" })
 
 
-                                    <div class="form-group">
-                                        <label for="input-1">Assets Type</label>
-                                        @Html.TextBoxFor(m => m.AssetsType, new { @class = "form-control validate[required,custom[characteronly]] text-input", @id = "txtRole", @placeholder = "Enter Role", @autocomplete = "off", alert = "LabourCost is requried" })
-                                    </div>
+                                <div class='form-group'>
+                                    <label for='input-1'>Assets Type</label>
+                                    <select id='ddlassettype' style="display:none;" name="contentList" onChange='getassettypeid(this.value)' class='form-control'></select>
+                                    @Html.HiddenFor(m => m.assettypeid, new { id = "assettypeid" })
+                                    @Html.TextBoxFor(m => m.AssetsType, new { id = "assettypetext", @class = "form-control" })
+
+                                    <script>
+                                        $("#assettypetext").focus(function () {
+                                            $("#assettypetext").hide();
+                                            $("#ddlassettype").show();
+                                        });
+                                    </script>
                                 </div>
+                            </div>
 
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="input-1">Assets Category</label>
-                                        @Html.TextBoxFor(m => m.AssetsCategory, new { @class = "form-control validate[required,custom[characteronly]] text-input", @id = "txtRole", @placeholder = "Enter Role", @autocomplete = "off", alert = "LabourCost is requried" })
-                                    </div>
+                            <div class="col-sm-6">
+                                <div class='form-group'>
+                                    <label for='input-1'>Assets Category</label>
+                                    <select id='ddlassetcat' name="contentList" style="display:none;" onChange='getassetcatid(this.value)' class='form-control'><option value="">--Select--</option></select>
+                                    @Html.HiddenFor(m => m.assetcatid, new { id = "assetcatid" })
+                                    @Html.TextBoxFor(m => m.AssetsCategory, new { id = "assetcattext", @class = "form-control" })
+
+                                    <script>
+                                        $("#assetcattext").focus(function () {
+                                            $("#assetcattext").hide();
+                                            $("#ddlassetcat").show();
+                                        });
+                                    </script>
                                 </div>
+                            </div>
 
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="input-1">Scheme Name</label>
-                                        @Html.TextBoxFor(m => m.SchemeName, new { @class = "form-control validate[required,custom[characteronly]] text-input", @id = "txtRole", @placeholder = "Enter Role", @autocomplete = "off", alert = "LabourCost is requried" })
-                                    </div>
+                            <div class='col-sm-6'>
+                                <div class='form-group'>
+                                    <label for='input-1'>Beneficiary</label>
+                                    <select id='ddlbeneficiary1' style="display:none;" onchange="checkbeneficiaryduplicate(this.value)" name="contentList" class='form-control beneficiaryclass'></select>
+                                    @Html.HiddenFor(m => m.Beneficiaryid, new { id = "Beneficiaryid" })
+                                    @Html.TextBoxFor(m => m.Beneficiarytxt, new { id = "Beneficiarytxt", @class = "form-control" })
+
+                                    <input type="text" class="form-control" style="display:none" id="ddlbeneficiarytxt" name="name" value="" />
+
+                                    <script>
+                                        $("#Beneficiarytxt").focus(function () {
+                                            $("#Beneficiarytxt").hide();
+                                            $("#ddlbeneficiary1").show();
+                                        });
+                                    </script>
+
                                 </div>
+                            </div>
 
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="input-1">Instrument Name</label>
-                                        @Html.TextBoxFor(m => m.InstrumentName, new { @class = "form-control validate[required,custom[characteronly]] text-input", @id = "txtRole", @placeholder = "Enter Role", @autocomplete = "off", alert = "LabourCost is requried" })
-                                    </div>
+                            <div class='col-sm-6'>
+                                <div class='form-group' style="display:none;" id="getidentifier">
+
+
+
                                 </div>
+                                <label for="input-1" id="lblscheme">SCHEME</label>
+                                @Html.TextBoxFor(m => m.SchemeName, new { @class = "form-control validate[required,custom[characteronly]] text-input", @id = "txtscheme", @placeholder = "Enter Role", @autocomplete = "off", alert = "LabourCost is requried" })
+                            </div>
+                           
 
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="input-1">Proportion</label>
-                                        @Html.TextBoxFor(m => m.Proportion, new { @class = "form-control validate[required,custom[characteronly]] text-input", @id = "txtRole", @placeholder = "Enter Role", @autocomplete = "off", alert = "LabourCost is requried" })
-                                    </div>
-                                </div>
+                            <script>
+                                $("#txtscheme").focus(function () {
+                                    $("#txtscheme").hide();
+                                    $("#lblscheme").hide();
+                                    $("#getidentifier").show();
+                                });
+                            </script>
+
+                            <div class='col-sm-6'>
+                                <label for='input-1'>Instruments</label>
+                                <select id='DDLAssetColumn1' style="display:none;" onchange="getDDLAssetColumn(this.value)" name="contentList" class='form-control instrumentclass'></select>
+                                @Html.HiddenFor(m => m.InstrumentId, new { id = "InstrumentId" })
+                                @Html.TextBoxFor(m => m.InstrumentName, new { id = "Instrumenttxt" ,@class="form-control" })
 
 
-
-
+                                <script>
+                                    $("#Instrumenttxt").focus(function () {
+                                        $("#Instrumenttxt").hide();
+                                        $("#DDLAssetColumn1").show();
+                                    });
+                                </script>
 
                             </div>
 
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="input-1">Proportion</label>
+                                    @Html.TextBoxFor(m => m.Proportion, new { @class = "form-control validate[required,custom[characteronly]] text-input", @id = "txtRole", @placeholder = "Enter Role", @autocomplete = "off", alert = "LabourCost is requried" })
+                                </div>
+                            </div>
+
+
+
+
+
+                        </div>
+
                             <br />
                             <div class="form-group">
-                                <button type="submit" id="btnRoleformsubmit" formaction="UpdateBeneficiaryMapping" class="btn btn-success shadow-primary px-5"><i class="icon-lock"></i>Update Beneficiary Mapping</button>
+                                <button type="submit" id="btnRoleformsubmit" formaction="UpdateBeneficiaryMappingDATA" class="btn btn-success shadow-primary px-5"><i class="icon-lock"></i>Update Beneficiary Mapping</button>
                             </div>
                         }
                     </div>
@@ -92,3 +150,173 @@
 
     </div>
     @*end*@
+    <script>
+        $(document).ready(function () {
+
+
+             $.ajax({
+                type: "POST",
+
+                 url: "@Url.Action("ddlassetname", "UpdateBeneficiaryMapping")",
+              
+                success: function (data) {
+                    $("#DDLAssetColumn1").append(data);
+                }
+            });
+
+
+
+              $.ajax({
+
+                type: "POST",
+
+                 url: "@Url.Action("getassetcolumndata", "UpdateBeneficiaryMapping")",
+               
+                success: function (data) {
+                    $("#getidentifier").append(data);
+                    var r = data;
+                    var str = data;
+                    var res = str.replace("<label for='input-1'>Scheme</label> <input type='text' class='form-control' id='schemename'  value=", "").replace("/>", "");
+
+
+                }
+            });
+
+
+
+
+            $.ajax({
+
+                type: "POST",
+
+                url: "@Url.Action("BindBeneficiaryDDL", "UpdateBeneficiaryMapping")",
+                success: function (data) {
+                    $("#ddlbeneficiary1").append(data);
+                }
+            });
+
+
+
+
+            $.ajax({
+
+                type: "POST",
+
+                 url: "@Url.Action("BindAssetTypeDDL", "UpdateBeneficiaryMapping")",
+                success: function (data) {
+                    $("#ddlassettype").append(data);
+                }
+            });
+
+
+
+            $.ajax({
+
+            type: "POST",
+            url:"@Url.Action("BindTestatorDDL", "UpdateBeneficiaryMapping")",
+                  success: function (data) {
+                      var splitted = data.split("~"); 
+                      $("#DDLTestator").append(splitted[0]); 
+                      $("#ddltid").val(splitted[1]);
+                      var pop = splitted[2];
+                      //$('#DDLTestator').append(data);
+                      if (pop == "true") {
+
+                          $("#confirmtestatorfamily").on("click", function () { });
+
+                          $("#confirmtestatorfamily").click(); //trigger event after listening to it.
+                      }
+
+                     
+
+
+
+            }
+          });
+
+
+            $.ajax({
+                type: "POST",
+
+                 url: "@Url.Action("ddlassetname", "UpdateBeneficiaryMapping")",
+                data: { "send": "" + value + "" },
+                success: function (data) {
+                    $("#DDLAssetColumn1").append(data);
+                }
+            });
+
+
+
+
+
+
+
+        });
+
+
+
+            function getassettypeid(value) {
+
+
+                
+                $("#assettypetext").val(value);
+
+            $.ajax({
+
+                type: "POST",
+
+                 url: "@Url.Action("bindassetcatDDL", "UpdateBeneficiaryMapping")",
+                data: { "send": "" + value + "" },
+                success: function (data) {
+                    $("#ddlassetcat").empty().append(data);
+
+
+                }
+            });
+
+
+
+
+
+        }
+
+
+
+         function getassetcatid(value) {
+
+             
+             $("#assetcattext").val(value);
+
+
+        }
+
+
+
+
+        function checkbeneficiaryduplicate(value) {
+
+
+            $("#Beneficiarytxt").val(value);
+
+        }
+
+
+
+        function getschemename(id) {
+
+            alert(id);
+          
+
+
+        }
+
+
+        function getDDLAssetColumn(value) {
+            var selectedText = DDLAssetColumn1.options[DDLAssetColumn1.selectedIndex].innerHTML;
+      
+            $("#InstrumentName").value(selectedText);
+            
+
+        };
+
+    </script>

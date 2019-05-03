@@ -318,7 +318,7 @@ namespace WillAssure.Controllers
                                         + "<td>" + dt.Rows[i]["Pin"].ToString() + "</td>"
                                         + "<td>" + dt.Rows[i]["active"].ToString() + "</td>"
 
-                                        + "<td><button type='button'   id='" + dt.Rows[i]["tId"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary'>Edit</button><button type='button'   id='" + dt.Rows[i]["tId"].ToString() + "' onClick='getclickedid(this.id)'   class='btn btn-success'  data-toggle='modal' data-target='.primarymodal'>Create Document</button></td></tr>";
+                                        + "<td><button type='button'   id='" + dt.Rows[i]["tId"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary'>Edit</button><button type='button'   id='" + dt.Rows[i]["tId"].ToString() + "' onClick='getclickedid(this.id)'   class='btn btn-success "+Convert.ToInt32(dt.Rows[i]["PaymentStatus"])+"'  data-toggle='modal' data-target='.primarymodal'>Create Document</button></td></tr>";
 
                         }
                     }
@@ -352,7 +352,7 @@ namespace WillAssure.Controllers
                                         + "<td>" + dt.Rows[i]["Pin"].ToString() + "</td>"
                                         + "<td>" + dt.Rows[i]["active"].ToString() + "</td>"
 
-                                        + "<td><button type='button'   id='" + dt.Rows[i]["tId"].ToString() + "'    class='btn btn-danger deletenotification'>Delete</button><button type='button'   id='" + dt.Rows[i]["tId"].ToString() + "' onClick='getclickedid(this.id)'   class='btn btn-success'  data-toggle='modal' data-target='.primarymodal'>Create Document</button></td></tr>";
+                                        + "<td><button type='button'   id='" + dt.Rows[i]["tId"].ToString() + "'    class='btn btn-danger deletenotification'>Delete</button><button type='button'   id='" + dt.Rows[i]["tId"].ToString() + "' onClick='getclickedid(this.id)'   class='btn btn-success " + Convert.ToInt32(dt.Rows[i]["PaymentStatus"]) + "'  data-toggle='modal' data-target='.primarymodal'>Create Document</button></td></tr>";
 
                         }
                     }
@@ -387,7 +387,7 @@ namespace WillAssure.Controllers
                                         + "<td>" + dt.Rows[i]["Pin"].ToString() + "</td>"
                                         + "<td>" + dt.Rows[i]["active"].ToString() + "</td>"
 
-                                        + "<td><button type='button'   id='" + dt.Rows[i]["tId"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary '>Edit</button><button type='button'   id='" + dt.Rows[i]["tId"].ToString() + "'    class='btn btn-danger deletenotification'>Delete</button><button type='button'   id='" + dt.Rows[i]["tId"].ToString() + "' onClick='getclickedid(this.id)'   class='btn btn-success'  data-toggle='modal' data-target='.primarymodal'>Create Document</button></td></tr>";
+                                        + "<td><button type='button'   id='" + dt.Rows[i]["tId"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary '>Edit</button><button type='button'   id='" + dt.Rows[i]["tId"].ToString() + "'    class='btn btn-danger deletenotification'>Delete</button><button type='button'   id='" + dt.Rows[i]["tId"].ToString() + "' onClick='getclickedid(this.id)'   class='btn btn-success " + Convert.ToInt32(dt.Rows[i]["PaymentStatus"]) + "'  data-toggle='modal' data-target='.primarymodal'>Create Document</button></td></tr>";
 
                         }
 
@@ -965,6 +965,13 @@ namespace WillAssure.Controllers
 
                 //end
 
+                // payment status for testator details table
+                con.Open();
+                string paymentquery2 = "update TestatorDetails set PaymentStatus = 1 where tId = " + testatorid + " ";
+                SqlCommand paymentcmd2 = new SqlCommand(paymentquery2, con);
+                paymentcmd2.ExecuteNonQuery();
+                con.Close();
+                //end
 
 
                 // payment info
@@ -1025,6 +1032,14 @@ namespace WillAssure.Controllers
 
                 //end
 
+                // payment status for testator details table
+                con.Open();
+                string paymentquery2 = "update TestatorDetails set PaymentStatus = 1 where tId = " + testatorid + " ";
+                SqlCommand paymentcmd2 = new SqlCommand(paymentquery2, con);
+                paymentcmd2.ExecuteNonQuery();
+                con.Close();
+                //end
+
                 // payment info
                 con.Open();
                 string paymentquery = "insert into PaymentInfo (uId,tId,transactionStatus) values (" + distidd + " , " + testatorid + " , 1)  ";
@@ -1078,6 +1093,21 @@ namespace WillAssure.Controllers
 
 
                 //end
+
+
+                // payment status for testator details table
+                con.Open();
+                string paymentquery2 = "update TestatorDetails set PaymentStatus = 1 where tId = "+testatorid+" ";
+                SqlCommand paymentcmd2 = new SqlCommand(paymentquery2, con);
+                paymentcmd2.ExecuteNonQuery();
+                con.Close();
+                //end
+
+
+
+
+
+
                 // payment info
                 con.Open();
                 string paymentquery = "insert into PaymentInfo (uId,tId,transactionStatus) values (" + distidd + " , " + testatorid + " , 1)  ";
