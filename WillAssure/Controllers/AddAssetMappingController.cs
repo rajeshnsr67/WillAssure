@@ -91,6 +91,8 @@ namespace WillAssure.Controllers
         public String BindBeneficiaryDDL()
         {
 
+            string final = "";
+
             string ck = "select type from users where uId =" + Convert.ToInt32(Session["uuid"]) + "";
             SqlDataAdapter cda = new SqlDataAdapter(ck, con);
             DataTable cdt = new DataTable();
@@ -141,7 +143,25 @@ namespace WillAssure.Controllers
                 }
 
             }
-            return data;
+
+
+
+            con.Open();
+            string query3 = "select count(*) as counter from AssetsCategory";
+            SqlDataAdapter da3 = new SqlDataAdapter(query3, con);
+            DataTable dt3 = new DataTable();
+            da3.Fill(dt3);
+            con.Close();
+            int count = 0;
+
+            if (dt3.Rows.Count > 0)
+            {
+                count = Convert.ToInt32(dt3.Rows[0]["counter"]);
+            }
+
+            final = data + "~" + count;
+
+            return final;
 
         }
 
@@ -228,7 +248,7 @@ namespace WillAssure.Controllers
         public string getassetcolumndata()
         {
             int response = Convert.ToInt32(Request["send"]);
-
+            string final = "";
 
             string ck = "select type from users where uId =" + Convert.ToInt32(Session["uuid"]) + "";
             SqlDataAdapter cda = new SqlDataAdapter(ck, con);
@@ -272,7 +292,7 @@ namespace WillAssure.Controllers
             string property = "";
             string structure = "";
             string Identifier = "";
-            string ddlscheme = "";
+            string ddlscheme = "<option value=''>--Select--</option>";
             if (dt.Rows.Count > 0)
             {
                 for (int i = 0; i < dt.Rows.Count; i++)
@@ -315,7 +335,7 @@ namespace WillAssure.Controllers
 
 
 
-                structure = "<label>Scheme</label><select class='form-control schemenameclass' id='schemename1'  onchange=getschemename(this.id)><option value='0'>--Select--</option>" + ddlscheme + "</select>";
+         
 
 
 
@@ -325,15 +345,34 @@ namespace WillAssure.Controllers
                 //structure = structure + "<div class='col-sm-4'><div class='form-group'>   <label for='input-1'>Instruments</label> <input type='text' class='form-control' placeholder='MF Scheme' />     </div></div>";
                 //structure = structure + "<div class='col-sm-4'><div class='form-group'>   <label for='input-1'>Proportion</label> <input type='text' class='form-control' />     </div></div>";
             }
-            else
+            //else
+            //{
+            //    structure = "<label>Scheme</label><select class='form-control schemenameclass' id='schemename1'  onchange=getschemename(this.id)><option value='0'>--Select--</option>" + ddlscheme + "</select>";
+            //}
+
+
+
+            con.Open();
+            string query4 = "select count(*) as counter from AssetsCategory";
+            SqlDataAdapter da4 = new SqlDataAdapter(query4, con);
+            DataTable dt4 = new DataTable();
+            da4.Fill(dt4);
+            con.Close();
+            int count = 0;
+
+            if (dt4.Rows.Count > 0)
             {
-                structure = "<label>Scheme</label><select class='form-control schemenameclass' id='schemename1'  onchange=getschemename(this.id)><option value='0'>--Select--</option>" + ddlscheme + "</select>";
+                count = Convert.ToInt32(dt4.Rows[0]["counter"]);
             }
 
+            final = ddlscheme + "~" + count;
 
 
 
-            return structure;
+
+
+
+            return final;
         }
 
 
@@ -757,7 +796,7 @@ namespace WillAssure.Controllers
         public string ddlassetname()
         {
             int response = Convert.ToInt32(Request["send"]);
-
+            string final = "";
             string bindddlname = "<option value='0'>--Select--</option>";
             con.Open();
             string query1 = "select aiid , Json from AssetInformation";
@@ -808,7 +847,24 @@ namespace WillAssure.Controllers
             }
 
 
-            return bindddlname;
+
+            con.Open();
+            string query4 = "select count(*) as counter from AssetsCategory";
+            SqlDataAdapter da4 = new SqlDataAdapter(query4, con);
+            DataTable dt4 = new DataTable();
+            da4.Fill(dt4);
+            con.Close();
+            int count2 = 0;
+
+            if (dt4.Rows.Count > 0)
+            {
+                count2 = Convert.ToInt32(dt4.Rows[0]["counter"]);
+            }
+
+            final = bindddlname + "~" + count2;
+
+
+            return final;
         }
 
 
@@ -853,8 +909,8 @@ namespace WillAssure.Controllers
 
             string tid = "";
             string response = Request["send"];
-            string assettype = response.Split('~')[0];
-            string assetcat = response.Split('~')[1];
+            //string assettype = response.Split('~')[0];
+            //string assetcat = response.Split('~')[1];
             string beneficiary = response.Split('~')[2];
             string schemename = response.Split('~')[3];
             string instrument = response.Split('~')[4];
@@ -862,7 +918,7 @@ namespace WillAssure.Controllers
              tid = Convert.ToString(response.Split('~')[6]);
 
             con.Open();
-            string query = "insert into BeneficiaryAssets (AssetType_ID , AssetCategory_ID ,  Beneficiary_ID , SchemeName , InstrumentName , Proportion , tid ) values   (" + assettype + " , " + assetcat + " , " + beneficiary + " , '" + schemename + "' , '" + instrument + "' , '" + proportion + "' , " + Convert.ToInt32(tid) + ") ";
+            string query = "insert into BeneficiaryAssets (Beneficiary_ID , SchemeName , InstrumentName , Proportion , tid ) values   ( " + beneficiary + " , '" + schemename + "' , '" + instrument + "' , '" + proportion + "' , " + Convert.ToInt32(tid) + ") ";
             SqlCommand cmd = new SqlCommand(query, con);
             cmd.ExecuteNonQuery();
             con.Close();
@@ -923,7 +979,7 @@ namespace WillAssure.Controllers
                 {
                     con.Open();
                     result[i].ToString();
-                    string query = "insert into BeneficiaryAssets (AssetType_ID,AssetCategory_ID,Beneficiary_ID,SchemeName,InstrumentName,Proportion , tid) values (" + assettype+","+assetcat+","+ result[i].ToString() + "," + Convert.ToInt32(tid) + ")";
+                    string query = "insert into BeneficiaryAssets (Beneficiary_ID,SchemeName,InstrumentName,Proportion , tid) values ("+ result[i].ToString() + "," + Convert.ToInt32(tid) + ")";
                     SqlCommand cmd = new SqlCommand(query,con);
                     cmd.ExecuteNonQuery();
                     con.Close();
