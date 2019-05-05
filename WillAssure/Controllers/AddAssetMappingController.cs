@@ -908,6 +908,8 @@ namespace WillAssure.Controllers
             //end
 
             string tid = "";
+            string assetcat = "";
+            string assettype = "";
             string response = Request["send"];
             //string assettype = response.Split('~')[0];
             //string assetcat = response.Split('~')[1];
@@ -915,10 +917,24 @@ namespace WillAssure.Controllers
             string schemename = response.Split('~')[3];
             string instrument = response.Split('~')[4];
             string proportion = response.Split('~')[5];
-             tid = Convert.ToString(response.Split('~')[6]);
+            tid = Convert.ToString(response.Split('~')[6]);
+            assetcat = Convert.ToString(response.Split('~')[7]);
 
             con.Open();
-            string query = "insert into BeneficiaryAssets (Beneficiary_ID , SchemeName , InstrumentName , Proportion , tid ) values   ( " + beneficiary + " , '" + schemename + "' , '" + instrument + "' , '" + proportion + "' , " + Convert.ToInt32(tid) + ") ";
+            string getassettype = "select atId from AssetsCategory where amId = "+assetcat+" ";
+            SqlDataAdapter atda = new SqlDataAdapter(getassettype,con);
+            DataTable atdt = new DataTable();
+            atda.Fill(atdt);
+            if (atdt.Rows.Count > 0)
+            {
+                assettype = atdt.Rows[0]["atId"].ToString();
+
+            }
+            con.Close();
+
+
+            con.Open();
+            string query = "insert into BeneficiaryAssets (AssetType_ID , AssetCategory_ID , Beneficiary_ID , SchemeName , InstrumentName , Proportion , tid ) values   (  "+assettype+" , "+assetcat+", " + beneficiary + " , '" + schemename + "' , '" + instrument + "' , '" + proportion + "' , " + Convert.ToInt32(tid) + ") ";
             SqlCommand cmd = new SqlCommand(query, con);
             cmd.ExecuteNonQuery();
             con.Close();
@@ -929,7 +945,7 @@ namespace WillAssure.Controllers
 
 
 
-        public ActionResult InsertMultipleAssetMappeddata(string data, string assettype, string assetcat , string tid)
+        public ActionResult InsertMultipleAssetMappeddata(string data, string assettype, string assetcat , string tid , string btnidentify)
         {
 
             // roleassignment
@@ -969,6 +985,20 @@ namespace WillAssure.Controllers
             //end
 
 
+            string assettyp = "";
+            con.Open();
+            string getassettype = "select atId from AssetsCategory where amId = " + btnidentify + " ";
+            SqlDataAdapter atda = new SqlDataAdapter(getassettype, con);
+            DataTable atdt = new DataTable();
+            atda.Fill(atdt);
+            if (atdt.Rows.Count > 0)
+            {
+                assettyp = atdt.Rows[0]["atId"].ToString();
+
+            }
+            con.Close();
+
+
             string response = data;
             string filter = response.Replace(" ", string.Empty).Replace("\n", string.Empty);
             ArrayList result = new ArrayList(filter.Split('~'));
@@ -979,7 +1009,7 @@ namespace WillAssure.Controllers
                 {
                     con.Open();
                     result[i].ToString();
-                    string query = "insert into BeneficiaryAssets (Beneficiary_ID,SchemeName,InstrumentName,Proportion , tid) values ("+ result[i].ToString() + "," + Convert.ToInt32(tid) + ")";
+                    string query = "insert into BeneficiaryAssets (Beneficiary_ID,SchemeName,InstrumentName,Proportion , tid , AssetType_ID , AssetCategory_ID) values (" + result[i].ToString() + "," + Convert.ToInt32(tid) + " , "+assettyp+" , "+btnidentify+")";
                     SqlCommand cmd = new SqlCommand(query,con);
                     cmd.ExecuteNonQuery();
                     con.Close();

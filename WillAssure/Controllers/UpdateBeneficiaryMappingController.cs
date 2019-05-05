@@ -134,6 +134,15 @@ namespace WillAssure.Controllers
             con.Close();
 
 
+            string assettype = "";
+            string assetcategory = "";
+
+           
+
+
+
+
+
 
             con.Open();
             string update = "update BeneficiaryAssets set AssetType_ID = "+M.AssetsType+ " , AssetCategory_ID ="+ M.AssetsCategory + " , SchemeName = '"+ M.SchemeName+ "'  , InstrumentName = '"+ M.InstrumentName+ "'  ,Proportion ="+ M.Proportion+ " where Beneficiary_Asset_ID = "+ M.Beneficiary_Asset_ID+" ";
