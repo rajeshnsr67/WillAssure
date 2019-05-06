@@ -872,12 +872,100 @@ namespace WillAssure.Controllers
 
 
             // DOCUMENT RULES
-            int typeid = 0;
+            string typeid = "";
             int typecat = 0;
+            if (TFM.documenttype == "WillCodocilPOA")
+            {
+                typeid = "1,2,3";
 
+                con.Open();
+                string qq1 = "update users set Will = '1' , Codocil = '1' , POA = '1' where uId = " + distidd + " ";
+                SqlCommand cc1 = new SqlCommand(qq1, con);
+                cc1.ExecuteNonQuery();
+                con.Close();
+
+            }
+            if (TFM.documenttype == "Codocil")
+            {
+                typeid = "2";
+
+
+
+                con.Open();
+                string qq1 = "update users set Will = '0' , Codocil = '1' , POA = '0' where uId = " + distidd + " ";
+                SqlCommand cc1 = new SqlCommand(qq1, con);
+                cc1.ExecuteNonQuery();
+                con.Close();
+
+
+            }
+            if (TFM.documenttype == "POA")
+            {
+                typeid = "3";
+
+                con.Open();
+                string qq1 = "update users set Will = '0' , Codocil = '0' , POA = '1' where uId = " + distidd + " ";
+                SqlCommand cc1 = new SqlCommand(qq1, con);
+                cc1.ExecuteNonQuery();
+                con.Close();
+            }
             if (TFM.documenttype == "Will")
             {
-                typeid = 1;
+                typeid = "1";
+                con.Open();
+                string qq1 = "update users set Will = '1' , Codocil = '0' , POA = '0' where uId = " + distidd + " ";
+                SqlCommand cc1 = new SqlCommand(qq1, con);
+                cc1.ExecuteNonQuery();
+                con.Close();
+            }
+            if (TFM.documenttype == "WillCodocil")
+            {
+                typeid = "1,2";
+
+                con.Open();
+                string qq1 = "update users set Will = '1' , Codocil = '1' , POA = '0' where uId = " + distidd + " ";
+                SqlCommand cc1 = new SqlCommand(qq1, con);
+                cc1.ExecuteNonQuery();
+                con.Close();
+            }
+            if (TFM.documenttype == "WillPOA")
+            {
+                typeid = "1,3";
+
+                con.Open();
+                string qq1 = "update users set Will = '1' , Codocil = '0' , POA = '1' where uId = " + distidd + " ";
+                SqlCommand cc1 = new SqlCommand(qq1, con);
+                cc1.ExecuteNonQuery();
+                con.Close();
+            }
+            if (TFM.documenttype == "CodocilPOA")
+            {
+                typeid = "2,3";
+
+                con.Open();
+                string qq1 = "update users set Will = '0' , Codocil = '1' , POA = '1' where uId = " + distidd + " ";
+                SqlCommand cc1 = new SqlCommand(qq1, con);
+                cc1.ExecuteNonQuery();
+                con.Close();
+            }
+            if (TFM.documenttype == "CodocilWill")
+            {
+                typeid = "2,1";
+
+                con.Open();
+                string qq1 = "update users set Will = '1' , Codocil = '1' , POA = '0' where uId = " + distidd + " ";
+                SqlCommand cc1 = new SqlCommand(qq1, con);
+                cc1.ExecuteNonQuery();
+                con.Close();
+            }
+            if (TFM.documenttype == "POAWill")
+            {
+                typeid = "3,1";
+                con.Open();
+                string qq1 = "update users set Will = '1' , Codocil = '0' , POA = '1' where uId = " + distidd + " ";
+                SqlCommand cc1 = new SqlCommand(qq1, con);
+                cc1.ExecuteNonQuery();
+                con.Close();
             }
             if (TFM.documentcategory == "Quick")
             {
@@ -890,7 +978,7 @@ namespace WillAssure.Controllers
 
 
             con.Open();
-            string q2 = "insert into documentRules (documentType,category,tid) values (" + typeid + " , " + typecat + "  , " + testatorid + " )";
+            string q2 = "insert into documentRules (documentType,category,tid) values ('" + typeid + "' , " + typecat + "  , " + testatorid + " )";
             SqlCommand c1 = new SqlCommand(q2, con);
             c1.ExecuteNonQuery();
             con.Close();

@@ -262,7 +262,7 @@ hr {
 }
 
 #sidebar-wrapper {
-  background: #172b4d;
+  background:#0e4984;
   position: fixed;
   top: 0px;
   left: 0px;
@@ -331,7 +331,7 @@ hr {
     padding-right: .8rem !important;
     padding-left: .8rem !important;
     font-size: 20px;
-    color: #172b4d;
+    color: #fff;
 }
 
 /* Dropdown Menu */
@@ -529,9 +529,9 @@ hr {
 
 /*Cards */
 .card{
-   margin-bottom: 30px; 
-   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-   border: none;
+   margin-bottom: 30px;  
+   border: 1px solid #ccc;
+   border-radius: 0px;
 }
 
 .card-header {
@@ -2494,12 +2494,13 @@ hr {
     color: #ff0000;
 }
 label {
-    color: #575e61;
-    font-size: .75rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-weight: 600;
-    margin-bottom: 10px;
+    color: #4d4d4d;
+    font-size: 15px;
+    text-transform: capitalize;
+   
+
+   
+    margin-bottom: 5px;
 }
 
 /* Forms */
@@ -2513,8 +2514,11 @@ label {
 }
 
 .form-control{
-	border: 1px solid #e5eaef;
+	border: 1px solid #1ba445;
+  border-radius: 0px!important;
+  padding: 3px 10px;
 }
+.input-group-text{border: 1px solid #1ba445;}
 
 .form-control-rounded {
     border-radius: 30px !important;
@@ -4207,6 +4211,8 @@ table.grid td {
     content:"\f107";
 }
 
+#accordion8 .card-header{padding: 0px;     background-color: rgb(234, 232, 232);}
+
 .progress {
     display: -ms-flexbox;
     display: flex;
@@ -5396,6 +5402,7 @@ table.grid td {
 
   .right-nav-link a.nav-link{
     padding-right: .0rem !important;
+    color:#fff;
   }
 
   .topbar-nav .navbar {
@@ -5405,7 +5412,9 @@ table.grid td {
 
 }
 
-
+.bg-white {
+    background-color: #0e4984!important;
+}
 
 
 

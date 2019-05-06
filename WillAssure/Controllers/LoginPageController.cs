@@ -50,8 +50,25 @@ namespace WillAssure.Controllers
             }
 
             con.Close();
+
+
             return View("~/Views/LoginPage/LoginPageContent.cshtml");
         }
+
+
+
+        public ActionResult frontendindex()
+       {
+
+           
+
+
+
+
+            return RedirectToAction("index.html", "WillAssureFrontend");
+        }
+
+
 
         public ActionResult DynamicMenu()
         {

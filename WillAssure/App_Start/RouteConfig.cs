@@ -16,7 +16,7 @@ namespace WillAssure
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller= "LoginPage", action = "LoginPageIndex", id = UrlParameter.Optional }
+                defaults: new { controller= "LoginPage", action = "frontendindex", id = UrlParameter.Optional }
             );
         }
     }

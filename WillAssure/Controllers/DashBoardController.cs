@@ -203,6 +203,20 @@ namespace WillAssure.Controllers
 
 
 
+        public ActionResult CodocilMasterindex()
+        {
+
+
+
+
+
+            return View("~/Views/Shared/CodocilMaster.cshtml");
+
+        }
+
+
+
+
         public ActionResult VerifyOTP(LoginModel EVM)
         {
             if (Session["enteredOTP"] != null)

@@ -1,0 +1,232 @@
+﻿
+@{
+    ViewBag.Title = "EditVisitorPageContent";
+}
+
+
+@*Main Content*@
+<div class="content-wrapper">
+    <div class="container-fluid">
+
+        <div class="row pt-2 pb-2">
+
+            <div class="col-sm-3">
+                <div class="btn-group float-sm-right">
+
+                    <div class="dropdown-menu">
+                        <a href="javaScript:void();" class="dropdown-item">Action</a>
+                        <a href="javaScript:void();" class="dropdown-item">Another action</a>
+                        <a href="javaScript:void();" class="dropdown-item">Something else here</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="javaScript:void();" class="dropdown-item">Separated link</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Breadcrumb-->
+
+
+
+
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header"><i class="fa fa-table"></i>Visitor Data</div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="default-datatable" class="table table-bordered">
+                                <thead>
+                                    <tr class="ui-widget-header">
+                                        <th>vid</th>
+                                        <th>First Name</th>
+                                        <th>Middle Name</th>
+                                        <th>Last Name</th>
+                                        <th>Mobile</th>
+                                        <th>Email</th>
+                                        <th>RefDist</th>
+                                        <th>DocumentType</th>
+                                        <th id="title">Action</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody id="visitorData"></tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- End Row-->
+
+        <input type="button" style="display:none" id="btndeleteroles" name="name" value="" />
+
+    </div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+@*end*@
+
+
+
+
+
+<script>
+
+    $(document).ready(function () {
+
+        $.ajax({
+
+            type: "POST",
+            url:"@Url.Action("BindvisitorFormData", "EditVisitor")",
+            success: function (data) {
+                $('#visitorData').empty().append(data);
+            }
+        });
+
+
+    });
+
+
+
+
+</script>
+
+<script>
+    
+
+    function Edit(id) {
+
+
+        var id = id;
+
+
+
+            $.ajax({
+
+            type: "POST",
+            url: "@Url.Action("Updatevisitor", "EditVisitor")",
+            data: {  "send": "" + id + ""   },
+            success: function (data) {
+
+
+                var NestId = data
+                var url = "/UpdateVisitor/UpdateVisitorIndex?NestId=" + NestId;
+                window.location.href = url;
+
+
+            }
+
+
+
+        });
+
+    }
+
+
+
+    function verifydoc(id) {
+
+
+        var id = id;
+
+
+
+            $.ajax({
+
+            type: "POST",
+            url: "@Url.Action("Updatevisitor", "EditVisitor")",
+            data: {  "send": "" + id + ""   },
+            success: function (data) {
+
+
+                var NestId = data
+                var url = "/VerifyVisitor/VerifyVisitorIndex?NestId=" + NestId;
+                window.location.href = url;
+
+
+            }
+
+
+
+        });
+
+    }
+
+
+    $(document).on('click', '.deletenotification', function () {
+
+        var $tr = $(this).closest('tr');
+        var id = $(this).attr('id');
+
+        swal({
+            title: "Are you sure?",
+            text: "Once deleted, you will not be able to recover this record!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+            .then(name => {
+                if (!name) throw null;
+
+                  $.ajax({
+
+            type: "POST",
+            url: "@Url.Action("DeletevisitorRecords", "EditRole")",
+            data: {  "send": "" + id + ""   },
+            success: function (data) {
+                $("#btndeleteroles").on("click", function () { });
+
+                $("#btndeleteroles").click(); //trigger event after listening to it.
+
+                $('#visitorData').empty().append(data).reload();
+               }
+                 });
+            })
+            .then(results => {
+                return results.json();
+            })
+            .then(json => {
+                const message = json.message;
+                const response = json.response;
+                if (response == 0) {
+                    $tr.fadeOut();
+                    swal({
+                        title: 'Deleted',
+                        text: message,
+                        icon: "success",
+                    })
+                        .then(willDelete => {
+
+                        })
+                }
+            })
+            //.catch(err => {
+            //    if (err) {
+            //        swal("Oh noes!", "The AJAX request failed!", "error");
+            //    } else {
+            //        swal.stopLoading();
+            //        swal.close();
+            //    }
+            //});
+    });
+
+
+
+
+
+</script>
+
+
+
+
+

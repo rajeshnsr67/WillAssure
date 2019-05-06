@@ -232,6 +232,13 @@
                                                 <td><label class="checkbox-inline"><input type="checkbox" class="delete" id="PetCareDelete">Delete</label></td>
                                             </tr>
 
+                                            <tr>
+                                                <td style="font-weight:bolder"><input type="checkbox" id="Visitor">Visitor</td>
+                                                <td><label class="checkbox-inline"><input type="checkbox" class="insert" id="VisitorAdd">Add</label></td>
+                                                <td><label class="checkbox-inline"><input type="checkbox" class="update" id="VisitorEdit">Edit</label></td>
+                                                <td><label class="checkbox-inline"><input type="checkbox" class="delete" id="VisitorDelete">Delete</label></td>
+                                            </tr>
+
 
 
                                         </tbody>
@@ -273,6 +280,7 @@
                     <input type="hidden" id="24" value="" />
                     <input type="hidden" id="25" value="" />
                     <input type="hidden" id="26" value="" />
+                    <input type="hidden" id="27" value="" />
 
                 </div>
             </div>
@@ -363,6 +371,7 @@
         $("#Setting").prop("checked", false);
         $("#Liabilities").prop("checked", false);
         $("#PetCare").prop("checked", false);
+        $("#Visitor").prop("checked", false);
 
 
 
@@ -389,6 +398,8 @@
         $("#SettingAdd").prop("checked", false);
         $("#LiabilitiesAdd").prop("checked", false); 
         $("#PetCareAdd").prop("checked", false);
+        $("#VisitorAdd").prop("checked", false);
+
 
          $("#RolesEdit").prop("checked", false);
         $("#AssignRolesEdit").prop("checked", false);
@@ -413,7 +424,7 @@
         $("#SettingEdit").prop("checked", false);
         $("#LiabilitiesEdit").prop("checked", false); 
         $("#PetCareEdit").prop("checked", false);
-
+        $("#VisitorEdit").prop("checked", false);
 
         $("#RolesDelete").prop("checked", false);
         $("#AssignRolesDelete").prop("checked", false);
@@ -438,7 +449,7 @@
         $("#SettingDelete").prop("checked", false);
         $("#LiabilitiesDelete").prop("checked", false); 
         $("#PetCareDelete").prop("checked", false);
-        
+        $("#VisitorDelete").prop("checked", false);
 
           $.ajax({
 
@@ -608,6 +619,9 @@
 
         var status26 = "";
         var data26 = "";
+
+        var status27 = "";
+        var data27 = "";
        
 
         // for role
@@ -1538,10 +1552,45 @@
 
 
 
+        // for Visitor
+        if ($("#Visitor").is(':checked')) {
+            status27 = status27 + "Active";
+        }
+        else {
+
+            status27 = status27 + "Inactive";
+        }
+
+        if ($("#VisitorAdd").is(':checked')) {
+            data27 = data27 + "1,";
+        }
+        else {
+            data27 = data27 + "0,";
+        }
+        if ($("#VisitorEdit").is(':checked')) {
+            data27 = data27 + "2,";
+        }
+        else {
+            data27 = data27 + "0,";
+        }
+        if ($("#VisitorDelete").is(':checked')) {
+            data27 = data27 + "3";
+        }
+        else {
+            data27 = data27 + "0";
+        }
+
+
+        $("#27").val("update Assignment_Roles set  PageStatus= '" + status27 + "'  , Action = '" + data27 + "' where PageName = 'Visitor' and RoleId = " + roleid + " ");
+
+        //end
+
+
+
 
 
       //  + $("#2").val() + "~"
-        var AllData = $("#1").val() + "~" + $("#3").val() + "~" + $("#4").val() + "~" + $("#5").val() + "~" + $("#6").val() + "~" + $("#7").val() + "~" + $("#8").val() + "~" + $("#9").val() + "~" + $("#10").val() + "~" + $("#11").val() + "~" + $("#12").val() + "~" + $("#13").val() + "~" + $("#14").val() + "~" + $("#15").val() + "~" + $("#16").val() + "~" + $("#17").val() + "~" + $("#18").val() + "~" + $("#19").val() + "~" + $("#20").val() + "~" + $("#21").val() + "~" + $("#22").val() + "~" + $("#23").val() + "~" + $("#24").val() + "~" + $("#25").val() + "~" + $("#26").val(); 
+        var AllData = $("#1").val() + "~" + $("#3").val() + "~" + $("#4").val() + "~" + $("#5").val() + "~" + $("#6").val() + "~" + $("#7").val() + "~" + $("#8").val() + "~" + $("#9").val() + "~" + $("#10").val() + "~" + $("#11").val() + "~" + $("#12").val() + "~" + $("#13").val() + "~" + $("#14").val() + "~" + $("#15").val() + "~" + $("#16").val() + "~" + $("#17").val() + "~" + $("#18").val() + "~" + $("#19").val() + "~" + $("#20").val() + "~" + $("#21").val() + "~" + $("#22").val() + "~" + $("#23").val() + "~" + $("#24").val() + "~" + $("#25").val() + "~" + $("#26").val() + "~" + $("#27").val(); 
 
 
           $.ajax({

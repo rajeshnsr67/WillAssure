@@ -288,7 +288,7 @@
                 <div class="modal-body">
 
                     @Html.HiddenFor(m => m.tId, new { @id = "tId" })
-                    @Html.HiddenFor(m => m.documenttype, new { @id = "documenttype" })
+                    <textarea id="documenttype" name="documenttype" style="display:none;"></textarea>
                     @Html.HiddenFor(m => m.documentcategory, new { @id = "documentcategory" })
 
                     <div class="row">
@@ -452,7 +452,7 @@
 
         if ($("#checkone").is(":checked")) {
             var x = $("#checkone").val();
-            $("#documenttype").val(x);
+            $("#documenttype").append(x);
            
             $('#DDLAmtPaidBY2').prop('disabled', false);
         }
@@ -474,7 +474,7 @@
 
         if ($("#checktwo").is(":checked")) {
             var x = $("#checktwo").val();
-            $("#documenttype").val(x);
+            $("#documenttype").append(x);
             $('#DDLAmtPaidBY2').prop('disabled', false);
         }
       
@@ -488,7 +488,7 @@
 
         if ($("#checkthree").is(":checked")) {
             var x = $("#checkthree").val();
-            $("#documenttype").val(x);
+            $("#documenttype").append(x);
             $('#DDLAmtPaidBY2').prop('disabled', false);
         }
       
