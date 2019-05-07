@@ -1,8 +1,8 @@
-﻿
+﻿@model WillAssure.Models.CodocilModel
 @{
-                /**/
+    /**/
 
-                ViewBag.Title = "CodocilPageContent";
+    ViewBag.Title = "CodocilPageContent";
 }
 
 
@@ -28,71 +28,160 @@
         <!-- End Breadcrumb-->
         <div class="row">
             <div class="col-lg-12">
-                @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "RoleForm" }))
-                {
-                
-
                 <div class="card">
-                    <br />
-                    <center><input type="file" name="name" value="" /></center>
-                    
                     <div class="card-body">
-                        
-                        <div class="card-title text-primary">Old Details</div>
+
+                        <div class="card-title text-primary">Codocil</div>
                         <hr>
 
+                        <input type="hidden" name="name" id="userid" value="@Session["uuid"]" />
+
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <label for="input-1">Upload Old Will</label>
+                            </div>
+                            <div class="col-sm-3">
+                                <input type="file" name="name" value="" />
+                            </div>
+                        </div>
+
+                        <br />
+                       
+
+                        <div id="main" style="border:1px solid green; padding:15px; border-radius:10px;">
+                            
+                            <div class="row">
+                                <div class="col-sm-2">
+                                    <div class="form-group">
+                                        <label for="input-1">Selection</label>
+                                        @Html.DropDownListFor(x => x.selection, new SelectListItem[]{
+                                    new SelectListItem() {Text = "--Select--", Value=""},
+                                   new SelectListItem() {Text = "beneficiary", Value="beneficiary"},
+                                   new SelectListItem() {Text = "assets", Value="assets"},
+                                   new SelectListItem() {Text = "executors", Value="executors"},
+                                    new SelectListItem() {Text = "guardian", Value="guardian"},
+                                   new SelectListItem() {Text = "liabilities", Value="liabilities"}}, new { @class = "form-control validate[required]" , @id="ddlselection" , onchange="getselectionval(this.value)" })
+
+
+                                    </div>
+                                </div>
+
+
+                            </div>
 
 
 
+                            <div class="row">
 
 
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="input-1">Old Details</label>
+
+                                        @Html.TextAreaFor(x => x.olddetails, new { @class = "form-control" , @id="olddetails" , onchange="getolddetails(this.value)" })
+
+                                    </div>
+                                </div>
 
 
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="input-1">New Details</label>
+
+                                        @Html.TextAreaFor(x => x.newdetails, new { @class = "form-control" , @id="newdetails" , onchange="getnewdetails(this.value)" })
+
+                                    </div>
+                                </div>
 
 
+                            </div>
+                            <button class="btn btn btn-danger" id="btnadd"><i class="fa fa-plus"></i>Add</button>
+                           
 
-                     
+                        </div>
+
+                        <div id="cpydiv">
+
+                        </div>
+
+
+                        <textarea class="form-control" style="display:none;" id="appendquery"></textarea>
+
+                        <br />
+
+                        <div class="form-group">
+
+                            <button type="submit" id="btnsubmit"  class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i>Submit</button>
+
+                        </div>
 
 
                     </div>
                 </div>
-
-
-
-                    <div class="card">
-                        <div class="card-body">
-
-                            <div class="card-title text-primary">New Details</div>
-                            <hr>
-
-
-
-
-
-
-
-
-
-
-
-                         
-
-
-                        </div>
-                    </div>
-                }
             </div>
-            
-                <button type="button" id="btnRoleformsubmitSUCCESS" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
-                <button type="button" id="btnRoleformsubmitCHECK" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
+            <button type="button" id="btnRoleformsubmitSUCCESS" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
+            <button type="button" id="btnRoleformsubmitCHECK" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
 
-            </div>
+        </div>
 
 
     </div>
 
 
 </div>
+
+
+
+<script>
+
+    $(document).on("click", "#btnadd", function () {
+
+        $("#main").clone().find("#olddetails").val("").end().find("#newdetails").val("").end().appendTo("#cpydiv");
+
+
+    });
+
+
+    function getselectionval(value) {
+
+        $("#appendquery").append("insert into Codocil (" + value + "_olddetails ," + value +"_newdetails , uId ) values (")
+        
+
+    }
+
+    function getolddetails(value) {
+        $("#appendquery").append("'" + value + "',")
+    }
+
+
+    function getnewdetails(value) {
+
+        var x = $("#userid").val();
+
+        $("#appendquery").append("'"+value+"'" + " , "+x+" ) ~")
+    }
+
+
+
+    $("#btnsubmit").click(function () {
+
+        var data = $("#appendquery").val();
+
+           $.ajax({
+
+                type: "POST",
+
+                 url: "@Url.Action("InsertCodocilData", "Codocil")",
+                data: { "send": "" + data + "" },
+                success: function (data) {
+                   
+
+
+                }
+            });
+
+
+    });
+
+</script>
 @*end*@
-
-

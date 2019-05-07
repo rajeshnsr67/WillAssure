@@ -23,8 +23,92 @@ namespace WillAssure.Controllers
         // GET: AddTestatorsForm
         public ActionResult AddTestatorsFormIndex()
         {
+            // check type 
+            string typ = "";
+            con.Open();
+            string qq1 = "select Type from users where uId = " + Convert.ToInt32(Session["uuid"]) + " ";
+            SqlDataAdapter daa = new SqlDataAdapter(qq1, con);
+            DataTable dtt = new DataTable();
+            daa.Fill(dtt);
+            con.Close();
 
-           
+            if (dtt.Rows.Count > 0)
+            {
+                typ = dtt.Rows[0]["Type"].ToString();
+            }
+
+
+
+            //end
+
+
+
+            if (typ == "Testator")
+            {
+                // check will status
+                con.Open();
+                string qry1 = "select Will  from users where Will = 1 ";
+                SqlDataAdapter daa1 = new SqlDataAdapter(qry1, con);
+                DataTable dtt1 = new DataTable();
+                daa1.Fill(dtt1);
+                if (dtt1.Rows.Count > 0)
+                {
+                    ViewBag.documentbtn1 = "true";
+                }
+                con.Close();
+                //end
+
+
+                // check codocil status
+                con.Open();
+                string qry22 = "select Codocil  from users where Codocil = 1 ";
+                SqlDataAdapter daa22 = new SqlDataAdapter(qry22, con);
+                DataTable dtt22 = new DataTable();
+                daa22.Fill(dtt22);
+                if (dtt22.Rows.Count > 0)
+                {
+                    ViewBag.documentbtn2 = "true";
+                }
+                con.Close();
+
+                //end
+
+
+                // check Poa status
+                con.Open();
+                string qry4 = "select POA  from users where POA = 1 ";
+                SqlDataAdapter daa4 = new SqlDataAdapter(qry4, con);
+                DataTable dtt4 = new DataTable();
+                daa4.Fill(dtt4);
+                if (dtt4.Rows.Count > 0)
+                {
+                    ViewBag.documentbtn3 = "true";
+                }
+                con.Close();
+                //end
+
+
+                // check gift deeds status
+                con.Open();
+                string qry3 = "select Giftdeeds  from users where Giftdeeds = 1 ";
+                SqlDataAdapter daa3 = new SqlDataAdapter(qry3, con);
+                DataTable dtt3 = new DataTable();
+                daa3.Fill(dtt3);
+                if (dtt3.Rows.Count > 0)
+                {
+                    ViewBag.documentbtn4 = "true";
+                }
+                con.Close();
+                //end
+            }
+            else
+            {
+
+                ViewBag.documentlink = "true";
+
+            }
+
+
 
             if (Session["rId"] == null || Session["uuid"] == null)
             {
@@ -67,7 +151,99 @@ namespace WillAssure.Controllers
 
             }
 
+
+
             con.Close();
+
+
+
+            // check type 
+            string typ2 = "";
+            con.Open();
+            string qq12 = "select Type from users where uId = " + Convert.ToInt32(Session["uuid"]) + " ";
+            SqlDataAdapter daa2 = new SqlDataAdapter(qq12, con);
+            DataTable dtt2 = new DataTable();
+            daa2.Fill(dtt2);
+            con.Close();
+
+            if (dtt2.Rows.Count > 0)
+            {
+                typ = dtt2.Rows[0]["Type"].ToString();
+            }
+
+
+
+            //end
+
+
+
+            if (typ2 == "Testator")
+            {
+                // check will status
+                con.Open();
+                string qry1 = "select Will  from users where Will = 1 ";
+                SqlDataAdapter daa1 = new SqlDataAdapter(qry1, con);
+                DataTable dtt1 = new DataTable();
+                daa1.Fill(dtt1);
+                if (dtt1.Rows.Count > 0)
+                {
+                    ViewBag.documentbtn1 = "true";
+                }
+                con.Close();
+                //end
+
+
+                // check codocil status
+                con.Open();
+                string qry22 = "select Codocil  from users where Codocil = 1 ";
+                SqlDataAdapter daa22 = new SqlDataAdapter(qry22, con);
+                DataTable dtt22 = new DataTable();
+                daa2.Fill(dtt2);
+                if (dtt2.Rows.Count > 0)
+                {
+                    ViewBag.documentbtn2 = "true";
+                }
+                con.Close();
+
+                //end
+
+
+                // check Poa status
+                con.Open();
+                string qry4 = "select POA  from users where POA = 1 ";
+                SqlDataAdapter daa4 = new SqlDataAdapter(qry4, con);
+                DataTable dtt4 = new DataTable();
+                daa4.Fill(dtt4);
+                if (dtt4.Rows.Count > 0)
+                {
+                    ViewBag.documentbtn3 = "true";
+                }
+                con.Close();
+                //end
+
+
+                // check gift deeds status
+                con.Open();
+                string qry3 = "select Giftdeeds  from users where Giftdeeds = 1 ";
+                SqlDataAdapter daa3 = new SqlDataAdapter(qry3, con);
+                DataTable dtt3 = new DataTable();
+                daa3.Fill(dtt3);
+                if (dtt3.Rows.Count > 0)
+                {
+                    ViewBag.documentbtn4 = "true";
+                }
+                con.Close();
+                //end
+            }
+            else
+            {
+
+                ViewBag.documentlink = "true";
+
+            }
+
+
+
 
 
             return View("~/Views/AddTestatorsForm/AddTestatorPageContent.cshtml");
@@ -183,6 +359,177 @@ namespace WillAssure.Controllers
 
         public ActionResult InsertTestatorFormData(TestatorFormModel TFM)
         {
+
+            // check type 
+            string typ = "";
+            con.Open();
+            string qq1 = "select Type from users where uId = " + Convert.ToInt32(Session["uuid"]) + " ";
+            SqlDataAdapter daa = new SqlDataAdapter(qq1, con);
+            DataTable dtt = new DataTable();
+            daa.Fill(dtt);
+            con.Close();
+
+            if (dtt.Rows.Count > 0)
+            {
+                typ = dtt.Rows[0]["Type"].ToString();
+            }
+
+
+
+            //end
+
+
+
+            if (typ == "Testator")
+            {
+                // check will status
+                con.Open();
+                string qry1 = "select Will  from users where Will = 1 ";
+                SqlDataAdapter daa1 = new SqlDataAdapter(qry1, con);
+                DataTable dtt1 = new DataTable();
+                daa1.Fill(dtt1);
+                if (dtt1.Rows.Count > 0)
+                {
+                    ViewBag.documentbtn1 = "true";
+                }
+                con.Close();
+                //end
+
+
+                // check codocil status
+                con.Open();
+                string qry2 = "select Codocil  from users where Codocil = 1 ";
+                SqlDataAdapter daa2 = new SqlDataAdapter(qry2, con);
+                DataTable dtt2 = new DataTable();
+                daa2.Fill(dtt2);
+                if (dtt2.Rows.Count > 0)
+                {
+                    ViewBag.documentbtn2 = "true";
+                }
+                con.Close();
+
+                //end
+
+
+                // check Poa status
+                con.Open();
+                string qry4 = "select POA  from users where POA = 1 ";
+                SqlDataAdapter daa4 = new SqlDataAdapter(qry4, con);
+                DataTable dtt4 = new DataTable();
+                daa4.Fill(dtt4);
+                if (dtt4.Rows.Count > 0)
+                {
+                    ViewBag.documentbtn3 = "true";
+                }
+                con.Close();
+                //end
+
+
+                // check gift deeds status
+                con.Open();
+                string qry3 = "select Giftdeeds  from users where Giftdeeds = 1 ";
+                SqlDataAdapter daa3 = new SqlDataAdapter(qry3, con);
+                DataTable dtt3 = new DataTable();
+                daa3.Fill(dtt3);
+                if (dtt3.Rows.Count > 0)
+                {
+                    ViewBag.documentbtn4 = "true";
+                }
+                con.Close();
+                //end
+            }
+            else
+            {
+
+                ViewBag.documentlink = "true";
+
+            }
+
+            // check type 
+            string typ5 = "";
+            con.Open();
+            string qq15 = "select Type from users where uId = " + Convert.ToInt32(Session["uuid"]) + " ";
+            SqlDataAdapter daa5 = new SqlDataAdapter(qq15, con);
+            DataTable dtt5 = new DataTable();
+            daa5.Fill(dtt5);
+            con.Close();
+
+            if (dtt5.Rows.Count > 0)
+            {
+                typ = dtt5.Rows[0]["Type"].ToString();
+            }
+
+
+
+            //end
+
+
+
+            if (typ5 == "Testator")
+            {
+                // check will status
+                con.Open();
+                string qry1 = "select Will  from users where Will = 1 ";
+                SqlDataAdapter daa1 = new SqlDataAdapter(qry1, con);
+                DataTable dtt1 = new DataTable();
+                daa1.Fill(dtt1);
+                if (dtt1.Rows.Count > 0)
+                {
+                    ViewBag.documentbtn1 = "true";
+                }
+                con.Close();
+                //end
+
+
+                // check codocil status
+                con.Open();
+                string qry2 = "select Codocil  from users where Codocil = 1 ";
+                SqlDataAdapter daa2 = new SqlDataAdapter(qry2, con);
+                DataTable dtt2 = new DataTable();
+                daa2.Fill(dtt2);
+                if (dtt2.Rows.Count > 0)
+                {
+                    ViewBag.documentbtn2 = "true";
+                }
+                con.Close();
+
+                //end
+
+
+                // check Poa status
+                con.Open();
+                string qry4 = "select POA  from users where POA = 1 ";
+                SqlDataAdapter daa4 = new SqlDataAdapter(qry4, con);
+                DataTable dtt4 = new DataTable();
+                daa4.Fill(dtt4);
+                if (dtt4.Rows.Count > 0)
+                {
+                    ViewBag.documentbtn3 = "true";
+                }
+                con.Close();
+                //end
+
+
+                // check gift deeds status
+                con.Open();
+                string qry3 = "select Giftdeeds  from users where Giftdeeds = 1 ";
+                SqlDataAdapter daa3 = new SqlDataAdapter(qry3, con);
+                DataTable dtt3 = new DataTable();
+                daa3.Fill(dtt3);
+                if (dtt3.Rows.Count > 0)
+                {
+                    ViewBag.documentbtn4 = "true";
+                }
+                con.Close();
+                //end
+            }
+            else
+            {
+
+                ViewBag.documentlink = "true";
+
+            }
+
             // roleassignment
             List<LoginModel> Lmlist = new List<LoginModel>();
             con.Open();

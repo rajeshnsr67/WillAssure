@@ -24,7 +24,16 @@
             </div>
         </div>
         <!-- End Breadcrumb-->
-        <a href="@Url.Action("CodocilMasterindex","DashBoard")">Codocil</a>
+        <center>
+            <a href="@Url.Action("EnableDocumentLinks","DashBoard")" id="documentbtn1" style="display:none;"><button type="button" class="btn btn-primary btn-round waves-effect waves-light m-1">Will</button></a>
+            <a href="@Url.Action("CodocilIndex","Codocil")" id="documentbtn2" style="display:none;"> <button type="button" class="btn btn-success btn-round waves-effect waves-light m-1">Codocil</button></a>
+            <a href="@Url.Action("EnableDocumentLinks","DashBoard")" id="documentbtn3" style="display:none;"><button type="button" class="btn btn-info btn-round waves-effect waves-light m-1">POA</button></a>
+            <a href="@Url.Action("EnableDocumentLinks","DashBoard")" id="documentbtn4" style="display:none;">    <button type="button" class="btn btn-danger btn-round waves-effect waves-light m-1">Gift Deeds</button></a>
+
+        </center>
+        <br />
+        <br />
+
         <div class="row">
 
 
@@ -302,7 +311,46 @@
 
 
 @*end*@
+@if (ViewBag.documentbtn1 == "true")
+{
 
+    <script>
+
+        $("#documentbtn1").removeAttr("style");
+
+    </script>
+
+}
+@if (ViewBag.documentbtn2 == "true")
+{
+
+    <script>
+
+        $("#documentbtn2").removeAttr("style");
+
+    </script>
+
+}
+@if (ViewBag.documentbtn3 == "true")
+{
+
+    <script>
+
+        $("#documentbtn3").removeAttr("style");
+
+    </script>
+
+}
+@if (ViewBag.documentbtn4 == "true")
+{
+
+    <script>
+
+        $("#documentbtn4").removeAttr("style");
+
+    </script>
+
+}
 
 
 @if (ViewBag.Testatorpopup == "true")
@@ -316,7 +364,8 @@
 
         });
     </script>
-    
+
+
 }
 
 
@@ -339,7 +388,7 @@
 
 
     </script>
-   
+
 }
 
 

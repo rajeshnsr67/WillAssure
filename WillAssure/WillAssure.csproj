@@ -315,6 +315,7 @@
     <Compile Include="Models\AssetsModel.cs" />
     <Compile Include="Models\AssetTypeModel.cs" />
     <Compile Include="Models\BeneficiaryModel.cs" />
+    <Compile Include="Models\CodocilModel.cs" />
     <Compile Include="Models\CouponAllotementModel.cs" />
     <Compile Include="Models\CouponsModel.cs" />
     <Compile Include="Models\DesingnationModel.cs" />
@@ -1542,7 +1543,6 @@
     <Content Include="WillAssureFrontend\revolution\fonts\revicons\revicons90c6.woff" />
     <Content Include="WillAssureFrontend\stylesheets\fonts\flexslider-icon.ttf" />
     <Content Include="WillAssureFrontend\stylesheets\fonts\flexslider-icon.woff" />
-    <Content Include="Views\Shared\CodocilMaster.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

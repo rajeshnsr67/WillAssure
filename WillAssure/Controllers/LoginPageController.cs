@@ -267,14 +267,16 @@ namespace WillAssure.Controllers
 
                     }
 
+                    
+
+
+                
+
+
 
 
                     Session["LoginOTP"] = dta.Rows[0]["Email_OTP"].ToString();
-                    //string v1 = Eramake.eCryptography.Encrypt(dta.Rows[0]["Email_OTP"].ToString());
-                    //v1 = v1.Replace("+", "").Replace("==", "");
-
-
-                    //Session["TestatorOTP"] = v1;
+                    
 
                     return RedirectToAction("DashBoardIndex", "DashBoard");
                 }
