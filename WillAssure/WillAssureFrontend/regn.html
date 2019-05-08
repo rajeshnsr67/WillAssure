@@ -168,24 +168,24 @@
                                                                        <textarea id="documenttype" name="documenttype" style="display:none;"></textarea>
                                                                        
                                                                        <div class="form-group col-sm-12">
-                                                                           <div class="col-sm-12"><label for="email" style="font-weight: 700; font-size: 16px">Name:</label><span style="color:red; display:none" id="lblerror1">*</span></div>
-                                                                           <div class="col-sm-4" style="float: left;"><input type="text" class="form-control" id="txtfirstname" placeholder="First Name" required></div>
-                                                                           <div class="col-sm-4" style="float: left;"><input type="text" class="form-control" id="txtmiddlename" placeholder="Middle Name" required></div>
-                                                                           <div class="col-sm-4" style="float: left;"><input type="text" class="form-control" id="txtlastname" placeholder="Last Name" required></div>
+                                                                           <div class="col-sm-12"><label for="email" style="font-weight: 700; font-size: 16px">Name:</label></div>
+                                                                           <div class="col-sm-3" style="float: left;"><span style="color:red; display:none" id="lblerror1">*Required</span><input type="text" class="form-control" id="txtfirstname" onchange="clearlblerror1()" placeholder="First Name" ></div>
+                                                                           <div class="col-sm-4" style="float: left;"><span style="color:red; display:none" id="lblerror12">*Required</span><input type="text" class="form-control" id="txtmiddlename" onchange="lblerror12()" placeholder="Middle Name" ></div>
+                                                                           <div class="col-sm-4" style="float: left;"><span style="color:red; display:none" id="lblerror13">*Required</span><input type="text" class="form-control" id="txtlastname" onchange="lblerror13()" placeholder="Last Name" ></div>
                                                                        </div>
                                                                        <div class="form-group col-sm-6" style="float: left;">
-                                                                           <div class="col-sm-12"><label for="email" style="font-weight: 700; font-size: 16px">Contact No:</label><span style="color:red;display:none" id="lblerror2">*</span></div>
-                                                                           <div class="col-sm-12" style="float: left;"><input type="text" class="form-control" id="txtcontact" placeholder="Mobile No" required></div>
+                                                                           <div class="col-sm-12"><label for="email" style="font-weight: 700; font-size: 16px">Contact No:</label></div>
+                                                                           <div class="col-sm-12" style="float: left;"><span style="color:red;display:none" id="lblerror2">*Required</span><input type="text" class="form-control" id="txtcontact" onchange="lblerror2()" placeholder="Mobile No" ></div>
 
                                                                        </div>
                                                                        <div class="form-group col-sm-6" style="float: left;">
-                                                                           <div class="col-sm-12"><label for="email" style="font-weight: 700; font-size: 16px">Email Id:</label><span style="color:red;display:none" id="lblerror3">*</span></div>
-                                                                           <div class="col-sm-12" style="float: left;"><input type="text" class="form-control" id="txtemail" placeholder="Email Id" required></div>
+                                                                           <div class="col-sm-12"><label for="email" style="font-weight: 700; font-size: 16px">Email Id:</label></div>
+                                                                           <div class="col-sm-12" style="float: left;"><span style="color:red;display:none" id="lblerror3">*Required</span><input type="text" class="form-control" id="txtemail" onchange="lblerror3()" placeholder="Email Id" required></div>
 
                                                                        </div>
                                                                        <div class="form-group col-sm-12" style="float: left;">
-                                                                           <div class="col-sm-12"><label for="email" style="font-weight: 700; font-size: 16px">Ref Distributer:</label><span style="color:red;display:none" id="lblerror4">*</span></div>
-                                                                           <div class="col-sm-12" style="float: left;"><input type="text" class="form-control" id="txtrefdistributor" placeholder="Distributer Name" required></div>
+                                                                           <div class="col-sm-12"><label for="email" style="font-weight: 700; font-size: 16px">Ref Distributer:</label></div>
+                                                                           <div class="col-sm-12" style="float: left;"><span style="color:red;display:none" id="lblerror4">*Required</span><input type="text" class="form-control" id="txtrefdistributor" onchange="lblerror4()" placeholder="Distributer Name" required></div>
 
                                                                        </div>
                                                                        <div class="form-group col-sm-12" style="float: left;">
@@ -305,11 +305,39 @@
 
                                    <script>
 
+                                       function clearlblerror1() {
+
+                                           $("#lblerror1").hide();
+                                       }
+                                       function lblerror2() {
+
+                                           $("#lblerror2").hide();
+                                       }
+                                       function lblerror3() {
+
+                                           $("#lblerror3").hide();
+                                       }
+                                       function lblerror4() {
+
+                                           $("#lblerror4").hide();
+                                       }
+                                       function lblerror12() {
+
+                                           $("#lblerror12").hide();
+                                       }
+                                       function lblerror13() {
+
+                                           $("#lblerror13").hide();
+                                       }
+
+
                                        $(document).ready(function () {
                                            $("#lblerror1").hide();
                                            $("#lblerror2").hide();
                                            $("#lblerror3").hide();
                                            $("#lblerror4").hide();
+                                           $("#lblerror12").hide();
+                                           $("#lblerror13").hide();
 
 
                                        });
@@ -319,17 +347,26 @@
 
 
                                            if ($("#txtfirstname").val() == "") {
-                                               alert("Please Enter firstname");
+                                               $("#lblerror1").show();
+                                           }
+
+                                           if ($("#txtmiddlename").val() == "") {
+                                               $("#lblerror12").show();
+                                           }
+
+
+                                           if ($("#txtlastname").val() == "") {
+                                               $("#lblerror13").show();
                                            }
                                         
                                            if ($("#txtcontact").val() == "") {
-                                               alert("Please Enter contact");
+                                               $("#lblerror2").show();
                                            }
                                            if ($("#txtemail").val() == "") {
-                                               alert("Please Enter email");
+                                               $("#lblerror3").show();
                                            }
                                            if ($("#txtrefdistributor").val() == "") {
-                                               alert("Please Enter distributor");
+                                               $("#lblerror4").show();
                                            }
                                            else {
 

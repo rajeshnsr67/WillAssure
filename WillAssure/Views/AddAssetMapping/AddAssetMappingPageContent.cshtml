@@ -232,6 +232,8 @@
     <script>
         $(document).ready(function () {
             $("#RoleForm").validationEngine();
+
+
         });
     </script>
     <script>
@@ -284,32 +286,32 @@
                              res += "&nbsp;&nbsp;&nbsp;&nbsp;";
                              res += "<div class='col-sm-2'>";
                              res +=  "<div class='form-group'>";
-                             res += "<label for='input-1'>Beneficiary</label>";
-                             res += "<select id='ddlbeneficiary"+data[i].assetcatid+"' onchange='checkbeneficiaryduplicate(this.id)' name='contentList' class='form-control beneficiaryclass'></select>";
+                             res += "<label for='input-1'>Beneficiary</label><span id='errbene'  style='color:red; display:;'>(*)</span>";
+                             res += "<select id='ddlbeneficiary" + data[i].assetcatid +"' onchange='checkbeneficiaryduplicate(this.id)' name='contentList' class='form-control beneficiaryclass validate[required]'></select>";
                              res += "<input type='text' class='form-control' style='display: none' id='ddlbeneficiarytxt' name='name' value='' />";
                              res += "</div>";
                              res += "</div>";   // new
                              res += "<div class='col-sm-2'>";
                              res += "<div class='form-group'>";
-                             res += "<label for='input-1'>SchemeName</label>";
-                             res += "<select id='schemename"+data[i].assetcatid+"' onchange='getschemename(this.id)' name='contentList' class='form-control schemenameclass'></select>";
+                             res += "<label for='input-1'>SchemeName<span id='errscheme' style='color:red;display:;' >(*)</span></label>";
+                             res += "<select id='schemename" + data[i].assetcatid +"' onchange='getschemename(this.id)' name='contentList' class='form-control schemenameclass validate[required]'></select>";
                              res += "<input type='text' class='form-control' style='display: none' id='ddlbeneficiarytxt' name='name' value='' />";
                              res += "</div>";
                              res += "</div>";
                              res += "<div class='col-sm-3'>";
-                             res += "<label for='input-1'>Instruments</label>";
-                             res += "<select id='DDLAssetColumn"+data[i].assetcatid+"' onchange='getDDLAssetColumn(this.id)' name='contentList' class='form-control instrumentclass'></select>";
+                             res += "<label for='input-1'>Instruments</label><span id='errinstrument' style='color:red;display:;'>(*)</span>";
+                             res += "<select id='DDLAssetColumn" + data[i].assetcatid +"' onchange='getDDLAssetColumn(this.id)' name='contentList' class='form-control instrumentclass validate[required]'></select>";
                              res +=  "</div>";
                              res += "<div class='col-sm-2 grandparent'>";
                              res += "<div class='form-group parent'>";
-                             res += "<label for='input-1'>Proportion</label>";
-                             res += "<input type='text' class='form-control proportioninput' onkeypress='return isNumberKey(event)' onchange='gettxtproportion(this.value)' name='rank' id='txtproportion"+data[i].assetcatid+"' />";
+                             res += "<label for='input-1'>Proportion</label><span id='errproportion' style='color:red;display:;'>(*)</span>";
+                             res += "<input type='text' class='form-control proportioninput validate[required]' onkeypress='return isNumberKey(event)' onchange='gettxtproportion(this.value)' name='rank' id='txtproportion"+data[i].assetcatid+"' />";
                              res += "</div>";
                              res += "</div>";
                              res += "<div class='col-sm-2'>";
                              res += "<div class='form-group start'>";
                              res += "<label for='input-1'>Total</label>";
-                             res += "<input type='text' id='txttotal' class='form-control totalinput' readonly />";
+                             res += "<input type='text' id='txttotal' class='form-control totalinput validate[required]' readonly />";
                              res += "<input type='hidden' id='txttotalval' name='name' value='' />";
                              res += "</div>";
                              res += "</div>";
@@ -355,6 +357,11 @@
             });
 
 
+
+            $("#errbene").hide();
+            $("#errscheme").hide();
+            $("#errinstrument").hide();
+            $("#errproportion").hide();
 
 
             // schemename
@@ -611,7 +618,7 @@
 
 
         function checkbeneficiaryduplicate(id) {
-
+            
             var dt = '';
             var lang_name = $('#' + id).val();
             var selectedtext = $("#" + id + " option:selected").text();
@@ -889,6 +896,13 @@
 
             var radioValue = $("input[class="+btnidentify+"]:checked").val();
 
+            var assettype = $("#ddlassettype").val();
+            var assetcat = $("#ddlassetcat").val();
+            var beneficiary = $("#ddlbeneficiary" + btnidentify + "").find(":selected").val();
+            var schemename = $("#schemename" + btnidentify + "").find(":selected").text();
+            var instrument = $("#DDLAssetColumn" + btnidentify + "").find(":selected").text();
+            var proportion = $("#txtproportion" + btnidentify + "").val();
+            var tid = $("#ddltid").val();
 
             if (radioValue == "Single") {
 
@@ -896,47 +910,59 @@
                 var assetcat = $("#ddlassetcat").val();
 
 
-                var beneficiary = $("#ddlbeneficiary"+btnidentify+"").find(":selected").val();
-                var schemename = $("#schemename"+ btnidentify + "").find(":selected").text();
-                var instrument = $("#DDLAssetColumn" + btnidentify + "").find(":selected").text();
-                var proportion = $("#txtproportion"+btnidentify+"").val();
-                var tid = $("#ddltid").val();
+               
+
+                if (beneficiary == "") {
+                    $("#errbene").show();
+                   
+                }
+                if (schemename == "") {
+                  
+                    $("#errscheme").show();
+                  
+                }
+                if (instrument == "") {
+                 
+                    $("#errinstrument").show();
+                   
+                }
+                if ($("#txtproportion" + btnidentify + "").val() == "") {
+                  
+                    $("#errproportion").show();
+                }
+                else {
+                    var data = assettype + "~" + assetcat + "~" + beneficiary + "~" + schemename + "~" + instrument + "~" + proportion + "~" + tid + "~" + btnidentify;
+
+                    $.ajax({
+
+                        type: "POST",
+                        url: "../AddAssetMapping/InsertSingleAssetMappeddata",
+                        data: { "send": "" + data + "" },
+                        success: function (data) {
+
+                            $("#btnmainassetsuccess").on("click", function () { });
+
+                            $("#btnmainassetsuccess").click();
+
+                            $("#ddlassettype").val("");
+                            $("#ddlassetcat").val("");
+                            $("#ddlbeneficiary").val("");
+                            $("#schemename").val("");
+                            $("#DDLAssetColumn").val("");
+                            $("#txtproportion").val("");
+                        }
+                    });
+
+                }
 
 
-                var data = assettype + "~" + assetcat + "~" + beneficiary + "~" + schemename + "~" + instrument + "~" + proportion + "~" + tid + "~" + btnidentify;
-
-                $.ajax({
-
-                    type: "POST",
-                    url: "../AddAssetMapping/InsertSingleAssetMappeddata",
-                    data: { "send": "" + data + "" },
-                    success: function (data) {
-
-                        $("#btnmainassetsuccess").on("click", function () { });
-
-                        $("#btnmainassetsuccess").click();
-
-                        $("#ddlassettype").val("");
-                        $("#ddlassetcat").val("");
-                        $("#ddlbeneficiary").val("");
-                        $("#schemename").val("");
-                        $("#DDLAssetColumn").val("");
-                        $("#txtproportion").val("");
-                    }
-                });
-
+              
 
 
             }
             if (radioValue == "Multiple") {
 
-                var assettype = $("#ddlassettype").val();
-                var assetcat = $("#ddlassetcat").val();
-                var beneficiary = $("#ddlbeneficiary" + btnidentify + "").find(":selected").val();
-                var schemename = $("#schemename" + btnidentify + "").find(":selected").text();
-                var instrument = $("#DDLAssetColumn" + btnidentify + "").find(":selected").text();
-                var proportion = $("#txtproportion" + btnidentify + "").val();
-                var tid = $("#ddltid").val();
+              
 
                 var data = $("#query").val();
 
