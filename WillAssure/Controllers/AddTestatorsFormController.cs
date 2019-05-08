@@ -11,6 +11,8 @@ using System.Data;
 using System.Net.Mail;
 using System.Net;
 using System.Globalization;
+using System.IO;
+using Newtonsoft.Json.Linq;
 
 namespace WillAssure.Controllers
 {
@@ -1065,6 +1067,24 @@ namespace WillAssure.Controllers
 
                 //end
             }
+
+
+
+            // mobile OTP
+
+            HttpWebRequest Req = (HttpWebRequest)WebRequest.Create("http://167.86.89.78:7412/api/mt/SendSMS?user=rnarvadeempire&password=microlan@123&senderid=RNDEVE&channel=Trans&DCS=0&flashsms=0&number="+TFM.Mobile+"&text=OTP for Will Assure Verification is : "+TFM.MobileOTP+"+sms&route=1051");
+            HttpWebResponse Resp = (HttpWebResponse)Req.GetResponse();
+            System.IO.StreamReader respStreamReader = new System.IO.StreamReader(Resp.GetResponseStream());
+            string responseString = respStreamReader.ReadToEnd();
+            respStreamReader.Close();
+            Resp.Close();
+
+
+
+
+
+
+            //END
 
 
 

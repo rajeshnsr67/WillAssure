@@ -252,7 +252,7 @@
 
                      success: function (data) {
 
-                         for (var i = 1; i < data.length; i++) {
+                         for (var i = 0; i <= data.length; i++) {
 
 
 
@@ -915,6 +915,13 @@
                         $("#btnmainassetsuccess").on("click", function () { });
 
                         $("#btnmainassetsuccess").click();
+
+                        $("#ddlassettype").val("");
+                        $("#ddlassetcat").val("");
+                        $("#ddlbeneficiary").val("");
+                        $("#schemename").val("");
+                        $("#DDLAssetColumn").val("");
+                        $("#txtproportion").val("");
                     }
                 });
 
@@ -942,6 +949,17 @@
                         $("#btnmainassetsuccess").on("click", function () { });
 
                         $("#btnmainassetsuccess").click();
+
+
+
+                        $("#ddlassettype").val("");
+                        $("#ddlassetcat").val("");
+                        $("#ddlbeneficiary").val("");
+                        $("#schemename").val("");
+                        $("#DDLAssetColumn").val("");
+                        $("#txtproportion").val("");
+
+
 
                     }
                 });

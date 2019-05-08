@@ -263,50 +263,6 @@
         </div>
     </div>
 </div><!--End Modal -->
-@*payment popup*@
-<div class="modal fade" id="primarymodal2">
-    <div class="modal-dialog">
-        <div class="modal-content border-primary">
-            <div class="modal-header bg-primary">
-                <h5 class="modal-title text-white"> Payment</h5>
-                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-
-
-
-                <div class="row">
-                    <div class="col-sm-6">
-
-                        <div class="form-group">
-                            <label for="input-1" style="white-space: nowrap;">Click On The Below Link For Payment :</label>
-                            <a href="https://razorpay.com/">Make A Payment</a>
-
-                        </div>
-
-
-
-
-                    </div>
-
-
-
-
-
-
-
-                </div>
-
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
-@*end*@
 
 
 
@@ -369,27 +325,7 @@
 }
 
 
-@if (ViewBag.PaymentLink == "true")
-{
-    <script>
 
-        $(document).ready(function () {
-            $("#btnpay").on("click", function () { });
-
-            $("#btnpay").click(); //trigger event after listening to it.
-            getmenufortestator();
-        });
-
-
-        function getmenufortestator() {
-            var url = "/DashBoard/DashBoardIndex/";
-            window.location.href = url;
-        }
-
-
-    </script>
-
-}
 
 
 
