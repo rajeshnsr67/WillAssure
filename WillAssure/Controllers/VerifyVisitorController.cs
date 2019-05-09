@@ -561,7 +561,7 @@ namespace WillAssure.Controllers
 
 
             con.Open();
-            string query3 = "insert into TestatorDetails (First_Name,Middle_Name,Last_Name,Mobile,Email,uid) values ('"+VM.First_Name+"' , '"+VM.Middle_Name+"' , '"+VM.Last_Name+"' , '"+VM.Mobile+"' , '"+VM.Email+"' , "+VM.distributor_id + ")    ";
+            string query3 = "insert into TestatorDetails (First_Name,Middle_Name,Last_Name,Mobile,Email,uid) values ('"+VM.First_Name+"' , '"+VM.Middle_Name+"' , '"+VM.Last_Name+"' , '"+VM.Mobile+"' , '"+VM.Email+"' , "+ userid + ")    ";
             SqlCommand cmd3 = new SqlCommand(query3,con);
             cmd3.ExecuteNonQuery();
             con.Close();
@@ -749,11 +749,64 @@ namespace WillAssure.Controllers
 
             //end
 
+            VisitorModel Vm = new VisitorModel();
+
+
+            con.Open();
+            string query22 = "select * from visitorinfo where vid = " + VM.vid + "";
+            SqlDataAdapter da = new SqlDataAdapter(query22, con);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            con.Close();
 
 
 
-       
-            return View("~/Views/VerifyVisitor/VerifyVisitorPageContent.cshtml");
+
+
+
+
+            if (dt.Rows.Count > 0)
+            {
+
+
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    Vm.vid = Convert.ToInt32(dt.Rows[i]["vid"]);
+                    Vm.First_Name = dt.Rows[i]["First_Name"].ToString();
+                    Vm.Middle_Name = dt.Rows[i]["Middle_Name"].ToString();
+                    Vm.Last_Name = dt.Rows[i]["Last_Name"].ToString();
+                    Vm.Mobile = dt.Rows[i]["Mobile"].ToString();
+                    Vm.Email = dt.Rows[i]["Email"].ToString();
+                    Vm.RefDist = dt.Rows[i]["RefDist"].ToString();
+                    Vm.DocumentType = dt.Rows[i]["DocumentType"].ToString();
+
+                }
+
+
+
+
+
+
+
+
+            }
+
+
+
+
+            con.Open();
+            string qq22 = "insert into documentRules (tid,documentType) values ("+testatorid+" , '"+Vm.DocumentType+"')";
+            SqlCommand cmddd22 = new SqlCommand(qq22, con);
+            cmddd22.ExecuteNonQuery();
+            con.Close();
+
+
+
+            ViewBag.Message = "Verified";
+
+
+
+            return View("~/Views/VerifyVisitor/VerifyVisitorPageContent.cshtml", Vm);
         }
 
 

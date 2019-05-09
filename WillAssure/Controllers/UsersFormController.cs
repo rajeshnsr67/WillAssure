@@ -457,7 +457,7 @@ namespace WillAssure.Controllers
                 ViewBag.Message = "Verified";
 
                 }
-
+            con.Close();
 
 
             // company data

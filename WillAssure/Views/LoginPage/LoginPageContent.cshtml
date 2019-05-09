@@ -79,16 +79,22 @@
                         </div>
                         <div class="form-row">
 
-                            <div class="form-group col-6 text-capitalize">
+                            <div class="form-group col-8 text-capitalize">
                                 <a href="authentication-reset-password.html" data-toggle="modal" data-target="#myModal">Forget Password ?</a>
-                            </div>
-                        </div>
-                        <button type="submit" formaction="@Url.Action("LoginPageData","LoginPage")" id="btnlogin" class="btn btn-primary shadow-primary btn-block waves-effect waves-light">Sign In</button>
 
-                        <button type="button" id="btnloginSUCCESS" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
-                        <button type="button" id="btnloginFAILED" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
-                    }
-                </div>
+                               
+                            </div>
+
+                            <div class="form-group col-3 text-capitalize">
+                                <a href="@Url.Action("index.html","WillAssureFrontend")">WillAssure</a>
+                            </div>
+                            </div>
+                            <button type="submit" formaction="@Url.Action("LoginPageData","LoginPage")" id="btnlogin" class="btn btn-primary shadow-primary btn-block waves-effect waves-light">Sign In</button>
+
+                            <button type="button" id="btnloginSUCCESS" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
+                            <button type="button" id="btnloginFAILED" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
+                            }
+                        </div>
 
 
 

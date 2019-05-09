@@ -294,7 +294,7 @@ namespace WillAssure.Controllers
                         + "<td>" + dt.Rows[i]["Email"].ToString() + "</td>"
                         + "<td>" + dt.Rows[i]["RefDist"].ToString() + "</td>"
                         + "<td>" + dt.Rows[i]["DocumentType"].ToString() + "</td>"
-                      + "<td> <button type='button'   id='" + dt.Rows[i]["vid"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary'>Edit</button><button type='button'   id=" + dt.Rows[i]["vid"].ToString() + "     class='btn btn-danger deletenotification'>Delete</button>  <button type='button'   id=" + dt.Rows[i]["vid"].ToString() + " onClick='verifydoc(this.id)'     class='btn btn-success deletenotification'>Verify Visitor</button></td></tr>";
+                      + "<td> <button type='button'   id='" + dt.Rows[i]["vid"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary'>Edit</button><button type='button'   id=" + dt.Rows[i]["vid"].ToString() + "     class='btn btn-danger deletenotification'>Delete</button>  <button type='button'   id=" + dt.Rows[i]["vid"].ToString() + " onClick='verifydoc(this.id)'     class='btn btn-success '>Verify Visitor</button></td></tr>";
                 }
                 
 

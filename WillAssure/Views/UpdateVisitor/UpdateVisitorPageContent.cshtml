@@ -40,96 +40,100 @@
                             @Html.HiddenFor(m => m.documenttypec, new { @id = "documenttype" })
                             @Html.HiddenFor(m => m.documentcategory, new { @id = "documentcategory" })
 
-                            <div class="row">
-                                <div class="col-sm-6">
+                        <div class="row">
+                            <div class="col-sm-6">
 
-                                    <div class="form-group">
-                                        <label for="input-1">First Name</label>
+                                <div class="form-group">
+                                    <label for="input-1">First Name</label>
 
-                                        @Html.TextBoxFor(m => m.First_Name, new { @class = "form-control validate[required] text-input", @id = "txtfirstname", @placeholder = "Enter First Name", @autocomplete = "off", alert = "LabourCost is requried" })
-                                    </div>
+                                    @Html.TextBoxFor(m => m.First_Name, new { @class = "form-control validate[required] text-input", @id = "txtfirstname", @placeholder = "Enter First Name", @autocomplete = "off", alert = "LabourCost is requried" })
                                 </div>
+                            </div>
 
 
-                                <div class="col-sm-6">
+                            <div class="col-sm-6">
 
-                                    <div class="form-group">
-                                        <label for="input-1">Middle Name</label>
+                                <div class="form-group">
+                                    <label for="input-1">Middle Name</label>
 
-                                        @Html.TextBoxFor(m => m.Middle_Name, new { @class = "form-control validate[required] text-input", @id = "txtmiddlename", @placeholder = "Enter Middle Name", @autocomplete = "off", alert = "LabourCost is requried" })
-                                    </div>
+                                    @Html.TextBoxFor(m => m.Middle_Name, new { @class = "form-control validate[required] text-input", @id = "txtmiddlename", @placeholder = "Enter Middle Name", @autocomplete = "off", alert = "LabourCost is requried" })
                                 </div>
+                            </div>
 
 
-                                <div class="col-sm-6">
+                            <div class="col-sm-6">
 
-                                    <div class="form-group">
-                                        <label for="input-1">Last Name</label>
+                                <div class="form-group">
+                                    <label for="input-1">Last Name</label>
 
-                                        @Html.TextBoxFor(m => m.Last_Name, new { @class = "form-control validate[required] text-input", @id = "txtlastname", @placeholder = "Enter Last Name", @autocomplete = "off", alert = "LabourCost is requried" })
-                                    </div>
+                                    @Html.TextBoxFor(m => m.Last_Name, new { @class = "form-control validate[required] text-input", @id = "txtlastname", @placeholder = "Enter Last Name", @autocomplete = "off", alert = "LabourCost is requried" })
                                 </div>
+                            </div>
 
-                                <div class="col-sm-6">
+                            <div class="col-sm-6">
 
-                                    <div class="form-group">
-                                        <label for="input-1">Mobile</label>
+                                <div class="form-group">
+                                    <label for="input-1">Mobile</label>
 
-                                        @Html.TextBoxFor(m => m.Mobile, new { @class = "form-control validate[required,custom[Mobile]] text-input", @id = "txtmobile", @placeholder = "Enter Mobile", @autocomplete = "off", alert = "LabourCost is requried" })
-                                    </div>
+                                    @Html.TextBoxFor(m => m.Mobile, new { @class = "form-control validate[required,custom[Mobile]] text-input", @id = "txtmobile", @placeholder = "Enter Mobile", @autocomplete = "off", alert = "LabourCost is requried" })
                                 </div>
+                            </div>
 
 
-                                <div class="col-sm-6">
+                            <div class="col-sm-6">
 
-                                    <div class="form-group">
-                                        <label for="input-1">Email</label>
+                                <div class="form-group">
+                                    <label for="input-1">Email</label>
 
-                                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control validate[required,custom[email]] text-input", @id = "txtemail", @placeholder = "Enter Email", @autocomplete = "off", alert = "LabourCost is requried" })
-                                    </div>
+                                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control validate[required,custom[email]] text-input", @id = "txtemail", @placeholder = "Enter Email", @autocomplete = "off", alert = "LabourCost is requried" })
                                 </div>
+                            </div>
 
-                                <div class="col-sm-6">
+                            <div class="col-sm-6">
 
-                                    <div class="form-group">
-                                        <label for="input-1">RefDist</label>
+                                <div class="form-group">
+                                    <label for="input-1">Distributor (@Html.LabelFor(m => m.RefDist, Model.RefDist))    </label>
 
-                                        @Html.TextBoxFor(m => m.RefDist, new { @class = "form-control validate[required] text-input", @id = "txtrefdist", @placeholder = "Enter RefDist", @autocomplete = "off", alert = "LabourCost is requried" })
-                                    </div>
+                                    <select id="ddlDistributor" class="form-control validate[required]">
+                                        <option value="">--Select Distributor--</option>
+                                    </select>
+                                    @Html.HiddenFor(m => m.distributor_id, new { id = "distributor_id" })
+                                    @Html.HiddenFor(m => m.distributor_txt, new { id = "distributor_txt" })
                                 </div>
+                            </div>
 
 
 
-                                <div class="col-sm-2">
+                            <div class="col-sm-2">
 
-                                    <label style="line-height:41px;">Document Type</label>
-
-
-                                </div>
-
-                                <div class="col-sm-6">
-                                    <span style="line-height:36px;">
-                                        <label class="checkbox-inline">
-                                            <input type="checkbox" id="checkone" value="Will">Will
-                                        </label>
-                                        <label class="checkbox-inline">
-                                            <input type="checkbox" id="checktwo" value="Codocil">Codocil
-                                        </label>
-                                        <label class="checkbox-inline">
-                                            <input type="checkbox" id="checkthree" value="POA">POA
-                                        </label>
-
-                                    </span>
-
-                                    @Html.HiddenFor(m => m.Document_Created_By_ID, new { id = "Document_Created_By_ID" })
-                                    @Html.HiddenFor(m => m.Document_Created_By_txt, new { id = "Document_Created_By_txt" })
-
-                                </div>
-
-
+                                <label style="line-height:41px;">Document Type</label>
 
 
                             </div>
+
+                            <div class="col-sm-6">
+                                <span style="line-height:36px;">
+                                    <label class="checkbox-inline">
+                                        <input type="checkbox" id="checkone" value="Will">Will
+                                    </label>
+                                    <label class="checkbox-inline">
+                                        <input type="checkbox" id="checktwo" value="Codocil">Codocil
+                                    </label>
+                                    <label class="checkbox-inline">
+                                        <input type="checkbox" id="checkthree" value="POA">POA
+                                    </label>
+
+                                </span>
+
+                                @Html.HiddenFor(m => m.Document_Created_By_ID, new { id = "Document_Created_By_ID" })
+                                @Html.HiddenFor(m => m.Document_Created_By_txt, new { id = "Document_Created_By_txt" })
+
+                            </div>
+
+
+
+
+                        </div>
 
 
 

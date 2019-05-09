@@ -109,24 +109,6 @@ namespace WillAssure.Controllers
             ViewBag.TotalDistributorAdmin = Convert.ToInt32(dt1.Rows[0]["TotalDistributorAdmin"]);
 
 
-
-
-            string q2 = "select count(*) as TotalWillEmployee from users  where Linked_user = " + Convert.ToInt32(Session["uuid"]) + " and Type = 'WillEmployee'";
-            SqlDataAdapter da22 = new SqlDataAdapter(q2, con);
-            DataTable dt22 = new DataTable();
-            da22.Fill(dt22);
-            ViewBag.TotalWillEmployee = Convert.ToInt32(dt22.Rows[0]["TotalWillEmployee"]);
-
-
-
-            string q4 = "select count(*) as TotalDistributorEmployee from users  where Linked_user = " + Convert.ToInt32(Session["uuid"]) + " and Type = 'DistributorEmployee'";
-            SqlDataAdapter da4 = new SqlDataAdapter(q4, con);
-            DataTable dt4 = new DataTable();
-            da4.Fill(dt4);
-            ViewBag.TotalDistributorEmployee = Convert.ToInt32(dt4.Rows[0]["TotalDistributorEmployee"]);
-
-
-
             string q5 = "select count(*) as TotalTestator  from TestatorDetails a inner join users b on a.uId=b.uId where b.Linked_user = " + Convert.ToInt32(Session["uuid"]) + "";
             SqlDataAdapter da5 = new SqlDataAdapter(q5, con);
             DataTable dt5 = new DataTable();
@@ -134,56 +116,53 @@ namespace WillAssure.Controllers
             ViewBag.TotalTestator = Convert.ToInt32(dt5.Rows[0]["TotalTestator"]);
 
 
+            string q52 = "select count(*) as TotalVisitor from visitorinfo ";
+            SqlDataAdapter da52 = new SqlDataAdapter(q52, con);
+            DataTable dt52 = new DataTable();
+            da52.Fill(dt52);
+            ViewBag.TotalVisitor = Convert.ToInt32(dt52.Rows[0]["TotalVisitor"]);
 
-            string q6 = "select count(*) as TotalWillEmployee from users  where Linked_user = " + Convert.ToInt32(Session["uuid"]) + " and Type = 'WillEmployee'";
+
+
+
+            string q2 = "select count(*) as TotalWill from documentRules WHERE documentType = 'Will' and uId = " + Convert.ToInt32(Session["uuid"]) + "";
+            SqlDataAdapter da22 = new SqlDataAdapter(q2, con);
+            DataTable dt22 = new DataTable();
+            da22.Fill(dt22);
+            ViewBag.Will = Convert.ToInt32(dt22.Rows[0]["TotalWill"]);
+
+
+
+            string q4 = "select count(*) as TotalCodocil from documentRules WHERE documentType = 'Codocil' and uId = " + Convert.ToInt32(Session["uuid"]) + "  ";
+            SqlDataAdapter da4 = new SqlDataAdapter(q4, con);
+            DataTable dt4 = new DataTable();
+            da4.Fill(dt4);
+            ViewBag.Codocil = Convert.ToInt32(dt4.Rows[0]["TotalCodocil"]);
+
+
+
+         
+
+
+
+            string q6 = "select count(*) as TotalPOA from documentRules WHERE documentType = 'POA' and uId = " + Convert.ToInt32(Session["uuid"]) + "";
             SqlDataAdapter da6 = new SqlDataAdapter(q6, con);
             DataTable dt6 = new DataTable();
             da6.Fill(dt6);
-            ViewBag.TotalWillEmployee = Convert.ToInt32(dt6.Rows[0]["TotalWillEmployee"]);
+            ViewBag.POA = Convert.ToInt32(dt6.Rows[0]["TotalPOA"]);
 
 
 
 
-            string q7 = "select count(*) as TotalFamily from testatorFamily a inner join TestatorDetails b on a.tId=b.tId inner join users c on b.uId = c.uId where c.Linked_user = " + Convert.ToInt32(Session["uuid"]) + "";
+            string q7 = "select count(*) as TotalGiftDeeds from documentRules WHERE documentType = 'GiftDeeds' and uId = " + Convert.ToInt32(Session["uuid"]) + "";
             SqlDataAdapter da7 = new SqlDataAdapter(q7, con);
             DataTable dt7 = new DataTable();
             da7.Fill(dt7);
-            ViewBag.TotalFamily = Convert.ToInt32(dt7.Rows[0]["TotalFamily"]);
+            ViewBag.GiftDeeds = Convert.ToInt32(dt7.Rows[0]["TotalGiftDeeds"]);
 
 
 
-            string q8 = "select count(*) as TotalAssetInformation from AssetInformation a  inner join TestatorDetails b on a.tid=b.tId inner join AssetsType c on a.atId = c.atId inner join AssetsCategory d on a.amId=d.amId inner join users e on e.uId=b.uId  where e.Linked_user = " + Convert.ToInt32(Session["uuid"]) + "";
-            SqlDataAdapter da8 = new SqlDataAdapter(q8, con);
-            DataTable dt8 = new DataTable();
-            da8.Fill(dt8);
-            ViewBag.TotalAssetInformation = Convert.ToInt32(dt8.Rows[0]["TotalAssetInformation"]);
-
-
-
-            string q9 = "select count(*) as TotalBeneficiary from BeneficiaryDetails a inner join TestatorDetails b on a.tId=b.tId inner join users c on b.uId = c.uId where c.Linked_user = " + Convert.ToInt32(Session["uuid"]) + "";
-            SqlDataAdapter da9 = new SqlDataAdapter(q9, con);
-            DataTable dt9 = new DataTable();
-            da9.Fill(dt9);
-            ViewBag.TotalBeneficiary = Convert.ToInt32(dt9.Rows[0]["TotalBeneficiary"]);
-
-
-
-            string q10 = "select count(*) as TotalNominee from Nominee a inner join TestatorDetails b on a.tId=b.tId inner join users c on b.uId=c.uId where c.Linked_user = " + Convert.ToInt32(Session["uuid"]) + "";
-            SqlDataAdapter da10 = new SqlDataAdapter(q10, con);
-            DataTable dt10 = new DataTable();
-            da10.Fill(dt10);
-            ViewBag.TotalNominee = Convert.ToInt32(dt10.Rows[0]["TotalNominee"]);
-
-
-
-
-            string q11 = "select count(*) as TotalAppointees  from Appointees a inner join  TestatorDetails b on a.tid=b.tid inner join users c on b.uId=c.uId where c.Linked_user = " + Convert.ToInt32(Session["uuid"]) + "";
-            SqlDataAdapter da11 = new SqlDataAdapter(q11, con);
-            DataTable dt11 = new DataTable();
-            da11.Fill(dt11);
-            ViewBag.TotalAppointees = Convert.ToInt32(dt11.Rows[0]["TotalAppointees"]);
-
-
+           
 
 
 
@@ -220,7 +199,7 @@ namespace WillAssure.Controllers
             {
                     // check will status
             con.Open();
-            string qry1 = "select Will  from users where Will = 1 ";
+            string qry1 = "select Will  from users where Will = 1 and uId = "+Convert.ToInt32(Session["uuid"])+" ";
             SqlDataAdapter daa1 = new SqlDataAdapter(qry1, con);
             DataTable dtt1 = new DataTable();
             daa1.Fill(dtt1);
@@ -234,7 +213,7 @@ namespace WillAssure.Controllers
 
             // check codocil status
             con.Open();
-            string qry2 = "select Codocil  from users where Codocil = 1 ";
+            string qry2 = "select Codocil  from users where Codocil = 1 and uId = " + Convert.ToInt32(Session["uuid"]) + " ";
             SqlDataAdapter daa2 = new SqlDataAdapter(qry2, con);
             DataTable dtt2 = new DataTable();
             daa2.Fill(dtt2);
@@ -249,8 +228,8 @@ namespace WillAssure.Controllers
 
             // check Poa status
             con.Open();
-            string qry4 = "select POA  from users where POA = 1 ";
-            SqlDataAdapter daa4 = new SqlDataAdapter(qry4, con);
+            string qry4 = "select POA  from users where POA = 1 and uId = " + Convert.ToInt32(Session["uuid"]) + " ";
+                SqlDataAdapter daa4 = new SqlDataAdapter(qry4, con);
             DataTable dtt4 = new DataTable();
             daa4.Fill(dtt4);
             if (dtt4.Rows.Count > 0)
@@ -263,8 +242,8 @@ namespace WillAssure.Controllers
 
             // check gift deeds status
             con.Open();
-            string qry3 = "select Giftdeeds  from users where Giftdeeds = 1 ";
-            SqlDataAdapter daa3 = new SqlDataAdapter(qry3, con);
+            string qry3 = "select Giftdeeds  from users where Giftdeeds = 1 and uId = " + Convert.ToInt32(Session["uuid"]) + " ";
+                SqlDataAdapter daa3 = new SqlDataAdapter(qry3, con);
             DataTable dtt3 = new DataTable();
             daa3.Fill(dtt3);
             if (dtt3.Rows.Count > 0)

@@ -32,7 +32,7 @@ namespace WillAssure.Controllers
 
             con.Open();
 
-            string query = "insert into VisitorInfo (First_Name,Middle_Name,Last_Name,Mobile,Email,RefDist,DocumentType,uid) values ('" + name + "' , '" + middlename + "' , '" + lastname + "' , '" + contactno + "' , '" + emailid + "' , '" + refdistributor + "' , '" + documenttype + "', "+Convert.ToInt32(Session["uuid"])+")";
+            string query = "insert into VisitorInfo (First_Name,Middle_Name,Last_Name,Mobile,Email,RefDist,DocumentType,uid) values ('" + name + "' , '" + middlename + "' , '" + lastname + "' , '" + contactno + "' , '" + emailid + "' , '" + refdistributor + "' , '" + documenttype + "', 0)";
             SqlCommand cmd = new SqlCommand(query,con);
             cmd.ExecuteNonQuery();
 

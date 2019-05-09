@@ -45,6 +45,18 @@ namespace WillAssure.Controllers
 
             if (typ == "Testator")
             {
+                con.Open();
+                string qq12 = "select Type from users where uId = " + Convert.ToInt32(Session["uuid"]) + " and designation = 1 ";
+                SqlDataAdapter da42 = new SqlDataAdapter(qq12, con);
+                DataTable d4t2 = new DataTable();
+                da42.Fill(d4t2);
+                con.Close();
+
+                if (d4t2.Rows.Count > 0)
+                {
+                    ViewBag.documentlink = "true";
+                }
+
                 // check will status
                 con.Open();
                 string qry1 = "select Will  from users where Will = 1 ";

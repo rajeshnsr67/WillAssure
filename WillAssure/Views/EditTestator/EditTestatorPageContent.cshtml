@@ -3,6 +3,8 @@
     /**/
 
     ViewBag.Title = "EditTestatorPageContent";
+
+    
 }
 
 
@@ -265,7 +267,7 @@
             {
                 <div class="modal-body">
                     @Html.HiddenFor(m => m.tId, new { @id = "tId" })
-                    <textarea id="documenttype" name="documenttype" style="display:none;"></textarea>
+                    <textarea id="documenttype" name="documenttype" style="display:;"></textarea>
                     @Html.HiddenFor(m => m.documentcategory, new { @id = "documentcategory" })
                     <div class="row">
 
@@ -283,6 +285,9 @@
                                 </label>
                                 <label class="checkbox-inline">
                                     <input type="checkbox" id="checkthree" value="POA">POA
+                                </label>
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" id="checkfour" value="Giftdeeds">Giftdeeds
                                 </label>
                             </span>
                             @Html.HiddenFor(m => m.Document_Created_By_ID, new { id = "Document_Created_By_ID" })
@@ -469,7 +474,20 @@
 
     });
 
+    $("#checkfour").click(function () {
 
+        if ($("#checkfour").is(":checked")) {
+            var x = $("#checkfour").val();
+            $("#documenttype").append(x);
+            $('#DDLAmtPaidBY2').prop('disabled', false);
+        }
+
+
+
+
+    });
+
+    
 
 
 
@@ -488,60 +506,3 @@
 </script>
 
 
-
-
-@*payment integration script*@
-
-<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-<script>
-    var options = {
-        "key": "rzp_test_GMBr5S3CwTimPr",
-        "amount": "59900", /// The amount is shown in currency subunits. Actual amount is ₹599.
-        "name": "WillAssure",
-        "order_id": "", // Pass the order ID if you are using Razorpay Orders.
-        "currency": "INR", // Optional. Same as the Order currency
-        "description": "Purchase Description",
-        "image": "/assets/images/logo-icon.png",
-        "handler": function (response) {
-            alert(response.razorpay_payment_id);
-        },
-        "prefill": {
-            "name": "Gaurav Kumar",
-            "email": "test@test.com"
-        },
-        "notes": {
-            "address": "Hello World"
-        },
-        "theme": {
-            "color": "#F37254"
-        }
-    };
-    var rzp1 = new Razorpay(options);
-
-    document.getElementById('rzp-button1').onclick = function (e) {
-        rzp1.open();
-        e.preventDefault();
-    }
-</script>
-
-
-
-@if (ViewBag.PaymentLink == "true")
-{
-    <script>
-
-        $(document).ready(function () {
-            $("#btnpay").on("click", function () { });
-
-            $("#btnpay").click(); //trigger event after listening to it.
-
-        });
-
-
-
-
-
-    </script>
-
-}
-@*end*@
