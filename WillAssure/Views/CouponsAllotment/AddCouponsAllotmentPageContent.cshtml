@@ -29,54 +29,71 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
+                        <div class="col-12 12">
+                            <div class="card bg-transparent shadow-none border border-light-3">
+                                <div class="card-header text-white border-light-3" style="background: #199d4b">
+                                    Instructions
 
+                                </div>
+                                <div class="card-body" style="background: #fff; border:1px solid #199d4b">
+                                    <ul>
+                                        <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
+                                        <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
+                                        <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
+                                        <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
+                                        <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
                         <div class="card-title text-primary">Coupons Allotement</div>
                         <hr>
 
                         @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "RoleForm" }))
                         {
 
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label for="input-3">Coupon Number</label>
-                                    <select id="ddlCoupon" class="form-control validate[required]">
-                                        <option value="">--Select Coupon Number--</option>
-                                    </select>
-                                    @Html.HiddenFor(m => m.Coupon_Number_id, new { id = "Coupon_Number_id" })
-                                    @Html.HiddenFor(m => m.Coupon_Number_txt, new { id = "Coupon_Number_txt" })
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="input-3">Coupon Number</label>
+                                        <select id="ddlCoupon" class="form-control validate[required]">
+                                            <option value="">--Select Coupon Number--</option>
+                                        </select>
+                                        @Html.HiddenFor(m => m.Coupon_Number_id, new { id = "Coupon_Number_id" })
+                                        @Html.HiddenFor(m => m.Coupon_Number_txt, new { id = "Coupon_Number_txt" })
+                                    </div>
                                 </div>
-                            </div>
 
 
 
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label for="input-3">Distributor</label>
-                                    <select id="ddlDistributor" class="form-control validate[required]">
-                                        <option value="">--Select Distributor--</option>
-                                    </select>
-                                    @Html.HiddenFor(m => m.distributor_id, new { id = "distributor_id" })
-                                    @Html.HiddenFor(m => m.distributor_txt, new { id = "distributor_txt" })
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="input-3">Distributor</label>
+                                        <select id="ddlDistributor" class="form-control validate[required]">
+                                            <option value="">--Select Distributor--</option>
+                                        </select>
+                                        @Html.HiddenFor(m => m.distributor_id, new { id = "distributor_id" })
+                                        @Html.HiddenFor(m => m.distributor_txt, new { id = "distributor_txt" })
+                                    </div>
                                 </div>
-                            </div>
 
 
 
 
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label for="input-3">Document</label>
-                                    @Html.DropDownListFor(x => x.document_txt, new SelectListItem[]{
-                                       new SelectListItem() {Text = "--Select--", Value=""},
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="input-3">Document</label>
+                                        @Html.DropDownListFor(x => x.document_txt, new SelectListItem[]{
+                                           new SelectListItem() {Text = "--Select--", Value=""},
 
-                                       new SelectListItem() {Text = "Will", Value="1"}}, new { @class = "form-control validate[required]", @id="ddldocumenttype" })
+                                           new SelectListItem() {Text = "Will", Value="1"}}, new { @class = "form-control validate[required]", @id="ddldocumenttype" })
 
-                                    @Html.HiddenFor(m => m.document_id, new { id = "document_id" })
-                                    @Html.HiddenFor(m => m.document_txt, new { id = "document_txt" })
+                                        @Html.HiddenFor(m => m.document_id, new { id = "document_id" })
+                                        @Html.HiddenFor(m => m.document_txt, new { id = "document_txt" })
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-sm-6"></div>
+                                <div class="col-sm-6"></div>
 
 
                                 <div class="col-sm-6">
@@ -123,8 +140,8 @@
 
                             </div>
 
-                            }
-                        </div>
+                        }
+                    </div>
                 </div>
             </div>
             <button type="button" id="btnRoleformsubmitSUCCESS" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
