@@ -63,16 +63,40 @@
                                                    <div class="col-md-5">
                                                        <div class="wrap-top reponsive-none767 clearfix">
                                                            <aside class="widget float-right reponsive-none margin-left29">
-                                                               <div class="btn-click style2">
-                                                                   <a href="/LoginPage/LoginPageIndex" class="flat-button">Make Enquiry</a>
-                                                               </div>
+                                                               <!--<div class="btn-click style2">
+                                    <a href="/LoginPage/LoginPageIndex" class="flat-button">Login</a>
+                                </div>-->
+
+
                                                            </aside>
                                                            <ul class="social-links color-white float-right margin-left25 margin-top14 flat-top">
                                                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
                                                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
                                                                <li class="google"><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                                           </ul>
 
+                                                           </ul>
+                                                           <div class="flat-top flat-language">
+
+                                                               <ul class="unstyled">
+
+                                                                   <li class="current">
+                                                                       <button class="btn-click style2"><a href="#">Login</a></button>
+
+                                                                       <ul class="unstyled">
+
+                                                                           <li class="en"><a href="/LoginPage/LoginPageIndex?Type=Employee/"> Employee</a></li>
+
+                                                                           <li class="ge"><a href="/LoginPage/LoginPageIndex?Type=Distributor">Distributor</a></li>
+
+                                                                           <li class="ge"><a href="/LoginPage/LoginPageIndex?Type=Client">Client</a></li>
+
+                                                                       </ul>
+
+                                                                   </li>
+
+                                                               </ul>
+
+                                                           </div>
                                                        </div>
                                                    </div>
                                                </div><!-- /.row -->
@@ -166,26 +190,41 @@
                                                                <div class="wrap-formrequest">
                                                                    <form action="/VisitorData/VisitorDataIndex">
                                                                        <textarea id="documenttype" name="documenttype" style="display:none;"></textarea>
-                                                                       
+
                                                                        <div class="form-group col-sm-12">
                                                                            <div class="col-sm-12"><label for="email" style="font-weight: 700; font-size: 16px">Name:</label></div>
-                                                                           <div class="col-sm-3" style="float: left;"><span style="color:red; display:none" id="lblerror1">*Required</span><input type="text" class="form-control" id="txtfirstname" onchange="clearlblerror1()" placeholder="First Name" ></div>
-                                                                           <div class="col-sm-4" style="float: left;"><span style="color:red; display:none" id="lblerror12">*Required</span><input type="text" class="form-control" id="txtmiddlename" onchange="lblerror12()" placeholder="Middle Name" ></div>
-                                                                           <div class="col-sm-4" style="float: left;"><span style="color:red; display:none" id="lblerror13">*Required</span><input type="text" class="form-control" id="txtlastname" onchange="lblerror13()" placeholder="Last Name" ></div>
+                                                                           <div class="col-sm-3" style="float: left;"><span style="color:red; display:none" id="lblerror1">*Required</span><input type="text" class="form-control" id="txtfirstname" onchange="clearlblerror1()" placeholder="First Name"></div>
+                                                                           <div class="col-sm-4" style="float: left;"><span style="color:red; display:none" id="lblerror12">*Required</span><input type="text" class="form-control" id="txtmiddlename" onchange="lblerror12()" placeholder="Middle Name"></div>
+                                                                           <div class="col-sm-4" style="float: left;"><span style="color:red; display:none" id="lblerror13">*Required</span><input type="text" class="form-control" id="txtlastname" onchange="lblerror13()" placeholder="Last Name"></div>
                                                                        </div>
                                                                        <div class="form-group col-sm-6" style="float: left;">
                                                                            <div class="col-sm-12"><label for="email" style="font-weight: 700; font-size: 16px">Contact No:</label></div>
-                                                                           <div class="col-sm-12" style="float: left;"><span style="color:red;display:none" id="lblerror2">*Required</span><input type="text" class="form-control" id="txtcontact" onchange="lblerror2()" placeholder="Mobile No" ></div>
+                                                                           <div class="col-sm-12" style="float: left;"><span style="color:red;display:none" id="lblerror2">*Required</span> <span id="error" style="color: Red; display: none">*Invalid Mobile</span><input type="text" class="form-control" id="txtcontact" onchange="lblerror2()" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;" placeholder="Mobile No"></div>
 
                                                                        </div>
                                                                        <div class="form-group col-sm-6" style="float: left;">
                                                                            <div class="col-sm-12"><label for="email" style="font-weight: 700; font-size: 16px">Email Id:</label></div>
-                                                                           <div class="col-sm-12" style="float: left;"><span style="color:red;display:none" id="lblerror3">*Required</span><input type="text" class="form-control" id="txtemail" onchange="lblerror3()" placeholder="Email Id" required></div>
+                                                                           <div class="col-sm-12" style="float: left;"><span style="color:red;display:none" id="lblerror3">*Required</span><span style="color:red;display:none" id="lblemailerr">*Invalid Email</span><input type="text" class="form-control" id="txtemail" onchange="lblerror3()" placeholder="Email Id" required></div>
 
                                                                        </div>
                                                                        <div class="form-group col-sm-12" style="float: left;">
-                                                                           <div class="col-sm-12"><label for="email" style="font-weight: 700; font-size: 16px">Ref Distributer:</label></div>
-                                                                           <div class="col-sm-12" style="float: left;"><span style="color:red;display:none" id="lblerror4">*Required</span><input type="text" class="form-control" id="txtrefdistributor" onchange="lblerror4()" placeholder="Distributer Name" required></div>
+
+                                                                           <div class="col-sm-12"><label for="email" id="lblrefdist" style="font-weight: 700; font-size: 16px; ">Ref Distributer:</label></div>
+                                                                           <form>
+
+                                                                               <label class='radio-inline'>
+
+                                                                                   <input type='radio' id='getvalone' class="" name='optradio' value='Single' checked>Distributor
+
+                                                                               </label>
+                                                                               <label class='radio-inline'>
+
+                                                                                   <input type='radio' id='getvaltwo' class="" name='optradio' value='Multiple'>No Distributor
+
+                                                                               </label>
+
+                                                                           </form>
+                                                                           <div class="col-sm-12" style="float: left;"><!--<span style="color:red;display:none" id="lblerror4">*Required</span>--><input type="text" class="form-control" style="display:;" id="txtrefdistributor" onchange="lblerror4()" placeholder="Distributer Name" required></div>
 
                                                                        </div>
                                                                        <div class="form-group col-sm-12" style="float: left;">
@@ -203,6 +242,9 @@
                                                                                <label class="checkbox-inline">
                                                                                    <input type="checkbox" id="checkfour" value="GiftDeeds">Gift Deeds
                                                                                </label>
+                                                                               <label class="checkbox-inline">
+                                                                                   <input type="checkbox" id="checkfive" value="LivingWill">Living Will
+                                                                               </label>
                                                                            </div>
 
                                                                        </div>
@@ -210,7 +252,7 @@
                                                                            <button type="button" id="btnsubmit" class="btn btn-success ">Submit</button>
                                                                        </div>
                                                                    </form>
-                                                                  
+
                                                                    <div class="clearfix"></div>
                                                                </div>
                                                            </div>
@@ -312,10 +354,28 @@
                                        function lblerror2() {
 
                                            $("#lblerror2").hide();
+                                           $("#error").hide();
+                                           
+
                                        }
                                        function lblerror3() {
 
                                            $("#lblerror3").hide();
+
+                                           var email_reg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+
+                                           var emailinput = $('#txtemail').val();
+                                           if (email_reg.test(emailinput) == false) {
+
+                                               $("#lblemailerr").show();
+                                           }
+
+                                           if (email_reg.test(emailinput) == true) {
+
+                                               $("#lblemailerr").hide();
+                                           }
+
+
                                        }
                                        function lblerror4() {
 
@@ -346,6 +406,12 @@
                                        $("#btnsubmit").click(function () {
 
 
+
+
+
+
+
+
                                            if ($("#txtfirstname").val() == "") {
                                                $("#lblerror1").show();
                                            }
@@ -358,16 +424,21 @@
                                            if ($("#txtlastname").val() == "") {
                                                $("#lblerror13").show();
                                            }
-                                        
+
                                            if ($("#txtcontact").val() == "") {
                                                $("#lblerror2").show();
                                            }
                                            if ($("#txtemail").val() == "") {
+
+
+
+
                                                $("#lblerror3").show();
                                            }
-                                           if ($("#txtrefdistributor").val() == "") {
-                                               $("#lblerror4").show();
-                                           }
+
+                                           //if ($("#txtrefdistributor").val() == "") {
+                                           //    $("#lblerror4").show();
+                                           //}
                                            else {
 
                                                var data = $("#txtfirstname").val() + "~" + $("#txtmiddlename").val() + "~" + $("#txtlastname").val() + "~" + $("#txtcontact").val() + "~" + $("#txtemail").val() + "~" + $("#txtrefdistributor").val() + "~" + $("#documenttype").val();
@@ -388,12 +459,13 @@
                                                        $("#txtemail").val("");
                                                        $("#txtrefdistributor").val("");
                                                        $("#documenttype").val("");
-                                                    
+
 
                                                        $("#checkone").prop("checked", false);
                                                        $("#checktwo").prop("checked", false);
                                                        $("#checkthree").prop("checked", false);
                                                        $("#checkfour").prop("checked", false);
+                                                       $("#checkfive").prop("checked", false);
 
                                                    }
                                                });
@@ -402,7 +474,7 @@
                                            }
 
 
-                                         
+
 
                                        });
 
@@ -415,7 +487,7 @@
 
                                        $("#checkone").click(function () {
 
-                                        
+
                                            if ($("#checkone").is(":checked")) {
                                                var x = $("#checkone").val();
                                                $("#documenttype").append(x);
@@ -460,23 +532,64 @@
                                        });
 
 
-                                           $("#checkfour").click(function () {
+                                       $("#checkfour").click(function () {
 
-                                               if ($("#checkfour").is(":checked")) {
-                                                   var x = $("#checkfour").val();
-                                                   $("#documenttype").append(x);
-                                                   $('#DDLAmtPaidBY2').prop('disabled', false);
-                                               }
-
-
+                                           if ($("#checkfour").is(":checked")) {
+                                               var x = $("#checkfour").val();
+                                               $("#documenttype").append(x);
+                                               $('#DDLAmtPaidBY2').prop('disabled', false);
+                                           }
 
 
-                                           });
 
-                                           </script>
 
-                                      
-                                               <script src="javascript/jquery.min.js"></script>
+                                       });
+
+
+                                       $("#checkfive").click(function () {
+
+                                           if ($("#checkfive").is(":checked")) {
+                                               var x = $("#checkfive").val();
+                                               $("#documenttype").append(x);
+                                               $('#DDLAmtPaidBY2').prop('disabled', false);
+                                           }
+
+
+
+
+                                       });
+
+
+
+                                       $(document).on("change", "#getvalone", function () {
+
+                                           $("#txtrefdistributor").show();
+                                           ;
+
+                                       });
+
+                                       $(document).on("change", "#getvaltwo", function () {
+
+                                           $("#txtrefdistributor").hide();
+
+                                       });
+
+                                   </script>
+
+
+                                   <script type="text/javascript">
+                                       var specialKeys = new Array();
+                                       specialKeys.push(8); //Backspace
+                                       function IsNumeric(e) {
+                                           var keyCode = e.which ? e.which : e.keyCode
+                                           var ret = ((keyCode >= 48 && keyCode <= 57) || specialKeys.indexOf(keyCode) != -1);
+                                           document.getElementById("error").style.display = ret ? "none" : "inline";
+                                           return ret;
+                                       }
+                                   </script>
+
+
+                                   <script src="javascript/jquery.min.js"></script>
                                    <script src="javascript/tether.min.js"></script>
                                    <script src="javascript/bootstrap.min.js"></script>
                                    <script src="javascript/jquery.easing.js"></script>

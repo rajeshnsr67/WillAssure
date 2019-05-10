@@ -29,27 +29,45 @@
         <center>
             <a href="@Url.Action("EnableDocumentLinks","DashBoard")" id="documentbtn1" style="display:none;"><button type="button" class="btn btn-primary btn-round waves-effect waves-light m-1">Will</button></a>
             <a href="@Url.Action("CodocilIndex","Codocil")" id="documentbtn2" style="display:none;"> <button type="button" class="btn btn-success btn-round waves-effect waves-light m-1">Codocil</button></a>
-            <a href="@Url.Action("EnableDocumentLinks","DashBoard")" id="documentbtn3" style="display:none;"><button type="button" class="btn btn-info btn-round waves-effect waves-light m-1">POA</button></a>
-            <a href="@Url.Action("EnableDocumentLinks","DashBoard")" id="documentbtn4" style="display:none;">    <button type="button" class="btn btn-danger btn-round waves-effect waves-light m-1">Gift Deeds</button></a>
-
+            <a href="@Url.Action("EnableDocumentLinks","DashBoard", new { doctype = "POA" } )" id="documentbtn3" style="display:none;"><button type="button" class="btn btn-info btn-round waves-effect waves-light m-1">POA</button></a>
+            <a href="@Url.Action("EnableDocumentLinks","DashBoard", new { doctype = "GiftDeeds" })" id="documentbtn4" style="display:none;"><button type="button" class="btn btn-danger btn-round waves-effect waves-light m-1">Gift Deeds</button></a>
+            <a href="@Url.Action("EnableDocumentLinks","DashBoard")" id="documentbtn5" style="display:none;"><button type="button" class="btn btn-warning btn-round waves-effect waves-light m-1">Living Will</button></a>
         </center>
         <br />
         <br />
         @if (Session["Type"].ToString() != "Testator")
         {
-        <div class="row">
+            <div class="row">
 
 
 
-            @if (Session["Type"].ToString() != "DistributorAdmin")
-            {
+                @if (Session["Type"].ToString() != "DistributorAdmin")
+                {
+                    <div class="col-sm-4">
+                        <div class="card gradient-blooker">
+                            <div class="card-body">
+                                <div class="media align-items-center">
+                                    <div class="media-body">
+                                        <p class="text-white">Total Distributor Register</p>
+                                        <h4 class="text-white line-height-5">@ViewBag.TotalDistributorAdmin</h4>
+                                    </div>
+                                    <div class="w-circle-icon rounded-circle border border-white">
+                                        <i class="fa fa-users text-white"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+
                 <div class="col-sm-4">
-                    <div class="card gradient-blooker">
+                    <div class="card gradient-scooter">
                         <div class="card-body">
                             <div class="media align-items-center">
                                 <div class="media-body">
-                                    <p class="text-white">Total Distributor Register</p>
-                                    <h4 class="text-white line-height-5">@ViewBag.TotalDistributorAdmin</h4>
+                                    <p class="text-white">Total Testator Register</p>
+                                    <h4 class="text-white line-height-5">@ViewBag.TotalTestator</h4>
                                 </div>
                                 <div class="w-circle-icon rounded-circle border border-white">
                                     <i class="fa fa-users text-white"></i>
@@ -58,45 +76,27 @@
                         </div>
                     </div>
                 </div>
-            }
-
-
-            <div class="col-sm-4">
-                <div class="card gradient-scooter">
-                    <div class="card-body">
-                        <div class="media align-items-center">
-                            <div class="media-body">
-                                <p class="text-white">Total Testator Register</p>
-                                <h4 class="text-white line-height-5">@ViewBag.TotalTestator</h4>
-                            </div>
-                            <div class="w-circle-icon rounded-circle border border-white">
-                                <i class="fa fa-users text-white"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
 
 
-            @if (Session["Type"].ToString() == "SuperAdmin")
-            {
-                <div class="col-sm-4">
-                    <div class="card gradient-bloody">
-                        <div class="card-body">
-                            <div class="media align-items-center">
-                                <div class="media-body">
-                                    <p class="text-white">Total Visitor Register</p>
-                                    <h4 class="text-white line-height-5">@ViewBag.TotalVisitor</h4>
-                                </div>
-                                <div class="w-circle-icon rounded-circle border border-white">
-                                    <i class="fa fa-users text-white"></i>
+                @if (Session["Type"].ToString() == "SuperAdmin")
+                {
+                    <div class="col-sm-4">
+                        <div class="card gradient-bloody">
+                            <div class="card-body">
+                                <div class="media align-items-center">
+                                    <div class="media-body">
+                                        <p class="text-white">Total Visitor Register</p>
+                                        <h4 class="text-white line-height-5">@ViewBag.TotalVisitor</h4>
+                                    </div>
+                                    <div class="w-circle-icon rounded-circle border border-white">
+                                        <i class="fa fa-users text-white"></i>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            }
+                }
 
                 <div class="col-sm-3">
                     <div class="card gradient-ohhappiness">
@@ -197,7 +197,7 @@
 <!--Primary Modal -->
 
 <div class="modal fade" id="primarymodal">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-sm">
         <div class="modal-content border-primary">
             <div class="modal-header bg-primary">
                 <h5 class="modal-title text-white">Please Enter OTP For Login</h5>
@@ -337,6 +337,17 @@
 
 }
 
+@if (ViewBag.documentbtn5 == "true")
+{
+
+    <script>
+
+        $("#documentbtn5").removeAttr("style");
+
+    </script>
+
+}
+
 
 @if (ViewBag.Testatorpopup == "true")
 {
@@ -388,7 +399,7 @@
         "image": "/assets/images/logo-icon.png",
         "handler": function (response) {
             //alert(response.razorpay_payment_id);
-        
+
             var url = "/DashBoard/DashBoardIndex";
             window.location.href = url;
         },
@@ -409,7 +420,7 @@
         rzp1.open();
         e.preventDefault();
 
-        
+
     }
 
 
@@ -417,7 +428,7 @@
 
         $('#btnpay').dialog('close');
         return false;
-      
+
     });
 
 </script>
@@ -442,11 +453,11 @@
 
 
 
-   
 
 
-          
-     
+
+
+
 
 
     </script>

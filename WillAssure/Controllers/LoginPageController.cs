@@ -17,10 +17,10 @@ namespace WillAssure.Controllers
         // GET: LoginPage
         public ActionResult LoginPageIndex()
         {
-            
 
-            
-
+            string q = Request.QueryString["Type"].ToString();
+            q = q.Replace("/", "");
+            ViewBag.type = q;
 
             return View("~/Views/LoginPage/LoginPageContent.cshtml");
         }
@@ -67,7 +67,7 @@ namespace WillAssure.Controllers
                 Session["uuid"] = Convert.ToInt32(dt.Rows[0]["uId"]);
                 Session["compId"] = Convert.ToInt32(dt.Rows[0]["compId"]);
                 Session["Type"] = dt.Rows[0]["Type"].ToString();
-
+                Session["willchk"] = dt.Rows[0]["Will"].ToString();
                 Session["ComparerrId"] = Convert.ToInt32(dt.Rows[0]["rId"]);
                 con.Open();
                string query2 = "select * from roles where rId = "+ Session["rId"] + " ";
@@ -145,9 +145,9 @@ namespace WillAssure.Controllers
 
 
                     Session["LoginOTP"] = dta.Rows[0]["Email_OTP"].ToString();
-                    
 
-                    return RedirectToAction("WillDetailsIndex", "WillDetails");
+
+                    return RedirectToAction("DashBoardIndex", "DashBoard");
                 }
                 else
                 {
@@ -245,6 +245,17 @@ namespace WillAssure.Controllers
             // in login
 
             Session["Type"] = "";
+
+
+            // for checking document
+
+            Session["doctype"] = "";
+
+
+            // for checing will
+
+            Session["willchk"] = "";
+
 
             return View("~/Views/LoginPage/LoginPageContent.cshtml");
         }

@@ -267,7 +267,7 @@
             {
                 <div class="modal-body">
                     @Html.HiddenFor(m => m.tId, new { @id = "tId" })
-                    <textarea id="documenttype" name="documenttype" style="display:;"></textarea>
+                    <textarea id="documenttype" name="documenttype" style="display:none;"></textarea>
                     @Html.HiddenFor(m => m.documentcategory, new { @id = "documentcategory" })
                     <div class="row">
 
@@ -288,6 +288,9 @@
                                 </label>
                                 <label class="checkbox-inline">
                                     <input type="checkbox" id="checkfour" value="Giftdeeds">Giftdeeds
+                                </label>
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" id="checkfive" value="LivingWill">Living Will
                                 </label>
                             </span>
                             @Html.HiddenFor(m => m.Document_Created_By_ID, new { id = "Document_Created_By_ID" })
@@ -478,6 +481,20 @@
 
         if ($("#checkfour").is(":checked")) {
             var x = $("#checkfour").val();
+            $("#documenttype").append(x);
+            $('#DDLAmtPaidBY2').prop('disabled', false);
+        }
+
+
+
+
+    });
+
+
+    $("#checkfive").click(function () {
+
+        if ($("#checkfive").is(":checked")) {
+            var x = $("#checkfive").val();
             $("#documenttype").append(x);
             $('#DDLAmtPaidBY2').prop('disabled', false);
         }

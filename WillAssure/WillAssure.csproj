@@ -200,6 +200,7 @@
     <Compile Include="Controllers\AddNomineeController.cs" />
     <Compile Include="Controllers\AddDocumentAllotmentController.cs" />
     <Compile Include="Controllers\AddPetCareController.cs" />
+    <Compile Include="Controllers\ADDPOATESTATORFAMILYController.cs" />
     <Compile Include="Controllers\AddRelationController.cs" />
     <Compile Include="Controllers\AddRoleAssignmentController.cs" />
     <Compile Include="Controllers\AddTemplateMasterController.cs" />
@@ -353,6 +354,20 @@
     </Compile>
     <Compile Include="page\Report.aspx.designer.cs">
       <DependentUpon>Report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WillAssureFrontend\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WillAssureFrontend\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WillAssureFrontend\WillAssure.Master.cs">
+      <DependentUpon>WillAssure.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WillAssureFrontend\WillAssure.Master.designer.cs">
+      <DependentUpon>WillAssure.Master</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -1330,6 +1345,7 @@
     <Content Include="WillAssureFrontend\images\testimonial\2.jpg" />
     <Content Include="WillAssureFrontend\images\testimonial\2.png" />
     <Content Include="WillAssureFrontend\images\testimonial\3.jpg" />
+    <Content Include="WillAssureFrontend\Index.aspx" />
     <Content Include="WillAssureFrontend\index.html" />
     <Content Include="WillAssureFrontend\javascript\bootstrap.min.js" />
     <Content Include="WillAssureFrontend\javascript\countdown.js" />
@@ -1543,6 +1559,8 @@
     <Content Include="WillAssureFrontend\revolution\fonts\revicons\revicons90c6.woff" />
     <Content Include="WillAssureFrontend\stylesheets\fonts\flexslider-icon.ttf" />
     <Content Include="WillAssureFrontend\stylesheets\fonts\flexslider-icon.woff" />
+    <Content Include="WillAssureFrontend\WillAssure.Master" />
+    <Content Include="Views\ADDPOATESTATORFAMILY\AddPOATestatorFamilyPageContent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

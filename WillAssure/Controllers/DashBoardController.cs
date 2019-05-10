@@ -199,7 +199,7 @@ namespace WillAssure.Controllers
             {
                     // check will status
             con.Open();
-            string qry1 = "select Will  from users where Will = 1 and uId = "+Convert.ToInt32(Session["uuid"])+" ";
+            string qry1 = "select Will , Designation  from users where Will = 1 and Designation = 1 and uId = " + Convert.ToInt32(Session["uuid"])+" ";
             SqlDataAdapter daa1 = new SqlDataAdapter(qry1, con);
             DataTable dtt1 = new DataTable();
             daa1.Fill(dtt1);
@@ -213,7 +213,7 @@ namespace WillAssure.Controllers
 
             // check codocil status
             con.Open();
-            string qry2 = "select Codocil  from users where Codocil = 1 and uId = " + Convert.ToInt32(Session["uuid"]) + " ";
+            string qry2 = "select Codocil , Designation  from users where Will = 1 and Designation = 1 and uId = " + Convert.ToInt32(Session["uuid"]) + " ";
             SqlDataAdapter daa2 = new SqlDataAdapter(qry2, con);
             DataTable dtt2 = new DataTable();
             daa2.Fill(dtt2);
@@ -228,7 +228,7 @@ namespace WillAssure.Controllers
 
             // check Poa status
             con.Open();
-            string qry4 = "select POA  from users where POA = 1 and uId = " + Convert.ToInt32(Session["uuid"]) + " ";
+            string qry4 = "select POA  , Designation  from users where Will = 1 and Designation = 1 and uId = " + Convert.ToInt32(Session["uuid"]) + " ";
                 SqlDataAdapter daa4 = new SqlDataAdapter(qry4, con);
             DataTable dtt4 = new DataTable();
             daa4.Fill(dtt4);
@@ -242,7 +242,7 @@ namespace WillAssure.Controllers
 
             // check gift deeds status
             con.Open();
-            string qry3 = "select Giftdeeds  from users where Giftdeeds = 1 and uId = " + Convert.ToInt32(Session["uuid"]) + " ";
+            string qry3 = "select Giftdeeds , Designation  from users where Will = 1 and Designation = 1 and uId = " + Convert.ToInt32(Session["uuid"]) + " ";
                 SqlDataAdapter daa3 = new SqlDataAdapter(qry3, con);
             DataTable dtt3 = new DataTable();
             daa3.Fill(dtt3);
@@ -251,7 +251,24 @@ namespace WillAssure.Controllers
                 ViewBag.documentbtn4 = "true";
             }
             con.Close();
-            //end
+                //end
+
+
+                // check Living Will status
+                con.Open();
+                string qry312 = "select LivingWill , Designation  from users where Will = 1 and Designation = 1 and uId = " + Convert.ToInt32(Session["uuid"]) + " ";
+                SqlDataAdapter daa23 = new SqlDataAdapter(qry312, con);
+                DataTable dtt43 = new DataTable();
+                daa23.Fill(dtt43);
+                if (dtt43.Rows.Count > 0)
+                {
+                    ViewBag.documentbtn5 = "true";
+                }
+                con.Close();
+                //end
+
+
+
             }
             else
             {
@@ -268,8 +285,18 @@ namespace WillAssure.Controllers
         }
 
 
-        public ActionResult EnableDocumentLinks()
+        public ActionResult EnableDocumentLinks(string doctype)
         {
+
+            Session["doctype"] = doctype;
+
+            if (doctype != null)
+            {
+                Session["willchk"] = "";
+            }
+
+           
+
 
             List<LoginModel> Lmlist = new List<LoginModel>();
             con.Open();

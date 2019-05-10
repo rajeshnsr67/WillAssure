@@ -133,6 +133,7 @@
         </div>*@
 
                             <hr>
+                            <input type='hidden' id='txttotalval' name='name' value='100' />
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div id="accordion8">
@@ -329,8 +330,8 @@
                              res += "<div class='col-sm-2'>";
                              res += "<div class='form-group start'>";
                              res += "<label for='input-1'>Total</label>";
-                             res += "<input type='text' id='txttotal' class='form-control totalinput validate[required]' readonly />";
-                             res += "<input type='hidden' id='txttotalval' name='name' value='' />";
+                             res += "<input type='text' id='txttotal"+data[i].assetcatid+"' class='form-control totalinput validate[required]' readonly />";
+                             
                              res += "</div>";
                              res += "</div>";
                              res +=  "</div>";
@@ -531,42 +532,78 @@
             var $rowdiv = $(this).closest('.rowdiv');
             var $prevdiv = $rowdiv.prev('.rowdiv');
 
+            var rr = $(this).attr('id'); 
+            var f = rr.replace('txtproportion', '');
+            
+
+            var prevtotalinputval = $prevdiv.find('.totalinput').val();
+        
+
             var proportionvalue = $(this).val();
+       
             var t = $("#txttotalval").val();
             var result = "";
+
+
+            var temp = $("#txttotalval").val();
+
+
+            if ($rowdiv.find('.totalinput').val() == "") {
+               
+                $rowdiv.find('.totalinput').val(temp - proportionvalue);
+
+                if (temp != "100") {
+                    var x = prevtotalinputval - proportionvalue;
+                    $rowdiv.find('.totalinput').val(x);
+                }
+             
+
+                //var x = prevtotalinputval - proportionvalue;
+                //$rowdiv.find('.totalinput').val(x);
+            }
+
+          
+
+
+            //if ($rowdiv.find('.totalinput').val() != "") {
+            //    alert('deduct');
+            //    $rowdiv.find('.totalinput').val(prevtotalinputval - proportionvalue);
+            //}
+
+
+            
+            //        result = prevtotalinputval - proportionvalue;
+
             //$(this).parent().
             //var parentdivclassname = $(this).parent('div').parent('div').parent('div').parent('div').attr('id');
 
-            proportionvalue = + proportionvalue;
-            if (proportionvalue <= parseInt(100)) {
+            //proportionvalue = + proportionvalue;
+            //if (proportionvalue <= parseInt(100)) {
 
 
 
-                if (t == '') {
+            //    if (t == '') {
 
-                    $rowdiv.find('.totalinput').val(parseInt(100) - proportionvalue);
-                    result = 100 - proportionvalue;
+            //        $rowdiv.find('.totalinput').val(parseInt(100) - proportionvalue);
+            //        result = prevtotalinputval - proportionvalue;
 
-                    $rowdiv.find('#txttotalval').val(result);
+                   
 
-                }
-                else {
-                    result = $rowdiv.find('#txttotalval').val() - proportionvalue;
-                    $rowdiv.find('.totalinput').val(result);
-                }
+            //    }
+             
 
 
 
-            } else {
-                $(this).val('');
-                $rowdiv.find('.totalinput').val('100');
+            //} else {
+            //    $(this).val('');
+            //    $rowdiv.find('.totalinput').val('100');
 
-            }
+            //}
 
-            if ($prevdiv.length > 0) {
-                var prevtotalinputval = $prevdiv.find('.totalinput').val();
+        //    if ($prevdiv.length > 0) {
+        //        var prevtotalinputval = $prevdiv.find('.totalinput').val();
 
-        }
+        //}
         });
 
 
@@ -766,7 +803,7 @@
 
             //get parentdiv last div element whose class name is rowdiv
 
-
+            $("#txttotalval").val("");
 
 
             var $clone = $("#parentdiv"+btnnum+"").find('.rowdiv:last').clone();
