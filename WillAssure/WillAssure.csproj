@@ -245,6 +245,7 @@
     <Compile Include="Controllers\EditWillEmployeeController.cs" />
     <Compile Include="Controllers\EmailVerificationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LivingWillController.cs" />
     <Compile Include="Controllers\LoginPageController.cs" />
     <Compile Include="Controllers\RoleAddController.cs" />
     <Compile Include="Controllers\SettingsController.cs" />
@@ -1561,6 +1562,7 @@
     <Content Include="WillAssureFrontend\stylesheets\fonts\flexslider-icon.woff" />
     <Content Include="WillAssureFrontend\WillAssure.Master" />
     <Content Include="Views\ADDPOATESTATORFAMILY\AddPOATestatorFamilyPageContent.cshtml" />
+    <Content Include="Views\LivingWill\LivingWillPageContent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

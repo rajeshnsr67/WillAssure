@@ -32,20 +32,44 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
-                        <h5>
-                            <ul id="menu" style="font-weight:bold;">
+                        @if (Session["doctype"] != null)
+                        {
+                            if (Session["doctype"].ToString() == "POA" || Session["doctype"].ToString() == "GiftDeeds")
+                            {
+                                <h5>
+                                    <ul id="menu" style="font-weight:bold;">
 
-                                <li>Testator ></li>
-                                <li>Testator Family ></li>
-                                <li style="color:#5e72e4">Beneficiary ></li>
-                                <li style="color:#e1e1e1">AssetInformation ></li>
-                                <li style="color:#e1e1e1">Mapping ></li>
-                                <li style="color:#e1e1e1">Nominee ></li>
-                                <li style="color:#e1e1e1">Appointees </li>
+                                        <li style="color:#e1e1e1">Donor ></li>
+                                        <li style="color:#5e72e4">Donee ></li>
+                                        <li style="color:#e1e1e1">Gift ></li>
+                                        <li style="color:#e1e1e1">Asset Mapping ></li>
+                                        <li style="color:#e1e1e1">Witness Appointment ></li>
 
 
-                            </ul>
-                        </h5>
+
+
+                                    </ul>
+                                </h5>
+                            }
+                            else
+                            {
+                                <h5>
+                                    <ul id="menu" style="font-weight:bold;">
+
+                                        <li style="color:#5e72e4">Testator ></li>
+                                        <li style="color:#e1e1e1">Testator Family ></li>
+                                        <li style="color:#e1e1e1">Beneficiary ></li>
+                                        <li style="color:#e1e1e1">AssetInformation ></li>
+                                        <li style="color:#e1e1e1">Mapping ></li>
+                                        <li style="color:#e1e1e1">Nominee ></li>
+                                        <li style="color:#e1e1e1">Appointees </li>
+
+
+                                    </ul>
+                                </h5>
+                            }
+                        }
+
                         <br />
                         <div class="col-12 12">
                             <div class="card bg-transparent shadow-none border border-light-3">
@@ -65,9 +89,20 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card-title text-primary">Add Beneficiary</div>
 
 
+                        @if (Session["doctype"] != null)
+                        {
+                            if (Session["doctype"].ToString() == "POA" || Session["doctype"].ToString() == "GiftDeeds")
+                            {
+                                <div class="card-title text-primary">Add Donee Details</div>
+
+                            }
+                            else
+                            {
+                                <div class="card-title text-primary">Add Beneficiary Details</div>
+                            }
+                        }
 
                         @using (Html.BeginForm("InsertBeneficiaryData", null, FormMethod.Post, new { id = "BeneficiaryForm" }))
 
@@ -600,15 +635,27 @@
                             //end
 
 
+                            if (Session["doctype"] != null)
+                            {
+                                if (Session["doctype"].ToString() == "POA" || Session["doctype"].ToString() == "GiftDeeds")
+                                {
+                                    <div class="form-group">
+                                        <button type="submit" id="btnBeneficiaryformsubmit" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i>Add Donee</button>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="form-group">
+                                        <button type="submit" id="btnBeneficiaryformsubmit" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i>Add Beneficiary</button>
+                                    </div>
+                                }
+                            }
 
 
 
 
 
 
-                            <div class="form-group">
-                                <button type="submit" id="btnBeneficiaryformsubmit" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i>Add Beneficiary</button>
-                            </div>
                         }
                     </div>
                 </div>

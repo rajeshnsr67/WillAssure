@@ -32,20 +32,44 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
-                        <h5>
-                            <ul id="menu" style="font-weight:bold;">
+                        @if (Session["doctype"] != null)
+                        {
+                            if (Session["doctype"].ToString() == "POA" || Session["doctype"].ToString() == "GiftDeeds")
+                            {
+                                <h5>
+                                    <ul id="menu" style="font-weight:bold;">
 
-                                <li>Testator ></li>
-                                <li>Testator Family ></li>
-                                <li>Beneficiary ></li>
-                                <li>AssetInformation ></li>
-                                <li>Mapping ></li>
-                                <li>Nominee ></li>
-                                <li style="color:#5e72e4">Appointees </li>
+                                        <li style="color:#e1e1e1">Donor ></li>
+                                        <li style="color:#e1e1e1">Donee ></li>
+                                        <li style="color:#e1e1e1">Gift ></li>
+                                        <li style="color:#e1e1e1">Asset Mapping ></li>
+                                        <li style="color:#5e72e4">Witness Appointment ></li>
 
 
-                            </ul>
-                        </h5>
+
+
+                                    </ul>
+                                </h5>
+                            }
+                            else
+                            {
+                                <h5>
+                                    <ul id="menu" style="font-weight:bold;">
+
+                                        <li style="color:#5e72e4">Testator ></li>
+                                        <li style="color:#e1e1e1">Testator Family ></li>
+                                        <li style="color:#e1e1e1">Beneficiary ></li>
+                                        <li style="color:#e1e1e1">AssetInformation ></li>
+                                        <li style="color:#e1e1e1">Mapping ></li>
+                                        <li style="color:#e1e1e1">Nominee ></li>
+                                        <li style="color:#e1e1e1">Appointees </li>
+
+
+                                    </ul>
+                                </h5>
+                            }
+                        }
+
                         <br />
                         <div class="col-12 12">
                             <div class="card bg-transparent shadow-none border border-light-3">
@@ -65,8 +89,18 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card-title text-primary">Add Appointees</div>
+                        @if (Session["doctype"] != null)
+                        {
+                            if (Session["doctype"].ToString() == "POA" || Session["doctype"].ToString() == "GiftDeeds")
+                            {
+                                <div class="card-title text-primary">Add Witness Appointment</div>
 
+                            }
+                            else
+                            {
+                                <div class="card-title text-primary">Add Appointees</div>
+                            }
+                        }
                         @using (Html.BeginForm("InsertAppointeesFormData", null, FormMethod.Post, new { id = "DistributorForm" }))
                         {
                             <div class="row">

@@ -27,11 +27,11 @@
         </div>
         <!-- End Breadcrumb-->
         <center>
-            <a href="@Url.Action("EnableDocumentLinks","DashBoard")" id="documentbtn1" style="display:none;"><button type="button" class="btn btn-primary btn-round waves-effect waves-light m-1">Will</button></a>
+            <a href="@Url.Action("EnableDocumentLinks","DashBoard", new { doctype = "Will" })" id="documentbtn1" style="display:none;"><button type="button" class="btn btn-primary btn-round waves-effect waves-light m-1">Will</button></a>
             <a href="@Url.Action("CodocilIndex","Codocil")" id="documentbtn2" style="display:none;"> <button type="button" class="btn btn-success btn-round waves-effect waves-light m-1">Codocil</button></a>
             <a href="@Url.Action("EnableDocumentLinks","DashBoard", new { doctype = "POA" } )" id="documentbtn3" style="display:none;"><button type="button" class="btn btn-info btn-round waves-effect waves-light m-1">POA</button></a>
             <a href="@Url.Action("EnableDocumentLinks","DashBoard", new { doctype = "GiftDeeds" })" id="documentbtn4" style="display:none;"><button type="button" class="btn btn-danger btn-round waves-effect waves-light m-1">Gift Deeds</button></a>
-            <a href="@Url.Action("EnableDocumentLinks","DashBoard")" id="documentbtn5" style="display:none;"><button type="button" class="btn btn-warning btn-round waves-effect waves-light m-1">Living Will</button></a>
+            <a href="@Url.Action("LivingWillIndex","LivingWill")" id="documentbtn5" style="display:none;"><button type="button" class="btn btn-warning btn-round waves-effect waves-light m-1">Living Will</button></a>
         </center>
         <br />
         <br />
