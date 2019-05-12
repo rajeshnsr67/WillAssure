@@ -386,9 +386,9 @@ namespace WillAssure.Controllers
 
         public ActionResult VerifyOTP(LoginModel EVM)
         {
-            if (Session["enteredOTP"] != null)
+            if (Session["enteredOTP"] != null || Session["MobileOTP"] != null)
             {
-                if (Session["enteredOTP"].ToString() == EVM.OTP)
+                if (Session["enteredOTP"].ToString() == EVM.OTP || Session["MobileOTP"].ToString() == EVM.OTP)
                 {
                     con.Open();
                     string query = "update TestatorDetails set Contact_Verification =1 , Email_Verification = 1 , Mobile_Verification_Status = 1 where Email_OTP = '" + ViewBag.OTP + "'";
@@ -405,6 +405,8 @@ namespace WillAssure.Controllers
                     cmdot.ExecuteNonQuery();
                     con.Close();
 
+
+                 
 
                     con.Open();
 
@@ -452,6 +454,10 @@ namespace WillAssure.Controllers
 
 
 
+            }
+            else
+            {
+                RedirectToAction("LoginPageIndex", "LoginPage");
             }
 
 

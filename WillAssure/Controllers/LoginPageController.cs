@@ -17,10 +17,13 @@ namespace WillAssure.Controllers
         // GET: LoginPage
         public ActionResult LoginPageIndex()
         {
-
-            string q = Request.QueryString["Type"].ToString();
-            q = q.Replace("/", "");
-            ViewBag.type = q;
+            if (Request.QueryString["Type"] != null)
+            {
+                string q = Request.QueryString["Type"].ToString();
+                q = q.Replace("/", "");
+                ViewBag.type = q;
+            }
+            
 
             return View("~/Views/LoginPage/LoginPageContent.cshtml");
         }
@@ -122,7 +125,7 @@ namespace WillAssure.Controllers
                 {
 
                     con.Open();
-                    string query4 = "select tId ,Email_OTP from TestatorDetails where uId = " + Convert.ToInt32(Session["uuid"])+ " ";
+                    string query4 = "select tId ,Email_OTP, Mobile_OTP from TestatorDetails where uId = " + Convert.ToInt32(Session["uuid"])+ " ";
                     SqlDataAdapter d4a = new SqlDataAdapter(query4,con);
                     DataTable dta = new DataTable();
                     d4a.Fill(dta);
@@ -145,7 +148,7 @@ namespace WillAssure.Controllers
 
 
                     Session["LoginOTP"] = dta.Rows[0]["Email_OTP"].ToString();
-
+                    Session["MobileOTP"] = dta.Rows[0]["Mobile_OTP"].ToString();
 
                     return RedirectToAction("DashBoardIndex", "DashBoard");
                 }
@@ -184,10 +187,10 @@ namespace WillAssure.Controllers
            // Session["apId"] = "";
 
             // used in many
-            Session["rId"] = "";
+            Session["rId"] = "";    // not checked  in login
 
             // only in login
-            Session["uid"] = "";
+            Session["uid"] = "";    // not checked  in login
 
             // used in 3 users
             Session["compId"] = "";
@@ -230,32 +233,35 @@ namespace WillAssure.Controllers
             Session["upappointeesid"] = "";
 
 
-            // in Dashboard
+            // in Dashboard in control  
             Session["LoginOTP"] = "";
 
 
-            // in Dashboard
+            // in Dashboard in control
             Session["enteredOTP"] = "";
 
-            // in add testator for mail sending
+            // in add testator for mail sending in control
 
             Session["TestatorEmail"] = "";
 
 
-            // in login
+            // in login in control
 
             Session["Type"] = "";
 
 
-            // for checking document
+            // for checking document  in control
 
             Session["doctype"] = "";
 
 
-            // for checing will
+            // for checing will   
 
-            Session["willchk"] = "";
+            Session["willchk"] = "";  // not sure
 
+
+            // in control
+            Session["MobileOTP"] = "";  
 
             return View("~/Views/LoginPage/LoginPageContent.cshtml");
         }

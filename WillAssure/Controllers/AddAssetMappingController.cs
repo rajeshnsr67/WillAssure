@@ -221,7 +221,7 @@ namespace WillAssure.Controllers
            
 
 
-            string data = "<option value='0'>--Select--</option>";
+            string data = "<option value=''>--Select--</option>";
             con.Open();
 
             SqlDataAdapter da1 = new SqlDataAdapter(d, con);
@@ -983,7 +983,7 @@ namespace WillAssure.Controllers
         {
             int response = Convert.ToInt32(Request["send"]);
             string final = "";
-            string bindddlname = "<option value='0'>--Select--</option>";
+            string bindddlname = "<option value=''>--Select--</option>";
             con.Open();
             string query1 = "select aiid , Json from AssetInformation";
             SqlDataAdapter da1 = new SqlDataAdapter(query1, con);
@@ -1220,7 +1220,7 @@ namespace WillAssure.Controllers
         {
             int response = Convert.ToInt32(Request["send"]);
 
-            string data = "<option value='0'>--Select--</option>";
+            string data = "<option value=''>--Select--</option>";
             con.Open();
             string query1 = "select aiid, bpId , First_Name from BeneficiaryDetails where  bpId not in ("+ response + ")";
             SqlDataAdapter da1 = new SqlDataAdapter(query1, con);

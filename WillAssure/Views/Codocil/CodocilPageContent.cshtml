@@ -49,7 +49,7 @@
                        
 
                         <div id="main" style="border:1px solid green; padding:15px; border-radius:10px;">
-                            
+
                             <div class="row">
                                 <div class="col-sm-2">
                                     <div class="form-group">
@@ -78,7 +78,7 @@
                                     <div class="form-group">
                                         <label for="input-1">Old Details</label>
 
-                                        @Html.TextAreaFor(x => x.olddetails, new { @class = "form-control" , @id="olddetails" , onchange="getolddetails(this.value)" })
+                                        @Html.TextAreaFor(x => x.olddetails, new { @class = "form-control", @id = "olddetails", onchange = "getolddetails(this.value)" })
 
                                     </div>
                                 </div>
@@ -88,20 +88,20 @@
                                     <div class="form-group">
                                         <label for="input-1">New Details</label>
 
-                                        @Html.TextAreaFor(x => x.newdetails, new { @class = "form-control" , @id="newdetails" , onchange="getnewdetails(this.value)" })
+                                        @Html.TextAreaFor(x => x.newdetails, new { @class = "form-control", @id = "newdetails", onchange = "getnewdetails(this.value)" })
 
                                     </div>
                                 </div>
 
 
                             </div>
-                            <button class="btn btn btn-danger" id="btnadd"><i class="fa fa-plus"></i>Add</button>
-                           
+                            
+
 
                         </div>
 
                         <div id="cpydiv">
-
+                           
                         </div>
 
 
@@ -110,8 +110,9 @@
                         <br />
 
                         <div class="form-group">
-
-                            <button type="submit" id="btnsubmit"  class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i>Submit</button>
+                            <button class="btn btn btn-danger" id="btnadd"><i class="fa fa-plus"></i>Add</button>
+                            <button class="btn btn btn-danger" id="btnremove"><i class="fa fa-trash"></i>Remove</button>
+                            <button type="submit" id="btnsubmit" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i>Submit</button>
 
                         </div>
 
@@ -133,14 +134,23 @@
 
 
 <script>
-
+    var i = 0;
     $(document).on("click", "#btnadd", function () {
+
+        var x = i++;
 
         $("#main").clone().find("#olddetails").val("").end().find("#newdetails").val("").end().appendTo("#cpydiv");
 
 
     });
 
+
+    $(document).on("click", "#btnremove", function () {
+        
+        $("#cpydiv").find("#main:last").remove();
+        e.preventDefault();
+
+    });
 
     function getselectionval(value) {
 

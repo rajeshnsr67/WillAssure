@@ -125,6 +125,12 @@ namespace WillAssure.Controllers
                 ViewBag.documentlink = "true";
 
             }
+            if (Session["rId"] == null || Session["uuid"] == null)
+            {
+
+                RedirectToAction("LoginPageIndex", "LoginPage");
+
+            }
             List<LoginModel> Lmlist = new List<LoginModel>();
             con.Open();
             string q = "select * from Assignment_Roles where RoleId = " + Convert.ToInt32(Session["rId"]) + "";

@@ -43,6 +43,20 @@ namespace WillAssure.Controllers
 
             if (typ5 == "Testator")
             {
+
+                con.Open();
+                string qq12 = "select Type from users where uId = " + Convert.ToInt32(Session["uuid"]) + " and designation = 1 ";
+                SqlDataAdapter da42 = new SqlDataAdapter(qq12, con);
+                DataTable d4t2 = new DataTable();
+                da42.Fill(d4t2);
+                con.Close();
+
+                if (d4t2.Rows.Count > 0)
+                {
+                    ViewBag.documentlink = "true";
+                }
+
+
                 // check will status
                 con.Open();
                 string qry1 = "select Will  from users where Will = 1 ";
@@ -105,7 +119,12 @@ namespace WillAssure.Controllers
                 ViewBag.documentlink = "true";
 
             }
-            // roleassignment
+            if (Session["rId"] == null || Session["uuid"] == null)
+            {
+
+                RedirectToAction("LoginPageIndex", "LoginPage");
+
+            }
             List<LoginModel> Lmlist = new List<LoginModel>();
             con.Open();
             string q = "select * from Assignment_Roles where RoleId = " + Convert.ToInt32(Session["rId"]) + "";
@@ -137,7 +156,6 @@ namespace WillAssure.Controllers
             }
 
             con.Close();
-
 
             //end
 

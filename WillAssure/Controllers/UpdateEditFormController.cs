@@ -21,17 +21,17 @@ namespace WillAssure.Controllers
         public ActionResult UpdateEditFormIndex(int NestId)
         {
             // check type 
-            string typ5 = "";
+            string typ = "";
             con.Open();
-            string qq15 = "select Type from users where uId = " + Convert.ToInt32(Session["uuid"]) + " ";
-            SqlDataAdapter daa5 = new SqlDataAdapter(qq15, con);
-            DataTable dtt5 = new DataTable();
-            daa5.Fill(dtt5);
+            string qq1 = "select Type from users where uId = " + Convert.ToInt32(Session["uuid"]) + " ";
+            SqlDataAdapter daa = new SqlDataAdapter(qq1, con);
+            DataTable dtt = new DataTable();
+            daa.Fill(dtt);
             con.Close();
 
-            if (dtt5.Rows.Count > 0)
+            if (dtt.Rows.Count > 0)
             {
-                typ5 = dtt5.Rows[0]["Type"].ToString();
+                typ = dtt.Rows[0]["Type"].ToString();
             }
 
 
@@ -40,8 +40,23 @@ namespace WillAssure.Controllers
 
 
 
-            if (typ5 == "Testator")
+            if (typ == "Testator")
             {
+
+
+                con.Open();
+                string qq12 = "select Type from users where uId = " + Convert.ToInt32(Session["uuid"]) + " and designation = 1 ";
+                SqlDataAdapter da42 = new SqlDataAdapter(qq12, con);
+                DataTable d4t2 = new DataTable();
+                da42.Fill(d4t2);
+                con.Close();
+
+                if (d4t2.Rows.Count > 0)
+                {
+                    ViewBag.documentlink = "true";
+                }
+
+
                 // check will status
                 con.Open();
                 string qry1 = "select Will  from users where Will = 1 ";
@@ -101,29 +116,28 @@ namespace WillAssure.Controllers
             else
             {
 
+
                 ViewBag.documentlink = "true";
 
             }
 
 
-            string buttonname = "";
-            if (Convert.ToInt32(Session["upcompanyid"]) != 0)
-            {
 
 
-                buttonname = "Update Distributor";
-                ViewBag.type = buttonname;
-
-
-            }
 
 
             if (Session["rId"] == null || Session["uuid"] == null)
             {
 
-               RedirectToAction("LoginPageIndex", "LoginPage");
+                RedirectToAction("LoginPageIndex", "LoginPage");
 
             }
+            //if (Session["tid"]== null)
+            //{
+            //    ViewBag.message = "link";
+            //}
+
+
             List<LoginModel> Lmlist = new List<LoginModel>();
             con.Open();
             string q = "select * from Assignment_Roles where RoleId = " + Convert.ToInt32(Session["rId"]) + "";

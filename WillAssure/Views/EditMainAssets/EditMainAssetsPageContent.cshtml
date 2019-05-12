@@ -23,7 +23,21 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="card">
-                    <div class="card-header"><i class="fa fa-table"></i>Asset Information Data</div>
+
+
+
+                    @if (Session["doctype"] != null)
+                    {
+                        if (Session["doctype"].ToString() == "POA" || Session["doctype"].ToString() == "GiftDeeds")
+                        {
+                            <div class="card-header"><i class="fa fa-table"></i>Gift Data</div>
+                        }
+                        else
+                        {
+                            <div class="card-header"><i class="fa fa-table"></i>Asset Information Data</div>
+                        }
+                    }
+
                     <div class="card-body">
                         <div class="col-sm-3">
                             <select id='DDLTestator' onchange="getDDLTestator(this.value)" name="contentList" class='form-control validate[required]'></select>

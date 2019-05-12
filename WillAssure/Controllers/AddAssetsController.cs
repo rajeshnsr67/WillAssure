@@ -371,10 +371,10 @@ namespace WillAssure.Controllers
             //end
 
 
-            finalstruct = finalstruct + "<div class='row group'><div class='col-sm-3'><div class='form-group'><label for='input - 1'>Entity</label>     " + ddstruct + " </div></div>" +
+            finalstruct = finalstruct + "<div class='row group' id='m"+c+"'><div class='col-sm-3'><div class='form-group'><label for='input - 1'>Entity</label>     " + ddstruct + " </div></div>" +
             finalstruct + "<div class='col-sm-3'><div class='form-group'><label for='input-1'>Label</label>   <input type='text' onchange=bar(this.value) class='form-control validate[required,custom[characteronly]] text-input labelinput'  name='txtlabel'  autocomplete='off' />    </div></div>" +
             finalstruct + "<div class='col-sm-3 '><div class='form-group choosen'>   <label for='input-1'>Controls</label>   <select class='form-control ddlcontrolinput validate[required]' id='controlsDDL'     name='DDLControls' >    <option value=''>--Select--</option >   <option value='TextBox'>TextBox</option >    <option value='TextArea'>TextArea</option>    <option value='DatePicker'>DatePicker</option>     <option value='CheckBox'>CheckBox</option>   <option value='RadioButton'>RadioButton</option>  </select></div></div>" +
-            finalstruct + "<div class='col-sm-3'><div class='form-group'><label for='input-1' id='lbldynamic'>Values</label>  <input type='text'  class='form-control  text - input'   onchange=bar2(this.value) name='txtval' id='valuefield'  autocomplete='off' />    </div></div> </div>";
+            finalstruct + "<div class='col-sm-2'><div class='form-group'><label for='input-1' id='lbldynamic'>Values</label>  <input type='text'  class='form-control  text - input'   onchange=bar2(this.value) name='txtval' id='valuefield'  autocomplete='off' />  <button type='button' id='btnremove' style='position:relative; top:-39px; right:-198px;'  value ='"+c+ "'     class='btn btn-danger  btnremove'><i class='icon-trash'></i></button>  </div></div> </div>";
             
 
 

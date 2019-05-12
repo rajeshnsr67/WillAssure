@@ -60,6 +60,12 @@ namespace WillAssure.Views.ViewDocument
             DataTable checkdt = new DataTable();
             checkda.Fill(checkdt);
 
+
+
+
+
+
+
             int documentType1 = 0;
             int category = 0;
             int guardian = 0;
@@ -73,7 +79,38 @@ namespace WillAssure.Views.ViewDocument
             {
 
                 Dmtemplateid = Convert.ToInt32(checkdt.Rows[0]["templateId"]);
-                documentType1 = Convert.ToInt32(checkdt.Rows[0]["documentType"]);
+
+
+                if (checkdt.Rows[0]["documentType"].ToString() == "Will")
+                {
+                    documentType1 = 1;
+                }
+                if (checkdt.Rows[0]["documentType"].ToString() == "Codocil")
+                {
+                    documentType1 = 2;
+                }
+                if (checkdt.Rows[0]["documentType"].ToString() == "POA")
+                {
+                    documentType1 = 3;
+                }
+                if (checkdt.Rows[0]["documentType"].ToString() == "Giftdeeds")
+                {
+                    documentType1 = 4;
+                }
+                if (checkdt.Rows[0]["documentType"].ToString() == "LivingWill")
+                {
+                    documentType1 = 5;
+                }
+                else
+                {
+                    documentType1 = 1;
+                }
+
+
+              
+
+
+
                 category = Convert.ToInt32(checkdt.Rows[0]["category"]);
                 guardian = Convert.ToInt32(checkdt.Rows[0]["guardian"]);
                 executors_category = Convert.ToInt32(checkdt.Rows[0]["executors_category"]);
@@ -203,7 +240,7 @@ namespace WillAssure.Views.ViewDocument
                 
 
 
-                if (Dmtemplateid == 1)
+                if (Convert.ToInt32(ViewState["TemplateID"]) == 1)
                 {
                     WillTestator1 rpt = new WillTestator1();
                     rpt.SetParameterValue("testator", TestatorName);
@@ -231,7 +268,7 @@ namespace WillAssure.Views.ViewDocument
                 
 
 
-                if (Dmtemplateid == 2)
+                if (Convert.ToInt32(ViewState["TemplateID"]) == 2)
                 {
                     WillTestator2 rpt2 = new WillTestator2();
                     rpt2.SetParameterValue("testator", TestatorName);
@@ -258,7 +295,7 @@ namespace WillAssure.Views.ViewDocument
                 }
                
 
-                if (Dmtemplateid == 3)
+                if (Convert.ToInt32(ViewState["TemplateID"]) == 3)
                 {
                     WillTestator3 rpt3 = new WillTestator3();
                     rpt3.SetParameterValue("testator", TestatorName);
@@ -287,7 +324,7 @@ namespace WillAssure.Views.ViewDocument
 
 
 
-                if (Dmtemplateid == 4)
+                if (Convert.ToInt32(ViewState["TemplateID"]) == 4)
                 {
                     WillTestator4 rpt4 = new WillTestator4();
                     rpt4.SetParameterValue("testator", TestatorName);
@@ -315,7 +352,7 @@ namespace WillAssure.Views.ViewDocument
                
 
 
-                if (Dmtemplateid == 5)
+                if (Convert.ToInt32(ViewState["TemplateID"]) == 5)
                 {
                     WillTestator5 rpt5 = new WillTestator5();
                     rpt5.SetParameterValue("testator", TestatorName);

@@ -285,7 +285,7 @@ namespace WillAssure.Controllers
 
             if (Session["rId"] == null || Session["uuid"] == null)
             {
-                return View("~/Views/LoginPage/LoginPageContent.cshtml");
+                RedirectToAction("LoginPageIndex", "LoginPage");
             }
             List<LoginModel> Lmlist = new List<LoginModel>();
             con.Open();
@@ -318,6 +318,13 @@ namespace WillAssure.Controllers
             }
 
             con.Close();
+
+
+            if(Session["compId"] == null)
+            {
+                RedirectToAction("LoginPageIndex", "LoginPage");
+            }
+
 
             con.Open();
             string query = "insert into allotmentDistributor (uId,status,Document_Type,compId,Approved_Count) values (" + PM.distributorid +" , '"+PM.status+"', '"+PM.documenttxt+"', " + Convert.ToInt32(Session["compId"]) + " , "+PM.NumberofDocument+" )   ";

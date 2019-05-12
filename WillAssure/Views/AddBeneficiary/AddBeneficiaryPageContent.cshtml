@@ -32,6 +32,8 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
+
+
                         @if (Session["doctype"] != null)
                         {
                             if (Session["doctype"].ToString() == "POA" || Session["doctype"].ToString() == "GiftDeeds")
@@ -650,7 +652,12 @@
                                     </div>
                                 }
                             }
-
+                            else
+                            {
+                                <div class="form-group">
+                                    <button type="submit" id="btnBeneficiaryformsubmit" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i>Add Beneficiary</button>
+                                </div>
+                            }
 
 
 

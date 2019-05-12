@@ -108,7 +108,10 @@ namespace WillAssure.Controllers
             string testatortype = "";
 
 
-          
+            if (Session["TestatorEmail"] == null)
+            {
+                RedirectToAction("LoginPageIndex", "LoginPage");
+            }
 
 
 

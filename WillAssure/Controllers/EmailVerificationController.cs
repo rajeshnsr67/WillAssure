@@ -113,7 +113,10 @@ namespace WillAssure.Controllers
 
                 }
 
-
+                if (Session["TestatorEmail"] == null)
+                {
+                    RedirectToAction("LoginPageIndex", "LoginPage");
+                }
                 if (dt.Rows.Count > 0)
                 {
 

@@ -31,10 +31,23 @@
             <a href="@Url.Action("CodocilIndex","Codocil")" id="documentbtn2" style="display:none;"> <button type="button" class="btn btn-success btn-round waves-effect waves-light m-1">Codocil</button></a>
             <a href="@Url.Action("EnableDocumentLinks","DashBoard", new { doctype = "POA" } )" id="documentbtn3" style="display:none;"><button type="button" class="btn btn-info btn-round waves-effect waves-light m-1">POA</button></a>
             <a href="@Url.Action("EnableDocumentLinks","DashBoard", new { doctype = "GiftDeeds" })" id="documentbtn4" style="display:none;"><button type="button" class="btn btn-danger btn-round waves-effect waves-light m-1">Gift Deeds</button></a>
-            <a href="@Url.Action("LivingWillIndex","LivingWill")" id="documentbtn5" style="display:none;"><button type="button" class="btn btn-warning btn-round waves-effect waves-light m-1">Living Will</button></a>
+            <a href="@Url.Action("LivingWillIndex","LivingWill", new { doctype = "LivingWill" })" id="documentbtn5" style="display:none;"><button type="button" class="btn btn-warning btn-round waves-effect waves-light m-1">Living Will</button></a>
         </center>
         <br />
         <br />
+
+
+        @*@if (Session["Type"] == null)
+        {
+            <script>
+                var url = "/LoginPage/LoginPageIndex/";
+                window.location.href = url;
+            </script>
+          
+        }*@
+
+
+
         @if (Session["Type"].ToString() != "Testator")
         {
             <div class="row">
@@ -59,6 +72,7 @@
                         </div>
                     </div>
                 }
+              
 
 
                 <div class="col-sm-4">
@@ -217,7 +231,7 @@
                                 <label for="input-1">Enter OTP:</label>
 
                                 @Html.TextBoxFor(m => m.OTP, new { @class = "form-control validate[required,custom[characteronly]] text-input", @id = "txtRole", @placeholder = "Enter OTP Number", @style = "width:241px;", @autocomplete = "off", alert = "LabourCost is requried" })
-                                <span style="color:red;" id="lblerror">@Html.ValidationMessageFor(m => m.OTP)</span>
+                                <span style="color:red; white-space:nowrap;" id="lblerror">@Html.ValidationMessageFor(m => m.OTP)</span>
                             </div>
                         </div>
 

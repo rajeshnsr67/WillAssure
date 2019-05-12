@@ -207,7 +207,14 @@
                                     </div>
                                 }
                             }
+                            else
+                            {
+                                <div class="form-group">
+                                    @*<button type="button" id="btnadd" class="btn btn-danger shadow-primary px-5"><i class="icon-plus"></i>Add</button>*@
+                                    <button type="submit" name="Submit Asset Info" value="Submit Asset Info" id="btnmainassetsubmit" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i>Submit Asset Info</button>
 
+                                </div>
+                            }
 
 
                         }
@@ -482,5 +489,19 @@
     $('#ddlrole').on('change', function () {
         alert('working');
     });
+
+
+
+    function getstatusone(value) {
+
+        $("#txtnominee").show();
+    }
+
+
+    function getstatustwo(value) {
+
+        $("#txtnominee").hide();
+    }
+
 
 </script>

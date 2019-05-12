@@ -22,7 +22,6 @@ namespace WillAssure.Controllers
         // GET: EditTestator
         public ActionResult EditTestatorIndex()
         {
-
             // check type 
             string typ5 = "";
             con.Open();
@@ -1592,7 +1591,7 @@ namespace WillAssure.Controllers
 
 
                     con.Open();
-                    string q2 = "insert into documentRules (documentType,category,tid) values ('" + TFM.documenttype + "' , " + typecat + "  , " + testatorid + " )";
+                    string q2 = "insert into documentRules (documentType,category,guardian , executors_category , AlternateBenficiaries , AlternateGaurdian , AlternateExecutors , tid) values ('" + TFM.documenttype + "' , " + typecat + "  ,  0  , 0 , 0 , 0 , 0 , " + testatorid + " )";
                     SqlCommand c1 = new SqlCommand(q2, con);
                     c1.ExecuteNonQuery();
                     con.Close();

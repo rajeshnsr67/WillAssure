@@ -42,6 +42,20 @@ namespace WillAssure.Controllers
 
             if (typ5 == "Testator")
             {
+
+                con.Open();
+                string qq12 = "select Type from users where uId = " + Convert.ToInt32(Session["uuid"]) + " and designation = 1 ";
+                SqlDataAdapter da42 = new SqlDataAdapter(qq12, con);
+                DataTable d4t2 = new DataTable();
+                da42.Fill(d4t2);
+                con.Close();
+
+                if (d4t2.Rows.Count > 0)
+                {
+                    ViewBag.documentlink = "true";
+                }
+
+
                 // check will status
                 con.Open();
                 string qry1 = "select Will  from users where Will = 1 ";
@@ -104,12 +118,16 @@ namespace WillAssure.Controllers
                 ViewBag.documentlink = "true";
 
             }
+            if (Session["rId"] == null || Session["uuid"] == null)
+            {
 
-            // roleassignment
+                RedirectToAction("LoginPageIndex", "LoginPage");
+
+            }
             List<LoginModel> Lmlist = new List<LoginModel>();
             con.Open();
-            string q3 = "select * from Assignment_Roles where RoleId = " + Convert.ToInt32(Session["rId"]) + "";
-            SqlDataAdapter da3 = new SqlDataAdapter(q3, con);
+            string q = "select * from Assignment_Roles where RoleId = " + Convert.ToInt32(Session["rId"]) + "";
+            SqlDataAdapter da3 = new SqlDataAdapter(q, con);
             DataTable dt3 = new DataTable();
             da3.Fill(dt3);
             if (dt3.Rows.Count > 0)
@@ -137,10 +155,6 @@ namespace WillAssure.Controllers
             }
 
             con.Close();
-
-
-            //end
-
             return View("~/Views/EditBeneficiaryMapping/EditBeneficiaryMappingPageContent.cshtml");
         }
 

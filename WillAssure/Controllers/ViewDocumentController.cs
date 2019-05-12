@@ -27,19 +27,18 @@ namespace WillAssure.Controllers
 
             }
 
-
             // check type 
-            string typ5 = "";
+            string typ = "";
             con.Open();
-            string qq15 = "select Type from users where uId = " + Convert.ToInt32(Session["uuid"]) + " ";
-            SqlDataAdapter daa5 = new SqlDataAdapter(qq15, con);
-            DataTable dtt5 = new DataTable();
-            daa5.Fill(dtt5);
+            string qq1 = "select Type from users where uId = " + Convert.ToInt32(Session["uuid"]) + " ";
+            SqlDataAdapter daa = new SqlDataAdapter(qq1, con);
+            DataTable dtt = new DataTable();
+            daa.Fill(dtt);
             con.Close();
 
-            if (dtt5.Rows.Count > 0)
+            if (dtt.Rows.Count > 0)
             {
-                typ5 = dtt5.Rows[0]["Type"].ToString();
+                typ = dtt.Rows[0]["Type"].ToString();
             }
 
 
@@ -48,8 +47,9 @@ namespace WillAssure.Controllers
 
 
 
-            if (typ5 == "Testator")
+            if (typ == "Testator")
             {
+
 
                 con.Open();
                 string qq12 = "select Type from users where uId = " + Convert.ToInt32(Session["uuid"]) + " and designation = 1 ";
@@ -123,9 +123,27 @@ namespace WillAssure.Controllers
             else
             {
 
+
                 ViewBag.documentlink = "true";
 
             }
+
+
+
+
+
+
+            if (Session["rId"] == null || Session["uuid"] == null)
+            {
+
+                RedirectToAction("LoginPageIndex", "LoginPage");
+
+            }
+            //if (Session["tid"]== null)
+            //{
+            //    ViewBag.message = "link";
+            //}
+
 
             List<LoginModel> Lmlist = new List<LoginModel>();
             con.Open();

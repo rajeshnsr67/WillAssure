@@ -271,18 +271,22 @@
         $("#assetCategorytext").val(text);
         $("#assetCategoryid").val(value);
         $("#amid").val(value);
-               $.ajax({
+               @*$.ajax({
 
             type: "POST",
             url: "@Url.Action("DynamicFields", "AddAssets")",
             success: function (data) {
 
-                $('#listdata').append(data);
+                for (var i = 0; i < data.length; i++) {
+                    $('#listdata').append(data);
+                }
+
+               
             }
 
 
 
-        });
+        });*@
 
 
   });
@@ -322,6 +326,17 @@
 
             });
 
+
+    });
+
+
+
+
+
+    $(document).on("click", "#btnremove" ,  function () {
+
+        var x = $(this).val();
+        $("#m" + x + "").remove();
 
     });
 

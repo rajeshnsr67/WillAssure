@@ -382,7 +382,7 @@ namespace WillAssure.Controllers
                     if (dt3.Rows[i]["DueDateControls"].ToString() != "")
                     {
                      
-                        column = column + "<input type=" + dt3.Rows[i]["DueDateControls"].ToString() + " class='form-control validate[required]' name='inputName' /></div></div>";
+                        column = column + "<input type=" + dt3.Rows[i]["DueDateControls"].ToString() + "   class='form-control validate[required]' name='inputName' /></div></div>";
                         MAM.dueDateControls = dt3.Rows[i]["DueDateControls"].ToString();
                     }
 
@@ -611,14 +611,14 @@ namespace WillAssure.Controllers
                             string testString = dt3.Rows[i]["NominationValues"].ToString();
                             ArrayList result = new ArrayList(testString.Split('/'));
 
-                            column = column + " <br> <label class='radio-inline' >  <input type='radio' id='ddlrole' name='nominationradio' value=" + result[0] + " checked> " + result[0] + "</label>  <label class='radio - inline'> <input type='radio' id='ddlrole' name='nominationradio' value=" + result[1] + ">" + result[1] + "</label></div></div>";
+                            column = column + " <br> <label class='radio-inline' >  <input type='radio' id='ddlrole' name='nominationradio'  onchange='getstatusone(this.value)' value=" + result[0] + " > " + result[0] + "</label>  <label class='radio - inline'> <input type='radio' id='ddlrole'  onchange='getstatustwo(this.value)' name='nominationradio' value=" + result[1] + ">" + result[1] + "</label></div></div>";
 
 
 
                         }
                         else
                         {
-                            column = column + "<input type=" + dt3.Rows[i]["NominationControls"].ToString() + " name='inputName' class='form-control' /> </div></div>";
+                            column = column + "<input type=" + dt3.Rows[i]["NominationControls"].ToString() + " name='inputName' id='txtnominee' class='form-control' /> </div></div>";
                         }
 
                         MAM.NominationControls = dt3.Rows[i]["NominationControls"].ToString();
@@ -636,7 +636,7 @@ namespace WillAssure.Controllers
 
                     if (dt3.Rows[i]["NomineeDetailsControls"].ToString() != "")
                     {
-                        column = column + "<input type=" + dt3.Rows[i]["NomineeDetailsControls"].ToString() + " class='form-control validate[required]' name='inputName' /> </div></div>";
+                        column = column + "<input type=" + dt3.Rows[i]["NomineeDetailsControls"].ToString() + " class='form-control validate[required]' name='inputName' id='txtnominee' /> </div></div>";
                         MAM.NomineeDetailsControls = dt3.Rows[i]["NomineeDetailsControls"].ToString();
                     }
        

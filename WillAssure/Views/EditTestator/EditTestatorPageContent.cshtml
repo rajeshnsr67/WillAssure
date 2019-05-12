@@ -4,7 +4,7 @@
 
     ViewBag.Title = "EditTestatorPageContent";
 
-    
+
 }
 
 
@@ -28,7 +28,21 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="card">
-                    <div class="card-header"><i class="fa fa-table"></i>Testator Data</div>
+
+                
+
+                    @if (Session["doctype"] != null)
+                    {
+                        if (Session["doctype"].ToString() == "POA" || Session["doctype"].ToString() == "GiftDeeds")
+                        {
+                            <div class="card-header"><i class="fa fa-table"></i>Donor Data</div>
+
+                        }
+                        else
+                        {
+                            <div class="card-header"><i class="fa fa-table"></i>Testator Data</div>
+                        }
+                    }
                     <div class="card-body">
                         <div class="table-responsive">
                             <table id="default-datatable" class="table table-bordered">

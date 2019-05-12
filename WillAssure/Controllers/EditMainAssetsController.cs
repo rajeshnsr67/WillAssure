@@ -42,6 +42,7 @@ namespace WillAssure.Controllers
 
             if (typ5 == "Testator")
             {
+
                 con.Open();
                 string qq12 = "select Type from users where uId = " + Convert.ToInt32(Session["uuid"]) + " and designation = 1 ";
                 SqlDataAdapter da42 = new SqlDataAdapter(qq12, con);
@@ -120,7 +121,7 @@ namespace WillAssure.Controllers
             if (Session["rId"] == null || Session["uuid"] == null)
             {
 
-               RedirectToAction("LoginPageIndex", "LoginPage");
+                RedirectToAction("LoginPageIndex", "LoginPage");
 
             }
             List<LoginModel> Lmlist = new List<LoginModel>();

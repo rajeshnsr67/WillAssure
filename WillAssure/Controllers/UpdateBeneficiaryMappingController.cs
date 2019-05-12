@@ -22,17 +22,17 @@ namespace WillAssure.Controllers
         {
 
             // check type 
-            string typ5 = "";
+            string typ = "";
             con.Open();
-            string qq15 = "select Type from users where uId = " + Convert.ToInt32(Session["uuid"]) + " ";
-            SqlDataAdapter daa5 = new SqlDataAdapter(qq15, con);
-            DataTable dtt5 = new DataTable();
-            daa5.Fill(dtt5);
+            string qq1 = "select Type from users where uId = " + Convert.ToInt32(Session["uuid"]) + " ";
+            SqlDataAdapter daa = new SqlDataAdapter(qq1, con);
+            DataTable dtt = new DataTable();
+            daa.Fill(dtt);
             con.Close();
 
-            if (dtt5.Rows.Count > 0)
+            if (dtt.Rows.Count > 0)
             {
-                typ5 = dtt5.Rows[0]["Type"].ToString();
+                typ = dtt.Rows[0]["Type"].ToString();
             }
 
 
@@ -41,8 +41,23 @@ namespace WillAssure.Controllers
 
 
 
-            if (typ5 == "Testator")
+            if (typ == "Testator")
             {
+
+
+                con.Open();
+                string qq12 = "select Type from users where uId = " + Convert.ToInt32(Session["uuid"]) + " and designation = 1 ";
+                SqlDataAdapter da42 = new SqlDataAdapter(qq12, con);
+                DataTable d4t2 = new DataTable();
+                da42.Fill(d4t2);
+                con.Close();
+
+                if (d4t2.Rows.Count > 0)
+                {
+                    ViewBag.documentlink = "true";
+                }
+
+
                 // check will status
                 con.Open();
                 string qry1 = "select Will  from users where Will = 1 ";
@@ -102,9 +117,27 @@ namespace WillAssure.Controllers
             else
             {
 
+
                 ViewBag.documentlink = "true";
 
             }
+
+
+
+
+
+
+            if (Session["rId"] == null || Session["uuid"] == null)
+            {
+
+                RedirectToAction("LoginPageIndex", "LoginPage");
+
+            }
+            //if (Session["tid"]== null)
+            //{
+            //    ViewBag.message = "link";
+            //}
+
 
             List<LoginModel> Lmlist = new List<LoginModel>();
             con.Open();
@@ -137,11 +170,10 @@ namespace WillAssure.Controllers
             }
 
             con.Close();
-
             LoginModel MAM = new LoginModel();
 
             con.Open();
-            string query = "select a.Beneficiary_Asset_ID , e.First_Name , c.AssetsType , b.AssetsCategory , a.SchemeName , a.InstrumentName , a.Proportion from BeneficiaryAssets a inner join AssetsCategory b on a.AssetCategory_ID = b.amId inner join AssetsType c on b.atId = c.atId inner join TestatorDetails d on a.tid = d.tId inner join BeneficiaryDetails e on a.Beneficiary_ID = e.bpId where a.Beneficiary_Asset_ID = "+NestId+" ";
+            string query = "select c.atId , b.amId , e.bpId , a.Beneficiary_Asset_ID , e.First_Name , c.AssetsType , b.AssetsCategory , a.SchemeName , a.InstrumentName , a.Proportion from BeneficiaryAssets a inner join AssetsCategory b on a.AssetCategory_ID = b.amId inner join AssetsType c on b.atId = c.atId inner join TestatorDetails d on a.tid = d.tId inner join BeneficiaryDetails e on a.Beneficiary_ID = e.bpId where a.Beneficiary_Asset_ID = " + NestId+" ";
             SqlDataAdapter da = new SqlDataAdapter(query, con);
             DataTable dt = new DataTable();
             da.Fill(dt);
@@ -158,13 +190,22 @@ namespace WillAssure.Controllers
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
                    MAM.Beneficiary_Asset_ID = Convert.ToInt32(dt.Rows[i]["Beneficiary_Asset_ID"]);
+
                    MAM.AssetsType = dt.Rows[i]["AssetsType"].ToString();
+                   MAM.assettypeid = Convert.ToInt32(dt.Rows[i]["atId"]);
+
+
                    MAM.AssetsCategory = dt.Rows[i]["AssetsCategory"].ToString();
-                   MAM.SchemeName = dt.Rows[i]["SchemeName"].ToString();
+                   MAM.assetcatid = Convert.ToInt32(dt.Rows[i]["amId"]);
+
+
+                    MAM.SchemeName = dt.Rows[i]["SchemeName"].ToString();
                    MAM.InstrumentName = dt.Rows[i]["InstrumentName"].ToString();
                    MAM.Proportion = dt.Rows[i]["Proportion"].ToString();
-                   MAM.Beneficiarytxt = dt.Rows[i]["First_Name"].ToString();
 
+
+                   MAM.Beneficiarytxt = dt.Rows[i]["First_Name"].ToString();
+                   MAM.Beneficiaryid = Convert.ToInt32(dt.Rows[i]["bpId"]);
                 }
 
 
@@ -304,10 +345,47 @@ namespace WillAssure.Controllers
             con.Close();
 
 
-            string assettype = "";
-            string assetcategory = "";
+            int assettype = 0;
+            int assetcategory = 0;
+            int beneficiary = 0;
 
-           
+
+            string atq = "select atId from AssetsType where AssetsType = '" + M.AssetsType + "' ";
+            SqlDataAdapter atda3 = new SqlDataAdapter(atq, con);
+            DataTable atdt3 = new DataTable();
+            atda3.Fill(atdt3);
+
+            if (atdt3.Rows.Count > 0)
+            {
+                assettype = Convert.ToInt32(atdt3.Rows[0]["atId"]);
+            }
+
+
+
+
+            string catq = "select amId from AssetsCategory where AssetsCategory = '"+ M.AssetsCategory + "' ";
+            SqlDataAdapter catda3 = new SqlDataAdapter(catq, con);
+            DataTable catdt3 = new DataTable();
+            catda3.Fill(catdt3);
+
+            if (catdt3.Rows.Count > 0)
+            {
+                assettype = Convert.ToInt32(catdt3.Rows[0]["amId"]);
+            }
+
+
+
+
+
+            string beneq = "select bpId from BeneficiaryDetails where First_Name = '"+M.Beneficiarytxt+"' ";
+            SqlDataAdapter beneda3 = new SqlDataAdapter(beneq, con);
+            DataTable benedt3 = new DataTable();
+            beneda3.Fill(benedt3);
+
+            if (benedt3.Rows.Count > 0)
+            {
+                beneficiary = Convert.ToInt32(benedt3.Rows[0]["bpId"]);
+            }
 
 
 
@@ -315,7 +393,7 @@ namespace WillAssure.Controllers
 
 
             con.Open();
-            string update = "update BeneficiaryAssets set AssetType_ID = "+M.AssetsType+ " , AssetCategory_ID ="+ M.AssetsCategory + " , SchemeName = '"+ M.SchemeName+ "'  , InstrumentName = '"+ M.InstrumentName+ "'  ,Proportion ="+ M.Proportion+ " where Beneficiary_Asset_ID = "+ M.Beneficiary_Asset_ID+" ";
+            string update = "update BeneficiaryAssets set AssetType_ID = "+M.assettypeid+ " , AssetCategory_ID ="+ M.assetcatid + " , SchemeName = '"+ M.SchemeName+ "'  , InstrumentName = '"+ M.InstrumentName+ "' ,  Beneficiary_ID = "+M.Beneficiaryid+"   ,Proportion =" + M.Proportion+ " where Beneficiary_Asset_ID = "+ M.Beneficiary_Asset_ID+" ";
             SqlCommand cmd = new SqlCommand(update,con);
             cmd.ExecuteNonQuery();
 
@@ -323,7 +401,7 @@ namespace WillAssure.Controllers
 
 
 
-            return View("~/Views/UpdateBeneficiaryMapping/UpdateBeneficiaryMappingPageContent.cshtml");
+            return RedirectToAction("UpdateBeneficiaryMappingIndex", "UpdateBeneficiaryMapping" , new { NestId = M.Beneficiary_Asset_ID });
         }
 
 

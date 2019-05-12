@@ -305,10 +305,7 @@ namespace WillAssure.Controllers
                 cmd.Parameters.AddWithValue("@leadRemark", s4);
                 cmd.ExecuteNonQuery();
                 con.Close();
-            if (Session["filterUid"] == null)
-            {
-                RedirectToAction("LoginPageIndex", "LoginPage");
-            }
+          
             // get latest uid by userid filter
             string userid = "";
             con.Open();
