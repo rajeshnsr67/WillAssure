@@ -25,8 +25,9 @@ namespace WillAssure.Models
         public int document_id { get; set; }
         public string  document_txt { get; set; }
 
+        public string documenttype { get; set; }
 
-    
+
 
 
     }

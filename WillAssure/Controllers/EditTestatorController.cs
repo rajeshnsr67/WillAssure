@@ -291,7 +291,7 @@ namespace WillAssure.Controllers
 
             for (int i = 0; i < Lmlist.Count(); i++)
             {
-                testString = Lmlist[13].Action;
+                testString = Lmlist[15].Action;
 
             }
 
@@ -794,7 +794,7 @@ namespace WillAssure.Controllers
 
             for (int i = 0; i < Lmlist.Count(); i++)
             {
-                testString = Lmlist[13].Action;
+                testString = Lmlist[15].Action;
 
             }
 
@@ -1150,61 +1150,12 @@ namespace WillAssure.Controllers
 
 
 
-                    // coupon status
-                    if (TFM.txtCoupon != null)
-                    {
-                        con.Open();
-                        string checkcoupon = "select * from couponAllotment where Coupon_Number = " + TFM.txtCoupon + " and  Status = 'Active' ";
-                        SqlDataAdapter da = new SqlDataAdapter(checkcoupon, con);
-                        DataTable dt = new DataTable();
-                        da.Fill(dt);
-                        if (dt.Rows.Count > 0)
-                        {
-
-                            string upcoupon = "update couponAllotment set Status = 'Inactive' ,    Tid=" + testatorid + " ";
-                            SqlCommand cmd2 = new SqlCommand(upcoupon, con);
-                            cmd2.ExecuteNonQuery();
+                  
 
 
 
 
-                            string upcoupon2 = "update discountCoupons set status = 'Inactive' ,    Coupon_Number=" + TFM.txtCoupon + " ";
-                            SqlCommand cmd22 = new SqlCommand(upcoupon2, con);
-                            cmd22.ExecuteNonQuery();
-
-
-
-
-                        }
-                        else
-                        {
-                            ViewBag.Message = "checkCoupon";
-                        }
-                        con.Close();
-                    }
-
-
-                    //end
-
-                    // get coupon id
-                    con.Open();
-                    string query5 = "select a.couponId  from couponAllotment a inner join users b on a.uId=b.uId where b.uId = " + TFM.distributor_id + "";
-                    SqlDataAdapter da4 = new SqlDataAdapter(query5, con);
-                    DataTable dt4 = new DataTable();
-                    da4.Fill(dt4);
-                    int couponsid = 0;
-                    if (dt4.Rows.Count > 0)
-                    {
-                        couponsid = Convert.ToInt32(dt4.Rows[0]["couponId"]);
-                    }
-                    con.Close();
-                    //end
-
-
-
-
-
-                    // get distributor id
+                    // get identity dist id from testator
 
                     con.Open();
                     string gedistid = "select uId from TestatorDetails where tId=" + testatorid + " ";
@@ -1223,6 +1174,43 @@ namespace WillAssure.Controllers
 
 
 
+                    // get distid
+
+
+                    con.Open();
+                    string gedistid22 = "select Linked_user from users where  uId = "+ distidd + "";
+                    SqlDataAdapter distid2 = new SqlDataAdapter(gedistid22,con);
+                    DataTable distdt2 = new DataTable();
+                    distid2.Fill(distdt2);
+                    int did = 0;
+                    if (distdt2.Rows.Count > 0)
+                    {
+                        did = Convert.ToInt32(distdt2.Rows[0]["Linked_user"]);
+                    }
+                    con.Close();
+
+
+
+                    //end
+
+
+
+
+
+
+                    // get coupon id
+                    con.Open();
+                    string query5 = "select a.couponId  from couponAllotment a inner join users b on a.uId=b.uId where b.uId = " + did + "";
+                    SqlDataAdapter da4 = new SqlDataAdapter(query5, con);
+                    DataTable dt4 = new DataTable();
+                    da4.Fill(dt4);
+                    int couponsid = 0;
+                    if (dt4.Rows.Count > 0)
+                    {
+                        couponsid = Convert.ToInt32(dt4.Rows[0]["couponId"]);
+                    }
+                    con.Close();
+                    //end
 
 
 
@@ -1230,7 +1218,7 @@ namespace WillAssure.Controllers
 
 
                     con.Open();
-                    string q1 = "insert into documentMaster (tId,templateId,IsUpdatetable,uId,pId,created_by,testator_type,couponId,adminVerification) values (" + testatorid + " , " + templateid + " ,  'Yes' ,   " + TFM.distributor_id + " , 1 , '" + TFM.Document_Created_By_txt + "' , '" + testatortype + "' , " + couponsid + "  , 2)";
+                    string q1 = "insert into documentMaster (tId,templateId,IsUpdatetable,uId,pId,created_by,testator_type,couponId,adminVerification) values (" + testatorid + " , " + templateid + " ,  'Yes' ,   " + did + " , 1 , '" + TFM.Document_Created_By + "' , '" + testatortype + "' , " + couponsid + "  , 2)";
                     SqlCommand c = new SqlCommand(q1, con);
                     c.ExecuteNonQuery();
                     con.Close();
@@ -1249,7 +1237,7 @@ namespace WillAssure.Controllers
                         typeid = "1,2,3";
 
                         con.Open();
-                        string qq1 = "update users set Will = '1' , Codocil = '1' , POA = '1' where uId = " + distidd + " ";
+                        string qq1 = "update users set Will = '1' , Codocil = '1' , POA = '1' where uId = " + did + " ";
                         SqlCommand cc1 = new SqlCommand(qq1, con);
                         cc1.ExecuteNonQuery();
                         con.Close();
@@ -1262,7 +1250,7 @@ namespace WillAssure.Controllers
 
 
                         con.Open();
-                        string qq1 = "update users set Will = '0' , Codocil = '1' , POA = '0' where uId = " + distidd + " ";
+                        string qq1 = "update users set Will = '0' , Codocil = '1' , POA = '0' where uId = " + did + " ";
                         SqlCommand cc1 = new SqlCommand(qq1, con);
                         cc1.ExecuteNonQuery();
                         con.Close();
@@ -1274,7 +1262,7 @@ namespace WillAssure.Controllers
                         typeid = "3";
 
                         con.Open();
-                        string qq1 = "update users set Will = '0' , Codocil = '0' , POA = '1' where uId = " + distidd + " ";
+                        string qq1 = "update users set Will = '0' , Codocil = '0' , POA = '1' where uId = " + did + " ";
                         SqlCommand cc1 = new SqlCommand(qq1, con);
                         cc1.ExecuteNonQuery();
                         con.Close();
@@ -1283,7 +1271,7 @@ namespace WillAssure.Controllers
                     {
                         typeid = "1";
                         con.Open();
-                        string qq1 = "update users set Will = '1' , Codocil = '0' , POA = '0' where uId = " + distidd + " ";
+                        string qq1 = "update users set Will = '1' , Codocil = '0' , POA = '0' where uId = " + did + " ";
                         SqlCommand cc1 = new SqlCommand(qq1, con);
                         cc1.ExecuteNonQuery();
                         con.Close();
@@ -1293,7 +1281,7 @@ namespace WillAssure.Controllers
                         typeid = "1,2";
 
                         con.Open();
-                        string qq1 = "update users set Will = '1' , Codocil = '1' , POA = '0' where uId = " + distidd + " ";
+                        string qq1 = "update users set Will = '1' , Codocil = '1' , POA = '0' where uId = " + did + " ";
                         SqlCommand cc1 = new SqlCommand(qq1, con);
                         cc1.ExecuteNonQuery();
                         con.Close();
@@ -1303,7 +1291,7 @@ namespace WillAssure.Controllers
                         typeid = "1,3";
 
                         con.Open();
-                        string qq1 = "update users set Will = '1' , Codocil = '0' , POA = '1' where uId = " + distidd + " ";
+                        string qq1 = "update users set Will = '1' , Codocil = '0' , POA = '1' where uId = " + did + " ";
                         SqlCommand cc1 = new SqlCommand(qq1, con);
                         cc1.ExecuteNonQuery();
                         con.Close();
@@ -1313,7 +1301,7 @@ namespace WillAssure.Controllers
                         typeid = "2,3";
 
                         con.Open();
-                        string qq1 = "update users set Will = '0' , Codocil = '1' , POA = '1' where uId = " + distidd + " ";
+                        string qq1 = "update users set Will = '0' , Codocil = '1' , POA = '1' where uId = " + did + " ";
                         SqlCommand cc1 = new SqlCommand(qq1, con);
                         cc1.ExecuteNonQuery();
                         con.Close();
@@ -1323,7 +1311,7 @@ namespace WillAssure.Controllers
                         typeid = "2,1";
 
                         con.Open();
-                        string qq1 = "update users set Will = '1' , Codocil = '1' , POA = '0' where uId = " + distidd + " ";
+                        string qq1 = "update users set Will = '1' , Codocil = '1' , POA = '0' where uId = " + did + " ";
                         SqlCommand cc1 = new SqlCommand(qq1, con);
                         cc1.ExecuteNonQuery();
                         con.Close();
@@ -1332,7 +1320,7 @@ namespace WillAssure.Controllers
                     {
                         typeid = "3,1";
                         con.Open();
-                        string qq1 = "update users set Will = '1' , Codocil = '0' , POA = '1' where uId = " + distidd + " ";
+                        string qq1 = "update users set Will = '1' , Codocil = '0' , POA = '1' where uId = " + did + " ";
                         SqlCommand cc1 = new SqlCommand(qq1, con);
                         cc1.ExecuteNonQuery();
                         con.Close();
@@ -1341,7 +1329,7 @@ namespace WillAssure.Controllers
                     {
                         typeid = "3,1";
                         con.Open();
-                        string qq1 = "update users set Will = '0' , Codocil = '0' , POA = '0' , Giftdeeds='1' where uId = " + distidd + " ";
+                        string qq1 = "update users set Will = '0' , Codocil = '0' , POA = '0' , Giftdeeds='1' where uId = " + did + " ";
                         SqlCommand cc1 = new SqlCommand(qq1, con);
                         cc1.ExecuteNonQuery();
                         con.Close();
@@ -1350,7 +1338,7 @@ namespace WillAssure.Controllers
                     {
                         typeid = "3,1";
                         con.Open();
-                        string qq1 = "update users set Will = '0' , Codocil = '1' , POA = '0' , Giftdeeds='1' where uId = " + distidd + " ";
+                        string qq1 = "update users set Will = '0' , Codocil = '1' , POA = '0' , Giftdeeds='1' where uId = " + did + " ";
                         SqlCommand cc1 = new SqlCommand(qq1, con);
                         cc1.ExecuteNonQuery();
                         con.Close();
@@ -1360,7 +1348,7 @@ namespace WillAssure.Controllers
                     {
                         typeid = "3,1";
                         con.Open();
-                        string qq1 = "update users set Will = '1' , Codocil = '0' , POA = '0' , Giftdeeds='1' where uId = " + distidd + " ";
+                        string qq1 = "update users set Will = '1' , Codocil = '0' , POA = '0' , Giftdeeds='1' where uId = " + did + " ";
                         SqlCommand cc1 = new SqlCommand(qq1, con);
                         cc1.ExecuteNonQuery();
                         con.Close();
@@ -1370,7 +1358,7 @@ namespace WillAssure.Controllers
                     {
                         typeid = "3,1";
                         con.Open();
-                        string qq1 = "update users set Will = '0' , Codocil = '0' , POA = '1' , Giftdeeds='1' where uId = " + distidd + " ";
+                        string qq1 = "update users set Will = '0' , Codocil = '0' , POA = '1' , Giftdeeds='1' where uId = " + did + " ";
                         SqlCommand cc1 = new SqlCommand(qq1, con);
                         cc1.ExecuteNonQuery();
                         con.Close();
@@ -1381,7 +1369,7 @@ namespace WillAssure.Controllers
                     {
                         typeid = "3,1";
                         con.Open();
-                        string qq1 = "update users set Will = '1' , Codocil = '0' , POA = '0' ,  Giftdeeds='1' where uId = " + distidd + " ";
+                        string qq1 = "update users set Will = '1' , Codocil = '0' , POA = '0' ,  Giftdeeds='1' where uId = " + did + " ";
                         SqlCommand cc1 = new SqlCommand(qq1, con);
                         cc1.ExecuteNonQuery();
                         con.Close();
@@ -1390,7 +1378,7 @@ namespace WillAssure.Controllers
                     {
                         typeid = "3,1";
                         con.Open();
-                        string qq1 = "update users set Will = '0' , Codocil = '0' , POA = '1' , Giftdeeds='1' where uId = " + distidd + " ";
+                        string qq1 = "update users set Will = '0' , Codocil = '0' , POA = '1' , Giftdeeds='1' where uId = " + did + " ";
                         SqlCommand cc1 = new SqlCommand(qq1, con);
                         cc1.ExecuteNonQuery();
                         con.Close();
@@ -1400,7 +1388,7 @@ namespace WillAssure.Controllers
                     {
                         typeid = "3,1";
                         con.Open();
-                        string qq1 = "update users set Will = '0' , Codocil = '1' , POA = '0' , Giftdeeds='1' where uId = " + distidd + " ";
+                        string qq1 = "update users set Will = '0' , Codocil = '1' , POA = '0' , Giftdeeds='1' where uId = " + did + " ";
                         SqlCommand cc1 = new SqlCommand(qq1, con);
                         cc1.ExecuteNonQuery();
                         con.Close();
@@ -1410,7 +1398,7 @@ namespace WillAssure.Controllers
                     {
                         typeid = "3,1";
                         con.Open();
-                        string qq1 = "update users set Will = '1' , Codocil = '1' , POA = '0' , Giftdeeds='1' where uId = " + distidd + " ";
+                        string qq1 = "update users set Will = '1' , Codocil = '1' , POA = '0' , Giftdeeds='1' where uId = " + did + " ";
                         SqlCommand cc1 = new SqlCommand(qq1, con);
                         cc1.ExecuteNonQuery();
                         con.Close();
@@ -1420,7 +1408,7 @@ namespace WillAssure.Controllers
                     {
                         typeid = "3,1";
                         con.Open();
-                        string qq1 = "update users set Will = '1' , Codocil = '1' , POA = '1' , Giftdeeds='1' where uId = " + distidd + " ";
+                        string qq1 = "update users set Will = '1' , Codocil = '1' , POA = '1' , Giftdeeds='1' where uId = " + did + " ";
                         SqlCommand cc1 = new SqlCommand(qq1, con);
                         cc1.ExecuteNonQuery();
                         con.Close();
@@ -1430,7 +1418,7 @@ namespace WillAssure.Controllers
                     {
                         typeid = "3,1";
                         con.Open();
-                        string qq1 = "update users set Will = '1' , Codocil = '1' , POA = '1' , Giftdeeds='1' where uId = " + distidd + " ";
+                        string qq1 = "update users set Will = '1' , Codocil = '1' , POA = '1' , Giftdeeds='1' where uId = " + did + " ";
                         SqlCommand cc1 = new SqlCommand(qq1, con);
                         cc1.ExecuteNonQuery();
                         con.Close();
@@ -1440,7 +1428,7 @@ namespace WillAssure.Controllers
                     {
                         typeid = "3,1";
                         con.Open();
-                        string qq1 = "update users set Will = '1' , Codocil = '1' , POA = '1' , Giftdeeds='1' where uId = " + distidd + " ";
+                        string qq1 = "update users set Will = '1' , Codocil = '1' , POA = '1' , Giftdeeds='1' where uId = " + did + " ";
                         SqlCommand cc1 = new SqlCommand(qq1, con);
                         cc1.ExecuteNonQuery();
                         con.Close();
@@ -1450,7 +1438,7 @@ namespace WillAssure.Controllers
                     {
 
                         con.Open();
-                        string qq1 = "update users set Will = '1' , Codocil = '1' , POA = '1' , Giftdeeds='1', LivingWill='1' where uId = " + distidd + " ";
+                        string qq1 = "update users set Will = '1' , Codocil = '1' , POA = '1' , Giftdeeds='1', LivingWill='1' where uId = " + did + " ";
                         SqlCommand cc1 = new SqlCommand(qq1, con);
                         cc1.ExecuteNonQuery();
                         con.Close();
@@ -1460,7 +1448,7 @@ namespace WillAssure.Controllers
                     {
 
                         con.Open();
-                        string qq1 = "update users set Will = '1' , Codocil = '0' , POA = '0' , Giftdeeds='0' , LivingWill='1' where uId = " + distidd + " ";
+                        string qq1 = "update users set Will = '1' , Codocil = '0' , POA = '0' , Giftdeeds='0' , LivingWill='1' where uId = " + did + " ";
                         SqlCommand cc1 = new SqlCommand(qq1, con);
                         cc1.ExecuteNonQuery();
                         con.Close();
@@ -1470,7 +1458,7 @@ namespace WillAssure.Controllers
                     {
 
                         con.Open();
-                        string qq1 = "update users set Will = '1' , Codocil = '1' , POA = '1' , Giftdeeds='1', LivingWill='1' where uId = " + distidd + " ";
+                        string qq1 = "update users set Will = '1' , Codocil = '1' , POA = '1' , Giftdeeds='1', LivingWill='1' where uId = " + did + " ";
                         SqlCommand cc1 = new SqlCommand(qq1, con);
                         cc1.ExecuteNonQuery();
                         con.Close();
@@ -1480,7 +1468,7 @@ namespace WillAssure.Controllers
                     {
 
                         con.Open();
-                        string qq1 = "update users set Will = '1' , Codocil = '1' , POA = '1' , Giftdeeds='1', LivingWill='1' where uId = " + distidd + " ";
+                        string qq1 = "update users set Will = '1' , Codocil = '1' , POA = '1' , Giftdeeds='1', LivingWill='1' where uId = " + did + " ";
                         SqlCommand cc1 = new SqlCommand(qq1, con);
                         cc1.ExecuteNonQuery();
                         con.Close();
@@ -1490,7 +1478,7 @@ namespace WillAssure.Controllers
                     {
 
                         con.Open();
-                        string qq1 = "update users set Will = '1' , Codocil = '0' , POA = '1' , Giftdeeds='0', LivingWill='1' where uId = " + distidd + " ";
+                        string qq1 = "update users set Will = '1' , Codocil = '0' , POA = '1' , Giftdeeds='0', LivingWill='1' where uId = " + did + " ";
                         SqlCommand cc1 = new SqlCommand(qq1, con);
                         cc1.ExecuteNonQuery();
                         con.Close();
@@ -1500,7 +1488,7 @@ namespace WillAssure.Controllers
                     {
 
                         con.Open();
-                        string qq1 = "update users set Will = '1' , Codocil = '1' , POA = '1' , Giftdeeds='1', LivingWill='1' where uId = " + distidd + " ";
+                        string qq1 = "update users set Will = '1' , Codocil = '1' , POA = '1' , Giftdeeds='1', LivingWill='1' where uId = " + did + " ";
                         SqlCommand cc1 = new SqlCommand(qq1, con);
                         cc1.ExecuteNonQuery();
                         con.Close();
@@ -1510,7 +1498,7 @@ namespace WillAssure.Controllers
                     {
 
                         con.Open();
-                        string qq1 = "update users set Will = '1' , Codocil = '1' , POA = '1' , Giftdeeds='1', LivingWill='1' where uId = " + distidd + " ";
+                        string qq1 = "update users set Will = '1' , Codocil = '1' , POA = '1' , Giftdeeds='1', LivingWill='1' where uId = " + did + " ";
                         SqlCommand cc1 = new SqlCommand(qq1, con);
                         cc1.ExecuteNonQuery();
                         con.Close();
@@ -1519,7 +1507,7 @@ namespace WillAssure.Controllers
                     {
 
                         con.Open();
-                        string qq1 = "update users set Will = '0' , Codocil = '0' , POA = '1' , Giftdeeds='1', LivingWill='0' where uId = " + distidd + " ";
+                        string qq1 = "update users set Will = '0' , Codocil = '0' , POA = '1' , Giftdeeds='1', LivingWill='0' where uId = " + did + " ";
                         SqlCommand cc1 = new SqlCommand(qq1, con);
                         cc1.ExecuteNonQuery();
                         con.Close();
@@ -1528,7 +1516,7 @@ namespace WillAssure.Controllers
                     {
 
                         con.Open();
-                        string qq1 = "update users set Will = '1' , Codocil = '0' , POA = '1' , Giftdeeds='1', LivingWill='0' where uId = " + distidd + " ";
+                        string qq1 = "update users set Will = '1' , Codocil = '0' , POA = '1' , Giftdeeds='1', LivingWill='0' where uId = " + did + " ";
                         SqlCommand cc1 = new SqlCommand(qq1, con);
                         cc1.ExecuteNonQuery();
                         con.Close();
@@ -1537,7 +1525,7 @@ namespace WillAssure.Controllers
                     {
 
                         con.Open();
-                        string qq1 = "update users set Will = '1' , Codocil = '1' , POA = '1' , Giftdeeds='0', LivingWill='0' where uId = " + distidd + " ";
+                        string qq1 = "update users set Will = '1' , Codocil = '1' , POA = '1' , Giftdeeds='0', LivingWill='0' where uId = " + did + " ";
                         SqlCommand cc1 = new SqlCommand(qq1, con);
                         cc1.ExecuteNonQuery();
                         con.Close();
@@ -1546,7 +1534,7 @@ namespace WillAssure.Controllers
                     {
 
                         con.Open();
-                        string qq1 = "update users set Will = '0' , Codocil = '1' , POA = '0' , Giftdeeds='0', LivingWill='1' where uId = " + distidd + " ";
+                        string qq1 = "update users set Will = '0' , Codocil = '1' , POA = '0' , Giftdeeds='0', LivingWill='1' where uId = " + did + " ";
                         SqlCommand cc1 = new SqlCommand(qq1, con);
                         cc1.ExecuteNonQuery();
                         con.Close();
@@ -1555,7 +1543,7 @@ namespace WillAssure.Controllers
                     {
 
                         con.Open();
-                        string qq1 = "update users set Will = '0' , Codocil = '1' , POA = '0' , Giftdeeds='1', LivingWill='1' where uId = " + distidd + " ";
+                        string qq1 = "update users set Will = '0' , Codocil = '1' , POA = '0' , Giftdeeds='1', LivingWill='1' where uId = " + did + " ";
                         SqlCommand cc1 = new SqlCommand(qq1, con);
                         cc1.ExecuteNonQuery();
                         con.Close();
@@ -1564,7 +1552,7 @@ namespace WillAssure.Controllers
                     {
 
                         con.Open();
-                        string qq1 = "update users set Will = '1' , Codocil = '0' , POA = '1' , Giftdeeds='0', LivingWill='1' where uId = " + distidd + " ";
+                        string qq1 = "update users set Will = '1' , Codocil = '0' , POA = '1' , Giftdeeds='0', LivingWill='1' where uId = " + did + " ";
                         SqlCommand cc1 = new SqlCommand(qq1, con);
                         cc1.ExecuteNonQuery();
                         con.Close();
@@ -1573,7 +1561,7 @@ namespace WillAssure.Controllers
                     {
 
                         con.Open();
-                        string qq1 = "update users set Will = '1' , Codocil = '0' , POA = '0' , Giftdeeds='1', LivingWill='1' where uId = " + distidd + " ";
+                        string qq1 = "update users set Will = '1' , Codocil = '0' , POA = '0' , Giftdeeds='1', LivingWill='1' where uId = " + did + " ";
                         SqlCommand cc1 = new SqlCommand(qq1, con);
                         cc1.ExecuteNonQuery();
                         con.Close();
@@ -1608,7 +1596,7 @@ namespace WillAssure.Controllers
                         TFM.Login_Required = 0;
 
                         con.Open();
-                        string query1 = "insert into Authorization_Rules (Document_Created_By,Distributor_Id,Amt_Paid_By,Testator_Id,Authentication_Required,Link_Required,Login_Required) values ('" + TFM.Document_Created_By_txt + "' , " + distidd + " , '" + TFM.Amt_Paid_By_txt + "' , " + testatorid + "  , '" + TFM.Authentication_Required + "' , '" + TFM.Link_Required + "' , '" + TFM.Login_Required + "') ";
+                        string query1 = "insert into Authorization_Rules (Document_Created_By,Distributor_Id,Amt_Paid_By,Testator_Id,Authentication_Required,Link_Required,Login_Required) values ('" + TFM.Document_Created_By_txt + "' , " + did + " , '" + TFM.Amt_Paid_By_txt + "' , " + testatorid + "  , '" + TFM.Authentication_Required + "' , '" + TFM.Link_Required + "' , '" + TFM.Login_Required + "') ";
                         SqlCommand cmd2 = new SqlCommand(query1, con);
                         cmd2.ExecuteNonQuery();
                         con.Close();
@@ -1624,7 +1612,7 @@ namespace WillAssure.Controllers
                         TFM.Login_Required = 1;
 
                         con.Open();
-                        string query3 = "insert into Authorization_Rules (Document_Created_By,Distributor_Id,Amt_Paid_By,Testator_Id,Authentication_Required,Link_Required,Login_Required) values ('" + TFM.Document_Created_By + "' , " + distidd + " , '" + TFM.Amt_Paid_By + "' , " + testatorid + "  , '" + TFM.Authentication_Required + "' , '" + TFM.Link_Required + "' , '" + TFM.Login_Required + "') ";
+                        string query3 = "insert into Authorization_Rules (Document_Created_By,Distributor_Id,Amt_Paid_By,Testator_Id,Authentication_Required,Link_Required,Login_Required) values ('" + TFM.Document_Created_By + "' , " + did + " , '" + TFM.Amt_Paid_By + "' , " + testatorid + "  , '" + TFM.Authentication_Required + "' , '" + TFM.Link_Required + "' , '" + TFM.Login_Required + "') ";
                         SqlCommand cmd2 = new SqlCommand(query3, con);
                         cmd2.ExecuteNonQuery();
                         con.Close();
@@ -1677,7 +1665,7 @@ namespace WillAssure.Controllers
 
                         // payment info
                         con.Open();
-                        string paymentquery = "insert into PaymentInfo (uId,tId,transactionStatus) values (" + distidd + " , " + testatorid + " , 1)  ";
+                        string paymentquery = "insert into PaymentInfo (uId,tId,transactionStatus) values (" + did + " , " + testatorid + " , 1)  ";
                         SqlCommand paymentcmd = new SqlCommand(paymentquery, con);
                         paymentcmd.ExecuteNonQuery();
                         con.Close();
@@ -1694,7 +1682,7 @@ namespace WillAssure.Controllers
                         TFM.Login_Required = 1;
 
                         con.Open();
-                        string query3 = "insert into Authorization_Rules (Document_Created_By,Distributor_Id,Amt_Paid_By,Testator_Id,Authentication_Required,Link_Required,Login_Required) values ('" + TFM.Document_Created_By + "' , " + distidd + " , '" + TFM.Amt_Paid_By + "' , " + testatorid + "  , '" + TFM.Authentication_Required + "' , '" + TFM.Link_Required + "' , '" + TFM.Login_Required + "') ";
+                        string query3 = "insert into Authorization_Rules (Document_Created_By,Distributor_Id,Amt_Paid_By,Testator_Id,Authentication_Required,Link_Required,Login_Required) values ('" + TFM.Document_Created_By + "' , " + did + " , '" + TFM.Amt_Paid_By + "' , " + testatorid + "  , '" + TFM.Authentication_Required + "' , '" + TFM.Link_Required + "' , '" + TFM.Login_Required + "') ";
                         SqlCommand cmd2 = new SqlCommand(query3, con);
                         cmd2.ExecuteNonQuery();
                         con.Close();
@@ -1743,7 +1731,7 @@ namespace WillAssure.Controllers
 
                         // payment info
                         con.Open();
-                        string paymentquery = "insert into PaymentInfo (uId,tId,transactionStatus) values (" + distidd + " , " + testatorid + " , 1)  ";
+                        string paymentquery = "insert into PaymentInfo (uId,tId,transactionStatus) values (" + did + " , " + testatorid + " , 1)  ";
                         SqlCommand paymentcmd = new SqlCommand(paymentquery, con);
                         paymentcmd.ExecuteNonQuery();
                         con.Close();
@@ -1760,7 +1748,7 @@ namespace WillAssure.Controllers
                         TFM.Login_Required = 1;
 
                         con.Open();
-                        string query3 = "insert into Authorization_Rules (Document_Created_By,Distributor_Id,Amt_Paid_By,Testator_Id,Authentication_Required,Link_Required,Login_Required) values ('" + TFM.Document_Created_By + "' , " + distidd + " , '" + TFM.Amt_Paid_By + "' , " + testatorid + "  , '" + TFM.Authentication_Required + "' , '" + TFM.Link_Required + "' , '" + TFM.Login_Required + "') ";
+                        string query3 = "insert into Authorization_Rules (Document_Created_By,Distributor_Id,Amt_Paid_By,Testator_Id,Authentication_Required,Link_Required,Login_Required) values ('" + TFM.Document_Created_By + "' , " + did + " , '" + TFM.Amt_Paid_By + "' , " + testatorid + "  , '" + TFM.Authentication_Required + "' , '" + TFM.Link_Required + "' , '" + TFM.Login_Required + "') ";
                         SqlCommand cmd2 = new SqlCommand(query3, con);
                         cmd2.ExecuteNonQuery();
                         con.Close();
@@ -1811,7 +1799,7 @@ namespace WillAssure.Controllers
 
                         // payment info
                         con.Open();
-                        string paymentquery = "insert into PaymentInfo (uId,tId,transactionStatus) values (" + distidd + " , " + testatorid + " , 1)  ";
+                        string paymentquery = "insert into PaymentInfo (uId,tId,transactionStatus) values (" + did + " , " + testatorid + " , 1)  ";
                         SqlCommand paymentcmd = new SqlCommand(paymentquery, con);
                         paymentcmd.ExecuteNonQuery();
                         con.Close();
@@ -1841,6 +1829,93 @@ namespace WillAssure.Controllers
             return View("~/Views/EditTestator/EditTestatorPageContent.cshtml");
 
         }
+
+
+
+        public string txtchangecouponnumber()
+        {
+            string sts = "";
+            string response = Request["send"];
+            string tid = response.Split('~')[0];
+            string entertxt = response.Split('~')[1];
+
+            // coupon status
+
+            con.Open();
+                string checkcoupon = "select * from couponAllotment where Coupon_Number = " + entertxt + " and  Status = 'Active' ";
+                SqlDataAdapter da = new SqlDataAdapter(checkcoupon, con);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                if (dt.Rows.Count > 0)
+                {
+
+                
+                string getdatquery = "select validFrm , validTo from couponAllotment where Coupon_Number = " + entertxt + " ";
+                SqlDataAdapter getdatda = new SqlDataAdapter(getdatquery,con);
+                DataTable getdata = new DataTable();
+                getdatda.Fill(getdata);
+               
+
+              
+
+                if (getdata.Rows.Count > 0)
+                {
+                 
+                    string getdatquery2 = "select Coupon_Number from couponAllotment where validFrm <= '"+ getdata.Rows[0]["validFrm"].ToString() +"'  and validTo >= '" + getdata.Rows[0]["validTo"].ToString() + "' ";
+                    SqlDataAdapter getdatda2 = new SqlDataAdapter(getdatquery2,con);
+                    DataTable getdata2 = new DataTable();
+                    getdatda2.Fill(getdata2);
+                    if (getdata2.Rows.Count > 0)
+                    {
+                        string upcoupon = "update couponAllotment set Status = 'Inactive' ,    Tid=" + tid + " ";
+                        SqlCommand cmd2 = new SqlCommand(upcoupon, con);
+                        cmd2.ExecuteNonQuery();
+
+
+
+
+                        string upcoupon2 = "update discountCoupons set status = 'Inactive' ,    Coupon_Number=" + entertxt + " ";
+                        SqlCommand cmd22 = new SqlCommand(upcoupon2, con);
+                        cmd22.ExecuteNonQuery();
+
+
+                        sts = "success";
+
+                    }
+                    else
+                    {
+                        sts = "Expire";
+                    }
+                 
+
+
+                }
+
+
+
+                   
+                }
+                else
+                {
+                    ViewBag.Message = "checkCoupon";
+
+                sts = "failed";
+            }
+                con.Close();
+            
+
+
+            //end
+
+         
+
+
+
+
+            return sts;
+        }
+
+
 
 
 

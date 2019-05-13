@@ -1,7 +1,8 @@
 ﻿
 @{
-    ViewBag.Title = "EditPetCarePageContent";
+    ViewBag.Title = "EditCompanyPageContent";
 }
+
 
 
 @*Main Content*@
@@ -32,24 +33,45 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="card">
-                    <div class="card-header"><i class="fa fa-table"></i>PetCare Data</div>
+                    <div class="card-header"><i class="fa fa-table"></i>Company Data</div>
                     <div class="card-body">
                         <div class="table-responsive">
                             <table id="default-datatable" class="table table-bordered">
                                 <thead>
                                     <tr class="ui-widget-header">
-                                        <th>petid</th>
-                                        <th>Pet Name</th>
-                                        <th>Pet Age</th>
-                                        <th>Type Of Pet</th>
-                                        <th>Amount For Pet</th>
-                                        <th>Amount From Which Asset</th>
-                                        <th>Responsible Person For Pet</th>
+                                        <th>compId</th>
+                                        <th>companyName</th>
+                                        <th>ownerName</th>
+                                        <th>ownerMobileNo</th>
+                                        <th>Address1</th>
+                                        <th>Address2</th>
+                                        <th>City</th>
+                                        <th>State</th>
+                                        <th>Pin</th>
+                                        <th>GST_NO</th>
+                                        <th>Identity_Proof</th>
+                                        <th>Identity_Proof_Value</th>
+                                        <th>Alt_Identity_Proof</th>
+                                        <th>Alt_Identity_Proof_Value</th>
+                                        <th>contactPerson</th>
+                                        <th>contactMobileNo</th>
+                                        <th>contactMailId</th>
+                                        <th>bankName</th>
+                                        <th>Branch</th>
+                                        <th>accountNumber</th>
+                                        <th>IFSC_Code</th>
+                                        <th>accountName</th>
+                                        <th>Referred_By</th>
+                                        <th>leadgeneratedBy</th>
+                                        <th>leadconvertedBy</th>
+                                        <th>relationshipManager</th>
+                                        <th>leadStatus</th>
+                                        <th>leadRemark</th>
                                         <th id="title">Action</th>
 
                                     </tr>
                                 </thead>
-                                <tbody id="PetData"></tbody>
+                                <tbody id="companyData"></tbody>
                             </table>
 
                         </div>
@@ -86,9 +108,9 @@
         $.ajax({
 
             type: "POST",
-            url:"@Url.Action("BindPetFormData", "EditPetCare")",
+            url:"@Url.Action("BindCompanyFormData", "EditCompanyDetails")",
             success: function (data) {
-                $('#PetData').empty().append(data);
+                $('#companyData').empty().append(data);
             }
         });
 
@@ -113,13 +135,13 @@
             $.ajax({
 
             type: "POST",
-            url: "@Url.Action("UpdatePet", "EditPetCare")",
+            url: "@Url.Action("UpdateCompany", "EditCompanyDetails")",
             data: {  "send": "" + id + ""   },
             success: function (data) {
 
 
                 var NestId = data
-                var url = "/UpdatePetCare/UpdatePetCareIndex?NestId=" + NestId;
+                var url = "/UpdateCompanyDetails/UpdateCompanyDetailsIndex?NestId=" + NestId;
                 window.location.href = url;
 
 
@@ -151,14 +173,14 @@
                   $.ajax({
 
             type: "POST",
-            url: "@Url.Action("DeletePetRecords", "EditPetCare")",
+            url: "@Url.Action("DeleteCompanyRecords", "EditCompanyDetails")",
             data: {  "send": "" + id + ""   },
             success: function (data) {
                 $("#btndeleteroles").on("click", function () { });
 
                 $("#btndeleteroles").click(); //trigger event after listening to it.
 
-                $('#RolesData').empty().append(data).reload();
+                $('#companyData').empty().append(data).reload();
                }
                  });
             })

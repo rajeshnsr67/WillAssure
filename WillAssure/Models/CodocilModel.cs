@@ -19,5 +19,18 @@ namespace WillAssure.Models
 
         public string newdetails { get; set; }
 
+
+        public string conditions { get; set; }
+
+        public string treatmentdecline { get; set; }
+
+
+        public int livingwillid { get; set; }
+
+
+
+
+
+
     }
 }

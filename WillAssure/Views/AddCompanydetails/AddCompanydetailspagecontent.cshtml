@@ -1,8 +1,7 @@
 ﻿@model WillAssure.Models.UserFormModel
-@{
-    /**/
 
-    ViewBag.Title = "UsersFormPageContent";
+@{
+    ViewBag.Title = "AddCompanydetailspagecontent";
 }
 
 
@@ -65,232 +64,21 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card-title text-primary">Add Distributor</div>
+                        <div class="card-title text-primary">Add Company</div>
                         <hr>
                         @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "UserForm" }))
                         {
 
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="input-1">First Name</label>
-                                        @Html.HiddenFor(m => m.check, new { @id = "txtcheck" })
-                                        @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control validate[required] text-input", @id = "txtfirstname", @placeholder = "Enter First Name", @autocomplete = "off" })
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="input-1">Last Name</label>
+                            
 
-                                        @Html.TextBoxFor(m => m.LastName, new { @class = "form-control validate[required] text-input", @id = "txtLastName", @placeholder = "Enter Last Name", @autocomplete = "off" })
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="input-1">Middle Name</label>
-                                        @Html.TextBoxFor(m => m.MiddleName, new { @class = "form-control validate[required] text-input", @id = "txtMiddleName", @placeholder = "Enter Middle Name", @autocomplete = "off" })
-                                    </div>
-                                </div>
 
 
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="input-5">Date Of Birth</label>
-                                        @*@Html.TextBoxFor(m => m.Dob, new { @type = "date", @class = "form-control validate[required] text-input", @id = "txtDob", @placeholder = "Select Your Date Of Birth", @autocomplete = "off" })*@
 
 
-                                        <div id="datepicker" class="input-group date" data-date-format="dd-mm-yyyy">
-                                            <input class="form-control validate[required]" type="text" id="DOB" name="DOB" autocomplete="off" placeholder="Select Date Of Birth" />
-                                            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                                        </div>
 
-                                    </div>
-                                </div>
 
-
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="input-3">Mobile</label>
-                                        @Html.TextBoxFor(m => m.Mobile, new { @class = "form-control validate[required,custom[Mobile],maxSize[10]] text - input", @id = "txtmobile", @placeholder = "Enter Mobile Number", @autocomplete = "off" })
-                                    </div>
-                                </div>
-
-
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="input-3">Email</label>
-                                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control validate[required,custom[email]] text-input", @id = "txtEmail", @placeholder = "Enter Email", @autocomplete = "off" })
-                                    </div>
-                                </div>
-
-
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="input-3">Address 1</label>
-                                        @Html.TextAreaFor(m => m.Address1, new { @class = "form-control validate[required] text-input", @id = "txtaddress1", @placeholder = "Enter Address 1", @autocomplete = "off" })
-                                    </div>
-                                </div>
-
-
-
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="input-3">Address 2</label>
-                                        @Html.TextAreaFor(m => m.Address2, new { @class = "form-control validate[required] text-input", @id = "txtaddress2", @placeholder = "Enter Address 2", @autocomplete = "off" })
-                                    </div>
-                                </div>
-
-
-
-                                <div class="col-sm-6">
-
-                                    <div class="form-group">
-                                        <label for="input-3">Address 3</label>
-                                        @Html.TextAreaFor(m => m.Address3, new { @class = "form-control validate[required] text-input", @id = "txtaddress3", @placeholder = "Enter Address 3", @autocomplete = "off" })
-                                    </div>
-                                </div>
-
-
-
-
-
-
-
-                                <div class="col-sm-6">
-
-                                    <div class="form-group">
-                                        <label for="input-1">State</label>
-
-                                        <select id="ddlstate" class="form-control validate[required]">
-                                            <option value="">--Select State--</option>
-                                        </select>
-                                        @Html.HiddenFor(m => m.stateid, new { id = "stateid" })
-                                        @Html.HiddenFor(m => m.statetext, new { id = "statetext" })
-                                    </div>
-                                </div>
-
-
-                                <div class="col-sm-6">
-
-                                    <div class="form-group">
-                                        <label for="input-1">City</label>
-                                        <select id="ddlcity" class="form-control validate[required]">
-                                            <option value=''>--Select City--</option>
-                                        </select>
-                                        @Html.HiddenFor(m => m.cityid, new { id = "cityid" })
-                                        @Html.HiddenFor(m => m.citytext, new { id = "citytext" })
-
-                                    </div>
-
-                                </div>
-
-
-
-
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="input-3">Pin</label>
-                                        @Html.TextBoxFor(m => m.Pin, new { @class = "form-control validate[required,custom[PinCode]] text-input", @id = "txtPin", @placeholder = "Enter Pin", @autocomplete = "off" })
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="input-3">User Name</label>
-                                        @Html.TextBoxFor(m => m.UserId, new { @class = "form-control validate[required] text-input", @id = "txtUserId", @placeholder = "Enter UserId", @autocomplete = "off" })
-                                    </div>
-                                </div>
-
-
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="input-3">User Password</label>
-                                        @Html.TextBoxFor(m => m.UserPassword, new { @type = "password", @class = "form-control validate[required] text-input", @id = "txtUserPassword", @placeholder = "Enter User Password", @autocomplete = "off" })
-                                    </div>
-                                </div>
-
-
-
-
-
-                                @*<div class="col-sm-6">
-                    <div class="form-group">
-                        <label for="input-3">Designation</label>
-                        @Html.TextBoxFor(m => m.Designation, new { @class = "form-control validate[required] text-input", @id = "txtDesignation", @placeholder = "Enter Designation", @autocomplete = "off" })
-                    </div>
-                </div>*@
-
-
-
-                                @*<div class="col-sm-6">
-                    <div class="form-group">
-                        <label for="input-3">Role</label>
-                        <select id="ddlRole" class="form-control validate[required]"></select>
-                        @Html.HiddenFor(m => m.rid, new { id = "rid" })
-                        @Html.HiddenFor(m => m.rtext, new { id = "rtext" })
-                    </div>
-                </div>*@
-
-
-
-
-
-
-
-
-                                @*<div class="col-sm-6" id="showcompany">
-
-                                    <div class="form-group">
-                                        <label for="input-1">Add Company</label>
-                                        <br />
-                                        <label class="checkbox-inline">
-                                            <input type="checkbox" value="Yes" class="radio validate[required]" name="radio">Individual
-                                        </label>
-                                        <label class="checkbox-inline">
-                                            <input type="checkbox" value="No" class="radio validate[required]" name="radio">Register Company
-                                        </label>
-
-
-
-                                    </div>
-                                </div>*@
-
-
-
-
-
-
-
-
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="input-3">Status</label>
-                                        @Html.DropDownListFor(x => x.Active, new SelectListItem[]{
-                                       new SelectListItem() {Text = "--Select--", Value=""},
-                                       new SelectListItem() {Text = "Active", Value="Active"},
-                                       new SelectListItem() {Text = "Inactive", Value="Inactive"}} , new { @class= "form-control validate[required]" })
-                                    </div>
-                                </div>
-
-
-
-
-
-
-
-
-                            </div>
-
-
-
-
-
-
-
-                            <hr style="border:1px solid black; border-color:lightgray">
-                            //using (Html.BeginForm(null, null, FormMethod.Post, new { id = "DistributorForm" }))
-                            //{
-                            <div class="row companyclass" style="display:none;">
+                        
+                            <div class="row companyclass" >
                                 <div class="col-sm-6">
 
                                     <div class="form-group">
@@ -503,19 +291,19 @@
 
 
                                 @*<div class="col-sm-6">
-                    <div class="form-group">
-                        <label for="input-3">Lead Generated By</label>
-                        @Html.TextBoxFor(m => m.leadgeneratedBy, new { @class = "form-control validate[required] text-input", @id = "txtleadgeneratedBy", @placeholder = "Enter lead generated By", @autocomplete = "off" })
-                    </div>
-                </div>*@
+                                        <div class="form-group">
+                                            <label for="input-3">Lead Generated By</label>
+                                            @Html.TextBoxFor(m => m.leadgeneratedBy, new { @class = "form-control validate[required] text-input", @id = "txtleadgeneratedBy", @placeholder = "Enter lead generated By", @autocomplete = "off" })
+                                        </div>
+                                    </div>*@
 
 
                                 @*<div class="col-sm-6">
-                    <div class="form-group">
-                        <label for="input-3">Lead Converted By</label>
-                        @Html.TextBoxFor(m => m.leadconvertedBy, new { @class = "form-control validate[required] text-input", @id = "txtCompId", @placeholder = "Enter lead converted By", @autocomplete = "off" })
-                    </div>
-                </div>*@
+                                        <div class="form-group">
+                                            <label for="input-3">Lead Converted By</label>
+                                            @Html.TextBoxFor(m => m.leadconvertedBy, new { @class = "form-control validate[required] text-input", @id = "txtCompId", @placeholder = "Enter lead converted By", @autocomplete = "off" })
+                                        </div>
+                                    </div>*@
 
 
                                 <div class="col-sm-6">
@@ -531,20 +319,20 @@
 
 
                                 @*<div class="col-sm-6">
-                    <div class="form-group">
-                        <label for="input-3">Lead Status</label>
-                        @Html.TextBoxFor(m => m.leadStatus, new { @class = "form-control validate[required] text-input", @id = "txtleadStatus", @placeholder = "Enter lead Status", @autocomplete = "off" })
-                    </div>
-                </div>*@
+                                        <div class="form-group">
+                                            <label for="input-3">Lead Status</label>
+                                            @Html.TextBoxFor(m => m.leadStatus, new { @class = "form-control validate[required] text-input", @id = "txtleadStatus", @placeholder = "Enter lead Status", @autocomplete = "off" })
+                                        </div>
+                                    </div>*@
 
 
 
                                 @*<div class="col-sm-6">
-                    <div class="form-group">
-                        <label for="input-3">Lead Remark</label>
-                        @Html.TextBoxFor(m => m.leadRemark, new { @class = "form-control validate[required] text-input", @id = "txtleadRemark", @placeholder = "Enter lead Remark", @autocomplete = "off" })
-                    </div>
-                </div>*@
+                                        <div class="form-group">
+                                            <label for="input-3">Lead Remark</label>
+                                            @Html.TextBoxFor(m => m.leadRemark, new { @class = "form-control validate[required] text-input", @id = "txtleadRemark", @placeholder = "Enter lead Remark", @autocomplete = "off" })
+                                        </div>
+                                    </div>*@
 
 
                             </div>
@@ -580,7 +368,7 @@
 
                             <div class="form-group" id="getbutton">
 
-                                <button type="submit" id="btnUserformsubmit" formaction="GetUserFormData" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i>Add Users</button>
+                                <button type="submit" id="btnUserformsubmit" formaction="GetcompanyFormData" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i>Add Company</button>
                                 <a href="@Url.Action("AddDistributorIndex","AddDistributor")"><button type="button" class="btn btn-danger" style="display:none;" id="btncompanyadd">Add Company</button></a>
                                 <a href="@Url.Action("UpdateDistributorIndex","UpdateDistributor",new { @NestId = Session["upcompanyid"]})"><button type="button" class="btn btn-danger" style="display:none;" id="btncompanyupdate">Update Company</button></a>
 
@@ -611,12 +399,12 @@
 <script>
 
     $('.radio').on('change', function () {
-       
+
         $('.radio').not(this).prop('checked', false);
         var val = $("input[name=radio]:checked").val()
-      
+
         if (val == "Yes") {
-          
+
             $("#showcompany").removeAttr("style");
             $(".companyclass").removeAttr("style");
             $("#txtcheck").val("true");
@@ -624,10 +412,10 @@
         }
 
         if (val == "No") {
-          
+
             $(".companyclass").css("display", "none");
             $("#txtcheck").val("false");
-         
+
         }
 
 
@@ -637,9 +425,10 @@
     $(document).ready(function () {
 
         $.ajax({
+            
 
             type: "POST",
-            url:"@Url.Action("BindRoleDDL", "UsersForm")",
+            url:"@Url.Action("BindRoleDDL", "AddCompanydetailsIndex")",
             success: function (data) {
                 $('#ddlRole').empty().append(data);
             }
@@ -651,7 +440,7 @@
               $.ajax({
 
             type: "POST",
-            url:"@Url.Action("BindCompanyDDL", "UsersForm")",
+            url:"@Url.Action("BindCompanyDDL", "AddCompanydetailsIndex")",
             success: function (data) {
                 $('#ddlcompany').empty().append(data);
             }
@@ -670,7 +459,7 @@
         $.ajax({
 
             type: "POST",
-            url:"@Url.Action("BindDesignationDDL", "UsersForm")",
+            url:"@Url.Action("BindDesignationDDL", "AddCompanydetailsIndex")",
             success: function (data) {
 
                 $('#ddldesignation').append(data);
@@ -703,7 +492,7 @@
         $("#CompIdtext").val(text);
         $("#CompId").val(value);
 
-       
+
     });
 </script>
 
@@ -726,36 +515,36 @@
 
         $("#rtext").val(text);
         $("#rid").val(value);
-    
+
         if (text == "Distributor") {
 
 
             $.ajax({
 
             type: "POST",
-            url: "@Url.Action("checktype", "UsersForm")",
-            
+            url: "@Url.Action("checktype", "AddCompanydetailsIndex")",
+
             success: function (data) {
 
                 if (data =="Add Distributor") {
 
-                   
+
                     $("#showcompany").removeAttr("style");
                 }
 
-             
+
 
             }
 
 
 
         });
-           
-            
+
+
         }
-     
-       
-    
+
+
+
 
 
     });
@@ -775,7 +564,7 @@
         $.ajax({
 
             type: "POST",
-            url:"@Url.Action("BindStateDDL", "UsersForm")",
+            url:"@Url.Action("BindStateDDL", "AddCompanydetails")",
             success: function (data) {
                 $('#ddlstate').empty().append(data);
             }
@@ -799,7 +588,7 @@
         $.ajax({
 
             type: "POST",
-            url: "@Url.Action("OnChangeBindCity", "UsersForm")",
+            url: "@Url.Action("OnChangeBindCity", "AddCompanydetails")",
             data: { "send": "" + value+  ""},
             success: function (data) {
 
@@ -908,26 +697,26 @@
 
 
 @*Main Content*@
-    <div class="content-wrapper">
-        <div class="container-fluid">
+<div class="content-wrapper">
+    <div class="container-fluid">
 
-            <div class="row pt-2 pb-2">
+        <div class="row pt-2 pb-2">
 
-                <div class="col-sm-3">
-                    <div class="btn-group float-sm-right">
+            <div class="col-sm-3">
+                <div class="btn-group float-sm-right">
 
-                        <div class="dropdown-menu">
-                            <a href="javaScript:void();" class="dropdown-item">Action</a>
-                            <a href="javaScript:void();" class="dropdown-item">Another action</a>
-                            <a href="javaScript:void();" class="dropdown-item">Something else here</a>
-                            <div class="dropdown-divider"></div>
-                            <a href="javaScript:void();" class="dropdown-item">Separated link</a>
-                        </div>
+                    <div class="dropdown-menu">
+                        <a href="javaScript:void();" class="dropdown-item">Action</a>
+                        <a href="javaScript:void();" class="dropdown-item">Another action</a>
+                        <a href="javaScript:void();" class="dropdown-item">Something else here</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="javaScript:void();" class="dropdown-item">Separated link</a>
                     </div>
                 </div>
             </div>
-            <!-- End Breadcrumb-->
-            @*<div class="row">
+        </div>
+        <!-- End Breadcrumb-->
+        @*<div class="row">
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-body">
@@ -943,27 +732,27 @@
             </div>*@
 
 
-        </div>
-        @*end*@
+    </div>
+    @*end*@
 
-        <!--Start Back To Top Button-->
-        <a href="javaScript:void();" class="back-to-top"><i class="fa fa-angle-double-up"></i> </a>
-        <!--End Back To Top Button-->
-
-
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!--Start Back To Top Button-->
+    <a href="javaScript:void();" class="back-to-top"><i class="fa fa-angle-double-up"></i> </a>
+    <!--End Back To Top Button-->
 
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 
-        <script>
+
+
+    <script>
 
     $(document).ready(function () {
 
         $.ajax({
 
             type: "POST",
-            url:"@Url.Action("BindStateDDL", "UsersForm")",
+            url:"@Url.Action("BindStateDDL", "AddCompanydetails")",
             success: function (data) {
                 $('#cddlstate').empty().append(data);
             }
@@ -973,9 +762,9 @@
     });
 
 
-        </script>
+    </script>
 
-        <script>
+    <script>
     $("#cddlstate").change(function () {
         var value = $(this).children(":selected").attr("value");
         var text = $("#cddlstate option:selected").html();
@@ -988,7 +777,7 @@
          $.ajax({
 
             type: "POST",
-            url: "@Url.Action("OnChangeBindCity", "UsersForm")",
+            url: "@Url.Action("OnChangeBindCity", "AddCompanydetails")",
             data: { "send": "" + value+  ""},
             success: function (data) {
 
@@ -1002,27 +791,27 @@
 
 
     });
-        </script>
+    </script>
 
 
-        <script>
-            $("#cddlcity").change(function () {
-                var value = $(this).children(":selected").attr("value");
-                var text = $("#cddlcity option:selected").html();
+    <script>
+        $("#cddlcity").change(function () {
+            var value = $(this).children(":selected").attr("value");
+            var text = $("#cddlcity option:selected").html();
 
-                $("#ccitytext").val(text);
-                $("#ccityid").val(value);
-            });
-        </script>
+            $("#ccitytext").val(text);
+            $("#ccityid").val(value);
+        });
+    </script>
 
-        <script>
+    <script>
 
     $(document).ready(function () {
 
         $.ajax({
 
             type: "POST",
-            url:"@Url.Action("BindDesignationDDL", "UsersForm")",
+            url:"@Url.Action("BindDesignationDDL", "AddCompanydetails")",
             success: function (data) {
                 $('#ddldesignation').append(data);
             }
@@ -1032,136 +821,136 @@
     });
 
 
-        </script>
+    </script>
 
+    <script>
+        $("#ddldesignation").change(function () {
+            var value = $(this).children(":selected").attr("value");
+            var text = $("#ddldesignation option:selected").html();
+
+            $("#designationtxt").val(text);
+            $("#designationid").val(value);
+        });
+    </script>
+
+
+    <script>
+        $(document).ready(function () {
+            var key = $(this).attr("data-errormessage-value-missing='Mobile no.is required!'");
+            $("#txtComanyName").val(key);
+            $("#DistributorForm").validationEngine();
+        });
+    </script>
+
+
+    @if (ViewBag.Message == "Verified")
+    {
         <script>
-            $("#ddldesignation").change(function () {
-                var value = $(this).children(":selected").attr("value");
-                var text = $("#ddldesignation option:selected").html();
 
-                $("#designationtxt").val(text);
-                $("#designationid").val(value);
-            });
-        </script>
-
-
-        <script>
             $(document).ready(function () {
-                var key = $(this).attr("data-errormessage-value-missing='Mobile no.is required!'");
-                $("#txtComanyName").val(key);
-                $("#DistributorForm").validationEngine();
+                $("#btnDistributorformsubmitSUCCESS").on("click", function () { });
+
+                $("#btnDistributorformsubmitSUCCESS").click(); //trigger event after listening to it.
+
+
+                $("#txtComanyName").val("");
+                $("#txtownerName").val("");
+                $("#txtownerMobileNo").val("");
+                $("#txtAddress1").val("");
+                $("#txtAddress2").val("");
+
+
+                $("#txtPin").val("");
+                $("#txtGstNO").val("");
+                $("#txtIdentityProofValue").val("");
+                $("#txtAlt_Identity_Proof").val("");
+                $("#txtAlt_Identity_Proof_Value").val("");
+                $("#txtcontactPerson").val("");
+                $("#txtcontactMobileNo").val("");
+                $("#txtcontactMailId").val("");
+                $("#txtbankName").val("");
+                $("#txtBranch").val("");
+                $("#txtaccountNumber").val("");
+                $("#txtIFSC_Code").val("");
+                $("#txtaccountName").val("");
+                $("#txtReferred_By").val("");
+                $("#txtleadgeneratedBy").val("");
+                $("#txtCompId").val("");
+                $("#txtrelationshipManager").val("");
+                $("#txtleadStatus").val("");
+                $("#txtleadRemark").val("");
+
+
+                function removeError() { $(".formError").remove() };
             });
         </script>
 
-
-        @if (ViewBag.Message == "Verified")
-        {
-            <script>
-
-                $(document).ready(function () {
-                    $("#btnDistributorformsubmitSUCCESS").on("click", function () { });
-
-                    $("#btnDistributorformsubmitSUCCESS").click(); //trigger event after listening to it.
+    }
 
 
-                    $("#txtComanyName").val("");
-                    $("#txtownerName").val("");
-                    $("#txtownerMobileNo").val("");
-                    $("#txtAddress1").val("");
-                    $("#txtAddress2").val("");
+
+    @*validation script*@
+    <script>
+        function getIdentityselection(id) {
+            if (id == "Aadhaar Card") {
+                $("#appendtxt").empty().append("<input type='text' class='form-control validate[required,custom[adharCard]] text-input' id='cIdentity_Proof_Value' name='cIdentity_Proof_Value' placeholder='Enter Aadhaar Card' autocomplete='off'  />");
+            }
 
 
-                    $("#txtPin").val("");
-                    $("#txtGstNO").val("");
-                    $("#txtIdentityProofValue").val("");
-                    $("#txtAlt_Identity_Proof").val("");
-                    $("#txtAlt_Identity_Proof_Value").val("");
-                    $("#txtcontactPerson").val("");
-                    $("#txtcontactMobileNo").val("");
-                    $("#txtcontactMailId").val("");
-                    $("#txtbankName").val("");
-                    $("#txtBranch").val("");
-                    $("#txtaccountNumber").val("");
-                    $("#txtIFSC_Code").val("");
-                    $("#txtaccountName").val("");
-                    $("#txtReferred_By").val("");
-                    $("#txtleadgeneratedBy").val("");
-                    $("#txtCompId").val("");
-                    $("#txtrelationshipManager").val("");
-                    $("#txtleadStatus").val("");
-                    $("#txtleadRemark").val("");
+            if (id == "Passport") {
+                $("#appendtxt").empty().append("<input type='text' class='form-control validate[required,custom[Passport]] text-input' id='cIdentity_Proof_Value' name='cIdentity_Proof_Value'  placeholder='Enter Passport Number' autocomplete='off'  />");
+            }
 
 
-                    function removeError() { $(".formError").remove() };
-                });
-            </script>
+
+            if (id == "Driving Licences") {
+                $("#appendtxt").empty().append("<input type='text' class='form-control validate[required,custom[carnumber]] text-input' id='cIdentity_Proof_Value' name='cIdentity_Proof_Value' placeholder='Enter Driving Licences' autocomplete='off'  />");
+            }
+
+
+
+            if (id == "Pan Card") {
+                $("#appendtxt").empty().append("<input type='text' class='form-control validate[required,custom[pannumber]] text-input' id='cIdentity_Proof_Value' name='cIdentity_Proof_Value' placeholder='Enter Pan Card' autocomplete='off'  />");
+            }
+
 
         }
+    </script>
 
 
 
-        @*validation script*@
-        <script>
-            function getIdentityselection(id) {
-                if (id == "Aadhaar Card") {
-                    $("#appendtxt").empty().append("<input type='text' class='form-control validate[required,custom[adharCard]] text-input' id='cIdentity_Proof_Value' name='cIdentity_Proof_Value' placeholder='Enter Aadhaar Card' autocomplete='off'  />");
-                }
-
-
-                if (id == "Passport") {
-                    $("#appendtxt").empty().append("<input type='text' class='form-control validate[required,custom[Passport]] text-input' id='cIdentity_Proof_Value' name='cIdentity_Proof_Value'  placeholder='Enter Passport Number' autocomplete='off'  />");
-                }
 
 
 
-                if (id == "Driving Licences") {
-                    $("#appendtxt").empty().append("<input type='text' class='form-control validate[required,custom[carnumber]] text-input' id='cIdentity_Proof_Value' name='cIdentity_Proof_Value' placeholder='Enter Driving Licences' autocomplete='off'  />");
-                }
 
 
 
-                if (id == "Pan Card") {
-                    $("#appendtxt").empty().append("<input type='text' class='form-control validate[required,custom[pannumber]] text-input' id='cIdentity_Proof_Value' name='cIdentity_Proof_Value' placeholder='Enter Pan Card' autocomplete='off'  />");
-                }
-
-
+    <script>
+        function getIdentityselection2(id) {
+            if (id == "Aadhaar Card") {
+                $("#appendtxt2").empty().append("<input type='text' class='form-control validate[custom[adharCard]] text-input' id='cAlt_Identity_Proof_Value' name='cAlt_Identity_Proof_Value' placeholder='Enter Aadhaar Card' autocomplete='off'  />");
             }
-        </script>
 
 
-
-
-        
-
-
-
-
-        <script>
-            function getIdentityselection2(id) {
-                if (id == "Aadhaar Card") {
-                    $("#appendtxt2").empty().append("<input type='text' class='form-control validate[custom[adharCard]] text-input' id='cAlt_Identity_Proof_Value' name='cAlt_Identity_Proof_Value' placeholder='Enter Aadhaar Card' autocomplete='off'  />");
-                }
-
-
-                if (id == "Passport") {
-                    $("#appendtxt2").empty().append("<input type='text' class='form-control validate[custom[Passport]] text-input' id='cAlt_Identity_Proof_Value' name='cAlt_Identity_Proof_Value'  placeholder='Enter Passport Number' autocomplete='off'  />");
-                }
-
-
-
-                if (id == "Driving Licences") {
-                    $("#appendtxt2").empty().append("<input type='text' class='form-control validate[custom[carnumber]] text-input' id='cAlt_Identity_Proof_Value' name='cAlt_Identity_Proof_Value' placeholder='Enter Driving Licences' autocomplete='off'  />");
-                }
-
-
-
-                if (id == "Pan Card") {
-                    $("#appendtxt2").empty().append("<input type='text' class='form-control validate[custom[pannumber]] text-input' id='cAlt_Identity_Proof_Value' name='cAlt_Identity_Proof_Value' placeholder='Enter Pan Card' autocomplete='off'  />");
-                }
-
-
+            if (id == "Passport") {
+                $("#appendtxt2").empty().append("<input type='text' class='form-control validate[custom[Passport]] text-input' id='cAlt_Identity_Proof_Value' name='cAlt_Identity_Proof_Value'  placeholder='Enter Passport Number' autocomplete='off'  />");
             }
-        </script>
+
+
+
+            if (id == "Driving Licences") {
+                $("#appendtxt2").empty().append("<input type='text' class='form-control validate[custom[carnumber]] text-input' id='cAlt_Identity_Proof_Value' name='cAlt_Identity_Proof_Value' placeholder='Enter Driving Licences' autocomplete='off'  />");
+            }
+
+
+
+            if (id == "Pan Card") {
+                $("#appendtxt2").empty().append("<input type='text' class='form-control validate[custom[pannumber]] text-input' id='cAlt_Identity_Proof_Value' name='cAlt_Identity_Proof_Value' placeholder='Enter Pan Card' autocomplete='off'  />");
+            }
+
+
+        }
+    </script>
 
 
 
@@ -1170,4 +959,6 @@
 
 
 
-        @*end*@
+    @*end*@
+
+

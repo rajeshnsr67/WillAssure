@@ -315,9 +315,12 @@ namespace WillAssure.Controllers
                 qry = qry + "insert into Assignment_Roles (RoleId,PageName,Nav1,Nav2) values (" + roleid + " ,'CreateCoupons','Add Coupons~AddCouponsIndex~AddCoupons','View Coupons~EditCouponsIndex~EditCoupons')";
                 qry = qry + "insert into Assignment_Roles (RoleId,PageName,Nav1,Nav2) values (" + roleid + " ,'CouponAllotment','Allotment~CouponsAllotmentIndex~CouponsAllotment','NULL~NULL~NULL')";
                 qry = qry + "insert into Assignment_Roles (RoleId,PageName,Nav1,Nav2) values (" + roleid + " ,'Settings','ValidateDoc~SettingsIndex~Settings','View Setting~EditSettingIndex~EditSetting')";
+               
                 qry = qry + "insert into Assignment_Roles (RoleId,PageName,Nav1,Nav2) values (" + roleid + " ,'Visitor','Add Visitor~AddVisitorPageContentIndex~AddVisitorPageContent','View Visitor~EditVisitorIndex~EditVisitor')";
                 qry = qry + "insert into Assignment_Roles (RoleId,PageName,Nav1,Nav2) values (" + roleid + " ,'WillEmployee','Add Employee~AddWillEmployeeIndex~AddWillEmployee','View Employee~EditWillEmployeeIndex~EditWillEmployee')";
-                qry = qry + "insert into Assignment_Roles (RoleId,PageName,Nav1,Nav2) values (" + roleid + " ,'Distributor','Add Distributor~UsersFormIndex~UsersForm','View Distributor~EditUserFormIndex~EditUserForm')";
+                qry = qry + "insert into Assignment_Roles (RoleId,PageName,Nav1,Nav2) values (" + roleid + " ,'Distributor','individual Firm~UsersFormIndex~UsersForm','Register Company~AddCompanydetailsIndex~AddCompanydetails')";
+                qry = qry + "insert into Assignment_Roles (RoleId,PageName,Nav1,Nav2) values (" + roleid + " , 'View','View Individual Firm~EditUserFormIndex~EditUserForm','View Register Company~EditCompanyDetailsIndex~EditCompanyDetails')";
+
                 qry = qry + "insert into Assignment_Roles (RoleId,PageName,Nav1,Nav2) values (" + roleid + " ,'DistributorEmployee','Add Employee~AddDistributorEmployeeIndex~AddDistributorEmployee','View Employee~EditDistributorEmployeeIndex~EditDistributorEmployee')";
                 qry = qry + "insert into Assignment_Roles (RoleId,PageName,Nav1,Nav2) values (" + roleid + " ,'Testators','Add Testators~AddTestatorsFormIndex~AddTestatorsForm','View Testators~EditTestatorIndex~EditTestator')";
                 qry = qry + "insert into Assignment_Roles (RoleId,PageName,Nav1,Nav2) values (" + roleid + " ,'TestatorsFamily','Add Testator Family~AddTestatorFamilyIndex~AddTestatorFamily','View Testator Family~EditTestatorFamilyIndex~EditTestatorFamily')";
@@ -464,9 +467,12 @@ namespace WillAssure.Controllers
                     qry = qry + "insert into Assignment_Roles (RoleId,PageName,Nav1,Nav2) values (" + response + " ,'CreateCoupons','Add Coupons~AddCouponsIndex~AddCoupons','View Coupons~EditCouponsIndex~EditCoupons')";
                     qry = qry + "insert into Assignment_Roles (RoleId,PageName,Nav1,Nav2) values (" + response + " ,'CouponAllotment','Allotment~CouponsAllotmentIndex~CouponsAllotment','NULL~NULL~NULL')";
                     qry = qry + "insert into Assignment_Roles (RoleId,PageName,Nav1,Nav2) values (" + response + " ,'Settings','ValidateDoc~SettingsIndex~Settings','View Setting~EditSettingIndex~EditSetting')";
+
                     qry = qry + "insert into Assignment_Roles (RoleId,PageName,Nav1,Nav2) values (" + response + " ,'Visitor','Add Visitor~AddVisitorPageContentIndex~AddVisitorPageContent','View Visitor~EditVisitorIndex~EditVisitor')";
                     qry = qry + "insert into Assignment_Roles (RoleId,PageName,Nav1,Nav2) values (" + response + " ,'WillEmployee','Add Employee~AddWillEmployeeIndex~AddWillEmployee','View Employee~EditWillEmployeeIndex~EditWillEmployee')";
-                    qry = qry + "insert into Assignment_Roles (RoleId,PageName,Nav1,Nav2) values (" + response + " ,'Distributor','Add Distributor~UsersFormIndex~UsersForm','View Distributor~EditUserFormIndex~EditUserForm')";
+                    qry = qry + "insert into Assignment_Roles (RoleId,PageName,Nav1,Nav2) values (" + response + " ,'Distributor','individual Firm~UsersFormIndex~UsersForm','Register Company~AddCompanydetailsIndex~AddCompanydetails')";
+                    qry = qry + "insert into Assignment_Roles (RoleId,PageName,Nav1,Nav2) values (" + response + " , 'View','View Individual Firm~EditUserFormIndex~EditUserForm','View Register Company~EditCompanyDetailsIndex~EditCompanyDetails')";
+
                     qry = qry + "insert into Assignment_Roles (RoleId,PageName,Nav1,Nav2) values (" + response + " ,'DistributorEmployee','Add Employee~AddDistributorEmployeeIndex~AddDistributorEmployee','View Employee~EditDistributorEmployeeIndex~EditDistributorEmployee')";
                     qry = qry + "insert into Assignment_Roles (RoleId,PageName,Nav1,Nav2) values (" + response + " ,'Testators','Add Testators~AddTestatorsFormIndex~AddTestatorsForm','View Testators~EditTestatorIndex~EditTestator')";
                     qry = qry + "insert into Assignment_Roles (RoleId,PageName,Nav1,Nav2) values (" + response + " ,'TestatorsFamily','Add Testator Family~AddTestatorFamilyIndex~AddTestatorFamily','View Testator Family~EditTestatorFamilyIndex~EditTestatorFamily')";

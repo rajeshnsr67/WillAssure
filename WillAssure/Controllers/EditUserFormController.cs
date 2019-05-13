@@ -292,9 +292,9 @@ namespace WillAssure.Controllers
 
             for (int i = 0; i < Lmlist.Count(); i++)
             {
-                testString = Lmlist[11].Action;
-                willemployee = Lmlist[10].Action;
-                distributoremployee = Lmlist[12].Action;
+                testString = Lmlist[12].Action;
+                willemployee = Lmlist[11].Action;
+                distributoremployee = Lmlist[14].Action;
 
             }
 
@@ -1083,9 +1083,9 @@ namespace WillAssure.Controllers
 
             for (int i = 0; i < Lmlist.Count(); i++)
             {
-                testString = Lmlist[10].Action;
-                willemployee = Lmlist[9].Action;
-                distributoremployee = Lmlist[11].Action;
+                testString = Lmlist[12].Action;
+                willemployee = Lmlist[11].Action;
+                distributoremployee = Lmlist[14].Action;
 
             }
 

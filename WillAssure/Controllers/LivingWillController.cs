@@ -26,5 +26,28 @@ namespace WillAssure.Controllers
 
             return View("~/Views/LivingWill/LivingWillPageContent.cshtml");
         }
+
+
+        public ActionResult InsertWillData(CodocilModel CM)
+        {
+
+            ViewBag.enablelivingwill = "true";
+
+            con.Open();
+            string query = "insert into living_Will (Conditions,TreatmentDecline) values ('"+CM.conditions+"' , '"+CM.treatmentdecline+"')";
+            SqlCommand cmd = new SqlCommand(query,con);
+            cmd.ExecuteNonQuery();
+
+
+            con.Close();
+
+
+            ModelState.Clear();
+            ViewBag.Message = "Verified";
+
+            return View("~/Views/LivingWill/LivingWillPageContent.cshtml");
+        }
+
+
     }
 }

@@ -89,6 +89,13 @@
                                             </tr>
 
                                             <tr>
+                                                <td style="font-weight:bolder"><input type="checkbox" id="View">View</td>
+                                                <td><label class="checkbox-inline"><input type="checkbox" class="insert" id="CompanyAdd">Add</label></td>
+                                                <td><label class="checkbox-inline"><input type="checkbox" class="update" id="CompanyEdit">Edit</label></td>
+                                                <td><label class="checkbox-inline"><input type="checkbox" class="delete" id="CompanyDelete">Delete</label></td>
+                                            </tr>
+
+                                            <tr>
                                                 <td style="font-weight:bolder"><input type="checkbox" id="Distributor">Distributor</td>
                                                 <td><label class="checkbox-inline"><input type="checkbox" class="insert" id="DistributorAdd">Add</label></td>
                                                 <td><label class="checkbox-inline"><input type="checkbox" class="update" id="DistributorEdit">Edit</label></td>
@@ -159,11 +166,11 @@
                                                 <td><label class="checkbox-inline"><input type="checkbox" class="delete" id="BeneficiaryDelete">Delete</label></td>
                                             </tr>
                                             @*<tr>
-                                <td style="font-weight:bolder"><input type="checkbox" id="AlternateBeneficiary">Alternate Beneficiary</td>
-                                <td><label class="checkbox-inline"><input type="checkbox" id="AlternateBeneficiaryAdd">Add</label></td>
-                                <td><label class="checkbox-inline"><input type="checkbox" id="AlternateBeneficiaryEdit">Edit</label></td>
-                                <td><label class="checkbox-inline"><input type="checkbox" id="AlternateBeneficiaryDelete">Delete</label></td>
-                            </tr>*@
+                                    <td style="font-weight:bolder"><input type="checkbox" id="AlternateBeneficiary">Alternate Beneficiary</td>
+                                    <td><label class="checkbox-inline"><input type="checkbox" id="AlternateBeneficiaryAdd">Add</label></td>
+                                    <td><label class="checkbox-inline"><input type="checkbox" id="AlternateBeneficiaryEdit">Edit</label></td>
+                                    <td><label class="checkbox-inline"><input type="checkbox" id="AlternateBeneficiaryDelete">Delete</label></td>
+                                </tr>*@
 
                                             <tr>
                                                 <td style="font-weight:bolder"><input type="checkbox" id="Nominee">Nominee</td>
@@ -178,11 +185,11 @@
                                                 <td><label class="checkbox-inline"><input type="checkbox" class="delete" id="AppointeesDelete">Delete</label></td>
                                             </tr>
                                             @*<tr>
-                                <td style="font-weight:bolder"><input type="checkbox" id="AlternateAppointees">Alternate Appointees</td>
-                                <td><label class="checkbox-inline"><input type="checkbox" id="AlternateAppointeesAdd">Add</label></td>
-                                <td><label class="checkbox-inline"><input type="checkbox" id="AlternateAppointeesEdit">Edit</label></td>
-                                <td><label class="checkbox-inline"><input type="checkbox" id="AlternateAppointeesDelete">Delete</label></td>
-                            </tr>*@
+                                    <td style="font-weight:bolder"><input type="checkbox" id="AlternateAppointees">Alternate Appointees</td>
+                                    <td><label class="checkbox-inline"><input type="checkbox" id="AlternateAppointeesAdd">Add</label></td>
+                                    <td><label class="checkbox-inline"><input type="checkbox" id="AlternateAppointeesEdit">Edit</label></td>
+                                    <td><label class="checkbox-inline"><input type="checkbox" id="AlternateAppointeesDelete">Delete</label></td>
+                                </tr>*@
 
 
                                             <tr>
@@ -298,6 +305,7 @@
                     <input type="hidden" id="25" value="" />
                     <input type="hidden" id="26" value="" />
                     <input type="hidden" id="27" value="" />
+                    <input type="hidden" id="28" value="" />
 
                 </div>
             </div>
@@ -389,6 +397,7 @@
         $("#Liabilities").prop("checked", false);
         $("#PetCare").prop("checked", false);
         $("#Visitor").prop("checked", false);
+        $("#View").prop("checked", false);
 
 
 
@@ -416,6 +425,7 @@
         $("#LiabilitiesAdd").prop("checked", false); 
         $("#PetCareAdd").prop("checked", false);
         $("#VisitorAdd").prop("checked", false);
+        $("#CompanyAdd").prop("checked", false);
 
 
          $("#RolesEdit").prop("checked", false);
@@ -442,6 +452,7 @@
         $("#LiabilitiesEdit").prop("checked", false); 
         $("#PetCareEdit").prop("checked", false);
         $("#VisitorEdit").prop("checked", false);
+        $("#CompanyEdit").prop("checked", false);
 
         $("#RolesDelete").prop("checked", false);
         $("#AssignRolesDelete").prop("checked", false);
@@ -467,7 +478,7 @@
         $("#LiabilitiesDelete").prop("checked", false); 
         $("#PetCareDelete").prop("checked", false);
         $("#VisitorDelete").prop("checked", false);
-
+        $("#CompanyDelete").prop("checked", false);
           $.ajax({
 
             type: "POST",
@@ -639,6 +650,10 @@
 
         var status27 = "";
         var data27 = "";
+
+
+        var status28 = "";
+        var data28 = "";
        
 
         // for role
@@ -684,8 +699,8 @@
 
 
 
-        // for Company
-        //if ($("#Company").is(':checked')) {
+        // for View
+        //if ($("#View").is(':checked')) {
         //    status2 = status2 + "Active";
         //}
         //else {
@@ -712,7 +727,7 @@
         //}
 
       
-        //$("#2").val("update Assignment_Roles set  PageStatus= '" + status2 + "'  , Action = '" + data2 + "' where PageName = 'Company' and RoleId = " + roleid +"");
+        //$("#2").val("update Assignment_Roles set  PageStatus= '" + status2 + "'  , Action = '" + data2 + "' where PageName = 'View' and RoleId = " + roleid +"");
 
         //end
 
@@ -1606,8 +1621,47 @@
 
 
 
+
+
+        // for View
+        if ($("#View").is(':checked')) {
+            status28 = status28 + "Active";
+        }
+        else {
+
+            status28 = status28 + "Inactive";
+        }
+
+        if ($("#CompanyAdd").is(':checked')) {
+            data28 = data28 + "1,";
+        }
+        else {
+            data28 = data28 + "0,";
+        }
+        if ($("#CompanyEdit").is(':checked')) {
+            data28 = data28 + "2,";
+        }
+        else {
+            data28 = data28 + "0,";
+        }
+        if ($("#CompanyDelete").is(':checked')) {
+            data28 = data28 + "3";
+        }
+        else {
+            data28 = data28 + "0";
+        }
+
+
+        $("#28").val("update Assignment_Roles set  PageStatus= '" + status28 + "'  , Action = '" + data28 + "' where PageName = 'View' and RoleId = " + roleid + " ");
+
+        //end
+
+
+
+
+
       //  + $("#2").val() + "~"
-        var AllData = $("#1").val() + "~" + $("#3").val() + "~" + $("#4").val() + "~" + $("#5").val() + "~" + $("#6").val() + "~" + $("#7").val() + "~" + $("#8").val() + "~" + $("#9").val() + "~" + $("#10").val() + "~" + $("#11").val() + "~" + $("#12").val() + "~" + $("#13").val() + "~" + $("#14").val() + "~" + $("#15").val() + "~" + $("#16").val() + "~" + $("#17").val() + "~" + $("#18").val() + "~" + $("#19").val() + "~" + $("#20").val() + "~" + $("#21").val() + "~" + $("#22").val() + "~" + $("#23").val() + "~" + $("#24").val() + "~" + $("#25").val() + "~" + $("#26").val() + "~" + $("#27").val(); 
+        var AllData = $("#1").val() + "~" + $("#3").val() + "~" + $("#4").val() + "~" + $("#5").val() + "~" + $("#6").val() + "~" + $("#7").val() + "~" + $("#8").val() + "~" + $("#9").val() + "~" + $("#10").val() + "~" + $("#11").val() + "~" + $("#12").val() + "~" + $("#13").val() + "~" + $("#14").val() + "~" + $("#15").val() + "~" + $("#16").val() + "~" + $("#17").val() + "~" + $("#18").val() + "~" + $("#19").val() + "~" + $("#20").val() + "~" + $("#21").val() + "~" + $("#22").val() + "~" + $("#23").val() + "~" + $("#24").val() + "~" + $("#25").val() + "~" + $("#26").val() + "~" + $("#27").val() + "~" + $("#28").val(); 
 
 
           $.ajax({
@@ -1815,6 +1869,15 @@
         $("input[id='PetCareAdd']").not(this).prop('checked', this.checked);
         $("input[id='PetCareEdit']").not(this).prop('checked', this.checked);
         $("input[id='PetCareDelete']").not(this).prop('checked', this.checked);
+    });
+
+
+
+
+    $("#View").click(function () {
+        $("input[id='CompanyAdd']").not(this).prop('checked', this.checked);
+        $("input[id='CompanyEdit']").not(this).prop('checked', this.checked);
+        $("input[id='CompanyDelete']").not(this).prop('checked', this.checked);
     });
 </script>
 

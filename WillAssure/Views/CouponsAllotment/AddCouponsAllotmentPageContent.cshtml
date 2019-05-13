@@ -52,7 +52,7 @@
 
                         @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "RoleForm" }))
                         {
-
+                            <textarea id="documenttype" name="documenttype" style="display:none;"></textarea>
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group">
@@ -82,15 +82,26 @@
 
 
                                 <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="input-3">Document</label>
-                                        @Html.DropDownListFor(x => x.document_txt, new SelectListItem[]{
-                                           new SelectListItem() {Text = "--Select--", Value=""},
+                                    <div class="form-group col-sm-12" style="float: left;">
+                                        <label for="input-3">Select Document</label>
+                                        <div class="col-sm-12" style="float: left;">
+                                            <label class="checkbox-inline">
+                                                <input type="checkbox" id="checkone" value="Will">Will
+                                            </label>
+                                            <label class="checkbox-inline">
+                                                <input type="checkbox" id="checktwo" value="Codocil">Codocil
+                                            </label>
+                                            <label class="checkbox-inline">
+                                                <input type="checkbox" id="checkthree" value="POA">POA
+                                            </label>
+                                            <label class="checkbox-inline">
+                                                <input type="checkbox" id="checkfour" value="GiftDeeds">Gift Deeds
+                                            </label>
+                                            <label class="checkbox-inline">
+                                                <input type="checkbox" id="checkfive" value="LivingWill">Living Will
+                                            </label>
+                                        </div>
 
-                                           new SelectListItem() {Text = "Will", Value="1"}}, new { @class = "form-control validate[required]", @id="ddldocumenttype" })
-
-                                        @Html.HiddenFor(m => m.document_id, new { id = "document_id" })
-                                        @Html.HiddenFor(m => m.document_txt, new { id = "document_txt" })
                                     </div>
                                 </div>
                                 <div class="col-sm-6"></div>
@@ -163,7 +174,82 @@
 
 
 
+
+
+
+
+
 <script>
+
+
+    $("#checkone").click(function () {
+
+        if ($("#checkone").is(":checked")) {
+            var x = $("#checkone").val();
+            $("#documenttype").append(x);
+
+        }
+
+
+
+    });
+
+
+
+
+    $("#checktwo").click(function () {
+
+
+
+        if ($("#checktwo").is(":checked")) {
+            var x = $("#checktwo").val();
+            $("#documenttype").append(x);
+      
+        }
+
+
+
+    });
+
+
+
+    $("#checkthree").click(function () {
+
+        if ($("#checkthree").is(":checked")) {
+            var x = $("#checkthree").val();
+            $("#documenttype").append(x);
+    
+        }
+    });
+
+
+    $("#checkfour").click(function () {
+
+        if ($("#checkfour").is(":checked")) {
+            var x = $("#checkfour").val();
+            $("#documenttype").append(x);
+ 
+        }
+
+
+
+
+    });
+
+
+    $("#checkfive").click(function () {
+
+        if ($("#checkfive").is(":checked")) {
+            var x = $("#checkfive").val();
+            $("#documenttype").append(x);
+           
+        }
+
+
+
+
+    });
+
     $(document).ready(function () {
         $("#RoleForm").validationEngine();
     });

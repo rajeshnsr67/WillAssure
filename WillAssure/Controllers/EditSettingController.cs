@@ -302,7 +302,7 @@ namespace WillAssure.Controllers
 
             for (int i = 0; i < Lmlist.Count(); i++)
             {
-                testString = Lmlist[0].Action;
+                testString = Lmlist[9].Action;
 
             }
 
@@ -311,16 +311,74 @@ namespace WillAssure.Controllers
             if (dt.Rows.Count > 0)
             {
 
-                for (int i = 0; i < dt.Rows.Count; i++)
+                if (testString == "1,2,0" || testString == "0,2,0" || testString == "0,2,3" || testString == "0,2,3" || testString == "0,2,0")
                 {
-                    data = data + "<tr class='nr'><td>" + dt.Rows[i]["svId"].ToString() + "</td>"
-                   + "<td>" + dt.Rows[i]["documentType"].ToString() + "</td>"
-                   + "<td>" + dt.Rows[i]["Value"].ToString() + "</td>"
-                   + "<td> <button type='button'   id='" + dt.Rows[i]["svId"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary'>Edit</button></td></tr>";
+                    for (int i = 0; i < dt.Rows.Count; i++)
+                    {
+                        data = data + "<tr class='nr'><td>" + dt.Rows[i]["svId"].ToString() + "</td>"
+                       + "<td>" + dt.Rows[i]["documentType"].ToString() + "</td>"
+                       + "<td>" + dt.Rows[i]["Value"].ToString() + "</td>"
+                       + "<td> <button type='button'   id='" + dt.Rows[i]["svId"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary'>Edit</button>  </td></tr>";
+
+                    }
+                }
+
+
+                if (testString == "1,0,3" || testString == "0,0,3" || testString == "0,2,3" || testString == "1,0,3" || testString == "0,0,3")
+                {
+                    for (int i = 0; i < dt.Rows.Count; i++)
+                    {
+                        data = data + "<tr class='nr'><td>" + dt.Rows[i]["svId"].ToString() + "</td>"
+                                       + "<td>" + dt.Rows[i]["documentType"].ToString() + "</td>"
+                                       + "<td>" + dt.Rows[i]["Value"].ToString() + "</td>"
+                                       + "<td>   <button type='button'   id='" + dt.Rows[i]["svId"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-danger'>Delete</button></td></tr>";
+
+                    }
+                }
+
+
+
+                if (testString == "1,2,3" || testString == "0,2,3")
+                {
+                    for (int i = 0; i < dt.Rows.Count; i++)
+                    {
+                        data = data + "<tr class='nr'><td>" + dt.Rows[i]["svId"].ToString() + "</td>"
+                                       + "<td>" + dt.Rows[i]["documentType"].ToString() + "</td>"
+                                       + "<td>" + dt.Rows[i]["Value"].ToString() + "</td>"
+                                       + "<td> <button type='button'   id='" + dt.Rows[i]["svId"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary'>Edit</button>  <button type='button'   id='" + dt.Rows[i]["svId"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-danger'>Delete</button></td></tr>";
+
+                    }
 
                 }
 
+
+
+                if (testString == "0,0,0")
+                {
+                    for (int i = 0; i < dt.Rows.Count; i++)
+                    {
+                        data = data + "<tr class='nr'><td>" + dt.Rows[i]["svId"].ToString() + "</td>"
+                     + "<td>" + dt.Rows[i]["documentType"].ToString() + "</td>"
+                     + "<td>" + dt.Rows[i]["Value"].ToString() + "</td>";
+                     
+
+
+                    }
+
+
+
+                }
+
+
+
+
+
             }
+
+
+
+
+
 
             return data;
         }
