@@ -21,6 +21,7 @@ namespace WillAssure.Controllers
         // GET: AddBeneficiary
         public ActionResult AddBeneficiaryIndex()
         {
+            ViewBag.collapse = "true";
             // check type 
             string typ = "";
             con.Open();
@@ -248,7 +249,7 @@ namespace WillAssure.Controllers
 
         public ActionResult InsertBeneficiaryData(BeneficiaryModel BM)
         {
-
+            ViewBag.collapse = "true";
             // check type 
             string typ = "";
             con.Open();

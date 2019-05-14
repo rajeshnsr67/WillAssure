@@ -22,7 +22,7 @@ namespace WillAssure.Controllers
         // GET: AddMainAssets
         public ActionResult AddMainAssetsIndex()
         {
-
+            ViewBag.collapse = "true";
             // check type 
             string typ = "";
             con.Open();
@@ -794,6 +794,7 @@ namespace WillAssure.Controllers
         [HttpPost]
         public ActionResult InsertMainAsset(FormCollection collection)
         {
+            ViewBag.collapse = "true";
             // check type 
             string typ = "";
             con.Open();

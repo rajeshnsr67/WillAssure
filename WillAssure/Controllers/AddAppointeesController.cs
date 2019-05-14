@@ -20,7 +20,7 @@ namespace WillAssure.Controllers
         // GET: AddAppointees
         public ActionResult AddAppointeesIndex()
         {
-
+            ViewBag.collapse = "true";
             if (Session["rId"] == null || Session["uuid"] == null)
             {
 
@@ -371,6 +371,7 @@ namespace WillAssure.Controllers
 
         public ActionResult InsertAppointeesFormData(AppointeesModel AM)
         {
+            ViewBag.collapse = "true";
             // check type 
             string typ = "";
             con.Open();

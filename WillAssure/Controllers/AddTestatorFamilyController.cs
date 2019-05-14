@@ -22,6 +22,7 @@ namespace WillAssure.Controllers
         // GET: AddTestatorFamily
         public ActionResult AddTestatorFamilyIndex()
         {
+            ViewBag.collapse = "true";
             // check type 
             string typ = "";
             con.Open();
@@ -292,6 +293,8 @@ namespace WillAssure.Controllers
 
         public ActionResult InsertTestatorFamilyFormData(TestatorFamilyModel TFM)
         {
+
+            ViewBag.collapse = "true";
             // check type 
             string typ = "";
             con.Open();
@@ -440,7 +443,7 @@ namespace WillAssure.Controllers
                 cmd.Parameters.AddWithValue("@Identity_Proof_Value", TFM.Identity_Proof_Value);
                 cmd.Parameters.AddWithValue("@Alt_Identity_Proof", TFM.Alt_Identity_Proof);
                 cmd.Parameters.AddWithValue("@Alt_Identity_Proof_Value", TFM.Alt_Identity_Proof_Value);
-                cmd.Parameters.AddWithValue("@Is_Informed_Person", TFM.Is_Informed_Person);
+                cmd.Parameters.AddWithValue("@Is_Informed_Person", "none");
                 cmd.ExecuteNonQuery();
                 con.Close();
 

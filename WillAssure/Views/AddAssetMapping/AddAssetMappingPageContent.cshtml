@@ -65,6 +65,67 @@
                                 }
                                 else
                                 {
+                                    if (Session["Type"].ToString() != "Testator")
+                                    {
+                                        <h5>
+                                            <ul id="menu" style="font-weight:bold;">
+
+
+                                                <a href="@Url.Action("AddTestatorsFormIndex","AddTestatorsForm")"><li style="color:black;">Testator></li></a>
+                                                <a href="@Url.Action("AddTestatorFamilyIndex","AddTestatorFamily")"><li style="color:black;">Testator Family ></li></a>
+                                                <a href="@Url.Action("AddBeneficiaryIndex","AddBeneficiary")"><li style="color:black;">Beneficiary ></li></a>
+                                                <a href="@Url.Action("AddMainAssetsIndex","AddMainAssets")"><li style="color:black;">AssetInformation ></li></a>
+                                                <a href="@Url.Action("AddAssetMappingIndex","AddAssetMapping")"><li style="">Mapping ></li></a>
+                                                <li style="color:#e1e1e1">Nominee ></li>
+                                                <li style="color:#e1e1e1">Appointees </li>
+
+
+                                            </ul>
+                                        </h5>
+                                    }
+                                    else
+                                    {
+                                        <h5>
+                                            <ul id="menu" style="font-weight:bold;">
+
+
+                                                <a href="@Url.Action("UpdateTestatorsIndex","UpdateTestators" , new { NestId = Convert.ToInt32(Session["uuid"]) })"><li style="color:black;">Testator></li></a>
+                                                <a href="@Url.Action("AddTestatorFamilyIndex","AddTestatorFamily")"><li style="color:black;">Testator Family ></li></a>
+                                                <a href="@Url.Action("AddBeneficiaryIndex","AddBeneficiary")"><li style="color:black;">Beneficiary ></li></a>
+                                                <a href="@Url.Action("AddMainAssetsIndex","AddMainAssets")"><li style="color:black;">AssetInformation ></li></a>
+                                                <a href="@Url.Action("AddAssetMappingIndex","AddAssetMapping")"><li style="">Mapping ></li></a>
+                                                <li style="color:#e1e1e1">Nominee ></li>
+                                                <li style="color:#e1e1e1">Appointees </li>
+
+
+                                            </ul>
+                                        </h5>
+                                    }
+
+                                }
+                            }
+                            else
+                            {
+                                if (Session["Type"].ToString() != "Testator")
+                                {
+                                    <h5>
+                                        <ul id="menu" style="font-weight:bold;">
+
+
+                                            <a href="@Url.Action("AddTestatorsFormIndex","AddTestatorsForm")"><li style="color:black;">Testator></li></a>
+                                            <a href="@Url.Action("AddTestatorFamilyIndex","AddTestatorFamily")"><li style="color:black;">Testator Family ></li></a>
+                                            <a href="@Url.Action("AddBeneficiaryIndex","AddBeneficiary")"><li style="color:black;">Beneficiary ></li></a>
+                                            <a href="@Url.Action("AddMainAssetsIndex","AddMainAssets")"><li style="color:black;">AssetInformation ></li></a>
+                                            <a href="@Url.Action("AddAssetMappingIndex","AddAssetMapping")"><li style="">Mapping ></li></a>
+                                            <li style="color:#e1e1e1">Nominee ></li>
+                                            <li style="color:#e1e1e1">Appointees </li>
+
+
+                                        </ul>
+                                    </h5>
+                                }
+                                else
+                                {
                                     <h5>
                                         <ul id="menu" style="font-weight:bold;">
 
@@ -81,23 +142,6 @@
                                         </ul>
                                     </h5>
                                 }
-                            }
-                            else
-                            {
-                                <h5>
-                                    <ul id="menu" style="font-weight:bold;">
-
-                                        <li style="color:#5e72e4">Testator ></li>
-                                        <li style="color:#e1e1e1">Testator Family ></li>
-                                        <li style="color:#e1e1e1">Beneficiary ></li>
-                                        <li style="color:#e1e1e1">AssetInformation ></li>
-                                        <li style="color:#e1e1e1">Mapping ></li>
-                                        <li style="color:#e1e1e1">Nominee ></li>
-                                        <li style="color:#e1e1e1">Appointees </li>
-
-
-                                    </ul>
-                                </h5>
                             }
                             <br>
                             <div class="col-12 12">

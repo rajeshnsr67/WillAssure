@@ -55,10 +55,56 @@
                             }
                             else
                             {
+                                if (Session["Type"].ToString() != "Testator")
+                                {
+                                    <h5>
+                                        <ul id="menu" style="font-weight:bold;">
+
+                                            <a href="@Url.Action("AddTestatorsFormIndex","AddTestatorsForm" , new { NestId = Convert.ToInt32(Session["uuid"]) })"><li style="color:black;">Testator></li></a>
+                                            <a href="@Url.Action("AddTestatorFamilyIndex","AddTestatorFamily")"><li style="color:black;">Testator Family ></li></a>
+                                            <a href="@Url.Action("AddBeneficiaryIndex","AddBeneficiary")"><li>Beneficiary ></li></a>
+                                            <li style="color:#e1e1e1">AssetInformation ></li>
+                                            <li style="color:#e1e1e1">Mapping ></li>
+                                            <li style="color:#e1e1e1">Nominee ></li>
+                                            <li style="color:#e1e1e1">Appointees </li>
+
+
+                                        </ul>
+                                    </h5>
+
+                                }
+                                else
+                                {
+                                    if (Session["Type"].ToString() != "Testator")
+                                    {
+                                        <h5>
+                                            <ul id="menu" style="font-weight:bold;">
+
+                                                <a href="@Url.Action("UpdateTestatorsIndex","UpdateTestators" , new { NestId = Convert.ToInt32(Session["uuid"]) })"><li style="color:black;">Testator></li></a>
+                                                <a href="@Url.Action("AddTestatorFamilyIndex","AddTestatorFamily")"><li style="color:black;">Testator Family ></li></a>
+                                                <a href="@Url.Action("AddBeneficiaryIndex","AddBeneficiary")"><li>Beneficiary ></li></a>
+                                                <li style="color:#e1e1e1">AssetInformation ></li>
+                                                <li style="color:#e1e1e1">Mapping ></li>
+                                                <li style="color:#e1e1e1">Nominee ></li>
+                                                <li style="color:#e1e1e1">Appointees </li>
+
+
+                                            </ul>
+                                        </h5>
+
+                                    }
+                                }
+
+                            }
+                        }
+                        else
+                        {
+                            if (Session["Type"].ToString() != "Testator")
+                            {
                                 <h5>
                                     <ul id="menu" style="font-weight:bold;">
 
-                                        <a href="@Url.Action("UpdateTestatorsIndex","UpdateTestators" , new { NestId = Convert.ToInt32(Session["uuid"]) })"><li style="color:black;">Testator></li></a>
+                                        <a href="@Url.Action("AddTestatorsFormIndex","AddTestatorsForm" , new { NestId = Convert.ToInt32(Session["uuid"]) })"><li style="color:black;">Testator></li></a>
                                         <a href="@Url.Action("AddTestatorFamilyIndex","AddTestatorFamily")"><li style="color:black;">Testator Family ></li></a>
                                         <a href="@Url.Action("AddBeneficiaryIndex","AddBeneficiary")"><li>Beneficiary ></li></a>
                                         <li style="color:#e1e1e1">AssetInformation ></li>
@@ -69,8 +115,33 @@
 
                                     </ul>
                                 </h5>
+
+                            }
+                            else
+                            {
+                                if (Session["Type"].ToString() != "Testator")
+                                {
+                                    <h5>
+                                        <ul id="menu" style="font-weight:bold;">
+
+                                            <a href="@Url.Action("UpdateTestatorsIndex","UpdateTestators" , new { NestId = Convert.ToInt32(Session["uuid"]) })"><li style="color:black;">Testator></li></a>
+                                            <a href="@Url.Action("AddTestatorFamilyIndex","AddTestatorFamily")"><li style="color:black;">Testator Family ></li></a>
+                                            <a href="@Url.Action("AddBeneficiaryIndex","AddBeneficiary")"><li>Beneficiary ></li></a>
+                                            <li style="color:#e1e1e1">AssetInformation ></li>
+                                            <li style="color:#e1e1e1">Mapping ></li>
+                                            <li style="color:#e1e1e1">Nominee ></li>
+                                            <li style="color:#e1e1e1">Appointees </li>
+
+
+                                        </ul>
+                                    </h5>
+
+                                }
                             }
                         }
+
+
+
 
                         <br />
                         <div class="col-12 12">
@@ -207,10 +278,8 @@
                                  new SelectListItem() {Text = "Islam", Value="Islam"},
                                  new SelectListItem() {Text = "Jainism", Value="Jainism"},
                                  new SelectListItem() {Text = "Sikhism", Value="Sikhism"},
-                                 new SelectListItem() {Text = "Zoroastrian", Value="Zoroastrian"},
-                                 new SelectListItem() {Text = "Guru Nanak Dev", Value="Guru Nanak Dev"},
-                                 new SelectListItem() {Text = "Lord Mahavira", Value="Lord Mahavira"},
-                                 new SelectListItem() {Text = "Adi Shankaracharya", Value="Adi Shankaracharya"}}, new { @class = "form-control validate[required]", @id = "ddlReligion" })
+
+                                 new SelectListItem() {Text = "Zoroastrian", Value="Zoroastrian"}}, new { @class = "form-control validate[required]", @id = "ddlReligion" })
                                         @Html.HiddenFor(m => m.Religion_txt, new { @id = "Religion_txt" })
                                         @Html.HiddenFor(m => m.Religion_id, new { @id = "Religion_id" })
                                     </div>
@@ -656,12 +725,12 @@
                             }
                             else
                             {
-                                    <div class="form-group">
-                                        <button type="submit" id="btnBeneficiaryformsubmit" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i>Add Beneficiary</button>
-                                       
-                                        <a href="@Url.Action("AddMainAssetsIndex","AddMainAssets")"><button type="button" id="btnnext"  style="display:none" class="btn btn-danger shadow-primary px-5">Next&nbsp;&nbsp;<i class="icon-arrow-right-circle"></i></button></a>
+                                <div class="form-group">
+                                    <button type="submit" id="btnBeneficiaryformsubmit" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i>Add Beneficiary</button>
 
-                                    </div>
+                                    <a href="@Url.Action("AddMainAssetsIndex","AddMainAssets")"><button type="button" id="btnnext" style="display:none" class="btn btn-danger shadow-primary px-5">Next&nbsp;&nbsp;<i class="icon-arrow-right-circle"></i></button></a>
+
+                                </div>
                             }
 
 

@@ -22,22 +22,48 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
-                        <h5>
-                            <ul id="menu" style="font-weight:bold;">
+                        @if (Session["Type"].ToString() != "Testator")
+                        {
+                            <h5>
+                                <ul id="menu" style="font-weight:bold;">
 
 
-                                <a href="@Url.Action("UpdateTestatorsIndex","UpdateTestators" , new { NestId = Convert.ToInt32(Session["uuid"]) })"><li style="color:black;">Testator></li></a>
-                                <a href="@Url.Action("AddTestatorFamilyIndex","AddTestatorFamily")"><li style="color:black;">Testator Family ></li></a>
-                                <a href="@Url.Action("AddBeneficiaryIndex","AddBeneficiary")"><li style="color:black;">Beneficiary ></li></a>
-                                <a href="@Url.Action("AddMainAssetsIndex","AddMainAssets")"><li style="color:black">AssetInformation ></li></a>
-                                <a href="@Url.Action("AddAssetMappingIndex","AddAssetMapping")"><li style="color:black">Mapping ></li></a>
-                                <a href="@Url.Action("AddNomineeIndex","AddNominee")"><li style="">Nominee ></li></a>
-                                <li style="color:#e1e1e1">Appointees </li>
+                                    <a href="@Url.Action("AddTestatorsFormIndex","AddTestatorsForm" , new { NestId = Convert.ToInt32(Session["uuid"]) })"><li style="color:black;">Testator></li></a>
+                                    <a href="@Url.Action("AddTestatorFamilyIndex","AddTestatorFamily")"><li style="color:black;">Testator Family ></li></a>
+                                    <a href="@Url.Action("AddBeneficiaryIndex","AddBeneficiary")"><li style="color:black;">Beneficiary ></li></a>
+                                    <a href="@Url.Action("AddMainAssetsIndex","AddMainAssets")"><li style="color:black">AssetInformation ></li></a>
+                                    <a href="@Url.Action("AddAssetMappingIndex","AddAssetMapping")"><li style="color:black">Mapping ></li></a>
+                                    <a href="@Url.Action("AddNomineeIndex","AddNominee")"><li style="">Nominee ></li></a>
+                                    <li style="color:#e1e1e1">Appointees </li>
 
 
 
-                            </ul>
-                        </h5>
+                                </ul>
+                            </h5>
+
+                        }
+                        else
+
+                        {
+                            <h5>
+                                <ul id="menu" style="font-weight:bold;">
+
+
+                                    <a href="@Url.Action("UpdateTestatorsIndex","UpdateTestators" , new { NestId = Convert.ToInt32(Session["uuid"]) })"><li style="color:black;">Testator></li></a>
+                                    <a href="@Url.Action("AddTestatorFamilyIndex","AddTestatorFamily")"><li style="color:black;">Testator Family ></li></a>
+                                    <a href="@Url.Action("AddBeneficiaryIndex","AddBeneficiary")"><li style="color:black;">Beneficiary ></li></a>
+                                    <a href="@Url.Action("AddMainAssetsIndex","AddMainAssets")"><li style="color:black">AssetInformation ></li></a>
+                                    <a href="@Url.Action("AddAssetMappingIndex","AddAssetMapping")"><li style="color:black">Mapping ></li></a>
+                                    <a href="@Url.Action("AddNomineeIndex","AddNominee")"><li style="">Nominee ></li></a>
+                                    <li style="color:#e1e1e1">Appointees </li>
+
+
+
+                                </ul>
+                            </h5>
+                        }
+
+
                         <br />
                         <div class="col-12 12">
                             <div class="card bg-transparent shadow-none border border-light-3">
@@ -170,10 +196,8 @@
                                      new SelectListItem() {Text = "Islam", Value="Islam"},
                                      new SelectListItem() {Text = "Jainism", Value="Jainism"},
                                      new SelectListItem() {Text = "Sikhism", Value="Sikhism"},
-                                     new SelectListItem() {Text = "Zoroastrian", Value="Zoroastrian"},
-                                     new SelectListItem() {Text = "Guru Nanak Dev", Value="Guru Nanak Dev"},
-                                     new SelectListItem() {Text = "Lord Mahavira", Value="Lord Mahavira"},
-                                     new SelectListItem() {Text = "Adi Shankaracharya", Value="Adi Shankaracharya"}}, new { @class = "form-control validate[required]" })
+
+                                     new SelectListItem() {Text = "Zoroastrian", Value="Zoroastrian"}}, new { @class = "form-control validate[required]" })
 
                                     </div>
                                 </div>

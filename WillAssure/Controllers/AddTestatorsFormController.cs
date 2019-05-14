@@ -25,6 +25,10 @@ namespace WillAssure.Controllers
         // GET: AddTestatorsForm
         public ActionResult AddTestatorsFormIndex()
         {
+            
+                ViewBag.collapse = "true";
+            
+           
             // check type 
             string typ = "";
             con.Open();
@@ -361,6 +365,8 @@ namespace WillAssure.Controllers
 
         public ActionResult InsertTestatorFormData(TestatorFormModel TFM)
         {
+
+            ViewBag.collapse = "true";
 
             // check type 
             string typ = "";
@@ -733,7 +739,7 @@ namespace WillAssure.Controllers
                 Session["TestatorEmail"] = TFM.Email;
                 cmd.Parameters.AddWithValue("@maritalStatus", TFM.material_status_txt);
                 cmd.Parameters.AddWithValue("@Religion", TFM.Religiontext);
-                cmd.Parameters.AddWithValue("@Relationship", TFM.RelationshipTxt);
+                cmd.Parameters.AddWithValue("@Relationship", "none");
                 cmd.Parameters.AddWithValue("@Identity_Proof", TFM.Identity_Proof_txt);
                 cmd.Parameters.AddWithValue("@Identity_proof_Value", TFM.Identity_proof_Value);
                 cmd.Parameters.AddWithValue("@Alt_Identity_Proof", TFM.Alt_Identity_Proof);

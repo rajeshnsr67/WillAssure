@@ -24,7 +24,7 @@ namespace WillAssure.Controllers
         // GET: AddAssetMapping
         public ActionResult AddAssetMappingIndex()
         {
-
+            ViewBag.collapse = "true";
             // check type 
             string typ = "";
             con.Open();
@@ -480,7 +480,7 @@ namespace WillAssure.Controllers
 
         public ActionResult InsertBeneficiaryAsset(FormCollection collection)
         {
-
+            ViewBag.collapse = "true";
             // check type 
             string typ = "";
             con.Open();
@@ -1057,6 +1057,7 @@ namespace WillAssure.Controllers
 
         public ActionResult InsertSingleAssetMappeddata()
         {
+            ViewBag.collapse = "true";
             // roleassignment
             List<LoginModel> Lmlist = new List<LoginModel>();
             con.Open();
@@ -1133,7 +1134,7 @@ namespace WillAssure.Controllers
 
         public ActionResult InsertMultipleAssetMappeddata(string data, string assettype, string assetcat , string tid , string btnidentify)
         {
-
+            ViewBag.collapse = "true";
             // roleassignment
             List<LoginModel> Lmlist = new List<LoginModel>();
             con.Open();

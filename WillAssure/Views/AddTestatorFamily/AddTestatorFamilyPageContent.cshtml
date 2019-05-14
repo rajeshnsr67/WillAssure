@@ -37,20 +37,42 @@
                 <div class="card">
                     <div class="card-body">
                         <h5>
+                            @if (Session["Type"].ToString() != "Testator")
+                            {
                             <ul id="menu" style="font-weight:bold;">
 
-                                <a href="@Url.Action("UpdateTestatorsIndex","UpdateTestators" , new { NestId = Convert.ToInt32(Session["uuid"]) })"><li style="color:black;">Testator></li></a>
-
+                               
+                                <a href="@Url.Action("AddTestatorsFormIndex","AddTestatorsForm")"><li style="color:black;">Testator></li></a>
                                 <a href="@Url.Action("AddTestatorFamilyIndex","AddTestatorFamily")"> <li>Testator Family ></li></a>
-                                 <li style="color:#e1e1e1">Beneficiary ></li>
-                                 <li style="color:#e1e1e1">AssetInformation ></li>
-                                 <li style="color:#e1e1e1">Mapping ></li>
-                                 <li style="color:#e1e1e1">Nominee ></li>
-                                 <li style="color:#e1e1e1">Appointees </li>
+                                <li style="color:#e1e1e1">Beneficiary ></li>
+                                <li style="color:#e1e1e1">AssetInformation ></li>
+                                <li style="color:#e1e1e1">Mapping ></li>
+                                <li style="color:#e1e1e1">Nominee ></li>
+                                <li style="color:#e1e1e1">Appointees </li>
 
 
 
                             </ul>
+                            }
+                            else
+
+                            {
+                            <ul id="menu" style="font-weight:bold;">
+
+
+                                <a href="@Url.Action("UpdateTestatorsIndex","UpdateTestators" , new { NestId = Convert.ToInt32(Session["uuid"]) })"><li style="color:black;">Testator></li></a>
+                                <a href="@Url.Action("AddTestatorFamilyIndex","AddTestatorFamily")"> <li>Testator Family ></li></a>
+                                <li style="color:#e1e1e1">Beneficiary ></li>
+                                <li style="color:#e1e1e1">AssetInformation ></li>
+                                <li style="color:#e1e1e1">Mapping ></li>
+                                <li style="color:#e1e1e1">Nominee ></li>
+                                <li style="color:#e1e1e1">Appointees </li>
+
+
+
+                            </ul>
+                            }
+
                         </h5>
                         <br />
                         <div class="col-12 12">
@@ -171,10 +193,8 @@
                                  new SelectListItem() {Text = "Islam", Value="Islam"},
                                  new SelectListItem() {Text = "Jainism", Value="Jainism"},
                                  new SelectListItem() {Text = "Sikhism", Value="Sikhism"},
-                                 new SelectListItem() {Text = "Zoroastrian", Value="Zoroastrian"},
-                                 new SelectListItem() {Text = "Guru Nanak Dev", Value="Guru Nanak Dev"},
-                                 new SelectListItem() {Text = "Lord Mahavira", Value="Lord Mahavira"},
-                                 new SelectListItem() {Text = "Adi Shankaracharya", Value="Adi Shankaracharya"}}, new { @class = "form-control validate[required]" , @id="ddlreligion" })
+                        
+                                 new SelectListItem() {Text = "Zoroastrian", Value="Zoroastrian"}}, new { @class = "form-control validate[required]" , @id="ddlreligion" })
 
 
 
@@ -331,14 +351,14 @@
                                 </div>
 
 
-                                <div class="col-sm-6">
+                                @*<div class="col-sm-6">
 
                                     <div class="form-group">
                                         <label for="input-1">Is Informed Person</label>
 
                                         @Html.TextBoxFor(m => m.Is_Informed_Person, new { @class = "form-control validate[required] text-input", @id = "txtRole", @placeholder = "Enter Is Informed Person", @autocomplete = "off", alert = "LabourCost is requried" })
                                     </div>
-                                </div>
+                                </div>*@
 
 
 

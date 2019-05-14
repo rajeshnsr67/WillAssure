@@ -80,19 +80,9 @@
                                                                <ul class="unstyled">
 
                                                                    <li class="current">
-                                                                       <button class="btn-click style2"><a href="#">Login</a></button>
+                                                                       <button class="btn-click style2"><a href="/LoginPage/LoginPageIndex/" style="color:black;">Login</a></button>
 
-                                                                       <ul class="unstyled">
 
-                                                                           <li class="en"><a href="/LoginPage/LoginPageIndex?Type=Employee"> Employee</a></li>
-
-                                                                           <li class="ge"><a href="/LoginPage/LoginPageIndex?Type=Distributor">Distributor</a></li>
-
-                                                                           <li class="ge"><a href="/LoginPage/LoginPageIndex?Type=DistributorEmployee">Distributor Employee</a></li>
-
-                                                                           <li class="ge"><a href="/LoginPage/LoginPageIndex?Type=Client">Client</a></li>
-
-                                                                       </ul>
 
                                                                    </li>
 
@@ -201,7 +191,7 @@
                                                                        </div>
                                                                        <div class="form-group col-sm-6" style="float: left;">
                                                                            <div class="col-sm-12"><label for="email" style="font-weight: 700; font-size: 16px">Contact No:</label></div>
-                                                                           <div class="col-sm-12" style="float: left;"><span style="color:red;display:none" id="lblerror2">*Required</span> <span id="error" style="color: Red; display: none">*Invalid Mobile</span><input type="text" class="form-control" id="txtcontact" onchange="lblerror2()" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;" placeholder="Mobile No"></div>
+                                                                           <div class="col-sm-12" style="float: left;"><span style="color:red;display:none" id="lblerror2">*Required</span> <span id="error" style="color: Red; display: none">*Invalid Mobile</span><input type="text" class="form-control" id="txtcontact" onchange="check()"    placeholder="Mobile No"></div>
 
                                                                        </div>
                                                                        <div class="form-group col-sm-6" style="float: left;">
@@ -566,7 +556,7 @@
                                        $(document).on("change", "#getvalone", function () {
 
                                            $("#txtrefdistributor").show();
-                                           ;
+                                           
 
                                        });
 
@@ -580,13 +570,24 @@
 
 
                                    <script type="text/javascript">
-                                       var specialKeys = new Array();
-                                       specialKeys.push(8); //Backspace
-                                       function IsNumeric(e) {
-                                           var keyCode = e.which ? e.which : e.keyCode
-                                           var ret = ((keyCode >= 48 && keyCode <= 57) || specialKeys.indexOf(keyCode) != -1);
-                                           document.getElementById("error").style.display = ret ? "none" : "inline";
-                                           return ret;
+                                       function check() {
+
+                                        
+
+                                           var mobilereg = /^[0-9]{10}$/;;
+
+                                           var mobileinput = $('#txtcontact').val();
+                                           if (mobilereg.test(mobileinput) == false) {
+                                              
+                                               $("#error").show();
+                                           }
+
+                                           if (mobilereg.test(mobileinput) == true) {
+
+                                               $("#error").hide();
+                                               $("#lblerror2").hide();
+                                           }
+                                 
                                        }
                                    </script>
 

@@ -191,6 +191,7 @@
     <Compile Include="Controllers\AddAssetMappingController.cs" />
     <Compile Include="Controllers\AddAssetsController.cs" />
     <Compile Include="Controllers\AddBeneficiaryController.cs" />
+    <Compile Include="Controllers\AddCompanydetailsController.cs" />
     <Compile Include="Controllers\AddCouponsController.cs" />
     <Compile Include="Controllers\AddDistributorController.cs" />
     <Compile Include="Controllers\AddDistributorEmployeeController.cs" />
@@ -227,6 +228,7 @@
     <Compile Include="Controllers\EditAssetTypeController.cs" />
     <Compile Include="Controllers\EditBeneficiaryController.cs" />
     <Compile Include="Controllers\EditBeneficiaryMappingController.cs" />
+    <Compile Include="Controllers\EditCompanyDetailsController.cs" />
     <Compile Include="Controllers\EditCouponsController.cs" />
     <Compile Include="Controllers\EditDistributorController.cs" />
     <Compile Include="Controllers\EditDistributorEmployeeController.cs" />
@@ -256,6 +258,7 @@
     <Compile Include="Controllers\UpdateAssetTypeController.cs" />
     <Compile Include="Controllers\UpdateBeneficiaryController.cs" />
     <Compile Include="Controllers\UpdateBeneficiaryMappingController.cs" />
+    <Compile Include="Controllers\UpdateCompanyDetailsController.cs" />
     <Compile Include="Controllers\UpdateDiscountController.cs" />
     <Compile Include="Controllers\UpdateDistributorController.cs" />
     <Compile Include="Controllers\UpdateDistributorEmployeeController.cs" />
@@ -1563,6 +1566,9 @@
     <Content Include="WillAssureFrontend\WillAssure.Master" />
     <Content Include="Views\ADDPOATESTATORFAMILY\AddPOATestatorFamilyPageContent.cshtml" />
     <Content Include="Views\LivingWill\LivingWillPageContent.cshtml" />
+    <Content Include="Views\AddCompanydetails\AddCompanydetailspagecontent.cshtml" />
+    <Content Include="Views\EditCompanyDetails\EditCompanyPageContent.cshtml" />
+    <Content Include="Views\UpdateCompanyDetails\UpdateCompanyPageContent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

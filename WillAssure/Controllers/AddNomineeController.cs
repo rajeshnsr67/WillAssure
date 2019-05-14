@@ -21,6 +21,7 @@ namespace WillAssure.Controllers
         // GET: AddNominee
         public ActionResult AddNomineeIndex()
         {
+            ViewBag.collapse = "true";
             // check type 
             string typ = "";
             con.Open();
