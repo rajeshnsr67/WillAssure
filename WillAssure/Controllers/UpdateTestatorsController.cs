@@ -23,6 +23,21 @@ namespace WillAssure.Controllers
         // GET: UpdateTestators
         public ActionResult UpdateTestatorsIndex(int NestId)
         {
+            //if (NestId == 0)
+            //{
+                int getid = Convert.ToInt32(Session["uuid"]);
+                con.Open();
+                string qq26 = "select tId from TestatorDetails where uId = " + Convert.ToInt32(Session["uuid"]) + " ";
+                SqlDataAdapter daa26 = new SqlDataAdapter(qq26, con);
+                DataTable dtt26 = new DataTable();
+                daa26.Fill(dtt26);
+                if (dtt26.Rows.Count > 0)
+                {
+                    NestId = Convert.ToInt32(dtt26.Rows[0]["tId"]);
+                }
+                con.Close();
+            //}
+
             // check type 
             string typ = "";
             con.Open();
@@ -115,6 +130,8 @@ namespace WillAssure.Controllers
                 }
                 con.Close();
                 //end
+
+             
             }
             else
             {

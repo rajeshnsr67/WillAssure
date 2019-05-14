@@ -286,10 +286,11 @@
 
 
 
-    <div id="wrapper">
+
+    <div id="wrapper"  >
 
         <!--Start sidebar-wrapper-->
-        <div id="sidebar-wrapper" data-simplebar="" data-simplebar-auto-hide="true" class="shadow-none">
+        <div id="sidebar-wrapper"   data-simplebar="" data-simplebar-auto-hide="true" class="shadow-none">
             <div class="brand-logo">
                 <a href="#">
                     <img src="~/assets/images/logo-icon.png" style="width:200px;" class="logo-icon" alt="logo icon">
@@ -302,7 +303,7 @@
             @if (ViewBag.enabledashboardlink == "true")
             {
 
-                <ul class="flexcroll sidebar-menu do-nicescrol">
+                @*<ul class="flexcroll sidebar-menu do-nicescrol">
                     <li class="sidebar-header">MAIN NAVIGATION</li>
                     <li>
                         <a href=@Url.Action("DashBoardIndex", "DashBoard") class="waves-effect">
@@ -310,7 +311,7 @@
                         </a>
 
                     </li>
-                </ul>
+                </ul>*@
 
             }
 
@@ -319,12 +320,12 @@
             {
                 <ul class="flexcroll sidebar-menu do-nicescrol">
                     <li class="sidebar-header">MAIN NAVIGATION</li>
-                    <li>
+                    @*<li>
                         <a href=@Url.Action("DashBoardIndex", "DashBoard") class="waves-effect">
                             <i class="zmdi zmdi-view-dashboard"></i> <span>Dashboard</span> <i class="fa fa-angle-left pull-right"></i>
                         </a>
 
-                    </li>
+                    </li>*@
 
                     <li>
 
@@ -360,12 +361,12 @@
 
                 <ul class="flexcroll sidebar-menu do-nicescrol" style="display:none;" id="documentlink">
                     <li class="sidebar-header">MAIN NAVIGATION</li>
-                    <li>
+                    @*<li>
                         <a href=@Url.Action("DashBoardIndex", "DashBoard") class="waves-effect">
                             <i class="zmdi zmdi-view-dashboard"></i> <span>Dashboard</span> <i class="fa fa-angle-left pull-right"></i>
                         </a>
 
-                    </li>
+                    </li>*@
 
 
 
@@ -461,7 +462,7 @@
                     @*FOR POA DOCUMENT*@
                     @if (Session["doctype"] != null)
                     {
-                        if (Session["doctype"].ToString() == "POA" || Session["doctype"].ToString() == "GiftDeeds")
+                        if (Session["doctypePOA"].ToString() == "POA" || Session["doctypeGiftDeeds"].ToString() == "GiftDeeds")
                         {
                             <li>
                                 <a href="javaScript:void();" class="waves-effect">
@@ -570,11 +571,7 @@
 
                                 </a>
 
-                                <ul class="sidebar-submenu">
-
-                                    <li><a href="/AddTestatorFamily/AddTestatorFamilyIndex"><i class="zmdi zmdi-star-outline"></i>Add Testator Family</a></li>
-
-                                </ul>
+                              
 
                                 <ul class="sidebar-submenu">
                                     <li><a href="/EditTestatorFamily/EditTestatorFamilyIndex"><i class="zmdi zmdi-star-outline"></i>View Testator Family</a></li>
@@ -592,11 +589,7 @@
 
                                 </a>
 
-                                <ul class="sidebar-submenu">
-
-                                    <li><a href="/AddBeneficiary/AddBeneficiaryIndex"><i class="zmdi zmdi-star-outline"></i>Add Beneficiary</a></li>
-
-                                </ul>
+                              
 
                                 <ul class="sidebar-submenu">
                                     <li><a href="/EditBeneficiary/EditBeneficiaryIndex"><i class="zmdi zmdi-star-outline"></i>View Beneficiary</a></li>
@@ -614,11 +607,7 @@
 
                                 </a>
 
-                                <ul class="sidebar-submenu">
-
-                                    <li><a href="/AddMainAssets/AddMainAssetsIndex"><i class="zmdi zmdi-star-outline"></i>Add Assets</a></li>
-
-                                </ul>
+                               
 
                                 <ul class="sidebar-submenu">
                                     <li><a href="/EditMainAssets/EditMainAssetsIndex"><i class="zmdi zmdi-star-outline"></i>View Assets</a></li>
@@ -698,11 +687,7 @@
 
                                 </a>
 
-                                <ul class="sidebar-submenu">
-
-                                    <li><a href="/AddNominee/AddNomineeIndex"><i class="zmdi zmdi-star-outline"></i>Add Nominee</a></li>
-
-                                </ul>
+                               
 
                                 <ul class="sidebar-submenu">
                                     <li><a href="/EditNominee/EditNomineeIndex"><i class="zmdi zmdi-star-outline"></i>View Nominee</a></li>
@@ -720,11 +705,7 @@
 
                                 </a>
 
-                                <ul class="sidebar-submenu">
-
-                                    <li><a href="/AddAppointees/AddAppointeesIndex"><i class="zmdi zmdi-star-outline"></i>Add Appointees</a></li>
-
-                                </ul>
+                            
 
                                 <ul class="sidebar-submenu">
                                     <li><a href="/EditAppointees/EditAppointeesIndex"><i class="zmdi zmdi-star-outline"></i>View Appointees</a></li>
@@ -1218,7 +1199,7 @@
 </body>
 
 
-@*@{
+@{
 
         if (Session["Type"].ToString() == "Testator")
         {
@@ -1230,7 +1211,7 @@
             </script>
         }
 
-    }*@
+    }
 
 @*Master Scripts Links*@
 <!-- Bootstrap core JavaScript-->

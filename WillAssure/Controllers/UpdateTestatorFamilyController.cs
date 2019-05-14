@@ -469,7 +469,7 @@ namespace WillAssure.Controllers
             cmd.Parameters.AddWithValue("@DOB", dat);
             cmd.Parameters.AddWithValue("@Marital_Status", TFM.Marital_Status);
             cmd.Parameters.AddWithValue("@Religion", TFM.Religion);
-            cmd.Parameters.AddWithValue("@Relationship", TFM.RelationshipTxt);
+            cmd.Parameters.AddWithValue("@Relationship", "None");
             cmd.Parameters.AddWithValue("@Address1", TFM.Address1);
             cmd.Parameters.AddWithValue("@Address2", TFM.Address2);
             cmd.Parameters.AddWithValue("@Address3", TFM.Address3);

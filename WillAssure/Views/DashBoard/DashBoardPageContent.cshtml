@@ -244,7 +244,7 @@
 
                     <div class="form-group">
                         <input type="submit" formaction="@Url.Action("VerifyOTP","DashBoard")" name="name" class="btn btn-success" value="Verify OTP" />
-
+                        <a href="@Url.Action("Logout", "LoginPage")"> <button type="button" class="btn btn-danger"> Cancel</button></a>
                     </div>
 
                 }
@@ -414,7 +414,7 @@
         "handler": function (response) {
             //alert(response.razorpay_payment_id);
 
-            var url = "/DashBoard/DashBoardIndex";
+            var url = "/DashBoard/EnableDocumentLinks";
             window.location.href = url;
         },
         "prefill": {

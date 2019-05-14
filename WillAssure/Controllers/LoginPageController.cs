@@ -124,33 +124,57 @@ namespace WillAssure.Controllers
                 if (dt.Rows[0]["Type"].ToString() == "Testator")
                 {
 
-                    con.Open();
-                    string query4 = "select tId ,Email_OTP, Mobile_OTP from TestatorDetails where uId = " + Convert.ToInt32(Session["uuid"])+ " ";
-                    SqlDataAdapter d4a = new SqlDataAdapter(query4,con);
-                    DataTable dta = new DataTable();
-                    d4a.Fill(dta);
-                    con.Close();
-                  
+
                     int testid = 0;
-                    if (dta.Rows.Count > 0)
-                    {
-                      
-                      testid  = Convert.ToInt32(dta.Rows[0]["tId"]);
 
-                    }
 
+                        con.Open();
+                        string query4 = "select tId ,Email_OTP, Mobile_OTP from TestatorDetails where uId = " + Convert.ToInt32(Session["uuid"]) + " ";
+                        SqlDataAdapter d4a = new SqlDataAdapter(query4, con);
+                        DataTable dta = new DataTable();
+                        d4a.Fill(dta);
+                        con.Close();
+
+                  
+                        if (dta.Rows.Count > 0)
+                        {
+
+                            testid = Convert.ToInt32(dta.Rows[0]["tId"]);
+                            Session["LoginOTP"] = dta.Rows[0]["Email_OTP"].ToString();
+                            Session["MobileOTP"] = dta.Rows[0]["Mobile_OTP"].ToString();
+
+
+                        // check verify if very direct menu else otp verify
+
+                        con.Open();
+                        string query42 = "select Designation from users where uId = "+ Convert.ToInt32(Session["uuid"]) + " and Designation = 1 ";
+                        SqlDataAdapter d4a2 = new SqlDataAdapter(query42, con);
+                        DataTable dta2 = new DataTable();
+                        d4a2.Fill(dta2);
+                        con.Close();
+
+
+                        if (dta2.Rows.Count > 0)
+                        {
+                            return RedirectToAction("EnableDocumentLinks", "DashBoard");
+                        }
+                        else
+                        {
+                            return RedirectToAction("DashBoardIndex", "DashBoard");
+                        }
+
+
+                       
+                        }
                     
-
-
-                
-
+                  
 
 
 
-                    Session["LoginOTP"] = dta.Rows[0]["Email_OTP"].ToString();
-                    Session["MobileOTP"] = dta.Rows[0]["Mobile_OTP"].ToString();
 
                     return RedirectToAction("DashBoardIndex", "DashBoard");
+
+
                 }
                 else
                 {
