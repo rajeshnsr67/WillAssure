@@ -118,7 +118,7 @@ namespace WillAssure.Controllers
             }
             else
             {
-
+                ViewBag.showtitle = "true";
                 ViewBag.documentlink = "true";
 
             }
@@ -337,7 +337,38 @@ namespace WillAssure.Controllers
 
 
 
+        public JsonResult bindassetcatDDL2()
+        {
+            //int response = Convert.ToInt32(Request["send"]);
+            List<LoginModel> assetcatlist = new List<LoginModel>();
+            string ddlassetcat = "";
+            con.Open();
+            string query3 = "select * from AssetsCategory  ";
+            SqlDataAdapter da3 = new SqlDataAdapter(query3, con);
+            DataTable dt3 = new DataTable();
+            da3.Fill(dt3);
+            con.Close();
 
+
+            if (dt3.Rows.Count > 0)
+            {
+
+                for (int i = 0; i < dt3.Rows.Count; i++)
+                {
+                    LoginModel assetcatdata = new LoginModel();
+
+                    assetcatdata.assetcatid = Convert.ToInt32(dt3.Rows[i]["amId"]);
+                    assetcatdata.AssetsCategory = dt3.Rows[i]["AssetsCategory"].ToString();
+
+                    assetcatlist.Add(assetcatdata);
+
+
+                }
+
+            }
+
+            return Json(assetcatlist);
+        }
 
 
 

@@ -22,6 +22,7 @@ namespace WillAssure.Controllers
         // GET: AddPetCare
         public ActionResult AddPetCareIndex()
         {
+            ViewBag.collapse = "true";
             // check type 
             string typ = "";
             con.Open();
@@ -102,7 +103,7 @@ namespace WillAssure.Controllers
             }
             else
             {
-
+                ViewBag.showtitle = "true";
                 ViewBag.documentlink = "true";
 
             }
@@ -148,6 +149,7 @@ namespace WillAssure.Controllers
 
         public ActionResult InsertPetcaredata(PetCareModel PM)
         {
+            ViewBag.collapse = "true";
             // check type 
             string typ = "";
             con.Open();
@@ -269,11 +271,11 @@ namespace WillAssure.Controllers
 
 
             con.Open();
-            string query = "insert into PetCare (petname,petage,typeofpet,amtforpet,amtfromwhichasset,responsibelpersonforpet,tid) values ('"+PM.petname+"' , "+PM.petage+" , '"+PM.typeofpet+"' , "+PM.amtforpet+" ,'"+PM.amtfromwhichasset+"' , '"+PM.responsibelpersonforpet+"' , "+PM.ddltid+")";
+            string query = "insert into PetCare (petname,petage,typeofpet,amtforpet,amtfromwhichasset,responsibelpersonforpet,tid , assettypeid , assetcategoryid , Proportion) values ('" + PM.petname+"' , "+PM.petage+" , '"+PM.typeofpet+"' , "+PM.amtforpet+" ,'"+PM.amtfromwhichasset+"' , '"+PM.responsibelpersonforpet+"' , "+PM.ddltid+ " , " + PM.assettypeid + " , " + PM.assetCategoryid + " , " + PM.Proportion + ")";
             SqlCommand cmd = new SqlCommand(query,con);
             cmd.ExecuteNonQuery();
             con.Close();
-
+            Session["totalpetcare"] = PM.Proportion;
 
             ViewBag.Message = "Verified";
             ModelState.Clear();
@@ -430,6 +432,85 @@ namespace WillAssure.Controllers
 
 
         }
+
+
+
+        public String BindAssetTypeDDL()
+        {
+
+            con.Open();
+            string query = "select * from AssetsType";
+            SqlDataAdapter da = new SqlDataAdapter(query, con);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            con.Close();
+            string data = "";
+
+            if (dt.Rows.Count > 0)
+            {
+
+
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+
+
+
+
+                    data = data + "<option value=" + dt.Rows[i]["atId"].ToString() + " >" + dt.Rows[i]["AssetsType"].ToString() + "</option> ";
+
+
+
+                }
+
+
+
+            }
+
+            return data;
+
+        }
+
+
+
+        public String BindAssetCategoryDDL()
+        {
+            int index = Convert.ToInt32(Request["send"]);
+            int amid = 0;
+            con.Open();
+            string query = "select * from AssetsCategory where atId = '" + index + "'";
+            SqlDataAdapter da = new SqlDataAdapter(query, con);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            con.Close();
+            string data = "";
+
+            if (dt.Rows.Count > 0)
+            {
+
+
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+
+
+
+
+                    data = data + "<option value=" + dt.Rows[i]["amId"].ToString() + " >" + dt.Rows[i]["AssetsCategory"].ToString() + "</option>";
+
+
+
+                }
+
+
+
+
+            }
+
+            return data;
+
+        }
+
+
+
 
 
 

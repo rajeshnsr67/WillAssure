@@ -4,7 +4,11 @@
 }
 
 
-
+<style>
+    ul#menu li {
+        display: inline;
+    }
+</style>
 @*Main Content*@
 <div class="content-wrapper">
     <div class="container-fluid">
@@ -29,6 +33,22 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
+                        <h5>
+                            <ul id="menu" style="font-weight:bold;">
+
+                                <a href="@Url.Action("AddTestatorsFormIndex","AddTestatorsForm")"><li style="color:black;">Testator></li></a>
+                                <a href="@Url.Action("AddTestatorFamilyIndex","AddTestatorFamily")"><li style="color:black;">Testator Family ></li></a>
+                                <a href="@Url.Action("AddBeneficiaryIndex","AddBeneficiary")"><li style="color:black;">Beneficiary ></li></a>
+                                <a href="@Url.Action("AddMainAssetsIndex","AddMainAssets")"><li style="color:black;">AssetInformation ></li></a>
+                                <a href="@Url.Action("AddLiabilitiesIndex","AddLiabilities")"><li>Liabilites></li></a>
+                                    <li style="color:#e1e1e1">PetCare ></li>
+                                    <li style="color:#e1e1e1">Mapping ></li>
+                                    <li style="color:#e1e1e1">Nominee ></li>
+                                    <li style="color:#e1e1e1">Appointees </li>
+
+
+</ul>
+                        </h5>
                         <div class="col-12 12">
                             <div class="card bg-transparent shadow-none border border-light-3">
                                 <div class="card-header text-white border-light-3" style="background: #199d4b">
@@ -173,17 +193,67 @@
                                     </div>
                                 </div>
 
+                                <hr />
+
+
 
 
 
                             </div>
 
+                            <hr />
+                            <center> <h5>Mapping</h5></center>
+                            <div class="row">
+
+                                <div class="col-sm-6">
+
+                                    <div class="form-group">
+                                        <label for="input-1">Financial Assets</label>
+
+
+
+                                        <select id="ddlAssetType" class="form-control validate[required]">
+                                            <option value="">--Select--</option>
+                                        </select>
+                                        @Html.HiddenFor(m => m.assettypeid, new { id = "assettypeid" })
+                                        @Html.HiddenFor(m => m.assettypetext, new { id = "assettypetext" })
+                                    </div>
+                                </div>
+
+
+                                <div class="col-sm-6">
+
+                                    <div class="form-group">
+                                        <label for="input-1">Non Financial Asset</label>
+
+                                        <select id="ddlAssetCategory" class="form-control validate[required]">
+                                            <option value="">--Select--</option>
+                                        </select>
+                                        @Html.HiddenFor(m => m.assetCategoryid, new { id = "assetCategoryid" })
+                                        @Html.HiddenFor(m => m.assetCategorytext, new { id = "assetCategorytext" })
+                                        @Html.HiddenFor(m => m.amId, new { id = "amid" })
+                                    </div>
+                                </div>
+
+
+
+
+                                <div class="col-sm-6">
+
+                                    <div class="form-group">
+                                        <label for="input-1">Proportion</label>
+
+                                        @Html.TextBoxFor(m => m.Proportion, new { @class = "form-control  text-input", @id = "txtDetails", @placeholder = "Enter Proportion", @autocomplete = "off", alert = "LabourCost is requried" })
+                                    </div>
+                                </div>
+
+                            </div>
 
 
                             <div class="form-group">
 
                                 <button type="submit" id="btnRoleformsubmit" formaction="InsertLiabilitiesDetails" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i> Add Liabilities</button>
-
+                                <a href="@Url.Action("AddPetCareIndex","AddPetCare")"><button type="button" id="btnnext" style="display:" class="btn btn-danger shadow-primary px-5">Skip&nbsp;&nbsp;<i class="icon-arrow-right-circle"></i></button></a>
                             </div>
 
                         }
@@ -206,7 +276,58 @@
 <a href="javaScript:void();" class="back-to-top"><i class="fa fa-angle-double-up"></i> </a>
 <!--End Back To Top Button-->
 
+<script>
+    $(document).ready(function () {
 
+         $.ajax({
+
+            type: "POST",
+            url: "@Url.Action("BindAssetTypeDDL", "AddLiabilities")",
+            success: function (data) {
+
+                $('#ddlAssetType').empty().append('<option value="">--Select--</option>'+data);
+            }
+
+
+
+        });
+
+    });
+
+          $("#ddlAssetType").change(function () {
+        var value = $(this).children(":selected").attr("value");
+        var text = $("#ddlAssetType option:selected").html();
+
+        $("#assettypetext").val(text);
+        $("#assettypeid").val(value);
+
+
+        $.ajax({
+
+            type: "POST",
+            url: "@Url.Action("BindAssetCategoryDDL", "AddLiabilities")",
+            data: { "send": "" + value+  ""},
+            success: function (data) {
+
+                $('#ddlAssetCategory').empty().append('<option value="0">--Select--</option>'+data);
+            }
+
+
+
+        });
+
+
+
+
+
+
+
+
+    });
+
+
+
+</script>
 
 
 <script>
@@ -401,4 +522,22 @@
 
     };
 
+
+
+
+    $("#ddlAssetCategory").change(function () {
+        var value = $(this).children(":selected").attr("value");
+        var text = $("#ddlAssetCategory option:selected").html();
+
+        $("#assetCategorytext").val(text);
+        $("#assetCategoryid").val(value);
+        $("#amid").val(value);
+        
+
+
+  });
 </script>
+
+
+
+

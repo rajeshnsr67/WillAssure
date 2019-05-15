@@ -115,6 +115,7 @@ namespace WillAssure.Controllers
             {
 
                 ViewBag.documentlink = "true";
+                ViewBag.showtitle = "true";
 
             }
             if (Session["rId"] == null || Session["uuid"] == null)

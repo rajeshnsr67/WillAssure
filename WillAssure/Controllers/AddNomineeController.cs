@@ -116,7 +116,7 @@ namespace WillAssure.Controllers
             }
             else
             {
-
+                ViewBag.showtitle = "true";
                 ViewBag.documentlink = "true";
 
             }
@@ -170,6 +170,8 @@ namespace WillAssure.Controllers
 
         public ActionResult InsertNomineeData(NomineeModel NM)
         {
+
+            ViewBag.collapse = "true";
             // check type 
             string typ = "";
             con.Open();

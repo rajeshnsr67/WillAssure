@@ -19,9 +19,11 @@ namespace WillAssure.Controllers
         // GET: LivingWill
         public ActionResult LivingWillIndex()
         {
-
+            ViewBag.collapse = "true";
 
             ViewBag.enablelivingwill = "true";
+
+
 
 
             return View("~/Views/LivingWill/LivingWillPageContent.cshtml");
@@ -30,7 +32,7 @@ namespace WillAssure.Controllers
 
         public ActionResult InsertWillData(CodocilModel CM)
         {
-
+            ViewBag.collapse = "true";
             ViewBag.enablelivingwill = "true";
 
             con.Open();

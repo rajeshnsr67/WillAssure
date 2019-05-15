@@ -43,16 +43,16 @@
                                 <h5>
                                     <ul id="menu" style="font-weight:bold;">
 
-                                        <li style="color:#e1e1e1">Donor ></li>
-                                        <li style="color:#e1e1e1">Donee ></li>
-                                        <li style="color:#5e72e4">Gift ></li>
+                                        <a href="@Url.Action("AddTestatorsFormIndex","AddTestatorsForm")"><li style="color:black;">Donor ></li></a>
+                                        <a href="@Url.Action("AddBeneficiaryIndex","AddBeneficiary")"><li style="color:black">Donee ></li></a>
+                                        <a href="@Url.Action("AddMainAssetsIndex","AddMainAssets")"><li style="color:">Gift  ></li></a>
                                         <li style="color:#e1e1e1">Asset Mapping ></li>
                                         <li style="color:#e1e1e1">Witness Appointment ></li>
 
 
 
 
-                                    </ul>
+</ul>
                                 </h5>
                             }
                             else
@@ -68,6 +68,8 @@
                                             <a href="@Url.Action("AddTestatorFamilyIndex","AddTestatorFamily")"><li style="color:black;">Testator Family ></li></a>
                                             <a href="@Url.Action("AddBeneficiaryIndex","AddBeneficiary")"><li style="color:black;">Beneficiary ></li></a>
                                             <a href="@Url.Action("AddMainAssetsIndex","AddMainAssets")"><li>AssetInformation ></li></a>
+                                            <li style="color:#e1e1e1">Liabilites></li>
+                                            <li style="color:#e1e1e1">PetCare ></li>
                                             <li style="color:#e1e1e1">Mapping ></li>
                                             <li style="color:#e1e1e1">Nominee ></li>
                                             <li style="color:#e1e1e1">Appointees </li>
@@ -257,18 +259,18 @@
                             {
                                 if (Session["doctype"].ToString() == "POA" || Session["doctype"].ToString() == "GiftDeeds")
                                 {
-                                    <div class="form-group">
-                                        @*<button type="button" id="btnadd" class="btn btn-danger shadow-primary px-5"><i class="icon-plus"></i>Add</button>*@
-                                        <button type="submit" name="Submit Asset Info" value="Submit Asset Info" id="btnmainassetsubmit" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i>Submit Gift </button>
-
-                                    </div>
+                            <div class="form-group">
+                                @*<button type="button" id="btnadd" class="btn btn-danger shadow-primary px-5"><i class="icon-plus"></i>Add</button>*@
+                                <button type="submit" name="Submit Asset Info" value="Submit Asset Info" id="btnmainassetsubmit" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i>Submit Gift </button>
+                                <a href="@Url.Action("AddAssetMappingIndex","AddAssetMapping")"><button type="button" id="btnnext" style="display:none" class="btn btn-danger shadow-primary px-5">Next&nbsp;&nbsp;<i class="icon-arrow-right-circle"></i></button></a>
+                            </div>
                                 }
                                 else
                                 {
                                     <div class="form-group">
                                         @*<button type="button" id="btnadd" class="btn btn-danger shadow-primary px-5"><i class="icon-plus"></i>Add</button>*@
                                         <button type="submit" name="Submit Asset Info" value="Submit Asset Info" id="btnmainassetsubmit" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i>Submit Asset Info</button>
-                                        <a href="@Url.Action("AddAssetMappingIndex","AddAssetMapping")"><button type="button" id="btnnext" style="display:none" class="btn btn-danger shadow-primary px-5">Next&nbsp;&nbsp;<i class="icon-arrow-right-circle"></i></button></a>
+                                        <a href="@Url.Action("AddLiabilitiesIndex","AddLiabilities")"><button type="button" id="btnnext" style="display:none" class="btn btn-danger shadow-primary px-5">Next&nbsp;&nbsp;<i class="icon-arrow-right-circle"></i></button></a>
                                     </div>
                                 }
                             }
@@ -277,7 +279,7 @@
                                 <div class="form-group">
                                     @*<button type="button" id="btnadd" class="btn btn-danger shadow-primary px-5"><i class="icon-plus"></i>Add</button>*@
                                     <button type="submit" name="Submit Asset Info" value="Submit Asset Info" id="btnmainassetsubmit" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i>Submit Asset Info</button>
-                                    <a href="@Url.Action("AddAssetMappingIndex","AddAssetMapping")"><button type="button" id="btnnext" style="display:none" class="btn btn-danger shadow-primary px-5">Next&nbsp;&nbsp;<i class="icon-arrow-right-circle"></i></button></a>
+                                    <a href="@Url.Action("AddLiabilitiesIndex","AddLiabilities")"><button type="button" id="btnnext" style="display:none" class="btn btn-danger shadow-primary px-5">Next&nbsp;&nbsp;<i class="icon-arrow-right-circle"></i></button></a>
 
                                 </div>
                             }

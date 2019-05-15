@@ -10,7 +10,7 @@ File: app-style
   - General
   - Menu Sidebar Wrapper
   - Page Content Wrapper
-  - Topbar Header
+  - Topbar Header250px
   - Dropdown Menu
   - User Details
   - Logo
@@ -316,7 +316,7 @@ hr {
 }
 
 .toggle-menu i {
-   margin-left: 240px;
+   margin-left: 10px;
    font-size: 14px;
    font-weight: 600;
    color: #172b4d;

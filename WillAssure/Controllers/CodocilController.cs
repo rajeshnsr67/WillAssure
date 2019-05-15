@@ -22,8 +22,8 @@ namespace WillAssure.Controllers
         // GET: Codocil
         public ActionResult CodocilIndex()
         {
-
-            ViewBag.enabledashboardlink = "true";
+            ViewBag.collapse = "true";
+            ViewBag.cod = "true";
 
 
             return View("~/Views/Codocil/CodocilPageContent.cshtml");
@@ -32,7 +32,7 @@ namespace WillAssure.Controllers
 
         public ActionResult InsertCodocilData()
         {
-
+            ViewBag.collapse = "true";
 
             string response = Request["send"];
           

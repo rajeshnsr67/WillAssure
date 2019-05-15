@@ -272,13 +272,13 @@ namespace WillAssure.Controllers
             }
             else
             {
-
+                ViewBag.showtitle = "true";
                 ViewBag.documentlink = "true";
 
             }
-       
 
-        
+
+            
 
 
             return View("~/Views/DashBoard/DashBoardPageContent.cshtml");
@@ -292,34 +292,39 @@ namespace WillAssure.Controllers
             {
                 if (doctype == "Will")
                 {
-                    
+                    ViewBag.collapse = "true";
+                    Session["doctype"] = "Will";
                     return RedirectToAction("AddTestatorsFormIndex", "AddTestatorsForm" , new { collapse = "true" } );
                 }
 
                 if (doctype == "Codocil")
                 {
-                    
+                    ViewBag.collapse = "true";
+                    Session["doctype"] = "Codocil";
                     return RedirectToAction("CodocilIndex", "Codocil");
                 }
 
 
                 if (doctype == "POA")
                 {
-                  
+                    ViewBag.collapse = "true";
+                    Session["doctype"] = "POA";
                     return RedirectToAction("AddTestatorsFormIndex", "AddTestatorsForm");
                 }
 
 
                 if (doctype == "GiftDeeds")
                 {
-                  
+                    ViewBag.collapse = "true";
+                    Session["doctype"] = "GiftDeeds";
                     return RedirectToAction("AddTestatorsFormIndex", "AddTestatorsForm");
                 }
 
 
                 if (doctype == "LivingWill")
                 {
-                  
+                    ViewBag.collapse = "true";
+                    Session["doctype"] = "LivingWill";
                     return RedirectToAction("LivingWillIndex", "LivingWill");
                 }
             }

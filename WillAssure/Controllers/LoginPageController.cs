@@ -285,7 +285,16 @@ namespace WillAssure.Controllers
 
 
             // in control
-            Session["MobileOTP"] = "";  
+            Session["MobileOTP"] = "";
+
+            // for view to active view page
+            Session["activeview"] = "";
+
+
+            // for pet lia mapp total 
+
+            Session["totalliablities"] = "";
+            Session["totalpetcare"] = "";
 
             return View("~/Views/LoginPage/LoginPageContent.cshtml");
         }

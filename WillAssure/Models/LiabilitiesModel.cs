@@ -33,6 +33,18 @@ namespace WillAssure.Models
         public string ddltestatorname { get; set; }
 
 
+        public int assettypeid { get; set; }
+        public string assettypetext { get; set; }
+
+
+        public int assetCategoryid { get; set; }
+        public string assetCategorytext { get; set; }
+
+        public int Proportion { get; set; }
+
+        public int amId { get; set; }
+
+
 
     }
 }
