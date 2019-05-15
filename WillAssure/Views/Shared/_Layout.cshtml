@@ -386,6 +386,12 @@
                     {
 
                         <li>
+                            <a href=@Url.Action("DashBoardIndex", "DashBoard") class="waves-effect">
+                                <i class="zmdi zmdi-view-dashboard"></i> <span>Dashboard</span> <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+
+                        </li>
+                        <li>
                             <a href="javaScript:void();" class="waves-effect">
                                 <i class="zmdi zmdi-format-list-bulleted"></i> <span>Create Document</span>
                                 <i class="fa fa-angle-left pull-right"></i>
@@ -434,19 +440,19 @@
 
 
 
-                                            <li>
+                                        <li>
 
-                                                <a href="javaScript:void();" class="waves-effect">
+                                            <a href="javaScript:void();" class="waves-effect">
 
-                                                    <i class="zmdi zmdi-format-list-bulleted"></i> <span>@item.PageName</span>
-                                                    <i class="fa fa-angle-left pull-right"></i>
+                                                <i class="zmdi zmdi-format-list-bulleted"></i> <span>@item.PageName</span>
+                                                <i class="fa fa-angle-left pull-right"></i>
 
-                                                </a>
+                                            </a>
 
-                                                @if (act[0].ToString() == "1")
-                                                {
+                                            @if (act[0].ToString() == "1")
+                                            {
 
-                                                    string pagename = @nav1[0].ToString();
+                                                string pagename = @nav1[0].ToString();
 
 
 
@@ -458,30 +464,28 @@
 
 
 
-                                                    <li><a href="@Url.Action("EditUserFormIndex", "EditUserForm")"><i class="zmdi zmdi-star-outline"></i>View Individual Firm</a></li>
+                                                        <li><a href="@Url.Action("EditUserFormIndex", "EditUserForm")"><i class="zmdi zmdi-star-outline"></i>View Individual Firm</a></li>
 
-                                                    <li><a href="@Url.Action("EditCompanyDetailsIndex", "EditCompanyDetails")"><i class="zmdi zmdi-star-outline"></i>View Register Company</a></li>
+                                                        <li><a href="@Url.Action("EditCompanyDetailsIndex", "EditCompanyDetails")"><i class="zmdi zmdi-star-outline"></i>View Register Company</a></li>
 
 
                                                     }
                                                 </ul>
-                                    
 
 
+
+                                            }
+
+                                            <ul class="sidebar-submenu">
+                                                @if (nav2[0].ToString() != "NULL")
+                                                {
+                                                    <li><a href=@Url.Action(nav2[1].ToString(), nav2[2].ToString())><i class="zmdi zmdi-star-outline"></i>@nav2[0].ToString()</a></li>
                                                 }
 
-                                                <ul class="sidebar-submenu">
-                                                    @if (nav2[0].ToString() != "NULL")
-                                                    {
-                                                        <li><a href=@Url.Action(nav2[1].ToString(), nav2[2].ToString())><i class="zmdi zmdi-star-outline"></i>@nav2[0].ToString()</a></li>
-                                                    }
 
+                                            </ul>
 
-                                                </ul>
-
-                                            </li>
-
-                                        }
+                                        </li>
 
                                     }
 
@@ -491,13 +495,15 @@
 
                         }
 
+                    }
 
 
 
 
 
 
-                        @*FOR POA DOCUMENT*@
+
+                    @*FOR POA DOCUMENT*@
                     @if (Session["doctype"] != null)
                     {
                         if (Session["doctype"].ToString() == "POA" || Session["doctype"].ToString() == "GiftDeeds")
@@ -596,10 +602,32 @@
 
 
                     @*for will*@
-                    @if (Session["doctype"] != null || Session["activeview"] != null)
+                    @if (Session["doctype"] != null)
                     {
-                        if (Session["doctype"].ToString() == "Will" || Session["activeview"].ToString() == "true")
+                        if (Session["doctype"].ToString() == "Will")
                         {
+
+
+                            <li>
+
+                                <a href="javaScript:void();" class="waves-effect">
+
+                                    <i class="zmdi zmdi-format-list-bulleted"></i> <span>Testator</span>
+                                    <i class="fa fa-angle-left pull-right"></i>
+
+                                </a>
+
+
+
+                                <ul class="sidebar-submenu">
+                                    <li><a href="/EditTestator/EditTestatorIndex"><i class="zmdi zmdi-star-outline"></i>View Testator</a></li>
+
+
+                                </ul>
+
+                            </li>
+
+
                             <li>
 
                                 <a href="javaScript:void();" class="waves-effect">
@@ -672,50 +700,7 @@
                                 <ul class="sidebar-submenu"></ul>
 
                             </li>
-                            @*<li>
 
-                    <a href="javaScript:void();" class="waves-effect">
-
-                        <i class="zmdi zmdi-format-list-bulleted"></i> <span>Liabilities</span>
-                        <i class="fa fa-angle-left pull-right"></i>
-
-                    </a>
-
-                    <ul class="sidebar-submenu">
-
-                        <li><a href="/AddLiabilities/AddLiabilitiesIndex"><i class="zmdi zmdi-star-outline"></i>Add Liabilities</a></li>
-
-                    </ul>
-
-                    <ul class="sidebar-submenu">
-                        <li><a href="/EditLiabilities/EditLiabilitiesIndex"><i class="zmdi zmdi-star-outline"></i>View Liabilities</a></li>
-
-
-                    </ul>
-
-                </li>*@
-                            @*<li>
-
-                    <a href="javaScript:void();" class="waves-effect">
-
-                        <i class="zmdi zmdi-format-list-bulleted"></i> <span>PetCare</span>
-                        <i class="fa fa-angle-left pull-right"></i>
-
-                    </a>
-
-                    <ul class="sidebar-submenu">
-
-                        <li><a href="/AddPetCare/AddPetCareIndex"><i class="zmdi zmdi-star-outline"></i>Add PetCare</a></li>
-
-                    </ul>
-
-                    <ul class="sidebar-submenu">
-                        <li><a href="/EditPetCare/EditPetCareIndex"><i class="zmdi zmdi-star-outline"></i>View PetCare</a></li>
-
-
-                    </ul>
-
-                </li>*@
                             <li>
 
                                 <a href="javaScript:void();" class="waves-effect">
