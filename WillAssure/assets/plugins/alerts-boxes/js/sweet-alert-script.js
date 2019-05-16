@@ -46,6 +46,14 @@
          swal("Failed", "Data Already Exist For Selected Testator", "error");
      });
 
+     $("#btncheckpetcare").click(function () {
+         swal("Failed", "Proportion Cannot Be Greater than Liabilities Proportion", "warning");
+     });
+
+     $("#btncheckliabilities").click(function () {
+         swal("Failed", "Proportion Cannot Be Greater than Petcare Proportion", "warning");
+     });
+
 
      $("#btnRoleformsubmitSUCCESS").click(function () {
          swal("Submitted", "Your Data has Been Submitted", "success");

@@ -39,6 +39,7 @@ namespace WillAssure.Models
        public int InstrumentId { get; set; }
        public string InstrumentName { get; set; }
        public string Proportion { get; set; }
+        public int atId { get; set; }
 
     }
 }

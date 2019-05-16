@@ -269,16 +269,34 @@ namespace WillAssure.Controllers
 
 
 
+          
 
-            con.Open();
-            string query = "insert into PetCare (petname,petage,typeofpet,amtforpet,amtfromwhichasset,responsibelpersonforpet,tid , assettypeid , assetcategoryid , Proportion) values ('" + PM.petname+"' , "+PM.petage+" , '"+PM.typeofpet+"' , "+PM.amtforpet+" ,'"+PM.amtfromwhichasset+"' , '"+PM.responsibelpersonforpet+"' , "+PM.ddltid+ " , " + PM.assettypeid + " , " + PM.assetCategoryid + " , " + PM.Proportion + ")";
-            SqlCommand cmd = new SqlCommand(query,con);
-            cmd.ExecuteNonQuery();
-            con.Close();
-            Session["totalpetcare"] = PM.Proportion;
 
-            ViewBag.Message = "Verified";
+
+                con.Open();
+                string query = "insert into PetCare (petname,petage,typeofpet,amtforpet,amtfromwhichasset,responsibelpersonforpet,tid , assettypeid , assetcategoryid , Proportion) values ('" + PM.petname + "' , " + PM.petage + " , '" + PM.typeofpet + "' , " + PM.amtforpet + " ,'" + PM.amtfromwhichasset + "' , '" + PM.responsibelpersonforpet + "' , " + PM.ddltid + " , " + PM.assettypeid + " , " + PM.assetCategoryid + " , " + PM.Proportion + ")";
+                SqlCommand cmd = new SqlCommand(query, con);
+                cmd.ExecuteNonQuery();
+                con.Close();
+                Session["totalpetcare"] = PM.Proportion;
+                Session["assettypeidforpetcare"] = PM.assettypeid;
+                Session["assetcategoryidforpetcare"] = PM.assetCategoryid;
+                ViewBag.Message = "Verified";
+                ModelState.Clear();
+
+
+       
+
+
+
             ModelState.Clear();
+
+
+
+
+
+
+
 
             return View("~/Views/AddPetCare/AddPetCarePageContent.cshtml");
         }
@@ -507,6 +525,27 @@ namespace WillAssure.Controllers
 
             return data;
 
+        }
+
+
+
+
+        public string FilterProporion()
+        {
+            string msg = "";
+            int response = Convert.ToInt32(Request["send"]);
+            int liabilitiesproportion = Convert.ToInt32(Session["totalliablities"]);
+            if (liabilitiesproportion > response)
+            {
+
+            }
+            else
+            {
+                msg = "true";
+            }
+
+
+            return msg;
         }
 
 

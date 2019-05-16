@@ -302,11 +302,39 @@ namespace WillAssure.Controllers
 
         public JsonResult bindassetcatDDL()
         {
+
+
+            con.Open();
+            string query = "select tId from testatordetails where uId = " + Convert.ToInt32(Session["uuid"]) + "";
+            SqlDataAdapter da = new SqlDataAdapter(query, con);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            con.Close();
+            int testatorid = 0;
+            if (dt.Rows.Count > 0)
+            {
+
+                testatorid = Convert.ToInt32(dt.Rows[0]["tId"]);
+
+            }
+
+
             //int response = Convert.ToInt32(Request["send"]);
             List<LoginModel> assetcatlist = new List<LoginModel>();
             string ddlassetcat = "";
             con.Open();
-            string query3 = "select * from AssetsCategory  ";
+            string query3 = "";
+            if (Session["Type"].ToString() != "Testator")
+            {
+                 query3 = "select ac.*,at.AssetsType as AssetsType from AssetsCategory ac " +
+               "left join assetstype at on at.atId=ac.atId";
+            }
+            else
+            {
+                query3 = "select c.amId , b.atId , b.AssetsType as AssetsType , c.AssetsCategory  from assetinformation a inner join assetstype b on a.atId=b.atId inner join assetscategory c on a.amId=c.amId where a.tid =" + testatorid + "";
+            }
+
+            
             SqlDataAdapter da3 = new SqlDataAdapter(query3, con);
             DataTable dt3 = new DataTable();
             da3.Fill(dt3);
@@ -321,8 +349,9 @@ namespace WillAssure.Controllers
                     LoginModel assetcatdata = new LoginModel();
 
                     assetcatdata.assetcatid = Convert.ToInt32(dt3.Rows[i]["amId"]);
+                    assetcatdata.atId = Convert.ToInt32(dt3.Rows[i]["atId"]);
+                    assetcatdata.AssetsType = dt3.Rows[i]["AssetsType"].ToString();
                     assetcatdata.AssetsCategory = dt3.Rows[i]["AssetsCategory"].ToString();
-
                     assetcatlist.Add(assetcatdata);
 
 

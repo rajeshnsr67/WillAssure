@@ -51,16 +51,17 @@
                                     <h5>
                                         <ul id="menu" style="font-weight:bold;">
 
-                                               <a href="@Url.Action("AddTestatorsFormIndex","AddTestatorsForm")"><li style="color:black;">Donor ></li></a>
-                                        <a href="@Url.Action("AddBeneficiaryIndex","AddBeneficiary")"><li style="color:black">Donee ></li></a>
-                                        <a href="@Url.Action("AddMainAssetsIndex","AddMainAssets")"><li style="color:black">Gift ></li></a>
-                                        <a href="@Url.Action("AddAssetMappingIndex","AddAssetMapping")"><li style="color:">Asset Mapping ></li>
-                                            <li style="color:#e1e1e1">Witness Appointment ></li>
+                                            <a href="@Url.Action("AddTestatorsFormIndex","AddTestatorsForm")"><li style="color:black;">Donor ></li></a>
+                                            <a href="@Url.Action("AddBeneficiaryIndex","AddBeneficiary")"><li style="color:black">Donee ></li></a>
+                                            <a href="@Url.Action("AddMainAssetsIndex","AddMainAssets")"><li style="color:black">Gift ></li></a>
+                                            <a href="@Url.Action("AddAssetMappingIndex","AddAssetMapping")">
+                                                <li style="color:">Asset Mapping ></li>
+                                                <li style="color:#e1e1e1">Witness Appointment ></li>
 
 
 
 
-</ul>
+                                        </ul>
                                     </h5>
                                 }
                                 else
@@ -227,6 +228,19 @@
 
                             <hr>
                             <input type='hidden' id='txttotalval' name='name' value='100' />
+
+                           
+                         
+
+                            <input type='hidden' id='assettypeidforliablities' name='name' value='@Session["assettypeidforliablities"]' />
+                            <input type='hidden' id='assetcategoryidforliablities' name='name' value='@Session["assetcategoryidforliablities"]' />
+                            <input type='hidden' id='totalliablities' name='name' value='@Session["totalliablities"]' />
+
+
+                            <input type='hidden' id='assettypeidforpetcare' name='name' value='@Session["assettypeidforpetcare"]' />
+                            <input type='hidden' id='assetcategoryidforpetcare' name='name' value='@Session["assetcategoryidforpetcare"]' />
+                            <input type='hidden' id='totalpetcare' name='name' value='@Session["totalpetcare"]' />
+
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div id="accordion8">
@@ -364,100 +378,155 @@
 
                  url: "@Url.Action("bindassetcatDDL", "AddAssetMapping")",
 
-                     success: function (data) {
+                     success: function (response1) {
+                         //console.log(JSON.stringify(data));
+                         var totalval = 100;
+                         var response = groupArrayMain(response1, "atId", "AssetsType");
+                      //   console.log(JSON.stringify(response));
+                        //return false;
+                         for (var j = 0; j < response.length; j++) {
+                             var assettypeid = response[j].atId;
+                             var AssetsType = response[j].atId_group[0].AssetsType;
+                             var atId_group = response[j].atId_group[0].AssetsType_group;
+                             var data = atId_group;
 
-                         for (var i = 0; i <= data.length; i++) {
+                            
 
+                             //   console.log(JSON.stringify(atId_group));
+                             var assettypehtmlelem = "<h6 class='text-uppercase'>" + AssetsType + "</h6><hr>";
+                             $("#accordion8").append(assettypehtmlelem);
+                             for (var i = 0; i < atId_group.length; i++) {
 
+                                 var liability_proportion = petcare_proportion = total_liability_petcare_proportion=0;
+                                 if (parseInt($("#assetcategoryidforliablities").val()) == parseInt(data[i].assetcatid)) {
 
-                             var  res = "<div class='card mb-2 border border-danger' id='accparent'>";
-                             res +=  "<div class='card-header'>";
-                             res += "<button type='button' class='btn btn-link shadow-none text-danger collapsed' data-toggle='collapse' data-target='#accordio" + data[i].assetcatid +"' aria-expanded='false' aria-controls='collapse-23'>";
-                             res += data[i].AssetsCategory;
-                             res += "</button>";
-                             res += "</div>";
-                             res += "<div id='accordio" + data[i].assetcatid +"' class='collapse' data-parent='#accordion8'";
-                             //res +="<div id='test'></div>";
-                             res += "<div class='card-body'>";
-                             res += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class='col-sm-3' id='type'>";
-                             res += "<div class='form-group'>";
-                             res += "<label for='input-1'>Type</label>";
-                             res += "<br />";
-                             res += "<form>";
-                             res += "<label class='radio-inline'>";
-                             res += "<input type='radio' id='getvalone' class="+data[i].assetcatid+" name='optradio' value='Single' checked>Single";
-                             res += "</label>";
-                             res += "<label class='radio-inline'>";
-                             res += "<input type='radio' id='getvaltwo' class="+data[i].assetcatid+" name='optradio' value='Multiple'>Multiple";
-                             res +=  "</label>";
-                             res +=  "</form>";
-                             res +=  "</div>";
-                             res +=  "</div>";
-                             res += "<div id='parentdiv"+data[i].assetcatid+"'  class='test'>";
-                             res +=  "<div class='row rowdiv' id='beneficiarydetails' >";
-                             res += "&nbsp;&nbsp;&nbsp;&nbsp;";
-                             res += "<div class='col-sm-2'>";
-                             res +=  "<div class='form-group'>";
-                             res += "<label for='input-1'>Beneficiary</label><span id='errbene'  style='color:red; display:;'>(*)</span>";
-                             res += "<select id='ddlbeneficiary" + data[i].assetcatid +"' onchange='checkbeneficiaryduplicate(this.id)' name='contentList' class='form-control beneficiaryclass validate[required]'></select>";
-                             res += "<input type='text' class='form-control' style='display: none' id='ddlbeneficiarytxt' name='name' value='' />";
-                             res += "</div>";
-                             res += "</div>";   // new
-                             res += "<div class='col-sm-2'>";
-                             res += "<div class='form-group'>";
-                             res += "<label for='input-1'>SchemeName<span id='errscheme' style='color:red;display:;' >(*)</span></label>";
-                             res += "<select id='schemename" + data[i].assetcatid +"' onchange='getschemename(this.id)' name='contentList' class='form-control schemenameclass validate[required]'></select>";
-                             res += "<input type='text' class='form-control' style='display: none' id='ddlbeneficiarytxt' name='name' value='' />";
-                             res += "</div>";
-                             res += "</div>";
-                             res += "<div class='col-sm-3'>";
-                             res += "<label for='input-1'>Instruments</label><span id='errinstrument' style='color:red;display:;'>(*)</span>";
-                             res += "<select id='DDLAssetColumn" + data[i].assetcatid +"' onchange='getDDLAssetColumn(this.id)' name='contentList' class='form-control instrumentclass validate[required]'></select>";
-                             res +=  "</div>";
-                             res += "<div class='col-sm-2 grandparent'>";
-                             res += "<div class='form-group parent'>";
-                             res += "<label for='input-1'>Proportion</label><span id='errproportion' style='color:red;display:;'>(*)</span>";
-                             res += "<input type='text' class='form-control proportioninput validate[required]' onkeypress='return isNumberKey(event)' onchange='gettxtproportion(this.value)' name='rank' id='txtproportion"+data[i].assetcatid+"' />";
-                             res += "</div>";
-                             res += "</div>";
-                             res += "<div class='col-sm-2'>";
-                             res += "<div class='form-group start'>";
-                             res += "<label for='input-1'>Total</label>";
-                             res += "<input type='text' id='txttotal"+data[i].assetcatid+"' class='form-control totalinput validate[required]' readonly />";
-                             res += "<button type='button' id='btnremove' style='position:relative; top:-39px; right:-198px;'  value='" + data[i].assetcatid + "' style='display:;'    class='btn btn-danger  btnremove'><i class='icon-trash'></i></button>";
-                             res += "</div>";
-                             res += "</div>";
-                             res +=  "</div>";
-                             res += "</div>";
-                             res += "<div class='form-group'>";
-                             res += "&nbsp;&nbsp;&nbsp;&nbsp;<button type='button' id='btnmappingsubmit' value="+data[i].assetcatid+"  class='btn btn-primary shadow-primary px-5 btn"+data[i].assetcatid+"'><i class='icon-lock'></i>Submit</button>";
-                             res += "<button type='button' id='btnadd'    value='" + data[i].assetcatid + "' style='display:none;'    class='btn btn-success shadow-primary px-5 btnadd "+data[i].assetcatid+"'><i class='icon-lock'></i>Add Multiple</button>";
-                             res += " </div>";
-                             res += " </div>";
-                             res += " </div>";
-                             res += " </div>";
+                                     var liabilitiesid = $("#totalliablities").val();
+
+                                     //var cal = parseInt(totalval) - parseInt(liabilitiesid);
+                                     var cal = parseInt(liabilitiesid);
+                                     liability_proportion = cal;
+                                     // $("#tempone").val(cal);
+
+                                 }
+                                 if ($("#assetcategoryidforliablities").val() == "") {
+                                     liability_proportion = totalval;
+                                     // $("#tempone").val(totalval);
+
+                                 }
 
 
-                             /*var res = "<div class='card mb-2 border border - success'>";
-                             res += "<div class='card-header'>";
-                             res += "<button type='button' class='btn btn-link shadow-none text-success' data-toggle='collapse' data-target='#collapse-" + data[i].assetcatid +"' aria-expanded='true' aria-controls='collapse-22'>";
-                             res += "Accordion Group Item #1";
-                             res += "</button>";
-                             res += "</div>";
+                                 if (parseInt($("#assetcategoryidforpetcare").val()) == parseInt(data[i].assetcatid)) {
+                                     var petcareid = $("#totalpetcare").val();
 
-                             res += "<div id='collapse-" + data[i].assetcatid +"' class='collapse show' data-parent='#accordion8'>";
-                             res += " <div class='card-body'>";
-                             res += data[i].assetcatid +" Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably havent heard of them accusamus labore sustainable VHS.";
-                             res += " </div>";
-                             res += "   </div>";
-                             res +="</div >"; */
+                                     //var cal = parseInt(totalval) - parseInt(petcareid);
+                                     var cal = parseInt(petcareid);
+                                     petcare_proportion = cal;
+                                 }
+                                 if ($("#assetcategoryidforpetcare").val() == "") {
 
-                           //  var res = '<div class="card mb-2 border border-success"> <div class="card-header"> <button class="btn btn-link shadow-none text-success" data-toggle="collapse" data-target="#collapse-22" aria-expanded="true" aria-controls="collapse-22"> Accordion Group Item #1 </button> </div><div id="collapse-22" class="collapse show" data-parent="#accordion8"> <div class="card-body"> Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven heard of them accusamus labore sustainable VHS. </div ></div ></div >';
+                                     petcare_proportion = totalval;
 
-                             console.log(res);
+                                 }
 
-                             $("#accordion8").append(res);
+                                 if (parseInt(liability_proportion) == 0 && parseInt(petcare_proportion) == 0) {
+                                     total_liability_petcare_proportion = totalval;
+                                 } else {
+                                     total_liability_petcare_proportion = parseInt(totalval) - (parseInt(0) + parseInt(0));   // (parseInt(liability_proportion) + parseInt(petcare_proportion));
+                                 }
+                               
+                                 var res = "";
+                                 res += "<div class='card mb-2 border border-danger' id='accparent'>";
+                                
+                                 res += "<div class='card-header'>";
+                                 res += "<button type='button' class='btn btn-link shadow-none text-danger collapsed' data-toggle='collapse' data-target='#accordio" + data[i].assetcatid + "' aria-expanded='false' aria-controls='collapse-23'>";
+                                 res += data[i].AssetsCategory + data[i].assetcatid;
+                                 res += "</button>";
+                                 res += "</div>";
+                                 res += "<div id='accordio" + data[i].assetcatid + "' class='collapse  accordiondiv' data-parent='#accordion8'";
+                                 //res +="<div id='test'></div>";
+                                 res += "<div class='card-body'>";
+                                 res += "<input type='hidden' id='liability_proportion_" + data[i].assetcatid + " ' name='name' value='" + liability_proportion + "' />";
+                                 res += "<input type='hidden' id='petcare_proportion_" + data[i].assetcatid + "' name='name' value='" + petcare_proportion + "' />";
+                                 res += "<input type='hidden' class='total_liability_petcare_proportion' id='total_liability_petcare_proportion_" + data[i].assetcatid + "' name='name' value='" + total_liability_petcare_proportion + "' />";
+                                 res += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class='col-sm-3' id='type'>";
+                                 res += "<div class='form-group'>";
+                                 res += "<label for='input-1'>Type</label>";
+                                 res += "<br />";
+                                 res += "<form>";
+                                 res += "<label class='radio-inline'>";
+                                 res += "<input type='radio' id='getvalone' class=" + data[i].assetcatid + " name='optradio' value='Single' checked>Single";
+                                 res += "</label>";
+                                 res += "<label class='radio-inline'>";
+                                 res += "<input type='radio' id='getvaltwo' class=" + data[i].assetcatid + " name='optradio' value='Multiple'>Multiple";
+                                 res += "</label>";
+                                 res += "</form>";
+                                 res += "</div>";
+                                 res += "</div>";
+                                 res += "<div id='parentdiv" + data[i].assetcatid + "'  class='test'>";
+                                 res += "<div class='row rowdiv' id='beneficiarydetails' >";
+                                 res += "&nbsp;&nbsp;&nbsp;&nbsp;";
+                                 res += "<div class='col-sm-2'>";
+                                 res += "<div class='form-group'>";
+                                 res += "<label for='input-1'>Beneficiary</label><span id='errbene'  style='color:red; display:;'>(*)</span>";
+                                 res += "<select id='ddlbeneficiary" + data[i].assetcatid + "' onchange='checkbeneficiaryduplicate(this.id)' name='contentList' class='form-control beneficiaryclass validate[required]'></select>";
+                                 res += "<input type='text' class='form-control' style='display: none' id='ddlbeneficiarytxt' name='name' value='' />";
+                                 res += "</div>";
+                                 res += "</div>";   // new
+                                 res += "<div class='col-sm-2'>";
+                                 res += "<div class='form-group'>";
+                                 res += "<label for='input-1'>SchemeName<span id='errscheme' style='color:red;display:;' >(*)</span></label>";
+                                 res += "<select id='schemename" + data[i].assetcatid + "' onchange='getschemename(this.id)' name='contentList' class='form-control schemenameclass validate[required]'></select>";
+                                 res += "<input type='text' class='form-control' style='display: none' id='ddlbeneficiarytxt' name='name' value='' />";
+                                 res += "</div>";
+                                 res += "</div>";
+                                 res += "<div class='col-sm-3'>";
+                                 res += "<label for='input-1'>Instruments</label><span id='errinstrument' style='color:red;display:;'>(*)</span>";
+                                 res += "<select id='DDLAssetColumn" + data[i].assetcatid + "' onchange='getDDLAssetColumn(this.id)' name='contentList' class='form-control instrumentclass validate[required]'></select>";
+                                 res += "</div>";
+                                 res += "<div class='col-sm-2 grandparent'>";
+                                 res += "<div class='form-group parent'>";
+                                 res += "<label for='input-1'>Proportion</label><span id='errproportion' style='color:red;display:;'>(*)</span>";
+                                 res += "<input type='text' autocomplete='off' class='form-control proportioninput validate[required]' onkeypress='return isNumberKey(event)' onchange='gettxtproportion(this.value)' name='rank' id='txtproportion" + data[i].assetcatid + "' />";
+                                 res += "</div>";
+                                 res += "</div>";
+                                 res += "<div class='col-sm-2'>";
+                                 res += "<div class='form-group start'>";
+                                 res += "<label for='input-1'>Total</label>";
+                                 res += "<input type='text' id='txttotal" + data[i].assetcatid + "'  class='form-control totalinput validate[required]' readonly />";
+                                 res += "<button type='button' id='btnremove' style='position:relative; top:-39px; right:-198px;'  value='" + data[i].assetcatid + "' style='display:;'    class='btn btn-danger  btnremove'><i class='icon-trash'></i></button>";
+                                 res += "</div>";
+                                 res += "</div>";
+                                 res += "</div>";
+                                 res += "</div>";
+                                 res += "<div class='form-group'>";
+                                 res += "&nbsp;&nbsp;&nbsp;&nbsp;<button type='button' id='btnmappingsubmit' value=" + data[i].assetcatid + "  class='btn btn-primary shadow-primary px-5 btn" + data[i].assetcatid + "'><i class='icon-lock'></i>Submit</button>";
+                                 res += "<button type='button' id='btnadd'    value='" + data[i].assetcatid + "' style='display:none;'    class='btn btn-success shadow-primary px-5 btnadd " + data[i].assetcatid + "'><i class='icon-lock'></i>Add Multiple</button>";
+                                 res += " </div>";
+                                 res += " </div>";
+                                 res += " </div>";
+                                 res += " </div>";
 
+
+                                 /*var res = "<div class='card mb-2 border border - success'>";
+                                 res += "<div class='card-header'>";
+                                 res += "<button type='button' class='btn btn-link shadow-none text-success' data-toggle='collapse' data-target='#collapse-" + data[i].assetcatid +"' aria-expanded='true' aria-controls='collapse-22'>";
+                                 res += "Accordion Group Item #1";
+                                 res += "</button>";
+                                 res += "</div>";
+
+                                 res += "<div id='collapse-" + data[i].assetcatid +"' class='collapse show' data-parent='#accordion8'>";
+                                 res += " <div class='card-body'>";
+                                 res += data[i].assetcatid +" Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably havent heard of them accusamus labore sustainable VHS.";
+                                 res += " </div>";
+                                 res += "   </div>";
+                                 res +="</div >"; */
+
+                                 //  var res = '<div class="card mb-2 border border-success"> <div class="card-header"> <button class="btn btn-link shadow-none text-success" data-toggle="collapse" data-target="#collapse-22" aria-expanded="true" aria-controls="collapse-22"> Accordion Group Item #1 </button> </div><div id="collapse-22" class="collapse show" data-parent="#accordion8"> <div class="card-body"> Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven heard of them accusamus labore sustainable VHS. </div ></div ></div >';
+
+                                 //  console.log(res);
+
+                                 $("#accordion8").append(res);
+                             }
                          }
 
 
@@ -470,7 +539,7 @@
 
 
 
-           
+
 
 
             // schemename
@@ -621,38 +690,48 @@
         $(document).on('keyup', '.proportioninput', function () {
             var $rowdiv = $(this).closest('.rowdiv');
             var $prevdiv = $rowdiv.prev('.rowdiv');
-
-            var rr = $(this).attr('id'); 
+           
+            var rr = $(this).attr('id');
             var f = rr.replace('txtproportion', '');
-            
+            // var temp = $("#txttotalval").val();
+            var temp = $(this).closest('.accordiondiv').find('.total_liability_petcare_proportion').val();
+
 
             var prevtotalinputval = $prevdiv.find('.totalinput').val();
-        
-
+            if (typeof prevtotalinputval === "undefined") {
+               
+                prevtotalinputval = temp;
+            }
             var proportionvalue = $(this).val();
-       
+
             var t = $("#txttotalval").val();
             var result = "";
 
 
-            var temp = $("#txttotalval").val();
+         
+           // if ($rowdiv.find('.totalinput').val() == "") {
 
-
-            if ($rowdiv.find('.totalinput').val() == "") {
-               
                 $rowdiv.find('.totalinput').val(temp - proportionvalue);
 
                 if (temp != "100") {
+                   // alert('1st');
                     var x = prevtotalinputval - proportionvalue;
                     $rowdiv.find('.totalinput').val(x);
                 }
-             
 
-                //var x = prevtotalinputval - proportionvalue;
-                //$rowdiv.find('.totalinput').val(x);
-            }
 
-          
+                if (temp == "100") {
+                 // alert('2nd');
+                    var x = parseInt(temp) - proportionvalue;
+                    $rowdiv.find('.totalinput').val(x);
+                }
+
+
+               /* var x = prevtotalinputval - proportionvalue;
+                $rowdiv.find('.totalinput').val(x);*/
+        //    }
+
+
 
 
             //if ($rowdiv.find('.totalinput').val() != "") {
@@ -661,7 +740,7 @@
             //}
 
 
-            
+
             //        result = prevtotalinputval - proportionvalue;
 
             //$(this).parent().
@@ -677,10 +756,10 @@
             //        $rowdiv.find('.totalinput').val(parseInt(100) - proportionvalue);
             //        result = prevtotalinputval - proportionvalue;
 
-                   
+
 
             //    }
-             
+
 
 
 
@@ -763,7 +842,7 @@
 
 
         function checkbeneficiaryduplicate(id) {
-            
+
             var dt = '';
             var lang_name = $('#' + id).val();
             var selectedtext = $("#" + id + " option:selected").text();
@@ -942,7 +1021,7 @@
 
 
 
-        
+
 
             // for scheme ddl id auto generate
 
@@ -1062,8 +1141,8 @@
             var instrument = $("#DDLAssetColumn" + btnidentify + "").find(":selected").text();
             var proportion = $("#txtproportion" + btnidentify + "").val();
             var tid = $("#ddltid").val();
-        
-         
+
+
 
             if (radioValue == "Single") {
 
@@ -1071,16 +1150,16 @@
                 var assetcat = $("#ddlassetcat").val();
 
 
-               
+
 
                 if ($("#ddlbeneficiary" + btnidentify + "").find(":selected").val() == "" || $("#schemename" + btnidentify + "").find(":selected").text() == "" || $("#DDLAssetColumn" + btnidentify + "").find(":selected").text() == "" || $("#txtproportion" + btnidentify + "").val() == "" || $("#ddltid").val() == "") {
-                  
-                 
+
+
 
                     alert('Please Fill Out Manadatory Field');
                 }
                 else {
-                   
+
                     var data = assettype + "~" + assetcat + "~" + beneficiary + "~" + schemename + "~" + instrument + "~" + proportion + "~" + tid + "~" + btnidentify;
 
                     $.ajax({
@@ -1106,7 +1185,7 @@
                 }
 
 
-              
+
 
 
             }
@@ -1119,7 +1198,7 @@
                     alert('Please Fill Out Manadatory Field');
                 }
                 else {
-                    
+
                     var data = $("#query").val();
 
                     $.ajax({
@@ -1147,7 +1226,7 @@
                     });
                 }
 
-              
+
 
 
             }
@@ -1262,12 +1341,12 @@ function getDDLTestator(value) {
 
 
             }
-        });
+    });
 
 
 
 
-    };
+     };
 
 
 
@@ -1324,9 +1403,112 @@ function getDDLTestator(value) {
 
         });
 
+        /* for grouping json data */
+
+
+        function getItemByKey(arr, key, value) {
+            // here we look for existing group item in the result array
+            return arr.reduce(function (prev, cur) {
+                if (prev == null && cur[key] == value) {
+                    return cur;
+                }
+                return prev;
+            }, null);
+        }
+
+        function checkPropForGroup(prop, key) {
+            // here we check which columns should stay in the group,
+            // and which should go down to group items.
+            return prop == key || prop == key.replace("_id", "_name");
+        }
+
+        function cloneSuperItem(src, key) {
+            // create super item by copying only group related fields
+            var item = {};
+            for (prop in src) {
+                if (checkPropForGroup(prop, key)) {
+                    item[prop] = src[prop];
+                }
+            }
+            item[key + '_group'] = [];
+            return item;
+        }
+
+        function cloneSubItem(src, key) {
+            // create sub-item by copying all but group related fields
+            var item = {};
+            for (prop in src) {
+                if (!checkPropForGroup(prop, key)) {
+                    item[prop] = src[prop];
+                }
+            }
+            return item;
+        }
+
+        function groupArray(arr, args, lvl) {
+            var key = args[lvl];
+            var result = [];
+            arr.forEach(function (item, ind, a) {
+                // find or create super item for group and then create sub item and push it there
+                var keyItem = getItemByKey(result, key, item[key]);
+                if (!keyItem) {
+                    keyItem = cloneSuperItem(item, key);
+                    result.push(keyItem);
+                }
+                subItem = cloneSubItem(item, key);
+                keyItem[key + '_group'].push(subItem);
+            });
+            if (args[lvl + 1]) {
+                // recursively make grouping on lower level
+                for (var i = 0; i < result.length; i++) {
+                    result[i][key + '_group'] = groupArray(result[i][key + '_group'], args, lvl + 1);
+                }
+            }
+            return result;
+        }
+
+        function groupArrayMain(arr, keysArray) {
+            // keys should be simply listed as parameters in order from top group to lower
+            return groupArray(arr, arguments, 1)
+        }
+
+
 
     </script>
 
+
+
+
+    @*@if (Session["assettypeidforpetcare"] != null || Session["assetcategoryidforpetcare"] != null)
+    {
+        <script>
+
+            document.ready(function () {
+
+                $
+
+
+            });
+
+
+        </script>
+    }*@
+
+
+    @*@if (Session["assettypeidforliablities"] != null || Session["assetcategoryidforliablities"] != null)
+    {
+          <script>
+
+
+              document.ready(function () {
+
+
+
+              });
+
+
+          </script>
+    }*@
 
 
 

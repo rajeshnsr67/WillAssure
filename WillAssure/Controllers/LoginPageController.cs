@@ -296,6 +296,15 @@ namespace WillAssure.Controllers
             Session["totalliablities"] = "";
             Session["totalpetcare"] = "";
 
+            Session["assettypeidforpetcare"] = "";
+            Session["assetcategoryidforpetcare"] = "";
+
+
+            Session["assettypeidforliablities"] = "";
+            Session["assetcategoryidforliablities"] = "";
+
+
+
             return View("~/Views/LoginPage/LoginPageContent.cshtml");
         }
 

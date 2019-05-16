@@ -282,7 +282,8 @@ namespace WillAssure.Controllers
             cmd.ExecuteNonQuery();
             con.Close();
             Session["totalliablities"] = LM.Proportion;
-
+            Session["assettypeidforliablities"] = LM.assettypeid;
+            Session["assetcategoryidforliablities"] = LM.assetCategoryid;
             ViewBag.Message = "Verified";
             ModelState.Clear();
 
@@ -592,6 +593,27 @@ namespace WillAssure.Controllers
             return data;
 
         }
+
+
+
+        public string FilterProporion()
+        {
+            string msg = "";
+            int response = Convert.ToInt32(Request["send"]);
+            int liabilitiesproportion = Convert.ToInt32(Session["totalpetcare"]);
+            if (liabilitiesproportion > response)
+            {
+
+            }
+            else
+            {
+                msg = "true";
+            }
+
+
+            return msg;
+        }
+
 
 
 

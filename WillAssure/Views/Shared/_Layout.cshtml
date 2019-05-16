@@ -459,17 +459,7 @@
                                                 <ul class="sidebar-submenu">
 
                                                     <li><a href=@Url.Action(nav1[1].ToString(), nav1[2].ToString())><i class="zmdi zmdi-star-outline"></i>@nav1[0].ToString()</a></li>
-                                                    @if (item.PageName == "Distributor")
-                                                    {
 
-
-
-                                                        <li><a href="@Url.Action("EditUserFormIndex", "EditUserForm")"><i class="zmdi zmdi-star-outline"></i>View Individual Firm</a></li>
-
-                                                        <li><a href="@Url.Action("EditCompanyDetailsIndex", "EditCompanyDetails")"><i class="zmdi zmdi-star-outline"></i>View Register Company</a></li>
-
-
-                                                    }
                                                 </ul>
 
 
@@ -481,7 +471,17 @@
                                                 {
                                                     <li><a href=@Url.Action(nav2[1].ToString(), nav2[2].ToString())><i class="zmdi zmdi-star-outline"></i>@nav2[0].ToString()</a></li>
                                                 }
+                                                @if (item.PageName == "Distributor")
+                                                {
 
+
+
+                                                    <li><a href="@Url.Action("EditUserFormIndex", "EditUserForm")"><i class="zmdi zmdi-star-outline"></i>View Individual Firm</a></li>
+
+                                                    <li><a href="@Url.Action("EditCompanyDetailsIndex", "EditCompanyDetails")"><i class="zmdi zmdi-star-outline"></i>View Register Company</a></li>
+
+
+                                                }
 
                                             </ul>
 
@@ -606,7 +606,15 @@
                     {
                         if (Session["doctype"].ToString() == "Will")
                         {
+                          
+                                <li>
+                                    <a href=@Url.Action("DashBoardIndex", "DashBoard") class="waves-effect">
+                                        <i class="zmdi zmdi-view-dashboard"></i> <span>Dashboard</span> <i class="fa fa-angle-left pull-right"></i>
+                                    </a>
 
+                                </li>
+
+                         
 
                             <li>
 
