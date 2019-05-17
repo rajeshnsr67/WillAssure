@@ -431,7 +431,7 @@
                                  if (parseInt(liability_proportion) == 0 && parseInt(petcare_proportion) == 0) {
                                      total_liability_petcare_proportion = totalval;
                                  } else {
-                                     total_liability_petcare_proportion = parseInt(totalval) - (parseInt(0) + parseInt(0));   // (parseInt(liability_proportion) + parseInt(petcare_proportion));
+                                     total_liability_petcare_proportion = parseInt(totalval) - (parseInt(liability_proportion) + parseInt(petcare_proportion));   // (parseInt(liability_proportion) + parseInt(petcare_proportion));
                                  }
                                
                                  var res = "";

@@ -57,6 +57,132 @@ namespace WillAssure.Controllers
 
 
 
+            // check type 
+            string typ = "";
+            con.Open();
+            string qq1 = "select Type from users where uId = " + Convert.ToInt32(Session["uuid"]) + " ";
+            SqlDataAdapter daa = new SqlDataAdapter(qq1, con);
+            DataTable dtt = new DataTable();
+            daa.Fill(dtt);
+            con.Close();
+
+            if (dtt.Rows.Count > 0)
+            {
+                typ = dtt.Rows[0]["Type"].ToString();
+            }
+
+
+
+            //end
+
+
+
+            if (typ == "Testator")
+            {
+                // check will status
+                con.Open();
+                string qry1 = "select Will , Designation  from users where Will = 1 and Designation = 1 and uId = " + Convert.ToInt32(Session["uuid"]) + " ";
+                SqlDataAdapter daa1 = new SqlDataAdapter(qry1, con);
+                DataTable dtt1 = new DataTable();
+                daa1.Fill(dtt1);
+                if (dtt1.Rows.Count > 0)
+                {
+                    if (Convert.ToInt32(dtt1.Rows[0]["Will"]) == 1 && Convert.ToInt32(dtt1.Rows[0]["Designation"]) == 1)
+                    {
+                        ViewBag.documentbtn1 = "true";
+                    }
+
+                }
+                con.Close();
+                //end
+
+
+                // check codocil status
+                con.Open();
+                string qry2 = "select Codocil , Designation  from users where Codocil = 1 and Designation = 1 and uId = " + Convert.ToInt32(Session["uuid"]) + " ";
+                SqlDataAdapter daa2 = new SqlDataAdapter(qry2, con);
+                DataTable dtt2 = new DataTable();
+                daa2.Fill(dtt2);
+                if (dtt2.Rows.Count > 0)
+                {
+                    if (Convert.ToInt32(dtt2.Rows[0]["Codocil"]) == 1 && Convert.ToInt32(dtt2.Rows[0]["Designation"]) == 1)
+                    {
+                        ViewBag.documentbtn2 = "true";
+                    }
+                }
+                con.Close();
+
+                //end
+
+
+                // check Poa status
+                con.Open();
+                string qry4 = "select POA  , Designation  from users where POA = 1 and Designation = 1 and uId = " + Convert.ToInt32(Session["uuid"]) + " ";
+                SqlDataAdapter daa4 = new SqlDataAdapter(qry4, con);
+                DataTable dtt4 = new DataTable();
+                daa4.Fill(dtt4);
+                if (dtt4.Rows.Count > 0)
+                {
+                    if (Convert.ToInt32(dtt4.Rows[0]["POA"]) == 1 && Convert.ToInt32(dtt4.Rows[0]["Designation"]) == 1)
+                    {
+
+                        ViewBag.documentbtn3 = "true";
+                    }
+                }
+                con.Close();
+                //end
+
+
+                // check gift deeds status
+                con.Open();
+                string qry3 = "select Giftdeeds , Designation  from users where Will = 1 and Designation = 1 and uId = " + Convert.ToInt32(Session["uuid"]) + " ";
+                SqlDataAdapter daa3 = new SqlDataAdapter(qry3, con);
+                DataTable dtt3 = new DataTable();
+                daa3.Fill(dtt3);
+                if (dtt3.Rows.Count > 0)
+                {
+                    if (dtt3.Rows[0]["Giftdeeds"] != null)
+                    {
+                        if (Convert.ToInt32(dtt3.Rows[0]["Giftdeeds"]) == 1 && Convert.ToInt32(dtt3.Rows[0]["Designation"]) == 1)
+                        {
+                            ViewBag.documentbtn4 = "true";
+                        }
+                    }
+
+                }
+                con.Close();
+                //end
+
+
+                // check Living Will status
+                con.Open();
+                string qry312 = "select LivingWill , Designation  from users where Will = 1 and Designation = 1 and uId = " + Convert.ToInt32(Session["uuid"]) + " ";
+                SqlDataAdapter daa23 = new SqlDataAdapter(qry312, con);
+                DataTable dtt43 = new DataTable();
+                daa23.Fill(dtt43);
+                if (dtt43.Rows.Count > 0)
+                {
+                    if (Convert.ToInt32(dtt43.Rows[0]["LivingWill"]) == 1 && Convert.ToInt32(dtt43.Rows[0]["Designation"]) == 1)
+                    {
+                        ViewBag.documentbtn5 = "true";
+                    }
+                }
+                con.Close();
+                //end
+
+
+
+            }
+            else
+            {
+                ViewBag.showtitle = "true";
+                ViewBag.documentlink = "true";
+
+            }
+
+
+
+
             return View("~/Views/Documentpg/DocumentPgPageContent.cshtml");
         }
 
@@ -64,6 +190,130 @@ namespace WillAssure.Controllers
 
         public ActionResult insertDocumentDetails(TestatorFormModel TFM)
         {
+
+            // check type 
+            string typ = "";
+            con.Open();
+            string qq1 = "select Type from users where uId = " + Convert.ToInt32(Session["uuid"]) + " ";
+            SqlDataAdapter daa = new SqlDataAdapter(qq1, con);
+            DataTable dtt = new DataTable();
+            daa.Fill(dtt);
+            con.Close();
+
+            if (dtt.Rows.Count > 0)
+            {
+                typ = dtt.Rows[0]["Type"].ToString();
+            }
+
+
+
+            //end
+
+
+
+            if (typ == "Testator")
+            {
+                // check will status
+                con.Open();
+                string qry1 = "select Will , Designation  from users where Will = 1 and Designation = 1 and uId = " + Convert.ToInt32(Session["uuid"]) + " ";
+                SqlDataAdapter daa1 = new SqlDataAdapter(qry1, con);
+                DataTable dtt1 = new DataTable();
+                daa1.Fill(dtt1);
+                if (dtt1.Rows.Count > 0)
+                {
+                    if (Convert.ToInt32(dtt1.Rows[0]["Will"]) == 1 && Convert.ToInt32(dtt1.Rows[0]["Designation"]) == 1)
+                    {
+                        ViewBag.documentbtn1 = "true";
+                    }
+
+                }
+                con.Close();
+                //end
+
+
+                // check codocil status
+                con.Open();
+                string qry2 = "select Codocil , Designation  from users where Codocil = 1 and Designation = 1 and uId = " + Convert.ToInt32(Session["uuid"]) + " ";
+                SqlDataAdapter daa2 = new SqlDataAdapter(qry2, con);
+                DataTable dtt2 = new DataTable();
+                daa2.Fill(dtt2);
+                if (dtt2.Rows.Count > 0)
+                {
+                    if (Convert.ToInt32(dtt2.Rows[0]["Codocil"]) == 1 && Convert.ToInt32(dtt2.Rows[0]["Designation"]) == 1)
+                    {
+                        ViewBag.documentbtn2 = "true";
+                    }
+                }
+                con.Close();
+
+                //end
+
+
+                // check Poa status
+                con.Open();
+                string qry4 = "select POA  , Designation  from users where POA = 1 and Designation = 1 and uId = " + Convert.ToInt32(Session["uuid"]) + " ";
+                SqlDataAdapter daa4 = new SqlDataAdapter(qry4, con);
+                DataTable dtt4 = new DataTable();
+                daa4.Fill(dtt4);
+                if (dtt4.Rows.Count > 0)
+                {
+                    if (Convert.ToInt32(dtt4.Rows[0]["POA"]) == 1 && Convert.ToInt32(dtt4.Rows[0]["Designation"]) == 1)
+                    {
+
+                        ViewBag.documentbtn3 = "true";
+                    }
+                }
+                con.Close();
+                //end
+
+
+                // check gift deeds status
+                con.Open();
+                string qry3 = "select Giftdeeds , Designation  from users where Will = 1 and Designation = 1 and uId = " + Convert.ToInt32(Session["uuid"]) + " ";
+                SqlDataAdapter daa3 = new SqlDataAdapter(qry3, con);
+                DataTable dtt3 = new DataTable();
+                daa3.Fill(dtt3);
+                if (dtt3.Rows.Count > 0)
+                {
+                    if (dtt3.Rows[0]["Giftdeeds"] != null)
+                    {
+                        if (Convert.ToInt32(dtt3.Rows[0]["Giftdeeds"]) == 1 && Convert.ToInt32(dtt3.Rows[0]["Designation"]) == 1)
+                        {
+                            ViewBag.documentbtn4 = "true";
+                        }
+                    }
+
+                }
+                con.Close();
+                //end
+
+
+                // check Living Will status
+                con.Open();
+                string qry312 = "select LivingWill , Designation  from users where Will = 1 and Designation = 1 and uId = " + Convert.ToInt32(Session["uuid"]) + " ";
+                SqlDataAdapter daa23 = new SqlDataAdapter(qry312, con);
+                DataTable dtt43 = new DataTable();
+                daa23.Fill(dtt43);
+                if (dtt43.Rows.Count > 0)
+                {
+                    if (Convert.ToInt32(dtt43.Rows[0]["LivingWill"]) == 1 && Convert.ToInt32(dtt43.Rows[0]["Designation"]) == 1)
+                    {
+                        ViewBag.documentbtn5 = "true";
+                    }
+                }
+                con.Close();
+                //end
+
+
+
+            }
+            else
+            {
+                ViewBag.showtitle = "true";
+                ViewBag.documentlink = "true";
+
+            }
+
 
             List<LoginModel> Lmlist = new List<LoginModel>();
             con.Open();

@@ -114,7 +114,7 @@ namespace WillAssure.Models
             }
             else
             {
-
+                ViewBag.showtitle = "true";
 
                 ViewBag.documentlink = "true";
 
@@ -274,7 +274,7 @@ namespace WillAssure.Models
             }
             else
             {
-
+                ViewBag.showtitle = "true";
                 ViewBag.documentlink = "true";
 
             }

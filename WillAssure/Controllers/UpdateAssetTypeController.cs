@@ -116,7 +116,7 @@ namespace WillAssure.Controllers
             else
             {
 
-
+                ViewBag.showtitle = "true";
                 ViewBag.documentlink = "true";
 
             }
@@ -280,7 +280,7 @@ namespace WillAssure.Controllers
             }
             else
             {
-
+                ViewBag.showtitle = "true";
                 ViewBag.documentlink = "true";
 
             }

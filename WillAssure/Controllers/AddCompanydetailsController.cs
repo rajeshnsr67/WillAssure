@@ -264,7 +264,7 @@ namespace WillAssure.Controllers
             }
             else
             {
-
+                ViewBag.showtitle = "true";
                 ViewBag.documentlink = "true";
 
             }

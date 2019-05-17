@@ -304,7 +304,7 @@ namespace WillAssure.Controllers
 
             for (int i = 0; i < Lmlist.Count(); i++)
             {
-                testString = Lmlist[20].Action;
+                testString = Lmlist[15].Action;
 
             }
 
@@ -557,7 +557,7 @@ namespace WillAssure.Controllers
 
             for (int i = 0; i < Lmlist.Count(); i++)
             {
-                testString = Lmlist[20].Action;
+                testString = Lmlist[15].Action;
 
             }
 
