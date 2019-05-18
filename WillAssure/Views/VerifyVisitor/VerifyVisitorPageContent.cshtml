@@ -1,10 +1,12 @@
 ﻿@model WillAssure.Models.VisitorModel
 @{
-                /**/
+    /**/
 
-                /**/
+    /**/
 
-                ViewBag.Title = "UpdateVisitorPageContent";
+    /**/
+
+    ViewBag.Title = "UpdateVisitorPageContent";
 }
 
 
@@ -39,95 +41,96 @@
 
                         @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "RoleForm" }))
                         {
+
                             @Html.HiddenFor(m => m.vid)
                             @Html.HiddenFor(m => m.documenttypec, new { @id = "documenttype" })
                             @Html.HiddenFor(m => m.documentcategory, new { @id = "documentcategory" })
 
-                        <div class="row">
-                            <div class="col-sm-6">
+                            <div class="row">
+                                <div class="col-sm-6">
 
-                                <div class="form-group">
-                                    <label for="input-1">First Name</label>
+                                    <div class="form-group">
+                                        <label for="input-1">First Name</label>
 
-                                    @Html.TextBoxFor(m => m.First_Name, new { @class = "form-control validate[required] text-input", @id = "txtfirstname", @placeholder = "Enter First Name", @autocomplete = "off", @readonly = "true", alert = "LabourCost is requried" })
+                                        @Html.TextBoxFor(m => m.First_Name, new { @class = "form-control validate[required] text-input", @id = "txtfirstname", @placeholder = "Enter First Name", @autocomplete = "off", @readonly = "true", alert = "LabourCost is requried" })
+                                    </div>
                                 </div>
-                            </div>
 
 
-                            <div class="col-sm-6">
+                                <div class="col-sm-6">
 
-                                <div class="form-group">
-                                    <label for="input-1">Middle Name</label>
+                                    <div class="form-group">
+                                        <label for="input-1">Middle Name</label>
 
-                                    @Html.TextBoxFor(m => m.Middle_Name, new { @class = "form-control validate[required] text-input", @id = "txtmiddlename", @placeholder = "Enter Middle Name", @autocomplete = "off", @readonly = "true", alert = "LabourCost is requried" })
+                                        @Html.TextBoxFor(m => m.Middle_Name, new { @class = "form-control validate[required] text-input", @id = "txtmiddlename", @placeholder = "Enter Middle Name", @autocomplete = "off", @readonly = "true", alert = "LabourCost is requried" })
+                                    </div>
                                 </div>
-                            </div>
 
 
-                            <div class="col-sm-6">
+                                <div class="col-sm-6">
 
-                                <div class="form-group">
-                                    <label for="input-1">Last Name</label>
+                                    <div class="form-group">
+                                        <label for="input-1">Last Name</label>
 
-                                    @Html.TextBoxFor(m => m.Last_Name, new { @class = "form-control validate[required] text-input", @id = "txtlastname", @placeholder = "Enter Last Name", @autocomplete = "off", @readonly = "true", alert = "LabourCost is requried" })
+                                        @Html.TextBoxFor(m => m.Last_Name, new { @class = "form-control validate[required] text-input", @id = "txtlastname", @placeholder = "Enter Last Name", @autocomplete = "off", @readonly = "true", alert = "LabourCost is requried" })
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="col-sm-6">
+                                <div class="col-sm-6">
 
-                                <div class="form-group">
-                                    <label for="input-1">Mobile</label>
+                                    <div class="form-group">
+                                        <label for="input-1">Mobile</label>
 
-                                    @Html.TextBoxFor(m => m.Mobile, new { @class = "form-control validate[required,custom[Mobile]] text-input", @id = "txtmobile", @placeholder = "Enter Mobile", @autocomplete = "off", @readonly = "true", alert = "LabourCost is requried" })
+                                        @Html.TextBoxFor(m => m.Mobile, new { @class = "form-control validate[required,custom[Mobile]] text-input", @id = "txtmobile", @placeholder = "Enter Mobile", @autocomplete = "off", @readonly = "true", alert = "LabourCost is requried" })
+                                    </div>
                                 </div>
-                            </div>
 
 
-                            <div class="col-sm-6">
+                                <div class="col-sm-6">
 
-                                <div class="form-group">
-                                    <label for="input-1">Email</label>
+                                    <div class="form-group">
+                                        <label for="input-1">Email</label>
 
-                                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control validate[required,custom[email]] text-input", @id = "txtemail", @placeholder = "Enter Email", @autocomplete = "off", @readonly = "true", alert = "LabourCost is requried" })
+                                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control validate[required,custom[email]] text-input", @id = "txtemail", @placeholder = "Enter Email", @autocomplete = "off", @readonly = "true", alert = "LabourCost is requried" })
+                                    </div>
                                 </div>
-                            </div>
-
-                     
 
 
 
 
-                            <div class="col-sm-6">
 
-                                <div class="form-group">
-                                    <label for="input-1">Distributor (@Html.LabelFor(m => m.RefDist, Model.RefDist))    </label>
 
-                                    <select id="ddlDistributor" class="form-control validate[required]">
-                                        <option value="">--Select Distributor--</option>
-                                    </select>
-                                    @Html.HiddenFor(m => m.distributor_id, new { id = "distributor_id" })
-                                    @Html.HiddenFor(m => m.distributor_txt, new { id = "distributor_txt" })
+                                <div class="col-sm-6">
+
+                                    <div class="form-group">
+                                        <label for="input-1">Distributor (@Html.LabelFor(m => m.RefDist, Model.RefDist))    </label>
+
+                                        <select id="ddlDistributor" class="form-control validate[required]">
+                                            <option value="">--Select Distributor--</option>
+                                        </select>
+                                        @Html.HiddenFor(m => m.distributor_id, new { id = "distributor_id" })
+                                        @Html.HiddenFor(m => m.distributor_txt, new { id = "distributor_txt" })
+                                    </div>
                                 </div>
+
+
+
+                                <div class="col-sm-2">
+
+                                    <label style="line-height:41px;">Document Type</label>
+
+
+                                </div>
+
+                                <div class="col-sm-3">
+
+                                    @Html.TextBoxFor(m => m.DocumentType, new { @class = "form-control validate[required] text-input", @id = "txtdoc", @placeholder = "Enter RefDist", @autocomplete = "off", @readonly = "true", alert = "LabourCost is requried" })
+                                </div>
+
+
+
+
                             </div>
-
-
-
-                            <div class="col-sm-2">
-
-                                <label style="line-height:41px;">Document Type</label>
-
-
-                            </div>
-
-                            <div class="col-sm-3">
-
-                                @Html.TextBoxFor(m => m.DocumentType, new { @class = "form-control validate[required] text-input", @id = "txtdoc", @placeholder = "Enter RefDist", @autocomplete = "off", @readonly = "true", alert = "LabourCost is requried" })
-                            </div>
-
-
-
-
-                        </div>
 
 
 
@@ -143,7 +146,7 @@
             </div>
             <button type="button" id="btnRoleformsubmitSUCCESS" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
             <button type="button" id="btnRoleformsubmitCHECK" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
-
+            <button type='button' id='btncreate' style="display:none;" class='btn btn-success' data-toggle='modal' data-target='.primarymodal'>Create Document</button>
         </div>
 
 
@@ -151,6 +154,144 @@
 
 
 </div>
+@*end*@
+
+
+
+
+
+@*document popup*@
+
+<div class="modal fade primarymodal">
+    <div class="modal-dialog">
+        <div class="modal-content border-primary" style="width:196%; position:relative; right:38%">
+            <div class="modal-header bg-primary">
+                <h5 class="modal-title text-white">Create Document</h5>
+                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            @using (Html.BeginForm(null, null, FormMethod.Post, new { name = "PopUp", id = "testatordocument" }))
+            {
+                <textarea id="documenttype11" name="documenttype11" style="display:none;"></textarea>
+                <div class="modal-body">
+                    @Html.HiddenFor(m => m.tId, new { @id = "tId" })
+
+                    @Html.HiddenFor(m => m.documentcategory, new { @id = "documentcategory" })
+                    <div class="row">
+
+                        <div class="col-sm-3">
+                            <label style="line-height:41px;">Document Type</label>
+
+                        </div>
+                        <div class="col-sm-3">
+                            <span style="line-height:36px;">
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" id="checkone" value="Will">Will
+                                </label>
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" id="checktwo" value="Codocil">Codocil
+                                </label>
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" id="checkthree" value="POA">POA
+                                </label>
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" id="checkfour" value="Giftdeeds">Giftdeeds
+                                </label>
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" id="checkfive" value="LivingWill">Living Will
+                                </label>
+                            </span>
+                            @Html.HiddenFor(m => m.Document_Created_By_ID, new { id = "Document_Created_By_ID" })
+                            @Html.HiddenFor(m => m.Document_Created_By_txt, new { id = "Document_Created_By_txt" })
+                        </div>
+
+
+                        <div class="col-sm-3">
+                            <label style="line-height:41px;">Category</label>
+
+                        </div>
+                        <div class="col-sm-3">
+                            @Html.DropDownListFor(x => x.documentcategory, new SelectListItem[]{
+                            new SelectListItem() {Text = "--Select--", Value=""},
+                            new SelectListItem() {Text = "Quick", Value="Quick"},
+                            new SelectListItem() {Text = "Detailed", Value="Detailed"}}, new { @class = "form-control validate[required]", id = "DDLAmtPaidBY2", @disabled = "disabled" })
+
+
+                        </div>
+
+
+
+
+
+                    </div>
+                    <hr>
+
+                    <div class="row">
+
+
+                        <div class="col-sm-3">
+                            <label style="line-height:41px;">Document Created By</label>
+
+                        </div>
+                        <div class="col-sm-3">
+                            @Html.DropDownListFor(x => x.Document_Created_By, new SelectListItem[]{
+                             new SelectListItem() {Text = "--Select--", Value=""},
+                             new SelectListItem() {Text = "Distributor", Value="Distributor"},
+                             new SelectListItem() {Text = "Testator", Value="Testator"}}, new { @class = "form-control validate[required]", @id = "ddldocumentcreatedby1" })
+                            @Html.HiddenFor(m => m.Document_Created_By_ID, new { id = "Document_Created_By_ID" })
+                            @Html.HiddenFor(m => m.Document_Created_By_txt, new { id = "Document_Created_By_txt" })
+
+                        </div>
+
+                        <div class="col-sm-3">
+                            <label style="line-height:41px;">Amount Paid By</label>
+
+                        </div>
+                        <div class="col-sm-3">
+                            @Html.DropDownListFor(x => x.Amt_Paid_By, new SelectListItem[]{
+                            new SelectListItem() {Text = "--Select--", Value=""},
+                            new SelectListItem() {Text = "Distributor", Value="Distributor"},
+                            new SelectListItem() {Text = "Testator", Value="Testator"}}, new { @class = "form-control validate[required]", id = "DDLAmtPaidBY3" })
+                            @Html.HiddenFor(m => m.Amt_Paid_By_By_ID, new { id = "Amt_Paid_By_By_ID" })
+                            @Html.HiddenFor(m => m.Amt_Paid_By_txt, new { id = "Amt_Paid_By_txt" })
+
+                        </div>
+
+
+
+
+                    </div>
+                    <hr>
+
+                    <div class="row">
+
+                        <div class="col-sm-3">
+                            <label for="input-1">Enter Coupon Number</label>
+
+                        </div>
+                        <div class="col-sm-3">
+                            @Html.TextBoxFor(m => m.txtCoupon, new { @class = "form-control  text-input", @onblur = "blurFunction()", @id = "txtcoupon", @onchange = "checkcoupon(this.value)", @placeholder = "Enter Coupon Number", @autocomplete = "off" })
+                            <span style="color:red; display:none" id="lblerrmsg">Invalid Coupon Number</span>
+                            <span style="color:green; display:none" id="lblerrsuccess">Coupon Number Applied</span>
+                            <span style="color:red; display:none" id="lblerr">Numbers Only</span>
+                            <span style="color:red; display:none" id="lblexpire">Coupon Number Has Been Expired</span>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="form-group">
+                        <button type="submit" id="alert-success" formaction="insertDocumentDetails" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i>Submit</button>
+                    </div>
+                </div>
+
+            }
+        </div>
+    </div>
+</div>
+
+
+
+
 @*end*@
 
 
@@ -269,9 +410,139 @@
 
         $("#distributor_txt").val(text);
         $("#distributor_id").val(value);
-      
+
 
     });
 
 </script>
+
+
+@if (ViewBag.Type == "create")
+{
+
+    <script>
+        $(document).one('ready', function () {
+
+            clickbtn();
+
+
+        });
+
+
+        function clickbtn() {
+
+
+
+            $("#btncreate").on("click", function () { });
+
+            $("#btncreate").click(); //trigger event after listening to it.
+            $('#btncreate').dialog('close');
+            return false;
+
+        }
+
+
+
+
+
+    </script>
+
+}
+
+
+
+
+
+
+
+
+<script>
+
+
+
+    $("#checkone").click(function () {
+
+        if ($("#checkone").is(":checked")) {
+            var x = $("#checkone").val();
+            $("#documenttype11").append(x);
+
+            $('#DDLAmtPaidBY2').prop('disabled', false);
+        }
+        else {
+
+            $('#DDLAmtPaidBY2').prop('disabled', true);
+        }
+
+
+
+    });
+
+
+
+
+    $("#checktwo").click(function () {
+
+
+
+        if ($("#checktwo").is(":checked")) {
+            var x = $("#checktwo").val();
+            $("#documenttype11").append(x);
+            $('#DDLAmtPaidBY2').prop('disabled', false);
+        }
+
+
+
+    });
+
+
+
+    $("#checkthree").click(function () {
+
+        if ($("#checkthree").is(":checked")) {
+            var x = $("#checkthree").val();
+            $("#documenttype11").append(x);
+            $('#DDLAmtPaidBY2').prop('disabled', false);
+        }
+
+
+
+
+    });
+
+    $("#checkfour").click(function () {
+
+        if ($("#checkfour").is(":checked")) {
+            var x = $("#checkfour").val();
+            $("#documenttype11").append(x);
+            $('#DDLAmtPaidBY2').prop('disabled', false);
+        }
+
+
+
+
+    });
+
+
+    $("#checkfive").click(function () {
+
+        if ($("#checkfive").is(":checked")) {
+            var x = $("#checkfive").val();
+            $("#documenttype11").append(x);
+            $('#DDLAmtPaidBY2').prop('disabled', false);
+        }
+
+
+
+
+    });
+
+
+
+
+
+
+
+</script>
+
+
 

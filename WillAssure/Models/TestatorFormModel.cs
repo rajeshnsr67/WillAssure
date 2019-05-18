@@ -18,6 +18,8 @@ namespace WillAssure.Models
 
         public string Dob { get; set; }
 
+        public string Dobb { get; set; }
+
         public string Occupation { get; set; }
 
         public string Mobile { get; set; }

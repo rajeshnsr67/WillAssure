@@ -54,7 +54,7 @@
                                         <li style="color:#e1e1e1">Gift ></li>
                                         <li style="color:#e1e1e1">Asset Mapping ></li>
                                         <li style="color:#e1e1e1">Witness Appointment ></li>
-                                       
+
 
 
 
@@ -144,6 +144,7 @@
 
                         @using (Html.BeginForm(null, null, FormMethod.Post, new { name = "PopUp", id = "TestatorForm" }))
                         {
+
                             <div class="row">
                                 <div class='col-sm-2'><label for='input-1' style="line-height:40px;">Distributor</label></div>
                                 <div class='col-sm-3'>
@@ -247,15 +248,15 @@
 
 
                                 @*<div class="col-sm-6">
-                    <div class="form-group">
-                        <label for="input-3">Relationship</label>
-                        <select id="ddlrelation" class="form-control validate[required]">
-                            <option value="">--Select--</option>
-                        </select>
-                        @Html.HiddenFor(m => m.RelationshipId, new { id = "relationid" })
-                        @Html.HiddenFor(m => m.RelationshipTxt, new { id = "relationtext" })
-                    </div>
-                </div>*@
+                                        <div class="form-group">
+                                            <label for="input-3">Relationship</label>
+                                            <select id="ddlrelation" class="form-control validate[required]">
+                                                <option value="">--Select--</option>
+                                            </select>
+                                            @Html.HiddenFor(m => m.RelationshipId, new { id = "relationid" })
+                                            @Html.HiddenFor(m => m.RelationshipTxt, new { id = "relationtext" })
+                                        </div>
+                                    </div>*@
 
 
 
@@ -487,10 +488,10 @@
                             }
                             else
                             {
-                                    <div class="form-group">
-                                        <button type="submit" id="alert-success" formaction="InsertTestatorFormData" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i>Add Testator</button>
-                                        <a href="@Url.Action("AddTestatorFamilyIndex","AddTestatorFamily")"><button type="button" class="btn btn-danger shadow-primary px-5">Next&nbsp;&nbsp;<i class="icon-arrow-right-circle"></i></button></a>
-                                    </div>
+                                <div class="form-group">
+                                    <button type="submit" id="alert-success" formaction="InsertTestatorFormData" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i>Add Testator</button>
+                                    <a href="@Url.Action("AddTestatorFamilyIndex","AddTestatorFamily")"><button type="button" class="btn btn-danger shadow-primary px-5">Next&nbsp;&nbsp;<i class="icon-arrow-right-circle"></i></button></a>
+                                </div>
                             }
 
 
@@ -509,6 +510,7 @@
 
 
         </div>
+        <button type='button' id='btncreate' style="display:none;" class='btn btn-success' data-toggle='modal' data-target='.primarymodal'>Create Document</button>
         <button style="display:none;" type="button" id="emailchk"></button>
         <button style="display:none;" type="button" id="mobilechk"></button>
         <button type="button" style="display:none;" id="ADDTestatorFormData" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
@@ -520,6 +522,173 @@
 
 </div>
 @*end*@
+
+
+
+@*document popup*@
+
+<div class="modal fade primarymodal">
+    <div class="modal-dialog">
+        <div class="modal-content border-primary" style="width:196%; position:relative; right:38%">
+            <div class="modal-header bg-primary">
+                <h5 class="modal-title text-white">Create Document</h5>
+                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            @using (Html.BeginForm(null, null, FormMethod.Post, new { name = "PopUp", id = "testatordocument" }))
+            {
+                <textarea id="documenttype" name="documenttype" style="display:none;"></textarea>
+                <div class="modal-body">
+                    @Html.HiddenFor(m => m.tId, new { @id = "tId" })
+
+                    @Html.HiddenFor(m => m.documentcategory, new { @id = "documentcategory" })
+                    <div class="row">
+
+                        <div class="col-sm-3">
+                            <label style="line-height:41px;">Document Type</label>
+
+                        </div>
+                        <div class="col-sm-3">
+                            <span style="line-height:36px;">
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" id="checkone" value="Will">Will
+                                </label>
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" id="checktwo" value="Codocil">Codocil
+                                </label>
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" id="checkthree" value="POA">POA
+                                </label>
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" id="checkfour" value="Giftdeeds">Giftdeeds
+                                </label>
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" id="checkfive" value="LivingWill">Living Will
+                                </label>
+                            </span>
+                            @Html.HiddenFor(m => m.Document_Created_By_ID, new { id = "Document_Created_By_ID" })
+                            @Html.HiddenFor(m => m.Document_Created_By_txt, new { id = "Document_Created_By_txt" })
+                        </div>
+
+
+                        <div class="col-sm-3">
+                            <label style="line-height:41px;">Category</label>
+
+                        </div>
+                        <div class="col-sm-3">
+                            @Html.DropDownListFor(x => x.documentcategory, new SelectListItem[]{
+                            new SelectListItem() {Text = "--Select--", Value=""},
+                            new SelectListItem() {Text = "Quick", Value="Quick"},
+                            new SelectListItem() {Text = "Detailed", Value="Detailed"}}, new { @class = "form-control validate[required]", id = "DDLAmtPaidBY2", @disabled = "disabled" })
+
+
+                        </div>
+
+
+
+
+
+                    </div>
+                    <hr>
+
+                    <div class="row">
+
+
+                        <div class="col-sm-3">
+                            <label style="line-height:41px;">Document Created By</label>
+
+                        </div>
+                        <div class="col-sm-3">
+                            @Html.DropDownListFor(x => x.Document_Created_By, new SelectListItem[]{
+                             new SelectListItem() {Text = "--Select--", Value=""},
+                             new SelectListItem() {Text = "Distributor", Value="Distributor"},
+                             new SelectListItem() {Text = "Testator", Value="Testator"}}, new { @class = "form-control validate[required]", @id = "ddldocumentcreatedby1" })
+                            @Html.HiddenFor(m => m.Document_Created_By_ID, new { id = "Document_Created_By_ID" })
+                            @Html.HiddenFor(m => m.Document_Created_By_txt, new { id = "Document_Created_By_txt" })
+
+                        </div>
+
+                        <div class="col-sm-3">
+                            <label style="line-height:41px;">Amount Paid By</label>
+
+                        </div>
+                        <div class="col-sm-3">
+                            @Html.DropDownListFor(x => x.Amt_Paid_By, new SelectListItem[]{
+                            new SelectListItem() {Text = "--Select--", Value=""},
+                            new SelectListItem() {Text = "Distributor", Value="Distributor"},
+                            new SelectListItem() {Text = "Testator", Value="Testator"}}, new { @class = "form-control validate[required]", id = "DDLAmtPaidBY3" })
+                            @Html.HiddenFor(m => m.Amt_Paid_By_By_ID, new { id = "Amt_Paid_By_By_ID" })
+                            @Html.HiddenFor(m => m.Amt_Paid_By_txt, new { id = "Amt_Paid_By_txt" })
+
+                        </div>
+
+
+
+
+                    </div>
+                    <hr>
+
+                    <div class="row">
+
+                        <div class="col-sm-3">
+                            <label for="input-1">Enter Coupon Number</label>
+
+                        </div>
+                        <div class="col-sm-3">
+                            @Html.TextBoxFor(m => m.txtCoupon, new { @class = "form-control  text-input", @onblur = "blurFunction()", @id = "txtcoupon", @onchange = "checkcoupon(this.value)", @placeholder = "Enter Coupon Number", @autocomplete = "off" })
+                            <span style="color:red; display:none" id="lblerrmsg">Invalid Coupon Number</span>
+                            <span style="color:green; display:none" id="lblerrsuccess">Coupon Number Applied</span>
+                            <span style="color:red; display:none" id="lblerr">Numbers Only</span>
+                            <span style="color:red; display:none" id="lblexpire">Coupon Number Has Been Expired</span>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="form-group">
+                        <button type="submit" id="alert-success" formaction="insertDocumentDetails" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i>Submit</button>
+                    </div>
+                </div>
+
+            }
+        </div>
+    </div>
+</div>
+
+
+
+
+@*end*@
+
+
+@if (ViewBag.Type == "create")
+{
+
+    <script>
+        $(document).one('ready', function () {
+
+            clickbtn();
+
+
+        });
+
+
+        function clickbtn() {
+
+            $("#btncreate").on("click", function () { });
+
+            $("#btncreate").click(); //trigger event after listening to it.
+            $('#btncreate').dialog('close');
+            return false;
+
+        }
+
+
+
+
+
+    </script>
+
+}
 
 <!--Start Back To Top Button-->
 <a href="javaScript:void();" class="back-to-top"><i class="fa fa-angle-double-up"></i> </a>
@@ -570,7 +739,7 @@
             type: "POST",
             url:"@Url.Action("onchangeemailtxt", "AddTestatorsForm")",
             success: function (data) {
-            
+
                 if (data == "true") {
                     $("#emailchk").on("click", function () { });
 
@@ -591,7 +760,7 @@
             type: "POST",
             url:"@Url.Action("onchangemobiletxt", "AddTestatorsForm")",
             success: function (data) {
-         
+
                 if (data == "true") {
                     $("#mobilechk").on("click", function () { });
 
@@ -693,7 +862,7 @@
     $("#ddlmaritalstatus").change(function () {
         var value = $(this).children(":selected").attr("value");
         var text = $("#ddlmaritalstatus option:selected").html();
-      
+
         $("#material_status_txt").val(text);
         $("#material_status_id").val(value);
 
@@ -1008,3 +1177,99 @@
     });
 
 </script>
+
+
+
+<script>
+
+
+
+    $("#checkone").click(function () {
+
+        if ($("#checkone").is(":checked")) {
+            var x = $("#checkone").val();
+            $("#documenttype").append(x);
+
+            $('#DDLAmtPaidBY2').prop('disabled', false);
+        }
+        else {
+
+            $('#DDLAmtPaidBY2').prop('disabled', true);
+        }
+
+
+
+    });
+
+
+
+
+    $("#checktwo").click(function () {
+
+
+
+        if ($("#checktwo").is(":checked")) {
+            var x = $("#checktwo").val();
+            $("#documenttype").append(x);
+            $('#DDLAmtPaidBY2').prop('disabled', false);
+        }
+
+
+
+    });
+
+
+
+    $("#checkthree").click(function () {
+
+        if ($("#checkthree").is(":checked")) {
+            var x = $("#checkthree").val();
+            $("#documenttype").append(x);
+            $('#DDLAmtPaidBY2').prop('disabled', false);
+        }
+
+
+
+
+    });
+
+    $("#checkfour").click(function () {
+
+        if ($("#checkfour").is(":checked")) {
+            var x = $("#checkfour").val();
+            $("#documenttype").append(x);
+            $('#DDLAmtPaidBY2').prop('disabled', false);
+        }
+
+
+
+
+    });
+
+
+    $("#checkfive").click(function () {
+
+        if ($("#checkfive").is(":checked")) {
+            var x = $("#checkfive").val();
+            $("#documenttype").append(x);
+            $('#DDLAmtPaidBY2').prop('disabled', false);
+        }
+
+
+
+
+    });
+
+
+
+
+
+
+
+</script>
+
+
+
+
+
+

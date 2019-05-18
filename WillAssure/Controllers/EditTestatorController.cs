@@ -302,7 +302,7 @@ namespace WillAssure.Controllers
                                         + "<td>" + dt.Rows[i]["Pin"].ToString() + "</td>"
                                         + "<td>" + dt.Rows[i]["active"].ToString() + "</td>"
 
-                                        + "<td><button type='button'   id='" + dt.Rows[i]["tId"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary'>Edit</button><button type='button'   id='" + dt.Rows[i]["tId"].ToString() + "' onClick='getclickedid(this.id)'   class='btn btn-success'  data-toggle='modal' data-target='.primarymodal'>Create Document</button></td></tr>";
+                                        + "<td><button type='button'   id='" + dt.Rows[i]["tId"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary'>Edit</button></td></tr>";   //<button type='button'   id='" + dt.Rows[i]["tId"].ToString() + "' onClick='getclickedid(this.id)'   class='btn btn-success'  data-toggle='modal' data-target='.primarymodal'>Create Document</button>
 
                         }
                     }
@@ -336,7 +336,7 @@ namespace WillAssure.Controllers
                                         + "<td>" + dt.Rows[i]["Pin"].ToString() + "</td>"
                                         + "<td>" + dt.Rows[i]["active"].ToString() + "</td>"
 
-                                        + "<td><button type='button'   id='" + dt.Rows[i]["tId"].ToString() + "'    class='btn btn-danger deletenotification'>Delete</button><button type='button'   id='" + dt.Rows[i]["tId"].ToString() + "' onClick='getclickedid(this.id)'   class='btn btn-success'  data-toggle='modal' data-target='.primarymodal'>Create Document</button></td></tr>";
+                                        + "<td><button type='button'   id='" + dt.Rows[i]["tId"].ToString() + "'    class='btn btn-danger deletenotification'>Delete</button></td></tr>";
 
                         }
                     }
@@ -371,7 +371,7 @@ namespace WillAssure.Controllers
                                         + "<td>" + dt.Rows[i]["Pin"].ToString() + "</td>"
                                         + "<td>" + dt.Rows[i]["active"].ToString() + "</td>"
 
-                                        + "<td><button type='button'   id='" + dt.Rows[i]["tId"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary '>Edit</button><button type='button'   id='" + dt.Rows[i]["tId"].ToString() + "'    class='btn btn-danger deletenotification'>Delete</button><button type='button'   id='" + dt.Rows[i]["tId"].ToString() + "' onClick='getclickedid(this.id)'   class='btn btn-success'  data-toggle='modal' data-target='.primarymodal'>Create Document</button></td></tr>";
+                                        + "<td><button type='button'   id='" + dt.Rows[i]["tId"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary '>Edit</button><button type='button'   id='" + dt.Rows[i]["tId"].ToString() + "'    class='btn btn-danger deletenotification'>Delete</button></td></tr>";
 
                         }
 
@@ -464,7 +464,7 @@ namespace WillAssure.Controllers
                                         + "<td>" + dt.Rows[i]["Pin"].ToString() + "</td>"
                                         + "<td>" + dt.Rows[i]["active"].ToString() + "</td>"
 
-                                        + "<td><button type='button'   id='" + dt.Rows[i]["tId"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary'>Edit</button><button type='button'   id='" + dt.Rows[i]["tId"].ToString() + "' onClick='getclickedid(this.id)'   class='btn btn-success "+Convert.ToInt32(dt.Rows[i]["PaymentStatus"])+"'  data-toggle='modal' data-target='.primarymodal'>Create Document</button></td></tr>";
+                                        + "<td><button type='button'   id='" + dt.Rows[i]["tId"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary'>Edit</button></td></tr>";
 
                         }
                     }
@@ -498,7 +498,7 @@ namespace WillAssure.Controllers
                                         + "<td>" + dt.Rows[i]["Pin"].ToString() + "</td>"
                                         + "<td>" + dt.Rows[i]["active"].ToString() + "</td>"
 
-                                        + "<td><button type='button'   id='" + dt.Rows[i]["tId"].ToString() + "'    class='btn btn-danger deletenotification'>Delete</button><button type='button'   id='" + dt.Rows[i]["tId"].ToString() + "' onClick='getclickedid(this.id)'   class='btn btn-success " + Convert.ToInt32(dt.Rows[i]["PaymentStatus"]) + "'  data-toggle='modal' data-target='.primarymodal'>Create Document</button></td></tr>";
+                                        + "<td><button type='button'   id='" + dt.Rows[i]["tId"].ToString() + "'    class='btn btn-danger deletenotification'>Delete</button></td></tr>";
 
                         }
                     }
@@ -533,7 +533,7 @@ namespace WillAssure.Controllers
                                         + "<td>" + dt.Rows[i]["Pin"].ToString() + "</td>"
                                         + "<td>" + dt.Rows[i]["active"].ToString() + "</td>"
 
-                                        + "<td><button type='button'   id='" + dt.Rows[i]["tId"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary '>Edit</button><button type='button'   id='" + dt.Rows[i]["tId"].ToString() + "'    class='btn btn-danger deletenotification'>Delete</button><button type='button'   id='" + dt.Rows[i]["tId"].ToString() + "' onClick='getclickedid(this.id)'   class='btn btn-success " + Convert.ToInt32(dt.Rows[i]["PaymentStatus"]) + "'  data-toggle='modal' data-target='.primarymodal'>Create Document</button></td></tr>";
+                                        + "<td><button type='button'   id='" + dt.Rows[i]["tId"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary '>Edit</button><button type='button'   id='" + dt.Rows[i]["tId"].ToString() + "'    class='btn btn-danger deletenotification'>Delete</button></td></tr>";
 
                         }
 
@@ -803,7 +803,7 @@ namespace WillAssure.Controllers
                                     + "<td>" + dt.Rows[i]["Pin"].ToString() + "</td>"
                                     + "<td>" + dt.Rows[i]["active"].ToString() + "</td>"
 
-                                    + "<td><button type='button'   id='" + dt.Rows[i]["tId"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary'>Edit</button><button type='button'   id='" + dt.Rows[i]["tId"].ToString() + "' onClick='getclickedid(this.id)'   class='btn btn-success'  data-toggle='modal' data-target='.primarymodal'>Create Document</button></td></tr>";
+                                    + "<td><button type='button'   id='" + dt.Rows[i]["tId"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary'>Edit</button></td></tr>";
 
                     }
                 }
@@ -837,7 +837,7 @@ namespace WillAssure.Controllers
                                     + "<td>" + dt.Rows[i]["Pin"].ToString() + "</td>"
                                     + "<td>" + dt.Rows[i]["active"].ToString() + "</td>"
 
-                                    + "<td><button type='button'   id='" + dt.Rows[i]["tId"].ToString() + "'    class='btn btn-danger deletenotification'>Delete</button><button type='button'   id='" + dt.Rows[i]["tId"].ToString() + "' onClick='getclickedid(this.id)'   class='btn btn-success'  data-toggle='modal' data-target='.primarymodal'>Create Document</button></td></tr>";
+                                    + "<td><button type='button'   id='" + dt.Rows[i]["tId"].ToString() + "'    class='btn btn-danger deletenotification'>Delete</button></td></tr>";
 
                     }
                 }
@@ -872,7 +872,7 @@ namespace WillAssure.Controllers
                                     + "<td>" + dt.Rows[i]["Pin"].ToString() + "</td>"
                                     + "<td>" + dt.Rows[i]["active"].ToString() + "</td>"
 
-                                    + "<td><button type='button'   id='" + dt.Rows[i]["tId"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary'>Edit</button><button type='button'   id='" + dt.Rows[i]["tId"].ToString() + "'   class='btn btn-danger deletenotification'>Delete</button><button type='button'   id='" + dt.Rows[i]["tId"].ToString() + "' onClick='getclickedid(this.id)'   class='btn btn-success'  data-toggle='modal' data-target='.primarymodal'>Create Document</button></td></tr>";
+                                    + "<td><button type='button'   id='" + dt.Rows[i]["tId"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary'>Edit</button><button type='button'   id='" + dt.Rows[i]["tId"].ToString() + "'   class='btn btn-danger deletenotification'>Delete</button></tr>";
 
                     }
 

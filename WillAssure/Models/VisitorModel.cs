@@ -14,7 +14,7 @@ namespace WillAssure.Models
         public string Mobile { get; set; }
         public string Email { get; set; }
         public string RefDist { get; set; }
-        public string DocumentType { get; set; }
+  
         public int uid { get; set; }
 
 
@@ -32,6 +32,34 @@ namespace WillAssure.Models
         public string userPassword { get; set; }
         public string MobileOTP { get; set; }
         public string EmailOTP { get; set; }
-        
+
+
+
+        public string txtCoupon { get; set; }
+
+        public string Amt_Paid_By_txt { get; set; }
+
+        public string Amt_Paid_By_By_ID { get; set; }
+
+
+        public string Amt_Paid_By { get; set; }
+
+        public string Document_Created_By { get; set; }
+
+
+        public int tId { get; set; }
+        public string DocumentType { get; set; }
+
+
+        public int Authentication_Required { get; set; }
+
+        public int Link_Required { get; set; }
+
+
+        public int Login_Required { get; set; }
+
+
+        public string Identity_proof_Value { get; set; }
+        public string documenttype11 { get; set; }
     }
 }

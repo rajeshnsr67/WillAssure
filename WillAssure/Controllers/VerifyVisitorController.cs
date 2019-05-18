@@ -21,7 +21,7 @@ namespace WillAssure.Controllers
         // GET: VerifyVisitor
         public ActionResult VerifyVisitorIndex(int NestId)
         {
-
+            ViewBag.collapse = "true";
             // check type 
             string typ = "";
             con.Open();
@@ -487,7 +487,7 @@ namespace WillAssure.Controllers
 
 
             con.Open();
-            string query2 = "insert into users (First_Name , Last_Name , Middle_Name , eMail , Mobile , userID , userPwd , Type , active, rId , compId , Linked_user , Designation) values ('" + VM.First_Name + "' , '" + VM.Last_Name + "' , '" + VM.Middle_Name + "' , '" + VM.Email + "' , '" + VM.Mobile + "' , '" + VM.Email + "' , "+VM.userPassword+ " , 'Testator','Active' , 5 , 0 , "+ VM.distributor_id + " , 1)    ";
+            string query2 = "insert into users (First_Name , Last_Name , Middle_Name , eMail , Mobile , userID , userPwd , Type , active, rId , compId , Linked_user , Designation , Address1 , Address2 , Address3 , City , State , Pin , DOB) values ('" + VM.First_Name + "' , '" + VM.Last_Name + "' , '" + VM.Middle_Name + "' , '" + VM.Email + "' , '" + VM.Mobile + "' , '" + VM.Email + "' , "+VM.userPassword+ " , 'Testator','Active' , 5 , 0 , "+ VM.distributor_id + " , 1 , 'none' , 'none' , 'none' , 'none', 'none' , 'none' , GETDATE()  )";
             SqlCommand cmd2 = new SqlCommand(query2, con);
             cmd2.ExecuteNonQuery();
             con.Close();
@@ -853,7 +853,7 @@ namespace WillAssure.Controllers
                 con.Close();
             }
             con.Open();
-            string query3 = "insert into TestatorDetails (First_Name,Middle_Name,Last_Name,Mobile,Email,uid) values ('"+VM.First_Name+"' , '"+VM.Middle_Name+"' , '"+VM.Last_Name+"' , '"+VM.Mobile+"' , '"+VM.Email+"' , "+ userid + ")    ";
+            string query3 = "insert into TestatorDetails (First_Name,Middle_Name,Last_Name,Mobile,Email,uid ,DOB,Occupation,maritalStatus,RelationShip,Religion,Identity_Proof,Identity_proof_Value,Alt_Identity_Proof,Alt_Identity_proof_Value,Gender,Address1,Address2,Address3,City ,State,Country ,Pin,active) values ('" + VM.First_Name+"' , '"+VM.Middle_Name+"' , '"+VM.Last_Name+"' , '"+VM.Mobile+"' , '"+VM.Email+"' , "+ userid + " , GETDATE() ,'none' ,'none' ,'none' ,'none' ,'none' ,'none' ,'none' ,'none' ,'none' ,'none' ,'none' ,'none' ,'none' ,'none' ,'none' ,'none' ,'no' )    ";
             SqlCommand cmd3 = new SqlCommand(query3,con);
             cmd3.ExecuteNonQuery();
             con.Close();
@@ -1094,11 +1094,852 @@ namespace WillAssure.Controllers
 
 
 
-            ViewBag.Message = "Verified";
+            ViewBag.Type = "create";
 
 
 
             return View("~/Views/VerifyVisitor/VerifyVisitorPageContent.cshtml", Vm);
+        }
+
+
+
+        public ActionResult insertDocumentDetails(VisitorModel TFM)
+        {
+
+
+            // check type 
+            string typ5 = "";
+            con.Open();
+            string qq15 = "select Type from users where uId = " + Convert.ToInt32(Session["uuid"]) + " ";
+            SqlDataAdapter daa5 = new SqlDataAdapter(qq15, con);
+            DataTable dtt5 = new DataTable();
+            daa5.Fill(dtt5);
+            con.Close();
+
+            if (dtt5.Rows.Count > 0)
+            {
+                typ5 = dtt5.Rows[0]["Type"].ToString();
+            }
+
+
+
+            //end
+
+
+
+            if (typ5 == "Testator")
+            {
+                // check will status
+                con.Open();
+                string qry1 = "select Will  from users where Will = 1 ";
+                SqlDataAdapter daa1 = new SqlDataAdapter(qry1, con);
+                DataTable dtt1 = new DataTable();
+                daa1.Fill(dtt1);
+                if (dtt1.Rows.Count > 0)
+                {
+                    ViewBag.documentbtn1 = "true";
+                }
+                con.Close();
+                //end
+
+
+                // check codocil status
+                con.Open();
+                string qry2 = "select Codocil  from users where Codocil = 1 ";
+                SqlDataAdapter daa2 = new SqlDataAdapter(qry2, con);
+                DataTable dtt2 = new DataTable();
+                daa2.Fill(dtt2);
+                if (dtt2.Rows.Count > 0)
+                {
+                    ViewBag.documentbtn2 = "true";
+                }
+                con.Close();
+
+                //end
+
+
+                // check Poa status
+                con.Open();
+                string qry4 = "select POA  from users where POA = 1 ";
+                SqlDataAdapter daa4 = new SqlDataAdapter(qry4, con);
+                DataTable dtt4 = new DataTable();
+                daa4.Fill(dtt4);
+                if (dtt4.Rows.Count > 0)
+                {
+                    ViewBag.documentbtn3 = "true";
+                }
+                con.Close();
+                //end
+
+
+                // check gift deeds status
+                con.Open();
+                string qry3 = "select Giftdeeds  from users where Giftdeeds = 1 ";
+                SqlDataAdapter daa3 = new SqlDataAdapter(qry3, con);
+                DataTable dtt3 = new DataTable();
+                daa3.Fill(dtt3);
+                if (dtt3.Rows.Count > 0)
+                {
+                    ViewBag.documentbtn4 = "true";
+                }
+                con.Close();
+                //end
+            }
+            else
+            {
+
+                ViewBag.documentlink = "true";
+
+            }
+
+            List<LoginModel> Lmlist = new List<LoginModel>();
+            con.Open();
+            string q = "select * from Assignment_Roles where RoleId = " + Convert.ToInt32(Session["rId"]) + "";
+            SqlDataAdapter da3 = new SqlDataAdapter(q, con);
+            DataTable dt3 = new DataTable();
+            da3.Fill(dt3);
+            if (dt3.Rows.Count > 0)
+            {
+
+                for (int i = 0; i < dt3.Rows.Count; i++)
+                {
+                    LoginModel lm = new LoginModel();
+                    lm.PageName = dt3.Rows[i]["PageName"].ToString();
+                    lm.PageStatus = dt3.Rows[i]["PageStatus"].ToString();
+                    lm.Action = dt3.Rows[i]["Action"].ToString();
+                    lm.Nav1 = dt3.Rows[i]["Nav1"].ToString();
+                    lm.Nav2 = dt3.Rows[i]["Nav2"].ToString();
+
+                    Lmlist.Add(lm);
+                }
+
+
+
+                ViewBag.PageName = Lmlist;
+
+
+
+
+            }
+
+            con.Close();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            int testatorid = 0;
+            int templateid = 0;
+            int distid = 0;
+            string testatortype = "";
+            string Email = "";
+
+
+            // get testator id and dist id from lastest inserted
+
+            con.Open();
+            string gettid = "select max(tId) as tid , max(uId) as uid from testatordetails";
+            SqlDataAdapter tida = new SqlDataAdapter(gettid, con);
+            DataTable tidt = new DataTable();
+            tida.Fill(tidt);
+            if (tidt.Rows.Count > 0)
+            {
+                testatorid = Convert.ToInt32(tidt.Rows[0]["tid"]);
+                distid = Convert.ToInt32(tidt.Rows[0]["uId"]);
+
+            }
+            con.Close();
+
+
+
+
+
+            //end
+
+
+
+
+
+
+
+
+
+
+            // identitfy email of testator
+
+            con.Open();
+            string tquery = "select Email from testatordetails where tId = " + testatorid + " ";
+            SqlDataAdapter tda = new SqlDataAdapter(tquery, con);
+            DataTable tdt = new DataTable();
+            tda.Fill(tdt);
+            if (tdt.Rows.Count > 0)
+            {
+                Email = tdt.Rows[0]["Email"].ToString();
+
+            }
+            con.Close();
+
+
+
+
+            //end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            // get coupon id
+            con.Open();
+            string query5 = "select a.couponId  from couponAllotment a inner join users b on a.uId=b.uId where b.uId = " + distid + "";
+            SqlDataAdapter da4 = new SqlDataAdapter(query5, con);
+            DataTable dt4 = new DataTable();
+            da4.Fill(dt4);
+            int couponsid = 0;
+            if (dt4.Rows.Count > 0)
+            {
+                couponsid = Convert.ToInt32(dt4.Rows[0]["couponId"]);
+            }
+            con.Close();
+            //end
+
+
+
+
+
+
+            con.Open();
+            string q1 = "insert into documentMaster (tId,templateId,IsUpdatetable,uId,pId,created_by,testator_type,couponId,adminVerification) values (" + testatorid + " , " + templateid + " ,  'Yes' ,   " + distid + " , 1 , '" + TFM.Document_Created_By + "' , '" + testatortype + "' , " + couponsid + "  , 2)";
+            SqlCommand c = new SqlCommand(q1, con);
+            c.ExecuteNonQuery();
+            con.Close();
+
+
+
+            //end
+
+
+
+            // DOCUMENT RULES
+            string typeid = "";
+            int typecat = 0;
+            if (TFM.documenttype11 == "WillCodocilPOA")
+            {
+                typeid = "1,2,3";
+
+                con.Open();
+                string qq1 = "update users set Will = '1' , Codocil = '1' , POA = '1' where uId = " + distid + " ";
+                SqlCommand cc1 = new SqlCommand(qq1, con);
+                cc1.ExecuteNonQuery();
+                con.Close();
+
+            }
+            if (TFM.documenttype11 == "Codocil")
+            {
+                typeid = "2";
+
+
+
+                con.Open();
+                string qq1 = "update users set Will = '0' , Codocil = '1' , POA = '0' where uId = " + distid + " ";
+                SqlCommand cc1 = new SqlCommand(qq1, con);
+                cc1.ExecuteNonQuery();
+                con.Close();
+
+
+            }
+            if (TFM.documenttype11 == "POA")
+            {
+                typeid = "3";
+
+                con.Open();
+                string qq1 = "update users set Will = '0' , Codocil = '0' , POA = '1' where uId = " + distid + " ";
+                SqlCommand cc1 = new SqlCommand(qq1, con);
+                cc1.ExecuteNonQuery();
+                con.Close();
+            }
+            if (TFM.documenttype11 == "Will")
+            {
+                typeid = "1";
+                con.Open();
+                string qq1 = "update users set Will = '1' , Codocil = '0' , POA = '0' where uId = " + distid + " ";
+                SqlCommand cc1 = new SqlCommand(qq1, con);
+                cc1.ExecuteNonQuery();
+                con.Close();
+            }
+            if (TFM.documenttype11 == "WillCodocil")
+            {
+                typeid = "1,2";
+
+                con.Open();
+                string qq1 = "update users set Will = '1' , Codocil = '1' , POA = '0' where uId = " + distid + " ";
+                SqlCommand cc1 = new SqlCommand(qq1, con);
+                cc1.ExecuteNonQuery();
+                con.Close();
+            }
+            if (TFM.documenttype11 == "WillPOA")
+            {
+                typeid = "1,3";
+
+                con.Open();
+                string qq1 = "update users set Will = '1' , Codocil = '0' , POA = '1' where uId = " + distid + " ";
+                SqlCommand cc1 = new SqlCommand(qq1, con);
+                cc1.ExecuteNonQuery();
+                con.Close();
+            }
+            if (TFM.documenttype11 == "CodocilPOA")
+            {
+                typeid = "2,3";
+
+                con.Open();
+                string qq1 = "update users set Will = '0' , Codocil = '1' , POA = '1' where uId = " + distid + " ";
+                SqlCommand cc1 = new SqlCommand(qq1, con);
+                cc1.ExecuteNonQuery();
+                con.Close();
+            }
+            if (TFM.documenttype11 == "CodocilWill")
+            {
+                typeid = "2,1";
+
+                con.Open();
+                string qq1 = "update users set Will = '1' , Codocil = '1' , POA = '0' where uId = " + distid + " ";
+                SqlCommand cc1 = new SqlCommand(qq1, con);
+                cc1.ExecuteNonQuery();
+                con.Close();
+            }
+            if (TFM.documenttype11 == "POAWill")
+            {
+                typeid = "3,1";
+                con.Open();
+                string qq1 = "update users set Will = '1' , Codocil = '0' , POA = '1' where uId = " + distid + " ";
+                SqlCommand cc1 = new SqlCommand(qq1, con);
+                cc1.ExecuteNonQuery();
+                con.Close();
+            }
+            if (TFM.documenttype11 == "Giftdeeds")
+            {
+                typeid = "3,1";
+                con.Open();
+                string qq1 = "update users set Will = '0' , Codocil = '0' , POA = '0' , Giftdeeds='1' where uId = " + distid + " ";
+                SqlCommand cc1 = new SqlCommand(qq1, con);
+                cc1.ExecuteNonQuery();
+                con.Close();
+            }
+            if (TFM.documenttype11 == "GiftdeedsCodocil")
+            {
+                typeid = "3,1";
+                con.Open();
+                string qq1 = "update users set Will = '0' , Codocil = '1' , POA = '0' , Giftdeeds='1' where uId = " + distid + " ";
+                SqlCommand cc1 = new SqlCommand(qq1, con);
+                cc1.ExecuteNonQuery();
+                con.Close();
+            }
+
+            if (TFM.documenttype11 == "GiftdeedsWill")
+            {
+                typeid = "3,1";
+                con.Open();
+                string qq1 = "update users set Will = '1' , Codocil = '0' , POA = '0' , Giftdeeds='1' where uId = " + distid + " ";
+                SqlCommand cc1 = new SqlCommand(qq1, con);
+                cc1.ExecuteNonQuery();
+                con.Close();
+            }
+
+            if (TFM.documenttype11 == "GiftdeedsPOA")
+            {
+                typeid = "3,1";
+                con.Open();
+                string qq1 = "update users set Will = '0' , Codocil = '0' , POA = '1' , Giftdeeds='1' where uId = " + distid + " ";
+                SqlCommand cc1 = new SqlCommand(qq1, con);
+                cc1.ExecuteNonQuery();
+                con.Close();
+            }
+
+
+            if (TFM.documenttype11 == "WillGiftdeeds")
+            {
+                typeid = "3,1";
+                con.Open();
+                string qq1 = "update users set Will = '1' , Codocil = '0' , POA = '0' ,  Giftdeeds='1' where uId = " + distid + " ";
+                SqlCommand cc1 = new SqlCommand(qq1, con);
+                cc1.ExecuteNonQuery();
+                con.Close();
+            }
+            if (TFM.documenttype11 == "POAGiftdeeds")
+            {
+                typeid = "3,1";
+                con.Open();
+                string qq1 = "update users set Will = '0' , Codocil = '0' , POA = '1' , Giftdeeds='1' where uId = " + distid + " ";
+                SqlCommand cc1 = new SqlCommand(qq1, con);
+                cc1.ExecuteNonQuery();
+                con.Close();
+            }
+
+            if (TFM.documenttype11 == "CodocilGiftdeeds")
+            {
+                typeid = "3,1";
+                con.Open();
+                string qq1 = "update users set Will = '0' , Codocil = '1' , POA = '0' , Giftdeeds='1' where uId = " + distid + " ";
+                SqlCommand cc1 = new SqlCommand(qq1, con);
+                cc1.ExecuteNonQuery();
+                con.Close();
+            }
+
+            if (TFM.documenttype11 == "CodocilGiftdeedsWill")
+            {
+                typeid = "3,1";
+                con.Open();
+                string qq1 = "update users set Will = '1' , Codocil = '1' , POA = '0' , Giftdeeds='1' where uId = " + distid + " ";
+                SqlCommand cc1 = new SqlCommand(qq1, con);
+                cc1.ExecuteNonQuery();
+                con.Close();
+            }
+
+            if (TFM.documenttype11 == "CodocilGiftdeedsWillPOA")
+            {
+                typeid = "3,1";
+                con.Open();
+                string qq1 = "update users set Will = '1' , Codocil = '1' , POA = '1' , Giftdeeds='1' where uId = " + distid + " ";
+                SqlCommand cc1 = new SqlCommand(qq1, con);
+                cc1.ExecuteNonQuery();
+                con.Close();
+            }
+
+            if (TFM.documenttype11 == "CodocilWillGiftdeedsPOA")
+            {
+                typeid = "3,1";
+                con.Open();
+                string qq1 = "update users set Will = '1' , Codocil = '1' , POA = '1' , Giftdeeds='1' where uId = " + distid + " ";
+                SqlCommand cc1 = new SqlCommand(qq1, con);
+                cc1.ExecuteNonQuery();
+                con.Close();
+            }
+
+            if (TFM.documenttype11 == "WillCodocilPOAGiftdeeds")
+            {
+                typeid = "3,1";
+                con.Open();
+                string qq1 = "update users set Will = '1' , Codocil = '1' , POA = '1' , Giftdeeds='1' where uId = " + distid + " ";
+                SqlCommand cc1 = new SqlCommand(qq1, con);
+                cc1.ExecuteNonQuery();
+                con.Close();
+            }
+
+            if (TFM.documenttype11 == "WillCodocilPOAGiftdeedsLivingWill")
+            {
+
+                con.Open();
+                string qq1 = "update users set Will = '1' , Codocil = '1' , POA = '1' , Giftdeeds='1', LivingWill='1' where uId = " + distid + " ";
+                SqlCommand cc1 = new SqlCommand(qq1, con);
+                cc1.ExecuteNonQuery();
+                con.Close();
+            }
+
+            if (TFM.documenttype11 == "LivingWill")
+            {
+
+                con.Open();
+                string qq1 = "update users set Will = '1' , Codocil = '0' , POA = '0' , Giftdeeds='0' , LivingWill='1' where uId = " + distid + " ";
+                SqlCommand cc1 = new SqlCommand(qq1, con);
+                cc1.ExecuteNonQuery();
+                con.Close();
+            }
+
+            if (TFM.documenttype11 == "LivingWillWillCodocilPOAGiftdeeds")
+            {
+
+                con.Open();
+                string qq1 = "update users set Will = '1' , Codocil = '1' , POA = '1' , Giftdeeds='1', LivingWill='1' where uId = " + distid + " ";
+                SqlCommand cc1 = new SqlCommand(qq1, con);
+                cc1.ExecuteNonQuery();
+                con.Close();
+            }
+
+            if (TFM.documenttype11 == "CodocilGiftdeedsLivingWillWillPOA")
+            {
+
+                con.Open();
+                string qq1 = "update users set Will = '1' , Codocil = '1' , POA = '1' , Giftdeeds='1', LivingWill='1' where uId = " + distid + " ";
+                SqlCommand cc1 = new SqlCommand(qq1, con);
+                cc1.ExecuteNonQuery();
+                con.Close();
+            }
+
+            if (TFM.documenttype11 == "LivingWillWillPOA")
+            {
+
+                con.Open();
+                string qq1 = "update users set Will = '1' , Codocil = '0' , POA = '1' , Giftdeeds='0', LivingWill='1' where uId = " + distid + " ";
+                SqlCommand cc1 = new SqlCommand(qq1, con);
+                cc1.ExecuteNonQuery();
+                con.Close();
+            }
+
+            if (TFM.documenttype11 == "POALivingWillWill")
+            {
+
+                con.Open();
+                string qq1 = "update users set Will = '1' , Codocil = '1' , POA = '1' , Giftdeeds='1', LivingWill='1' where uId = " + distid + " ";
+                SqlCommand cc1 = new SqlCommand(qq1, con);
+                cc1.ExecuteNonQuery();
+                con.Close();
+            }
+
+            if (TFM.documenttype11 == "LivingWillPOAGiftdeeds")
+            {
+
+                con.Open();
+                string qq1 = "update users set Will = '1' , Codocil = '1' , POA = '1' , Giftdeeds='1', LivingWill='1' where uId = " + distid + " ";
+                SqlCommand cc1 = new SqlCommand(qq1, con);
+                cc1.ExecuteNonQuery();
+                con.Close();
+            }
+            if (TFM.documenttype11 == "POAGiftdeeds")
+            {
+
+                con.Open();
+                string qq1 = "update users set Will = '0' , Codocil = '0' , POA = '1' , Giftdeeds='1', LivingWill='0' where uId = " + distid + " ";
+                SqlCommand cc1 = new SqlCommand(qq1, con);
+                cc1.ExecuteNonQuery();
+                con.Close();
+            }
+            if (TFM.documenttype11 == "POAGiftdeedsWill")
+            {
+
+                con.Open();
+                string qq1 = "update users set Will = '1' , Codocil = '0' , POA = '1' , Giftdeeds='1', LivingWill='0' where uId = " + distid + " ";
+                SqlCommand cc1 = new SqlCommand(qq1, con);
+                cc1.ExecuteNonQuery();
+                con.Close();
+            }
+            if (TFM.documenttype11 == "POAWillCodocil")
+            {
+
+                con.Open();
+                string qq1 = "update users set Will = '1' , Codocil = '1' , POA = '1' , Giftdeeds='0', LivingWill='0' where uId = " + distid + " ";
+                SqlCommand cc1 = new SqlCommand(qq1, con);
+                cc1.ExecuteNonQuery();
+                con.Close();
+            }
+            if (TFM.documenttype11 == "CodocilLivingWill")
+            {
+
+                con.Open();
+                string qq1 = "update users set Will = '0' , Codocil = '1' , POA = '0' , Giftdeeds='0', LivingWill='1' where uId = " + distid + " ";
+                SqlCommand cc1 = new SqlCommand(qq1, con);
+                cc1.ExecuteNonQuery();
+                con.Close();
+            }
+            if (TFM.documenttype11 == "CodocilGiftdeedsLivingWill")
+            {
+
+                con.Open();
+                string qq1 = "update users set Will = '0' , Codocil = '1' , POA = '0' , Giftdeeds='1', LivingWill='1' where uId = " + distid + " ";
+                SqlCommand cc1 = new SqlCommand(qq1, con);
+                cc1.ExecuteNonQuery();
+                con.Close();
+            }
+            if (TFM.documenttype11 == "POALivingWill")
+            {
+
+                con.Open();
+                string qq1 = "update users set Will = '1' , Codocil = '0' , POA = '1' , Giftdeeds='0', LivingWill='1' where uId = " + distid + " ";
+                SqlCommand cc1 = new SqlCommand(qq1, con);
+                cc1.ExecuteNonQuery();
+                con.Close();
+            }
+            if (TFM.documenttype11 == "GiftDeedsLivingWill")
+            {
+
+                con.Open();
+                string qq1 = "update users set Will = '1' , Codocil = '0' , POA = '0' , Giftdeeds='1', LivingWill='1' where uId = " + distid + " ";
+                SqlCommand cc1 = new SqlCommand(qq1, con);
+                cc1.ExecuteNonQuery();
+                con.Close();
+            }
+
+
+            if (TFM.documentcategory == "Quick")
+            {
+                typecat = 1;
+            }
+            if (TFM.documentcategory == "Detailed")
+            {
+                typecat = 2;
+            }
+
+
+            con.Open();
+            string q2 = "insert into documentRules (documentType,category,guardian , executors_category , AlternateBenficiaries , AlternateGaurdian , AlternateExecutors , tid) values ('" + TFM.documenttype11 + "' , " + typecat + "  ,  0  , 0 , 0 , 0 , 0 , " + testatorid + " )";
+            SqlCommand c1 = new SqlCommand(q2, con);
+            c1.ExecuteNonQuery();
+            con.Close();
+
+
+
+            //
+
+            //1st condition
+            if (TFM.Amt_Paid_By == "Distributor" && TFM.Document_Created_By == "Distributor")
+            {
+                TFM.Authentication_Required = 0;
+                TFM.Link_Required = 0;
+                TFM.Login_Required = 0;
+
+                con.Open();
+                string query1 = "insert into Authorization_Rules (Document_Created_By,Distributor_Id,Amt_Paid_By,Testator_Id,Authentication_Required,Link_Required,Login_Required) values ('" + TFM.Document_Created_By_txt + "' , " + distid + " , '" + TFM.Amt_Paid_By_txt + "' , " + testatorid + "  , '" + TFM.Authentication_Required + "' , '" + TFM.Link_Required + "' , '" + TFM.Login_Required + "') ";
+                SqlCommand cmd2 = new SqlCommand(query1, con);
+                cmd2.ExecuteNonQuery();
+                con.Close();
+                ModelState.Clear();
+                return View("~/Views/AddTestatorsForm/AddTestatorPageContent.cshtml");
+            }
+            //end
+            //2nd condition 
+            if (TFM.Amt_Paid_By == "Distributor" && TFM.Document_Created_By == "Testator")
+            {
+                TFM.Authentication_Required = 1;
+                TFM.Link_Required = 1;
+                TFM.Login_Required = 1;
+
+                con.Open();
+                string query3 = "insert into Authorization_Rules (Document_Created_By,Distributor_Id,Amt_Paid_By,Testator_Id,Authentication_Required,Link_Required,Login_Required) values ('" + TFM.Document_Created_By + "' , " + distid + " , '" + TFM.Amt_Paid_By + "' , " + testatorid + "  , '" + TFM.Authentication_Required + "' , '" + TFM.Link_Required + "' , '" + TFM.Login_Required + "') ";
+                SqlCommand cmd2 = new SqlCommand(query3, con);
+                cmd2.ExecuteNonQuery();
+                con.Close();
+
+
+
+                if (Session["mailto"] == null)
+                {
+                    RedirectToAction("LoginPageIndex", "LoginPage");
+                }
+                if (Session["userid"] == null)
+                {
+                    RedirectToAction("LoginPageIndex", "LoginPage");
+                }
+                // new mail code
+                string mailto = TFM.Email;
+                string Userid = TFM.Identity_proof_Value;
+                mailto = Email;
+
+                string subject = "Will Assure Link For Payment";
+                string body = "<font color='Green' style='font-size=3em;'> Click the Link To Make A Payment For The Document :</font> <a href='https://razorpay.com/'>Payment</a> ";
+
+
+
+                MailMessage msg = new MailMessage();
+                msg.From = new MailAddress("info@drinco.in");
+                msg.To.Add(mailto);
+                msg.Subject = subject;
+                msg.Body = body;
+
+                msg.IsBodyHtml = true;
+                SmtpClient smtp = new SmtpClient("216.10.240.149", 25);
+                smtp.Credentials = new NetworkCredential("info@drinco.in", "95Bzf%s7");
+                smtp.EnableSsl = false;
+                smtp.Send(msg);
+                smtp.Dispose();
+
+
+
+                //end
+
+                // payment status for testator details table
+                con.Open();
+                string paymentquery2 = "update TestatorDetails set PaymentStatus = 1 where tId = " + testatorid + " ";
+                SqlCommand paymentcmd2 = new SqlCommand(paymentquery2, con);
+                paymentcmd2.ExecuteNonQuery();
+                con.Close();
+                //end
+
+
+                // payment info
+                con.Open();
+                string paymentquery = "insert into PaymentInfo (uId,tId,transactionStatus) values (" + distid + " , " + testatorid + " , 1)  ";
+                SqlCommand paymentcmd = new SqlCommand(paymentquery, con);
+                paymentcmd.ExecuteNonQuery();
+                con.Close();
+                //end
+
+                ViewBag.PaymentLink = "true";
+            }
+            //end
+            // 3rd condtion
+            if (TFM.Amt_Paid_By == "Testator" && TFM.Document_Created_By == "Distributor")
+            {
+                TFM.Authentication_Required = 1;
+                TFM.Link_Required = 1;
+                TFM.Login_Required = 1;
+
+                con.Open();
+                string query3 = "insert into Authorization_Rules (Document_Created_By,Distributor_Id,Amt_Paid_By,Testator_Id,Authentication_Required,Link_Required,Login_Required) values ('" + TFM.Document_Created_By + "' , " + distid + " , '" + TFM.Amt_Paid_By + "' , " + testatorid + "  , '" + TFM.Authentication_Required + "' , '" + TFM.Link_Required + "' , '" + TFM.Login_Required + "') ";
+                SqlCommand cmd2 = new SqlCommand(query3, con);
+                cmd2.ExecuteNonQuery();
+                con.Close();
+
+
+
+
+
+
+
+
+
+                // new mail code
+                string mailto = TFM.Email;
+                string Userid = TFM.Identity_proof_Value;
+                mailto = Email;
+                string subject = "Will Assure Link For Payment";
+                string body = "<font color='Green' style='font-size=3em;'> Click the Link To Make A Payment For The Document :</font> <a href='https://razorpay.com/'>Payment</a> ";
+
+
+
+                MailMessage msg = new MailMessage();
+                msg.From = new MailAddress("info@drinco.in");
+                msg.To.Add(mailto);
+                msg.Subject = subject;
+                msg.Body = body;
+
+                msg.IsBodyHtml = true;
+                SmtpClient smtp = new SmtpClient("216.10.240.149", 25);
+                smtp.Credentials = new NetworkCredential("info@drinco.in", "95Bzf%s7");
+                smtp.EnableSsl = false;
+                smtp.Send(msg);
+                smtp.Dispose();
+
+
+
+                //end
+
+                // payment status for testator details table
+                con.Open();
+                string paymentquery2 = "update TestatorDetails set PaymentStatus = 1 where tId = " + testatorid + " ";
+                SqlCommand paymentcmd2 = new SqlCommand(paymentquery2, con);
+                paymentcmd2.ExecuteNonQuery();
+                con.Close();
+                //end
+
+                // payment info
+                con.Open();
+                string paymentquery = "insert into PaymentInfo (uId,tId,transactionStatus) values (" + distid + " , " + testatorid + " , 1)  ";
+                SqlCommand paymentcmd = new SqlCommand(paymentquery, con);
+                paymentcmd.ExecuteNonQuery();
+                con.Close();
+                //end
+
+                ViewBag.PaymentLink = "true";
+            }
+            //end
+            //4th condition
+            if (TFM.Amt_Paid_By == "Testator" && TFM.Document_Created_By == "Testator")
+            {
+                TFM.Authentication_Required = 1;
+                TFM.Link_Required = 1;
+                TFM.Login_Required = 1;
+
+                con.Open();
+                string query3 = "insert into Authorization_Rules (Document_Created_By,Distributor_Id,Amt_Paid_By,Testator_Id,Authentication_Required,Link_Required,Login_Required) values ('" + TFM.Document_Created_By + "' , " + distid + " , '" + TFM.Amt_Paid_By + "' , " + testatorid + "  , '" + TFM.Authentication_Required + "' , '" + TFM.Link_Required + "' , '" + TFM.Login_Required + "') ";
+                SqlCommand cmd2 = new SqlCommand(query3, con);
+                cmd2.ExecuteNonQuery();
+                con.Close();
+
+
+
+
+
+                // new mail code
+                string mailto = TFM.Email;
+                string Userid = TFM.Identity_proof_Value;
+                mailto = Email;
+                string subject = "Will Assure Link For Payment";
+                string body = "<font color='Green' style='font-size=3em;'> Click the Link To Make A Payment For The Document :</font> <a href='https://razorpay.com/'>Payment</a> ";
+
+
+
+                MailMessage msg = new MailMessage();
+                msg.From = new MailAddress("info@drinco.in");
+                msg.To.Add(mailto);
+                msg.Subject = subject;
+                msg.Body = body;
+
+                msg.IsBodyHtml = true;
+                SmtpClient smtp = new SmtpClient("216.10.240.149", 25);
+                smtp.Credentials = new NetworkCredential("info@drinco.in", "95Bzf%s7");
+                smtp.EnableSsl = false;
+                smtp.Send(msg);
+                smtp.Dispose();
+
+
+
+                //end
+
+
+                // payment status for testator details table
+                con.Open();
+                string paymentquery2 = "update TestatorDetails set PaymentStatus = 1 where tId = " + testatorid + " ";
+                SqlCommand paymentcmd2 = new SqlCommand(paymentquery2, con);
+                paymentcmd2.ExecuteNonQuery();
+                con.Close();
+                //end
+
+
+
+
+
+
+                // payment info
+                con.Open();
+                string paymentquery = "insert into PaymentInfo (uId,tId,transactionStatus) values (" + distid + " , " + testatorid + " , 1)  ";
+                SqlCommand paymentcmd = new SqlCommand(paymentquery, con);
+                paymentcmd.ExecuteNonQuery();
+                con.Close();
+                //end
+                ViewBag.PaymentLink = "true";
+            }
+            //end
+
+
+
+
+
+
+
+            ModelState.Clear();
+
+
+
+
+            //end
+
+
+            ViewBag.collapse = "true";
+
+
+            return View("~/Views/EditVisitor/EditVisitorPageContent.cshtml");
+
         }
 
 

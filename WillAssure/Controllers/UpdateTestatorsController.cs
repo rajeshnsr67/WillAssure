@@ -205,7 +205,8 @@ namespace WillAssure.Controllers
                        TFM.First_Name = dt.Rows[0]["First_Name"].ToString();
                        TFM.Last_Name =  dt.Rows[0]["Last_Name"].ToString();
                        TFM.Middle_Name = dt.Rows[0]["Middle_Name"].ToString();
-                       TFM.Dob = Convert.ToDateTime(dt.Rows[0]["DOB"]).ToString("dd-MM-yyyy");
+              
+                       
                        TFM.Occupation = dt.Rows[0]["Occupation"].ToString();
                        TFM.Mobile = dt.Rows[0]["Mobile"].ToString();
                        TFM.Email = dt.Rows[0]["Email"].ToString();
@@ -571,7 +572,7 @@ namespace WillAssure.Controllers
 
             con.Open();
 
-            DateTime dat = DateTime.ParseExact(TFM.Dob, "dd-MM-yyyy", CultureInfo.InvariantCulture);
+            DateTime dat = DateTime.ParseExact(TFM.Dobb, "dd-MM-yyyy", CultureInfo.InvariantCulture);
           
             SqlCommand cmd = new SqlCommand("SP_CRUDTestatorDetails", con);
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
