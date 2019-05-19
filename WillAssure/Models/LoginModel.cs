@@ -41,5 +41,12 @@ namespace WillAssure.Models
        public string Proportion { get; set; }
         public int atId { get; set; }
 
+
+
+
+        public int documentprice { get; set; }
+
+        public string documentname { get; set; }
+
     }
 }

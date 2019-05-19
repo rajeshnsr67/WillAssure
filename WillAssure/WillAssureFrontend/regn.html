@@ -191,7 +191,7 @@
                                                                        </div>
                                                                        <div class="form-group col-sm-6" style="float: left;">
                                                                            <div class="col-sm-12"><label for="email" style="font-weight: 700; font-size: 16px">Contact No:</label></div>
-                                                                           <div class="col-sm-12" style="float: left;"><span style="color:red;display:none" id="lblerror2">*Required</span> <span id="error" style="color: Red; display: none">*Invalid Mobile</span><input type="text" class="form-control" id="txtcontact" onchange="check()"    placeholder="Mobile No"></div>
+                                                                           <div class="col-sm-12" style="float: left;"><span style="color:red;display:none" id="lblerror2">*Required</span> <span id="error" style="color: Red; display: none">*Invalid Mobile</span><input type="text" class="form-control" id="txtcontact" onchange="check()" placeholder="Mobile No"></div>
 
                                                                        </div>
                                                                        <div class="form-group col-sm-6" style="float: left;">
@@ -238,8 +238,15 @@
                                                                                    <input type="checkbox" id="checkfive" value="LivingWill">Living Will
                                                                                </label>
                                                                            </div>
-
                                                                        </div>
+                                                                       
+                                                                       <!--<div class="col-sm-12" style="float: left;" id="documentpricing">
+
+    </div>-->
+
+
+
+
                                                                        <div class="col-sm-12 text-right" style="float: left;">
                                                                            <button type="button" id="btnsubmit" class="btn btn-success ">Submit</button>
                                                                        </div>
@@ -347,7 +354,7 @@
 
                                            $("#lblerror2").hide();
                                            $("#error").hide();
-                                           
+
 
                                        }
                                        function lblerror3() {
@@ -450,7 +457,7 @@
                                                        $("#txtcontact").val("");
                                                        $("#txtemail").val("");
                                                        $("#txtrefdistributor").val("");
-                                                       
+
 
 
                                                        $("#checkone").prop("checked", false);
@@ -469,6 +476,38 @@
 
 
                                        });
+
+
+
+
+
+
+
+
+
+                                       //$(document).ready(function () {
+
+
+                                       //    $.ajax({
+
+                                       //        type: "POST",
+                                       //        url: "../VisitorData/binddocument",
+                                       //        success: function (data) {
+
+                                       //            $("#documentpricing").append(data);
+
+
+                                       //        }
+                                       //    });
+
+
+
+
+
+
+                                       //});
+
+
 
                                    </script>
 
@@ -556,7 +595,7 @@
                                        $(document).on("change", "#getvalone", function () {
 
                                            $("#txtrefdistributor").show();
-                                           
+
 
                                        });
 
@@ -572,13 +611,13 @@
                                    <script type="text/javascript">
                                        function check() {
 
-                                        
+
 
                                            var mobilereg = /^[0-9]{10}$/;;
 
                                            var mobileinput = $('#txtcontact').val();
                                            if (mobilereg.test(mobileinput) == false) {
-                                              
+
                                                $("#error").show();
                                            }
 
@@ -587,7 +626,7 @@
                                                $("#error").hide();
                                                $("#lblerror2").hide();
                                            }
-                                 
+
                                        }
                                    </script>
 

@@ -19,17 +19,20 @@ namespace WillAssure
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
 
-        protected void Session_Start(object sender, EventArgs e)
+     
+        protected void Session_End(Object sender, EventArgs e)
         {
-            // Code that runs when a new session is started
            
+        
+
         }
 
 
-       
 
 
-      
+
+
+
 
 
 

@@ -160,6 +160,23 @@
                                             $("#statetext").focus(function () {
                                                 $("#statetext").hide();
                                                 $("#ddlstate").show();
+
+                                                   var value = $("#statetext").val();
+                                                 $.ajax({
+
+            type: "POST",
+            url: "@Url.Action("BindStateDDL", "UpdateTestators")",
+            data: { "statename": "" + value+  ""},
+            success: function (data) {
+                if (data != "") {
+                    $('#ddlstate').empty().append(data);
+                }
+               
+            }
+
+
+
+        });
                                             });
                                         </script>
                                     </div>

@@ -23,6 +23,7 @@ namespace WillAssure.Controllers
         // GET: UpdateTestators
         public ActionResult UpdateTestatorsIndex(int NestId)
         {
+            ViewBag.cod = "true";
             //if (NestId == 0)
             //{
                 int getid = Convert.ToInt32(Session["uuid"]);

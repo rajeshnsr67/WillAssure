@@ -253,7 +253,7 @@ namespace WillAssure.Controllers
 
             // check gift deeds status
             con.Open();
-            string qry3 = "select Giftdeeds , Designation  from users where Will = 1 and Designation = 1 and uId = " + Convert.ToInt32(Session["uuid"]) + " ";
+            string qry3 = "select Giftdeeds , Designation  from users where Giftdeeds = 1 and Designation = 1 and uId = " + Convert.ToInt32(Session["uuid"]) + " ";
                 SqlDataAdapter daa3 = new SqlDataAdapter(qry3, con);
             DataTable dtt3 = new DataTable();
             daa3.Fill(dtt3);
@@ -274,7 +274,7 @@ namespace WillAssure.Controllers
 
                 // check Living Will status
                 con.Open();
-                string qry312 = "select LivingWill , Designation  from users where Will = 1 and Designation = 1 and uId = " + Convert.ToInt32(Session["uuid"]) + " ";
+                string qry312 = "select LivingWill , Designation  from users where LivingWill = 1 and Designation = 1 and uId = " + Convert.ToInt32(Session["uuid"]) + " ";
                 SqlDataAdapter daa23 = new SqlDataAdapter(qry312, con);
                 DataTable dtt43 = new DataTable();
                 daa23.Fill(dtt43);
@@ -349,6 +349,50 @@ namespace WillAssure.Controllers
                     return RedirectToAction("LivingWillIndex", "LivingWill");
                 }
             }
+          
+
+                
+
+            if (doctype != null)
+            {
+                if (doctype == "Will")
+                {
+                    ViewBag.collapse = "true";
+                    Session["doctype"] = "Will";
+                    return RedirectToAction("AddTestatorsFormIndex", "AddTestatorsForm", new { collapse = "true" });
+                }
+
+                if (doctype == "Codocil")
+                {
+                    ViewBag.collapse = "true";
+                    Session["doctype"] = "Codocil";
+                    return RedirectToAction("CodocilIndex", "Codocil");
+                }
+
+
+                if (doctype == "POA")
+                {
+                    ViewBag.collapse = "true";
+                    Session["doctype"] = "POA";
+                    return RedirectToAction("AddTestatorsFormIndex", "AddTestatorsForm");
+                }
+
+
+                if (doctype == "GiftDeeds")
+                {
+                    ViewBag.collapse = "true";
+                    Session["doctype"] = "GiftDeeds";
+                    return RedirectToAction("AddTestatorsFormIndex", "AddTestatorsForm");
+                }
+
+
+                if (doctype == "LivingWill")
+                {
+                    ViewBag.collapse = "true";
+                    Session["doctype"] = "LivingWill";
+                    return RedirectToAction("LivingWillIndex", "LivingWill");
+                }
+            }
             else
             {
 
@@ -361,54 +405,6 @@ namespace WillAssure.Controllers
                 DataTable dtaa = new DataTable();
                 d4aa.Fill(dtaa);
                 con.Close();
-                //end
-
-
-                // for Codocil only 
-                con.Open();
-                string query45 = " select * from users where Codocil = 1 and  uId = " + Convert.ToInt32(Session["uuid"]) + " and active='Active' ";
-                SqlDataAdapter d4a5 = new SqlDataAdapter(query45, con);
-                DataTable dta5 = new DataTable();
-                d4a5.Fill(dta5);
-                con.Close();
-                //end
-
-
-
-                // for POA only 
-                con.Open();
-                string query46 = " select * from users where  POA = 1  and  uId = " + Convert.ToInt32(Session["uuid"]) + " and active='Active' ";
-                SqlDataAdapter d4a6 = new SqlDataAdapter(query46, con);
-                DataTable dta6 = new DataTable();
-                d4a6.Fill(dta6);
-                con.Close();
-                //end
-
-
-
-                // for Giftdeeds only 
-                con.Open();
-                string query47 = " select * from users where  Giftdeeds = 1   and  uId = " + Convert.ToInt32(Session["uuid"]) + " and active='Active' ";
-                SqlDataAdapter d4a7 = new SqlDataAdapter(query47, con);
-                DataTable dta7 = new DataTable();
-                d4a7.Fill(dta7);
-                con.Close();
-                //end
-
-
-
-                // for LivingWill only 
-                con.Open();
-                string query48 = " select * from users where  LivingWill = 1  and  uId = " + Convert.ToInt32(Session["uuid"]) + " and active='Active' ";
-                SqlDataAdapter d4a8 = new SqlDataAdapter(query48, con);
-                DataTable dta8 = new DataTable();
-                d4a8.Fill(dta8);
-                con.Close();
-                //end
-
-
-
-
                 if (dtaa.Rows.Count > 0)
                 {
                     ViewBag.dash = "disable";
@@ -421,17 +417,36 @@ namespace WillAssure.Controllers
                     d48.Fill(dt8);
                     con.Close();
                     Session["doctype"] = "Will";
-
+                    ViewBag.view = "Will";
                     return RedirectToAction("UpdateTestatorsIndex", "UpdateTestators", new { NestId = Convert.ToInt32(dt8.Rows[0]["tid"]) });
 
                 }
-                else if (dta5.Rows.Count > 0)
+                //end
+
+
+                // for Codocil only 
+                con.Open();
+                string query45 = " select * from users where Codocil = 1 and  uId = " + Convert.ToInt32(Session["uuid"]) + " and active='Active' ";
+                SqlDataAdapter d4a5 = new SqlDataAdapter(query45, con);
+                DataTable dta5 = new DataTable();
+                d4a5.Fill(dta5);
+                con.Close();
+                if (dta5.Rows.Count > 0)
                 {
-
                     return RedirectToAction("CodocilIndex", "Codocil");
-
                 }
-                else if (dta6.Rows.Count > 0)
+                //end
+
+
+
+                // for POA only 
+                con.Open();
+                string query46 = " select * from users where  POA = 1  and  uId = " + Convert.ToInt32(Session["uuid"]) + " and active='Active' ";
+                SqlDataAdapter d4a6 = new SqlDataAdapter(query46, con);
+                DataTable dta6 = new DataTable();
+                d4a6.Fill(dta6);
+                con.Close();
+                if (dta6.Rows.Count > 0)
                 {
                     ViewBag.dash = "disable";
                     testid = Convert.ToInt32(dta6.Rows[0]["uId"]);
@@ -444,10 +459,22 @@ namespace WillAssure.Controllers
                     con.Close();
 
                     Session["doctype"] = "POA";
+                    ViewBag.view = "POA";
                     return RedirectToAction("AddTestatorsFormIndex", "AddTestatorsForm", new { NestId = Convert.ToInt32(dt8.Rows[0]["tid"]) });
 
                 }
-                else if (dta7.Rows.Count > 0)
+                //end
+
+
+
+                // for Giftdeeds only 
+                con.Open();
+                string query47 = " select * from users where  Giftdeeds = 1   and  uId = " + Convert.ToInt32(Session["uuid"]) + " and active='Active' ";
+                SqlDataAdapter d4a7 = new SqlDataAdapter(query47, con);
+                DataTable dta7 = new DataTable();
+                d4a7.Fill(dta7);
+                con.Close();
+                if (dta7.Rows.Count > 0)
                 {
                     ViewBag.dash = "disable";
                     testid = Convert.ToInt32(dta7.Rows[0]["uId"]);
@@ -458,21 +485,41 @@ namespace WillAssure.Controllers
                     d48.Fill(dt8);
                     con.Close();
 
-
+                    ViewBag.view = "GiftDeeds";
                     Session["doctype"] = "GiftDeeds";
 
                     return RedirectToAction("AddTestatorsFormIndex", "AddTestatorsForm", new { NestId = Convert.ToInt32(dt8.Rows[0]["tid"]) });
 
                 }
-                else if (dta8.Rows.Count > 0)
+                //end
+
+
+
+                // for LivingWill only 
+                con.Open();
+                string query48 = " select * from users where  LivingWill = 1  and  uId = " + Convert.ToInt32(Session["uuid"]) + " and active='Active' ";
+                SqlDataAdapter d4a8 = new SqlDataAdapter(query48, con);
+                DataTable dta8 = new DataTable();
+                d4a8.Fill(dta8);
+                con.Close();
+                if (dta8.Rows.Count > 0)
                 {
 
                     testid = Convert.ToInt32(dta8.Rows[0]["uId"]);
                     return RedirectToAction("LivingWillIndex", "LivingWill");
 
                 }
+                //end
+
+
+
+           
 
             }
+
+
+
+
 
 
 

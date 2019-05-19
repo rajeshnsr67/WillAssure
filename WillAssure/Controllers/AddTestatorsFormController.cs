@@ -25,10 +25,10 @@ namespace WillAssure.Controllers
         // GET: AddTestatorsForm
         public ActionResult AddTestatorsFormIndex()
         {
-            
-                ViewBag.collapse = "true";
-            
-           
+
+            ViewBag.collapse = "true";
+
+
             // check type 
             string typ = "";
             con.Open();
@@ -119,7 +119,7 @@ namespace WillAssure.Controllers
             if (Session["rId"] == null || Session["uuid"] == null)
             {
 
-               RedirectToAction("LoginPageIndex", "LoginPage");
+                RedirectToAction("LoginPageIndex", "LoginPage");
 
             }
             //if (Session["compId"] == null)
@@ -249,7 +249,17 @@ namespace WillAssure.Controllers
             }
 
 
+            if (Session["doctype"].ToString() == "Will")
+            {
+                ViewBag.view = "Will";
+            }
 
+
+            if (Session["doctype"].ToString() == "POA" || Session["doctype"].ToString() == "GiftDeeds")
+            {
+                ViewBag.view = "POA";
+                ViewBag.view = "GiftDeeds";
+            }
 
 
             return View("~/Views/AddTestatorsForm/AddTestatorPageContent.cshtml");
@@ -2026,9 +2036,107 @@ namespace WillAssure.Controllers
                         cc1.ExecuteNonQuery();
                         con.Close();
                     }
+            if (TFM.documenttype == "WillCodocilPOAGiftDeedsLivingWill")
+            {
+
+                con.Open();
+                string qq1 = "update users set Will = '1' , Codocil = '1' , POA = '1' , Giftdeeds='1', LivingWill='1' where uId = " + distid + " ";
+                SqlCommand cc1 = new SqlCommand(qq1, con);
+                cc1.ExecuteNonQuery();
+                con.Close();
+            }
+
+            if (TFM.documenttype == "POAGiftDeedsLivingWill")
+            {
+
+                con.Open();
+                string qq1 = "update users set Will = '0' , Codocil = '0' , POA = '1' , Giftdeeds='1', LivingWill='1' where uId = " + distid + " ";
+                SqlCommand cc1 = new SqlCommand(qq1, con);
+                cc1.ExecuteNonQuery();
+                con.Close();
+            }
+
+            if (TFM.documenttype == "LivingWillGiftDeedsPOA")
+            {
+
+                con.Open();
+                string qq1 = "update users set Will = '0' , Codocil = '0' , POA = '1' , Giftdeeds='1', LivingWill='1' where uId = " + distid + " ";
+                SqlCommand cc1 = new SqlCommand(qq1, con);
+                cc1.ExecuteNonQuery();
+                con.Close();
+            }
+
+            if (TFM.documenttype == "GiftDeedsLivingWillPOA")
+            {
+
+                con.Open();
+                string qq1 = "update users set Will = '0' , Codocil = '0' , POA = '1' , Giftdeeds='1', LivingWill='1' where uId = " + distid + " ";
+                SqlCommand cc1 = new SqlCommand(qq1, con);
+                cc1.ExecuteNonQuery();
+                con.Close();
+            }
+
+            if (TFM.documenttype == "LivingWillCodocil")
+            {
+
+                con.Open();
+                string qq1 = "update users set Will = '0' , Codocil = '1' , POA = '0' , Giftdeeds='0', LivingWill='1' where uId = " + distid + " ";
+                SqlCommand cc1 = new SqlCommand(qq1, con);
+                cc1.ExecuteNonQuery();
+                con.Close();
+            }
+
+            if (TFM.documenttype == "LivingWillGiftDeeds")
+            {
+
+                con.Open();
+                string qq1 = "update users set Will = '0' , Codocil = '0' , POA = '0' , Giftdeeds='1', LivingWill='1' where uId = " + distid + " ";
+                SqlCommand cc1 = new SqlCommand(qq1, con);
+                cc1.ExecuteNonQuery();
+                con.Close();
+            }
 
 
-                    if (TFM.documentcategory == "Quick")
+            if (TFM.documenttype == "WillGiftDeeds")
+            {
+
+                con.Open();
+                string qq1 = "update users set Will = '1' , Codocil = '0' , POA = '0' , Giftdeeds='1', LivingWill='0' where uId = " + distid + " ";
+                SqlCommand cc1 = new SqlCommand(qq1, con);
+                cc1.ExecuteNonQuery();
+                con.Close();
+            }
+
+            if (TFM.documenttype == "GiftDeedsPOA")
+            {
+
+                con.Open();
+                string qq1 = "update users set Will = '0' , Codocil = '0' , POA = '1' , Giftdeeds='1', LivingWill='0' where uId = " + distid + " ";
+                SqlCommand cc1 = new SqlCommand(qq1, con);
+                cc1.ExecuteNonQuery();
+                con.Close();
+            }
+            if (TFM.documenttype == "LivingWillPOA")
+            {
+
+                con.Open();
+                string qq1 = "update users set Will = '0' , Codocil = '0' , POA = '1' , Giftdeeds='0', LivingWill='1' where uId = " + distid + " ";
+                SqlCommand cc1 = new SqlCommand(qq1, con);
+                cc1.ExecuteNonQuery();
+                con.Close();
+            }
+            if (TFM.documenttype == "WillGiftDeedsCodocil")
+            {
+
+                con.Open();
+                string qq1 = "update users set Will = '1' , Codocil = '1' , POA = '0' , Giftdeeds='1', LivingWill='0' where uId = " + distid + " ";
+                SqlCommand cc1 = new SqlCommand(qq1, con);
+                cc1.ExecuteNonQuery();
+                con.Close();
+            }
+
+
+            if (TFM.documentcategory == "Quick")
                     {
                         typecat = 1;
                     }
