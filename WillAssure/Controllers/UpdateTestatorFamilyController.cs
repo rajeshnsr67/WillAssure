@@ -467,8 +467,8 @@ namespace WillAssure.Controllers
             cmd.Parameters.AddWithValue("@Middle_Name", TFM.Middle_Name);
             DateTime dat = DateTime.ParseExact(TFM.Dob, "dd-MM-yyyy", CultureInfo.InvariantCulture);
             cmd.Parameters.AddWithValue("@DOB", dat);
-            cmd.Parameters.AddWithValue("@Marital_Status", TFM.Marital_Status);
-            cmd.Parameters.AddWithValue("@Religion", TFM.Religion);
+            cmd.Parameters.AddWithValue("@Marital_Status", "none");
+            cmd.Parameters.AddWithValue("@Religion", "none");
             cmd.Parameters.AddWithValue("@Relationship", "None");
             cmd.Parameters.AddWithValue("@Address1", TFM.Address1);
             cmd.Parameters.AddWithValue("@Address2", TFM.Address2);

@@ -327,7 +327,7 @@ namespace WillAssure.Controllers
 
 
             con.Open();
-            string query = "insert into allotmentDistributor (uId,status,Document_Type,compId,Approved_Count) values (" + PM.distributorid +" , '"+PM.status+"', '"+PM.documenttxt+"', " + Convert.ToInt32(Session["compId"]) + " , "+PM.NumberofDocument+" )   ";
+            string query = "insert into allotmentDistributor (uId,status,Document_Type,compId,Approved_Count,Balance_Count) values (" + PM.distributorid +" , '"+PM.status+"', '"+PM.documenttxt+"', " + Convert.ToInt32(Session["compId"]) + " , "+PM.NumberofDocument+ " , " + PM.NumberofDocument + ")   ";
             SqlCommand cmd = new SqlCommand(query,con);
             cmd.ExecuteNonQuery();
             con.Close();

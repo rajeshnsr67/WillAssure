@@ -156,7 +156,24 @@ namespace WillAssure.Controllers
 
                         if (dta2.Rows.Count > 0)
                         {
-                            return RedirectToAction("EnableDocumentLinks", "DashBoard");
+                            con.Open();
+                            string qq222 = "select PaymentStatus from testatordetails where uId = " + Convert.ToInt32(Session["uuid"]) + " ";
+                            SqlDataAdapter daa22 = new SqlDataAdapter(qq222, con);
+                            DataTable paydtt = new DataTable();
+                            daa22.Fill(paydtt);
+                            con.Close();
+
+                            if (Convert.ToInt32(paydtt.Rows[0]["PaymentStatus"]) == 1)
+                            {
+                                return RedirectToAction("EnableDocumentLinks", "DashBoard");
+                            }
+                            else
+                            {
+                                return RedirectToAction("DashBoardIndex", "DashBoard");
+                            }
+
+
+                               
                         }
                         else
                         {
@@ -303,6 +320,9 @@ namespace WillAssure.Controllers
             Session["assettypeidforliablities"] = "";
             Session["assetcategoryidforliablities"] = "";
 
+
+            // for document bal
+            Session["distidbal"] = "";
 
 
             return View("~/Views/LoginPage/LoginPageContent.cshtml");

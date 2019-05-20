@@ -378,6 +378,8 @@ namespace WillAssure.Controllers
 
             ViewBag.collapse = "true";
 
+            Session["distidbal"] = TFM.distributor_id;
+
             // check type 
             string typ = "";
             con.Open();
@@ -2135,6 +2137,25 @@ namespace WillAssure.Controllers
                 con.Close();
             }
 
+            if (TFM.documenttype == "WillGiftDeedsLivingWill")
+            {
+
+                con.Open();
+                string qq1 = "update users set Will = '1' , Codocil = '0' , POA = '0' , Giftdeeds='1', LivingWill='1' where uId = " + distid + " ";
+                SqlCommand cc1 = new SqlCommand(qq1, con);
+                cc1.ExecuteNonQuery();
+                con.Close();
+            }
+            if (TFM.documenttype == "CodocilPOAGiftdeeds")
+            {
+
+                con.Open();
+                string qq1 = "update users set Will = '0' , Codocil = '1' , POA = '1' , Giftdeeds='1', LivingWill='0' where uId = " + distid + " ";
+                SqlCommand cc1 = new SqlCommand(qq1, con);
+                cc1.ExecuteNonQuery();
+                con.Close();
+            }
+
 
             if (TFM.documentcategory == "Quick")
                     {
@@ -2154,11 +2175,40 @@ namespace WillAssure.Controllers
 
 
 
-                    //
+            //
+
+
+            if (Session["distidbal"] == null)
+            {
+                RedirectToAction("LoginPageIndex", "LoginPage");
+            }
+
 
                     //1st condition
                     if (TFM.Amt_Paid_By == "Distributor" && TFM.Document_Created_By == "Distributor")
                     {
+                        int cal = 0;
+                        con.Open();
+                        string qq1 = "select Balance_Count from  allotmentDistributor";
+                        SqlDataAdapter qq1da = new SqlDataAdapter(qq1,con);
+                        DataTable qq1dt = new DataTable();
+                        qq1da.Fill(qq1dt);
+                        int bal = 0;
+                        if (qq1dt.Rows.Count > 0)
+                        {
+                            bal = Convert.ToInt32(qq1dt.Rows[0]["Balance_Count"]);
+                        }
+                        con.Close();
+
+                        cal = bal - 1;
+
+                        Response.Write("<script>alert('Balance Document For Distributor is :"+cal+"')</script>");
+                        con.Open();
+                        string qqchk = "update allotmentDistributor set Balance_Count = "+cal+" where uId = "+ Convert.ToInt32(Session["distidbal"]) + "  ";
+                        SqlCommand cccm = new SqlCommand(qqchk,con);
+                        cccm.ExecuteNonQuery();
+                        con.Close();
+                       
                         TFM.Authentication_Required = 0;
                         TFM.Link_Required = 0;
                         TFM.Login_Required = 0;
@@ -2175,7 +2225,30 @@ namespace WillAssure.Controllers
                     //2nd condition 
                     if (TFM.Amt_Paid_By == "Distributor" && TFM.Document_Created_By == "Testator")
                     {
-                        TFM.Authentication_Required = 1;
+
+                int cal = 0;
+                con.Open();
+                string qq1 = "select Balance_Count from  allotmentDistributor";
+                SqlDataAdapter qq1da = new SqlDataAdapter(qq1, con);
+                DataTable qq1dt = new DataTable();
+                qq1da.Fill(qq1dt);
+                int bal = 0;
+                if (qq1dt.Rows.Count > 0)
+                {
+                    bal = Convert.ToInt32(qq1dt.Rows[0]["Balance_Count"]);
+                }
+                con.Close();
+
+                cal = bal - 1;
+
+                con.Open();
+                string qqchk = "update allotmentDistributor set Balance_Count = " + cal + " where uId = " + Convert.ToInt32(Session["distidbal"]) + "  ";
+                SqlCommand cccm = new SqlCommand(qqchk, con);
+                cccm.ExecuteNonQuery();
+                con.Close();
+
+
+                TFM.Authentication_Required = 1;
                         TFM.Link_Required = 1;
                         TFM.Login_Required = 1;
 

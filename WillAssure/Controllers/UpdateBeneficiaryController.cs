@@ -403,8 +403,8 @@ namespace WillAssure.Controllers
             cmd.Parameters.AddWithValue("@DOB",Convert.ToDateTime(BM.Dob));
             cmd.Parameters.AddWithValue("@Mobile", BM.Mobile);
             cmd.Parameters.AddWithValue("@Relationship", BM.RelationshipTxt);
-            cmd.Parameters.AddWithValue("@Marital_Status", BM.Marital_Status);
-            cmd.Parameters.AddWithValue("@Religion", BM.Religion);
+            cmd.Parameters.AddWithValue("@Marital_Status", "none");
+            cmd.Parameters.AddWithValue("@Religion", "none");
             cmd.Parameters.AddWithValue("@Identity_proof", BM.Identity_proof);
             cmd.Parameters.AddWithValue("@Identity_proof_value", BM.Alt_Identity_proof_value);
             cmd.Parameters.AddWithValue("@Alt_Identity_proof", BM.Alt_Identity_proof);
@@ -417,7 +417,7 @@ namespace WillAssure.Controllers
             cmd.Parameters.AddWithValue("@Pin", BM.Pin);
             cmd.Parameters.AddWithValue("@aid", "");
             cmd.Parameters.AddWithValue("@tid", BM.ddltid);
-            cmd.Parameters.AddWithValue("@beneficiary_type", BM.beneficiary_type);
+            cmd.Parameters.AddWithValue("@beneficiary_type", "none");
             cmd.ExecuteNonQuery();
             con.Close();
 
@@ -451,8 +451,8 @@ namespace WillAssure.Controllers
                 cmd2.Parameters.AddWithValue("@DOB", Convert.ToDateTime(BM.altDob));
                 cmd2.Parameters.AddWithValue("@Mobile", BM.altMobile);
                 cmd2.Parameters.AddWithValue("@Relationship", BM.altRelationshipTxt);
-                cmd2.Parameters.AddWithValue("@Marital_Status", BM.altMarital_Status_Txt);
-                cmd2.Parameters.AddWithValue("@Religion", BM.altReligion_TXT);
+                cmd2.Parameters.AddWithValue("@Marital_Status","none");
+                cmd2.Parameters.AddWithValue("@Religion", "none");
                 cmd2.Parameters.AddWithValue("@Identity_Proof", BM.altIdentity_Proof);
                 cmd2.Parameters.AddWithValue("@Identity_Proof_Value", BM.altIdentity_Proof_Value);
                 cmd2.Parameters.AddWithValue("@Alt_Identity_Proof", BM.altAlt_Identity_Proof);

@@ -438,6 +438,9 @@
                                     </div>
                                 </div>
 
+
+                                @if (Session["Type"].ToString() != "Testator")
+	{
                                 <div class="col-sm-6">
 
                                     <div class="form-group">
@@ -456,6 +459,9 @@
                                         });
                                     </script>
                                 </div>
+	}
+
+                                
 
 
 

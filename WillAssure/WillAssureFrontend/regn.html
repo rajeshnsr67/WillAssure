@@ -64,8 +64,8 @@
                                                        <div class="wrap-top reponsive-none767 clearfix">
                                                            <aside class="widget float-right reponsive-none margin-left29">
                                                                <!--<div class="btn-click style2">
-                                    <a href="/LoginPage/LoginPageIndex" class="flat-button">Login</a>
-                                </div>-->
+                                <a href="/LoginPage/LoginPageIndex" class="flat-button">Login</a>
+                            </div>-->
 
 
                                                            </aside>
@@ -180,7 +180,7 @@
                                                            </div>
                                                            <div class="col-lg-8 col-md-8">
                                                                <div class="wrap-formrequest">
-                                                                   <form action="/VisitorData/VisitorDataIndex">
+                                                                   <form>
                                                                        <textarea id="documenttype" name="documenttype" style="display:none;"></textarea>
 
                                                                        <div class="form-group col-sm-12">
@@ -196,7 +196,7 @@
                                                                        </div>
                                                                        <div class="form-group col-sm-6" style="float: left;">
                                                                            <div class="col-sm-12"><label for="email" style="font-weight: 700; font-size: 16px">Email Id:</label></div>
-                                                                           <div class="col-sm-12" style="float: left;"><span style="color:red;display:none" id="lblerror3">*Required</span><span style="color:red;display:none" id="lblemailerr">*Invalid Email</span><input type="text" class="form-control" id="txtemail" onchange="lblerror3()" placeholder="Email Id" required></div>
+                                                                           <div class="col-sm-12" style="float: left;"><span style="color:red;display:none" id="lblerror3">*Required</span><span style="color:red;display:none" id="lblemailerr">*Invalid Email</span><span style="color:red;display:none" id="lbldup">*Email ID Already Register</span><input type="text" class="form-control" id="txtemail" onchange="lblerror3()" placeholder="Email Id" required></div>
 
                                                                        </div>
                                                                        <div class="form-group col-sm-12" style="float: left;">
@@ -216,7 +216,19 @@
                                                                                </label>
 
                                                                            </form>
-                                                                           <div class="col-sm-12" style="float: left;"><!--<span style="color:red;display:none" id="lblerror4">*Required</span>--><input type="text" class="form-control" style="display:;" id="txtrefdistributor" onchange="lblerror4()" placeholder="Distributer Name" required></div>
+                                                                           <div class="col-sm-12" style="float: left;">
+                                                                               <div class="row">
+                                                                                  
+                                                                                   <div class='col-sm-4'>
+                                                                                       <select id="ddlDistributor" class="form-control validate[required]">
+                                                                                           <option value="">--Select Distributor--</option>
+                                                                                       </select>
+
+                                                                                   </div>
+                                                                               </div>
+
+
+                                                                           </div>
 
                                                                        </div>
                                                                        <div class="form-group col-sm-12" style="float: left;">
@@ -239,10 +251,10 @@
                                                                                </label>
                                                                            </div>
                                                                        </div>
-                                                                       
+
                                                                        <!--<div class="col-sm-12" style="float: left;" id="documentpricing">
 
-    </div>-->
+        </div>-->
 
 
 
@@ -251,7 +263,7 @@
                                                                            <button type="button" id="btnsubmit" class="btn btn-success ">Submit</button>
                                                                        </div>
                                                                    </form>
-
+                                                                   <button style="display:none;" class="btn btn-outline-primary btn-block m-1" id="btnotp" data-toggle="modal" data-target="#primarymodal">Primary</button>
                                                                    <div class="clearfix"></div>
                                                                </div>
                                                            </div>
@@ -261,6 +273,59 @@
                                                </div>
                                            </div>
                                        </section>
+
+
+
+                                  
+
+
+
+                                       <!--Primary Modal -->
+
+                                       <div class="modal fade" id="primarymodal">
+                                           <div class="modal-dialog modal-sm">
+                                               <div class="modal-content border-primary">
+                                                   <div class="modal-header bg-primary">
+                                                       <h5 class="modal-title text-white">Please Enter OTP For Login</h5>
+                                                       <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                                                           <span aria-hidden="true">&times;</span>
+                                                       </button>
+                                                   </div>
+                                                   <div class="modal-body">
+                                                      <form>
+
+
+                                                       <div class="row">
+                                                           <div class="col-sm-6">
+
+                                                               <div class="form-group">
+                                                                   <label for="input-1">Enter OTP:</label>
+                                                                   <input type="text" name="name" id="txtotp" class="form-control" value="" />
+                                                                   <span style="color:red; white-space:nowrap;" id="lblerror"></span>
+                                                               </div>
+                                                           </div>
+
+
+
+
+                                                       </div>
+
+
+
+                                                       <div class="form-group">
+                                                           <input type="button"  id="btnverifyotp"  style="color:white;" name="name" class="btn btn-success" value="Verify OTP" />
+                                                           <a href=""><button type="button" class="btn btn-danger">Cancel</button></a>
+                                                       </div>
+
+                                                      </form>
+
+                                                   </div>
+
+                                               </div>
+                                           </div>
+                                       </div>
+                                       <!--End Modal -->
+
 
 
                                        <!-- Footer -->
@@ -357,6 +422,7 @@
 
 
                                        }
+
                                        function lblerror3() {
 
                                            $("#lblerror3").hide();
@@ -373,6 +439,30 @@
 
                                                $("#lblemailerr").hide();
                                            }
+
+                                           var data = $("#txtemail").val();
+
+                                           $.ajax({
+
+                                               type: "POST",
+                                               url: "../VisitorData/checkemailduplicate",
+                                               data: {"send":""+data+""},
+                                               success: function (data) {
+
+                                                   if (data == "true") {
+
+                                                       $("#lbldup").hide();
+                                                   }
+
+                                                   if (data == "false") {
+                                                       $("#lbldup").show();
+                                                   }
+
+
+                                               }
+                                           });
+
+
 
 
                                        }
@@ -408,7 +498,7 @@
 
 
 
-
+                                          
 
 
                                            if ($("#txtfirstname").val() == "") {
@@ -435,38 +525,53 @@
                                                $("#lblerror3").show();
                                            }
 
-                                           //if ($("#txtrefdistributor").val() == "") {
+                                           //if ($("#ddlDistributor").val() == "") {
                                            //    $("#lblerror4").show();
                                            //}
                                            else {
 
-                                               var data = $("#txtfirstname").val() + "~" + $("#txtmiddlename").val() + "~" + $("#txtlastname").val() + "~" + $("#txtcontact").val() + "~" + $("#txtemail").val() + "~" + $("#txtrefdistributor").val() + "~" + $("#documenttype").val();
+                                               var data = $("#txtfirstname").val() + "~" + $("#txtmiddlename").val() + "~" + $("#txtlastname").val() + "~" + $("#txtcontact").val() + "~" + $("#txtemail").val() + "~" + $("#ddlDistributor").val() + "~" + $("#documenttype").val();
 
-
-                                               $.ajax({
+                                              
+                                                   $.ajax({
 
                                                    type: "POST",
                                                    url: "../VisitorData/VisitorDataIndex",
                                                    data: { "send": "" + data + "" },
-                                                   success: function (data) {
-                                                       alert(data);
+                                                       success: function (data) {
+                                                           
+                                                           alert(data);
 
-                                                       $("#txtfirstname").val("");
-                                                       $("#txtmiddlename").val("");
-                                                       $("#txtlastname").val("");
-                                                       $("#txtcontact").val("");
-                                                       $("#txtemail").val("");
-                                                       $("#txtrefdistributor").val("");
+                                                          
+                                                              
 
+                                                               $('#primarymodal').modal('show');
 
 
-                                                       $("#checkone").prop("checked", false);
-                                                       $("#checktwo").prop("checked", false);
-                                                       $("#checkthree").prop("checked", false);
-                                                       $("#checkfour").prop("checked", false);
-                                                       $("#checkfive").prop("checked", false);
+                                                               $("#txtfirstname").val("");
+                                                               $("#txtmiddlename").val("");
+                                                               $("#txtlastname").val("");
+                                                               $("#txtcontact").val("");
+                                                               $("#txtemail").val("");
+                                                               $("#ddlDistributor").val("");
 
-                                                   }
+
+
+                                                               $("#checkone").prop("checked", false);
+                                                               $("#checktwo").prop("checked", false);
+                                                               $("#checkthree").prop("checked", false);
+                                                               $("#checkfour").prop("checked", false);
+                                                               $("#checkfive").prop("checked", false);
+
+                                                          
+
+
+
+
+
+                                                           }
+                                                       
+
                                                });
 
 
@@ -508,6 +613,55 @@
                                        //});
 
 
+
+                                       $("#btnverifyotp").click(function () {
+
+                                           var x = $("#txtotp").val();
+
+
+                                           $.ajax({
+
+                                               type: "POST",
+                                               url: "../VisitorData/checkOTP",
+                                               data: {"send":""+x+""},
+                                               success: function (data) {
+
+                                                   alert(data);
+
+
+                                               }
+                                           });
+
+
+
+                                       });
+
+
+
+
+
+
+                                          $(document).ready(function () {
+
+
+                                           $.ajax({
+
+                                               type: "POST",
+                                               url: "../VisitorData/BindDistributorDDL",
+                                               success: function (data) {
+
+                                                   $("#ddlDistributor").append(data);
+
+
+                                               }
+                                           });
+
+
+
+
+
+
+                                       });
 
                                    </script>
 
@@ -594,14 +748,14 @@
 
                                        $(document).on("change", "#getvalone", function () {
 
-                                           $("#txtrefdistributor").show();
+                                           $("#ddlDistributor").show();
 
 
                                        });
 
                                        $(document).on("change", "#getvaltwo", function () {
 
-                                           $("#txtrefdistributor").hide();
+                                           $("#ddlDistributor").hide();
 
                                        });
 

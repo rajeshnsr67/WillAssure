@@ -404,8 +404,8 @@ namespace WillAssure.Controllers
                 cmd.Parameters.AddWithValue("@DOB", dat);
                 cmd.Parameters.AddWithValue("@Mobile", BM.Mobile);
                 cmd.Parameters.AddWithValue("@Relationship", BM.RelationshipTxt);
-                cmd.Parameters.AddWithValue("@Marital_Status", BM.Marital_Status);
-                cmd.Parameters.AddWithValue("@Religion", BM.Religion);
+                cmd.Parameters.AddWithValue("@Marital_Status", "none");
+                cmd.Parameters.AddWithValue("@Religion", "none");
                 cmd.Parameters.AddWithValue("@Identity_proof", BM.Identity_proof);
                 cmd.Parameters.AddWithValue("@Identity_proof_value", BM.Identity_proof_value);
                 cmd.Parameters.AddWithValue("@Alt_Identity_proof", BM.Alt_Identity_proof);
@@ -418,7 +418,7 @@ namespace WillAssure.Controllers
                 cmd.Parameters.AddWithValue("@Pin", BM.Pin);
                 cmd.Parameters.AddWithValue("@aid", BM.aid);
                 cmd.Parameters.AddWithValue("@tid", BM.ddltid);
-                cmd.Parameters.AddWithValue("@beneficiary_type", BM.beneficiary_type);
+                cmd.Parameters.AddWithValue("@beneficiary_type", "none");
                 cmd.ExecuteNonQuery();
                 con.Close();
 

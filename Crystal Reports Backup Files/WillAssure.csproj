@@ -218,6 +218,7 @@
     <Compile Include="Controllers\DashBoardController.cs" />
     <Compile Include="Controllers\DisplayCouponAllotedController.cs" />
     <Compile Include="Controllers\DocumentpgController.cs" />
+    <Compile Include="Controllers\DocumentPricingController.cs" />
     <Compile Include="Controllers\EditAllotmentDistributorController.cs" />
     <Compile Include="Controllers\EditAlternateAppointeesController.cs" />
     <Compile Include="Controllers\EditAlternateBeneficiaryController.cs" />
@@ -233,6 +234,7 @@
     <Compile Include="Controllers\EditDistributorController.cs" />
     <Compile Include="Controllers\EditDistributorEmployeeController.cs" />
     <Compile Include="Controllers\EditDocumentController.cs" />
+    <Compile Include="Controllers\EditDocumentPricingController.cs" />
     <Compile Include="Controllers\EditLiabilitiesController.cs" />
     <Compile Include="Controllers\EditMainAssetsController.cs" />
     <Compile Include="Controllers\EditNomineeController.cs" />
@@ -1569,6 +1571,8 @@
     <Content Include="Views\AddCompanydetails\AddCompanydetailspagecontent.cshtml" />
     <Content Include="Views\EditCompanyDetails\EditCompanyPageContent.cshtml" />
     <Content Include="Views\UpdateCompanyDetails\UpdateCompanyPageContent.cshtml" />
+    <Content Include="Views\DocumentPricing\DocumentPricingPageContent.cshtml" />
+    <Content Include="Views\EditDocumentPricing\EditDocumentPricingPageContent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

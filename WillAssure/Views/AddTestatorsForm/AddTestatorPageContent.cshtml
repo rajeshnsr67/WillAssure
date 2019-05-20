@@ -230,33 +230,34 @@
                                     </div>
                                 </div>
 
-
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="input-3">Marital Status</label>
-                                        @Html.DropDownListFor(x => x.material_status_txt, new SelectListItem[]{
-                                        new SelectListItem() {Text = "--Select--", Value=""},
-                                       new SelectListItem() {Text = "Married", Value="Married"},
-                                       new SelectListItem() {Text = "UnMarried", Value="UnMarried"}}, new { @class = "form-control validate[required]" , @id="ddlmaritalstatus" })
-
-                                        @Html.HiddenFor(m => m.material_status_id, new { id = "material_status_id" })
-                                        @Html.HiddenFor(m => m.material_status_txt, new { id = "material_status_txt" })
-
-                                    </div>
-                                </div>
-
-
-
-                                @*<div class="col-sm-6">
+                                @if (Session["Type"].ToString() != "Testator")
+                                {
+                                    <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label for="input-3">Relationship</label>
-                                            <select id="ddlrelation" class="form-control validate[required]">
-                                                <option value="">--Select--</option>
-                                            </select>
-                                            @Html.HiddenFor(m => m.RelationshipId, new { id = "relationid" })
-                                            @Html.HiddenFor(m => m.RelationshipTxt, new { id = "relationtext" })
+                                            <label for="input-3">Marital Status</label>
+                                            @Html.DropDownListFor(x => x.material_status_txt, new SelectListItem[]{
+                                            new SelectListItem() {Text = "--Select--", Value=""},
+                                           new SelectListItem() {Text = "Married", Value="Married"},
+                                           new SelectListItem() {Text = "UnMarried", Value="UnMarried"}}, new { @class = "form-control validate[required]", @id = "ddlmaritalstatus" })
+
+                                            @Html.HiddenFor(m => m.material_status_id, new { id = "material_status_id" })
+                                            @Html.HiddenFor(m => m.material_status_txt, new { id = "material_status_txt" })
+
                                         </div>
-                                    </div>*@
+                                    </div>
+                                }
+
+
+                                    @*<div class="col-sm-6">
+                <div class="form-group">
+                    <label for="input-3">Relationship</label>
+                    <select id="ddlrelation" class="form-control validate[required]">
+                        <option value="">--Select--</option>
+                    </select>
+                    @Html.HiddenFor(m => m.RelationshipId, new { id = "relationid" })
+                    @Html.HiddenFor(m => m.RelationshipTxt, new { id = "relationtext" })
+                </div>
+            </div>*@
 
 
 
