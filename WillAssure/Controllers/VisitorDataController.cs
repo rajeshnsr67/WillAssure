@@ -707,12 +707,12 @@ namespace WillAssure.Controllers
 
                 // mobile OTP
 
-                HttpWebRequest Req = (HttpWebRequest)WebRequest.Create("http://167.86.89.78:7412/api/mt/SendSMS?user=rnarvadeempire&password=microlan@123&senderid=RNDEVE&channel=Trans&DCS=0&flashsms=0&number=" + contactno + "&text=OTP for Will Assure Verification is : " + MobileOTP + "+sms&route=1051");
-                HttpWebResponse Resp = (HttpWebResponse)Req.GetResponse();
-                System.IO.StreamReader respStreamReader = new System.IO.StreamReader(Resp.GetResponseStream());
-                string responseString = respStreamReader.ReadToEnd();
-                respStreamReader.Close();
-                Resp.Close();
+                //HttpWebRequest Req = (HttpWebRequest)WebRequest.Create("http://167.86.89.78:7412/api/mt/SendSMS?user=rnarvadeempire&password=microlan@123&senderid=RNDEVE&channel=Trans&DCS=0&flashsms=0&number=" + contactno + "&text=OTP for Will Assure Verification is : " + MobileOTP + "+sms&route=1051");
+                //HttpWebResponse Resp = (HttpWebResponse)Req.GetResponse();
+                //System.IO.StreamReader respStreamReader = new System.IO.StreamReader(Resp.GetResponseStream());
+                //string responseString = respStreamReader.ReadToEnd();
+                //respStreamReader.Close();
+                //Resp.Close();
 
 
 
@@ -957,7 +957,7 @@ namespace WillAssure.Controllers
 
         public string BindDistributorDDL()
         {
-            string data = "";
+            string data = "<option value=''>--Select Distributor--</option>";
 
                 con.Open();
                 string query2 = "select * from users where Type='DistributorAdmin'  ";
@@ -1012,6 +1012,47 @@ namespace WillAssure.Controllers
             }
 
                 return msg;
+        }
+
+
+
+
+        public string checkenteredOTP()
+        {
+            int userid = 0;
+            string quer = "select max(uId) as uId from users";
+            SqlDataAdapter daq = new SqlDataAdapter(quer, con);
+            DataTable dtq = new DataTable();
+            daq.Fill(dtq);
+            userid = Convert.ToInt32(dtq.Rows[0]["uId"]);
+
+            string response = Request["send"].ToString();
+            string status = "";
+            con.Open();
+            string chk = "select Email_OTP , Mobile_OTP  from TestatorDetails where uId = " + userid + " ";
+            SqlDataAdapter da = new SqlDataAdapter(chk,con);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+
+            if (dt.Rows.Count > 0)
+            {
+                if (dt.Rows[0]["Email_OTP"].ToString() == response || dt.Rows[0]["Mobile_OTP"].ToString() == response)
+                {
+                    status = "true";
+                    
+                }
+                else
+                {
+                    status = "false";
+                }
+
+            }
+
+            con.Close();
+
+
+
+            return status;
         }
 
 

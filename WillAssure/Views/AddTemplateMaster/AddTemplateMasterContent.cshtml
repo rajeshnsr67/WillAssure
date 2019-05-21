@@ -44,7 +44,7 @@
                                         new SelectListItem() {Text = "--Select Identity Proof--", Value="0"},
                                         new SelectListItem() {Text = "Will", Value="1"},
                                         new SelectListItem() {Text = "POA", Value="2"},
-                                        new SelectListItem() {Text = "Gift Deed", Value="3"}} , new { @class="form-control" , @id= "ddltemplate" })
+                                        new SelectListItem() {Text = "Gift Deed", Value="3"}} , new { @class="form-control input-shadow" , @id= "ddltemplate" })
 
                                     @Html.HiddenFor(m => m.templateid, new { id = "templateid" })
                                     @Html.HiddenFor(m => m.templatetxt, new { id = "templatetxt" })
@@ -70,7 +70,7 @@
                           new SelectListItem() {Text = "POA Revocation Principal", Value="2"},
                           new SelectListItem() {Text = "Gift Deed Donor", Value="3"},
                           new SelectListItem() {Text = "Living Will Testator", Value="1"},
-                          new SelectListItem() {Text = "POA Health Care Principal", Value="2"}} , new { @class="form-control" , @id= "ddltestatortype" })
+                          new SelectListItem() {Text = "POA Health Care Principal", Value="2"}} , new { @class="form-control input-shadow" , @id= "ddltestatortype" })
 
                            @Html.HiddenFor(m => m.testator_typeid, new { id = "testator_typeid" })
                            @Html.HiddenFor(m => m.testator_typetxt, new { id = "testator_typetxt" })
@@ -94,7 +94,7 @@
                           new SelectListItem() {Text = "POARevocationPrincipal.rpt", Value="2"},
                           new SelectListItem() {Text = "GiftDeedDonor.rpt", Value="3"},
                           new SelectListItem() {Text = "LivingWillTestator.rpt", Value="1"},
-                          new SelectListItem() {Text = "POAHealthCarePrincipal.rpt", Value="2"}}, new { @class="form-control" , @id= "ddltestatortype" })
+                          new SelectListItem() {Text = "POAHealthCarePrincipal.rpt", Value="2"}}, new { @class="form-control input-shadow" , @id= "ddltestatortype" })
                                 </div>
 
 

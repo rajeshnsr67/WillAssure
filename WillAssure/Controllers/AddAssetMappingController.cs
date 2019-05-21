@@ -522,12 +522,12 @@ namespace WillAssure.Controllers
 
 
                 // structure = structure + data;
-                //structure = structure + "<div class='col-sm-4'><div class='form-group'>   <label for='input-1'>Instruments</label> <input type='text' class='form-control' placeholder='MF Scheme' />     </div></div>";
-                //structure = structure + "<div class='col-sm-4'><div class='form-group'>   <label for='input-1'>Proportion</label> <input type='text' class='form-control' />     </div></div>";
+                //structure = structure + "<div class='col-sm-4'><div class='form-group'>   <label for='input-1'>Instruments</label> <input type='text' class='form-control input-shadow' placeholder='MF Scheme' />     </div></div>";
+                //structure = structure + "<div class='col-sm-4'><div class='form-group'>   <label for='input-1'>Proportion</label> <input type='text' class='form-control input-shadow' />     </div></div>";
             }
             //else
             //{
-            //    structure = "<label>Scheme</label><select class='form-control schemenameclass' id='schemename1'  onchange=getschemename(this.id)><option value='0'>--Select--</option>" + ddlscheme + "</select>";
+            //    structure = "<label>Scheme</label><select class='form-control input-shadow schemenameclass' id='schemename1'  onchange=getschemename(this.id)><option value='0'>--Select--</option>" + ddlscheme + "</select>";
             //}
 
 

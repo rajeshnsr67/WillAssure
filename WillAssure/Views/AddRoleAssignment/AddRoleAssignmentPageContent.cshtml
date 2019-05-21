@@ -47,7 +47,7 @@
                             </div>
                         </div>
                         <div class="card-title text-primary">Role Assignment</div>
-                        <hr>
+                        <hr class="div_rd">
 
                         @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "RoleAssignForm" }))
                         {
@@ -56,7 +56,7 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="input-3">Role</label>
-                                        <select id="ddlrole" class="form-control validate[required]">
+                                        <select id="ddlrole" class="form-control input-shadow validate[required]">
                                             <option value="">--Select Role--</option>
                                         </select>
                                         @Html.HiddenFor(m => m.ddlroleid, new { id = "ddlroleid" })

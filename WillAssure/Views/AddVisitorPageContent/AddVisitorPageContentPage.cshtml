@@ -30,7 +30,7 @@
                     <div class="card-body">
 
                         <div class="card-title text-primary">Add Visitor Details</div>
-                        <hr>
+                        <hr class="div_rd">
 
                         @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "RoleForm" }))
                         {
@@ -45,7 +45,7 @@
                                 <div class="form-group">
                                     <label for="input-1">First Name</label>
 
-                                    @Html.TextBoxFor(m => m.First_Name, new { @class = "form-control validate[required] text-input", @id = "txtfirstname", @placeholder = "Enter First Name", @autocomplete = "off", alert = "LabourCost is requried" })
+                                    @Html.TextBoxFor(m => m.First_Name, new { @class = "form-control input-shadow validate[required] text-input", @id = "txtfirstname", @placeholder = "Enter First Name", @autocomplete = "off", alert = "LabourCost is requried" })
                                 </div>
                             </div>
 
@@ -55,7 +55,7 @@
                                 <div class="form-group">
                                     <label for="input-1">Middle Name</label>
 
-                                    @Html.TextBoxFor(m => m.Middle_Name, new { @class = "form-control validate[required] text-input", @id = "txtmiddlename", @placeholder = "Enter Middle Name", @autocomplete = "off", alert = "LabourCost is requried" })
+                                    @Html.TextBoxFor(m => m.Middle_Name, new { @class = "form-control input-shadow validate[required] text-input", @id = "txtmiddlename", @placeholder = "Enter Middle Name", @autocomplete = "off", alert = "LabourCost is requried" })
                                 </div>
                             </div>
 
@@ -65,7 +65,7 @@
                                 <div class="form-group">
                                     <label for="input-1">Last Name</label>
 
-                                    @Html.TextBoxFor(m => m.Last_Name, new { @class = "form-control validate[required] text-input", @id = "txtlastname", @placeholder = "Enter Last Name", @autocomplete = "off", alert = "LabourCost is requried" })
+                                    @Html.TextBoxFor(m => m.Last_Name, new { @class = "form-control input-shadow validate[required] text-input", @id = "txtlastname", @placeholder = "Enter Last Name", @autocomplete = "off", alert = "LabourCost is requried" })
                                 </div>
                             </div>
 
@@ -74,7 +74,7 @@
                                 <div class="form-group">
                                     <label for="input-1">Mobile</label>
 
-                                    @Html.TextBoxFor(m => m.Mobile, new { @class = "form-control validate[required,custom[Mobile]] text-input", @id = "txtmobile", @placeholder = "Enter Mobile", @autocomplete = "off", alert = "LabourCost is requried" })
+                                    @Html.TextBoxFor(m => m.Mobile, new { @class = "form-control input-shadow validate[required,custom[Mobile]] text-input", @id = "txtmobile", @placeholder = "Enter Mobile", @autocomplete = "off", alert = "LabourCost is requried" })
                                 </div>
                             </div>
 
@@ -84,7 +84,7 @@
                                 <div class="form-group">
                                     <label for="input-1">Email</label>
 
-                                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control validate[required,custom[email]] text-input", @id = "txtemail", @placeholder = "Enter Email", @autocomplete = "off", alert = "LabourCost is requried" })
+                                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control input-shadow validate[required,custom[email]] text-input", @id = "txtemail", @placeholder = "Enter Email", @autocomplete = "off", alert = "LabourCost is requried" })
                                 </div>
                             </div>
 
@@ -93,7 +93,7 @@
                                 <div class="form-group">
                                     <label for="input-1">RefDist</label>
 
-                                    @Html.TextBoxFor(m => m.RefDist, new { @class = "form-control validate[required] text-input", @id = "txtrefdist", @placeholder = "Enter RefDist", @autocomplete = "off", alert = "LabourCost is requried" })
+                                    @Html.TextBoxFor(m => m.RefDist, new { @class = "form-control input-shadow validate[required] text-input", @id = "txtrefdist", @placeholder = "Enter RefDist", @autocomplete = "off", alert = "LabourCost is requried" })
                                 </div>
                             </div>
 

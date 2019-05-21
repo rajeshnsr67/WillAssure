@@ -121,6 +121,10 @@ namespace WillAssure.Models
         public string txtCoupon { get; set; }
 
         public string activetxt { get; set; }
+
+
+        public string tempemailotp { get; set; }
+        public string tempmobileotp { get; set; }
     }
 
 

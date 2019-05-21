@@ -27,21 +27,21 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="card-title text-primary">Update Beneficiary Mapping</div>
-                        <hr>
+                        <hr class="div_rd">
                         @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "RoleForm" }))
                         {
 
                         <div class="row">
                             <div class="col-sm-6">
 
-                                @Html.HiddenFor(m => m.Beneficiary_Asset_ID, new { @class = "form-control validate[required,custom[characteronly]] text-input", @id = "txtRole", @placeholder = "Enter Role", @autocomplete = "off", alert = "LabourCost is requried" })
+                                @Html.HiddenFor(m => m.Beneficiary_Asset_ID, new { @class = "form-control input-shadow validate[required,custom[characteronly]] text-input", @id = "txtRole", @placeholder = "Enter Role", @autocomplete = "off", alert = "LabourCost is requried" })
 
 
                                 <div class='form-group'>
                                     <label for='input-1'>Assets Type</label>
-                                    <select id='ddlassettype' style="display:none;" name="contentList" onChange='getassettypeid(this.value)' class='form-control'></select>
+                                    <select id='ddlassettype' style="display:none;" name="contentList" onChange='getassettypeid(this.value)' class='form-control input-shadow'></select>
                                     @Html.HiddenFor(m => m.assettypeid, new { id = "assettypeid" })
-                                    @Html.TextBoxFor(m => m.AssetsType, new { id = "assettypetext", @class = "form-control" })
+                                    @Html.TextBoxFor(m => m.AssetsType, new { id = "assettypetext", @class = "form-control input-shadow" })
 
                                     <script>
                                         $("#assettypetext").focus(function () {
@@ -55,9 +55,9 @@
                             <div class="col-sm-6">
                                 <div class='form-group'>
                                     <label for='input-1'>Assets Category</label>
-                                    <select id='ddlassetcat' name="contentList" style="display:none;" onChange='getassetcatid(this.value)' class='form-control'><option value="">--Select--</option></select>
+                                    <select id='ddlassetcat' name="contentList" style="display:none;" onChange='getassetcatid(this.value)' class='form-control input-shadow'><option value="">--Select--</option></select>
                                     @Html.HiddenFor(m => m.assetcatid, new { id = "assetcatid" })
-                                    @Html.TextBoxFor(m => m.AssetsCategory, new { id = "assetcattext", @class = "form-control" })
+                                    @Html.TextBoxFor(m => m.AssetsCategory, new { id = "assetcattext", @class = "form-control input-shadow" })
 
                                     <script>
                                         $("#assetcattext").focus(function () {
@@ -71,11 +71,11 @@
                             <div class='col-sm-6'>
                                 <div class='form-group'>
                                     <label for='input-1'>Beneficiary</label>
-                                    <select id='ddlbeneficiary1' style="display:none;" onchange="checkbeneficiaryduplicate(this.value)" name="contentList" class='form-control beneficiaryclass'></select>
+                                    <select id='ddlbeneficiary1' style="display:none;" onchange="checkbeneficiaryduplicate(this.value)" name="contentList" class='form-control input-shadow beneficiaryclass'></select>
                                     @Html.HiddenFor(m => m.Beneficiaryid, new { id = "Beneficiaryid" })
-                                    @Html.TextBoxFor(m => m.Beneficiarytxt, new { id = "Beneficiarytxt", @class = "form-control" })
+                                    @Html.TextBoxFor(m => m.Beneficiarytxt, new { id = "Beneficiarytxt", @class = "form-control input-shadow" })
 
-                                    <input type="text" class="form-control" style="display:none" id="ddlbeneficiarytxt" name="name" value="" />
+                                    <input type="text" class="form-control input-shadow" style="display:none" id="ddlbeneficiarytxt" name="name" value="" />
 
                                     <script>
                                         $("#Beneficiarytxt").focus(function () {
@@ -94,7 +94,7 @@
 
                                 </div>
                                 <label for="input-1" id="lblscheme">SCHEME</label>
-                                @Html.TextBoxFor(m => m.SchemeName, new { @class = "form-control validate[required,custom[characteronly]] text-input", @id = "txtscheme", @placeholder = "Enter Role", @autocomplete = "off", alert = "LabourCost is requried" })
+                                @Html.TextBoxFor(m => m.SchemeName, new { @class = "form-control input-shadow validate[required,custom[characteronly]] text-input", @id = "txtscheme", @placeholder = "Enter Role", @autocomplete = "off", alert = "LabourCost is requried" })
                             </div>
                            
 
@@ -108,9 +108,9 @@
 
                             <div class='col-sm-6'>
                                 <label for='input-1'>Instruments</label>
-                                <select id='DDLAssetColumn1' style="display:none;" onchange="getDDLAssetColumn(this.value)" name="contentList" class='form-control instrumentclass'></select>
+                                <select id='DDLAssetColumn1' style="display:none;" onchange="getDDLAssetColumn(this.value)" name="contentList" class='form-control input-shadow instrumentclass'></select>
                                 @Html.HiddenFor(m => m.InstrumentId, new { id = "InstrumentId" })
-                                @Html.TextBoxFor(m => m.InstrumentName, new { id = "Instrumenttxt" ,@class="form-control" })
+                                @Html.TextBoxFor(m => m.InstrumentName, new { id = "Instrumenttxt" ,@class="form-control input-shadow" })
 
 
                                 <script>
@@ -125,7 +125,7 @@
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label for="input-1">Proportion</label>
-                                    @Html.TextBoxFor(m => m.Proportion, new { @class = "form-control validate[required,custom[characteronly]] text-input", @id = "txtRole", @placeholder = "Enter Role", @autocomplete = "off", alert = "LabourCost is requried" })
+                                    @Html.TextBoxFor(m => m.Proportion, new { @class = "form-control input-shadow validate[required,custom[characteronly]] text-input", @id = "txtRole", @placeholder = "Enter Role", @autocomplete = "off", alert = "LabourCost is requried" })
                                 </div>
                             </div>
 
@@ -176,7 +176,7 @@
                     $("#getidentifier").append(data);
                     var r = data;
                     var str = data;
-                    var res = str.replace("<label for='input-1'>Scheme</label> <input type='text' class='form-control' id='schemename'  value=", "").replace("/>", "");
+                    var res = str.replace("<label for='input-1'>Scheme</label> <input type='text' class='form-control input-shadow' id='schemename'  value=", "").replace("/>", "");
 
 
                 }

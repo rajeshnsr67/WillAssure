@@ -48,7 +48,7 @@
                             </div>
                         </div>
                         <div class="card-title text-primary">Add Coupon </div>
-                        <hr>
+                        <hr class="div_rd">
 
                         @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "DiscountForm" }))
                         {
@@ -59,7 +59,7 @@
                                     <div class="form-group">
                                         <label for="input-1">Coupon Number</label>
 
-                                        @Html.TextBoxFor(m => m.Coupon_Number, new { @class = "form-control validate[required,custom[integer]] text-input", @id = "txtcouponsnumber", @placeholder = "Enter Coupon Number", @autocomplete = "off", alert = "LabourCost is requried" })
+                                        @Html.TextBoxFor(m => m.Coupon_Number, new { @class = "form-control input-shadow validate[required,custom[integer]] text-input", @id = "txtcouponsnumber", @placeholder = "Enter Coupon Number", @autocomplete = "off", alert = "LabourCost is requried" })
                                     </div>
                                 </div>
 
@@ -70,7 +70,7 @@
                                     <div class="form-group">
                                         <label for="input-1">Discount Percentage</label>
 
-                                        @Html.TextBoxFor(m => m.Discount_Percentge, new { @class = "form-control validate[required,custom[integer]]  text-input", @id = "txtdiscountpercentage", @placeholder = "Enter Discount Percentage", @autocomplete = "off", alert = "LabourCost is requried" })
+                                        @Html.TextBoxFor(m => m.Discount_Percentge, new { @class = "form-control input-shadow validate[required,custom[integer]]  text-input", @id = "txtdiscountpercentage", @placeholder = "Enter Discount Percentage", @autocomplete = "off", alert = "LabourCost is requried" })
                                     </div>
                                 </div>
 
@@ -81,7 +81,7 @@
                                     <div class="form-group">
                                         <label for="input-1">Description</label>
 
-                                        @Html.TextAreaFor(m => m.Description, new { @class = "form-control validate[required]  text-input", @id = "txtdescription", @placeholder = "Enter Description", @autocomplete = "off", alert = "LabourCost is requried" })
+                                        @Html.TextAreaFor(m => m.Description, new { @class = "form-control input-shadow validate[required]  text-input", @id = "txtdescription", @placeholder = "Enter Description", @autocomplete = "off", alert = "LabourCost is requried" })
                                     </div>
                                 </div>
 
@@ -93,7 +93,7 @@
                                         @Html.DropDownListFor(m=>m.status, new SelectListItem[]{
                                        new SelectListItem() {Text = "--Select--", Value=""},
                                        new SelectListItem() {Text = "Active", Value="Active"},
-                                       new SelectListItem() {Text = "Inactive", Value="Inactive"}}, new { @class = "form-control validate[required]" })
+                                       new SelectListItem() {Text = "Inactive", Value="Inactive"}}, new { @class = "form-control input-shadow validate[required]" })
                                     </div>
                                 </div>
 

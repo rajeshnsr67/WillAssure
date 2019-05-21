@@ -49,7 +49,7 @@
                             </div>
                         </div>
                         <div class="card-title text-primary">Add Asset Category</div>
-                        <hr>
+                        <hr class="div_rd">
 
                         @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "AssetCategoryForm" }))
                         {
@@ -61,7 +61,7 @@
                                     <div class="form-group">
                                         <label for="input-1">Asset Type</label>
 
-                                        <select id="ddlAssetType" class="form-control validate[required]">
+                                        <select id="ddlAssetType" class="form-control input-shadow validate[required]">
                                             <option value="">--Select--</option>
                                         </select>
                                         @Html.HiddenFor(m => m.assettypeid, new { id = "assettypeid" })
@@ -76,7 +76,7 @@
                                     <div class="form-group">
                                         <label for="input-1">Asset Category Name</label>
 
-                                        @Html.TextBoxFor(m => m.assetcategory, new { @class = "form-control validate[required,custom[characteronly]] text-input", @id = "categoryname", @placeholder = "Enter Asset Category", @autocomplete = "off", alert = "LabourCost is requried" })
+                                        @Html.TextBoxFor(m => m.assetcategory, new { @class = "form-control input-shadow validate[required,custom[characteronly]] text-input", @id = "categoryname", @placeholder = "Enter Asset Category", @autocomplete = "off", alert = "LabourCost is requried" })
                                     </div>
                                 </div>
 
@@ -88,7 +88,7 @@
                                     <div class="form-group">
                                         <label for="input-1">Asset Category Code</label>
 
-                                        @Html.TextBoxFor(m => m.assetcode, new { @class = "form-control validate[required,custom[AlphaNumeric]]  text-input", @id = "categorycode", @placeholder = "Enter Asset Code", @autocomplete = "off", alert = "LabourCost is requried" })
+                                        @Html.TextBoxFor(m => m.assetcode, new { @class = "form-control input-shadow validate[required,custom[AlphaNumeric]]  text-input", @id = "categorycode", @placeholder = "Enter Asset Code", @autocomplete = "off", alert = "LabourCost is requried" })
                                     </div>
                                 </div>
 

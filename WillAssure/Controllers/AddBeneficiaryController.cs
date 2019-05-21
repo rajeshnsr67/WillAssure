@@ -462,7 +462,7 @@ namespace WillAssure.Controllers
                 altcmd.Parameters.AddWithValue("@Mobile", BM.altMobile);
                 altcmd.Parameters.AddWithValue("@Relationship", BM.altRelationshipTxt);
                 altcmd.Parameters.AddWithValue("@Marital_Status", BM.altMarital_Status_Txt);
-                altcmd.Parameters.AddWithValue("@Religion", BM.altReligion_TXT);
+                altcmd.Parameters.AddWithValue("@Religion", "none");
                 altcmd.Parameters.AddWithValue("@Identity_Proof", BM.altIdentity_Proof);
                 altcmd.Parameters.AddWithValue("@Identity_Proof_Value", BM.altIdentity_Proof_Value);
                 altcmd.Parameters.AddWithValue("@Alt_Identity_Proof", BM.altAlt_Identity_Proof);
@@ -473,6 +473,7 @@ namespace WillAssure.Controllers
                 altcmd.Parameters.AddWithValue("@City", BM.altcitytext);
                 altcmd.Parameters.AddWithValue("@State", BM.altstatetext);
                 altcmd.Parameters.AddWithValue("@Pin", BM.altPin);
+               
                 altcmd.ExecuteNonQuery();
                 con.Close();
             }

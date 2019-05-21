@@ -766,11 +766,11 @@ namespace WillAssure.Controllers
                 cmd.Parameters.AddWithValue("@Country", TFM.countrytext);
                 cmd.Parameters.AddWithValue("@Pin", TFM.Pin);
                 cmd.Parameters.AddWithValue("@active", TFM.active);
-                //cmd.Parameters.AddWithValue("@Contact_Verification", "0");
-                //cmd.Parameters.AddWithValue("@Email_Verification", "0");
-                //cmd.Parameters.AddWithValue("@Mobile_Verification_Status", "0");
-                //cmd.Parameters.AddWithValue("@Email_OTP", TFM.EmailOTP);
-                //cmd.Parameters.AddWithValue("@Mobile_OTP", TFM.MobileOTP);
+                cmd.Parameters.AddWithValue("@Contact_Verification", "0");
+                cmd.Parameters.AddWithValue("@Email_Verification", "0");
+                cmd.Parameters.AddWithValue("@Mobile_Verification_Status", "0");
+                cmd.Parameters.AddWithValue("@Email_OTP", "0");
+                cmd.Parameters.AddWithValue("@Mobile_OTP", "0");
                 cmd.Parameters.AddWithValue("@uid", userid);
                 Session["userid"] = userid;
                 cmd.ExecuteNonQuery();

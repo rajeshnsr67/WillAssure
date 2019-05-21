@@ -320,7 +320,7 @@
                             @Html.DropDownListFor(x => x.documentcategory, new SelectListItem[]{
                             new SelectListItem() {Text = "--Select--", Value=""},
                             new SelectListItem() {Text = "Quick", Value="Quick"},
-                            new SelectListItem() {Text = "Detailed", Value="Detailed"}}, new { @class = "form-control validate[required]", id = "DDLAmtPaidBY2", @disabled = "disabled" })
+                            new SelectListItem() {Text = "Detailed", Value="Detailed"}}, new { @class = "form-control input-shadow validate[required]", id = "DDLAmtPaidBY2", @disabled = "disabled" })
 
 
                         </div>
@@ -330,7 +330,7 @@
 
 
                     </div>
-                    <hr>
+                    <hr class="div_rd">
 
                     <div class="row">
 
@@ -343,7 +343,7 @@
                             @Html.DropDownListFor(x => x.Document_Created_By, new SelectListItem[]{
                              new SelectListItem() {Text = "--Select--", Value=""},
                              new SelectListItem() {Text = "Distributor", Value="Distributor"},
-                             new SelectListItem() {Text = "Testator", Value="Testator"}}, new { @class = "form-control validate[required]", @id = "ddldocumentcreatedby1" })
+                             new SelectListItem() {Text = "Testator", Value="Testator"}}, new { @class = "form-control input-shadow validate[required]", @id = "ddldocumentcreatedby1" })
                             @Html.HiddenFor(m => m.Document_Created_By_ID, new { id = "Document_Created_By_ID" })
                             @Html.HiddenFor(m => m.Document_Created_By_txt, new { id = "Document_Created_By_txt" })
 
@@ -357,7 +357,7 @@
                             @Html.DropDownListFor(x => x.Amt_Paid_By, new SelectListItem[]{
                             new SelectListItem() {Text = "--Select--", Value=""},
                             new SelectListItem() {Text = "Distributor", Value="Distributor"},
-                            new SelectListItem() {Text = "Testator", Value="Testator"}}, new { @class = "form-control validate[required]", id = "DDLAmtPaidBY3" })
+                            new SelectListItem() {Text = "Testator", Value="Testator"}}, new { @class = "form-control input-shadow validate[required]", id = "DDLAmtPaidBY3" })
                             @Html.HiddenFor(m => m.Amt_Paid_By_By_ID, new { id = "Amt_Paid_By_By_ID" })
                             @Html.HiddenFor(m => m.Amt_Paid_By_txt, new { id = "Amt_Paid_By_txt" })
 
@@ -367,7 +367,7 @@
 
 
                     </div>
-                    <hr>
+                    <hr class="div_rd">
 
                     <div class="row">
 
@@ -376,14 +376,14 @@
 
                         </div>
                         <div class="col-sm-3">
-                            @Html.TextBoxFor(m => m.txtCoupon, new { @class = "form-control  text-input", @onblur = "blurFunction()", @id = "txtcoupon", @onchange = "checkcoupon(this.value)", @placeholder = "Enter Coupon Number", @autocomplete = "off" })
+                            @Html.TextBoxFor(m => m.txtCoupon, new { @class = "form-control input-shadow  text-input", @onblur = "blurFunction()", @id = "txtcoupon", @onchange = "checkcoupon(this.value)", @placeholder = "Enter Coupon Number", @autocomplete = "off" })
                             <span style="color:red; display:none" id="lblerrmsg">Invalid Coupon Number</span>
                             <span style="color:green; display:none" id="lblerrsuccess">Coupon Number Applied</span>
                             <span style="color:red; display:none" id="lblerr">Numbers Only</span>
                             <span style="color:red; display:none" id="lblexpire">Coupon Number Has Been Expired</span>
                         </div>
                     </div>
-                    <hr>
+                    <hr class="div_rd">
                     <div class="form-group">
                         <button type="submit" id="alert-success" formaction="insertDocumentDetails" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i>Submit</button>
                     </div>

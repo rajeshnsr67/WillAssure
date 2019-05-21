@@ -382,7 +382,7 @@ namespace WillAssure.Controllers
                 {
                     ViewBag.collapse = "true";
                     Session["doctype"] = "Will";
-                    return RedirectToAction("AddTestatorsFormIndex", "AddTestatorsForm", new { collapse = "true" });
+                    return RedirectToAction("UpdateTestatorsIndex", "UpdateTestators", new { NestId = Convert.ToInt32(Session["uuid"]) });
                 }
 
                 if (doctype == "Codocil")

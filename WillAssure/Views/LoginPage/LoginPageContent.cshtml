@@ -1,4 +1,4 @@
-﻿@model WillAssure.Models.LoginModel
+﻿﻿@model WillAssure.Models.LoginModel
 @{
     Layout = null;
 }
@@ -13,11 +13,8 @@
     <meta name="author" content="" />
     <title>Will Assure</title>
 
-
-
     @*Master Style Links*@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
     <!--Sweet Alerts -->
     <script src="~/assets/plugins/alerts-boxes/js/sweetalert.min.js"></script>
     <script src="~/assets/plugins/alerts-boxes/js/sweet-alert-script.js"></script>
@@ -40,8 +37,6 @@
     <link href="~/assets/plugins/bootstrap-datatable/css/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css">
     @*Master end*@
 
-
-
 </head>
 <body class="bg-dark">
     <!-- Start wrapper-->
@@ -57,8 +52,6 @@
                         {
                             <h4>Login As @ViewBag.type</h4>
                         }
-                        
-
 
 
                     </div>
@@ -70,7 +63,6 @@
                         <div class="form-group">
                             <label for="exampleInputUsername" class="">UserName</label>
                             <div class="position-relative has-icon-right">
-
                                 @Html.TextBoxFor(m => m.UserID, new { @id = "txtUserId", @class = "form-control input-shadow", @placeholder = "Enter UserID", @autocomplete = "off" })
                                 <div class="form-control-position">
                                     <i class="icon-user"></i>
@@ -80,7 +72,6 @@
                         <div class="form-group">
                             <label for="exampleInputPassword" class="">Password</label>
                             <div class="position-relative has-icon-right">
-
                                 @Html.TextBoxFor(m => m.Password, new { @type = "password", @id = "exampleInputPassword", @class = "form-control input-shadow", @placeholder = "Enter Password", @autocomplete = "off" })
                                 <div class="form-control-position">
                                     <i class="icon-lock"></i>
@@ -88,25 +79,20 @@
                             </div>
                         </div>
                         <div class="form-row">
-
                             <div class="form-group col-8 text-capitalize">
                                 <a href="authentication-reset-password.html" data-toggle="modal" data-target="#myModal">Forget Password ?</a>
 
-                               
                             </div>
-
                             <div class="form-group col-3 text-capitalize">
                                 <a href="@Url.Action("index.html","WillAssureFrontend")">WillAssure</a>
                             </div>
-                            </div>
-                            <button type="submit" formaction="@Url.Action("LoginPageData","LoginPage")" id="btnlogin" class="btn btn-primary shadow-primary btn-block waves-effect waves-light">Sign In</button>
-
-                            <button type="button" id="btnloginSUCCESS" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
-                            <button type="button" id="btnloginFAILED" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
-                            }
                         </div>
+                        <button type="submit" formaction="@Url.Action("LoginPageData","LoginPage")" id="btnlogin" class="btn btn-primary shadow-primary btn-block waves-effect waves-light">Sign In</button>
 
-
+                        <button type="button" id="btnloginSUCCESS" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
+                        <button type="button" id="btnloginFAILED" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
+                    }
+                </div>
 
 
                 <!-- Modal -->
@@ -115,28 +101,21 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-
                             </div>
                             <div class="modal-body">
                                 <div class="card">
                                     <div class="card-body">
-
-
 
                                         @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "RoleForm" }))
                                         {
 
                                             <div class="row">
                                                 <div class="col-sm-6">
-
                                                     <div class="form-group">
                                                         <label for="input-1">Email ID:</label>
-
                                                         @Html.TextBoxFor(m => m.EmailID, new { @class = "form-control validate[required,custom[characteronly]] text-input", @id = "txtRole", @placeholder = "Enter Email ID", @style = "width:241px;", @autocomplete = "off", alert = "LabourCost is requried" })
                                                     </div>
                                                 </div>
-
-
 
 
                                             </div>
@@ -145,14 +124,12 @@
 
                                             <div class="form-group">
                                                 <input type="button" name="name" class="btn btn-danger" value="Send Mail" />
-
                                             </div>
 
                                         }
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -160,12 +137,8 @@
         </div>
 
 
-   
-
-
 
         @*SUCCESS AND FAILED MESSAGE*@
-
 
         @if (ViewBag.Message == "SUCCESS")
         {
@@ -197,12 +170,10 @@
         }
 
 
-      
+
 
         @*END*@
-
     </div>
-
     </div>
 
     <!--Start Back To Top Button-->
@@ -239,11 +210,7 @@
     <script src="~/assets/plugins/bootstrap-datatable/js/buttons.html5.min.js"></script>
     <script src="~/assets/plugins/bootstrap-datatable/js/buttons.print.min.js"></script>
     <script src="~/assets/plugins/bootstrap-datatable/js/buttons.colVis.min.js"></script>
-
     @*Master Scripts Link End*@
-
-
-
 
 
 
@@ -252,10 +219,7 @@
             $("#VerificationForm").validationEngine();
         });
     </script>
-
     @*END*@
-
-
 
 
 </body>

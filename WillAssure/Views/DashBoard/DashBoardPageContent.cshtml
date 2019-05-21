@@ -230,7 +230,7 @@
                             <div class="form-group">
                                 <label for="input-1">Enter OTP:</label>
 
-                                @Html.TextBoxFor(m => m.OTP, new { @class = "form-control validate[required,custom[characteronly]] text-input", @id = "txtRole", @placeholder = "Enter OTP Number", @style = "width:241px;", @autocomplete = "off", alert = "LabourCost is requried" })
+                                @Html.TextBoxFor(m => m.OTP, new { @class = "form-control input-shadow validate[required,custom[characteronly]] text-input", @id = "txtRole", @placeholder = "Enter OTP Number", @style = "width:241px;", @autocomplete = "off", alert = "LabourCost is requried" })
                                 <span style="color:red; white-space:nowrap;" id="lblerror">@Html.ValidationMessageFor(m => m.OTP)</span>
                             </div>
                         </div>

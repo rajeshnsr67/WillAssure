@@ -32,7 +32,7 @@
                     <div class="card-body">
 
                         <div class="card-title text-primary">Change Template</div>
-                        <hr>
+                        <hr class="div_rd">
 
                         @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "RoleForm" }))
                         {
@@ -49,7 +49,7 @@
                                        new SelectListItem() {Text = "WillTestator2", Value="2"},
                                        new SelectListItem() {Text = "WillTestator3", Value="3"},
                                        new SelectListItem() {Text = "WillTestator4", Value="4"},
-                                       new SelectListItem() {Text = "WillTestator5", Value="5"}} , new { @class= "form-control validate[required]", @onchange = "getIdentityselection(this.value)" })
+                                       new SelectListItem() {Text = "WillTestator5", Value="5"}} , new { @class= "form-control input-shadow validate[required]", @onchange = "getIdentityselection(this.value)" })
                                         @Html.HiddenFor(m => m.ddtempid, new { @id = "ddtempid" })
                                         @Html.HiddenFor(m => m.ddtemptxt, new { @id = "ddtemptxt" })
                                     </div>

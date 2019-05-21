@@ -30,7 +30,7 @@
                     <div class="card-body">
 
                         <div class="card-title text-primary">Document Allotment </div>
-                        <hr>
+                        <hr class="div_rd">
 
                         @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "RoleForm" }))
                         {
@@ -40,7 +40,7 @@
                             @*<div class="col-sm-6">
                                 <div class="form-group">
                                     <label for="input-3">Company</label>
-                                    <select id="BindcompanyssDDL" class="form-control validate[required]"></select>
+                                    <select id="BindcompanyssDDL" class="form-control input-shadow validate[required]"></select>
                                     @Html.HiddenFor(m => m.companyid, new { id = "companyid" })
                                     @Html.HiddenFor(m => m.companytxt, new { id = "companytxt" })
                                 </div>
@@ -52,7 +52,7 @@
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label for="input-3">Distributor</label>
-                                    <select id="BindDistributorDDL" class="form-control validate[required]"></select>
+                                    <select id="BindDistributorDDL" class="form-control input-shadow validate[required]"></select>
                                     @Html.HiddenFor(m => m.distributorid, new { id = "distributorid" })
                                     @Html.HiddenFor(m => m.distributortxt, new { id = "distributortxt" })
                                 </div>
@@ -66,7 +66,7 @@
                                     @Html.DropDownListFor(x => x.documenttxt, new SelectListItem[]{
                                      new SelectListItem() {Text = "--Select--", Value=""},
 
-                                     new SelectListItem() {Text = "Will", Value="Will"}}, new { @class = "form-control validate[required]", @id="ddldocumenttype" })
+                                     new SelectListItem() {Text = "Will", Value="Will"}}, new { @class = "form-control input-shadow validate[required]", @id="ddldocumenttype" })
 
                                     @Html.HiddenFor(m => m.documentid, new { id = "Document_Created_By_ID" })
                                     @Html.HiddenFor(m => m.documenttxt, new { id = "Document_Created_By_txt" })
@@ -80,7 +80,7 @@
                                 <div class="form-group">
                                     <label for="input-1">Number Of Document</label>
 
-                                    @Html.TextBoxFor(m => m.NumberofDocument, new { @class = "form-control validate[required,custom[integer]] text-input", @id = "txtRole", @placeholder = "Enter Number Of Document", @autocomplete = "off", alert = "LabourCost is requried" })
+                                    @Html.TextBoxFor(m => m.NumberofDocument, new { @class = "form-control input-shadow validate[required,custom[integer]] text-input", @id = "txtRole", @placeholder = "Enter Number Of Document", @autocomplete = "off", alert = "LabourCost is requried" })
                                 </div>
                             </div>
 
@@ -93,7 +93,7 @@
                                     @Html.DropDownListFor(m=>m.status, new SelectListItem[]{
                                    new SelectListItem() {Text = "--Select--", Value=""},
                                    new SelectListItem() {Text = "Active", Value="Active"},
-                                   new SelectListItem() {Text = "Inactive", Value="Inactive"}}, new { @class = "form-control validate[required]" })
+                                   new SelectListItem() {Text = "Inactive", Value="Inactive"}}, new { @class = "form-control input-shadow validate[required]" })
                                 </div>
                             </div>
 

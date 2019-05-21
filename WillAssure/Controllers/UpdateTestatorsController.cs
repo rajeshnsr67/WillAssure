@@ -230,6 +230,10 @@ namespace WillAssure.Controllers
                        TFM.uId = Convert.ToInt32(dt.Rows[0]["uId"]);
 
 
+                TFM.tempemailotp = dt.Rows[0]["Email_OTP"].ToString();
+                TFM.tempmobileotp = dt.Rows[0]["Mobile_OTP"].ToString();
+
+
 
 
             }
@@ -601,12 +605,38 @@ namespace WillAssure.Controllers
             cmd.Parameters.AddWithValue("@State", TFM.statetext);
             cmd.Parameters.AddWithValue("@Country", TFM.countrytext);
             cmd.Parameters.AddWithValue("@Pin", TFM.Pin);
-            cmd.Parameters.AddWithValue("@active", TFM.active);
+            if (TFM.active != null)
+            {
+                cmd.Parameters.AddWithValue("@active", TFM.active);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@active", "Active");
+            }
+           
             cmd.Parameters.AddWithValue("@Contact_Verification", "");
             cmd.Parameters.AddWithValue("@Email_Verification", "");
             cmd.Parameters.AddWithValue("@Mobile_Verification_Status", "");
-            cmd.Parameters.AddWithValue("@Email_OTP",TFM.EmailOTP);
-            cmd.Parameters.AddWithValue("@Mobile_OTP",TFM.MobileOTP);
+            if (TFM.EmailOTP != null)
+            {
+                cmd.Parameters.AddWithValue("@Email_OTP", TFM.EmailOTP);
+            }
+            else
+            {
+
+                cmd.Parameters.AddWithValue("@Email_OTP", TFM.tempemailotp);
+
+            }
+            if (TFM.MobileOTP != null)
+            {
+                cmd.Parameters.AddWithValue("@Mobile_OTP", TFM.MobileOTP);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@Mobile_OTP", TFM.tempmobileotp);
+            }
+            
+           
             cmd.Parameters.AddWithValue("@uid", "");
 
             cmd.ExecuteNonQuery();
@@ -615,15 +645,27 @@ namespace WillAssure.Controllers
             //SqlCommand cmd = new SqlCommand(query,con);
             //cmd.ExecuteNonQuery();
 
-         
 
 
 
+            if (TFM.EmailOTP != null)
+            {
+                string query2 = "update users set First_Name= '" + TFM.First_Name + "' , Last_Name='" + TFM.Last_Name + "' ,  Middle_Name='" + TFM.Middle_Name + "' , DOB = '" + dat + "' , Mobile = '" + TFM.Mobile + "' ,  eMail = '" + TFM.Email + "' , Address1='" + TFM.Address1 + "' , Address2='" + TFM.Address2 + "' , Address3 = '" + TFM.Address3 + "' , City='" + TFM.citytext + "' ,State= '" + TFM.statetext + "' , Pin='" + TFM.Pin + "' , Designation = '2'   where uId = " + TFM.uId + "     ";
+                SqlCommand cdd = new SqlCommand(query2, con);
+                cdd.ExecuteNonQuery();
+                con.Close();
+            }
+            else
+            {
 
-            string query2 = "update users set First_Name= '" + TFM.First_Name + "' , Last_Name='" + TFM.Last_Name + "' ,  Middle_Name='" + TFM.Middle_Name + "' , DOB = '" + dat + "' , Mobile = '" + TFM.Mobile + "' ,  eMail = '" + TFM.Email + "' , Address1='" + TFM.Address1 + "' , Address2='" + TFM.Address2 + "' , Address3 = '" + TFM.Address3 + "' , City='" + TFM.citytext + "' ,State= '" + TFM.statetext + "' , Pin='" + TFM.Pin + "' , Designation = '2'   where uId = " + TFM.uId+ "     ";
-            SqlCommand cdd = new SqlCommand(query2,con);
-            cdd.ExecuteNonQuery();
-            con.Close();
+                string query2 = "update users set First_Name= '" + TFM.First_Name + "' , Last_Name='" + TFM.Last_Name + "' ,  Middle_Name='" + TFM.Middle_Name + "' , DOB = '" + dat + "' , Mobile = '" + TFM.Mobile + "' ,  eMail = '" + TFM.Email + "' , Address1='" + TFM.Address1 + "' , Address2='" + TFM.Address2 + "' , Address3 = '" + TFM.Address3 + "' , City='" + TFM.citytext + "' ,State= '" + TFM.statetext + "' , Pin='" + TFM.Pin + "' , Designation = '1'   where uId = " + TFM.uId + "     ";
+                SqlCommand cdd = new SqlCommand(query2, con);
+                cdd.ExecuteNonQuery();
+                con.Close();
+
+            }
+
+          
 
 
 

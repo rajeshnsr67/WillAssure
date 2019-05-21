@@ -330,8 +330,8 @@ namespace WillAssure.Controllers
 
 
 
-                        structure = structure + "<div class='col-sm-6'>  <label>Assets Type</label>       <input type='text' class='form-control' value=" + dt.Rows[i]["AssetsType"].ToString() + " />     </div>";
-                        structure = structure + "<div class='col-sm-6'>  <label>Category Type</label>   <input type='text' class='form-control' value=" + dt.Rows[i]["AssetsCategory"].ToString() + " /> </div>";
+                        structure = structure + "<div class='col-sm-6'>  <label>Assets Type</label>       <input type='text' class='form-control input-shadow' value=" + dt.Rows[i]["AssetsType"].ToString() + " />     </div>";
+                        structure = structure + "<div class='col-sm-6'>  <label>Category Type</label>   <input type='text' class='form-control input-shadow' value=" + dt.Rows[i]["AssetsCategory"].ToString() + " /> </div>";
                         string getjson = dt.Rows[i]["Json"].ToString();
 
                         var dict = JsonConvert.DeserializeObject<Dictionary<string, string>>(getjson);
@@ -346,7 +346,7 @@ namespace WillAssure.Controllers
                                 {
 
 
-                                    structure = structure + "<div class='col-sm-6'>  <label>" + va[i].ToString() + "</label>  <input type='text' class='form-control' value=" + kv.Value + " />   </div>  ";
+                                    structure = structure + "<div class='col-sm-6'>  <label>" + va[i].ToString() + "</label>  <input type='text' class='form-control input-shadow' value=" + kv.Value + " />   </div>  ";
                                     break;
                                 }
                             }

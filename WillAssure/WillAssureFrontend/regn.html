@@ -64,8 +64,8 @@
                                                        <div class="wrap-top reponsive-none767 clearfix">
                                                            <aside class="widget float-right reponsive-none margin-left29">
                                                                <!--<div class="btn-click style2">
-                                <a href="/LoginPage/LoginPageIndex" class="flat-button">Login</a>
-                            </div>-->
+                                    <a href="/LoginPage/LoginPageIndex" class="flat-button">Login</a>
+                                </div>-->
 
 
                                                            </aside>
@@ -185,18 +185,18 @@
 
                                                                        <div class="form-group col-sm-12">
                                                                            <div class="col-sm-12"><label for="email" style="font-weight: 700; font-size: 16px">Name:</label></div>
-                                                                           <div class="col-sm-3" style="float: left;"><span style="color:red; display:none" id="lblerror1">*Required</span><input type="text" class="form-control" id="txtfirstname" onchange="clearlblerror1()" placeholder="First Name"></div>
-                                                                           <div class="col-sm-4" style="float: left;"><span style="color:red; display:none" id="lblerror12">*Required</span><input type="text" class="form-control" id="txtmiddlename" onchange="lblerror12()" placeholder="Middle Name"></div>
-                                                                           <div class="col-sm-4" style="float: left;"><span style="color:red; display:none" id="lblerror13">*Required</span><input type="text" class="form-control" id="txtlastname" onchange="lblerror13()" placeholder="Last Name"></div>
+                                                                           <div class="col-sm-3" style="float: left;"><input type="text" class="form-control input-shadow" id="txtfirstname" onchange="clearlblerror1()" placeholder="First Name"><span style="color:red; display:none" id="lblerror1">*Required</span></div>
+                                                                           <div class="col-sm-4" style="float: left;"><input type="text" class="form-control input-shadow" id="txtmiddlename" onchange="lblerror12()" placeholder="Middle Name"><span style="color:red; display:none" id="lblerror12">*Required</span></div>
+                                                                           <div class="col-sm-4" style="float: left;"><input type="text" class="form-control input-shadow" id="txtlastname" onchange="lblerror13()" placeholder="Last Name"><span style="color:red; display:none" id="lblerror13">*Required</span></div>
                                                                        </div>
                                                                        <div class="form-group col-sm-6" style="float: left;">
                                                                            <div class="col-sm-12"><label for="email" style="font-weight: 700; font-size: 16px">Contact No:</label></div>
-                                                                           <div class="col-sm-12" style="float: left;"><span style="color:red;display:none" id="lblerror2">*Required</span> <span id="error" style="color: Red; display: none">*Invalid Mobile</span><input type="text" class="form-control" id="txtcontact" onchange="check()" placeholder="Mobile No"></div>
+                                                                           <div class="col-sm-12" style="float: left;"><input type="text" class="form-control input-shadow" id="txtcontact" onchange="check()" placeholder="Mobile No"><span style="color:red;display:none" id="lblerror2">*Required</span><span id="error" style="color: Red; display: none">*Invalid Mobile</span></div>
 
                                                                        </div>
                                                                        <div class="form-group col-sm-6" style="float: left;">
                                                                            <div class="col-sm-12"><label for="email" style="font-weight: 700; font-size: 16px">Email Id:</label></div>
-                                                                           <div class="col-sm-12" style="float: left;"><span style="color:red;display:none" id="lblerror3">*Required</span><span style="color:red;display:none" id="lblemailerr">*Invalid Email</span><span style="color:red;display:none" id="lbldup">*Email ID Already Register</span><input type="text" class="form-control" id="txtemail" onchange="lblerror3()" placeholder="Email Id" required></div>
+                                                                           <div class="col-sm-12" style="float: left;"><input type="text" class="form-control input-shadow" id="txtemail" onchange="lblerror3()" placeholder="Email Id" required><span style="color:red;display:none" id="lblerror3">*Required</span><span style="color:red;display:none" id="lblemailerr">*Invalid Email</span><span style="color:red;display:none" id="lbldup">*Email ID Already Register</span></div>
 
                                                                        </div>
                                                                        <div class="form-group col-sm-12" style="float: left;">
@@ -218,12 +218,10 @@
                                                                            </form>
                                                                            <div class="col-sm-12" style="float: left;">
                                                                                <div class="row">
-                                                                                  
-                                                                                   <div class='col-sm-4'>
-                                                                                       <select id="ddlDistributor" class="form-control validate[required]">
-                                                                                           <option value="">--Select Distributor--</option>
-                                                                                       </select>
 
+                                                                                   <div class='col-sm-4'>
+                                                                                       <select id="ddlDistributor" class="form-control input-shadow validate[required]"></select>
+                                                                                       <span style="color:red;display:none" id="lblerror4">*Required</span>
                                                                                    </div>
                                                                                </div>
 
@@ -235,26 +233,27 @@
                                                                            <div class="col-sm-12"><label for="email" style="font-weight: 700; font-size: 16px">Select Doument which you wants to create</label></div>
                                                                            <div class="col-sm-12" style="float: left;">
                                                                                <label class="checkbox-inline">
-                                                                                   <input type="checkbox" id="checkone" value="Will">Will
+                                                                                   <input type="checkbox" id="checkone" class="chk" value="Will">Will
                                                                                </label>
                                                                                <label class="checkbox-inline">
-                                                                                   <input type="checkbox" id="checktwo" value="Codocil">Codocil
+                                                                                   <input type="checkbox" id="checktwo" class="chk" value="Codocil">Codocil
                                                                                </label>
                                                                                <label class="checkbox-inline">
-                                                                                   <input type="checkbox" id="checkthree" value="POA">POA
+                                                                                   <input type="checkbox" id="checkthree" class="chk" value="POA">POA
                                                                                </label>
                                                                                <label class="checkbox-inline">
-                                                                                   <input type="checkbox" id="checkfour" value="GiftDeeds">Gift Deeds
+                                                                                   <input type="checkbox" id="checkfour" class="chk" value="GiftDeeds">Gift Deeds
                                                                                </label>
                                                                                <label class="checkbox-inline">
-                                                                                   <input type="checkbox" id="checkfive" value="LivingWill">Living Will
+                                                                                   <input type="checkbox" id="checkfive" class="chk" value="LivingWill">Living Will
                                                                                </label>
                                                                            </div>
+                                                                           <span style="color:red;display:none" id="lblcheck">*Required</span>
                                                                        </div>
 
                                                                        <!--<div class="col-sm-12" style="float: left;" id="documentpricing">
 
-        </div>-->
+                                        </div>-->
 
 
 
@@ -276,7 +275,7 @@
 
 
 
-                                  
+
 
 
 
@@ -292,32 +291,34 @@
                                                        </button>
                                                    </div>
                                                    <div class="modal-body">
-                                                      <form>
+                                                       <form>
 
 
-                                                       <div class="row">
-                                                           <div class="col-sm-6">
+                                                           <div class="row">
+                                                               <div class="col-sm-6">
 
-                                                               <div class="form-group">
-                                                                   <label for="input-1">Enter OTP:</label>
-                                                                   <input type="text" name="name" id="txtotp" class="form-control" value="" />
-                                                                   <span style="color:red; white-space:nowrap;" id="lblerror"></span>
+                                                                   <div class="form-group">
+                                                                       <label for="input-1">Enter OTP:</label>
+                                                                       <input type="text" name="name" id="txtotp" onchange="checkotpentered(this.value)" class="form-control input-shadow" value="" />
+                                                                       <span style="color:green;display:none" id="lblsuccess">Verified</span>
+                                                                       <span style="color:red;display:none" id="lblfailed">Failed</span>
+                                                                       <span style="color:red; white-space:nowrap;" id="lblerror"></span>
+                                                                   </div>
                                                                </div>
+
+
+
+
                                                            </div>
 
 
 
+                                                           <div class="form-group">
+                                                               <input type="button" id="btnverifyotp" style="color:white;" name="name" class="btn btn-success" value="Verify OTP" />
+                                                               <a href=""><button type="button" class="btn btn-danger">Cancel</button></a>
+                                                           </div>
 
-                                                       </div>
-
-
-
-                                                       <div class="form-group">
-                                                           <input type="button"  id="btnverifyotp"  style="color:white;" name="name" class="btn btn-success" value="Verify OTP" />
-                                                           <a href=""><button type="button" class="btn btn-danger">Cancel</button></a>
-                                                       </div>
-
-                                                      </form>
+                                                       </form>
 
                                                    </div>
 
@@ -325,9 +326,6 @@
                                            </div>
                                        </div>
                                        <!--End Modal -->
-
-
-
                                        <!-- Footer -->
                                        <footer class="footer widget-footer">
                                            <div class="container">
@@ -409,7 +407,42 @@
                                    </div>
 
 
+                                  
+
+
+
                                    <script>
+
+                                       function checkotpentered(value) {
+
+                                           var data = $("#txtotp").val();
+
+                                           $.ajax({
+
+                                               type: "POST",
+                                               url: "../VisitorData/checkenteredOTP",
+                                               data: { "send": "" + data + "" },
+                                               success: function (data) {
+
+                                                   if (data == "true") {
+                                                       $("#lblsuccess").show();
+                                                       $("#lblfailed").hide();
+                                                       $("#btnverifyotp").removeAttr("disabled");
+                                                   }
+
+                                                   if (data == "false") {
+                                                       $("#lblfailed").show();
+                                                       $("#lblsuccess").hide();
+                                                       $("#btnverifyotp").attr("disabled", true);
+                                                   }
+
+
+                                               }
+                                           });
+
+
+                                       }
+
 
                                        function clearlblerror1() {
 
@@ -446,7 +479,7 @@
 
                                                type: "POST",
                                                url: "../VisitorData/checkemailduplicate",
-                                               data: {"send":""+data+""},
+                                               data: { "send": "" + data + "" },
                                                success: function (data) {
 
                                                    if (data == "true") {
@@ -496,9 +529,12 @@
 
 
 
-
-
                                           
+                                           if ($(".chk").prop("checked") == false || $(".chk").prop("checked") == false || $(".chk").prop("checked") == false || $(".chk").prop("checked") == false || $(".chk").prop("checked") == false) {
+                                               $("#lblcheck").show();
+                                           }
+
+
 
 
                                            if ($("#txtfirstname").val() == "") {
@@ -524,53 +560,51 @@
 
                                                $("#lblerror3").show();
                                            }
-
-                                           //if ($("#ddlDistributor").val() == "") {
-                                           //    $("#lblerror4").show();
-                                           //}
+                                          
                                            else {
 
                                                var data = $("#txtfirstname").val() + "~" + $("#txtmiddlename").val() + "~" + $("#txtlastname").val() + "~" + $("#txtcontact").val() + "~" + $("#txtemail").val() + "~" + $("#ddlDistributor").val() + "~" + $("#documenttype").val();
 
-                                              
-                                                   $.ajax({
+
+                                               $.ajax({
 
                                                    type: "POST",
                                                    url: "../VisitorData/VisitorDataIndex",
                                                    data: { "send": "" + data + "" },
-                                                       success: function (data) {
-                                                           
-                                                           alert(data);
+                                                   success: function (data) {
 
-                                                          
-                                                              
-
-                                                               $('#primarymodal').modal('show');
-
-
-                                                               $("#txtfirstname").val("");
-                                                               $("#txtmiddlename").val("");
-                                                               $("#txtlastname").val("");
-                                                               $("#txtcontact").val("");
-                                                               $("#txtemail").val("");
-                                                               $("#ddlDistributor").val("");
-
-
-
-                                                               $("#checkone").prop("checked", false);
-                                                               $("#checktwo").prop("checked", false);
-                                                               $("#checkthree").prop("checked", false);
-                                                               $("#checkfour").prop("checked", false);
-                                                               $("#checkfive").prop("checked", false);
-
-                                                          
+                                                       alert(data);
 
 
 
 
+                                                       $('#primarymodal').modal('show');
 
-                                                           }
-                                                       
+
+                                                       $("#txtfirstname").val("");
+                                                       $("#txtmiddlename").val("");
+                                                       $("#txtlastname").val("");
+                                                       $("#txtcontact").val("");
+                                                       $("#txtemail").val("");
+                                                       $("#ddlDistributor").val("");
+
+
+
+                                                       $("#checkone").prop("checked", false);
+                                                       $("#checktwo").prop("checked", false);
+                                                       $("#checkthree").prop("checked", false);
+                                                       $("#checkfour").prop("checked", false);
+                                                       $("#checkfive").prop("checked", false);
+
+
+                                                       $("#lblsuccess").hide();
+                                                       $("#lblfailed").hide();
+
+
+
+
+                                                   }
+
 
                                                });
 
@@ -623,12 +657,12 @@
 
                                                type: "POST",
                                                url: "../VisitorData/checkOTP",
-                                               data: {"send":""+x+""},
+                                               data: { "send": "" + x + "" },
                                                success: function (data) {
 
                                                    alert(data);
 
-
+                                                   $('#primarymodal').modal('hide');
                                                }
                                            });
 
@@ -641,7 +675,7 @@
 
 
 
-                                          $(document).ready(function () {
+                                       $(document).ready(function () {
 
 
                                            $.ajax({
@@ -684,7 +718,7 @@
                                                $('#DDLAmtPaidBY2').prop('disabled', true);
                                            }
 
-
+                                           $("#lblcheck").hide();
 
                                        });
 
@@ -701,7 +735,7 @@
                                                $('#DDLAmtPaidBY2').prop('disabled', false);
                                            }
 
-
+                                           $("#lblcheck").hide();
 
                                        });
 
@@ -725,7 +759,7 @@
                                                $('#DDLAmtPaidBY2').prop('disabled', false);
                                            }
 
-
+                                           $("#lblcheck").hide();
 
 
                                        });
@@ -739,7 +773,7 @@
                                                $('#DDLAmtPaidBY2').prop('disabled', false);
                                            }
 
-
+                                           $("#lblcheck").hide();
 
 
                                        });

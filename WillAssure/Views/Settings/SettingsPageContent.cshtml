@@ -48,7 +48,7 @@
                             </div>
                         </div>
                         <div class="card-title text-primary">Document Settings</div>
-                        <hr>
+                        <hr class="div_rd">
 
                         @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "RoleForm" }))
                         {
@@ -59,7 +59,7 @@
                                     <div class="form-group">
                                         <label for="input-1">Document Type</label>
 
-                                        @Html.TextBoxFor(m => m.documenttype, new { @class = "form-control validate[required,custom[characteronly]] text-input", @id = "txtRole", @placeholder = "Enter Document Type", @autocomplete = "off", alert = "LabourCost is requried" })
+                                        @Html.TextBoxFor(m => m.documenttype, new { @class = "form-control input-shadow validate[required,custom[characteronly]] text-input", @id = "txtRole", @placeholder = "Enter Document Type", @autocomplete = "off", alert = "LabourCost is requried" })
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
@@ -67,7 +67,7 @@
                                     <div class="form-group">
                                         <label for="input-1">Value</label>
 
-                                        @Html.TextBoxFor(m => m.value, new { @class = "form-control validate[required,custom[characteronly]] text-input", @id = "txtRole", @placeholder = "Enter Value", @autocomplete = "off", alert = "LabourCost is requried" })
+                                        @Html.TextBoxFor(m => m.value, new { @class = "form-control input-shadow validate[required,custom[characteronly]] text-input", @id = "txtRole", @placeholder = "Enter Value", @autocomplete = "off", alert = "LabourCost is requried" })
                                     </div>
                                 </div>
 

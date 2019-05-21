@@ -320,7 +320,7 @@ namespace WillAssure.Controllers
 
 
 
-            final = "<div class='col-sm-4'><div class='form-group'><label for='input-1'>Select Asset</label><select id='ddlasset' class='form-control'  onChange='getassetcat(this.value)'><option value='0' >--Select--</option>" + data2 + "</select></div></div>            <div class='col-sm-4'><div class='form-group'><label for='input-1'>Select Asset</label><select id='ddlasset' class='form-control'  onChange='getassetcolumntext(this.options[this.selectedIndex].innerHTML)'><option value='0' >--Select--</option>" + data + "</select></div></div>   <div class='col-sm-4'><div class='form-group'><label for='input-1'>Values</label><input type='text' class='form-control'  onchange=bar2(this.value)  placeholder='Enter Value For Your Asset'/></div></div>";
+            final = "<div class='col-sm-4'><div class='form-group'><label for='input-1'>Select Asset</label><select id='ddlasset' class='form-control input-shadow'  onChange='getassetcat(this.value)'><option value='0' >--Select--</option>" + data2 + "</select></div></div>            <div class='col-sm-4'><div class='form-group'><label for='input-1'>Select Asset</label><select id='ddlasset' class='form-control input-shadow'  onChange='getassetcolumntext(this.options[this.selectedIndex].innerHTML)'><option value='0' >--Select--</option>" + data + "</select></div></div>   <div class='col-sm-4'><div class='form-group'><label for='input-1'>Values</label><input type='text' class='form-control input-shadow'  onchange=bar2(this.value)  placeholder='Enter Value For Your Asset'/></div></div>";
 
 
 
@@ -397,7 +397,7 @@ namespace WillAssure.Controllers
                     if (dt3.Rows[i]["DueDateControls"].ToString() != "")
                     {
                      
-                        column = column + "<input type=" + dt3.Rows[i]["DueDateControls"].ToString() + "   class='form-control validate[required]' name='inputName' /></div></div>";
+                        column = column + "<input type=" + dt3.Rows[i]["DueDateControls"].ToString() + "   class='form-control input-shadow validate[required]' name='inputName' /></div></div>";
                         MAM.dueDateControls = dt3.Rows[i]["DueDateControls"].ToString();
                     }
 
@@ -444,7 +444,7 @@ namespace WillAssure.Controllers
                     if (dt3.Rows[i]["IssuedByControls"].ToString() != "")
                     {
                        
-                        column = column + "<input type=" + dt3.Rows[i]["IssuedByControls"].ToString() + " class='form-control validate[required]' name='inputName' /></div></div>";
+                        column = column + "<input type=" + dt3.Rows[i]["IssuedByControls"].ToString() + " class='form-control input-shadow validate[required]' name='inputName' /></div></div>";
                         MAM.column = dt3.Rows[i]["IssuedByControls"].ToString();
 
                     }
@@ -467,13 +467,13 @@ namespace WillAssure.Controllers
 
                             
 
-                            column = column + "<textarea class='form-control validate[required]' name='inputName'></textarea></div></div>";
+                            column = column + "<textarea class='form-control input-shadow validate[required]' name='inputName'></textarea></div></div>";
                          
 
                         }
                         else
                         {
-                            column = column + "<input type=" + dt3.Rows[i]["LocationControls"].ToString() + " class='form-control' /></div></div>";
+                            column = column + "<input type=" + dt3.Rows[i]["LocationControls"].ToString() + " class='form-control input-shadow' /></div></div>";
                             
                         }
                         MAM.LocationControls = dt3.Rows[i]["LocationControls"].ToString();
@@ -493,7 +493,7 @@ namespace WillAssure.Controllers
                     if (dt3.Rows[i]["IdentifierControls"].ToString() != "")
                     {
                       
-                        column = column + "<input type=" + dt3.Rows[i]["IdentifierControls"].ToString() + " class='form-control validate[required]' name='inputName'/></div></div>";
+                        column = column + "<input type=" + dt3.Rows[i]["IdentifierControls"].ToString() + " class='form-control input-shadow validate[required]' name='inputName'/></div></div>";
                         MAM.IdentifierControls = dt3.Rows[i]["IdentifierControls"].ToString();
                     }
 
@@ -509,7 +509,7 @@ namespace WillAssure.Controllers
                     if (dt3.Rows[i]["assetsValueControls"].ToString() != "")
                     {
                         
-                        column = column + "<input type=" + dt3.Rows[i]["assetsValueControls"].ToString() + " class='form-control validate[required]' name='inputName' /></div></div>";
+                        column = column + "<input type=" + dt3.Rows[i]["assetsValueControls"].ToString() + " class='form-control input-shadow validate[required]' name='inputName' /></div></div>";
                         MAM.assetsValueControls = dt3.Rows[i]["assetsValueControls"].ToString();
                     }
 
@@ -523,7 +523,7 @@ namespace WillAssure.Controllers
                     if (dt3.Rows[i]["CertificateNumberControls"].ToString() != "")
                     {
                     
-                        column = column + "<input type=" + dt3.Rows[i]["CertificateNumberControls"].ToString() + " class='form-control validate[required]' name='inputName' /></div></div>";
+                        column = column + "<input type=" + dt3.Rows[i]["CertificateNumberControls"].ToString() + " class='form-control input-shadow validate[required]' name='inputName' /></div></div>";
                         MAM.CertificateNumberControls = dt3.Rows[i]["CertificateNumberControls"].ToString();
                     }
 
@@ -538,7 +538,7 @@ namespace WillAssure.Controllers
                     if (dt3.Rows[i]["PropertyDescriptionControls"].ToString() != "")
                     {
                       
-                        column = column + "<input type=" + dt3.Rows[i]["PropertyDescriptionControls"].ToString() + " class='form-control validate[required]' name='inputName'/></div></div>";
+                        column = column + "<input type=" + dt3.Rows[i]["PropertyDescriptionControls"].ToString() + " class='form-control input-shadow validate[required]' name='inputName'/></div></div>";
                         MAM.PropertyDescriptionControls = dt3.Rows[i]["PropertyDescriptionControls"].ToString();
 
                     }
@@ -553,7 +553,7 @@ namespace WillAssure.Controllers
                     if (dt3.Rows[i]["QtyControls"].ToString() != "")
                     {
                      
-                        column = column + "<input type=" + dt3.Rows[i]["QtyControls"].ToString() + " class='form-control validate[required]' name='inputName' /></div></div>";
+                        column = column + "<input type=" + dt3.Rows[i]["QtyControls"].ToString() + " class='form-control input-shadow validate[required]' name='inputName' /></div></div>";
                         MAM.QtyControls = dt3.Rows[i]["QtyControls"].ToString();
                     }
 
@@ -567,7 +567,7 @@ namespace WillAssure.Controllers
                     if (dt3.Rows[i]["WeightControls"].ToString() != "")
                     {
                        
-                        column = column + "<input type=" + dt3.Rows[i]["WeightControls"].ToString() + " class='form-control validate[required]' name='inputName' /></div></div>";
+                        column = column + "<input type=" + dt3.Rows[i]["WeightControls"].ToString() + " class='form-control input-shadow validate[required]' name='inputName' /></div></div>";
                         MAM.WeightControls = dt3.Rows[i]["WeightControls"].ToString();
                     }
 
@@ -605,7 +605,7 @@ namespace WillAssure.Controllers
                     }
                     if (dt3.Rows[i]["RemarkControls"].ToString() != "")
                     {
-                        column = column + "<input type=" + dt3.Rows[i]["RemarkControls"].ToString() + " class='form-control validate[required]' name='inputName' /></div></div>";
+                        column = column + "<input type=" + dt3.Rows[i]["RemarkControls"].ToString() + " class='form-control input-shadow validate[required]' name='inputName' /></div></div>";
                         MAM.RemarkControls = dt3.Rows[i]["RemarkControls"].ToString();
                     }
                 
@@ -633,7 +633,7 @@ namespace WillAssure.Controllers
                         }
                         else
                         {
-                            column = column + "<input type=" + dt3.Rows[i]["NominationControls"].ToString() + " name='inputName' id='txtnominee' class='form-control' /> </div></div>";
+                            column = column + "<input type=" + dt3.Rows[i]["NominationControls"].ToString() + " name='inputName' id='txtnominee' class='form-control input-shadow' /> </div></div>";
                         }
 
                         MAM.NominationControls = dt3.Rows[i]["NominationControls"].ToString();
@@ -651,7 +651,7 @@ namespace WillAssure.Controllers
 
                     if (dt3.Rows[i]["NomineeDetailsControls"].ToString() != "")
                     {
-                        column = column + "<input type=" + dt3.Rows[i]["NomineeDetailsControls"].ToString() + " class='form-control validate[required]' name='inputName' id='txtnominee' /> </div></div>";
+                        column = column + "<input type=" + dt3.Rows[i]["NomineeDetailsControls"].ToString() + " class='form-control input-shadow validate[required]' name='inputName' id='txtnominee' /> </div></div>";
                         MAM.NomineeDetailsControls = dt3.Rows[i]["NomineeDetailsControls"].ToString();
                     }
        
@@ -665,7 +665,7 @@ namespace WillAssure.Controllers
                     }
                     if (dt3.Rows[i]["NameControls"].ToString() != "")
                     {
-                        column = column + "<input type=" + dt3.Rows[i]["NameControls"].ToString() + " class='form-control validate[required]' name='inputName' /></div></div>";
+                        column = column + "<input type=" + dt3.Rows[i]["NameControls"].ToString() + " class='form-control input-shadow validate[required]' name='inputName' /></div></div>";
                         MAM.NameControls = dt3.Rows[i]["NameControls"].ToString();
                     }
                    
@@ -678,7 +678,7 @@ namespace WillAssure.Controllers
                     }
                     if (dt3.Rows[i]["RegisteredAddressControls"].ToString() != "")
                     {
-                        column = column + "<input type=" + dt3.Rows[i]["RegisteredAddressControls"].ToString() + " class='form-control validate[required]' name='inputName' /></div></div>";
+                        column = column + "<input type=" + dt3.Rows[i]["RegisteredAddressControls"].ToString() + " class='form-control input-shadow validate[required]' name='inputName' /></div></div>";
                         MAM.RegisteredAddressControls = dt3.Rows[i]["RegisteredAddressControls"].ToString();
                     }
                  
@@ -691,7 +691,7 @@ namespace WillAssure.Controllers
                     }
                     if (dt3.Rows[i]["PermanentAddressControls"].ToString() != "")
                     {
-                        column = column + "<input type=" + dt3.Rows[i]["PermanentAddressControls"].ToString() + " class='form-control validate[required]' name='inputName' /></div></div>";
+                        column = column + "<input type=" + dt3.Rows[i]["PermanentAddressControls"].ToString() + " class='form-control input-shadow validate[required]' name='inputName' /></div></div>";
                         MAM.PermanentAddressControls = dt3.Rows[i]["PermanentAddressControls"].ToString();
                     }
                   
@@ -704,7 +704,7 @@ namespace WillAssure.Controllers
                     }
                     if (dt3.Rows[i]["Identity_proofControls"].ToString() != "")
                     {
-                        column = column + "<input type=" + dt3.Rows[i]["Identity_proofControls"].ToString() + " class='form-control validate[required]' name='inputName' /></div></div>";
+                        column = column + "<input type=" + dt3.Rows[i]["Identity_proofControls"].ToString() + " class='form-control input-shadow validate[required]' name='inputName' /></div></div>";
                         MAM.Identity_proofControls = dt3.Rows[i]["Identity_proofControls"].ToString();
                     }
             
@@ -717,7 +717,7 @@ namespace WillAssure.Controllers
                     }
                     if (dt3.Rows[i]["Identity_proof_valueControls"].ToString() != "")
                     {
-                        column = column + "<input type=" + dt3.Rows[i]["Identity_proof_valueControls"].ToString() + " class='form-control validate[required]' name='inputName' /></div></div>";
+                        column = column + "<input type=" + dt3.Rows[i]["Identity_proof_valueControls"].ToString() + " class='form-control input-shadow validate[required]' name='inputName' /></div></div>";
                         MAM.Identity_proof_valueControls = dt3.Rows[i]["Identity_proof_valueControls"].ToString();
                     }
                   
@@ -730,7 +730,7 @@ namespace WillAssure.Controllers
                     }
                     if (dt3.Rows[i]["Alt_Identity_proofControls"].ToString() != "")
                     {
-                        column = column + "<input type=" + dt3.Rows[i]["Alt_Identity_proofControls"].ToString() + " class='form-control validate[required]' name='inputName' /></div></div>";
+                        column = column + "<input type=" + dt3.Rows[i]["Alt_Identity_proofControls"].ToString() + " class='form-control input-shadow validate[required]' name='inputName' /></div></div>";
                         MAM.Alt_Identity_proofControls = dt3.Rows[i]["Alt_Identity_proofControls"].ToString();
                     }
                  
@@ -743,7 +743,7 @@ namespace WillAssure.Controllers
                     }
                     if (dt3.Rows[i]["Alt_Identity_proof_valueControls"].ToString() != "")
                     {
-                        column = column + "<input type=" + dt3.Rows[i]["Alt_Identity_proof_valueControls"].ToString() + " class='form-control validate[required]' name='inputName' /></div></div>";
+                        column = column + "<input type=" + dt3.Rows[i]["Alt_Identity_proof_valueControls"].ToString() + " class='form-control input-shadow validate[required]' name='inputName' /></div></div>";
                         MAM.Alt_Identity_proof_valueControls = dt3.Rows[i]["Alt_Identity_proof_valueControls"].ToString();
                     }
            
@@ -756,7 +756,7 @@ namespace WillAssure.Controllers
                     }
                     if (dt3.Rows[i]["PhoneControls"].ToString() != "")
                     {
-                        column = column + "<input type=" + dt3.Rows[i]["PhoneControls"].ToString() + " class='form-control validate[required]' name='inputName' /></div></div>";
+                        column = column + "<input type=" + dt3.Rows[i]["PhoneControls"].ToString() + " class='form-control input-shadow validate[required]' name='inputName' /></div></div>";
                         MAM.PhoneControls = dt3.Rows[i]["PhoneControls"].ToString();
                     }
                    
@@ -771,7 +771,7 @@ namespace WillAssure.Controllers
                     }
                     if (dt3.Rows[i]["MobileControls"].ToString() != "")
                     {
-                        column = column + "<input type=" + dt3.Rows[i]["MobileControls"].ToString() + " class='form-control validate[required]' name='inputName' /></div></div>";
+                        column = column + "<input type=" + dt3.Rows[i]["MobileControls"].ToString() + " class='form-control input-shadow validate[required]' name='inputName' /></div></div>";
                         MAM.MobileControls = dt3.Rows[i]["MobileControls"].ToString();
 
                     }
@@ -786,7 +786,7 @@ namespace WillAssure.Controllers
                     }
                     if (dt3.Rows[i]["AmountControls"].ToString() != "")
                     {
-                        column = column + "<input type=" + dt3.Rows[i]["AmountControls"].ToString() + " class='form-control validate[required]' name='inputName' /></div></div>";
+                        column = column + "<input type=" + dt3.Rows[i]["AmountControls"].ToString() + " class='form-control input-shadow validate[required]' name='inputName' /></div></div>";
                         MAM.AmountControls = dt3.Rows[i]["AmountControls"].ToString();
                     }
 

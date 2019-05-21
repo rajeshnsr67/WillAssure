@@ -32,7 +32,7 @@
                     <div class="card-body">
 
                         <div class="card-title text-primary">Update Asset Category</div>
-                        <hr>
+                        <hr class="div_rd">
 
                         @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "AssetCategoryForm" }))
                         {
@@ -43,7 +43,7 @@
                                     <div class="form-group">
                                         <label for="input-1">Asset Category Name</label>
                                         @Html.HiddenFor(m => m.amid)
-                                        @Html.TextBoxFor(m => m.assetcategory, new { @class = "form-control validate[required,custom[characteronly]] text-input", @id = "txtCategory", @placeholder = "Enter Asset Category", @autocomplete = "off", alert = "LabourCost is requried" })
+                                        @Html.TextBoxFor(m => m.assetcategory, new { @class = "form-control input-shadow validate[required,custom[characteronly]] text-input", @id = "txtCategory", @placeholder = "Enter Asset Category", @autocomplete = "off", alert = "LabourCost is requried" })
                                     </div>
                                 </div>
 
@@ -55,7 +55,7 @@
                                     <div class="form-group">
                                         <label for="input-1">Asset Category Code</label>
 
-                                        @Html.TextBoxFor(m => m.assetcode, new { @class = "form-control validate[required,custom[AlphaNumeric]] text-input", @id = "txtCode", @placeholder = "Enter Asset Code", @autocomplete = "off", alert = "LabourCost is requried" })
+                                        @Html.TextBoxFor(m => m.assetcode, new { @class = "form-control input-shadow validate[required,custom[AlphaNumeric]] text-input", @id = "txtCode", @placeholder = "Enter Asset Code", @autocomplete = "off", alert = "LabourCost is requried" })
                                     </div>
                                 </div>
 

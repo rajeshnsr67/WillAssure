@@ -37,7 +37,7 @@
                             <div class="row">
                                 <div class='col-sm-1'><label for='input-1' style="line-height:40px;">Testator</label></div>
                                 <div class="col-sm-3">
-                                    <select id='DDLTestator' onchange="getDDLTestator(this.value)" name="contentList" class='form-control validate[required]'></select>
+                                    <select id='DDLTestator' onchange="getDDLTestator(this.value)" name="contentList" class='form-control input-shadow validate[required]'></select>
 
 
 
@@ -56,7 +56,7 @@
                                     <div class="form-group">
                                         <label for="input-1">Pet Name</label>
 
-                                        @Html.TextBoxFor(m => m.petname, new { @class = "form-control validate[required,custom[characteronly]] text-input", @id = "txtpetname", @placeholder = "Enter Pet Name", @autocomplete = "off", alert = "LabourCost is requried" })
+                                        @Html.TextBoxFor(m => m.petname, new { @class = "form-control input-shadow validate[required,custom[characteronly]] text-input", @id = "txtpetname", @placeholder = "Enter Pet Name", @autocomplete = "off", alert = "LabourCost is requried" })
                                     </div>
                                 </div>
 
@@ -67,7 +67,7 @@
                                     <div class="form-group">
                                         <label for="input-1">Pet Age</label>
 
-                                        @Html.TextBoxFor(m => m.petage, new { @class = "form-control validate[required,custom[number]] text-input", @id = "txtpetage", @placeholder = "Enter Pet Age", @autocomplete = "off", alert = "LabourCost is requried" })
+                                        @Html.TextBoxFor(m => m.petage, new { @class = "form-control input-shadow validate[required,custom[number]] text-input", @id = "txtpetage", @placeholder = "Enter Pet Age", @autocomplete = "off", alert = "LabourCost is requried" })
                                     </div>
                                 </div>
 
@@ -78,7 +78,7 @@
                                     <div class="form-group">
                                         <label for="input-1">Type Of Pet</label>
 
-                                        @Html.TextBoxFor(m => m.typeofpet, new { @class = "form-control validate[required,custom[characteronly]] text-input", @id = "txttypeofpet", @placeholder = "Enter Type Of Pet", @autocomplete = "off", alert = "LabourCost is requried" })
+                                        @Html.TextBoxFor(m => m.typeofpet, new { @class = "form-control input-shadow validate[required,custom[characteronly]] text-input", @id = "txttypeofpet", @placeholder = "Enter Type Of Pet", @autocomplete = "off", alert = "LabourCost is requried" })
                                     </div>
                                 </div>
 
@@ -88,7 +88,7 @@
                                     <div class="form-group">
                                         <label for="input-1">Amount For Pet</label>
 
-                                        @Html.TextBoxFor(m => m.amtforpet, new { @class = "form-control validate[required,custom[number]] text-input", @id = "txtamtforpet", @placeholder = "Enter Amount For Pet", @autocomplete = "off", alert = "LabourCost is requried" })
+                                        @Html.TextBoxFor(m => m.amtforpet, new { @class = "form-control input-shadow validate[required,custom[number]] text-input", @id = "txtamtforpet", @placeholder = "Enter Amount For Pet", @autocomplete = "off", alert = "LabourCost is requried" })
                                     </div>
                                 </div>
 
@@ -103,7 +103,7 @@
                                         @Html.DropDownListFor(x => x.amtfromwhichasset, new SelectListItem[]{
                                      new SelectListItem() {Text = "--Select--", Value=""},
                                     new SelectListItem() {Text = "Finacial Assets", Value="Finacial Assets"},
-                                    new SelectListItem() {Text = "Non Financial  Assets", Value="Non Financial  Assets"}}, new { @class = "form-control validate[required]" , @id="ddlmaritalstatus" })
+                                    new SelectListItem() {Text = "Non Financial  Assets", Value="Non Financial  Assets"}}, new { @class = "form-control input-shadow validate[required]" , @id="ddlmaritalstatus" })
                                     </div>
                                 </div>
 
@@ -114,7 +114,7 @@
                                     <div class="form-group">
                                         <label for="input-1">Responsible Person For Pet</label>
 
-                                        @Html.TextBoxFor(m => m.responsibelpersonforpet, new { @class = "form-control validate[required,custom[characteronly]] text-input", @id = "txtresponsiblepet", @placeholder = "Enter Responsible Person For Pet", @autocomplete = "off", alert = "LabourCost is requried" })
+                                        @Html.TextBoxFor(m => m.responsibelpersonforpet, new { @class = "form-control input-shadow validate[required,custom[characteronly]] text-input", @id = "txtresponsiblepet", @placeholder = "Enter Responsible Person For Pet", @autocomplete = "off", alert = "LabourCost is requried" })
                                     </div>
                                 </div>
 

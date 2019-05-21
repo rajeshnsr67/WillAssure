@@ -49,7 +49,7 @@
                             </div>
                         </div>
                         <div class="card-title text-primary">Add Asset Type</div>
-                        <hr>
+                        <hr class="div_rd">
 
                         @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "AssetTypeForm" }))
                         {
@@ -60,7 +60,7 @@
                                     <div class="form-group">
                                         <label for="input-1">Asset Type Name</label>
 
-                                        @Html.TextBoxFor(m => m.AssetsType, new { @class = "form-control validate[required,custom[characteronly]] text-input", @id = "txtRole", @placeholder = "Enter Asset Type", @autocomplete = "off", alert = "LabourCost is requried" })
+                                        @Html.TextBoxFor(m => m.AssetsType, new { @class = "form-control input-shadow validate[required,custom[characteronly]] text-input", @id = "txtRole", @placeholder = "Enter Asset Type", @autocomplete = "off", alert = "LabourCost is requried" })
                                     </div>
                                 </div>
 

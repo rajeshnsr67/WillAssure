@@ -29,7 +29,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="card-title text-primary">Update Role</div>
-                        <hr>
+                        <hr class="div_rd">
                         @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "RoleForm" }))
                         {
                             <div class="row">
@@ -39,7 +39,7 @@
                                         <label for="input-1">Role Name</label>
                                         @{ string v = " data-errormessage-value-missing  = 'Email is required!' "; }
                                         @Html.HiddenFor(m => m.RoleID)
-                                        @Html.TextBoxFor(m => m.Role, new { @class = "form-control validate[required] text-input", @id = "txtRole", @placeholder = "Enter Role", @autocomplete = "off", @v = v })
+                                        @Html.TextBoxFor(m => m.Role, new { @class = "form-control input-shadow validate[required] text-input", @id = "txtRole", @placeholder = "Enter Role", @autocomplete = "off", @v = v })
 
                                     </div>
                                 </div>

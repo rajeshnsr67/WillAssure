@@ -50,7 +50,7 @@
                             </div>
                         </div>
                         <div class="card-title text-primary">Add Role</div>
-                        <hr>
+                        <hr class="div_rd">
 
                         @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "RoleForm" }))
                         {
@@ -61,7 +61,7 @@
                                     <div class="form-group">
                                         <label for="input-1">Role Name</label>
 
-                                        @Html.TextBoxFor(m => m.Role, new { @class = "form-control validate[required,custom[characteronly]] text-input", @id = "txtRole", @placeholder = "Enter Role", @autocomplete = "off", alert = "LabourCost is requried" })
+                                        @Html.TextBoxFor(m => m.Role, new { @class = "form-control input-shadow validate[required,custom[characteronly]] text-input", @id = "txtRole", @placeholder = "Enter Role", @autocomplete = "off", alert = "LabourCost is requried" })
                                     </div>
                                 </div>
 

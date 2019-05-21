@@ -399,7 +399,7 @@ namespace WillAssure.Models
                             {
 
 
-                                data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text'  class='form-control' name='column'  value=" + va[1].ToString() + "  />  <input type='hidden' name='tblcol'  class='form-control'   value=" + va[0].ToString() + "  />  </div></div>";
+                                data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text'  class='form-control input-shadow' name='column'  value=" + va[1].ToString() + "  />  <input type='hidden' name='tblcol'  class='form-control input-shadow'   value=" + va[0].ToString() + "  />  </div></div>";
                                 break;
                             }
 
@@ -414,7 +414,7 @@ namespace WillAssure.Models
                     if (Form.dueDateControls != "")
                     {
 
-                        data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text' class='form-control' name='control'  value=" + Form.dueDateControls + "  /> <select class='form-control' id='ddlcontrols' style='display:none'><option value=''>--Select--</option><option value='TextBox'>TextBox</option> <option value='TextArea'>TextArea</option> <option value='DatePicker'>DatePicker</option> <option value='CheckBox'>CheckBox</option> <option value='RadioButton'>RadioButton</option></select>   </div></div>";
+                        data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text' class='form-control input-shadow' name='control'  value=" + Form.dueDateControls + "  /> <select class='form-control input-shadow' id='ddlcontrols' style='display:none'><option value=''>--Select--</option><option value='TextBox'>TextBox</option> <option value='TextArea'>TextArea</option> <option value='DatePicker'>DatePicker</option> <option value='CheckBox'>CheckBox</option> <option value='RadioButton'>RadioButton</option></select>   </div></div>";
 
                     }
 
@@ -433,7 +433,7 @@ namespace WillAssure.Models
                             if (va.ToString() != "")
                             {
 
-                                data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text'  class='form-control' name='column'  value=" + va[1].ToString() + "  />  <input type='hidden' name='tblcol'  class='form-control'  value=" + va[0].ToString() + "  />  </div></div>";
+                                data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text'  class='form-control input-shadow' name='column'  value=" + va[1].ToString() + "  />  <input type='hidden' name='tblcol'  class='form-control input-shadow'  value=" + va[0].ToString() + "  />  </div></div>";
                                 break;
                             }
 
@@ -446,7 +446,7 @@ namespace WillAssure.Models
 
                     if (Form.CurrentStatusControls != "")
                     {
-                        data = data + "<div class='col-sm-4'>  <div class='form-group'> <input type='text' class='form-control' name='control'  value=" + Form.CurrentStatusControls + "  /> <select class='form-control' id='ddlcontrols' style='display:none'><option value=''>--Select--</option><option value='TextBox'>TextBox</option> <option value='TextArea'>TextArea</option> <option value='DatePicker'>DatePicker</option> <option value='CheckBox'>CheckBox</option> <option value='RadioButton'>RadioButton</option></select>  </div></div>";
+                        data = data + "<div class='col-sm-4'>  <div class='form-group'> <input type='text' class='form-control input-shadow' name='control'  value=" + Form.CurrentStatusControls + "  /> <select class='form-control input-shadow' id='ddlcontrols' style='display:none'><option value=''>--Select--</option><option value='TextBox'>TextBox</option> <option value='TextArea'>TextArea</option> <option value='DatePicker'>DatePicker</option> <option value='CheckBox'>CheckBox</option> <option value='RadioButton'>RadioButton</option></select>  </div></div>";
 
                     }
 
@@ -454,7 +454,7 @@ namespace WillAssure.Models
 
                     if (Form.CurrentStatusValues != "")
                     {
-                        data = data + "<div class='col-sm-4'>  <div class='form-group'> <input type='text' class='form-control' name='multiple'  value=" + Form.CurrentStatusValues + "  />   </div></div>";
+                        data = data + "<div class='col-sm-4'>  <div class='form-group'> <input type='text' class='form-control input-shadow' name='multiple'  value=" + Form.CurrentStatusValues + "  />   </div></div>";
 
                     }
 
@@ -468,7 +468,7 @@ namespace WillAssure.Models
                             if (va.ToString() != "")
                             {
 
-                                data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text'  class='form-control' name='column'  value=" + va[1].ToString() + "  />  <input type='hidden' name='tblcol'  class='form-control'  value=" + va[0].ToString() + "  />  </div></div>";
+                                data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text'  class='form-control input-shadow' name='column'  value=" + va[1].ToString() + "  />  <input type='hidden' name='tblcol'  class='form-control input-shadow'  value=" + va[0].ToString() + "  />  </div></div>";
                                 break;
                             }
 
@@ -482,7 +482,7 @@ namespace WillAssure.Models
 
                     if (Form.IssuedByControls != "")
                     {
-                        data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text' class='form-control' name='control'  value=" + Form.IssuedByControls + "  /> <select class='form-control' id='ddlcontrols' style='display:none'><option value=''>--Select--</option><option value='TextBox'>TextBox</option> <option value='TextArea'>TextArea</option> <option value='DatePicker'>DatePicker</option> <option value='CheckBox'>CheckBox</option> <option value='RadioButton'>RadioButton</option></select>   </div></div>";
+                        data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text' class='form-control input-shadow' name='control'  value=" + Form.IssuedByControls + "  /> <select class='form-control input-shadow' id='ddlcontrols' style='display:none'><option value=''>--Select--</option><option value='TextBox'>TextBox</option> <option value='TextArea'>TextArea</option> <option value='DatePicker'>DatePicker</option> <option value='CheckBox'>CheckBox</option> <option value='RadioButton'>RadioButton</option></select>   </div></div>";
 
                     }
 
@@ -502,7 +502,7 @@ namespace WillAssure.Models
                             if (va.ToString() != "")
                             {
 
-                                data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text'  class='form-control' name='column'  value=" + va[1].ToString() + "  />  <input type='hidden' name='tblcol'  class='form-control'  value=" + va[0].ToString() + "  />  </div></div>";
+                                data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text'  class='form-control input-shadow' name='column'  value=" + va[1].ToString() + "  />  <input type='hidden' name='tblcol'  class='form-control input-shadow'  value=" + va[0].ToString() + "  />  </div></div>";
                                 break;
                             }
 
@@ -515,7 +515,7 @@ namespace WillAssure.Models
 
                     if (Form.LocationControls != "")
                     {
-                        data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text' class='form-control' name='control'  value=" + Form.LocationControls + "  /> <select class='form-control' id='ddlcontrols' style='display:none'><option value=''>--Select--</option><option value='TextBox'>TextBox</option> <option value='TextArea'>TextArea</option> <option value='DatePicker'>DatePicker</option> <option value='CheckBox'>CheckBox</option> <option value='RadioButton'>RadioButton</option></select>   </div></div>";
+                        data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text' class='form-control input-shadow' name='control'  value=" + Form.LocationControls + "  /> <select class='form-control input-shadow' id='ddlcontrols' style='display:none'><option value=''>--Select--</option><option value='TextBox'>TextBox</option> <option value='TextArea'>TextArea</option> <option value='DatePicker'>DatePicker</option> <option value='CheckBox'>CheckBox</option> <option value='RadioButton'>RadioButton</option></select>   </div></div>";
 
                     }
 
@@ -535,7 +535,7 @@ namespace WillAssure.Models
                             if (va.ToString() != "")
                             {
 
-                                data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text'  class='form-control' name='column'  value=" + va[1].ToString() + "  />  <input type='hidden' name='tblcol'  class='form-control'  value=" + va[0].ToString() + "  />  </div></div>";
+                                data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text'  class='form-control input-shadow' name='column'  value=" + va[1].ToString() + "  />  <input type='hidden' name='tblcol'  class='form-control input-shadow'  value=" + va[0].ToString() + "  />  </div></div>";
                                 break;
                             }
 
@@ -548,7 +548,7 @@ namespace WillAssure.Models
 
                     if (Form.IdentifierControls != "")
                     {
-                        data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text' class='form-control' name='control'  value=" + Form.IdentifierControls + "  />  <select class='form-control' id='ddlcontrols' style='display:none'><option value=''>--Select--</option><option value='TextBox'>TextBox</option> <option value='TextArea'>TextArea</option> <option value='DatePicker'>DatePicker</option> <option value='CheckBox'>CheckBox</option> <option value='RadioButton'>RadioButton</option></select>   </div></div>";
+                        data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text' class='form-control input-shadow' name='control'  value=" + Form.IdentifierControls + "  />  <select class='form-control input-shadow' id='ddlcontrols' style='display:none'><option value=''>--Select--</option><option value='TextBox'>TextBox</option> <option value='TextArea'>TextArea</option> <option value='DatePicker'>DatePicker</option> <option value='CheckBox'>CheckBox</option> <option value='RadioButton'>RadioButton</option></select>   </div></div>";
 
                     }
 
@@ -567,7 +567,7 @@ namespace WillAssure.Models
                             if (va.ToString() != "")
                             {
 
-                                data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text'  class='form-control' name='column'  value=" + va[1].ToString() + "  />  <input type='hidden' name='tblcol'  class='form-control'  value=" + va[0].ToString() + "  />  </div></div>";
+                                data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text'  class='form-control input-shadow' name='column'  value=" + va[1].ToString() + "  />  <input type='hidden' name='tblcol'  class='form-control input-shadow'  value=" + va[0].ToString() + "  />  </div></div>";
                                 break;
                             }
 
@@ -580,7 +580,7 @@ namespace WillAssure.Models
 
                     if (Form.assetsValueControls != "")
                     {
-                        data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text' class='form-control' name='control'  value=" + Form.assetsValueControls + "  />  <select class='form-control' id='ddlcontrols' style='display:none'><option value=''>--Select--</option><option value='TextBox'>TextBox</option> <option value='TextArea'>TextArea</option> <option value='DatePicker'>DatePicker</option> <option value='CheckBox'>CheckBox</option> <option value='RadioButton'>RadioButton</option></select>   </div></div>";
+                        data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text' class='form-control input-shadow' name='control'  value=" + Form.assetsValueControls + "  />  <select class='form-control input-shadow' id='ddlcontrols' style='display:none'><option value=''>--Select--</option><option value='TextBox'>TextBox</option> <option value='TextArea'>TextArea</option> <option value='DatePicker'>DatePicker</option> <option value='CheckBox'>CheckBox</option> <option value='RadioButton'>RadioButton</option></select>   </div></div>";
 
                     }
 
@@ -599,7 +599,7 @@ namespace WillAssure.Models
                             if (va.ToString() != "")
                             {
 
-                                data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text'  class='form-control' name='column'  value=" + va[1].ToString() + "  />  <input type='hidden' name='tblcol'  class='form-control'  value=" + va[0].ToString() + "  />  </div></div>";
+                                data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text'  class='form-control input-shadow' name='column'  value=" + va[1].ToString() + "  />  <input type='hidden' name='tblcol'  class='form-control input-shadow'  value=" + va[0].ToString() + "  />  </div></div>";
                                 break;
                             }
 
@@ -613,7 +613,7 @@ namespace WillAssure.Models
 
                     if (Form.CertificateNumberControls != "")
                     {
-                        data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text' class='form-control' name='control'  value=" + Form.CertificateNumberControls + "  /> <select class='form-control' id='ddlcontrols' style='display:none'><option value=''>--Select--</option><option value='TextBox'>TextBox</option> <option value='TextArea'>TextArea</option> <option value='DatePicker'>DatePicker</option> <option value='CheckBox'>CheckBox</option> <option value='RadioButton'>RadioButton</option></select>  </div></div>";
+                        data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text' class='form-control input-shadow' name='control'  value=" + Form.CertificateNumberControls + "  /> <select class='form-control input-shadow' id='ddlcontrols' style='display:none'><option value=''>--Select--</option><option value='TextBox'>TextBox</option> <option value='TextArea'>TextArea</option> <option value='DatePicker'>DatePicker</option> <option value='CheckBox'>CheckBox</option> <option value='RadioButton'>RadioButton</option></select>  </div></div>";
 
                     }
 
@@ -631,7 +631,7 @@ namespace WillAssure.Models
                             if (va.ToString() != "")
                             {
 
-                                data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text'  class='form-control' name='column'  value=" + va[1].ToString() + "  />  <input type='hidden' name='tblcol'  class='form-control'  value=" + va[0].ToString() + "  />  </div></div>";
+                                data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text'  class='form-control input-shadow' name='column'  value=" + va[1].ToString() + "  />  <input type='hidden' name='tblcol'  class='form-control input-shadow'  value=" + va[0].ToString() + "  />  </div></div>";
                                 break;
                             }
 
@@ -644,7 +644,7 @@ namespace WillAssure.Models
 
                     if (Form.PropertyDescriptionControls != "")
                     {
-                        data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text' class='form-control' name='control'  value=" + Form.PropertyDescriptionControls + "  /> <select class='form-control' id='ddlcontrols' style='display:none'><option value=''>--Select--</option><option value='TextBox'>TextBox</option> <option value='TextArea'>TextArea</option> <option value='DatePicker'>DatePicker</option> <option value='CheckBox'>CheckBox</option> <option value='RadioButton'>RadioButton</option></select>  </div></div>";
+                        data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text' class='form-control input-shadow' name='control'  value=" + Form.PropertyDescriptionControls + "  /> <select class='form-control input-shadow' id='ddlcontrols' style='display:none'><option value=''>--Select--</option><option value='TextBox'>TextBox</option> <option value='TextArea'>TextArea</option> <option value='DatePicker'>DatePicker</option> <option value='CheckBox'>CheckBox</option> <option value='RadioButton'>RadioButton</option></select>  </div></div>";
 
                     }
 
@@ -663,7 +663,7 @@ namespace WillAssure.Models
                             if (va.ToString() != "")
                             {
 
-                                data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text'  class='form-control' name='column'  value=" + va[1].ToString() + "  />  <input type='hidden' name='tblcol'  class='form-control'  value=" + va[0].ToString() + "  />  </div></div>";
+                                data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text'  class='form-control input-shadow' name='column'  value=" + va[1].ToString() + "  />  <input type='hidden' name='tblcol'  class='form-control input-shadow'  value=" + va[0].ToString() + "  />  </div></div>";
                                 break;
                             }
 
@@ -677,7 +677,7 @@ namespace WillAssure.Models
 
                     if (Form.QtyControls != "")
                     {
-                        data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text' class='form-control' name='control'  value=" + Form.QtyControls + "  /> <select class='form-control' id='ddlcontrols' style='display:none'><option value=''>--Select--</option><option value='TextBox'>TextBox</option> <option value='TextArea'>TextArea</option> <option value='DatePicker'>DatePicker</option> <option value='CheckBox'>CheckBox</option> <option value='RadioButton'>RadioButton</option></select>  </div></div>";
+                        data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text' class='form-control input-shadow' name='control'  value=" + Form.QtyControls + "  /> <select class='form-control input-shadow' id='ddlcontrols' style='display:none'><option value=''>--Select--</option><option value='TextBox'>TextBox</option> <option value='TextArea'>TextArea</option> <option value='DatePicker'>DatePicker</option> <option value='CheckBox'>CheckBox</option> <option value='RadioButton'>RadioButton</option></select>  </div></div>";
 
                     }
 
@@ -695,7 +695,7 @@ namespace WillAssure.Models
                             if (va.ToString() != "")
                             {
 
-                                data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text'  class='form-control' name='column'  value=" + va[1].ToString() + "  />  <input type='hidden' name='tblcol'  class='form-control'  value=" + va[0].ToString() + "  />  </div></div>";
+                                data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text'  class='form-control input-shadow' name='column'  value=" + va[1].ToString() + "  />  <input type='hidden' name='tblcol'  class='form-control input-shadow'  value=" + va[0].ToString() + "  />  </div></div>";
                                 break;
                             }
 
@@ -709,7 +709,7 @@ namespace WillAssure.Models
 
                     if (Form.WeightControls != "")
                     {
-                        data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text' class='form-control' name='control'  value=" + Form.WeightControls + "  /> <select class='form-control' id='ddlcontrols' style='display:none'><option value=''>--Select--</option><option value='TextBox'>TextBox</option> <option value='TextArea'>TextArea</option> <option value='DatePicker'>DatePicker</option> <option value='CheckBox'>CheckBox</option> <option value='RadioButton'>RadioButton</option></select>  </div></div>";
+                        data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text' class='form-control input-shadow' name='control'  value=" + Form.WeightControls + "  /> <select class='form-control input-shadow' id='ddlcontrols' style='display:none'><option value=''>--Select--</option><option value='TextBox'>TextBox</option> <option value='TextArea'>TextArea</option> <option value='DatePicker'>DatePicker</option> <option value='CheckBox'>CheckBox</option> <option value='RadioButton'>RadioButton</option></select>  </div></div>";
 
                     }
 
@@ -729,7 +729,7 @@ namespace WillAssure.Models
                             if (va.ToString() != "")
                             {
 
-                                data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text'  class='form-control' name='column'  value=" + va[1].ToString() + "  />  <input type='hidden' name='tblcol'  class='form-control'  value=" + va[0].ToString() + "  />  </div></div>";
+                                data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text'  class='form-control input-shadow' name='column'  value=" + va[1].ToString() + "  />  <input type='hidden' name='tblcol'  class='form-control input-shadow'  value=" + va[0].ToString() + "  />  </div></div>";
                                 break; 
                             }
 
@@ -742,7 +742,7 @@ namespace WillAssure.Models
 
                     if (Form.OwnerShipControls != "")
                     {
-                        data = data + "<div class='col-sm-4'>  <div class='form-group'> <input type='text' class='form-control' name='control'  value=" + Form.OwnerShipControls + "  /> <select class='form-control' id='ddlcontrols' style='display:none'><option value=''>--Select--</option><option value='TextBox'>TextBox</option> <option value='TextArea'>TextArea</option> <option value='DatePicker'>DatePicker</option> <option value='CheckBox'>CheckBox</option> <option value='RadioButton'>RadioButton</option></select>  </div></div>";
+                        data = data + "<div class='col-sm-4'>  <div class='form-group'> <input type='text' class='form-control input-shadow' name='control'  value=" + Form.OwnerShipControls + "  /> <select class='form-control input-shadow' id='ddlcontrols' style='display:none'><option value=''>--Select--</option><option value='TextBox'>TextBox</option> <option value='TextArea'>TextArea</option> <option value='DatePicker'>DatePicker</option> <option value='CheckBox'>CheckBox</option> <option value='RadioButton'>RadioButton</option></select>  </div></div>";
 
                     }
 
@@ -750,7 +750,7 @@ namespace WillAssure.Models
 
                     if (Form.OwnerShipValues != "")
                     {
-                        data = data + "<div class='col-sm-4'>  <div class='form-group'> <input type='text' class='form-control' name='multiple'  value=" + Form.OwnerShipValues + "  />   </div></div>";
+                        data = data + "<div class='col-sm-4'>  <div class='form-group'> <input type='text' class='form-control input-shadow' name='multiple'  value=" + Form.OwnerShipValues + "  />   </div></div>";
 
                     }
 
@@ -765,7 +765,7 @@ namespace WillAssure.Models
                             if (va.ToString() != "")
                             {
 
-                                data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text'  class='form-control' name='column'  value=" + va[1].ToString() + "  />  <input type='hidden' name='tblcol'  class='form-control'  value=" + va[0].ToString() + "  />  </div></div>";
+                                data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text'  class='form-control input-shadow' name='column'  value=" + va[1].ToString() + "  />  <input type='hidden' name='tblcol'  class='form-control input-shadow'  value=" + va[0].ToString() + "  />  </div></div>";
                                 break;
                             }
 
@@ -778,7 +778,7 @@ namespace WillAssure.Models
 
                     if (Form.RemarkControls != "")
                     {
-                        data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text' class='form-control' name='control'  value=" + Form.RemarkControls + "  />  <select class='form-control' id='ddlcontrols' style='display:none'><option value=''>--Select--</option><option value='TextBox'>TextBox</option> <option value='TextArea'>TextArea</option> <option value='DatePicker'>DatePicker</option> <option value='CheckBox'>CheckBox</option> <option value='RadioButton'>RadioButton</option></select> </div></div>";
+                        data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text' class='form-control input-shadow' name='control'  value=" + Form.RemarkControls + "  />  <select class='form-control input-shadow' id='ddlcontrols' style='display:none'><option value=''>--Select--</option><option value='TextBox'>TextBox</option> <option value='TextArea'>TextArea</option> <option value='DatePicker'>DatePicker</option> <option value='CheckBox'>CheckBox</option> <option value='RadioButton'>RadioButton</option></select> </div></div>";
 
                     }
 
@@ -800,7 +800,7 @@ namespace WillAssure.Models
                             if (va.ToString() != "")
                             {
 
-                                data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text'  class='form-control' name='column'  value=" + va[1].ToString() + "  />  <input type='hidden' name='tblcol'  class='form-control'  value=" + va[0].ToString() + "  />  </div>";
+                                data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text'  class='form-control input-shadow' name='column'  value=" + va[1].ToString() + "  />  <input type='hidden' name='tblcol'  class='form-control input-shadow'  value=" + va[0].ToString() + "  />  </div>";
                                 break;
                             }
 
@@ -813,7 +813,7 @@ namespace WillAssure.Models
 
                     if (Form.NominationControls != "")
                     {
-                        data = data + " <div class='form-group'> <input type='text' class='form-control' name='control'  value=" + Form.NominationControls + "  /> <select class='form-control' id='ddlcontrols' style='display:none'><option value=''>--Select--</option><option value='TextBox'>TextBox</option> <option value='TextArea'>TextArea</option> <option value='DatePicker'>DatePicker</option> <option value='CheckBox'>CheckBox</option> <option value='RadioButton'>RadioButton</option></select>  </div></div>";
+                        data = data + " <div class='form-group'> <input type='text' class='form-control input-shadow' name='control'  value=" + Form.NominationControls + "  /> <select class='form-control input-shadow' id='ddlcontrols' style='display:none'><option value=''>--Select--</option><option value='TextBox'>TextBox</option> <option value='TextArea'>TextArea</option> <option value='DatePicker'>DatePicker</option> <option value='CheckBox'>CheckBox</option> <option value='RadioButton'>RadioButton</option></select>  </div></div>";
 
                     }
 
@@ -822,7 +822,7 @@ namespace WillAssure.Models
 
                     if (Form.NominationValues != "")
                     {
-                        data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text' class='form-control' name='multiple'  value=" + Form.NominationValues + "  />   </div></div>";
+                        data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text' class='form-control input-shadow' name='multiple'  value=" + Form.NominationValues + "  />   </div></div>";
 
                     }
 
@@ -836,7 +836,7 @@ namespace WillAssure.Models
                             if (va.ToString() != "")
                             {
 
-                                data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text'  class='form-control' name='column'  value=" + va[1].ToString() + "  />  <input type='hidden' name='tblcol'  class='form-control'  value=" + va[0].ToString() + "  />  </div></div>";
+                                data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text'  class='form-control input-shadow' name='column'  value=" + va[1].ToString() + "  />  <input type='hidden' name='tblcol'  class='form-control input-shadow'  value=" + va[0].ToString() + "  />  </div></div>";
                                 break;
                             }
 
@@ -849,7 +849,7 @@ namespace WillAssure.Models
 
                     if (Form.NomineeDetailsControls != "")
                     {
-                        data = data + "<div class='col-sm-4'>  <div class='form-group'> <input type='text' class='form-control' name='control'  value=" + Form.NomineeDetailsControls + "  /> <select class='form-control' id='ddlcontrols' style='display:none'><option value=''>--Select--</option><option value='TextBox'>TextBox</option> <option value='TextArea'>TextArea</option> <option value='DatePicker'>DatePicker</option> <option value='CheckBox'>CheckBox</option> <option value='RadioButton'>RadioButton</option></select>  </div></div>";
+                        data = data + "<div class='col-sm-4'>  <div class='form-group'> <input type='text' class='form-control input-shadow' name='control'  value=" + Form.NomineeDetailsControls + "  /> <select class='form-control input-shadow' id='ddlcontrols' style='display:none'><option value=''>--Select--</option><option value='TextBox'>TextBox</option> <option value='TextArea'>TextArea</option> <option value='DatePicker'>DatePicker</option> <option value='CheckBox'>CheckBox</option> <option value='RadioButton'>RadioButton</option></select>  </div></div>";
 
                     }
 
@@ -869,7 +869,7 @@ namespace WillAssure.Models
                             if (va.ToString() != "")
                             {
 
-                                data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text'  class='form-control' name='column'  value=" + va[1].ToString() + "  />  <input type='hidden' name='tblcol'  class='form-control'  value=" + va[0].ToString() + "  />  </div></div>";
+                                data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text'  class='form-control input-shadow' name='column'  value=" + va[1].ToString() + "  />  <input type='hidden' name='tblcol'  class='form-control input-shadow'  value=" + va[0].ToString() + "  />  </div></div>";
                                 break;
                             }
 
@@ -882,7 +882,7 @@ namespace WillAssure.Models
 
                     if (Form.NameControls != "")
                     {
-                        data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text' class='form-control' name='control'  value=" + Form.NameControls + "  />  <select class='form-control' id='ddlcontrols' style='display:none'><option value=''>--Select--</option><option value='TextBox'>TextBox</option> <option value='TextArea'>TextArea</option> <option value='DatePicker'>DatePicker</option> <option value='CheckBox'>CheckBox</option> <option value='RadioButton'>RadioButton</option></select> </div></div>";
+                        data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text' class='form-control input-shadow' name='control'  value=" + Form.NameControls + "  />  <select class='form-control input-shadow' id='ddlcontrols' style='display:none'><option value=''>--Select--</option><option value='TextBox'>TextBox</option> <option value='TextArea'>TextArea</option> <option value='DatePicker'>DatePicker</option> <option value='CheckBox'>CheckBox</option> <option value='RadioButton'>RadioButton</option></select> </div></div>";
 
                     }
 
@@ -900,7 +900,7 @@ namespace WillAssure.Models
                             if (va.ToString() != "")
                             {
 
-                                data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text'  class='form-control' name='column'  value=" + va[1].ToString() + "  />  <input type='hidden' name='tblcol'  class='form-control'  value=" + va[0].ToString() + "  />  </div></div>";
+                                data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text'  class='form-control input-shadow' name='column'  value=" + va[1].ToString() + "  />  <input type='hidden' name='tblcol'  class='form-control input-shadow'  value=" + va[0].ToString() + "  />  </div></div>";
                                 break;
                             }
 
@@ -914,7 +914,7 @@ namespace WillAssure.Models
 
                     if (Form.RegisteredAddressControls != "")
                     {
-                        data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text' class='form-control' name='control'  value=" + Form.RegisteredAddressControls + "  /> <select class='form-control' id='ddlcontrols' style='display:none'><option value=''>--Select--</option><option value='TextBox'>TextBox</option> <option value='TextArea'>TextArea</option> <option value='DatePicker'>DatePicker</option> <option value='CheckBox'>CheckBox</option> <option value='RadioButton'>RadioButton</option></select>  </div></div>";
+                        data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text' class='form-control input-shadow' name='control'  value=" + Form.RegisteredAddressControls + "  /> <select class='form-control input-shadow' id='ddlcontrols' style='display:none'><option value=''>--Select--</option><option value='TextBox'>TextBox</option> <option value='TextArea'>TextArea</option> <option value='DatePicker'>DatePicker</option> <option value='CheckBox'>CheckBox</option> <option value='RadioButton'>RadioButton</option></select>  </div></div>";
 
                     }
 
@@ -933,7 +933,7 @@ namespace WillAssure.Models
                             if (va.ToString() != "")
                             {
 
-                                data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text'  class='form-control' name='column'  value=" + va[1].ToString() + "  />  <input type='hidden' name='tblcol'  class='form-control'  value=" + va[0].ToString() + "  />  </div></div>";
+                                data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text'  class='form-control input-shadow' name='column'  value=" + va[1].ToString() + "  />  <input type='hidden' name='tblcol'  class='form-control input-shadow'  value=" + va[0].ToString() + "  />  </div></div>";
                                 break;
                             }
 
@@ -947,7 +947,7 @@ namespace WillAssure.Models
 
                     if (Form.PermanentAddressControls != "")
                     {
-                        data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text' class='form-control' name='control'  value=" + Form.PermanentAddressControls + "  />  <select class='form-control' id='ddlcontrols' style='display:none'><option value=''>--Select--</option><option value='TextBox'>TextBox</option> <option value='TextArea'>TextArea</option> <option value='DatePicker'>DatePicker</option> <option value='CheckBox'>CheckBox</option> <option value='RadioButton'>RadioButton</option></select> </div></div>";
+                        data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text' class='form-control input-shadow' name='control'  value=" + Form.PermanentAddressControls + "  />  <select class='form-control input-shadow' id='ddlcontrols' style='display:none'><option value=''>--Select--</option><option value='TextBox'>TextBox</option> <option value='TextArea'>TextArea</option> <option value='DatePicker'>DatePicker</option> <option value='CheckBox'>CheckBox</option> <option value='RadioButton'>RadioButton</option></select> </div></div>";
 
                     }
 
@@ -969,7 +969,7 @@ namespace WillAssure.Models
                             if (va.ToString() != "")
                             {
 
-                                data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text'  class='form-control' name='column'  value=" + va[1].ToString() + "  />  <input type='hidden' name='tblcol'  class='form-control'  value=" + va[0].ToString() + "  />  </div></div>";
+                                data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text'  class='form-control input-shadow' name='column'  value=" + va[1].ToString() + "  />  <input type='hidden' name='tblcol'  class='form-control input-shadow'  value=" + va[0].ToString() + "  />  </div></div>";
                                 break;
                             }
 
@@ -983,7 +983,7 @@ namespace WillAssure.Models
 
                     if (Form.Identity_proofControls != "")
                     {
-                        data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text' class='form-control' name='control'  value=" + Form.Identity_proofControls + "  /> <select class='form-control' id='ddlcontrols' style='display:none'><option value=''>--Select--</option><option value='TextBox'>TextBox</option> <option value='TextArea'>TextArea</option> <option value='DatePicker'>DatePicker</option> <option value='CheckBox'>CheckBox</option> <option value='RadioButton'>RadioButton</option></select>  </div></div>";
+                        data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text' class='form-control input-shadow' name='control'  value=" + Form.Identity_proofControls + "  /> <select class='form-control input-shadow' id='ddlcontrols' style='display:none'><option value=''>--Select--</option><option value='TextBox'>TextBox</option> <option value='TextArea'>TextArea</option> <option value='DatePicker'>DatePicker</option> <option value='CheckBox'>CheckBox</option> <option value='RadioButton'>RadioButton</option></select>  </div></div>";
 
                     }
 
@@ -1003,7 +1003,7 @@ namespace WillAssure.Models
                             if (va.ToString() != "")
                             {
 
-                                data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text'  class='form-control' name='column'  value=" + va[1].ToString() + "  />  <input type='hidden' name='tblcol'  class='form-control'  value=" + va[0].ToString() + "  />  </div></div>";
+                                data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text'  class='form-control input-shadow' name='column'  value=" + va[1].ToString() + "  />  <input type='hidden' name='tblcol'  class='form-control input-shadow'  value=" + va[0].ToString() + "  />  </div></div>";
                                 break;
                             }
 
@@ -1018,7 +1018,7 @@ namespace WillAssure.Models
 
                     if (Form.Identity_proof_valueControls != "")
                     {
-                        data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text' class='form-control' name='control'  value=" + Form.Identity_proof_valueControls + "  />  <select class='form-control' id='ddlcontrols' style='display:none'><option value=''>--Select--</option><option value='TextBox'>TextBox</option> <option value='TextArea'>TextArea</option> <option value='DatePicker'>DatePicker</option> <option value='CheckBox'>CheckBox</option> <option value='RadioButton'>RadioButton</option></select> </div></div>";
+                        data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text' class='form-control input-shadow' name='control'  value=" + Form.Identity_proof_valueControls + "  />  <select class='form-control input-shadow' id='ddlcontrols' style='display:none'><option value=''>--Select--</option><option value='TextBox'>TextBox</option> <option value='TextArea'>TextArea</option> <option value='DatePicker'>DatePicker</option> <option value='CheckBox'>CheckBox</option> <option value='RadioButton'>RadioButton</option></select> </div></div>";
 
                     }
 
@@ -1036,7 +1036,7 @@ namespace WillAssure.Models
                             if (va.ToString() != "")
                             {
 
-                                data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text'  class='form-control' name='column'  value=" + va[1].ToString() + "  />  <input type='hidden' name='tblcol'  class='form-control'  value=" + va[0].ToString() + "  />  </div></div>";
+                                data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text'  class='form-control input-shadow' name='column'  value=" + va[1].ToString() + "  />  <input type='hidden' name='tblcol'  class='form-control input-shadow'  value=" + va[0].ToString() + "  />  </div></div>";
                                 break;
                             }
 
@@ -1049,7 +1049,7 @@ namespace WillAssure.Models
 
                     if (Form.Alt_Identity_proofControls != "")
                     {
-                        data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text' class='form-control' name='control'  value=" + Form.Alt_Identity_proofControls + "  />  <select class='form-control' id='ddlcontrols' style='display:none'><option value=''>--Select--</option><option value='TextBox'>TextBox</option> <option value='TextArea'>TextArea</option> <option value='DatePicker'>DatePicker</option> <option value='CheckBox'>CheckBox</option> <option value='RadioButton'>RadioButton</option></select> </div></div>";
+                        data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text' class='form-control input-shadow' name='control'  value=" + Form.Alt_Identity_proofControls + "  />  <select class='form-control input-shadow' id='ddlcontrols' style='display:none'><option value=''>--Select--</option><option value='TextBox'>TextBox</option> <option value='TextArea'>TextArea</option> <option value='DatePicker'>DatePicker</option> <option value='CheckBox'>CheckBox</option> <option value='RadioButton'>RadioButton</option></select> </div></div>";
 
                     }
 
@@ -1067,7 +1067,7 @@ namespace WillAssure.Models
                             if (va.ToString() != "")
                             {
 
-                                data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text'  class='form-control' name='column'  value=" + va[1].ToString() + "  />  <input type='hidden' name='tblcol'  class='form-control'  value=" + va[0].ToString() + "  />  </div></div>";
+                                data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text'  class='form-control input-shadow' name='column'  value=" + va[1].ToString() + "  />  <input type='hidden' name='tblcol'  class='form-control input-shadow'  value=" + va[0].ToString() + "  />  </div></div>";
                                 break;
                             }
 
@@ -1081,7 +1081,7 @@ namespace WillAssure.Models
 
                     if (Form.Alt_Identity_proof_valueControls != "")
                     {
-                        data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text' class='form-control' name='control'  value=" + Form.Alt_Identity_proof_valueControls + "  /> <select class='form-control' id='ddlcontrols' style='display:none'><option value=''>--Select--</option><option value='TextBox'>TextBox</option> <option value='TextArea'>TextArea</option> <option value='DatePicker'>DatePicker</option> <option value='CheckBox'>CheckBox</option> <option value='RadioButton'>RadioButton</option></select>  </div></div>";
+                        data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text' class='form-control input-shadow' name='control'  value=" + Form.Alt_Identity_proof_valueControls + "  /> <select class='form-control input-shadow' id='ddlcontrols' style='display:none'><option value=''>--Select--</option><option value='TextBox'>TextBox</option> <option value='TextArea'>TextArea</option> <option value='DatePicker'>DatePicker</option> <option value='CheckBox'>CheckBox</option> <option value='RadioButton'>RadioButton</option></select>  </div></div>";
 
                     }
 
@@ -1099,7 +1099,7 @@ namespace WillAssure.Models
                             if (va.ToString() != "")
                             {
 
-                                data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text'  class='form-control' name='column'  value=" + va[1].ToString() + "  />  <input type='hidden' name='tblcol'  class='form-control'  value=" + va[0].ToString() + "  />  </div></div>";
+                                data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text'  class='form-control input-shadow' name='column'  value=" + va[1].ToString() + "  />  <input type='hidden' name='tblcol'  class='form-control input-shadow'  value=" + va[0].ToString() + "  />  </div></div>";
                                 break;
                             }
 
@@ -1112,7 +1112,7 @@ namespace WillAssure.Models
 
                     if (Form.PhoneControls != "")
                     {
-                        data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text' class='form-control' name='control'  value=" + Form.PhoneControls + "  />  <select class='form-control' id='ddlcontrols' style='display:none'><option value=''>--Select--</option><option value='TextBox'>TextBox</option> <option value='TextArea'>TextArea</option> <option value='DatePicker'>DatePicker</option> <option value='CheckBox'>CheckBox</option> <option value='RadioButton'>RadioButton</option></select> </div></div>";
+                        data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text' class='form-control input-shadow' name='control'  value=" + Form.PhoneControls + "  />  <select class='form-control input-shadow' id='ddlcontrols' style='display:none'><option value=''>--Select--</option><option value='TextBox'>TextBox</option> <option value='TextArea'>TextArea</option> <option value='DatePicker'>DatePicker</option> <option value='CheckBox'>CheckBox</option> <option value='RadioButton'>RadioButton</option></select> </div></div>";
 
                     }
 
@@ -1130,7 +1130,7 @@ namespace WillAssure.Models
                             if (va.ToString() != "")
                             {
 
-                                data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text'  class='form-control' name='column'  value=" + va[1].ToString() + "  />  <input type='hidden' name='tblcol'  class='form-control'  value=" + va[0].ToString() + "  />  </div></div>";
+                                data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text'  class='form-control input-shadow' name='column'  value=" + va[1].ToString() + "  />  <input type='hidden' name='tblcol'  class='form-control input-shadow'  value=" + va[0].ToString() + "  />  </div></div>";
                                 break;
                             }
 
@@ -1142,7 +1142,7 @@ namespace WillAssure.Models
                     Form.MobileControls = dt.Rows[0]["MobileControls"].ToString();
                     if (Form.MobileControls != "")
                     {
-                        data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text' class='form-control' name='control' value=" + Form.MobileControls + "  /> <select class='form-control' id='ddlcontrols' style='display:none'><option value=''>--Select--</option><option value='TextBox'>TextBox</option> <option value='TextArea'>TextArea</option> <option value='DatePicker'>DatePicker</option> <option value='CheckBox'>CheckBox</option> <option value='RadioButton'>RadioButton</option></select>  </div></div>";
+                        data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text' class='form-control input-shadow' name='control' value=" + Form.MobileControls + "  /> <select class='form-control input-shadow' id='ddlcontrols' style='display:none'><option value=''>--Select--</option><option value='TextBox'>TextBox</option> <option value='TextArea'>TextArea</option> <option value='DatePicker'>DatePicker</option> <option value='CheckBox'>CheckBox</option> <option value='RadioButton'>RadioButton</option></select>  </div></div>";
 
                     }
 
@@ -1159,7 +1159,7 @@ namespace WillAssure.Models
                             if (va.ToString() != "")
                             {
 
-                                data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text'  class='form-control' name='column'  value=" + va[1].ToString() + "  />  <input type='hidden' name='tblcol'  class='form-control'  value=" + va[0].ToString() + "  />  </div></div>";
+                                data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text'  class='form-control input-shadow' name='column'  value=" + va[1].ToString() + "  />  <input type='hidden' name='tblcol'  class='form-control input-shadow'  value=" + va[0].ToString() + "  />  </div></div>";
                                 break;
                             }
 
@@ -1171,7 +1171,7 @@ namespace WillAssure.Models
                     Form.AmountControls = dt.Rows[0]["AmountControls"].ToString();
                     if (Form.AmountControls != "")
                     {
-                        data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text' class='form-control' name='control'  value=" + Form.AmountControls + "  /> <select class='form-control' id='ddlcontrols' style='display:none'><option value=''>--Select--</option><option value='TextBox'>TextBox</option> <option value='TextArea'>TextArea</option> <option value='DatePicker'>DatePicker</option> <option value='CheckBox'>CheckBox</option> <option value='RadioButton'>RadioButton</option></select>  </div></div>";
+                        data = data + "<div class='col-sm-6'>  <div class='form-group'> <input type='text' class='form-control input-shadow' name='control'  value=" + Form.AmountControls + "  /> <select class='form-control input-shadow' id='ddlcontrols' style='display:none'><option value=''>--Select--</option><option value='TextBox'>TextBox</option> <option value='TextArea'>TextArea</option> <option value='DatePicker'>DatePicker</option> <option value='CheckBox'>CheckBox</option> <option value='RadioButton'>RadioButton</option></select>  </div></div>";
 
                     }
 

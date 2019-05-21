@@ -32,7 +32,7 @@
                     <div class="card-body">
 
                         <div class="card-title text-primary">Codocil</div>
-                        <hr>
+                        <hr class="div_rd">
 
                         <input type="hidden" name="name" id="userid" value="@Session["uuid"]" />
 
@@ -60,7 +60,7 @@
                                    new SelectListItem() {Text = "assets", Value="assets"},
                                    new SelectListItem() {Text = "executors", Value="executors"},
                                     new SelectListItem() {Text = "guardian", Value="guardian"},
-                                   new SelectListItem() {Text = "liabilities", Value="liabilities"}}, new { @class = "form-control validate[required]" , @id="ddlselection" , onchange="getselectionval(this.value)" })
+                                   new SelectListItem() {Text = "liabilities", Value="liabilities"}}, new { @class = "form-control input-shadow validate[required]" , @id="ddlselection" , onchange="getselectionval(this.value)" })
 
 
                                     </div>
@@ -78,7 +78,7 @@
                                     <div class="form-group">
                                         <label for="input-1">Old Details</label>
 
-                                        @Html.TextAreaFor(x => x.olddetails, new { @class = "form-control", @id = "olddetails", onchange = "getolddetails(this.value)" })
+                                        @Html.TextAreaFor(x => x.olddetails, new { @class = "form-control input-shadow", @id = "olddetails", onchange = "getolddetails(this.value)" })
 
                                     </div>
                                 </div>
@@ -88,7 +88,7 @@
                                     <div class="form-group">
                                         <label for="input-1">New Details</label>
 
-                                        @Html.TextAreaFor(x => x.newdetails, new { @class = "form-control", @id = "newdetails", onchange = "getnewdetails(this.value)" })
+                                        @Html.TextAreaFor(x => x.newdetails, new { @class = "form-control input-shadow", @id = "newdetails", onchange = "getnewdetails(this.value)" })
 
                                     </div>
                                 </div>
@@ -105,7 +105,7 @@
                         </div>
 
 
-                        <textarea class="form-control" style="display:none;" id="appendquery"></textarea>
+                        <textarea class="form-control input-shadow" style="display:none;" id="appendquery"></textarea>
 
                         <br />
 
