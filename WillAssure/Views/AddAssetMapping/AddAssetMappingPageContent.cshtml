@@ -155,9 +155,17 @@
                             <div class="row">
                                 <div class='col-sm-1'><label for='input-1' style="line-height:40px;">Testator <span id='errproportion' style='color:red;display:;'>(*)</span></label></div>
                                 <div class="col-sm-3">
-                                    <select id='DDLTestator' name="contentList" onchange="getDDLTestator(this.value)" class='form-control validate[required]'></select>
-                                    @Html.HiddenFor(m => m.ddltid, new { id = "ddltid" })
-                                    @Html.HiddenFor(m => m.ddltestatorname, new { id = "ddltestatorname" })
+                                    @if (Session["Type"].ToString() == "DistributorAdmin" || Session["Type"].ToString() == "SuperAdmin")
+                                    {
+                                        <input type="text" readonly="true" name="ddltestatorname" class="form-control" value="@Session["disttestator"].ToString()" />
+                                        <input type="hidden" name="ddltid" value="@Session["distid"].ToString()" />
+                                    }
+                                    else
+                                    {
+                                        <select id='DDLTestator' onchange="getDDLTestator(value)" name="contentList" class='form-control input-shadow validate[required]'></select>
+                                        @Html.HiddenFor(m => m.ddltid, new { id = "ddltid", @name = "ddlTid" })
+                                        @Html.HiddenFor(m => m.ddltestatorname, new { id = "ddltestatorname" })
+                                    }
                                     <input type="hidden" id="txtcount" name="name" value="" />
                                 </div>
 
@@ -231,7 +239,7 @@
                                 </div>
                             </div>
 
-                            <a href="@Url.Action("AddAppointeesIndex","AddAppointees")"><button type="button" style="display:;" id="btnnext" class="btn btn-danger shadow-primary px-5">Next&nbsp;&nbsp;<i class="icon-arrow-right-circle"></i></button></a>
+                            <a href="@Url.Action("AddNomineeIndex","AddNominee")"><button type="button" style="display:;" id="btnnext" class="btn btn-danger shadow-primary px-5">Next&nbsp;&nbsp;<i class="icon-arrow-right-circle"></i></button></a>
 
                             @*<div class="card-body" id="fetchdata">
                                     <div class='col-sm-3' id="type">

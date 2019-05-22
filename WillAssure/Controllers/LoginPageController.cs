@@ -325,6 +325,11 @@ namespace WillAssure.Controllers
             Session["distidbal"] = "";
 
 
+            // for distributor text box
+            Session["disttestator"] = "";
+            Session["distid"] = "";
+
+
             return View("~/Views/LoginPage/LoginPageContent.cshtml");
         }
 

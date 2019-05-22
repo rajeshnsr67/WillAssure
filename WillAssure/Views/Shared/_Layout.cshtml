@@ -411,9 +411,23 @@
 
                     @if (Session["Type"].ToString() != "Testator")
                     {
-
-
                         <li>
+                            <a href=@Url.Action("DashBoardIndex", "DashBoard") class="waves-effect">
+                                <i class="zmdi zmdi-view-dashboard"></i> <span>Dashboard</span> <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+
+                        </li>
+                        <li>
+                            <a href="javaScript:void();" class="waves-effect">
+                                <i class="zmdi zmdi-format-list-bulleted"></i> <span>Client</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="sidebar-submenu">
+                                <li><a href="/AddTestatorsForm/AddTestatorsFormIndex"><i class="zmdi zmdi-star-outline"></i>Add Client</a></li>
+                            </ul>
+
+                        </li>
+                        <li id="testlist">
                             <a href="javaScript:void();" class="waves-effect">
                                 <i class="zmdi zmdi-format-list-bulleted"></i> <span>Create Document</span>
                                 <i class="fa fa-angle-left pull-right"></i>
@@ -431,10 +445,72 @@
                     }
 
 
+                    @if (Session["Type"].ToString() == "DistributorAdmin")
+                    {
+
+
+
+                        <li>
+                            <a href="javaScript:void();" class="waves-effect">
+                                <i class="zmdi zmdi-format-list-bulleted"></i> <span>Create Document</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="sidebar-submenu">
+                                <li><a href="@Url.Action("EditTestatorIndex","EditTestator", new { doctype = "Will" })"><i class="zmdi zmdi-star-outline"></i>Create Will</a></li>
+                                <li><a href="@Url.Action("CodocilIndex","Codocil")"><i class="zmdi zmdi-star-outline"></i>Create Codocil</a></li>
+                                <li><a href="@Url.Action("EditTestatorIndex","EditTestator", new { doctype = "POA" } )"><i class="zmdi zmdi-star-outline"></i>POA</a></li>
+                                <li><a href="@Url.Action("EditTestatorIndex","EditTestator", new { doctype = "GiftDeeds" })"><i class="zmdi zmdi-star-outline"></i>Gift Deeds</a></li>
+                                <li><a href="@Url.Action("LivingWillIndex","LivingWill", new { doctype = "LivingWill" })"><i class="zmdi zmdi-star-outline"></i>Living Will</a></li>
+
+                            </ul>
+                        </li>
+
+
+                        <script>
+                            $("#testlist").hide();
+                        </script>
+
+                    }
+
+
+
+
+                    @if (Session["Type"].ToString() == "SuperAdmin")
+                    {
+
+
+
+                        <li>
+                            <a href="javaScript:void();" class="waves-effect">
+                                <i class="zmdi zmdi-format-list-bulleted"></i> <span>Create Document</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="sidebar-submenu">
+                                <li><a href="@Url.Action("EditTestatorIndex","EditTestator", new { doctype = "Will" })"><i class="zmdi zmdi-star-outline"></i>Create Will</a></li>
+                                <li><a href="@Url.Action("CodocilIndex","Codocil")"><i class="zmdi zmdi-star-outline"></i>Create Codocil</a></li>
+                                <li><a href="@Url.Action("EditTestatorIndex","EditTestator", new { doctype = "POA" } )"><i class="zmdi zmdi-star-outline"></i>POA</a></li>
+                                <li><a href="@Url.Action("EditTestatorIndex","EditTestator", new { doctype = "GiftDeeds" })"><i class="zmdi zmdi-star-outline"></i>Gift Deeds</a></li>
+                                <li><a href="@Url.Action("LivingWillIndex","LivingWill", new { doctype = "LivingWill" })"><i class="zmdi zmdi-star-outline"></i>Living Will</a></li>
+
+                            </ul>
+                        </li>
+
+
+                        <script>
+                            $("#testlist").hide();
+                        </script>
+
+                    }
+
+
                     @if (ViewBag.showtitle == "true")
                     {
                         <li class="sidebar-header">Visitor Information</li>
                     }
+
+           
+
+
                     @if (ViewBag.collapse != "true")
                     {
                         if (Session["Type"].ToString() != "Testator")

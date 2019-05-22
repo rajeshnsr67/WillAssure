@@ -20,7 +20,7 @@ namespace WillAssure.Controllers
         // GET: UpdateTestatorFamily
         public ActionResult UpdateTestatorFamilyIndex(int NestId)
         {
-
+            ViewBag.collapse = "true";
             // check type 
             string typ = "";
             con.Open();
@@ -469,7 +469,7 @@ namespace WillAssure.Controllers
             cmd.Parameters.AddWithValue("@DOB", dat);
             cmd.Parameters.AddWithValue("@Marital_Status", "none");
             cmd.Parameters.AddWithValue("@Religion", "none");
-            cmd.Parameters.AddWithValue("@Relationship", "None");
+            cmd.Parameters.AddWithValue("@Relationship", TFM.RelationshipTxt);
             cmd.Parameters.AddWithValue("@Address1", TFM.Address1);
             cmd.Parameters.AddWithValue("@Address2", TFM.Address2);
             cmd.Parameters.AddWithValue("@Address3", TFM.Address3);

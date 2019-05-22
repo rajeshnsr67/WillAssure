@@ -43,46 +43,59 @@
                             <div class="card-header"><i class="fa fa-table"></i>Testator Data</div>
                         }
                     }
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table id="default-datatable" class="table table-bordered">
-                                <thead>
-                                    <tr class="ui-widget-header">
-                                        <th>tId</th>
-                                        <th>First_Name</th>
-                                        <th>Last_Name</th>
-                                        <th>Middle_Name</th>
-                                        <th>DOB</th>
-                                        <th>Occupation</th>
-                                        <th>Mobile</th>
-                                        <th>Email</th>
-                                        <th>maritalStatus</th>
-                                        <th>Relationship</th>
-                                        <th>Religion</th>
-                                        <th>Identity_Proof</th>
-                                        <th>Identity_proof_Value</th>
-                                        <th>Alt_Identity_Proof</th>
-                                        <th>Alt_Identity_proof_Value</th>
-                                        <th>Gender</th>
-                                        <th>Address1</th>
-                                        <th>Address2</th>
-                                        <th>Address3</th>
-                                        <th>City</th>
-                                        <th>State</th>
-                                        <th>Country</th>
-                                        <th>Pin</th>
-                                        <th>active</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="TestatorFormData"></tbody>
-                            </table>
-                        </div>
-                    </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-sm-1"></div><div class='col-sm-2'><label for='input-1' style="line-height:40px;"><i class="fa fa-user-circle-o  " aria-hidden="true"></i>Distributor</label></div>
+                                    <div class='col-sm-3'>
+                                        <select id="ddlDistributor" class="form-control input-shadow validate[required]">
+                                            <option value="">--Select Distributor--</option>
+                                        </select>
+
+                                    </div>
+                                </div>
+                                <hr class="div_rd">
+                                @Html.HiddenFor(m => m.distributor_id, new { id = "distributor_id" })
+                                @Html.HiddenFor(m => m.distributor_txt, new { id = "distributor_txt" })
+
+                                <div class="table-responsive">
+                                    <table id="default-datatable" class="table table-bordered">
+                                        <thead>
+                                            <tr class="ui-widget-header">
+                                                <th>tId</th>
+                                                <th>First_Name</th>
+                                                <th>Last_Name</th>
+                                                <th>Middle_Name</th>
+                                                <th>DOB</th>
+                                                <th>Occupation</th>
+                                                <th>Mobile</th>
+                                                <th>Email</th>
+                                                <th>maritalStatus</th>
+                                                <th>Relationship</th>
+                                                <th>Religion</th>
+                                                <th>Identity_Proof</th>
+                                                <th>Identity_proof_Value</th>
+                                                <th>Alt_Identity_Proof</th>
+                                                <th>Alt_Identity_proof_Value</th>
+                                                <th>Gender</th>
+                                                <th>Address1</th>
+                                                <th>Address2</th>
+                                                <th>Address3</th>
+                                                <th>City</th>
+                                                <th>State</th>
+                                                <th>Country</th>
+                                                <th>Pin</th>
+                                                <th>active</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="TestatorFormData"></tbody>
+                                    </table>
+                                </div>
+                            </div>
                 </div>
             </div>
         </div><!-- End Row-->
-
+        <input type="hidden" name="name" id="txttype" value="@Session["Type"].ToString()" />
         <input type="button" style="display:none;" id="btndeletetestator" name="name" value="" />
         <button style="display:none;" class="btn btn-outline-primary btn-block m-1" id="btnpay" data-toggle="modal" data-target="#primarymodal2">Primary</button>
     </div>
@@ -113,6 +126,19 @@
 
                 $(".1").hide();
 
+                var v = $("#txttype").val();
+               
+                if (v == "DistributorAdmin") {
+
+                    $(".Editbtn").html('Update').addClass("btn btn-success");
+                }
+
+
+                if (v == "SuperAdmin") {
+
+                    $(".Editbtn").html('Update').addClass("btn btn-success");
+                }
+               
             }
         });
 
@@ -388,7 +414,7 @@
                         <button type="submit" id="alert-success" formaction="insertDocumentDetails" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i>Submit</button>
                     </div>
                 </div>
-               
+
             }
         </div>
     </div>
@@ -444,6 +470,11 @@
 @*end*@
 
 
+
+
+
+
+
 <script>
     $(document).ready(function () {
         $("#testatordocument").validationEngine();
@@ -452,7 +483,7 @@
 
 <script>
 
-   
+
 
     $("#checkone").click(function () {
 
@@ -558,7 +589,7 @@
 
         var tid = $("#tId").val();
 
-     
+
         $("#lblerrmsg").hide();
         var entertxt = $("#txtcoupon").val();
         var data = tid + "~" + entertxt;
@@ -613,4 +644,44 @@
     }
 
 
+
+
+    	$(document).ready(function () {
+
+        $.ajax({
+
+            type: "POST",
+            url:"@Url.Action("BindDistributorDDL", "EditTestator")",
+            success: function (data) {
+                $('#ddlDistributor').empty().append(data);
+            }
+        });
+
+
+    });
+
+
+    $("#ddlDistributor").change(function () {
+            var value = $(this).children(":selected").attr("value");
+        var text = $("#ddlDistributor option:selected").html();
+
+        $("#distributor_txt").val(text);
+        $("#distributor_id").val(value);
+
+
+
+           $.ajax({
+
+            type: "POST",
+            url: "@Url.Action("FilterTestatordata", "EditTestator")",
+            data: {"send":""+value+""},
+            success: function (data) {
+                $('#TestatorFormData').empty().append(data);
+            }
+        });
+
+
+    });
+
 </script>
+

@@ -121,17 +121,22 @@ namespace WillAssure.Controllers
             ViewBag.documentlink = "true";
             ViewBag.collapse = "true";
 
-            if (Session["doctype"].ToString() == "Will")
+            if (Session["Type"].ToString() != "DistributorAdmin")
             {
-                ViewBag.view = "Will";
-            }
+                if (Session["doctype"].ToString() == "Will")
+                {
+                    ViewBag.view = "Will";
+                }
 
 
-            if (Session["doctype"].ToString() == "POA" || Session["doctype"].ToString() == "GiftDeeds")
-            {
-                ViewBag.view = "POA";
-                ViewBag.view = "GiftDeeds";
+                if (Session["doctype"].ToString() == "POA" || Session["doctype"].ToString() == "GiftDeeds")
+                {
+                    ViewBag.view = "POA";
+                    ViewBag.view = "GiftDeeds";
+                }
             }
+
+            
             return View("~/Views/EditNominee/EditNomineePageContent.cshtml");
         }
 

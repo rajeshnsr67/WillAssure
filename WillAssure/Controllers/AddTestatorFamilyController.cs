@@ -22,6 +22,8 @@ namespace WillAssure.Controllers
         // GET: AddTestatorFamily
         public ActionResult AddTestatorFamilyIndex()
         {
+           
+
             ViewBag.collapse = "true";
             // check type 
             string typ = "";
@@ -173,18 +175,22 @@ namespace WillAssure.Controllers
 
             con.Close();
 
-
-            if (Session["doctype"].ToString() == "Will")
+            if (Session["Type"].ToString() != "DistributorAdmin" || Session["Type"].ToString() != "SuperAdmin")
             {
-                ViewBag.view = "Will";
+                if (Session["doctype"].ToString() == "Will" )
+                {
+                    ViewBag.view = "Will";
+                }
+
+
+                if (Session["doctype"].ToString() == "POA" || Session["doctype"].ToString() == "GiftDeeds")
+                {
+                    ViewBag.view = "POA";
+                    ViewBag.view = "GiftDeeds";
+                }
             }
 
-
-            if (Session["doctype"].ToString() == "POA" || Session["doctype"].ToString() == "GiftDeeds")
-            {
-                ViewBag.view = "POA";
-                ViewBag.view = "GiftDeeds";
-            }
+            
 
 
             return View("~/Views/AddTestatorFamily/AddTestatorFamilyPageContent.cshtml");
@@ -445,7 +451,7 @@ namespace WillAssure.Controllers
                 cmd.Parameters.AddWithValue("@DOB", dat);
                 cmd.Parameters.AddWithValue("@Marital_Status", "none");
                 cmd.Parameters.AddWithValue("@Religion", "none");
-                cmd.Parameters.AddWithValue("@Relationship", "None");
+                cmd.Parameters.AddWithValue("@Relationship", TFM.RelationshipTxt);
                 cmd.Parameters.AddWithValue("@Address1", TFM.Address1);
                 cmd.Parameters.AddWithValue("@Address2", TFM.Address2);
                 cmd.Parameters.AddWithValue("@Address3", TFM.Address3);

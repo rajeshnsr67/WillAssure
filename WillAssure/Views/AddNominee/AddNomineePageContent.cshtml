@@ -94,12 +94,20 @@
                             <input type="hidden" id="txtcheck" value="" name="name" />
                             <div class="row">
                                 <div class="col-sm-1"></div><div class='col-sm-2'><label for='input-1' style="line-height:40px;"><i class="fa fa-user-circle-o  " aria-hidden="true"></i>Testator</label></div>
-                                <div class='col-sm-3'>
-                                    <select id='DDLTestator' onchange="getDDLTestator(value)" name="contentList" class='form-control input-shadow validate[required]'></select>
+                                                            <div class='col-sm-3'>
+                                                                @if (Session["Type"].ToString() == "DistributorAdmin" || Session["Type"].ToString() == "SuperAdmin")
+                                                                {
+                                                                    <input type="text" readonly="true" name="ddltestatorname" class="form-control" value="@Session["disttestator"].ToString()" />
+                                                                    <input type="hidden" name="ddltid" value="@Session["distid"].ToString()" />
+                                                                }
+                                                                else
+                                                                {
+                                                                    <select id='DDLTestator' onchange="getDDLTestator(value)" name="contentList" class='form-control input-shadow validate[required]'></select>
+                                                                }
 
 
 
-                                </div>
+                                                            </div>
 
                             </div>
 
@@ -609,7 +617,7 @@
 
             $("#btnnomineeinsertsuccess").click(); //trigger event after listening to it.
 
-
+            $("#btnnext").show();
 
 
         });

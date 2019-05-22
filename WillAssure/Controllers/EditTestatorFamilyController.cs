@@ -121,17 +121,23 @@ namespace WillAssure.Controllers
 
             ViewBag.documentlink = "true";
             ViewBag.collapse = "true";
-            if (Session["doctype"].ToString() == "Will")
+
+            if (Session["Type"].ToString() != "DistributorAdmin")
             {
-                ViewBag.view = "Will";
-            }
+                if (Session["doctype"].ToString() == "Will")
+                {
+                    ViewBag.view = "Will";
+                }
 
 
-            if (Session["doctype"].ToString() == "POA" || Session["doctype"].ToString() == "GiftDeeds")
-            {
-                ViewBag.view = "POA";
-                ViewBag.view = "GiftDeeds";
+                if (Session["doctype"].ToString() == "POA" || Session["doctype"].ToString() == "GiftDeeds")
+                {
+                    ViewBag.view = "POA";
+                    ViewBag.view = "GiftDeeds";
+                }
             }
+
+            
             return View("/Views/EditTestatorFamily/EditTestatorFamilyPageContent.cshtml");
         }
 
@@ -555,7 +561,7 @@ namespace WillAssure.Controllers
 
             for (int i = 0; i < Lmlist.Count(); i++)
             {
-                testString = Lmlist[16].Action;
+                testString = Lmlist[20].Action;
 
             }
 
@@ -1179,7 +1185,7 @@ namespace WillAssure.Controllers
 
             for (int i = 0; i < Lmlist.Count(); i++)
             {
-                testString = Lmlist[16].Action;
+                testString = Lmlist[20].Action;
 
             }
 

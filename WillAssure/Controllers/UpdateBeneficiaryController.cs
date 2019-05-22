@@ -22,7 +22,7 @@ namespace WillAssure.Controllers
 
         public ActionResult UpdateBeneficiaryIndex(int NestId)
         {
-
+            ViewBag.Collapse = "true";
             // check type 
             string typ = "";
             con.Open();

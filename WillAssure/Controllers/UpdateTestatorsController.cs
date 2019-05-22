@@ -23,7 +23,11 @@ namespace WillAssure.Controllers
         // GET: UpdateTestators
         public ActionResult UpdateTestatorsIndex(int NestId)
         {
+            ViewBag.collapse = "true";
             ViewBag.cod = "true";
+
+           
+            
             //if (NestId == 0)
             //{
                 int getid = Convert.ToInt32(Session["uuid"]);
@@ -203,7 +207,14 @@ namespace WillAssure.Controllers
             if (dt.Rows.Count > 0)
             {
                        TFM.tId = NestId;
-                       TFM.First_Name = dt.Rows[0]["First_Name"].ToString();
+
+               
+                      TFM.First_Name = dt.Rows[0]["First_Name"].ToString();
+                    if (Session["Type"].ToString() == "DistributorAdmin" || Session["Type"].ToString() == "SuperAdmin")
+                    {
+                        Session["distid"] = NestId;
+                        Session["disttestator"] = TFM.First_Name;
+                    }
                        TFM.Last_Name =  dt.Rows[0]["Last_Name"].ToString();
                        TFM.Middle_Name = dt.Rows[0]["Middle_Name"].ToString();
               

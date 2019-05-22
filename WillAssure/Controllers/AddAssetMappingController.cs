@@ -180,28 +180,31 @@ namespace WillAssure.Controllers
 
             con.Close();
 
-
-            if (Session["doctype"].ToString() == "Will")
+            if (Session["Type"].ToString() != "DistributorAdmin")
             {
-                ViewBag.view = "Will";
-            }
+                if (Session["doctype"].ToString() == "Will")
+                {
+                    ViewBag.view = "Will";
+                }
 
 
-            if (Session["doctype"].ToString() == "POA" || Session["doctype"].ToString() == "GiftDeeds")
-            {
-                ViewBag.view = "POA";
-                ViewBag.view = "GiftDeeds";
-            }
-            if (Session["doctype"].ToString() == "Will")
-            {
-                ViewBag.view = "Will";
-            }
+                if (Session["doctype"].ToString() == "POA" || Session["doctype"].ToString() == "GiftDeeds")
+                {
+                    ViewBag.view = "POA";
+                    ViewBag.view = "GiftDeeds";
+                }
+                if (Session["doctype"].ToString() == "Will")
+                {
+                    ViewBag.view = "Will";
+                }
 
 
-            if (Session["doctype"].ToString() == "POA" || Session["doctype"].ToString() == "GiftDeeds")
-            {
-                ViewBag.view = "POA";
-                ViewBag.view = "GiftDeeds";
+                if (Session["doctype"].ToString() == "POA" || Session["doctype"].ToString() == "GiftDeeds")
+                {
+                    ViewBag.view = "POA";
+                    ViewBag.view = "GiftDeeds";
+                }
+
             }
 
             return View("~/Views/AddAssetMapping/AddAssetMappingPageContent.cshtml");
@@ -1187,6 +1190,12 @@ namespace WillAssure.Controllers
             string instrument = response.Split('~')[4];
             string proportion = response.Split('~')[5];
             tid = Convert.ToString(response.Split('~')[6]);
+
+            if (tid == "" || tid == null || tid == "undefined")
+            {
+                tid = Session["distid"].ToString();
+            }
+
             assetcat = Convert.ToString(response.Split('~')[7]);
 
             con.Open();
