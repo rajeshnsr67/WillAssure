@@ -284,7 +284,7 @@
                                 <div class="col-sm-3"></div>
                                 <div class="col-sm-3">
                                     <div class="form-group">
-                                        <label for="input-3">Gender</label>
+                                 
                                         @Html.DropDownListFor(x => x.Gender, new SelectListItem[]{
                                         new SelectListItem() {Text = "--Select--", Value=""},
                                         new SelectListItem() {Text = "Male", Value="Male"},
@@ -296,7 +296,7 @@
 
                                 <div class="col-sm-3">
                                     <div class="form-group">
-                                        <label for="input-3">Occupation</label>
+                                        
                                         @Html.TextBoxFor(m => m.Occupation, new { @class = "form-control input-shadow  text-input validate[required]", @id = "txtoccupation", @placeholder = "Enter Occupation", @autocomplete = "off" })
                                     </div>
                                 </div>
@@ -305,7 +305,7 @@
 
                                 <div class="col-sm-3">
                                     <div class="form-group">
-                                        <label for="input-3">Relationship</label>
+                                       
                                         <select id="ddlrelation" class="form-control input-shadow validate[required]">
                                             <option value="">--Select--</option>
                                         </select>
@@ -369,7 +369,7 @@
                                 <div class="col-sm-3"></div>
                                 <div class="col-sm-9">
                                     <div class="form-group">
-                                        <label for="input-3">Address 1</label>
+                                     
                                         @Html.TextAreaFor(m => m.Address1, new { @class = "form-control input-shadow  text-input validate[required]", @id = "txtaddress1", @placeholder = "Enter Address1", @autocomplete = "off" })
                                     </div>
                                 </div>
@@ -378,7 +378,7 @@
                                 <div class="col-sm-3"></div>
                                 <div class="col-sm-9">
                                     <div class="form-group">
-                                        <label for="input-3">Address 2</label>
+                                      
                                         @Html.TextAreaFor(m => m.Address2, new { @class = "form-control input-shadow  text-input ", @id = "txtaddress2", @placeholder = "Enter Address2", @autocomplete = "off" })
                                     </div>
                                 </div>
@@ -388,7 +388,7 @@
                                 <div class="col-sm-3"></div>
                                 <div class="col-sm-9">
                                     <div class="form-group">
-                                        <label for="input-3">Address 3</label>
+                                     
                                         @Html.TextAreaFor(m => m.Address3, new { @class = "form-control input-shadow  text-input", @id = "txtaddress3", @placeholder = "Enter Address3", @autocomplete = "off" })
                                     </div>
                                 </div>
@@ -404,7 +404,7 @@
 
                                 <div class="col-sm-3">
                                     <div class="form-group">
-                                        <label for="input-3">Identity Proof</label>
+                                    
                                         @Html.DropDownListFor(x => x.Identity_Proof, new SelectListItem[]{
                                    new SelectListItem() {Text = "--Select Identity Proof--", Value=""},
                                    new SelectListItem() {Text = "Aadhaar Card", Value="Aadhaar Card"},
@@ -675,7 +675,7 @@
                                     <div class="col-sm-3"></div>
                                     <div class="col-sm-9">
                                         <div class="form-group">
-                                            <label for="input-3">Address 1</label>
+                                           
                                             @Html.TextAreaFor(m => m.altAddress1, new { @class = "form-control input-shadow validate[required]  text-input", @id = "txtaddress2", @placeholder = "Enter Address1", @autocomplete = "off" })
                                         </div>
                                     </div>
@@ -684,7 +684,7 @@
                                     <div class="col-sm-3"></div>
                                     <div class="col-sm-9">
                                         <div class="form-group">
-                                            <label for="input-3">Address 2</label>
+                                        
                                             @Html.TextAreaFor(m => m.altAddress2, new { @class = "form-control input-shadow   text-input", @id = "txtaddress2", @placeholder = "Enter Address2", @autocomplete = "off" })
                                         </div>
                                     </div>
@@ -694,7 +694,7 @@
                                     <div class="col-sm-3"></div>
                                     <div class="col-sm-9">
                                         <div class="form-group">
-                                            <label for="input-3">Address 3</label>
+                                           
                                             @Html.TextAreaFor(m => m.altAddress3, new { @class = "form-control input-shadow  text-input", @id = "txtaddress3", @placeholder = "Enter Address3", @autocomplete = "off" })
                                         </div>
                                     </div>

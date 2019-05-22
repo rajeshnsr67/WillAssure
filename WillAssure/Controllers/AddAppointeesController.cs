@@ -253,21 +253,14 @@ namespace WillAssure.Controllers
 
             con.Close();
 
-            if (Session["Type"].ToString() != "DistributorAdmin")
-            {
-                if (Session["doctype"].ToString() == "Will")
-                {
                     ViewBag.view = "Will";
-                }
+             
 
 
-                if (Session["doctype"].ToString() == "POA" || Session["doctype"].ToString() == "GiftDeeds")
-                {
+            
                     ViewBag.view = "POA";
                     ViewBag.view = "GiftDeeds";
-                }
-            }
-
+           
             
             return View("/Views/AddAppointees/AddAppointeesPageContent.cshtml");
         }

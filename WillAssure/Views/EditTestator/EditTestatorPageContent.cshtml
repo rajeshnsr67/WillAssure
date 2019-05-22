@@ -677,6 +677,7 @@
             data: {"send":""+value+""},
             success: function (data) {
                 $('#TestatorFormData').empty().append(data);
+                $(".Editbtn").html('Update').addClass("btn btn-success");
             }
         });
 

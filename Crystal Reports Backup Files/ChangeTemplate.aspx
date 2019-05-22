@@ -17,7 +17,7 @@
         <center><h4>Template Selection</h4></center>
              <br />
        <center> 
-            <asp:DropDownList runat="server" ID="ddltemplate" Width="400" CssClass="form-control">
+            <asp:DropDownList runat="server" ID="ddltemplate" Width="400" CssClass="form-control input-shadow">
                 <asp:ListItem Value="0" Text="--Select Template--" />
                 <asp:ListItem Value="1" Text="WillTestator1" />
                 <asp:ListItem Value="2" Text="WillTestator2" />
