@@ -22,7 +22,7 @@ namespace WillAssure.Controllers
         public ActionResult AddBeneficiaryIndex()
         {
             ViewBag.collapse = "true";
-            // check type 
+            // check type fsdf
             string typ = "";
             con.Open();
             string qq1 = "select Type from users where uId = " + Convert.ToInt32(Session["uuid"]) + " ";
