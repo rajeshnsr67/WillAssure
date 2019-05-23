@@ -16,6 +16,11 @@
          swal("Verified!", "Details Has Been Send For Verification", "success");
      });
 
+
+     $("#successcheck").click(function () {
+         swal("Verified!", "Testator Credentials Created Please Check The Email", "success");
+     });
+
               $("#btnOTPCheckSUCCESS").click(function(){
                   swal("Verified!", "Your OTP has Been Verified!,", "success");
               });

@@ -32,10 +32,12 @@
                                     <a href="@Url.Action("AddTestatorFamilyIndex","AddTestatorFamily")"><li style="color:black;">Testator Family ></li></a>
                                     <a href="@Url.Action("AddBeneficiaryIndex","AddBeneficiary")"><li style="color:black;">Beneficiary ></li></a>
                                     <a href="@Url.Action("AddMainAssetsIndex","AddMainAssets")"><li style="color:black">AssetInformation ></li></a>
+                                    <a href="@Url.Action("AddLiabilitiesIndex","AddLiabilities")"><li style="color:black;">Liabilites></li></a>
+                                    <a href="@Url.Action("AddPetCareIndex","AddPetCare")"><li style="color:black">PetCare ></li></a>
                                     <a href="@Url.Action("AddAssetMappingIndex","AddAssetMapping")"><li style="color:black">Mapping ></li></a>
                                     <a href="@Url.Action("AddNomineeIndex","AddNominee")"><li style="">Nominee ></li></a>
-                                    <li style="color:#e1e1e1">Appointees </li>
-
+                                    <li style="color:#e1e1e1">Appointees > </li>
+                                    <li style="color:#e1e1e1">Document</li>
 
 
                                 </ul>
@@ -53,10 +55,12 @@
                                     <a href="@Url.Action("AddTestatorFamilyIndex","AddTestatorFamily")"><li style="color:black;">Testator Family ></li></a>
                                     <a href="@Url.Action("AddBeneficiaryIndex","AddBeneficiary")"><li style="color:black;">Beneficiary ></li></a>
                                     <a href="@Url.Action("AddMainAssetsIndex","AddMainAssets")"><li style="color:black">AssetInformation ></li></a>
+                                    <a href="@Url.Action("AddLiabilitiesIndex","AddLiabilities")"><li style="color:black;">Liabilites></li></a>
+                                    <a href="@Url.Action("AddPetCareIndex","AddPetCare")"><li style="color:black">PetCare ></li></a>
                                     <a href="@Url.Action("AddAssetMappingIndex","AddAssetMapping")"><li style="color:black">Mapping ></li></a>
                                     <a href="@Url.Action("AddNomineeIndex","AddNominee")"><li style="">Nominee ></li></a>
-                                    <li style="color:#e1e1e1">Appointees </li>
-
+                                    <li style="color:#e1e1e1">Appointees > </li>
+                                    <li style="color:#e1e1e1">Document</li>
 
 
                                 </ul>
@@ -89,8 +93,7 @@
                         @using (Html.BeginForm("InsertNomineeData", null, FormMethod.Post, new { id = "NomineeForm" }))
                         {
 
-                            @Html.HiddenFor(m => m.ddltid, new { id = "ddltid" })
-                            @Html.HiddenFor(m => m.ddltestatorname, new { id = "ddltestatorname" })
+                          
                             <input type="hidden" id="txtcheck" value="" name="name" />
                             <div class="row">
                                 <div class="col-sm-1"></div><div class='col-sm-2'><label for='input-1' style="line-height:40px;"><i class="fa fa-user-circle-o  " aria-hidden="true"></i>Testator</label></div>
@@ -98,11 +101,13 @@
                                                                 @if (Session["Type"].ToString() == "DistributorAdmin" || Session["Type"].ToString() == "SuperAdmin")
                                                                 {
                                                                     <input type="text" readonly="true" name="ddltestatorname" class="form-control" value="@Session["disttestator"].ToString()" />
-                                                                    <input type="hidden" name="ddltid" value="@Session["distid"].ToString()" />
+                                                                    <input type="hidden" id="tid" name="ddltid" value="@Session["distid"].ToString()" />
                                                                 }
                                                                 else
                                                                 {
                                                                     <select id='DDLTestator' onchange="getDDLTestator(value)" name="contentList" class='form-control input-shadow validate[required]'></select>
+                                                                    @Html.HiddenFor(m => m.ddltid, new { id = "ddltid" })
+                                                                    @Html.HiddenFor(m => m.ddltestatorname, new { id = "ddltestatorname" })
                                                                 }
 
 
@@ -549,6 +554,43 @@
 <script>
 
     $(document).ready(function () {
+
+
+
+              var val = $("#tid").val();
+
+        var checkstatus =  $("#txtcheck").val();
+    
+             $.ajax({
+
+            type: "POST",
+            url:"@Url.Action("CheckTestatorUsers", "AddNominee")",
+                 data: { value: val, checkstatus: checkstatus },
+            success: function (data) {
+
+                if (data == 2) {
+
+                    $("#confirmtestatorfamily").on("click", function () { });
+
+                    $("#confirmtestatorfamily").click(); 
+
+                    $("#btnnext").show();
+                 
+                }
+
+
+
+
+
+
+
+            }
+        });
+
+
+
+
+
 
         $.ajax({
 

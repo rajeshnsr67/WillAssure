@@ -50,8 +50,8 @@
                                 <li style="color:#e1e1e1">PetCare ></li>
                                 <li style="color:#e1e1e1">Mapping ></li>
                                 <li style="color:#e1e1e1">Nominee ></li>
-                                <li style="color:#e1e1e1">Appointees </li>
-
+                                <li style="color:#e1e1e1">Appointees > </li>
+                                <li style="color:#e1e1e1">Document</li>
 
 
                             </ul>
@@ -59,20 +59,22 @@
                             else
 
                             {
-                                <ul id="menu" style="font-weight:bold;">
+                            <ul id="menu" style="font-weight:bold;">
 
 
-                                    <a href="@Url.Action("UpdateTestatorsIndex","UpdateTestators" , new { NestId = Convert.ToInt32(Session["uuid"]) })"><li style="color:black;">Testator></li></a>
-                                    <a href="@Url.Action("AddTestatorFamilyIndex","AddTestatorFamily")"> <li>Testator Family ></li></a>
-                                    <li style="color:#e1e1e1">Beneficiary ></li>
-                                    <li style="color:#e1e1e1">AssetInformation ></li>
-                                    <li style="color:#e1e1e1">Mapping ></li>
-                                    <li style="color:#e1e1e1">Nominee ></li>
-                                    <li style="color:#e1e1e1">Appointees </li>
+                                <a href="@Url.Action("UpdateTestatorsIndex","UpdateTestators" , new { NestId = Convert.ToInt32(Session["uuid"]) })"><li style="color:black;">Testator></li></a>
+                                <a href="@Url.Action("AddTestatorFamilyIndex","AddTestatorFamily")"> <li>Testator Family ></li></a>
+                                <li style="color:#e1e1e1">Beneficiary ></li>
+                                <li style="color:#e1e1e1">AssetInformation ></li>
+                                <li style="color:#e1e1e1">Liabilites></li>
+                                <li style="color:#e1e1e1">PetCare ></li>
+                                <li style="color:#e1e1e1">Mapping ></li>
+                                <li style="color:#e1e1e1">Nominee ></li>
+                                <li style="color:#e1e1e1">Appointees > </li>
+                                <li style="color:#e1e1e1">Document</li>
 
 
-
-                                </ul>
+                            </ul>
                             }
 
                         </h5>
@@ -107,15 +109,11 @@
                                 <div class="col-sm-1"></div><div class='col-sm-2'><label for='input-1' style="line-height:40px;"><i class="fa fa-user-circle-o" aria-hidden="true"></i>Testator</label></div>
                                                             <div class='col-sm-3'>
 
-                                                                @if (Session["Type"].ToString() == "DistributorAdmin" || Session["Type"].ToString() == "SuperAdmin")
-                                                                {
+                                                           
                                                                     <input type="text" readonly="true" name="ddltestatorname" class="form-control" value="@Session["disttestator"].ToString()" />
-                                                                    <input type="hidden" name="ddltid" value="@Session["distid"].ToString()"  />
-                                                                }
-                                                                else
-                                                                {
-                                                                    <select id='DDLTestator' onchange="getDDLTestator(value)" name="contentList" class='form-control input-shadow validate[required]'></select>
-                                                                }
+                                                                    <input type="hidden" name="ddltid" id="tid" value="@Session["distid"].ToString()"  />
+                                                               
+                                                              
 
 
 
@@ -127,8 +125,6 @@
                             <hr class="div_rd">
                             <input type="hidden" id="txtcheck" value="" name="name" />
 
-                            @Html.HiddenFor(m => m.ddltid, new { id = "ddltid" })
-                            @Html.HiddenFor(m => m.ddltestatorname, new { id = "ddltestatorname" })
 
 
 
@@ -197,7 +193,12 @@
 
                             <div class="row">
                                 <div class="col-sm-1"></div>
-                                <div class="col-sm-2"> <label for="input-1"><i class="fa fa-map-marker" aria-hidden="true"></i>Contact Details</label></div>
+                                <div class="col-sm-2">
+                                    <label for="input-1"><i class="fa fa-map-marker" aria-hidden="true"></i>Contact Details</label>
+                                    <label class="radio-inline">
+                                        <input type="checkbox" name="optradio" id="testchk"  >Same As Testator
+                                    </label>
+                                </div>
 
 
                                 <div class="col-sm-3">
@@ -466,8 +467,92 @@
 
 
 <script>
+
+
+    $('input[type="checkbox"]').click(function () {
+
+        var tid = $("#tid").val(); 
+
+
+       
+            if ($(this).prop("checked") == true) {
+                
+             $.ajax({
+
+            type: "POST",
+            url:"@Url.Action("gettestatoraddress", "AddTestatorFamily")",
+            data: {"send":""+tid+""},
+            success: function (data) {
+
+                
+
+                var response = data;
+                var add1 = response.split("~")[0];
+                var add2 = response.split("~")[1];
+                var add3 = response.split("~")[2];
+
+                
+
+                $("#txtAddress1").empty().append(add1);
+                $("#txtAddress2").empty().append(add2);
+                $("#txtAddress3").empty().append(add3);
+
+
+
+            }
+        });
+            }
+            else if ($(this).prop("checked") == false) {
+                $("#txtAddress1").empty();
+                $("#txtAddress2").empty();
+                $("#txtAddress3").empty();
+            }
+ 
+
+       
+
+    });
+
+
+
     $(document).ready(function () {
         $("#FamilyForm").validationEngine();
+
+
+
+       
+        var val = $("#tid").val();
+
+        var checkstatus =  $("#txtcheck").val();
+    
+             $.ajax({
+
+            type: "POST",
+            url:"@Url.Action("CheckTestatorUsers", "AddTestatorFamily")",
+                 data: { value: val, checkstatus: checkstatus },
+            success: function (data) {
+
+                if (data == 2) {
+
+                    $("#confirmtestatorfamily").on("click", function () { });
+
+                    $("#confirmtestatorfamily").click(); 
+
+                    $("#btnnext").show();
+                 
+                }
+
+
+
+
+
+
+
+            }
+        });
+
+
+
     });
 
 
@@ -640,7 +725,7 @@
             $("#btntestatorfamilysubmitSUCCESS").click(); //trigger event after listening to it.
 
 
-            $("#btnnext").show();
+           
 
 
         });
@@ -742,7 +827,10 @@
 
 
         $("#ddltestatorname").val(text);
-        $("#ddltid").val(value);
+          $("#ddltid").val(value);
+
+
+
         var checkstatus =  $("#txtcheck").val();
 
              $.ajax({

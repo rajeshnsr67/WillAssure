@@ -44,18 +44,26 @@
                         }
                     }
                             <div class="card-body">
-                                <div class="row">
-                                    <div class="col-sm-1"></div><div class='col-sm-2'><label for='input-1' style="line-height:40px;"><i class="fa fa-user-circle-o  " aria-hidden="true"></i>Distributor</label></div>
-                                    <div class='col-sm-3'>
-                                        <select id="ddlDistributor" class="form-control input-shadow validate[required]">
-                                            <option value="">--Select Distributor--</option>
-                                        </select>
 
+                                @if (Session["Type"].ToString() == "SuperAdmin")
+                                {
+                                    <div class="row">
+                                        <div class="col-sm-1"></div><div class='col-sm-2'><label for='input-1' style="line-height:40px;"><i class="fa fa-user-circle-o  " aria-hidden="true"></i>Distributor</label></div>
+                                        <div class='col-sm-3'>
+                                            <select id="ddlDistributor" class="form-control input-shadow validate[required]">
+                                                <option value="">--Select Distributor--</option>
+                                            </select>
+
+                                        </div>
                                     </div>
-                                </div>
-                                <hr class="div_rd">
-                                @Html.HiddenFor(m => m.distributor_id, new { id = "distributor_id" })
-                                @Html.HiddenFor(m => m.distributor_txt, new { id = "distributor_txt" })
+
+
+
+                                    <hr class="div_rd">
+                                    @Html.HiddenFor(m => m.distributor_id, new { id = "distributor_id" })
+                                    @Html.HiddenFor(m => m.distributor_txt, new { id = "distributor_txt" })
+                                }
+
 
                                 <div class="table-responsive">
                                     <table id="default-datatable" class="table table-bordered">

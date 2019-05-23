@@ -72,8 +72,8 @@
                                             <a href="@Url.Action("AddPetCareIndex","AddPetCare")"><li style="color:black;">PetCare ></li></a>
                                             <a href="@Url.Action("AddAssetMappingIndex","AddAssetMapping")"><li style="color:black">Mapping ></li></a>
                                             <a href="@Url.Action("AddNomineeIndex","AddNominee")"><li style="color:black">Nominee ></li></a>
-                                            <a href="@Url.Action("AddAppointeesIndex","AddAppointees")"><li style="">Appointees </li></a>
-
+                                            <a href="@Url.Action("AddAppointeesIndex","AddAppointees")"><li style="">Appointees > </li></a>
+                                            <a href="@Url.Action("AddAppointeesIndex","AddAppointees")"><li style="">Document ></li></a>
 
 
                                         </ul>
@@ -93,9 +93,9 @@
                                             <a href="@Url.Action("AddPetCareIndex","AddPetCare")"><li style="color:black;">PetCare ></li></a>
                                             <a href="@Url.Action("AddAssetMappingIndex","AddAssetMapping")"><li style="color:black">Mapping ></li></a>
                                             <a href="@Url.Action("AddNomineeIndex","AddNominee")"><li style="color:black">Nominee ></li></a>
-                                            <a href="@Url.Action("AddAppointeesIndex","AddAppointees")"><li style="">Appointees </li></a>
-
-
+                                            <a href="@Url.Action("AddAppointeesIndex","AddAppointees")"><li style="">Appointees ></li></a>
+                                            <a href="@Url.Action("AddAppointeesIndex","AddAppointees")"><li style="">Document ></li></a>
+                                            <a href="@Url.Action("AddAppointeesIndex","AddAppointees")"><li style="">Document ></li></a>
 
                                         </ul>
                                     </h5>
@@ -112,14 +112,16 @@
                                     <ul id="menu" style="font-weight:bold;">
 
 
-                                        <a href="@Url.Action("AddTestatorsFormIndex","AddTestatorsForm")"><li style="color:black;">Testator></li></a>
+                                        <a href="@Url.Action("UpdateTestatorsIndex","UpdateTestators" , new { NestId = Convert.ToInt32(Session["uuid"]) })"><li style="color:black;">Testator></li></a>
                                         <a href="@Url.Action("AddTestatorFamilyIndex","AddTestatorFamily")"><li style="color:black;">Testator Family ></li></a>
                                         <a href="@Url.Action("AddBeneficiaryIndex","AddBeneficiary")"><li style="color:black;">Beneficiary ></li></a>
                                         <a href="@Url.Action("AddMainAssetsIndex","AddMainAssets")"><li style="color:black;">AssetInformation ></li></a>
+                                        <a href="@Url.Action("AddMainAssetsIndex","AddMainAssets")"><li style="color:black;">Liabilites></li></a>
+                                        <a href="@Url.Action("AddPetCareIndex","AddPetCare")"><li style="color:black;">PetCare ></li></a>
                                         <a href="@Url.Action("AddAssetMappingIndex","AddAssetMapping")"><li style="color:black">Mapping ></li></a>
                                         <a href="@Url.Action("AddNomineeIndex","AddNominee")"><li style="color:black">Nominee ></li></a>
-                                        <a href="@Url.Action("AddAppointeesIndex","AddAppointees")"><li style="">Appointees </li></a>
-
+                                        <a href="@Url.Action("AddAppointeesIndex","AddAppointees")"><li style="">Appointees ></li></a>
+                                        <li style="color:#e1e1e1">Document ></li>
 
 
                                     </ul>
@@ -135,10 +137,12 @@
                                         <a href="@Url.Action("AddTestatorFamilyIndex","AddTestatorFamily")"><li style="color:black;">Testator Family ></li></a>
                                         <a href="@Url.Action("AddBeneficiaryIndex","AddBeneficiary")"><li style="color:black;">Beneficiary ></li></a>
                                         <a href="@Url.Action("AddMainAssetsIndex","AddMainAssets")"><li style="color:black;">AssetInformation ></li></a>
+                                        <a href="@Url.Action("AddMainAssetsIndex","AddMainAssets")"><li style="color:black;">Liabilites></li></a>
+                                        <a href="@Url.Action("AddPetCareIndex","AddPetCare")"><li style="color:black;">PetCare ></li></a>
                                         <a href="@Url.Action("AddAssetMappingIndex","AddAssetMapping")"><li style="color:black">Mapping ></li></a>
                                         <a href="@Url.Action("AddNomineeIndex","AddNominee")"><li style="color:black">Nominee ></li></a>
-                                        <a href="@Url.Action("AddAppointeesIndex","AddAppointees")"><li style="">Appointees </li></a>
-
+                                        <a href="@Url.Action("AddAppointeesIndex","AddAppointees")"><li style="">Appointees ></li></a>
+                                        <li style="color:#e1e1e1">Document ></li>
 
 
                                     </ul>
@@ -188,7 +192,7 @@
                                                                 @if (Session["Type"].ToString() == "DistributorAdmin" || Session["Type"].ToString() == "SuperAdmin")
                                                                 {
                                                                     <input type="text" readonly="true" name="ddltestatorname" class="form-control" value="@Session["disttestator"].ToString()" />
-                                                                    <input type="hidden" name="ddltid" value="@Session["distid"].ToString()" />
+                                                                    <input type="hidden" name="ddltid" id="tid" value="@Session["distid"].ToString()" />
                                                                 }
                                                                 else
                                                                 {
@@ -803,7 +807,7 @@
 
                             <div class="form-group" style="float:right">
                                 <button type="submit" id="btnDistributorformsubmit" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i>Add Appointees</button>
-                                <a href="@Url.Action("WillDetailsIndex","WillDetails")"><button type="button" id="btnnext" style="display:none;" class="btn btn-danger shadow-primary px-5">Next&nbsp;&nbsp;<i class="icon-arrow-right-circle"></i></button></a>
+                                <a href="@Url.Action("ViewTestatorIndex","ViewTestator")"><button type="button" id="btnnext" style="display:none;" class="btn btn-danger shadow-primary px-5">Next&nbsp;&nbsp;<i class="icon-arrow-right-circle"></i></button></a>
                                 <button type="button" style="display:none;" id="confirmtestatorfamily"></button>
 
                             </div>
@@ -908,6 +912,42 @@
             url:"@Url.Action("BindDesignationDDL", "AddAppointees")",
             success: function (data) {
                 $('#ddldesignation').append(data);
+            }
+        });
+
+
+
+
+
+        
+       
+        var val = $("#tid").val();
+
+        var checkstatus =  $("#txtcheck").val();
+    
+             $.ajax({
+
+            type: "POST",
+            url:"@Url.Action("CheckTestatorUsers", "AddAppointees")",
+                 data: { value: val, checkstatus: checkstatus },
+            success: function (data) {
+
+                if (data == 2) {
+
+                    $("#confirmtestatorfamily").on("click", function () { });
+
+                    $("#confirmtestatorfamily").click(); 
+
+                    $("#btnnext").show();
+                 
+                }
+
+
+
+
+
+
+
             }
         });
 
@@ -1471,7 +1511,7 @@
 
 
 
-                    var url = "/WillDetails/WillDetailsIndex/";
+                    var url = "/ViewTestator/ViewTestatorIndex/";
                     window.location.href = url;
 
 

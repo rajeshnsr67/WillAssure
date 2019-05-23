@@ -463,6 +463,7 @@ namespace WillAssure.Controllers
                 cmd2.Parameters.AddWithValue("@City", BM.altcitytext);
                 cmd2.Parameters.AddWithValue("@State", BM.altstatetext);
                 cmd2.Parameters.AddWithValue("@Pin", BM.altPin);
+                cmd2.Parameters.AddWithValue("@tid", BM.ddltid);
                 cmd2.ExecuteNonQuery();
                 con.Close();
 

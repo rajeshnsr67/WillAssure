@@ -1929,7 +1929,7 @@ namespace WillAssure.Controllers
             con.Close();
             string data = "<option value=''>--Select Distributor--</option>";
             con.Open();
-            string query = "select uId , First_Name from users where    Type = 'Testator'   ";
+            string query = "select * from users where Type = 'DistributorAdmin'";
             SqlDataAdapter da = new SqlDataAdapter(query, con);
             DataTable dt = new DataTable();
             da.Fill(dt);
@@ -1997,7 +1997,7 @@ namespace WillAssure.Controllers
             // check type 
             string typ5 = "";
             con.Open();
-            string qq15 = "select Type from users where uId = " + Convert.ToInt32(Session["uuid"]) + " ";
+            string qq15 = "select * from users where Type = 'DistributorAdmin' ";
             SqlDataAdapter daa5 = new SqlDataAdapter(qq15, con);
             DataTable dtt5 = new DataTable();
             daa5.Fill(dtt5);
@@ -2127,334 +2127,356 @@ namespace WillAssure.Controllers
             }
 
             string response = Request["send"].ToString();
-
-            if (Convert.ToInt32(Session["uuid"]) != 1)
+            if (response != "")
             {
-                con.Open();
-                string query = "select * from TestatorDetails a   inner join users b on a.uId = b.uId  where b.Linked_user = " + Convert.ToInt32(Session["uuid"]) + "  ";
-                SqlDataAdapter da = new SqlDataAdapter(query, con);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-                con.Close();
-                string data = "";
-
-                if (dt.Rows.Count > 0)
+                if (Convert.ToInt32(Session["uuid"]) != 1)
                 {
-                    if (testString == "1,2,0" || testString == "0,2,0" || testString == "0,2,3" || testString == "0,2,3" || testString == "0,2,0")
+                    con.Open();
+                    string query = "select * from TestatorDetails a   inner join users b on a.uId = b.uId  where b.Linked_user = " + Convert.ToInt32(Session["uuid"]) + "  ";
+                    SqlDataAdapter da = new SqlDataAdapter(query, con);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    con.Close();
+                    string data = "";
+
+                    if (dt.Rows.Count > 0)
                     {
-                        for (int i = 0; i < dt.Rows.Count; i++)
+                        if (testString == "1,2,0" || testString == "0,2,0" || testString == "0,2,3" || testString == "0,2,3" || testString == "0,2,0")
                         {
-                            data = data + "<tr class='nr'><td>" + dt.Rows[i]["tId"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["First_Name"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Last_Name"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Middle_Name"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["DOB"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Occupation"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Mobile"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Email"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["maritalStatus"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Relationship"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Religion"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Identity_Proof"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Identity_proof_Value"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Alt_Identity_Proof"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Alt_Identity_proof_Value"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Gender"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Address1"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Address2"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Address3"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["City"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["State"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Country"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Pin"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["active"].ToString() + "</td>"
+                            for (int i = 0; i < dt.Rows.Count; i++)
+                            {
+                                data = data + "<tr class='nr'><td>" + dt.Rows[i]["tId"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["First_Name"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Last_Name"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Middle_Name"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["DOB"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Occupation"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Mobile"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Email"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["maritalStatus"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Relationship"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Religion"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Identity_Proof"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Identity_proof_Value"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Alt_Identity_Proof"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Alt_Identity_proof_Value"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Gender"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Address1"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Address2"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Address3"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["City"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["State"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Country"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Pin"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["active"].ToString() + "</td>"
 
-                                        + "<td><button type='button'   id='" + dt.Rows[i]["tId"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary Editbtn'>Edit</button></td></tr>";   //<button type='button'   id='" + dt.Rows[i]["tId"].ToString() + "' onClick='getclickedid(this.id)'   class='btn btn-success'  data-toggle='modal' data-target='.primarymodal'>Create Document</button>
+                                            + "<td><button type='button'   id='" + dt.Rows[i]["tId"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary Editbtn'>Edit</button></td></tr>";   //<button type='button'   id='" + dt.Rows[i]["tId"].ToString() + "' onClick='getclickedid(this.id)'   class='btn btn-success'  data-toggle='modal' data-target='.primarymodal'>Create Document</button>
 
-                        }
-                    }
-
-                    if (testString == "1,0,3" || testString == "0,0,3" || testString == "0,2,3" || testString == "1,0,3" || testString == "0,0,3")
-                    {
-                        for (int i = 0; i < dt.Rows.Count; i++)
-                        {
-                            data = data + "<tr class='nr'><td>" + dt.Rows[i]["tId"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["First_Name"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Last_Name"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Middle_Name"].ToString() + "</td>"
-                                         + "<td>" + dt.Rows[i]["DOB"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Occupation"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Mobile"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Email"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["maritalStatus"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Relationship"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Religion"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Identity_Proof"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Identity_proof_Value"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Alt_Identity_Proof"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Alt_Identity_proof_Value"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Gender"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Address1"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Address2"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Address3"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["City"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["State"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Country"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Pin"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["active"].ToString() + "</td>"
-
-                                        + "<td><button type='button'   id='" + dt.Rows[i]["tId"].ToString() + "'    class='btn btn-danger deletenotification'>Delete</button></td></tr>";
-
-                        }
-                    }
-
-
-                    if (testString == "1,2,3" || testString == "0,2,3")
-                    {
-                        for (int i = 0; i < dt.Rows.Count; i++)
-                        {
-                            data = data + "<tr class='nr'><td>" + dt.Rows[i]["tId"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["First_Name"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Last_Name"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Middle_Name"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["DOB"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Occupation"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Mobile"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Email"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["maritalStatus"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Relationship"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Religion"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Identity_Proof"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Identity_proof_Value"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Alt_Identity_Proof"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Alt_Identity_proof_Value"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Gender"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Address1"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Address2"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Address3"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["City"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["State"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Country"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Pin"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["active"].ToString() + "</td>"
-
-                                        + "<td><button type='button'   id='" + dt.Rows[i]["tId"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary Editbtn'>Edit</button><button type='button'   id='" + dt.Rows[i]["tId"].ToString() + "'    class='btn btn-danger deletenotification'>Delete</button></td></tr>";
-
+                            }
                         }
 
-                    }
-
-
-                    if (testString == "0,0,0")
-                    {
-                        for (int i = 0; i < dt.Rows.Count; i++)
+                        if (testString == "1,0,3" || testString == "0,0,3" || testString == "0,2,3" || testString == "1,0,3" || testString == "0,0,3")
                         {
-                            data = data + "<tr class='nr'><td>" + dt.Rows[i]["tId"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["First_Name"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Last_Name"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Middle_Name"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["DOB"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Occupation"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Mobile"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Email"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["maritalStatus"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Relationship"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Religion"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Identity_Proof"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Identity_proof_Value"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Alt_Identity_Proof"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Alt_Identity_proof_Value"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Gender"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Address1"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Address2"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Address3"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["City"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["State"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Country"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Pin"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["active"].ToString() + "</td>";
+                            for (int i = 0; i < dt.Rows.Count; i++)
+                            {
+                                data = data + "<tr class='nr'><td>" + dt.Rows[i]["tId"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["First_Name"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Last_Name"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Middle_Name"].ToString() + "</td>"
+                                             + "<td>" + dt.Rows[i]["DOB"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Occupation"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Mobile"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Email"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["maritalStatus"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Relationship"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Religion"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Identity_Proof"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Identity_proof_Value"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Alt_Identity_Proof"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Alt_Identity_proof_Value"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Gender"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Address1"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Address2"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Address3"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["City"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["State"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Country"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Pin"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["active"].ToString() + "</td>"
+
+                                            + "<td><button type='button'   id='" + dt.Rows[i]["tId"].ToString() + "'    class='btn btn-danger deletenotification'>Delete</button></td></tr>";
+
+                            }
+                        }
 
 
+                        if (testString == "1,2,3" || testString == "0,2,3")
+                        {
+                            for (int i = 0; i < dt.Rows.Count; i++)
+                            {
+                                data = data + "<tr class='nr'><td>" + dt.Rows[i]["tId"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["First_Name"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Last_Name"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Middle_Name"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["DOB"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Occupation"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Mobile"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Email"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["maritalStatus"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Relationship"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Religion"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Identity_Proof"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Identity_proof_Value"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Alt_Identity_Proof"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Alt_Identity_proof_Value"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Gender"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Address1"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Address2"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Address3"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["City"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["State"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Country"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Pin"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["active"].ToString() + "</td>"
+
+                                            + "<td><button type='button'   id='" + dt.Rows[i]["tId"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary Editbtn'>Edit</button><button type='button'   id='" + dt.Rows[i]["tId"].ToString() + "'    class='btn btn-danger deletenotification'>Delete</button></td></tr>";
+
+                            }
 
                         }
+
+
+                        if (testString == "0,0,0")
+                        {
+                            for (int i = 0; i < dt.Rows.Count; i++)
+                            {
+                                data = data + "<tr class='nr'><td>" + dt.Rows[i]["tId"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["First_Name"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Last_Name"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Middle_Name"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["DOB"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Occupation"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Mobile"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Email"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["maritalStatus"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Relationship"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Religion"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Identity_Proof"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Identity_proof_Value"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Alt_Identity_Proof"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Alt_Identity_proof_Value"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Gender"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Address1"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Address2"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Address3"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["City"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["State"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Country"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Pin"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["active"].ToString() + "</td>";
+
+
+
+                            }
+                        }
+
+
+
+
+
+
+
                     }
 
-
-
-
-
-
+                    return data;
 
                 }
-
-                return data;
-
-            }
-            else
-            {
-                con.Open();
-                string query = "select b.tId , b.First_Name , b.Last_Name , b.Middle_Name , b.DOB , b.Occupation , b.Mobile , b.Email , b.maritalStatus , b.RelationShip  , b.Religion  , b.Identity_Proof , b.identity_proof_value , b.Alt_Identity_Proof , b.Alt_Identity_Proof_Value , b.Gender , b.Address1 , b.Address2 , b.Address3 , b.City , b.State , b.Country , b.Pin , b.active from users a inner join testatordetails b on a.uId=b.uId  where a.uId = " + response+" ";
-                SqlDataAdapter da = new SqlDataAdapter(query, con);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-                con.Close();
-                string data = "";
-
-                if (dt.Rows.Count > 0)
+                else
                 {
-                    if (testString == "1,2,0" || testString == "0,2,0" || testString == "0,2,3" || testString == "0,2,3" || testString == "0,2,0")
+
+                    // linked user
+
+                    con.Open();
+                    string querylk = "select uId from users where Linked_user = " + response + " ";
+                    SqlDataAdapter dalk = new SqlDataAdapter(querylk, con);
+                    DataTable dtlk = new DataTable();
+                    dalk.Fill(dtlk);
+                    int lnkid = 0;
+                    if (dtlk.Rows.Count > 0)
                     {
-                        for (int i = 0; i < dt.Rows.Count; i++)
-                        {
-                            data = data + "<tr class='nr'><td>" + dt.Rows[i]["tId"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["First_Name"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Last_Name"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Middle_Name"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["DOB"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Occupation"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Mobile"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Email"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["maritalStatus"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Relationship"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Religion"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Identity_Proof"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Identity_proof_Value"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Alt_Identity_Proof"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Alt_Identity_proof_Value"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Gender"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Address1"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Address2"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Address3"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["City"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["State"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Country"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Pin"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["active"].ToString() + "</td>"
-
-                                        + "<td><button type='button'   id='" + dt.Rows[i]["tId"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary Editbtn'>Edit</button></td></tr>";
-
-                        }
+                        lnkid = Convert.ToInt32(dtlk.Rows[0]["uId"]);
                     }
+                    con.Close();
+                    //end
 
-                    if (testString == "1,0,3" || testString == "0,0,3" || testString == "0,2,3" || testString == "1,0,3" || testString == "0,0,3")
+
+
+                    con.Open();
+                    string query = "select * from TestatorDetails where uId = " + lnkid + " ";
+                    SqlDataAdapter da = new SqlDataAdapter(query, con);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+
+                    con.Close();
+                    string data = "";
+
+                    if (dt.Rows.Count > 0)
                     {
-                        for (int i = 0; i < dt.Rows.Count; i++)
+                        if (testString == "1,2,0" || testString == "0,2,0" || testString == "0,2,3" || testString == "0,2,3" || testString == "0,2,0")
                         {
-                            data = data + "<tr class='nr'><td>" + dt.Rows[i]["tId"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["First_Name"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Last_Name"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Middle_Name"].ToString() + "</td>"
-                                         + "<td>" + dt.Rows[i]["DOB"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Occupation"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Mobile"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Email"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["maritalStatus"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Relationship"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Religion"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Identity_Proof"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Identity_proof_Value"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Alt_Identity_Proof"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Alt_Identity_proof_Value"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Gender"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Address1"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Address2"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Address3"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["City"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["State"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Country"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Pin"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["active"].ToString() + "</td>"
+                            for (int i = 0; i < dt.Rows.Count; i++)
+                            {
+                                data = data + "<tr class='nr'><td>" + dt.Rows[i]["tId"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["First_Name"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Last_Name"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Middle_Name"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["DOB"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Occupation"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Mobile"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Email"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["maritalStatus"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Relationship"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Religion"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Identity_Proof"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Identity_proof_Value"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Alt_Identity_Proof"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Alt_Identity_proof_Value"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Gender"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Address1"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Address2"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Address3"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["City"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["State"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Country"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Pin"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["active"].ToString() + "</td>"
 
-                                        + "<td><button type='button'   id='" + dt.Rows[i]["tId"].ToString() + "'    class='btn btn-danger deletenotification'>Delete</button></td></tr>";
+                                            + "<td><button type='button'   id='" + dt.Rows[i]["tId"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary Editbtn'>Edit</button></td></tr>";
 
-                        }
-                    }
-
-
-                    if (testString == "1,2,3" || testString == "0,2,3")
-                    {
-                        for (int i = 0; i < dt.Rows.Count; i++)
-                        {
-                            data = data + "<tr class='nr'><td>" + dt.Rows[i]["tId"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["First_Name"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Last_Name"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Middle_Name"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["DOB"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Occupation"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Mobile"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Email"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["maritalStatus"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Relationship"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Religion"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Identity_Proof"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Identity_proof_Value"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Alt_Identity_Proof"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Alt_Identity_proof_Value"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Gender"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Address1"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Address2"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Address3"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["City"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["State"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Country"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Pin"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["active"].ToString() + "</td>"
-
-                                        + "<td><button type='button'   id='" + dt.Rows[i]["tId"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary '>Edit</button><button type='button'   id='" + dt.Rows[i]["tId"].ToString() + "'    class='btn btn-danger deletenotification'>Delete</button></td></tr>";
-
+                            }
                         }
 
-                    }
-
-
-                    if (testString == "0,0,0")
-                    {
-                        for (int i = 0; i < dt.Rows.Count; i++)
+                        if (testString == "1,0,3" || testString == "0,0,3" || testString == "0,2,3" || testString == "1,0,3" || testString == "0,0,3")
                         {
-                            data = data + "<tr class='nr'><td>" + dt.Rows[i]["tId"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["First_Name"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Last_Name"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Middle_Name"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["DOB"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Occupation"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Mobile"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Email"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["maritalStatus"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Relationship"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Religion"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Identity_Proof"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Identity_proof_Value"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Alt_Identity_Proof"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Alt_Identity_proof_Value"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Gender"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Address1"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Address2"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Address3"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["City"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["State"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Country"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["Pin"].ToString() + "</td>"
-                                        + "<td>" + dt.Rows[i]["active"].ToString() + "</td>";
+                            for (int i = 0; i < dt.Rows.Count; i++)
+                            {
+                                data = data + "<tr class='nr'><td>" + dt.Rows[i]["tId"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["First_Name"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Last_Name"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Middle_Name"].ToString() + "</td>"
+                                             + "<td>" + dt.Rows[i]["DOB"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Occupation"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Mobile"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Email"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["maritalStatus"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Relationship"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Religion"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Identity_Proof"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Identity_proof_Value"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Alt_Identity_Proof"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Alt_Identity_proof_Value"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Gender"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Address1"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Address2"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Address3"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["City"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["State"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Country"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Pin"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["active"].ToString() + "</td>"
+
+                                            + "<td><button type='button'   id='" + dt.Rows[i]["tId"].ToString() + "'    class='btn btn-danger deletenotification'>Delete</button></td></tr>";
+
+                            }
+                        }
 
 
+                        if (testString == "1,2,3" || testString == "0,2,3")
+                        {
+                            for (int i = 0; i < dt.Rows.Count; i++)
+                            {
+                                data = data + "<tr class='nr'><td>" + dt.Rows[i]["tId"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["First_Name"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Last_Name"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Middle_Name"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["DOB"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Occupation"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Mobile"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Email"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["maritalStatus"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Relationship"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Religion"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Identity_Proof"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Identity_proof_Value"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Alt_Identity_Proof"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Alt_Identity_proof_Value"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Gender"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Address1"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Address2"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Address3"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["City"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["State"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Country"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Pin"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["active"].ToString() + "</td>"
+
+                                            + "<td><button type='button'   id='" + dt.Rows[i]["tId"].ToString() + "' onClick='Edit(this.id)'   class='btn btn-primary '>Edit</button><button type='button'   id='" + dt.Rows[i]["tId"].ToString() + "'    class='btn btn-danger deletenotification'>Delete</button></td></tr>";
+
+                            }
 
                         }
+
+
+                        if (testString == "0,0,0")
+                        {
+                            for (int i = 0; i < dt.Rows.Count; i++)
+                            {
+                                data = data + "<tr class='nr'><td>" + dt.Rows[i]["tId"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["First_Name"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Last_Name"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Middle_Name"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["DOB"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Occupation"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Mobile"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Email"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["maritalStatus"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Relationship"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Religion"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Identity_Proof"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Identity_proof_Value"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Alt_Identity_Proof"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Alt_Identity_proof_Value"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Gender"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Address1"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Address2"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Address3"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["City"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["State"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Country"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["Pin"].ToString() + "</td>"
+                                            + "<td>" + dt.Rows[i]["active"].ToString() + "</td>";
+
+
+
+                            }
+                        }
+
+
+
+
+
+
+
                     }
 
-
-
-
-
-
-
+                    return data;
                 }
-
-                return data;
             }
+            return "";
         }
 
 
-
+       
 
 
     }

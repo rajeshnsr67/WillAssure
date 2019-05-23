@@ -1664,7 +1664,7 @@
                                 <div class="form-group">
                                     @if (Convert.ToInt32(Session["uuid"]) != 1)
                                     {
-                                        <center><button type="button" id="btnwilldetails" class="btn btn-danger shadow-primary px-5"><i class="icon-lock"></i> Send For Verification</button></center>
+                                        <center><a href="@Url.Action("Report.aspx","page", new {NestId=ViewBag.tid})"><button type="button" id="btnwilldetails" class="btn btn-success shadow-primary px-5"><i class="icon-lock"></i>View In Document</button></a></center>
                                     }
                                     else
                                     {
@@ -1703,9 +1703,9 @@
             url: "@Url.Action("GetTidForVerification", "WillDetails")",
                data: { "send":""+data+""},
             success: function (data) {
-                $("#btnsenddocument").on("click", function () { });
+                //$("#btnsenddocument").on("click", function () { });
 
-                $("#btnsenddocument").click(); //trigger event after listening to it.
+                //$("#btnsenddocument").click(); //trigger event after listening to it.
             }
         });
 

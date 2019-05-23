@@ -167,6 +167,11 @@ namespace WillAssure.Controllers
 
             con.Close();
 
+
+
+            
+            
+
         
                     ViewBag.view = "Will";
                 
@@ -471,7 +476,8 @@ namespace WillAssure.Controllers
                 altcmd.Parameters.AddWithValue("@City", BM.altcitytext);
                 altcmd.Parameters.AddWithValue("@State", BM.altstatetext);
                 altcmd.Parameters.AddWithValue("@Pin", BM.altPin);
-               
+                altcmd.Parameters.AddWithValue("@tid", BM.ddltid);
+
                 altcmd.ExecuteNonQuery();
                 con.Close();
             }
@@ -768,13 +774,13 @@ namespace WillAssure.Controllers
 
                     if (dt.Rows.Count > 0)
                     {
-                        string query2 = "Update PageActivity set ActID=1 , Tid=" + Response + " , PageStatus=2  ";
+                        string query2 = "Update PageActivity set ActID=1 , Tid=" + value + " , PageStatus=2  ";
                         SqlCommand cmd = new SqlCommand(query2, con);
                         cmd.ExecuteNonQuery();
                     }
                     else
                     {
-                        string query2 = "Update PageActivity set ActID=1 , Tid=" + Response + " , PageStatus=1  ";
+                        string query2 = "Update PageActivity set ActID=1 , Tid=" + value + " , PageStatus=1  ";
                         SqlCommand cmd = new SqlCommand(query2, con);
                         cmd.ExecuteNonQuery();
                     }

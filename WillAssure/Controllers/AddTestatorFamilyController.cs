@@ -626,6 +626,28 @@ namespace WillAssure.Controllers
         }
 
 
+        public string gettestatoraddress()
+        {
+            string tid = Request["send"].ToString();
+
+            con.Open();
+            string query = "select Address1 , Address2 , Address3 from TestatorDetails where tId = "+ tid + " ";
+            SqlDataAdapter da = new SqlDataAdapter(query, con);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            con.Close();
+            string data = "";
+            if (dt.Rows.Count > 0)
+            {
+                data = dt.Rows[0]["Address1"].ToString() + "~" + dt.Rows[0]["Address2"].ToString() + "~" + dt.Rows[0]["Address3"].ToString();
+
+            }
+
+
+            return data;
+        }
+
+
 
 
 
@@ -650,13 +672,13 @@ namespace WillAssure.Controllers
 
                     if (dt.Rows.Count > 0)
                     {
-                        string query2 = "Update PageActivity set ActID=1 , Tid=" + Response + " , PageStatus=2  ";
+                        string query2 = "Update PageActivity set ActID=1 , Tid=" + value + " , PageStatus=2  ";
                         SqlCommand cmd = new SqlCommand(query2, con);
                         cmd.ExecuteNonQuery();
                     }
                     else
                     {
-                        string query2 = "Update PageActivity set ActID=1 , Tid=" + Response + " , PageStatus=1  ";
+                        string query2 = "Update PageActivity set ActID=1 , Tid=" + value + " , PageStatus=1  ";
                         SqlCommand cmd = new SqlCommand(query2, con);
                         cmd.ExecuteNonQuery();
                     }

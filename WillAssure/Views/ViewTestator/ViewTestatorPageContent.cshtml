@@ -1,0 +1,337 @@
+﻿
+@{
+    ViewBag.Title = "ViewTestatorPageContent";
+}
+
+
+
+@*Main Content*@
+<div class="content-wrapper">
+    <div class="container-fluid">
+        <div class="row pt-2 pb-2">
+            <div class="col-sm-3">
+                <div class="btn-group float-sm-right">
+                    <div class="dropdown-menu">
+                        <a href="javaScript:void();" class="dropdown-item">Action</a>
+                        <a href="javaScript:void();" class="dropdown-item">Another action</a>
+                        <a href="javaScript:void();" class="dropdown-item">Something else here</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="javaScript:void();" class="dropdown-item">Separated link</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Breadcrumb-->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+
+
+
+  
+                    
+                     
+                    <div class="card-body">
+
+                        <div class="card-header"><i class="fa fa-table"></i>Select A Testator To View All His Information</div>
+
+
+                        <div class="table-responsive">
+                            <table id="default-datatable" class="table table-bordered">
+                                <thead>
+                                    <tr class="ui-widget-header">
+                                        <th>tId</th>
+                                        <th>First_Name</th>
+                                        <th>Last_Name</th>
+                                        <th>Middle_Name</th>
+                                        <th>DOB</th>
+                                        <th>Occupation</th>
+                                        <th>Mobile</th>
+                                        <th>Email</th>
+                                        <th>maritalStatus</th>
+                                        <th>Relationship</th>
+                                        <th>Religion</th>
+                                        <th>Identity_Proof</th>
+                                        <th>Identity_proof_Value</th>
+                                        <th>Alt_Identity_Proof</th>
+                                        <th>Alt_Identity_proof_Value</th>
+                                        <th>Gender</th>
+                                        <th>Address1</th>
+                                        <th>Address2</th>
+                                        <th>Address3</th>
+                                        <th>City</th>
+                                        <th>State</th>
+                                        <th>Country</th>
+                                        <th>Pin</th>
+                                        <th>active</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="TestatorFormData"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- End Row-->
+        <input type="hidden" name="name" id="txttype" value="@Session["Type"].ToString()" />
+        <input type="button" style="display:none;" id="btndeletetestator" name="name" value="" />
+        <button style="display:none;" class="btn btn-outline-primary btn-block m-1" id="btnpay" data-toggle="modal" data-target="#primarymodal2">Primary</button>
+    </div>
+
+</div>
+
+
+
+
+@*end*@
+
+
+
+
+
+
+<script>
+    $(document).ready(function () {
+        $("#testatordocument").validationEngine();
+    });
+</script>
+
+<script>
+
+
+
+    $("#checkone").click(function () {
+
+        if ($("#checkone").is(":checked")) {
+            var x = $("#checkone").val();
+            $("#documenttype").append(x);
+
+            $('#DDLAmtPaidBY2').prop('disabled', false);
+        }
+        else {
+
+            $('#DDLAmtPaidBY2').prop('disabled', true);
+        }
+
+
+
+    });
+
+
+
+
+    $("#checktwo").click(function () {
+
+
+
+        if ($("#checktwo").is(":checked")) {
+            var x = $("#checktwo").val();
+            $("#documenttype").append(x);
+            $('#DDLAmtPaidBY2').prop('disabled', false);
+        }
+
+
+
+    });
+
+
+
+    $("#checkthree").click(function () {
+
+        if ($("#checkthree").is(":checked")) {
+            var x = $("#checkthree").val();
+            $("#documenttype").append(x);
+            $('#DDLAmtPaidBY2').prop('disabled', false);
+        }
+
+
+
+
+    });
+
+    $("#checkfour").click(function () {
+
+        if ($("#checkfour").is(":checked")) {
+            var x = $("#checkfour").val();
+            $("#documenttype").append(x);
+            $('#DDLAmtPaidBY2').prop('disabled', false);
+        }
+
+
+
+
+    });
+
+
+    $("#checkfive").click(function () {
+
+        if ($("#checkfive").is(":checked")) {
+            var x = $("#checkfive").val();
+            $("#documenttype").append(x);
+            $('#DDLAmtPaidBY2').prop('disabled', false);
+        }
+
+
+
+
+    });
+
+
+
+    
+    function Edit(id) {
+
+
+        var id = id;
+
+
+
+            $.ajax({
+
+            type: "POST",
+            url: "@Url.Action("UpdateTestatorForm", "ViewTestator")",
+            data: {  "send": "" + id + ""   },
+            success: function (data) {
+
+
+                var NestId = data
+                var url = "/WillDetails/WillDetailsIndex?NestId=" + NestId;
+                window.location.href = url;
+
+
+            }
+
+
+
+        });
+
+        }
+
+
+
+
+
+    function getclickedid(id) {
+
+
+        var id = id;
+
+        $("#tId").val(id);
+
+
+
+    }
+
+
+</script>
+
+
+
+
+
+<script>
+
+    function checkcoupon(value) {
+
+        var tid = $("#tId").val();
+
+
+        $("#lblerrmsg").hide();
+        var entertxt = $("#txtcoupon").val();
+        var data = tid + "~" + entertxt;
+
+
+
+        var regex = /^(0|[1-9][0-9]*)$/;
+
+        if (regex.test(entertxt) == true) {
+
+            $("#lblerr").hide();
+        }
+
+        if (regex.test(entertxt) == false) {
+
+            $("#lblerr").show();
+        }
+        else {
+                $.ajax({
+
+            type:"POST",
+             url:"@Url.Action("txtchangecouponnumber", "ViewTestator")",
+            data: { "send": "" + data + "" },
+            success: function (data) {
+
+                if (data == "success") {
+                    $("#lblerrsuccess").show();
+                }
+
+
+                if (data == "failed") {
+                    $("#lblerrmsg").show();
+                }
+
+
+                if (data == "Expire") {
+                    $("#lblexpire").show();
+                }
+
+            }
+        });
+        }
+
+
+
+
+
+
+
+
+
+    }
+
+
+
+
+    	$(document).ready(function () {
+
+        $.ajax({
+
+            type: "POST",
+            url:"@Url.Action("BindTestatorFormData", "ViewTestator")",
+            success: function (data) {
+                $('#TestatorFormData').empty().append(data);
+            }
+        });
+
+
+    });
+
+
+    $("#ddlDistributor").change(function () {
+            var value = $(this).children(":selected").attr("value");
+        var text = $("#ddlDistributor option:selected").html();
+
+        $("#distributor_txt").val(text);
+        $("#distributor_id").val(value);
+
+
+
+           $.ajax({
+
+            type: "POST",
+            url: "@Url.Action("FilterTestatordata", "ViewTestator")",
+            data: {"send":""+value+""},
+            success: function (data) {
+                $('#TestatorFormData').empty().append(data);
+                $(".Editbtn").html('Update').addClass("btn btn-success");
+            }
+        });
+
+
+    });
+
+</script>
+
+
+

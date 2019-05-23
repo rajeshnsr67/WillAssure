@@ -333,7 +333,7 @@ namespace WillAssure.Controllers
             string ddlassetcat = "";
             con.Open();
             string query3 = "";
-            if (Session["Type"].ToString() != "Testator")
+            if (Session["Type"].ToString() != "Testator" || Session["Type"].ToString() != "DistributorAdmin")
             {
                  query3 = "select ac.*,at.AssetsType as AssetsType from AssetsCategory ac " +
                "left join assetstype at on at.atId=ac.atId";
