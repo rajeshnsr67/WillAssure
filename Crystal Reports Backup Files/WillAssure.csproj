@@ -278,6 +278,7 @@
     <Compile Include="Controllers\UsersFormController.cs" />
     <Compile Include="Controllers\VerifyVisitorController.cs" />
     <Compile Include="Controllers\ViewDocumentController.cs" />
+    <Compile Include="Controllers\ViewTestatorController.cs" />
     <Compile Include="Controllers\VisitorDataController.cs" />
     <Compile Include="Controllers\WillDetailsController.cs" />
     <Compile Include="CrystalReports\WillTestator5.cs">
@@ -1573,6 +1574,7 @@
     <Content Include="Views\UpdateCompanyDetails\UpdateCompanyPageContent.cshtml" />
     <Content Include="Views\DocumentPricing\DocumentPricingPageContent.cshtml" />
     <Content Include="Views\EditDocumentPricing\EditDocumentPricingPageContent.cshtml" />
+    <Content Include="Views\ViewTestator\ViewTestatorPageContent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

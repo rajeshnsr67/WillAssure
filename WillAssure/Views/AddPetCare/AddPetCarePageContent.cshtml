@@ -10,6 +10,16 @@
         display: inline;
     }
 </style>
+
+@if (Session["Type"] == null)
+{
+    <script>
+        var NestId = data
+        var url = "/LoginPage/ViewLogout/";
+        window.location.href = url;
+    </script>
+
+}
 @*Main Content*@
 <div class="content-wrapper">
     <div class="container-fluid">
@@ -209,7 +219,7 @@
                                     <div class="form-group">
                                         <label for="input-1">Proportion</label>
 
-                                        @Html.TextBoxFor(m => m.Proportion, new { @class = "form-control input-shadow  text-input", @id = "txtDetails", @onblur = "validateproportion(this.value)" ,   @placeholder = "Enter Proportion", @autocomplete = "off", alert = "LabourCost is requried" })
+                                        @Html.TextBoxFor(m => m.Proportion, new { @class = "form-control input-shadow  text-input", @id = "txtDetails", @onblur = "validateproportion(this.value)", @placeholder = "Enter Proportion", @autocomplete = "off", alert = "LabourCost is requried" })
                                     </div>
                                 </div>
 
@@ -475,7 +485,7 @@
 
                     $("#btncheckpetcare").click(); //trigger event after listening to it.
                 }
-              
+
 
             }
 

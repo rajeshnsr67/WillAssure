@@ -167,14 +167,7 @@ namespace WillAssure.Controllers
 
 
        
-                    ViewBag.view = "Will";
-              
-
-
-           
-                    ViewBag.view = "POA";
-                    ViewBag.view = "GiftDeeds";
-          
+                  
             
             return View("~/Views/AddNominee/AddNomineePageContent.cshtml");
         }
@@ -662,7 +655,7 @@ namespace WillAssure.Controllers
 
                 
 
-                if (value != "")
+                if (value != null)
                 {
                     // check for data exists or not for testato family
                    

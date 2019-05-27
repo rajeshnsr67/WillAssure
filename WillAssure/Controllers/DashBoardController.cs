@@ -338,14 +338,14 @@ namespace WillAssure.Controllers
                 {
                     ViewBag.collapse = "true";
                     Session["doctype"] = "Will";
-                    return RedirectToAction("AddTestatorsFormIndex", "AddTestatorsForm" , new { collapse = "true" } );
+                    return RedirectToAction("EditTestatorIndex", "EditTestator", new { doctype = doctype } );
                 }
 
                 if (doctype == "Codocil")
                 {
                     ViewBag.collapse = "true";
                     Session["doctype"] = "Codocil";
-                    return RedirectToAction("CodocilIndex", "Codocil");
+                    return RedirectToAction("EditTestatorIndex", "EditTestator", new { doctype = doctype });
                 }
 
 
@@ -353,7 +353,7 @@ namespace WillAssure.Controllers
                 {
                     ViewBag.collapse = "true";
                     Session["doctype"] = "POA";
-                    return RedirectToAction("AddTestatorsFormIndex", "AddTestatorsForm");
+                    return RedirectToAction("EditTestatorIndex", "EditTestator", new { doctype = doctype });
                 }
 
 
@@ -361,7 +361,7 @@ namespace WillAssure.Controllers
                 {
                     ViewBag.collapse = "true";
                     Session["doctype"] = "GiftDeeds";
-                    return RedirectToAction("AddTestatorsFormIndex", "AddTestatorsForm");
+                    return RedirectToAction("EditTestatorIndex", "EditTestator", new { doctype = doctype });
                 }
 
 
@@ -369,7 +369,7 @@ namespace WillAssure.Controllers
                 {
                     ViewBag.collapse = "true";
                     Session["doctype"] = "LivingWill";
-                    return RedirectToAction("LivingWillIndex", "LivingWill");
+                    return RedirectToAction("EditTestatorIndex", "EditTestator", new { doctype = doctype });
                 }
             }
           

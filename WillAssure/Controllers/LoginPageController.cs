@@ -395,6 +395,15 @@ namespace WillAssure.Controllers
 
 
 
+        public ActionResult ViewLogout()
+        {
+
+
+            return RedirectToAction("LoginPageIndex", "LoginPage");
+        }
+
+
+
 
        
 

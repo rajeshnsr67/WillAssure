@@ -144,13 +144,7 @@ namespace WillAssure.Controllers
             con.Close();
 
       
-                    ViewBag.view = "Will";
-             
-
-
-        
-                    ViewBag.view = "POA";
-                    ViewBag.view = "GiftDeeds";
+                   
 
 
             

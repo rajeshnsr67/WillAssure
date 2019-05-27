@@ -173,13 +173,7 @@ namespace WillAssure.Controllers
             
 
         
-                    ViewBag.view = "Will";
-                
-
-
-            
-                    ViewBag.view = "POA";
-                    ViewBag.view = "GiftDeeds";
+                 
            
             
 
@@ -761,29 +755,35 @@ namespace WillAssure.Controllers
             if (checkstatus != "true")
             {
                 int Response = Convert.ToInt32(Request["send"]);
-
+                DataTable dt = new DataTable();
                 if (Request["send"] != "")
                 {
-                    // check for data exists or not for testato family
-                    con.Open();
-                    string query1 = "select a.bpId , a.First_Name , a.Last_Name , a.Middle_Name , a.DOB , a.Mobile , a.Relationship , a.Marital_Status , a.Religion , a.Identity_proof , a.Identity_proof_value , a.Alt_Identity_proof , a.Alt_Identity_proof_value , a.Address1 , a.Address2 , a.Address3 , a.City , a.State , a.Pin , a.aiid , a.tId , a.dateCreated , a.createdBy , a.documentId , a.beneficiary_type from BeneficiaryDetails a inner join TestatorDetails b on a.tId=b.tId where b.tId = " + value + "";
-                    SqlDataAdapter da = new SqlDataAdapter(query1, con);
-                    DataTable dt = new DataTable();
-                    da.Fill(dt);
+                    // check for data exists or not for testator family
+                    if (value != null)
+                    {
+                        con.Open();
+                        string query1 = "select a.bpId , a.First_Name , a.Last_Name , a.Middle_Name , a.DOB , a.Mobile , a.Relationship , a.Marital_Status , a.Religion , a.Identity_proof , a.Identity_proof_value , a.Alt_Identity_proof , a.Alt_Identity_proof_value , a.Address1 , a.Address2 , a.Address3 , a.City , a.State , a.Pin , a.aiid , a.tId , a.dateCreated , a.createdBy , a.documentId , a.beneficiary_type from BeneficiaryDetails a inner join TestatorDetails b on a.tId=b.tId where b.tId = " + value + "";
+                        SqlDataAdapter da = new SqlDataAdapter(query1, con);
+                        
+                        da.Fill(dt);
+
+                        if (dt.Rows.Count > 0)
+                        {
+                            string query2 = "Update PageActivity set ActID=1 , Tid=" + value + " , PageStatus=2  ";
+                            SqlCommand cmd = new SqlCommand(query2, con);
+                            cmd.ExecuteNonQuery();
+                        }
+                        else
+                        {
+                            string query2 = "Update PageActivity set ActID=1 , Tid=" + value + " , PageStatus=1  ";
+                            SqlCommand cmd = new SqlCommand(query2, con);
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
+                 
                     //end
 
-                    if (dt.Rows.Count > 0)
-                    {
-                        string query2 = "Update PageActivity set ActID=1 , Tid=" + value + " , PageStatus=2  ";
-                        SqlCommand cmd = new SqlCommand(query2, con);
-                        cmd.ExecuteNonQuery();
-                    }
-                    else
-                    {
-                        string query2 = "Update PageActivity set ActID=1 , Tid=" + value + " , PageStatus=1  ";
-                        SqlCommand cmd = new SqlCommand(query2, con);
-                        cmd.ExecuteNonQuery();
-                    }
+                    
 
 
 

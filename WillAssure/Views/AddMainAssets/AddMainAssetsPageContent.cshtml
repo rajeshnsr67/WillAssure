@@ -10,6 +10,16 @@
         display: inline;
     }
 </style>
+
+@if (Session["Type"] == null)
+{
+    <script>
+        var NestId = data
+        var url = "/LoginPage/ViewLogout/";
+        window.location.href = url;
+    </script>
+
+}
 @*Main Content*@
 <div class="content-wrapper">
     <div class="container-fluid">
@@ -52,7 +62,7 @@
 
 
 
-</ul>
+                                    </ul>
                                 </h5>
                             }
                             else
@@ -182,14 +192,18 @@
                         @using (Html.BeginForm("InsertMainAsset", null, FormMethod.Post, new { id = "mainassetinfo" }))
                         {
 
-                         
+
                             <div class="row">
                                 <div class='col-sm-1'><label for='input-1' style="line-height:40px;"><i class="fa fa-user-circle-o  " aria-hidden="true"></i>Testator</label></div>
                                 <div class="col-sm-3">
                                     @if (Session["Type"].ToString() == "DistributorAdmin" || Session["Type"].ToString() == "SuperAdmin")
                                     {
-                                        <input type="text" readonly="true" name="ddltestatorname" class="form-control" value="@Session["disttestator"].ToString()" />
-                                        <input type="hidden" name="ddltid" id="tid" value="@Session["distid"].ToString()" />
+                                        if (Session["disttestator"] != null || Session["distid"] != null)
+                                        {
+                                            <input type="text" readonly="true" name="ddltestatorname" class="form-control" value="@Session["disttestator"].ToString()" />
+                                            <input type="hidden" name="ddltid" id="tid" value="@Session["distid"].ToString()" />
+
+                                        }
                                     }
                                     else
                                     {
@@ -273,11 +287,11 @@
                             {
                                 if (Session["doctype"].ToString() == "POA" || Session["doctype"].ToString() == "GiftDeeds")
                                 {
-                            <div class="form-group" style="float:right">
-                                @*<button type="button" id="btnadd" class="btn btn-danger shadow-primary px-5"><i class="icon-plus"></i>Add</button>*@
-                                <button type="submit" name="Submit Asset Info" value="Submit Asset Info" id="btnmainassetsubmit" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i>Submit Gift </button>
-                                <a href="@Url.Action("AddAssetMappingIndex","AddAssetMapping")"><button type="button" id="btnnext" style="display:none" class="btn btn-danger shadow-primary px-5">Next&nbsp;&nbsp;<i class="icon-arrow-right-circle"></i></button></a>
-                            </div>
+                                    <div class="form-group" style="float:right">
+                                        @*<button type="button" id="btnadd" class="btn btn-danger shadow-primary px-5"><i class="icon-plus"></i>Add</button>*@
+                                        <button type="submit" name="Submit Asset Info" value="Submit Asset Info" id="btnmainassetsubmit" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i>Submit Gift </button>
+                                        <a href="@Url.Action("AddAssetMappingIndex","AddAssetMapping")"><button type="button" id="btnnext" style="display:none" class="btn btn-danger shadow-primary px-5">Next&nbsp;&nbsp;<i class="icon-arrow-right-circle"></i></button></a>
+                                    </div>
                                 }
                                 else
                                 {
@@ -369,8 +383,8 @@
             type: "POST",
             url:"@Url.Action("BindTestatorDDL", "AddMainAssets")",
                   success: function (data) {
-                      var splitted = data.split("~"); 
-                      $("#DDLTestator").append(splitted[0]); 
+                      var splitted = data.split("~");
+                      $("#DDLTestator").append(splitted[0]);
                       $("#ddltid").val(splitted[1]);
                       //$('#DDLTestator').append(data);
                       var pop = splitted[2];
@@ -381,7 +395,7 @@
 
                           $("#confirmtestatorfamily").click(); //trigger event after listening to it.
                       }
-                     
+
 
 
 
@@ -426,7 +440,7 @@
          var val = $("#tid").val();
 
         var checkstatus =  $("#txtcheck").val();
-    
+
              $.ajax({
 
             type: "POST",
@@ -438,10 +452,10 @@
 
                     $("#confirmtestatorfamily").on("click", function () { });
 
-                    $("#confirmtestatorfamily").click(); 
+                    $("#confirmtestatorfamily").click();
 
                     $("#btnnext").show();
-                 
+
                 }
 
 

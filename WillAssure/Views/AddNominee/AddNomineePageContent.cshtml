@@ -13,6 +13,15 @@
     }
 </style>
 @*Main Content*@
+@if (Session["Type"] == null)
+{
+    <script>
+        var NestId = data
+        var url = "/LoginPage/ViewLogout/";
+        window.location.href = url;
+    </script>
+
+}
 <div class="content-wrapper">
     <div class="container-fluid">
 
@@ -22,52 +31,72 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
-                        @if (Session["Type"].ToString() != "Testator")
+                        @if (Session["doctype"] != null)
                         {
-                            <h5>
-                                <ul id="menu" style="font-weight:bold;">
+                            if (Session["doctype"].ToString() == "POA" || Session["doctype"].ToString() == "GiftDeeds")
+                            {
+                                <h5>
+                                    <ul id="menu" style="font-weight:bold;">
+                                        <a href="@Url.Action("AddTestatorsFormIndex", "AddTestatorsForm")"><li style="color:black;">Donor ></li></a>
+                                        <a href="@Url.Action("AddBeneficiaryIndex", "AddBeneficiary")"><li style="color:black">Donee ></li></a>
+                                        <a href="@Url.Action("AddMainAssetsIndex", "AddMainAssets")"><li style="color:black">Gift ></li></a>
+                                        <a href="@Url.Action("AddAssetMappingIndex", "AddAssetMapping")">
+                                            <li style="color:">Asset Mapping ></li>
+                                            <li style="color:#e1e1e1">Witness Appointment ></li>
 
 
-                                    <a href="@Url.Action("AddTestatorsFormIndex","AddTestatorsForm" , new { NestId = Convert.ToInt32(Session["uuid"]) })"><li style="color:black;">Testator></li></a>
-                                    <a href="@Url.Action("AddTestatorFamilyIndex","AddTestatorFamily")"><li style="color:black;">Testator Family ></li></a>
-                                    <a href="@Url.Action("AddBeneficiaryIndex","AddBeneficiary")"><li style="color:black;">Beneficiary ></li></a>
-                                    <a href="@Url.Action("AddMainAssetsIndex","AddMainAssets")"><li style="color:black">AssetInformation ></li></a>
-                                    <a href="@Url.Action("AddLiabilitiesIndex","AddLiabilities")"><li style="color:black;">Liabilites></li></a>
-                                    <a href="@Url.Action("AddPetCareIndex","AddPetCare")"><li style="color:black">PetCare ></li></a>
-                                    <a href="@Url.Action("AddAssetMappingIndex","AddAssetMapping")"><li style="color:black">Mapping ></li></a>
-                                    <a href="@Url.Action("AddNomineeIndex","AddNominee")"><li style="">Nominee ></li></a>
-                                    <li style="color:#e1e1e1">Appointees > </li>
-                                    <li style="color:#e1e1e1">Document</li>
+                                    </ul>
+                                </h5>
+                            }
+                            else
+                            {
+                                if (Session["Type"].ToString() != "Testator")
+                                {
+                                    <h5>
+                                        <ul id="menu" style="font-weight:bold;">
 
 
-                                </ul>
-                            </h5>
+                                            <a href="@Url.Action("AddTestatorsFormIndex", "AddTestatorsForm", new { NestId = Convert.ToInt32(Session["uuid"]) })"><li style="color:black;">Testator></li></a>
+                                            <a href="@Url.Action("AddTestatorFamilyIndex", "AddTestatorFamily")"><li style="color:black;">Testator Family ></li></a>
+                                            <a href="@Url.Action("AddBeneficiaryIndex", "AddBeneficiary")"><li style="color:black;">Beneficiary ></li></a>
+                                            <a href="@Url.Action("AddMainAssetsIndex", "AddMainAssets")"><li style="color:black">AssetInformation ></li></a>
+                                            <a href="@Url.Action("AddLiabilitiesIndex", "AddLiabilities")"><li style="color:black;">Liabilites></li></a>
+                                            <a href="@Url.Action("AddPetCareIndex", "AddPetCare")"><li style="color:black">PetCare ></li></a>
+                                            <a href="@Url.Action("AddAssetMappingIndex", "AddAssetMapping")"><li style="color:black">Mapping ></li></a>
+                                            <a href="@Url.Action("AddNomineeIndex", "AddNominee")"><li style="">Nominee ></li></a>
+                                            <li style="color:#e1e1e1">Appointees > </li>
+                                            <li style="color:#e1e1e1">Document</li>
 
+
+                                        </ul>
+                                    </h5>
+
+                                }
+                                else
+
+                                {
+                                    <h5>
+                                        <ul id="menu" style="font-weight:bold;">
+
+
+                                            <a href="@Url.Action("UpdateTestatorsIndex", "UpdateTestators", new { NestId = Convert.ToInt32(Session["uuid"]) })"><li style="color:black;">Testator></li></a>
+                                            <a href="@Url.Action("AddTestatorFamilyIndex", "AddTestatorFamily")"><li style="color:black;">Testator Family ></li></a>
+                                            <a href="@Url.Action("AddBeneficiaryIndex", "AddBeneficiary")"><li style="color:black;">Beneficiary ></li></a>
+                                            <a href="@Url.Action("AddMainAssetsIndex", "AddMainAssets")"><li style="color:black">AssetInformation ></li></a>
+                                            <a href="@Url.Action("AddLiabilitiesIndex", "AddLiabilities")"><li style="color:black;">Liabilites></li></a>
+                                            <a href="@Url.Action("AddPetCareIndex", "AddPetCare")"><li style="color:black">PetCare ></li></a>
+                                            <a href="@Url.Action("AddAssetMappingIndex", "AddAssetMapping")"><li style="color:black">Mapping ></li></a>
+                                            <a href="@Url.Action("AddNomineeIndex", "AddNominee")"><li style="">Nominee ></li></a>
+                                            <li style="color:#e1e1e1">Appointees > </li>
+                                            <li style="color:#e1e1e1">Document</li>
+
+
+                                        </ul>
+                                    </h5>
+                                }
+
+                            }
                         }
-                        else
-
-                        {
-                            <h5>
-                                <ul id="menu" style="font-weight:bold;">
-
-
-                                    <a href="@Url.Action("UpdateTestatorsIndex","UpdateTestators" , new { NestId = Convert.ToInt32(Session["uuid"]) })"><li style="color:black;">Testator></li></a>
-                                    <a href="@Url.Action("AddTestatorFamilyIndex","AddTestatorFamily")"><li style="color:black;">Testator Family ></li></a>
-                                    <a href="@Url.Action("AddBeneficiaryIndex","AddBeneficiary")"><li style="color:black;">Beneficiary ></li></a>
-                                    <a href="@Url.Action("AddMainAssetsIndex","AddMainAssets")"><li style="color:black">AssetInformation ></li></a>
-                                    <a href="@Url.Action("AddLiabilitiesIndex","AddLiabilities")"><li style="color:black;">Liabilites></li></a>
-                                    <a href="@Url.Action("AddPetCareIndex","AddPetCare")"><li style="color:black">PetCare ></li></a>
-                                    <a href="@Url.Action("AddAssetMappingIndex","AddAssetMapping")"><li style="color:black">Mapping ></li></a>
-                                    <a href="@Url.Action("AddNomineeIndex","AddNominee")"><li style="">Nominee ></li></a>
-                                    <li style="color:#e1e1e1">Appointees > </li>
-                                    <li style="color:#e1e1e1">Document</li>
-
-
-                                </ul>
-                            </h5>
-                        }
-
-
                         <br />
                         <div class="col-12 12">
                             <div class="card bg-transparent shadow-none border border-light-3">
@@ -93,26 +122,30 @@
                         @using (Html.BeginForm("InsertNomineeData", null, FormMethod.Post, new { id = "NomineeForm" }))
                         {
 
-                          
+
                             <input type="hidden" id="txtcheck" value="" name="name" />
                             <div class="row">
                                 <div class="col-sm-1"></div><div class='col-sm-2'><label for='input-1' style="line-height:40px;"><i class="fa fa-user-circle-o  " aria-hidden="true"></i>Testator</label></div>
-                                                            <div class='col-sm-3'>
-                                                                @if (Session["Type"].ToString() == "DistributorAdmin" || Session["Type"].ToString() == "SuperAdmin")
-                                                                {
-                                                                    <input type="text" readonly="true" name="ddltestatorname" class="form-control" value="@Session["disttestator"].ToString()" />
-                                                                    <input type="hidden" id="tid" name="ddltid" value="@Session["distid"].ToString()" />
-                                                                }
-                                                                else
-                                                                {
-                                                                    <select id='DDLTestator' onchange="getDDLTestator(value)" name="contentList" class='form-control input-shadow validate[required]'></select>
-                                                                    @Html.HiddenFor(m => m.ddltid, new { id = "ddltid" })
-                                                                    @Html.HiddenFor(m => m.ddltestatorname, new { id = "ddltestatorname" })
-                                                                }
+                                <div class='col-sm-3'>
+                                    @if (Session["Type"].ToString() == "DistributorAdmin" || Session["Type"].ToString() == "SuperAdmin")
+                                    {
+                                        if (Session["disttestator"] != null || Session["distid"] != null)
+                                        {
+                                            <input type="text" readonly="true" name="ddltestatorname" class="form-control" value="@Session["disttestator"].ToString()" />
+                                            <input type="hidden" id="tid" name="ddltid" value="@Session["distid"].ToString()" />
+                                        }
+
+                                    }
+                                    else
+                                    {
+                                        <select id='DDLTestator' onchange="getDDLTestator(value)" name="contentList" class='form-control input-shadow validate[required]'></select>
+                                        @Html.HiddenFor(m => m.ddltid, new { id = "ddltid" })
+                                        @Html.HiddenFor(m => m.ddltestatorname, new { id = "ddltestatorname" })
+                                    }
 
 
 
-                                                            </div>
+                                </div>
 
                             </div>
 
@@ -410,13 +443,13 @@
 
 
 
-<button type="button" id="btnnomineeinsertsuccess" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
-<button type="button" id="btnnomineelinking" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
-<button type="button" id="btncheckExists" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
-<button type="button" style="display:none" id="confirmtestatorfamily"></button>
+                    <button type="button" id="btnnomineeinsertsuccess" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
+                    <button type="button" id="btnnomineelinking" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
+                    <button type="button" id="btncheckExists" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
+                    <button type="button" style="display:none" id="confirmtestatorfamily"></button>
 
 
-<script>
+                    <script>
 
 
           $(document).ready(function () {
@@ -468,90 +501,90 @@
 
 
     });
-</script>
+                    </script>
 
-@*validation script*@
-<script>
-    function getIdentityselection(id) {
-        if (id == "Aadhaar Card") {
-            $("#appendtxt").empty().append("<input type='text' class='form-control input-shadow validate[required,custom[adharCard]] text-input' id='Identity_Proof_Value' name='Identity_Proof_Value' placeholder='Enter Aadhaar Card' autocomplete='off'  />");
-        }
-
-
-        if (id == "Passport") {
-            $("#appendtxt").empty().append("<input type='text' class='form-control input-shadow validate[required,custom[Passport]] text-input' id='Identity_Proof_Value' name='Identity_Proof_Value'  placeholder='Enter Passport Number' autocomplete='off'  />");
-        }
+                    @*validation script*@
+                    <script>
+                        function getIdentityselection(id) {
+                            if (id == "Aadhaar Card") {
+                                $("#appendtxt").empty().append("<input type='text' class='form-control input-shadow validate[required,custom[adharCard]] text-input' id='Identity_Proof_Value' name='Identity_Proof_Value' placeholder='Enter Aadhaar Card' autocomplete='off'  />");
+                            }
 
 
-
-        if (id == "Driving Licences") {
-            $("#appendtxt").empty().append("<input type='text' class='form-control input-shadow validate[required,custom[carnumber]]  text-input' id='Identity_Proof_Value' name='Identity_Proof_Value' placeholder='Enter Driving Licences' autocomplete='off'  />");
-        }
+                            if (id == "Passport") {
+                                $("#appendtxt").empty().append("<input type='text' class='form-control input-shadow validate[required,custom[Passport]] text-input' id='Identity_Proof_Value' name='Identity_Proof_Value'  placeholder='Enter Passport Number' autocomplete='off'  />");
+                            }
 
 
 
-        if (id == "Pan Card") {
-            $("#appendtxt").empty().append("<input type='text' class='form-control input-shadow validate[required,custom[pannumber]]  text-input' id='Identity_Proof_Value' name='Identity_Proof_Value' placeholder='Enter Pan Card' autocomplete='off'  />");
-        }
-
-
-    }
-</script>
-
-
-<script>
-    function getAltIdentityselection(id) {
-
-        $("#Alt_Identity_Proof").val(id);
-
-
-        if (id == "Aadhaar Card") {
-            $("#appendtxt2").empty().append("<input type='text' class='form-control input-shadow validate[custom[adharCard]] text-input' id='Alt_Identity_proof_Value' name='Alt_Identity_proof_Value' placeholder='Enter Aadhaar Card' autocomplete='off'  />");
-        }
-
-
-        if (id == "Passport") {
-            $("#appendtxt2").empty().append("<input type='text' class='form-control input-shadow validate[custom[Passport]] text-input' id='Alt_Identity_proof_Value' name='Alt_Identity_proof_Value'  placeholder='Enter Passport Number' autocomplete='off'  />");
-        }
+                            if (id == "Driving Licences") {
+                                $("#appendtxt").empty().append("<input type='text' class='form-control input-shadow validate[required,custom[carnumber]]  text-input' id='Identity_Proof_Value' name='Identity_Proof_Value' placeholder='Enter Driving Licences' autocomplete='off'  />");
+                            }
 
 
 
-        if (id == "Driving Licences") {
-            $("#appendtxt2").empty().append("<input type='text' class='form-control input-shadow validate[custom[carnumber]] text-input' id='Alt_Identity_proof_Value' name='Alt_Identity_proof_Value' placeholder='Enter Driving Licences' autocomplete='off'  />");
-        }
+                            if (id == "Pan Card") {
+                                $("#appendtxt").empty().append("<input type='text' class='form-control input-shadow validate[required,custom[pannumber]]  text-input' id='Identity_Proof_Value' name='Identity_Proof_Value' placeholder='Enter Pan Card' autocomplete='off'  />");
+                            }
+
+
+                        }
+                    </script>
+
+
+                    <script>
+                        function getAltIdentityselection(id) {
+
+                            $("#Alt_Identity_Proof").val(id);
+
+
+                            if (id == "Aadhaar Card") {
+                                $("#appendtxt2").empty().append("<input type='text' class='form-control input-shadow validate[custom[adharCard]] text-input' id='Alt_Identity_proof_Value' name='Alt_Identity_proof_Value' placeholder='Enter Aadhaar Card' autocomplete='off'  />");
+                            }
+
+
+                            if (id == "Passport") {
+                                $("#appendtxt2").empty().append("<input type='text' class='form-control input-shadow validate[custom[Passport]] text-input' id='Alt_Identity_proof_Value' name='Alt_Identity_proof_Value'  placeholder='Enter Passport Number' autocomplete='off'  />");
+                            }
 
 
 
-        if (id == "Pan Card") {
-            $("#appendtxt2").empty().append("<input type='text' class='form-control input-shadow validate[custom[pannumber]]  text-input' id='Alt_Identity_proof_Value' name='Alt_Identity_proof_Value' placeholder='Enter Pan Card' autocomplete='off'  />");
-        }
-
-
-    }
-</script>
+                            if (id == "Driving Licences") {
+                                $("#appendtxt2").empty().append("<input type='text' class='form-control input-shadow validate[custom[carnumber]] text-input' id='Alt_Identity_proof_Value' name='Alt_Identity_proof_Value' placeholder='Enter Driving Licences' autocomplete='off'  />");
+                            }
 
 
 
-
-<script>
-    $("#ddlcity").change(function () {
-        var value = $(this).children(":selected").attr("value");
-        var text = $("#ddlcity option:selected").html();
-
-        $("#citytext").val(text);
-        $("#cityid").val(value);
-    });
-</script>
-
-<script>
-    $(document).ready(function () {
-        $("#NomineeForm").validationEngine();
-    });
-</script>
-@*end*@
+                            if (id == "Pan Card") {
+                                $("#appendtxt2").empty().append("<input type='text' class='form-control input-shadow validate[custom[pannumber]]  text-input' id='Alt_Identity_proof_Value' name='Alt_Identity_proof_Value' placeholder='Enter Pan Card' autocomplete='off'  />");
+                            }
 
 
-<script>
+                        }
+                    </script>
+
+
+
+
+                    <script>
+                        $("#ddlcity").change(function () {
+                            var value = $(this).children(":selected").attr("value");
+                            var text = $("#ddlcity option:selected").html();
+
+                            $("#citytext").val(text);
+                            $("#cityid").val(value);
+                        });
+                    </script>
+
+                    <script>
+                        $(document).ready(function () {
+                            $("#NomineeForm").validationEngine();
+                        });
+                    </script>
+                    @*end*@
+
+
+                    <script>
 
     $(document).ready(function () {
 
@@ -560,7 +593,7 @@
               var val = $("#tid").val();
 
         var checkstatus =  $("#txtcheck").val();
-    
+
              $.ajax({
 
             type: "POST",
@@ -572,10 +605,10 @@
 
                     $("#confirmtestatorfamily").on("click", function () { });
 
-                    $("#confirmtestatorfamily").click(); 
+                    $("#confirmtestatorfamily").click();
 
                     $("#btnnext").show();
-                 
+
                 }
 
 
@@ -607,8 +640,8 @@
             type: "POST",
             url:"@Url.Action("BindTestatorDDL", "AddNominee")",
                   success: function (data) {
-                      var splitted = data.split("~"); 
-                      $("#DDLTestator").append(splitted[0]); 
+                      var splitted = data.split("~");
+                      $("#DDLTestator").append(splitted[0]);
                       $("#ddltid").val(splitted[1]);
                       var pop = splitted[2];
                       //$('#DDLTestator').append(data);
@@ -619,7 +652,7 @@
                           $("#confirmtestatorfamily").click(); //trigger event after listening to it.
                       }
 
-                     
+
 
 
 
@@ -641,54 +674,54 @@
 
         });
 
-</script>
+                    </script>
 
 
 
 
 
 
-@if (ViewBag.Message == "Verified")
-{
-    <script>
+                    @if (ViewBag.Message == "Verified")
+                    {
+                        <script>
 
-        $(document).ready(function () {
-
-
-            $("#btnnomineeinsertsuccess").on("click", function () { });
-
-            $("#btnnomineeinsertsuccess").click(); //trigger event after listening to it.
-
-            $("#btnnext").show();
+                            $(document).ready(function () {
 
 
-        });
-    </script>
+                                $("#btnnomineeinsertsuccess").on("click", function () { });
 
-}
+                                $("#btnnomineeinsertsuccess").click(); //trigger event after listening to it.
 
-
-
-@if (ViewBag.Message == "link")
-{
-    <script>
-
-        $(document).ready(function () {
+                                $("#btnnext").show();
 
 
-            $("#btnnomineelinking").on("click", function () { });
+                            });
+                        </script>
 
-            $("#btnnomineelinking").click(); //trigger event after listening to it.
+                    }
 
 
 
+                    @if (ViewBag.Message == "link")
+                    {
+                        <script>
 
-        });
-    </script>
+                            $(document).ready(function () {
 
-}
 
-<script>
+                                $("#btnnomineelinking").on("click", function () { });
+
+                                $("#btnnomineelinking").click(); //trigger event after listening to it.
+
+
+
+
+                            });
+                        </script>
+
+                    }
+
+                    <script>
 
       function getDDLTestator(value) {
         //var value = $(this).children(":selected").attr("value");
@@ -747,47 +780,47 @@
             $("#txtcheck").val("true");
         }
     });
-</script>
+                    </script>
 
 
 
 
 
-<script>
-    $("#confirmtestatorfamily").click(function () {
-        $("#btnnext").show();
-        swal({
+                    <script>
+                        $("#confirmtestatorfamily").click(function () {
+                            $("#btnnext").show();
+                            swal({
 
-            text: 'Testator Data Already Exists Do You Want To Add More!',
-            icon: 'warning',
-            buttons: true,
-            dangerMode: true,
-            buttons: ['No', 'Yes']
-        })
-            .then((willDelete) => {
-                if (willDelete) {
-
-
-
-                } else {
+                                text: 'Testator Data Already Exists Do You Want To Add More!',
+                                icon: 'warning',
+                                buttons: true,
+                                dangerMode: true,
+                                buttons: ['No', 'Yes']
+                            })
+                                .then((willDelete) => {
+                                    if (willDelete) {
 
 
 
-
-
-                    var url = "/AddAppointees/AddAppointeesIndex/";
-                    window.location.href = url;
+                                    } else {
 
 
 
 
-                }
-            });
 
-    });
+                                        var url = "/AddAppointees/AddAppointeesIndex/";
+                                        window.location.href = url;
 
 
-</script>
+
+
+                                    }
+                                });
+
+                        });
+
+
+                    </script>
 
 
 

@@ -175,10 +175,31 @@
             data: {  "send": "" + id + ""   },
             success: function (data) {
 
-
-                var NestId = data
-                var url = "/UpdateTestators/UpdateTestatorsIndex?NestId=" + NestId;
-                window.location.href = url;
+                var getdata = data;
+                var type = getdata.split("~")[0];
+                var id = getdata.split("~")[1];
+                
+                if (type == "Will") {
+                 
+                    var url = "/UpdateTestators/UpdateTestatorsIndex?NestId=" + id;
+                    window.location.href = url;
+                    
+                }
+                if (data == "POA" || data =="GiftDeeds") {
+                    var NestId = data
+                    var url = "/AddTestatorsForm/AddTestatorsFormIndex?NestId=" + NestId;
+                    window.location.href = url;
+                }
+                if (data == "Codocil") {
+                    var NestId = data
+                    var url = "/Codocil/CodocilIndex/";
+                    window.location.href = url;
+                }
+                if (data == "LivingWill") {
+                    var NestId = data
+                    var url = "/LivingWill/LivingWillIndex/";
+                    window.location.href = url;
+                }
 
 
             }

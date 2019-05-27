@@ -20,7 +20,7 @@ namespace WillAssure.Controllers
         public static string connectionString = ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString;
         SqlConnection con = new SqlConnection(connectionString);
         // GET: EditTestator
-        public ActionResult EditTestatorIndex()
+        public ActionResult EditTestatorIndex(string doctype)
         {
             // check type 
             string typ5 = "";
@@ -39,6 +39,12 @@ namespace WillAssure.Controllers
 
 
             //end
+
+
+            if (doctype != "")
+            {
+                Session["doctype"] = doctype;
+            }
 
 
 
@@ -123,14 +129,24 @@ namespace WillAssure.Controllers
             ViewBag.documentlink = "true";
             ViewBag.collapse = "true";
 
-            
-                    ViewBag.view = "Will";
-           
+            //if (Session["doctype"].ToString() == "Will")
+            //{
+            //    ViewBag.view = "Will";
+            //}
+
+            //if (Session["doctype"].ToString() == "POA")
+            //{
+            //    ViewBag.view = "POA";
+            //}
 
 
-              
-                    ViewBag.view = "POA";
-                    ViewBag.view = "GiftDeeds";
+            //if (Session["doctype"].ToString() == "GiftDeeds")
+            //{
+            //    ViewBag.view = "GiftDeeds";
+            //}
+
+
+         
 
 
             return View("~/Views/EditTestator/EditTestatorPageContent.cshtml");
@@ -939,14 +955,36 @@ namespace WillAssure.Controllers
 
 
 
-        public int UpdateTestatorForm()
+        public string UpdateTestatorForm()
         {
-            int index = Convert.ToInt32(Request["send"]);
+            string data = "";
+
+            if (Session["doctype"].ToString() == "Will")
+            {
+
+                int id = Convert.ToInt32(Request["send"]);
+                string type = "Will";
+                data = type + "~" + id;
+                
+            }
+
+            if (Session["doctype"].ToString() == "POA" || Session["doctype"].ToString() == "GiftDeeds")
+            {
+                data = "POA";
+            }
 
 
+            if (Session["doctype"].ToString() == "Codocil")
+            {
+                data = "Codocil";
+            }
 
+            if (Session["doctype"].ToString() == "LivingWill")
+            {
+                data = "LivingWill";
+            }
 
-            return index;
+            return data;
         }
 
 

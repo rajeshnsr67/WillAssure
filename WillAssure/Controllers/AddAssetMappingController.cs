@@ -181,11 +181,7 @@ namespace WillAssure.Controllers
             con.Close();
 
         
-                    ViewBag.view = "Will";
-             
-
-                    ViewBag.view = "POA";
-                    ViewBag.view = "GiftDeeds";
+                   
              
       
 
@@ -1495,24 +1491,28 @@ namespace WillAssure.Controllers
 
                     if (value != "")
                     {
-                        con.Open();
-                        string query1 = "select a.Beneficiary_Asset_ID , a.AssetType_ID , a.AssetCategory_ID , a.SchemeName , a.InstrumentName , a.Beneficiary_ID , a.Proportion , a.tid from BeneficiaryAssets a inner join TestatorDetails b on a.tid=b.tId where b.tId = " + value +"" ;
-                        SqlDataAdapter da = new SqlDataAdapter(query1, con);
-                        DataTable dt = new DataTable();
-                        da.Fill(dt);
-                        //end
+                        if (value != null)
+                        {
+                            con.Open();
+                            string query1 = "select a.Beneficiary_Asset_ID , a.AssetType_ID , a.AssetCategory_ID , a.SchemeName , a.InstrumentName , a.Beneficiary_ID , a.Proportion , a.tid from BeneficiaryAssets a inner join TestatorDetails b on a.tid=b.tId where b.tId = " + value + "";
+                            SqlDataAdapter da = new SqlDataAdapter(query1, con);
+                            DataTable dt = new DataTable();
+                            da.Fill(dt);
+                            //end
 
-                        if (dt.Rows.Count > 0)
-                        {
-                            string query2 = "Update PageActivity set ActID=1 , Tid=" + Response + " , PageStatus=2  ";
-                            SqlCommand cmd = new SqlCommand(query2, con);
-                            cmd.ExecuteNonQuery();
-                        }
-                        else
-                        {
-                            string query2 = "Update PageActivity set ActID=1 , Tid=" + Response + " , PageStatus=1  ";
-                            SqlCommand cmd = new SqlCommand(query2, con);
-                            cmd.ExecuteNonQuery();
+                            if (dt.Rows.Count > 0)
+                            {
+                                string query2 = "Update PageActivity set ActID=1 , Tid=" + Response + " , PageStatus=2  ";
+                                SqlCommand cmd = new SqlCommand(query2, con);
+                                cmd.ExecuteNonQuery();
+                            }
+                            else
+                            {
+                                string query2 = "Update PageActivity set ActID=1 , Tid=" + Response + " , PageStatus=1  ";
+                                SqlCommand cmd = new SqlCommand(query2, con);
+                                cmd.ExecuteNonQuery();
+                            }
+
                         }
 
 

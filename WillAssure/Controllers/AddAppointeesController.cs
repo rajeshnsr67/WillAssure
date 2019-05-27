@@ -958,25 +958,29 @@ namespace WillAssure.Controllers
                 if (Request["send"] != "")
                 {
                     // check for data exists or not for testato family
-                    con.Open();
-                    string query1 = "select * from Appointees where tid = " + value + " ";
-                    SqlDataAdapter da = new SqlDataAdapter(query1, con);
-                    DataTable dt = new DataTable();
-                    da.Fill(dt);
-                    //end
+                    if (value != null)
+                    {
+                        con.Open();
+                        string query1 = "select * from Appointees where tid = " + value + " ";
+                        SqlDataAdapter da = new SqlDataAdapter(query1, con);
+                        DataTable dt = new DataTable();
+                        da.Fill(dt);
+                        //end
 
-                    if (dt.Rows.Count > 0)
-                    {
-                        string query2 = "Update PageActivity set ActID=1 , Tid=" + value + " , PageStatus=2  ";
-                        SqlCommand cmd = new SqlCommand(query2, con);
-                        cmd.ExecuteNonQuery();
+                        if (dt.Rows.Count > 0)
+                        {
+                            string query2 = "Update PageActivity set ActID=1 , Tid=" + value + " , PageStatus=2  ";
+                            SqlCommand cmd = new SqlCommand(query2, con);
+                            cmd.ExecuteNonQuery();
+                        }
+                        else
+                        {
+                            string query2 = "Update PageActivity set ActID=1 , Tid=" + value + " , PageStatus=1  ";
+                            SqlCommand cmd = new SqlCommand(query2, con);
+                            cmd.ExecuteNonQuery();
+                        }
                     }
-                    else
-                    {
-                        string query2 = "Update PageActivity set ActID=1 , Tid=" + value + " , PageStatus=1  ";
-                        SqlCommand cmd = new SqlCommand(query2, con);
-                        cmd.ExecuteNonQuery();
-                    }
+                   
 
 
 

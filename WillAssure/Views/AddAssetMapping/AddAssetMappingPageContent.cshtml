@@ -9,6 +9,16 @@
         display: inline;
     }
 </style>
+
+@if (Session["Type"] == null)
+{
+    <script>
+        var NestId = data
+        var url = "/LoginPage/ViewLogout/";
+        window.location.href = url;
+    </script>
+
+}
 @*Main Content*@
 <div class="content-wrapper">
     <div class="container-fluid">
@@ -164,8 +174,12 @@
                                 <div class="col-sm-3">
                                     @if (Session["Type"].ToString() == "DistributorAdmin" || Session["Type"].ToString() == "SuperAdmin")
                                     {
-                                        <input type="text" readonly="true" name="ddltestatorname" class="form-control" value="@Session["disttestator"].ToString()" />
-                                        <input type="hidden" id="tid" name="ddltid" value="@Session["distid"].ToString()" />
+                                        if (Session["disttestator"] != null || Session["distid"] != null)
+                                        {
+                                            <input type="text" readonly="true" name="ddltestatorname" class="form-control" value="@Session["disttestator"].ToString()" />
+                                            <input type="hidden" id="tid" name="ddltid" value="@Session["distid"].ToString()" />
+                                        }
+
                                     }
                                     else
                                     {
@@ -246,7 +260,36 @@
                                 </div>
                             </div>
 
-                            <a href="@Url.Action("AddNomineeIndex","AddNominee")"><button type="button" style="display:;" id="btnnext" class="btn btn-danger shadow-primary px-5">Next&nbsp;&nbsp;<i class="icon-arrow-right-circle"></i></button></a>
+
+
+
+
+                            @if (Session["doctype"] != null)
+                            {
+                                if (Session["doctype"].ToString() == "POA" || Session["doctype"].ToString() == "GiftDeeds")
+                                {
+                                    <div class="form-group" style="float:right">
+
+                                        <a href="@Url.Action("AddAppointeesIndex","AddAppointees")"><button type="button" style="display:;" id="btnnext" class="btn btn-danger shadow-primary px-5">Next&nbsp;&nbsp;<i class="icon-arrow-right-circle"></i></button></a>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="form-group" style="float:right">
+                                        <a href="@Url.Action("AddNomineeIndex","AddNominee")"><button type="button" style="display:;" id="btnnext" class="btn btn-danger shadow-primary px-5">Next&nbsp;&nbsp;<i class="icon-arrow-right-circle"></i></button></a>
+                                    </div>
+                                }
+                            }
+                            else
+                            {
+                                <div class="form-group" style="float:right">
+                                    <a href="@Url.Action("AddNomineeIndex","AddNominee")"><button type="button" style="display:;" id="btnnext" class="btn btn-danger shadow-primary px-5">Next&nbsp;&nbsp;<i class="icon-arrow-right-circle"></i></button></a>
+                                </div>
+                            }
+
+
+                            }
+
 
                             @*<div class="card-body" id="fetchdata">
                                     <div class='col-sm-3' id="type">
@@ -642,7 +685,7 @@
                var val = $("#tid").val();
 
         var checkstatus =  $("#txtcheck").val();
-    
+
              $.ajax({
 
             type: "POST",
@@ -654,10 +697,10 @@
 
                     $("#confirmtestatorfamily").on("click", function () { });
 
-                    $("#confirmtestatorfamily").click(); 
+                    $("#confirmtestatorfamily").click();
 
                     $("#btnnext").show();
-                 
+
                 }
 
 
