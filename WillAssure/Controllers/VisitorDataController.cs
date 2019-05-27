@@ -46,7 +46,7 @@ namespace WillAssure.Controllers
 
 
 
-                // create visitor as testator and credentials
+                // create visitor as testator and credentials testing
 
 
 
