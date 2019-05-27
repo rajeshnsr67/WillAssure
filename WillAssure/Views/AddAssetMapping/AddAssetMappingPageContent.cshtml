@@ -60,11 +60,11 @@
                                             <a href="@Url.Action("AddBeneficiaryIndex","AddBeneficiary")"><li style="color:black">Donee ></li></a>
                                             <a href="@Url.Action("AddMainAssetsIndex","AddMainAssets")"><li style="color:black">Gift ></li></a>
                                             <a href="@Url.Action("AddAssetMappingIndex","AddAssetMapping")">
-                                                <li style="color:">Asset Mapping ></li>
+                                                <li style="color:">Asset Mapping ></li></a>
                                                 <li style="color:#e1e1e1">Witness Appointment ></li>
+                                                <li style="color:#e1e1e1">Document</li>
 
-
-                                        </ul>
+</ul>
                                     </h5>
                                 }
                                 else
@@ -410,7 +410,7 @@
                              $("#accordion8").append(assettypehtmlelem);
                              for (var i = 0; i < atId_group.length; i++) {
 
-                                 var liability_proportion = petcare_proportion = total_liability_petcare_proportion=0;
+                                 var liability_proportion = petcare_proportion = total_liability_petcare_proportion =0;
                                  if (parseInt($("#assetcategoryidforliablities").val()) == parseInt(data[i].assetcatid)) {
 
                                      var liabilitiesid = $("#totalliablities").val();
@@ -442,7 +442,7 @@
                                  }
 
                                  if (parseInt(liability_proportion) == 0 && parseInt(petcare_proportion) == 0) {
-                                     total_liability_petcare_proportion = totalval;
+                                     total_liability_petcare_proportion = 0;
                                  } else {
                                      total_liability_petcare_proportion = parseInt(totalval) - (parseInt(liability_proportion) + parseInt(petcare_proportion));   // (parseInt(liability_proportion) + parseInt(petcare_proportion));
                                  }

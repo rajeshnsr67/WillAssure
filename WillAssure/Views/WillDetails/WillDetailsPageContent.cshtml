@@ -19,8 +19,54 @@
                 </div>
             </div>
         </div>
+        <style>
+            ul#menu li {
+                display: inline;
+            }
+        </style>
         <!-- End Breadcrumb-->
         @*<div class="card-title text-primary">Will Details</div>*@
+
+
+        @if (Session["doctype"].ToString() == "POA" || Session["doctype"].ToString() == "GiftDeeds")
+        {
+            <h5>
+                <ul id="menu" style="font-weight:bold;">
+
+                    <a href="@Url.Action("AddTestatorsFormIndex","AddTestatorsForm")"><li style="color:black;">Donor ></li></a>
+                    <a href="@Url.Action("AddBeneficiaryIndex","AddBeneficiary")"><li style="color:black">Donee ></li></a>
+                    <a href="@Url.Action("AddMainAssetsIndex","AddMainAssets")"><li style="color:black">Gift ></li></a>
+                    <a href="@Url.Action("AddAssetMappingIndex","AddAssetMapping")"><li style="color:black">Asset Mapping ></li></a>
+                    <a href="@Url.Action("AddAppointeesIndex","AddAppointees")"> <li style="color:black">Witness Appointment ></li></a>
+                    <a href="@Url.Action("WillDetailsIndex","WillDetails")"> <li style="color:">Document</li></a>
+                </ul>
+            </h5>
+
+        }
+        else
+        {
+
+            <h5>
+                <ul id="menu" style="font-weight:bold;">
+
+
+                    <a href="@Url.Action("AddTestatorsFormIndex","AddTestatorsForm")"><li style="color:black;">Testator></li></a>
+                    <a href="@Url.Action("AddTestatorFamilyIndex","AddTestatorFamily")"><li style="color:black;">Testator Family ></li></a>
+                    <a href="@Url.Action("AddBeneficiaryIndex","AddBeneficiary")"><li style="color:black;">Beneficiary ></li></a>
+                    <a href="@Url.Action("AddMainAssetsIndex","AddMainAssets")"><li style="color:black;">AssetInformation ></li></a>
+                    <a href="@Url.Action("AddLiabilitiesIndex","AddLiabilities")"><li style="color:black;">Liabilites></li></a>
+                    <a href="@Url.Action("AddPetCareIndex","AddPetCare")"><li style="color:black;">PetCare ></li></a>
+                    <a href="@Url.Action("AddAssetMappingIndex","AddAssetMapping")"><li style="color:black">Mapping ></li></a>
+                    <a href="@Url.Action("AddNomineeIndex","AddNominee")"><li style="color:black">Nominee ></li></a>
+                    <a href="@Url.Action("AddAppointeesIndex","AddAppointees")"><li style="color:black">Appointees > </li></a>
+                    <a href="@Url.Action("WillDetailsIndex","WillDetails")"> <li style="color:">Document</li></a>
+
+
+                </ul>
+            </h5>
+
+
+        }
 
 
 
@@ -62,287 +108,287 @@
                         <!-- Tab panes -->
                         <div class="tab-content">
                             <div id="tabe-1" class="container tab-pane active">
-                         
-                               <center><a href="@Url.Action("UpdateTestatorsIndex","UpdateTestators", new {NestId=ViewBag.tid})"><input type="button" class="btn btn-primary" name="name" value="Edit TestatorDetails" /></a></center> 
-                               <div class="row">
-                                   @if (ViewBag.TestatorDetails != null)
-                                   {
-                                       foreach (var item in ViewBag.TestatorDetails)
-                                       {
 
+                                <center><a href="@Url.Action("UpdateTestatorsIndex","UpdateTestators", new {NestId=ViewBag.tid})"><input type="button" class="btn btn-primary" name="name" value="Edit TestatorDetails" /></a></center>
+                                <div class="row">
+                                    @if (ViewBag.TestatorDetails != null)
+                                    {
+                                        foreach (var item in ViewBag.TestatorDetails)
+                                        {
 
 
-                                           <div class="col-sm-6">
-                                               <label for="input-1" style="line-height:38px"> Name : </label>
 
-                                               <div class="form-group">
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Name : </label>
 
-                                                   <input type="text" readonly="true" name="name" value="@item.TestatorName" class="form-control input-shadow" />
-                                               </div>
-                                           </div>
+                                                <div class="form-group">
 
+                                                    <input type="text" readonly="true" name="name" value="@item.TestatorName" class="form-control input-shadow" />
+                                                </div>
+                                            </div>
 
 
 
-                                           <div class="col-sm-6">
-                                               <label for="input-1" style="line-height:38px"> Last Name : </label>
-                                               <div class="form-group">
 
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Last Name : </label>
+                                                <div class="form-group">
 
-                                                   <input type="text" readonly="true" name="name" value="@item.TestatorLastName" class="form-control input-shadow" />
-                                               </div>
-                                           </div>
 
+                                                    <input type="text" readonly="true" name="name" value="@item.TestatorLastName" class="form-control input-shadow" />
+                                                </div>
+                                            </div>
 
 
-                                           <div class="col-sm-6">
-                                               <label for="input-1" style="line-height:38px"> Middle Name : </label>
-                                               <div class="form-group">
 
-                                                   <input type="text" readonly="true" name="name" value="@item.TestatorMiddleName" class="form-control input-shadow" />
-                                               </div>
-                                           </div>
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Middle Name : </label>
+                                                <div class="form-group">
 
+                                                    <input type="text" readonly="true" name="name" value="@item.TestatorMiddleName" class="form-control input-shadow" />
+                                                </div>
+                                            </div>
 
 
 
-                                           <div class="col-sm-6">
-                                               <label for="input-1" style="line-height:38px"> DOB : </label>
-                                               <div class="form-group">
 
-                                                   <input type="text" readonly="true" name="name" value="@item.TestatorDOB" class="form-control input-shadow" />
-                                               </div>
-                                           </div>
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> DOB : </label>
+                                                <div class="form-group">
 
+                                                    <input type="text" readonly="true" name="name" value="@item.TestatorDOB" class="form-control input-shadow" />
+                                                </div>
+                                            </div>
 
 
 
 
-                                           <div class="col-sm-6">
-                                               <label for="input-1" style="line-height:38px"> Occupation : </label>
-                                               <div class="form-group">
 
-                                                   <input type="text" readonly="true" name="name" value="@item.TestatorOccupation" class="form-control input-shadow" />
-                                               </div>
-                                           </div>
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Occupation : </label>
+                                                <div class="form-group">
 
+                                                    <input type="text" readonly="true" name="name" value="@item.TestatorOccupation" class="form-control input-shadow" />
+                                                </div>
+                                            </div>
 
 
 
 
-                                           <div class="col-sm-6">
-                                               <label for="input-1" style="line-height:38px"> Mobile : </label>
-                                               <div class="form-group">
 
-                                                   <input type="text" readonly="true" name="name" value="@item.TestatorMobile" class="form-control input-shadow" />
-                                               </div>
-                                           </div>
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Mobile : </label>
+                                                <div class="form-group">
 
+                                                    <input type="text" readonly="true" name="name" value="@item.TestatorMobile" class="form-control input-shadow" />
+                                                </div>
+                                            </div>
 
 
 
 
-                                           <div class="col-sm-6">
-                                               <label for="input-1" style="line-height:38px"> Email : </label>
-                                               <div class="form-group">
 
-                                                   <input type="text" readonly="true" name="name" value="@item.TestatorEmail" class="form-control input-shadow" />
-                                               </div>
-                                           </div>
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Email : </label>
+                                                <div class="form-group">
 
+                                                    <input type="text" readonly="true" name="name" value="@item.TestatorEmail" class="form-control input-shadow" />
+                                                </div>
+                                            </div>
 
 
 
 
 
-                                           <div class="col-sm-6">
-                                               <label for="input-1" style="line-height:38px"> Marital Status : </label>
-                                               <div class="form-group">
 
-                                                   <input type="text" readonly="true" name="name" value="@item.TestatorMaritalStatus" class="form-control input-shadow" />
-                                               </div>
-                                           </div>
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Marital Status : </label>
+                                                <div class="form-group">
 
+                                                    <input type="text" readonly="true" name="name" value="@item.TestatorMaritalStatus" class="form-control input-shadow" />
+                                                </div>
+                                            </div>
 
 
 
 
-                                           <div class="col-sm-6">
-                                               <label for="input-1" style="line-height:38px"> Relationship : </label>
-                                               <div class="form-group">
 
-                                                   <input type="text" readonly="true" name="name" value="@item.TestatorRelationship" class="form-control input-shadow" />
-                                               </div>
-                                           </div>
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Relationship : </label>
+                                                <div class="form-group">
 
+                                                    <input type="text" readonly="true" name="name" value="@item.TestatorRelationship" class="form-control input-shadow" />
+                                                </div>
+                                            </div>
 
 
 
 
 
-                                           <div class="col-sm-6">
-                                               <label for="input-1" style="line-height:38px"> Religion : </label>
-                                               <div class="form-group">
 
-                                                   <input type="text" readonly="true" name="name" value="@item.TestatorReligion" class="form-control input-shadow" />
-                                               </div>
-                                           </div>
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Religion : </label>
+                                                <div class="form-group">
 
+                                                    <input type="text" readonly="true" name="name" value="@item.TestatorReligion" class="form-control input-shadow" />
+                                                </div>
+                                            </div>
 
 
 
 
 
-                                           <div class="col-sm-6">
-                                               <label for="input-1" style="line-height:38px"> IdentityProof : </label>
-                                               <div class="form-group">
 
-                                                   <input type="text" readonly="true" name="name" value="@item.TestatorIdentityProof" class="form-control input-shadow" />
-                                               </div>
-                                           </div>
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> IdentityProof : </label>
+                                                <div class="form-group">
 
+                                                    <input type="text" readonly="true" name="name" value="@item.TestatorIdentityProof" class="form-control input-shadow" />
+                                                </div>
+                                            </div>
 
 
 
 
-                                           <div class="col-sm-6">
-                                               <label for="input-1" style="line-height:38px"> ProofValue : </label>
-                                               <div class="form-group">
 
-                                                   <input type="text" readonly="true" name="name" value="@item.TestatorIdentityProofValue" class="form-control input-shadow" />
-                                               </div>
-                                           </div>
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> ProofValue : </label>
+                                                <div class="form-group">
 
+                                                    <input type="text" readonly="true" name="name" value="@item.TestatorIdentityProofValue" class="form-control input-shadow" />
+                                                </div>
+                                            </div>
 
 
 
 
-                                           <div class="col-sm-6">
-                                               <label for="input-1" style="line-height:38px"> AltIdentity Proof : </label>
-                                               <div class="form-group">
 
-                                                   <input type="text" readonly="true" name="name" value="@item.TestatorAltIdentityProof" class="form-control input-shadow" />
-                                               </div>
-                                           </div>
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> AltIdentity Proof : </label>
+                                                <div class="form-group">
 
+                                                    <input type="text" readonly="true" name="name" value="@item.TestatorAltIdentityProof" class="form-control input-shadow" />
+                                                </div>
+                                            </div>
 
 
 
 
-                                           <div class="col-sm-6">
-                                               <label for="input-1" style="line-height:38px"> ProofValue : </label>
-                                               <div class="form-group">
 
-                                                   <input type="text" readonly="true" name="name" value="@item.TestatorAltIdentityProofValue" class="form-control input-shadow" />
-                                               </div>
-                                           </div>
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> ProofValue : </label>
+                                                <div class="form-group">
 
+                                                    <input type="text" readonly="true" name="name" value="@item.TestatorAltIdentityProofValue" class="form-control input-shadow" />
+                                                </div>
+                                            </div>
 
 
 
 
-                                           <div class="col-sm-6">
-                                               <label for="input-1" style="line-height:38px"> Gender : </label>
-                                               <div class="form-group">
 
-                                                   <input type="text" readonly="true" name="name" value="@item.TestatorGender" class="form-control input-shadow" />
-                                               </div>
-                                           </div>
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Gender : </label>
+                                                <div class="form-group">
 
+                                                    <input type="text" readonly="true" name="name" value="@item.TestatorGender" class="form-control input-shadow" />
+                                                </div>
+                                            </div>
 
 
 
 
-                                           <div class="col-sm-6">
-                                               <label for="input-1" style="line-height:38px"> Address1 : </label>
-                                               <div class="form-group">
 
-                                                   <input type="text" readonly="true" name="name" value="@item.TestatorAddress1" class="form-control input-shadow" />
-                                               </div>
-                                           </div>
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Address1 : </label>
+                                                <div class="form-group">
 
+                                                    <input type="text" readonly="true" name="name" value="@item.TestatorAddress1" class="form-control input-shadow" />
+                                                </div>
+                                            </div>
 
 
 
 
-                                           <div class="col-sm-6">
-                                               <label for="input-1" style="line-height:38px"> Address2 : </label>
-                                               <div class="form-group">
 
-                                                   <input type="text" readonly="true" name="name" value="@item.TestatorAddress2" class="form-control input-shadow" />
-                                               </div>
-                                           </div>
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Address2 : </label>
+                                                <div class="form-group">
 
+                                                    <input type="text" readonly="true" name="name" value="@item.TestatorAddress2" class="form-control input-shadow" />
+                                                </div>
+                                            </div>
 
 
 
-                                           <div class="col-sm-6">
-                                               <label for="input-1" style="line-height:38px"> Address3 : </label>
-                                               <div class="form-group">
 
-                                                   <input type="text" readonly="true" name="name" value="@item.TestatorAddress3" class="form-control input-shadow" />
-                                               </div>
-                                           </div>
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Address3 : </label>
+                                                <div class="form-group">
 
+                                                    <input type="text" readonly="true" name="name" value="@item.TestatorAddress3" class="form-control input-shadow" />
+                                                </div>
+                                            </div>
 
 
 
-                                           <div class="col-sm-6">
-                                               <label for="input-1" style="line-height:38px"> Country : </label>
-                                               <div class="form-group">
 
-                                                   <input type="text" readonly="true" name="name" value="@item.TestatorCountry" class="form-control input-shadow" />
-                                               </div>
-                                           </div>
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Country : </label>
+                                                <div class="form-group">
 
+                                                    <input type="text" readonly="true" name="name" value="@item.TestatorCountry" class="form-control input-shadow" />
+                                                </div>
+                                            </div>
 
 
 
-                                           <div class="col-sm-6">
-                                               <label for="input-1" style="line-height:38px"> State : </label>
-                                               <div class="form-group">
 
-                                                   <input type="text" readonly="true" name="name" value="@item.TestatorState" class="form-control input-shadow" />
-                                               </div>
-                                           </div>
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> State : </label>
+                                                <div class="form-group">
 
+                                                    <input type="text" readonly="true" name="name" value="@item.TestatorState" class="form-control input-shadow" />
+                                                </div>
+                                            </div>
 
 
 
-                                           <div class="col-sm-6">
-                                               <label for="input-1" style="line-height:38px"> City : </label>
-                                               <div class="form-group">
 
-                                                   <input type="text" readonly="true" name="name" value="@item.TestatorCity" class="form-control input-shadow" />
-                                               </div>
-                                               <hr style="border-top: 1px dotted black;" />
-                                           </div>
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> City : </label>
+                                                <div class="form-group">
 
+                                                    <input type="text" readonly="true" name="name" value="@item.TestatorCity" class="form-control input-shadow" />
+                                                </div>
+                                                <hr style="border-top: 1px dotted black;" />
+                                            </div>
 
 
-                                           <div class="col-sm-6">
-                                               <label for="input-1" style="line-height:38px"> Pin : </label>
-                                               <div class="form-group">
 
-                                                   <input type="text" readonly="true" name="name" value="@item.TestatorPin" class="form-control input-shadow" />
-                                               </div>
-                                               <hr style="border-top: 1px dotted black;" />
-                                           </div>
-                                        
+                                            <div class="col-sm-6">
+                                                <label for="input-1" style="line-height:38px"> Pin : </label>
+                                                <div class="form-group">
 
+                                                    <input type="text" readonly="true" name="name" value="@item.TestatorPin" class="form-control input-shadow" />
+                                                </div>
+                                                <hr style="border-top: 1px dotted black;" />
+                                            </div>
 
 
-                                       }
-                                   }
 
 
+                                        }
+                                    }
 
-                               </div>
-                           
+
+
+                                </div>
+
                             </div>
                             <div id="tabe-2" class="container tab-pane fade">
                                 <center><a href="@Url.Action("EditTestatorFamilyIndex","EditTestatorFamily")"><input type="button" class="btn btn-primary" name="name" value="Edit TestatorFamily" /></a></center>
-                                
+
                                 <div class="row">
                                     @if (ViewBag.testatorFamily != null)
                                     {
@@ -571,7 +617,7 @@
                                 </div>
                             </div>
                             <div id="tabe-3" class="container tab-pane fade">
-                                
+
                                 <center><a href="@Url.Action("EditBeneficiaryIndex","EditBeneficiary")"><input type="button" class="btn btn-primary" name="name" value="Edit Beneficiary" /></a></center>
                                 <div class="row">
                                     @if (ViewBag.beneficiary != null)
@@ -802,7 +848,7 @@
                             </div>
                             <div id="tabe-4" class="container tab-pane fade">
                                 <center> <a href="@Url.Action("EditAlternateBeneficiaryIndex","EditAlternateBeneficiary")"><input type="button" class="btn btn-primary" name="name" value="Edit Alternate Beneficiary" /></a></center>
-                               
+
                                 <div class="row">
                                     @if (ViewBag.altbene != null)
                                     {
@@ -980,7 +1026,7 @@
                             </div>
                             <div id="tabe-5" class="container tab-pane fade">
                                 <center> <a href="@Url.Action("EditBeneficiaryMappingIndex","EditBeneficiaryMapping")"><input type="button" class="btn btn-primary" name="name" value="Edit Beneficiary Mapping" /></a></center>
-                               
+
                                 <div class="row">
                                     @if (ViewBag.BeneficiaryMapping != null)
                                     {
@@ -1045,7 +1091,7 @@
 
 
                                             </div>
-                                           
+
 
 
                                         }
@@ -1057,10 +1103,10 @@
 
 
                                 </div>
-                                        </div>
+                            </div>
                             <div id="tabe-6" class="container tab-pane fade">
                                 <center><a href="@Url.Action("EditNomineeIndex","EditNominee")"><input type="button" class="btn btn-primary" name="name" value="Edit Nominee" /></a></center>
-                                
+
                                 <div class="row">
                                     @if (ViewBag.nominee != null)
                                     {
@@ -1113,7 +1159,7 @@
                                                 <label for="input-1" style="line-height:38px"> RelationShip : </label>
                                                 <div class="form-group">
 
-                                                    <input type="text"  readonly="true" name="name" value="@item.nomrelationship" class="form-control input-shadow" />
+                                                    <input type="text" readonly="true" name="name" value="@item.nomrelationship" class="form-control input-shadow" />
                                                 </div>
                                             </div>
 
@@ -1418,7 +1464,7 @@
                                                 <label for="input-1" style="line-height:38px"> Address 2 : </label>
                                                 <div class="form-group">
 
-                                                    <input type="text"  readonly="true" value="@item.appointeesaddress2" name="name" class="form-control input-shadow" />
+                                                    <input type="text" readonly="true" value="@item.appointeesaddress2" name="name" class="form-control input-shadow" />
                                                 </div>
                                             </div>
 
@@ -1477,7 +1523,7 @@
                             </div>
                             <div id="tabe-8" class="container tab-pane fade">
                                 <center><a href="@Url.Action("EditAlternateAppointeesIndex","EditAlternateAppointees")"><input type="button" class="btn btn-primary" name="name" value="Edit Alternate Appointees" /></a></center>
-                                
+
                                 <div class="row">
                                     @if (ViewBag.altappointment != null)
                                     {
@@ -1661,21 +1707,15 @@
 
                                 </div>
                             </div>
-                                <div class="form-group">
-                                    @if (Convert.ToInt32(Session["uuid"]) != 1)
-                                    {
-                                        <center><a href="@Url.Action("Report.aspx","page", new {NestId=ViewBag.tid})"><button type="button" id="btnwilldetails" class="btn btn-success shadow-primary px-5"><i class="icon-lock"></i>View In Document</button></a></center>
-                                    }
-                                    else
-                                    {
+                            <div class="form-group">
 
-                                        <center><button type="button" id="btnwilldetails" class="btn btn-success shadow-primary px-5"><i class="icon-lock"></i>Approve Details</button></center>
+                                <center><a href="@Url.Action("Report.aspx","page", new {NestId=ViewBag.tid})"><button type="button" id="btnwilldetails" class="btn btn-success shadow-primary px-5"><i class="icon-lock"></i>View In Document</button></a></center>
 
-                                    }
-                                    <button type="button" id="btnsenddocument" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
-                                    <button type="button" id="btnRoleformsubmitCHECK" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
-                                </div>
+
+                                <button type="button" id="btnsenddocument" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
+                                <button type="button" id="btnRoleformsubmitCHECK" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
                             </div>
+                        </div>
                     </div>
                 </div>
             </div>

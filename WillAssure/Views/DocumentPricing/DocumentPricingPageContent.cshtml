@@ -60,7 +60,18 @@
                                     <div class="form-group">
                                         <label for="input-1">Document Name</label>
 
-                                        @Html.TextBoxFor(m => m.documentname, new { @class = "form-control input-shadow validate[required,custom[characteronly]] text-input", @id = "txtdocumentname", @placeholder = "Enter Document Name", @autocomplete = "off", alert = "LabourCost is requried" })
+                                   
+
+                                        @Html.DropDownListFor(x => x.documentname, new SelectListItem[]{
+                     new SelectListItem() {Text = "--Select--", Value=""},
+                     new SelectListItem() {Text = "Will", Value="Will"},
+                     new SelectListItem() {Text = "Codocil", Value="Codocil"},
+                     new SelectListItem() {Text = "POA", Value="POA"},
+                     new SelectListItem() {Text = "Gift Deeds", Value="Gift Deeds"},
+                 
+
+                     new SelectListItem() {Text = "Living Will", Value="Living Will"}}, new { @class = "form-control input-shadow validate[required]", @id = "ddlreligion" })
+
                                     </div>
                                 </div>
 

@@ -330,6 +330,10 @@ namespace WillAssure.Controllers
             Session["distid"] = "";
 
 
+            // on dashboard
+            Session["documentamount"] = "";
+
+
             return View("~/Views/LoginPage/LoginPageContent.cshtml");
         }
 

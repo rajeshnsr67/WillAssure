@@ -12,7 +12,7 @@
     }
 </style>
 
-@if (Session["Type"] == null)
+@if (Session["Type"] == null || Session["Type"].ToString() == "")
 {
     <script>
         var NestId = data
@@ -601,31 +601,38 @@
                                     <div class="modal-body">
                                         @Html.HiddenFor(m => m.tId, new { @id = "tId" })
 
-                                        @Html.HiddenFor(m => m.documentcategory, new { @id = "documentcategory" })
+
                                         <div class="row">
+
+                     
 
                                             <div class="col-sm-3">
                                                 <label style="line-height:41px;">Document Type</label>
 
                                             </div>
                                             <div class="col-sm-3">
-                                                <span style="line-height:36px;">
+                                                <div class="form-group">
+
+                                                    <br />
                                                     <label class="checkbox-inline">
-                                                        <input type="checkbox" id="checkone" value="Will">Will
+                                                        <input type="checkbox" value="Will" class="checkone radio validate[required]" name="radio1">Will
                                                     </label>
                                                     <label class="checkbox-inline">
-                                                        <input type="checkbox" id="checktwo" value="Codocil">Codocil
+                                                        <input type="checkbox" value="Codocil" class="checktwo radio validate[required]" name="radio1">Codocil
                                                     </label>
                                                     <label class="checkbox-inline">
-                                                        <input type="checkbox" id="checkthree" value="POA">POA
+                                                        <input type="checkbox" value="POA" class="checkthree radio validate[required]" name="radio1">POA
                                                     </label>
                                                     <label class="checkbox-inline">
-                                                        <input type="checkbox" id="checkfour" value="Giftdeeds">Giftdeeds
+                                                        <input type="checkbox" value="Giftdeeds" class="checkfour radio validate[required]" name="radio1">Giftdeeds
                                                     </label>
                                                     <label class="checkbox-inline">
-                                                        <input type="checkbox" id="checkfive" value="LivingWill">Living Will
+                                                        <input type="checkbox" value="Living Will" class="checkfive radio validate[required]" name="radio1">Living Will
                                                     </label>
-                                                </span>
+
+
+
+                                                </div>
                                                 @Html.HiddenFor(m => m.Document_Created_By_ID, new { id = "Document_Created_By_ID" })
                                                 @Html.HiddenFor(m => m.Document_Created_By_txt, new { id = "Document_Created_By_txt" })
                                             </div>
@@ -704,9 +711,25 @@
                                         </div>
                                         <hr class="div_rd">
                                         <div class="form-group">
-                                            <button type="submit" id="alert-success" formaction="insertDocumentDetails" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i>Submit</button>
+                                            <button type="submit" id="alert-success" formaction="insertDocumentDetails" class="btn btn-primary shadow-primary px-5 btnpop"><i class="icon-lock"></i>Submit</button>
                                         </div>
                                     </div>
+
+                                    <script>
+                                        $(document).ready(function () {
+                                            $("#testatordocument").validationEngine();
+
+
+                                           
+
+                                        });
+
+      
+                    
+
+
+                                        
+                                    </script>
 
                                 }
                             </div>
@@ -1257,10 +1280,10 @@
 
 
 
-                        $("#checkone").click(function () {
+                        $(".checkone").click(function () {
 
-                            if ($("#checkone").is(":checked")) {
-                                var x = $("#checkone").val();
+                            if ($(".checkone").is(":checked")) {
+                                var x = $(".checkone").val();
                                 $("#documenttype").append(x);
 
                                 $('#DDLAmtPaidBY2').prop('disabled', false);
@@ -1277,12 +1300,12 @@
 
 
 
-                        $("#checktwo").click(function () {
+                        $(".checktwo").click(function () {
 
 
 
-                            if ($("#checktwo").is(":checked")) {
-                                var x = $("#checktwo").val();
+                            if ($(".checktwo").is(":checked")) {
+                                var x = $(".checktwo").val();
                                 $("#documenttype").append(x);
                                 $('#DDLAmtPaidBY2').prop('disabled', false);
                             }
@@ -1293,10 +1316,10 @@
 
 
 
-                        $("#checkthree").click(function () {
+                        $(".checkthree").click(function () {
 
-                            if ($("#checkthree").is(":checked")) {
-                                var x = $("#checkthree").val();
+                            if ($(".checkthree").is(":checked")) {
+                                var x = $(".checkthree").val();
                                 $("#documenttype").append(x);
                                 $('#DDLAmtPaidBY2').prop('disabled', false);
                             }
@@ -1306,10 +1329,10 @@
 
                         });
 
-                        $("#checkfour").click(function () {
+                        $(".checkfour").click(function () {
 
-                            if ($("#checkfour").is(":checked")) {
-                                var x = $("#checkfour").val();
+                            if ($(".checkfour").is(":checked")) {
+                                var x = $(".checkfour").val();
                                 $("#documenttype").append(x);
                                 $('#DDLAmtPaidBY2').prop('disabled', false);
                             }
@@ -1320,10 +1343,10 @@
                         });
 
 
-                        $("#checkfive").click(function () {
+                        $(".checkfive").click(function () {
 
-                            if ($("#checkfive").is(":checked")) {
-                                var x = $("#checkfive").val();
+                            if ($(".checkfive").is(":checked")) {
+                                var x = $(".checkfive").val();
                                 $("#documenttype").append(x);
                                 $('#DDLAmtPaidBY2').prop('disabled', false);
                             }

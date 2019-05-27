@@ -208,19 +208,19 @@ namespace WillAssure.Controllers
             }
             string d = "";
 
-            if (type == "Testator")
-            {
+            //if (type == "Testator")
+            //{
                 d = "select a.aiid, a.bpId , a.First_Name from BeneficiaryDetails a inner join TestatorDetails b on a.tId = b.tId inner join users c on b.uId=c.uId where c.uId = " + Convert.ToInt32(Session["uuid"]) + " ";
-            }
-            else if (type == "SuperAdmin")
-            {
-                d = "select a.aiid, a.bpId , a.First_Name from BeneficiaryDetails a inner join TestatorDetails b on a.tId = b.tId  ";
-            }
-            else
-            {
+            //}
+            //else if (type == "SuperAdmin")
+            //{
+            //    d = "select a.aiid, a.bpId , a.First_Name from BeneficiaryDetails a inner join TestatorDetails b on a.tId = b.tId  ";
+            //}
+            //else
+            //{
                 
-                d = "select a.aiid, a.bpId , a.First_Name from BeneficiaryDetails a inner join TestatorDetails b on a.tId = b.tId inner join users c on b.uId=c.uId where c.Linked_user = " + Convert.ToInt32(Session["uuid"]) + " ";
-            }
+            //    d = "select a.aiid, a.bpId , a.First_Name from BeneficiaryDetails a inner join TestatorDetails b on a.tId = b.tId inner join users c on b.uId=c.uId where c.Linked_user = " + Convert.ToInt32(Session["uuid"]) + " ";
+            //}
 
 
            

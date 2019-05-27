@@ -19,6 +19,95 @@ namespace WillAssure.Controllers
         public ActionResult DashBoardIndex()
         {
 
+            // document amount cal
+
+            int total = 0;
+            int willamt = 0;
+            int Codocilamt = 0;
+            int POAamt = 0;
+            int Giftdeedsamt = 0;
+            int LivingWillamt = 0;
+            con.Open();
+            string qry312 = "select Will , Codocil , POA , Giftdeeds , LivingWill from users where uId = " + Convert.ToInt32(Session["uuid"]) + " ";
+            SqlDataAdapter daa23 = new SqlDataAdapter(qry312, con);
+            DataTable dtt43 = new DataTable();
+            daa23.Fill(dtt43);
+            if (dtt43.Rows.Count > 0)
+            {
+                if (Convert.ToInt32(dtt43.Rows[0]["Will"]) == 1)
+                {
+                   
+                    string quer1 = "select Document_Price from documentpricing  where Document_Name = 'Will' ";
+                    SqlDataAdapter daa1 = new SqlDataAdapter(quer1, con);
+                    DataTable daat = new DataTable();
+                    daa1.Fill(daat);
+                    if (daat.Rows.Count > 0)
+                    {
+                        willamt = Convert.ToInt32(daat.Rows[0]["Document_Price"]);
+                    }
+                    
+                }
+                if (Convert.ToInt32(dtt43.Rows[0]["Codocil"]) == 1)
+                {
+                    
+                    string quer1 = "select Document_Price from documentpricing  where Document_Name = 'Codocil' ";
+                    SqlDataAdapter daa1 = new SqlDataAdapter(quer1, con);
+                    DataTable daat = new DataTable();
+                    daa1.Fill(daat);
+                    if (daat.Rows.Count > 0)
+                    {
+                        Codocilamt += Convert.ToInt32(daat.Rows[0]["Document_Price"]);
+                    }
+                    
+                }
+                if (Convert.ToInt32(dtt43.Rows[0]["POA"]) == 1)
+                {
+                   
+                    string quer1 = "select Document_Price from documentpricing  where Document_Name = 'POA' ";
+                    SqlDataAdapter daa1 = new SqlDataAdapter(quer1, con);
+                    DataTable daat = new DataTable();
+                    daa1.Fill(daat);
+                    if (daat.Rows.Count > 0)
+                    {
+                        POAamt += Convert.ToInt32(daat.Rows[0]["Document_Price"]);
+                    }
+                    
+                }
+                if (Convert.ToInt32(dtt43.Rows[0]["Giftdeeds"]) == 1)
+                {
+                    
+                    string quer1 = "select Document_Price from documentpricing  where Document_Name = 'Giftdeeds' ";
+                    SqlDataAdapter daa1 = new SqlDataAdapter(quer1, con);
+                    DataTable daat = new DataTable();
+                    daa1.Fill(daat);
+                    if (daat.Rows.Count > 0)
+                    {
+                        Giftdeedsamt += Convert.ToInt32(daat.Rows[0]["Document_Price"]);
+                    }
+                    
+                }
+                if (Convert.ToInt32(dtt43.Rows[0]["LivingWill"]) == 1)
+                {
+                    
+                    string quer1 = "select Document_Price from documentpricing  where Document_Name = 'LivingWill' ";
+                    SqlDataAdapter daa1 = new SqlDataAdapter(quer1, con);
+                    DataTable daat = new DataTable();
+                    daa1.Fill(daat);
+                    if (daat.Rows.Count > 0)
+                    {
+                        LivingWillamt += Convert.ToInt32(daat.Rows[0]["Document_Price"]);
+                    }
+                   
+                }
+            }
+            con.Close();
+
+            total = willamt + Codocilamt + POAamt + Giftdeedsamt + LivingWillamt;
+
+            Session["documentamount"] = total;
+
+            //end
+
 
 
             string OTP = "";
@@ -284,13 +373,13 @@ namespace WillAssure.Controllers
 
                     // check Living Will status
                     con.Open();
-                    string qry312 = "select LivingWill , Designation  from users where LivingWill = 1 and Designation = 1 and uId = " + Convert.ToInt32(Session["uuid"]) + " ";
-                    SqlDataAdapter daa23 = new SqlDataAdapter(qry312, con);
-                    DataTable dtt43 = new DataTable();
-                    daa23.Fill(dtt43);
-                    if (dtt43.Rows.Count > 0)
+                    string qry3122 = "select LivingWill , Designation  from users where LivingWill = 1 and Designation = 1 and uId = " + Convert.ToInt32(Session["uuid"]) + " ";
+                    SqlDataAdapter daa233 = new SqlDataAdapter(qry3122, con);
+                    DataTable dtt433 = new DataTable();
+                    daa233.Fill(dtt433);
+                    if (dtt433.Rows.Count > 0)
                     {
-                        if (Convert.ToInt32(dtt43.Rows[0]["LivingWill"]) == 1 && Convert.ToInt32(dtt43.Rows[0]["Designation"]) == 1)
+                        if (Convert.ToInt32(dtt433.Rows[0]["LivingWill"]) == 1 && Convert.ToInt32(dtt433.Rows[0]["Designation"]) == 1)
                         {
                             ViewBag.documentbtn5 = "true";
                         }
@@ -301,6 +390,8 @@ namespace WillAssure.Controllers
                 }
                 else
                 {
+                   
+
                     ViewBag.PaymentLink = "true";
                 }
 
@@ -397,7 +488,7 @@ namespace WillAssure.Controllers
                 {
                     ViewBag.collapse = "true";
                     Session["doctype"] = "POA";
-                    return RedirectToAction("AddTestatorsFormIndex", "AddTestatorsForm");
+                    return RedirectToAction("UpdateTestatorsIndex", "UpdateTestators", new { NestId = Convert.ToInt32(Session["uuid"]) });
                 }
 
 
@@ -405,7 +496,7 @@ namespace WillAssure.Controllers
                 {
                     ViewBag.collapse = "true";
                     Session["doctype"] = "GiftDeeds";
-                    return RedirectToAction("AddTestatorsFormIndex", "AddTestatorsForm");
+                    return RedirectToAction("UpdateTestatorsIndex", "UpdateTestators", new { NestId = Convert.ToInt32(Session["uuid"]) });
                 }
 
 
@@ -497,7 +588,7 @@ namespace WillAssure.Controllers
 
                     Session["doctype"] = "POA";
                     ViewBag.view = "POA";
-                    return RedirectToAction("AddTestatorsFormIndex", "AddTestatorsForm", new { NestId = Convert.ToInt32(dt8.Rows[0]["tid"]) });
+                    return RedirectToAction("UpdateTestatorsIndex", "UpdateTestators", new { NestId = Convert.ToInt32(dt8.Rows[0]["tid"]) });
 
                 }
                 //end
@@ -525,7 +616,7 @@ namespace WillAssure.Controllers
                     ViewBag.view = "GiftDeeds";
                     Session["doctype"] = "GiftDeeds";
 
-                    return RedirectToAction("AddTestatorsFormIndex", "AddTestatorsForm", new { NestId = Convert.ToInt32(dt8.Rows[0]["tid"]) });
+                    return RedirectToAction("UpdateTestatorsIndex", "UpdateTestators", new { NestId = Convert.ToInt32(dt8.Rows[0]["tid"]) });
 
                 }
                 //end
@@ -691,6 +782,8 @@ namespace WillAssure.Controllers
 
                     if (amtpaidby == "Testator")
                     {
+
+
                         ViewBag.PaymentLink = "true";
                     }
                     else

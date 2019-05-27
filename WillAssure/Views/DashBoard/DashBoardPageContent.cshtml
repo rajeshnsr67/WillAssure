@@ -5,6 +5,15 @@
     ViewBag.Title = "DashBoardPageContent";
 }
 
+@if (Session["documentamount"] == null || Session["documentamount"].ToString() == "")
+{
+    <script>
+        var NestId = data
+        var url = "/LoginPage/ViewLogout/";
+        window.location.href = url;
+    </script>
+
+}
 
 @*Main Content*@
 <div class="content-wrapper">
@@ -35,16 +44,16 @@
         </center>
         <br />
         <br />
-
+        <input type="hidden" name="name" id="test" value="@Session["documentamount"]" />
 
         @*@if (Session["Type"] == null)
-        {
-            <script>
-                var url = "/LoginPage/LoginPageIndex/";
-                window.location.href = url;
-            </script>
-          
-        }*@
+            {
+                <script>
+                    var url = "/LoginPage/LoginPageIndex/";
+                    window.location.href = url;
+                </script>
+
+            }*@
 
 
 
@@ -72,7 +81,7 @@
                         </div>
                     </div>
                 }
-              
+
 
 
                 <div class="col-sm-4">
@@ -403,9 +412,11 @@
 
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <script>
+    var v = parseInt($("#test").val()) * 100;
+
     var options = {
         "key": "rzp_test_GMBr5S3CwTimPr",
-        "amount": "59900", /// The amount is shown in currency subunits. Actual amount is ₹599.
+        "amount": "" + v + "", /// The amount is shown in currency subunits. Actual amount is ₹599.
         "name": "WillAssure",
         "order_id": "", // Pass the order ID if you are using Razorpay Orders.
         "currency": "INR", // Optional. Same as the Order currency

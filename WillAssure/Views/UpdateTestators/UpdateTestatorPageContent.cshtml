@@ -50,7 +50,25 @@
                 <div class="card">
                     <div class="card-body">
 
+                        @if (Session["doctype"].ToString() == "POA" || Session["doctype"].ToString() == "GiftDeeds")
+                        {
+                            <h5>
+                                <ul id="menu" style="font-weight:bold;">
 
+                                    <a href="@Url.Action("AddTestatorsFormIndex","AddTestatorsForm")"><li style="color:;">Donor ></li></a>
+                                     <li style="color:#e1e1e1">Donee ></li>
+                                     <li style="color:#e1e1e1">Gift ></li>
+                                     <li style="color:#e1e1e1">Asset Mapping ></li>
+                                     <li style="color:#e1e1e1">Witness Appointment ></li>
+                                     <li style="color:#e1e1e1">Document</li>
+
+
+
+                                </ul>
+                            </h5>
+                        }
+                        else
+                        {
                             <h5>
                                 <ul id="menu" style="font-weight:bold;">
 
@@ -68,38 +86,40 @@
 
                                 </ul>
                             </h5>
+                        }
 
 
 
-                            <br />
-                            <div class="col-12 12">
-                                <div class="card bg-transparent shadow-none border border-light-3">
-                                    <div class="card-header text-white border-light-3" style="background: #199d4b">
-                                        Instructions
 
-                                    </div>
-                                    <div class="card-body" style="background: #fff; border:1px solid #199d4b">
-                                        <ul>
-                                            <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
-                                            <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
-                                            <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
-                                            <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
-                                            <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
+                        <br />
+                        <div class="col-12 12">
+                            <div class="card bg-transparent shadow-none border border-light-3">
+                                <div class="card-header text-white border-light-3" style="background: #199d4b">
+                                    Instructions
 
-                                        </ul>
-                                    </div>
+                                </div>
+                                <div class="card-body" style="background: #fff; border:1px solid #199d4b">
+                                    <ul>
+                                        <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
+                                        <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
+                                        <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
+                                        <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
+                                        <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
+
+                                    </ul>
                                 </div>
                             </div>
+                        </div>
 
 
 
 
-                            <div class="card-title text-primary">Testators Details</div>
+                        <div class="card-title text-primary">Testators Details</div>
 
 
 
-                        
-                     
+
+
 
 
 
@@ -394,7 +414,7 @@
                                 <div class="col-sm-9">
 
                                     <div class="form-group">
-                                       
+
 
                                         @Html.TextAreaFor(m => m.Address1, new { @class = "form-control input-shadow validate[required] text-input", @id = "txtaddress1", @placeholder = "Enter Address 1", @autocomplete = "off" })
                                     </div>
@@ -405,7 +425,7 @@
                                 <div class="col-sm-9">
 
                                     <div class="form-group">
-                                       
+
 
                                         @Html.TextAreaFor(m => m.Address2, new { @class = "form-control input-shadow validate[required] text-input", @id = "txtaddress2", @placeholder = "Enter Address 2", @autocomplete = "off" })
                                     </div>
@@ -416,7 +436,7 @@
                                 <div class="col-sm-9">
 
                                     <div class="form-group">
-                                       
+
 
                                         @Html.TextAreaFor(m => m.Address3, new { @class = "form-control input-shadow validate[required] text-input", @id = "txtaddress3", @placeholder = "Enter Address 3", @autocomplete = "off" })
                                     </div>
@@ -521,7 +541,7 @@
                                     <div class="col-sm-6">
 
                                         <div class="form-group">
-                                          
+
                                             @Html.DropDownListFor(x => x.activetxt, new SelectListItem[]{
                                            new SelectListItem() {Text = "--Select--", Value=""},
                                            new SelectListItem() {Text = "Active", Value="Active"},
@@ -540,7 +560,6 @@
 
                             </div>
 
-                                
 
 
 
@@ -548,16 +567,29 @@
 
 
 
-
-
+                            if (Session["doctype"].ToString() == "POA" || Session["doctype"].ToString() == "GiftDeeds")
+                            {
+                                <div class="form-group" style="float:right">
+                                    <br />
+                                    <button type="submit" id="alert-success" formaction="UpdatingTestatorFormData" class="btn btn-success shadow-primary px-5"><i class="icon-lock"></i>Update Testator</button>
+                                    <a href="@Url.Action("AddBeneficiaryIndex","AddBeneficiary")"><button type="button" class="btn btn-danger shadow-primary px-5">Next&nbsp;&nbsp;<i class="icon-arrow-right-circle"></i></button></a>
+                                    <button type="button" style="display:none;" id="btnTestatorformsubmitUPDATE" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
+                                </div>
+                            }
+                            else
+                            {
                                 <div class="form-group" style="float:right">
                                     <br />
                                     <button type="submit" id="alert-success" formaction="UpdatingTestatorFormData" class="btn btn-success shadow-primary px-5"><i class="icon-lock"></i>Update Testator</button>
                                     <a href="@Url.Action("AddTestatorFamilyIndex","AddTestatorFamily")"><button type="button" class="btn btn-danger shadow-primary px-5">Next&nbsp;&nbsp;<i class="icon-arrow-right-circle"></i></button></a>
                                     <button type="button" style="display:none;" id="btnTestatorformsubmitUPDATE" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
                                 </div>
-                                }
-                            </div>
+                            }
+
+
+
+                        }
+                    </div>
                         </div>
             </div>
 

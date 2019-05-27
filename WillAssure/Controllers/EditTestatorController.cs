@@ -970,7 +970,10 @@ namespace WillAssure.Controllers
 
             if (Session["doctype"].ToString() == "POA" || Session["doctype"].ToString() == "GiftDeeds")
             {
-                data = "POA";
+
+                int id = Convert.ToInt32(Request["send"]);
+                string type = "Will";
+                data = type + "~" + id;
             }
 
 

@@ -634,28 +634,7 @@ namespace WillAssure.Controllers
 
 
 
-            //generate Password OTP
-            TFM.userPassword = String.Empty;
-            string[] saAllowedCharacters3 = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "0" };
-            int iOTPLength3 = 5;
-
-            string sTempChars3 = String.Empty;
-            Random rand3 = new Random();
-
-            for (int i = 0; i < iOTPLength3; i++)
-
-            {
-
-                int p = rand3.Next(0, saAllowedCharacters3.Length);
-
-                sTempChars3 = saAllowedCharacters3[rand3.Next(0, saAllowedCharacters3.Length)];
-
-                TFM.userPassword += sTempChars3;
-
-            }
-            //END
-
-
+         
 
 
 
@@ -701,7 +680,7 @@ namespace WillAssure.Controllers
             cm.Parameters.AddWithValue("@Pin", TFM.Pin);
             cm.Parameters.AddWithValue("@Linked_user", TFM.distributor_id);
             cm.Parameters.AddWithValue("@UserId", TFM.Email);
-            cm.Parameters.AddWithValue("@UserPassword", TFM.userPassword);
+            cm.Parameters.AddWithValue("@UserPassword", "None");
             cm.Parameters.AddWithValue("@rid", 5);
             cm.Parameters.AddWithValue("@Active", "Active");
             cm.Parameters.AddWithValue("@compId", 0);
@@ -735,34 +714,9 @@ namespace WillAssure.Controllers
             cm2.ExecuteNonQuery();
             con.Close();
 
-            if (TFM.Email != "")
+            if (TFM.Email != "" || TFM.Amt_Paid_By == "Testator")
             {
-                //generate Mail
-                string mailto2 = TFM.Email;
-                string userlogin = TFM.Email;
-
-        
-                string subject = "Will Assure Login Credentials";
-
-                string text = "<font color='Green' style='font-size=3em;'>Your UserId And Password For Logging In Is <br> UserID : " + userlogin + " <br> Password : " + TFM.userPassword + "</font>";
-                string body = "<font color='red'>" + text + "</font>";
-
-
-                MailMessage msg = new MailMessage();
-                msg.From = new MailAddress("info@drinco.in");
-                msg.To.Add(mailto2);
-                msg.Subject = subject;
-                msg.Body = body;
-
-                msg.IsBodyHtml = true;
-                SmtpClient smtp = new SmtpClient("216.10.240.149", 25);
-                smtp.Credentials = new NetworkCredential("info@drinco.in", "95Bzf%s7");
-                smtp.EnableSsl = false;
-                smtp.Send(msg);
-                smtp.Dispose();
-
-
-                //end
+               
 
             }
 
@@ -1053,121 +1007,7 @@ namespace WillAssure.Controllers
 
             //}
 
-            //generate MOBILE OTP
-            TFM.MobileOTP = String.Empty;
-            string[] saAllowedCharacters = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "0" };
-            int iOTPLength = 5;
-
-            string sTempChars = String.Empty;
-            Random rand = new Random();
-
-            for (int i = 0; i < iOTPLength; i++)
-
-            {
-
-                int p = rand.Next(0, saAllowedCharacters.Length);
-
-                sTempChars = saAllowedCharacters[rand.Next(0, saAllowedCharacters.Length)];
-
-                TFM.MobileOTP += sTempChars;
-
-            }
-            //END
-
-
-
-
-            //generate EMAIL OTP
-            TFM.EmailOTP = String.Empty;
-            string[] saAllowedCharacters2 = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "0" };
-            int iOTPLength2 = 5;
-
-            string sTempChars2 = String.Empty;
-            Random rand2 = new Random();
-
-            for (int i = 0; i < iOTPLength2; i++)
-
-            {
-
-                int p = rand.Next(0, saAllowedCharacters2.Length);
-
-                sTempChars2 = saAllowedCharacters2[rand.Next(0, saAllowedCharacters2.Length)];
-
-                TFM.EmailOTP += sTempChars2;
-
-            }
-            //END
-
-
-            
-            if (TFM.Email != "")
-            {
-                // new mail code
-                string mailto = TFM.Email;
-                string Userid = TFM.Identity_proof_Value;
-                mailto = Session["TestatorEmail"].ToString();
-                Session["userid"] = Userid;
-                string subject = "Testing Mail Sending";
-                string OTP = "<font color='Green' style='font-size=3em;'>" + TFM.EmailOTP + "</font>";
-                string text = "Your OTP for Verification Is " + OTP + "";
-                string body = "<font color='red'>" + text + "</font>";
-
-
-                MailMessage msg = new MailMessage();
-                msg.From = new MailAddress("info@drinco.in");
-                msg.To.Add(mailto);
-                msg.Subject = subject;
-                msg.Body = body;
-
-                msg.IsBodyHtml = true;
-                SmtpClient smtp = new SmtpClient("216.10.240.149", 25);
-                smtp.Credentials = new NetworkCredential("info@drinco.in", "95Bzf%s7");
-                smtp.EnableSsl = false;
-                smtp.Send(msg);
-                smtp.Dispose();
-
-
-
-                //end
-            }
-
-
-
-            // mobile OTP
-
-            //HttpWebRequest Req = (HttpWebRequest)WebRequest.Create("http://167.86.89.78:7412/api/mt/SendSMS?user=rnarvadeempire&password=microlan@123&senderid=RNDEVE&channel=Trans&DCS=0&flashsms=0&number=" + TFM.Mobile + "&text=OTP for Will Assure Verification is : " + TFM.MobileOTP + "+sms&route=1051");
-            //HttpWebResponse Resp = (HttpWebResponse)Req.GetResponse();
-            //System.IO.StreamReader respStreamReader = new System.IO.StreamReader(Resp.GetResponseStream());
-            //string responseString = respStreamReader.ReadToEnd();
-            //respStreamReader.Close();
-            //Resp.Close();
-
-
-
-
-
-
-            //END
-
-
-
-
-
-
-
-            // update otp for email and mobile
-
-            con.Open();
-            string qq = "update TestatorDetails set Contact_Verification = 0 ,Email_Verification = 0 , Mobile_Verification_Status = 0 , Email_OTP = '" + TFM.EmailOTP + "' , Mobile_OTP = '" + TFM.MobileOTP + "' where  tId = " + testatorid + " ";
-            SqlCommand cmddd = new SqlCommand(qq, con);
-            cmddd.ExecuteNonQuery();
-            con.Close();
-
-
-
-
-
-            //end
+        
 
 
 
@@ -1649,6 +1489,30 @@ namespace WillAssure.Controllers
                     string Email = "";
 
 
+            //generate Password OTP
+            TFM.userPassword = String.Empty;
+            string[] saAllowedCharacters3 = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "0" };
+            int iOTPLength3 = 5;
+
+            string sTempChars3 = String.Empty;
+            Random rand3 = new Random();
+
+            for (int i = 0; i < iOTPLength3; i++)
+
+            {
+
+                int p = rand3.Next(0, saAllowedCharacters3.Length);
+
+                sTempChars3 = saAllowedCharacters3[rand3.Next(0, saAllowedCharacters3.Length)];
+
+                TFM.userPassword += sTempChars3;
+
+            }
+            //END
+
+
+
+
             // get testator id and dist id from lastest inserted
 
             con.Open();
@@ -1671,7 +1535,17 @@ namespace WillAssure.Controllers
             //end
 
 
+            // update password for the users
 
+            con.Open();
+            string qtt = "update users set userPwd = " + TFM.userPassword + " where uId = " + distid + " ";
+            SqlCommand cmd = new SqlCommand(qtt,con);
+            cmd.ExecuteNonQuery();
+            con.Close();
+
+
+
+            //end
 
 
 
@@ -2211,13 +2085,13 @@ namespace WillAssure.Controllers
 
 
             if (TFM.documentcategory == "Quick")
-                    {
-                        typecat = 1;
-                    }
-                    if (TFM.documentcategory == "Detailed")
-                    {
-                        typecat = 2;
-                    }
+            {
+                typecat = 1;
+            }
+            if (TFM.documentcategory == "Detailed")
+            {
+                typecat = 2;
+            }
 
 
                     con.Open();
@@ -2322,27 +2196,27 @@ namespace WillAssure.Controllers
                             RedirectToAction("LoginPageIndex", "LoginPage");
                         }
                         // new mail code
-                        string mailto = TFM.Email;
-                        string Userid = TFM.Identity_proof_Value;
-                        mailto = Email;
+                        //string mailto = TFM.Email;
+                        //string Userid = TFM.Identity_proof_Value;
+                        //mailto = Email;
 
-                        string subject = "Will Assure Link For Payment";
-                        string body = "<font color='Green' style='font-size=3em;'> Click the Link To Make A Payment For The Document :</font> <a href='https://razorpay.com/'>Payment</a> ";
+                        //string subject = "Will Assure Link For Payment";
+                        //string body = "<font color='Green' style='font-size=3em;'> Click the Link To Make A Payment For The Document :</font> <a href='https://razorpay.com/'>Payment</a> ";
 
 
 
-                        MailMessage msg = new MailMessage();
-                        msg.From = new MailAddress("info@drinco.in");
-                        msg.To.Add(mailto);
-                        msg.Subject = subject;
-                        msg.Body = body;
+                        //MailMessage msg = new MailMessage();
+                        //msg.From = new MailAddress("info@drinco.in");
+                        //msg.To.Add(mailto);
+                        //msg.Subject = subject;
+                        //msg.Body = body;
 
-                        msg.IsBodyHtml = true;
-                        SmtpClient smtp = new SmtpClient("216.10.240.149", 25);
-                        smtp.Credentials = new NetworkCredential("info@drinco.in", "95Bzf%s7");
-                        smtp.EnableSsl = false;
-                        smtp.Send(msg);
-                        smtp.Dispose();
+                        //msg.IsBodyHtml = true;
+                        //SmtpClient smtp = new SmtpClient("216.10.240.149", 25);
+                        //smtp.Credentials = new NetworkCredential("info@drinco.in", "95Bzf%s7");
+                        //smtp.EnableSsl = false;
+                        //smtp.Send(msg);
+                        //smtp.Dispose();
 
 
 
@@ -2371,7 +2245,8 @@ namespace WillAssure.Controllers
                     // 3rd condtion
                     if (TFM.Amt_Paid_By == "Testator" && TFM.Document_Created_By == "Distributor")
                     {
-                        TFM.Authentication_Required = 1;
+                ViewBag.msg = "true";
+                TFM.Authentication_Required = 1;
                         TFM.Link_Required = 1;
                         TFM.Login_Required = 1;
 
@@ -2384,39 +2259,189 @@ namespace WillAssure.Controllers
 
 
 
+                //generate MOBILE OTP
+                TFM.MobileOTP = String.Empty;
+                string[] saAllowedCharacters = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "0" };
+                int iOTPLength = 5;
+
+                string sTempChars = String.Empty;
+                Random rand = new Random();
+
+                for (int i = 0; i < iOTPLength; i++)
+
+                {
+
+                    int p = rand.Next(0, saAllowedCharacters.Length);
+
+                    sTempChars = saAllowedCharacters[rand.Next(0, saAllowedCharacters.Length)];
+
+                    TFM.MobileOTP += sTempChars;
+
+                }
+                //END
+
+
+
+
+                //generate EMAIL OTP
+                TFM.EmailOTP = String.Empty;
+                string[] saAllowedCharacters2 = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "0" };
+                int iOTPLength2 = 5;
+
+                string sTempChars2 = String.Empty;
+                Random rand2 = new Random();
+
+                for (int i = 0; i < iOTPLength2; i++)
+
+                {
+
+                    int p = rand.Next(0, saAllowedCharacters2.Length);
+
+                    sTempChars2 = saAllowedCharacters2[rand.Next(0, saAllowedCharacters2.Length)];
+
+                    TFM.EmailOTP += sTempChars2;
+
+                }
+                //END
+
+
+
+              
+                    // new mail code
+                    string mailto = Email;
+                    string Userid = Email;
+                    mailto = Session["TestatorEmail"].ToString();
+                    Session["userid"] = Userid;
+                    string subject1 = "Testing Mail Sending";
+                    string OTP1 = "<font color='Green' style='font-size=3em;'>" + TFM.EmailOTP + "</font>";
+                    string text1 = "Your OTP for Verification Is " + OTP1 + "";
+                    string body1 = "<font color='red'>" + text1 + "</font>";
+
+
+                    MailMessage msg1 = new MailMessage();
+                    msg1.From = new MailAddress("info@drinco.in");
+                    msg1.To.Add(mailto);
+                    msg1.Subject = subject1;
+                    msg1.Body = body1;
+
+                    msg1.IsBodyHtml = true;
+                    SmtpClient smtp1 = new SmtpClient("216.10.240.149", 25);
+                    smtp1.Credentials = new NetworkCredential("info@drinco.in", "95Bzf%s7");
+                    smtp1.EnableSsl = false;
+                    smtp1.Send(msg1);
+                    smtp1.Dispose();
+
+
+
+                    //end
+                
+
+
+
+                // mobile OTP
+
+                //HttpWebRequest Req = (HttpWebRequest)WebRequest.Create("http://167.86.89.78:7412/api/mt/SendSMS?user=rnarvadeempire&password=microlan@123&senderid=RNDEVE&channel=Trans&DCS=0&flashsms=0&number=" + TFM.Mobile + "&text=OTP for Will Assure Verification is : " + TFM.MobileOTP + "+sms&route=1051");
+                //HttpWebResponse Resp = (HttpWebResponse)Req.GetResponse();
+                //System.IO.StreamReader respStreamReader = new System.IO.StreamReader(Resp.GetResponseStream());
+                //string responseString = respStreamReader.ReadToEnd();
+                //respStreamReader.Close();
+                //Resp.Close();
 
 
 
 
 
-                        // new mail code
-                        string mailto = TFM.Email;
-                        string Userid = TFM.Identity_proof_Value;
-                        mailto = Email;
-                        string subject = "Will Assure Link For Payment";
-                        string body = "<font color='Green' style='font-size=3em;'> Click the Link To Make A Payment For The Document :</font> <a href='https://razorpay.com/'>Payment</a> ";
+
+                //END
 
 
 
-                        MailMessage msg = new MailMessage();
-                        msg.From = new MailAddress("info@drinco.in");
-                        msg.To.Add(mailto);
-                        msg.Subject = subject;
-                        msg.Body = body;
 
-                        msg.IsBodyHtml = true;
-                        SmtpClient smtp = new SmtpClient("216.10.240.149", 25);
-                        smtp.Credentials = new NetworkCredential("info@drinco.in", "95Bzf%s7");
-                        smtp.EnableSsl = false;
-                        smtp.Send(msg);
-                        smtp.Dispose();
+
+                
 
 
 
-                        //end
 
-                        // payment status for testator details table
-                        con.Open();
+
+
+
+
+                //generate Mail
+                string mailto2 = Email;
+                string userlogin = Email;
+
+
+                string subject = "Will Assure Login Credentials";
+
+                string text = "<font color='Green' style='font-size=3em;'>Your UserId And Password For Logging In Is <br> UserID : " + userlogin + " <br> Password : " + TFM.userPassword + "</font>";
+                string body = "<font color='red'>" + text + "</font>";
+
+
+                MailMessage msg = new MailMessage();
+                msg.From = new MailAddress("info@drinco.in");
+                msg.To.Add(mailto2);
+                msg.Subject = subject;
+                msg.Body = body;
+
+                msg.IsBodyHtml = true;
+                SmtpClient smtp = new SmtpClient("216.10.240.149", 25);
+                smtp.Credentials = new NetworkCredential("info@drinco.in", "95Bzf%s7");
+                smtp.EnableSsl = false;
+                smtp.Send(msg);
+                smtp.Dispose();
+
+
+                //end
+
+
+
+                // update otp for email and mobile
+
+                con.Open();
+                string qq = "update TestatorDetails set Contact_Verification = 0 ,Email_Verification = 0 , Mobile_Verification_Status = 0 , Email_OTP = '" + TFM.EmailOTP + "' , Mobile_OTP = '" + TFM.MobileOTP + "' where  tId = " + testatorid + " ";
+                SqlCommand cmddd = new SqlCommand(qq, con);
+                cmddd.ExecuteNonQuery();
+                con.Close();
+
+
+
+
+
+                //end
+
+
+
+
+
+                // new mail code
+                //string mailto = TFM.Email;
+                //string Userid = TFM.Identity_proof_Value;
+                //mailto = Email;
+                //string subject = "Will Assure Link For Payment";
+                //string body = "<font color='Green' style='font-size=3em;'> Click the Link To Make A Payment For The Document :</font> <a href='https://razorpay.com/'>Payment</a> ";
+
+
+
+                //MailMessage msg = new MailMessage();
+                //msg.From = new MailAddress("info@drinco.in");
+                //msg.To.Add(mailto);
+                //msg.Subject = subject;
+                //msg.Body = body;
+
+                //msg.IsBodyHtml = true;
+                //SmtpClient smtp = new SmtpClient("216.10.240.149", 25);
+                //smtp.Credentials = new NetworkCredential("info@drinco.in", "95Bzf%s7");
+                //smtp.EnableSsl = false;
+                //smtp.Send(msg);
+                //smtp.Dispose();
+
+
+
+                //end
+
+                // payment status for testator details table
+                con.Open();
                         string paymentquery2 = "update TestatorDetails set PaymentStatus = 1 where tId = " + testatorid + " ";
                         SqlCommand paymentcmd2 = new SqlCommand(paymentquery2, con);
                         paymentcmd2.ExecuteNonQuery();
@@ -2437,69 +2462,217 @@ namespace WillAssure.Controllers
                     //4th condition
                     if (TFM.Amt_Paid_By == "Testator" && TFM.Document_Created_By == "Testator")
                     {
-                        TFM.Authentication_Required = 1;
-                        TFM.Link_Required = 1;
-                        TFM.Login_Required = 1;
+                ViewBag.msg = "true";
+                TFM.Authentication_Required = 1;
+                TFM.Link_Required = 1;
+                TFM.Login_Required = 1;
 
-                        con.Open();
-                        string query3 = "insert into Authorization_Rules (Document_Created_By,Distributor_Id,Amt_Paid_By,Testator_Id,Authentication_Required,Link_Required,Login_Required) values ('" + TFM.Document_Created_By + "' , " + distid + " , '" + TFM.Amt_Paid_By + "' , " + testatorid + "  , '" + TFM.Authentication_Required + "' , '" + TFM.Link_Required + "' , '" + TFM.Login_Required + "') ";
-                        SqlCommand cmd2 = new SqlCommand(query3, con);
-                        cmd2.ExecuteNonQuery();
-                        con.Close();
-
-
-
-
-
-                        // new mail code
-                        string mailto = TFM.Email;
-                        string Userid = TFM.Identity_proof_Value;
-                        mailto = Email;
-                        string subject = "Will Assure Link For Payment";
-                        string body = "<font color='Green' style='font-size=3em;'> Click the Link To Make A Payment For The Document :</font> <a href='https://razorpay.com/'>Payment</a> ";
-
-
-
-                        MailMessage msg = new MailMessage();
-                        msg.From = new MailAddress("info@drinco.in");
-                        msg.To.Add(mailto);
-                        msg.Subject = subject;
-                        msg.Body = body;
-
-                        msg.IsBodyHtml = true;
-                        SmtpClient smtp = new SmtpClient("216.10.240.149", 25);
-                        smtp.Credentials = new NetworkCredential("info@drinco.in", "95Bzf%s7");
-                        smtp.EnableSsl = false;
-                        smtp.Send(msg);
-                        smtp.Dispose();
-
-
-
-                        //end
-
-
-                        // payment status for testator details table
-                        con.Open();
-                        string paymentquery2 = "update TestatorDetails set PaymentStatus = 1 where tId = " + testatorid + " ";
-                        SqlCommand paymentcmd2 = new SqlCommand(paymentquery2, con);
-                        paymentcmd2.ExecuteNonQuery();
-                        con.Close();
-                        //end
+                con.Open();
+                string query3 = "insert into Authorization_Rules (Document_Created_By,Distributor_Id,Amt_Paid_By,Testator_Id,Authentication_Required,Link_Required,Login_Required) values ('" + TFM.Document_Created_By + "' , " + distid + " , '" + TFM.Amt_Paid_By + "' , " + testatorid + "  , '" + TFM.Authentication_Required + "' , '" + TFM.Link_Required + "' , '" + TFM.Login_Required + "') ";
+                SqlCommand cmd2 = new SqlCommand(query3, con);
+                cmd2.ExecuteNonQuery();
+                con.Close();
 
 
 
 
+                //generate MOBILE OTP
+                TFM.MobileOTP = String.Empty;
+                string[] saAllowedCharacters = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "0" };
+                int iOTPLength = 5;
+
+                string sTempChars = String.Empty;
+                Random rand = new Random();
+
+                for (int i = 0; i < iOTPLength; i++)
+
+                {
+
+                    int p = rand.Next(0, saAllowedCharacters.Length);
+
+                    sTempChars = saAllowedCharacters[rand.Next(0, saAllowedCharacters.Length)];
+
+                    TFM.MobileOTP += sTempChars;
+
+                }
+                //END
 
 
-                        // payment info
-                        con.Open();
-                        string paymentquery = "insert into PaymentInfo (uId,tId,transactionStatus) values (" + distid + " , " + testatorid + " , 1)  ";
-                        SqlCommand paymentcmd = new SqlCommand(paymentquery, con);
-                        paymentcmd.ExecuteNonQuery();
-                        con.Close();
-                        //end
-                        ViewBag.PaymentLink = "true";
-                    }
+
+
+                //generate EMAIL OTP
+                TFM.EmailOTP = String.Empty;
+                string[] saAllowedCharacters2 = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "0" };
+                int iOTPLength2 = 5;
+
+                string sTempChars2 = String.Empty;
+                Random rand2 = new Random();
+
+                for (int i = 0; i < iOTPLength2; i++)
+
+                {
+
+                    int p = rand.Next(0, saAllowedCharacters2.Length);
+
+                    sTempChars2 = saAllowedCharacters2[rand.Next(0, saAllowedCharacters2.Length)];
+
+                    TFM.EmailOTP += sTempChars2;
+
+                }
+                //END
+
+
+
+               
+                    // new mail code
+                    string mailto = Email;
+                    string Userid = Email;
+                    mailto = Session["TestatorEmail"].ToString();
+                    Session["userid"] = Userid;
+                    string subject1 = "Testing Mail Sending";
+                    string OTP1 = "<font color='Green' style='font-size=3em;'>" + TFM.EmailOTP + "</font>";
+                    string text1 = "Your OTP for Verification Is " + OTP1 + "";
+                    string body1 = "<font color='red'>" + text1 + "</font>";
+
+
+                    MailMessage msg1 = new MailMessage();
+                    msg1.From = new MailAddress("info@drinco.in");
+                    msg1.To.Add(mailto);
+                    msg1.Subject = subject1;
+                    msg1.Body = body1;
+
+                    msg1.IsBodyHtml = true;
+                    SmtpClient smtp1 = new SmtpClient("216.10.240.149", 25);
+                    smtp1.Credentials = new NetworkCredential("info@drinco.in", "95Bzf%s7");
+                    smtp1.EnableSsl = false;
+                    smtp1.Send(msg1);
+                    smtp1.Dispose();
+
+
+
+                    //end
+                
+
+
+
+                // mobile OTP
+
+                //HttpWebRequest Req = (HttpWebRequest)WebRequest.Create("http://167.86.89.78:7412/api/mt/SendSMS?user=rnarvadeempire&password=microlan@123&senderid=RNDEVE&channel=Trans&DCS=0&flashsms=0&number=" + TFM.Mobile + "&text=OTP for Will Assure Verification is : " + TFM.MobileOTP + "+sms&route=1051");
+                //HttpWebResponse Resp = (HttpWebResponse)Req.GetResponse();
+                //System.IO.StreamReader respStreamReader = new System.IO.StreamReader(Resp.GetResponseStream());
+                //string responseString = respStreamReader.ReadToEnd();
+                //respStreamReader.Close();
+                //Resp.Close();
+
+
+
+
+
+
+                //END
+
+
+
+
+
+              
+
+
+
+
+
+
+                //generate Mail
+                string mailto2 = Email;
+                string userlogin = Email;
+
+
+                string subject = "Will Assure Login Credentials";
+
+                string text = "<font color='Green' style='font-size=3em;'>Your UserId And Password For Logging In Is <br> UserID : " + userlogin + " <br> Password : " + TFM.userPassword + "</font>";
+                string body = "<font color='red'>" + text + "</font>";
+
+
+                MailMessage msg = new MailMessage();
+                msg.From = new MailAddress("info@drinco.in");
+                msg.To.Add(mailto2);
+                msg.Subject = subject;
+                msg.Body = body;
+
+                msg.IsBodyHtml = true;
+                SmtpClient smtp = new SmtpClient("216.10.240.149", 25);
+                smtp.Credentials = new NetworkCredential("info@drinco.in", "95Bzf%s7");
+                smtp.EnableSsl = false;
+                smtp.Send(msg);
+                smtp.Dispose();
+
+
+                //end
+
+
+
+                // update otp for email and mobile
+
+                con.Open();
+                string qq = "update TestatorDetails set Contact_Verification = 0 ,Email_Verification = 0 , Mobile_Verification_Status = 0 , Email_OTP = '" + TFM.EmailOTP + "' , Mobile_OTP = '" + TFM.MobileOTP + "' where  tId = " + testatorid + " ";
+                SqlCommand cmddd = new SqlCommand(qq, con);
+                cmddd.ExecuteNonQuery();
+                con.Close();
+
+
+
+
+
+                //end
+
+
+
+
+
+                // new mail code
+                //string mailto = TFM.Email;
+                //string Userid = TFM.Identity_proof_Value;
+                //mailto = Email;
+                //string subject = "Will Assure Link For Payment";
+                //string body = "<font color='Green' style='font-size=3em;'> Click the Link To Make A Payment For The Document :</font> <a href='https://razorpay.com/'>Payment</a> ";
+
+
+
+                //MailMessage msg = new MailMessage();
+                //msg.From = new MailAddress("info@drinco.in");
+                //msg.To.Add(mailto);
+                //msg.Subject = subject;
+                //msg.Body = body;
+
+                //msg.IsBodyHtml = true;
+                //SmtpClient smtp = new SmtpClient("216.10.240.149", 25);
+                //smtp.Credentials = new NetworkCredential("info@drinco.in", "95Bzf%s7");
+                //smtp.EnableSsl = false;
+                //smtp.Send(msg);
+                //smtp.Dispose();
+
+
+
+                //end
+
+                // payment status for testator details table
+                con.Open();
+                string paymentquery2 = "update TestatorDetails set PaymentStatus = 1 where tId = " + testatorid + " ";
+                SqlCommand paymentcmd2 = new SqlCommand(paymentquery2, con);
+                paymentcmd2.ExecuteNonQuery();
+                con.Close();
+                //end
+
+                // payment info
+                con.Open();
+                string paymentquery = "insert into PaymentInfo (uId,tId,transactionStatus) values (" + distid + " , " + testatorid + " , 1)  ";
+                SqlCommand paymentcmd = new SqlCommand(paymentquery, con);
+                paymentcmd.ExecuteNonQuery();
+                con.Close();
+                //end
+
+                ViewBag.PaymentLink = "true";
+            }
             //end
 
 
@@ -2507,7 +2680,7 @@ namespace WillAssure.Controllers
 
 
             ViewBag.collapse = "true";
-            ViewBag.msg = "true";
+            
 
             ModelState.Clear();
 

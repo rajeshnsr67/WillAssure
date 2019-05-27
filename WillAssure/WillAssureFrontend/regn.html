@@ -413,6 +413,9 @@
 
                                    <script>
 
+                                   
+
+
                                        function checkotpentered(value) {
 
                                            var data = $("#txtotp").val();
@@ -473,7 +476,7 @@
                                                $("#lblemailerr").hide();
                                            }
 
-                                           var data = $("#txtemail").val();
+                                           var data = $("#txtemail").val(); 
 
                                            $.ajax({
 
@@ -489,6 +492,7 @@
 
                                                    if (data == "false") {
                                                        $("#lbldup").show();
+                                                       $("#txtemail").val("");
                                                    }
 
 
@@ -534,8 +538,13 @@
                                                $("#lblcheck").show();
                                            }
 
-
-
+                                           if ($("#getvalone").is(':checked')) {
+                                               if ($("#ddlDistributor").val() == "") {
+                                                   $("#lblerror4").show();
+                                               }
+                                           }
+                                         
+                                         
 
                                            if ($("#txtfirstname").val() == "") {
                                                $("#lblerror1").show();
@@ -790,6 +799,7 @@
                                        $(document).on("change", "#getvaltwo", function () {
 
                                            $("#ddlDistributor").hide();
+                                           $("#lblerror4").hide();
 
                                        });
 
@@ -801,7 +811,7 @@
 
 
 
-                                           var mobilereg = /^[0-9]{10}$/;;
+                                           var mobilereg = /[1-9]{1}[0-9]{9}/;
 
                                            var mobileinput = $('#txtcontact').val();
                                            if (mobilereg.test(mobileinput) == false) {

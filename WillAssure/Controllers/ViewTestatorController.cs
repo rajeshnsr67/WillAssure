@@ -434,9 +434,19 @@ namespace WillAssure.Controllers
 
 
             //end
+            string query = "";
+
 
             con.Open();
-            string query = "select * from TestatorDetails a   inner join users b on a.uId = b.uId  where b.Linked_user = " + Convert.ToInt32(Session["uuid"]) + "  ";
+            if (Session["Type"].ToString() != "SuperAdmin")
+            {
+                query = "select * from TestatorDetails a   inner join users b on a.uId = b.uId  where b.Linked_user = " + Convert.ToInt32(Session["uuid"]) + "  ";
+            }
+            else
+            {
+                query = "select * from TestatorDetails";
+            }
+             
             SqlDataAdapter da = new SqlDataAdapter(query, con);
             DataTable dt = new DataTable();
             da.Fill(dt);
