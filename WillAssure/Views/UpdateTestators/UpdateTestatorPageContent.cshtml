@@ -14,13 +14,9 @@
 </style>
 
 
-@if (Session["Type"] == null)
+@if (Session["Type"] == null || Session["Type"].ToString() == "")
 {
-    <script>
-        var NestId = data
-        var url = "/LoginPage/ViewLogout/";
-        window.location.href = url;
-    </script>
+    Response.Redirect("/LoginPage/LoginPageIndex");
 
 }
 
@@ -50,43 +46,54 @@
                 <div class="card">
                     <div class="card-body">
 
-                        @if (Session["doctype"].ToString() == "POA" || Session["doctype"].ToString() == "GiftDeeds")
+                        @if (Session["doctype"] != null)
                         {
-                            <h5>
-                                <ul id="menu" style="font-weight:bold;">
+                            if (Session["doctype"].ToString() == "POA" || Session["doctype"].ToString() == "GiftDeeds")
+                            {
+                                <h5>
+                                    <ul id="menu" style="font-weight:bold;">
 
-                                    <a href="@Url.Action("AddTestatorsFormIndex","AddTestatorsForm")"><li style="color:;">Donor ></li></a>
-                                     <li style="color:#e1e1e1">Donee ></li>
-                                     <li style="color:#e1e1e1">Gift ></li>
-                                     <li style="color:#e1e1e1">Asset Mapping ></li>
-                                     <li style="color:#e1e1e1">Witness Appointment ></li>
-                                     <li style="color:#e1e1e1">Document</li>
+                                        <a href="@Url.Action("AddTestatorsFormIndex","AddTestatorsForm")"><li style="color:;">Donor ></li></a>
+                                        <li style="color:#e1e1e1">Donee ></li>
+                                        <li style="color:#e1e1e1">Gift ></li>
+                                        <li style="color:#e1e1e1">Asset Mapping ></li>
+                                        <li style="color:#e1e1e1">Witness Appointment ></li>
+                                        <li style="color:#e1e1e1">Document</li>
 
 
 
-                                </ul>
-                            </h5>
+                                    </ul>
+                                </h5>
+                            }
+                            else
+                            {
+                                <h5>
+                                    <ul id="menu" style="font-weight:bold;">
+
+                                        <a href="@Url.Action("UpdateTestatorsIndex","UpdateTestators" , new { NestId = Convert.ToInt32(Session["uuid"]) })"><li style="color:;">Testator></li></a>
+                                        <li style="color:#e1e1e1">Testator Family ></li>
+                                        <li style="color:#e1e1e1">Beneficiary ></li>
+                                        <li style="color:#e1e1e1">AssetInformation ></li>
+                                        <li style="color:#e1e1e1">Liabilites></li>
+                                        <li style="color:#e1e1e1">PetCare ></li>
+                                        <li style="color:#e1e1e1">Mapping ></li>
+                                        <li style="color:#e1e1e1">Nominee ></li>
+                                        <li style="color:#e1e1e1">Appointees > </li>
+                                        <li style="color:#e1e1e1">Document</li>
+
+
+                                    </ul>
+                                </h5>
+                            }
+
                         }
                         else
                         {
-                            <h5>
-                                <ul id="menu" style="font-weight:bold;">
-
-                                    <a href="@Url.Action("UpdateTestatorsIndex","UpdateTestators" , new { NestId = Convert.ToInt32(Session["uuid"]) })"><li style="color:;">Testator></li></a>
-                                    <li style="color:#e1e1e1">Testator Family ></li>
-                                    <li style="color:#e1e1e1">Beneficiary ></li>
-                                    <li style="color:#e1e1e1">AssetInformation ></li>
-                                    <li style="color:#e1e1e1">Liabilites></li>
-                                    <li style="color:#e1e1e1">PetCare ></li>
-                                    <li style="color:#e1e1e1">Mapping ></li>
-                                    <li style="color:#e1e1e1">Nominee ></li>
-                                    <li style="color:#e1e1e1">Appointees > </li>
-                                    <li style="color:#e1e1e1">Document</li>
-
-
-                                </ul>
-                            </h5>
+                            Response.Redirect("/LoginPage/LoginPageIndex");
                         }
+
+
+
 
 
 
@@ -396,7 +403,7 @@
                                     <div class="form-group">
 
 
-                                        @Html.TextBoxFor(m => m.Pin, new { @class = "form-control input-shadow validate[required] text-input", @id = "txtComanyName", @placeholder = "Enter Company Name", @autocomplete = "off" })
+                                        @Html.TextBoxFor(m => m.Pin, new { @class = "form-control input-shadow validate[required] text-input", @id = "txtComanyName", @placeholder = "Enter Pin", @autocomplete = "off" })
                                     </div>
                                 </div>
 

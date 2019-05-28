@@ -409,99 +409,134 @@
                 @*Super admin roles Links*@
 
 
-
-                @if (Session["Type"].ToString() != "Testator")
+                @if (Session["Type"] != null)
                 {
-                    <li>
-                        <a href=@Url.Action("DashBoardIndex", "DashBoard") class="waves-effect">
-                            <i class="zmdi zmdi-view-dashboard"></i> <span>Dashboard</span> <i class="fa fa-angle-left pull-right"></i>
-                        </a>
+                    if (Session["Type"].ToString() != "Testator")
+                    {
+                        <li>
+                            <a href=@Url.Action("DashBoardIndex", "DashBoard") class="waves-effect">
+                                <i class="zmdi zmdi-view-dashboard"></i> <span>Dashboard</span> <i class="fa fa-angle-left pull-right"></i>
+                            </a>
 
-                    </li>
-                    <li>
-                        <a href="javaScript:void();" class="waves-effect">
-                            <i class="zmdi zmdi-format-list-bulleted"></i> <span>Client</span>
-                            <i class="fa fa-angle-left pull-right"></i>
-                        </a>
-                        <ul class="sidebar-submenu">
-                            <li><a href="/AddTestatorsForm/AddTestatorsFormIndex"><i class="zmdi zmdi-star-outline"></i>Add Client</a></li>
-                        </ul>
+                        </li>
+                        <li>
+                            <a href="javaScript:void();" class="waves-effect">
+                                <i class="zmdi zmdi-format-list-bulleted"></i> <span>Client</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="sidebar-submenu">
+                                <li><a href="/AddTestatorsForm/AddTestatorsFormIndex"><i class="zmdi zmdi-star-outline"></i>Add Client</a></li>
+                            </ul>
 
-                    </li>
-                    <li id="testlist">
-                        <a href="javaScript:void();" class="waves-effect">
-                            <i class="zmdi zmdi-format-list-bulleted"></i> <span>Create Document</span>
-                            <i class="fa fa-angle-left pull-right"></i>
-                        </a>
-                        <ul class="sidebar-submenu">
-                            <li><a href="@Url.Action("EnableDocumentLinks","DashBoard", new { doctype = "Will" })"><i class="zmdi zmdi-star-outline"></i>Create Will</a></li>
-                            <li><a href="@Url.Action("EnableDocumentLinks","DashBoard", new { doctype = "Codocil" })"><i class="zmdi zmdi-star-outline"></i>Create Codocil</a></li>
-                            <li><a href="@Url.Action("EnableDocumentLinks","DashBoard", new { doctype = "POA" } )"><i class="zmdi zmdi-star-outline"></i>POA</a></li>
-                            <li><a href="@Url.Action("EnableDocumentLinks","DashBoard", new { doctype = "GiftDeeds" })"><i class="zmdi zmdi-star-outline"></i>Gift Deeds</a></li>
-                            <li><a href="@Url.Action("EnableDocumentLinks","DashBoard", new { doctype = "LivingWill" })"><i class="zmdi zmdi-star-outline"></i>Living Will</a></li>
+                        </li>
+                        <li id="testlist">
+                            <a href="javaScript:void();" class="waves-effect">
+                                <i class="zmdi zmdi-format-list-bulleted"></i> <span>Create Document</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="sidebar-submenu">
+                                <li><a href="@Url.Action("EnableDocumentLinks","DashBoard", new { doctype = "Will" })"><i class="zmdi zmdi-star-outline"></i>Create Will</a></li>
+                                <li><a href="@Url.Action("EnableDocumentLinks","DashBoard", new { doctype = "Codocil" })"><i class="zmdi zmdi-star-outline"></i>Create Codocil</a></li>
+                                <li><a href="@Url.Action("EnableDocumentLinks","DashBoard", new { doctype = "POA" } )"><i class="zmdi zmdi-star-outline"></i>POA</a></li>
+                                <li><a href="@Url.Action("EnableDocumentLinks","DashBoard", new { doctype = "GiftDeeds" })"><i class="zmdi zmdi-star-outline"></i>Gift Deeds</a></li>
+                                <li><a href="@Url.Action("EnableDocumentLinks","DashBoard", new { doctype = "LivingWill" })"><i class="zmdi zmdi-star-outline"></i>Living Will</a></li>
 
-                        </ul>
-                    </li>
+                            </ul>
+                        </li>
 
+                    }
                 }
-
-
-                @if (Session["Type"].ToString() == "DistributorAdmin")
+                else
                 {
-
-
-
-                    <li>
-                        <a href="javaScript:void();" class="waves-effect">
-                            <i class="zmdi zmdi-format-list-bulleted"></i> <span>Create Document</span>
-                            <i class="fa fa-angle-left pull-right"></i>
-                        </a>
-                        <ul class="sidebar-submenu">
-                            <li><a href="@Url.Action("EnableDocumentLinks","DashBoard", new { doctype = "Will" })"><i class="zmdi zmdi-star-outline"></i>Create Will</a></li>
-                            <li><a href="@Url.Action("EnableDocumentLinks","DashBoard", new { doctype = "Codocil" })"><i class="zmdi zmdi-star-outline"></i>Create Codocil</a></li>
-                            <li><a href="@Url.Action("EnableDocumentLinks","DashBoard", new { doctype = "POA" } )"><i class="zmdi zmdi-star-outline"></i>POA</a></li>
-                            <li><a href="@Url.Action("EnableDocumentLinks","DashBoard", new { doctype = "GiftDeeds" })"><i class="zmdi zmdi-star-outline"></i>Gift Deeds</a></li>
-                            <li><a href="@Url.Action("EnableDocumentLinks","DashBoard", new { doctype = "LivingWill" })"><i class="zmdi zmdi-star-outline"></i>Living Will</a></li>
-
-                        </ul>
-                    </li>
-
-
                     <script>
-                        $("#testlist").hide();
+                        var NestId = data
+                        var url = "/LoginPage/LoginPageIndex/";
+                        window.location.href = url;
                     </script>
-
                 }
 
 
-
-
-                @if (Session["Type"].ToString() == "SuperAdmin")
+                @if (Session["Type"] != null)
                 {
+                    if (Session["Type"].ToString() == "DistributorAdmin")
+                    {
 
 
 
-                    <li>
-                        <a href="javaScript:void();" class="waves-effect">
-                            <i class="zmdi zmdi-format-list-bulleted"></i> <span>Create Document</span>
-                            <i class="fa fa-angle-left pull-right"></i>
-                        </a>
-                        <ul class="sidebar-submenu">
-                            <li><a href="@Url.Action("EnableDocumentLinks","DashBoard", new { doctype = "Will" })"><i class="zmdi zmdi-star-outline"></i>Create Will</a></li>
-                            <li><a href="@Url.Action("EnableDocumentLinks","DashBoard", new { doctype = "Codocil" })"><i class="zmdi zmdi-star-outline"></i>Create Codocil</a></li>
-                            <li><a href="@Url.Action("EnableDocumentLinks","DashBoard", new { doctype = "POA" } )"><i class="zmdi zmdi-star-outline"></i>POA</a></li>
-                            <li><a href="@Url.Action("EnableDocumentLinks","DashBoard", new { doctype = "GiftDeeds" })"><i class="zmdi zmdi-star-outline"></i>Gift Deeds</a></li>
-                            <li><a href="@Url.Action("EnableDocumentLinks","DashBoard", new { doctype = "LivingWill" })"><i class="zmdi zmdi-star-outline"></i>Living Will</a></li>
+                        <li>
+                            <a href="javaScript:void();" class="waves-effect">
+                                <i class="zmdi zmdi-format-list-bulleted"></i> <span>Create Document</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="sidebar-submenu">
+                                <li><a href="@Url.Action("EnableDocumentLinks","DashBoard", new { doctype = "Will" })"><i class="zmdi zmdi-star-outline"></i>Create Will</a></li>
+                                <li><a href="@Url.Action("EnableDocumentLinks","DashBoard", new { doctype = "Codocil" })"><i class="zmdi zmdi-star-outline"></i>Create Codocil</a></li>
+                                <li><a href="@Url.Action("EnableDocumentLinks","DashBoard", new { doctype = "POA" } )"><i class="zmdi zmdi-star-outline"></i>POA</a></li>
+                                <li><a href="@Url.Action("EnableDocumentLinks","DashBoard", new { doctype = "GiftDeeds" })"><i class="zmdi zmdi-star-outline"></i>Gift Deeds</a></li>
+                                <li><a href="@Url.Action("EnableDocumentLinks","DashBoard", new { doctype = "LivingWill" })"><i class="zmdi zmdi-star-outline"></i>Living Will</a></li>
 
-                        </ul>
-                    </li>
+                            </ul>
+                        </li>
 
 
+                        <script>
+                            $("#testlist").hide();
+                        </script>
+
+                    }
+                }
+                else
+                {
                     <script>
-                        $("#testlist").hide();
+                        var NestId = data
+                        var url = "/LoginPage/LoginPageIndex/";
+                        window.location.href = url;
                     </script>
+                }
+
+
+
+
+                @if (Session["Type"] != null)
+                {
+                    if (Session["Type"].ToString() == "SuperAdmin")
+                    {
+
+
+
+                        <li>
+                            <a href="javaScript:void();" class="waves-effect">
+                                <i class="zmdi zmdi-format-list-bulleted"></i> <span>Create Document</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="sidebar-submenu">
+                                <li><a href="@Url.Action("EnableDocumentLinks","DashBoard", new { doctype = "Will" })"><i class="zmdi zmdi-star-outline"></i>Create Will</a></li>
+                                <li><a href="@Url.Action("EnableDocumentLinks","DashBoard", new { doctype = "Codocil" })"><i class="zmdi zmdi-star-outline"></i>Create Codocil</a></li>
+                                <li><a href="@Url.Action("EnableDocumentLinks","DashBoard", new { doctype = "POA" } )"><i class="zmdi zmdi-star-outline"></i>POA</a></li>
+                                <li><a href="@Url.Action("EnableDocumentLinks","DashBoard", new { doctype = "GiftDeeds" })"><i class="zmdi zmdi-star-outline"></i>Gift Deeds</a></li>
+                                <li><a href="@Url.Action("EnableDocumentLinks","DashBoard", new { doctype = "LivingWill" })"><i class="zmdi zmdi-star-outline"></i>Living Will</a></li>
+
+                            </ul>
+                        </li>
+
+
+                        <script>
+                            $("#testlist").hide();
+                        </script>
+
+                    }
 
                 }
+                else
+                {
+                    <script>
+                        var NestId = data
+                        var url = "/LoginPage/LoginPageIndex/";
+                        window.location.href = url;
+                    </script>
+                }
+
+
 
 
                 @if (ViewBag.showtitle == "true")
@@ -514,87 +549,99 @@
 
                 @if (ViewBag.collapse != "true")
                 {
-                    if (Session["Type"].ToString() != "Testator")
+                    if (Session["Type"] != null)
                     {
-                        if (ViewBag.PageName != null)
+                        if (Session["Type"].ToString() != "Testator")
                         {
-                            foreach (var item in ViewBag.PageName)
+                            if (ViewBag.PageName != null)
                             {
-                                string navigation1 = item.Nav1;
-                                string navigation2 = item.Nav2;
-                                string Action = item.Action;
-                                ArrayList nav1 = new ArrayList(navigation1.Split('~'));
-
-
-
-                                ArrayList nav2 = new ArrayList(navigation2.Split('~'));
-
-                                ArrayList act = new ArrayList(Action.Split(','));
-
-
-                                if (item.PageStatus == "Active")
+                                foreach (var item in ViewBag.PageName)
                                 {
-                                    if (item.PageName == "Roles" && ViewBag.showtitle == "true")
+                                    string navigation1 = item.Nav1;
+                                    string navigation2 = item.Nav2;
+                                    string Action = item.Action;
+                                    ArrayList nav1 = new ArrayList(navigation1.Split('~'));
+
+
+
+                                    ArrayList nav2 = new ArrayList(navigation2.Split('~'));
+
+                                    ArrayList act = new ArrayList(Action.Split(','));
+
+
+                                    if (item.PageStatus == "Active")
                                     {
-                                        <li class="sidebar-header">Master Menu</li>
-                                    }
-
-
-
-                                    <li>
-
-                                        <a href="javaScript:void();" class="waves-effect">
-
-                                            <i class="zmdi zmdi-format-list-bulleted"></i> <span>@item.PageName</span>
-                                            <i class="fa fa-angle-left pull-right"></i>
-
-                                        </a>
-
-                                        @if (act[0].ToString() == "1")
+                                        if (item.PageName == "Roles" && ViewBag.showtitle == "true")
                                         {
+                                            <li class="sidebar-header">Master Menu</li>
+                                        }
 
-                                            string pagename = @nav1[0].ToString();
 
 
+                                        <li>
+
+                                            <a href="javaScript:void();" class="waves-effect">
+
+                                                <i class="zmdi zmdi-format-list-bulleted"></i> <span>@item.PageName</span>
+                                                <i class="fa fa-angle-left pull-right"></i>
+
+                                            </a>
+
+                                            @if (act[0].ToString() == "1")
+                                            {
+
+                                                string pagename = @nav1[0].ToString();
+
+
+
+                                                <ul class="sidebar-submenu">
+
+                                                    <li><a href=@Url.Action(nav1[1].ToString(), nav1[2].ToString())><i class="zmdi zmdi-star-outline"></i>@nav1[0].ToString()</a></li>
+
+                                                </ul>
+
+
+
+                                            }
 
                                             <ul class="sidebar-submenu">
+                                                @if (nav2[0].ToString() != "NULL")
+                                                {
+                                                    <li><a href=@Url.Action(nav2[1].ToString(), nav2[2].ToString())><i class="zmdi zmdi-star-outline"></i>@nav2[0].ToString()</a></li>
+                                                }
+                                                @if (item.PageName == "Distributor")
+                                                {
 
-                                                <li><a href=@Url.Action(nav1[1].ToString(), nav1[2].ToString())><i class="zmdi zmdi-star-outline"></i>@nav1[0].ToString()</a></li>
+
+
+                                                    <li><a href="@Url.Action("EditUserFormIndex", "EditUserForm")"><i class="zmdi zmdi-star-outline"></i>View Individual Firm</a></li>
+
+                                                    <li><a href="@Url.Action("EditCompanyDetailsIndex", "EditCompanyDetails")"><i class="zmdi zmdi-star-outline"></i>View Register Company</a></li>
+
+
+                                                }
 
                                             </ul>
 
+                                        </li>
 
-
-                                        }
-
-                                        <ul class="sidebar-submenu">
-                                            @if (nav2[0].ToString() != "NULL")
-                                            {
-                                                <li><a href=@Url.Action(nav2[1].ToString(), nav2[2].ToString())><i class="zmdi zmdi-star-outline"></i>@nav2[0].ToString()</a></li>
-                                            }
-                                            @if (item.PageName == "Distributor")
-                                            {
-
-
-
-                                                <li><a href="@Url.Action("EditUserFormIndex", "EditUserForm")"><i class="zmdi zmdi-star-outline"></i>View Individual Firm</a></li>
-
-                                                <li><a href="@Url.Action("EditCompanyDetailsIndex", "EditCompanyDetails")"><i class="zmdi zmdi-star-outline"></i>View Register Company</a></li>
-
-
-                                            }
-
-                                        </ul>
-
-                                    </li>
+                                    }
 
                                 }
 
                             }
 
                         }
-
                     }
+                    else
+                    {
+                        <script>
+                            var NestId = data
+                            var url = "/LoginPage/LoginPageIndex/";
+                            window.location.href = url;
+                        </script>
+                    }
+
 
                 }
 
@@ -695,6 +742,14 @@
 
 
                     }
+                }
+                else
+                {
+                    <script>
+                        var NestId = data
+                        var url = "/LoginPage/LoginPageIndex/";
+                        window.location.href = url;
+                    </script>
                 }
 
 
@@ -874,6 +929,14 @@
 
 
                     }
+                }
+                else
+                {
+                    <script>
+                        var NestId = data
+                        var url = "/LoginPage/LoginPageIndex/";
+                        window.location.href = url;
+                    </script>
                 }
 
                 @*end*@
@@ -1338,16 +1401,27 @@
 
 
 @{
+    if (Session["Type"] != null)
+    {
+        if (Session["Type"].ToString() == "Testator")
+        {
+            <script>
 
-    if (Session["Type"].ToString() == "Testator")
+                $("#wrapper").addClass("toggled");
+
+
+            </script>
+        }
+    }
+    else
     {
         <script>
-
-            $("#wrapper").addClass("toggled");
-
-
+            var NestId = data
+            var url = "/LoginPage/LoginPageIndex/";
+            window.location.href = url;
         </script>
     }
+
 
 
     if (ViewBag.collapse == "true")

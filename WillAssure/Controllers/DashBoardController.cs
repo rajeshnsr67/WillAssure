@@ -419,7 +419,10 @@ namespace WillAssure.Controllers
         public ActionResult EnableDocumentLinks(string doctype)
         {
 
-
+            if (Session["Type"] == null)
+            {
+                RedirectToAction("LoginPageIndex", "LoginPage");
+            }
 
 
 
@@ -463,6 +466,7 @@ namespace WillAssure.Controllers
                     return RedirectToAction("EditTestatorIndex", "EditTestator", new { doctype = doctype });
                 }
             }
+          
           
 
                 
@@ -521,7 +525,10 @@ namespace WillAssure.Controllers
 
                 //end
 
-
+                if (Session["Type"] == null)
+                {
+                    RedirectToAction("LoginPageIndex", "LoginPage");
+                }
 
 
                 int testid = 0;

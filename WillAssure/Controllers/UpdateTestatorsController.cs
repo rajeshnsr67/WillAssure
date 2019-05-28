@@ -210,11 +210,19 @@ namespace WillAssure.Controllers
 
                
                       TFM.First_Name = dt.Rows[0]["First_Name"].ToString();
-                    if (Session["Type"].ToString() == "DistributorAdmin" || Session["Type"].ToString() == "SuperAdmin")
+                if (Session["Type"] != null)
+                {
+                    if (Session["Type"].ToString() == "DistributorAdmin" || Session["Type"].ToString() == "SuperAdmin" || Session["Type"].ToString() == "Testator")
                     {
                         Session["distid"] = NestId;
                         Session["disttestator"] = TFM.First_Name;
                     }
+                }
+                else
+                {
+                    RedirectToAction("LoginPageIndex", "LoginPage");
+                }
+                  
                        TFM.Last_Name =  dt.Rows[0]["Last_Name"].ToString();
                        TFM.Middle_Name = dt.Rows[0]["Middle_Name"].ToString();
               

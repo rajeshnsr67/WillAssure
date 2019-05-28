@@ -18,20 +18,20 @@ namespace WillAssure.Controllers
         public ActionResult WillDetailsIndex(int NestId)
         {
             ViewBag.Collapse = "true";
-            if (Session["Type"].ToString() != "DistributorAdmin")
-            {
-                if (Session["doctype"].ToString() == "Will")
-                {
-                    ViewBag.view = "Will";
-                }
+            //if (Session["Type"].ToString() != "DistributorAdmin")
+            //{
+            //    if (Session["doctype"].ToString() == "Will")
+            //    {
+            //        ViewBag.view = "Will";
+            //    }
 
 
-                if (Session["doctype"].ToString() == "POA" || Session["doctype"].ToString() == "GiftDeeds")
-                {
-                    ViewBag.view = "POA";
-                    ViewBag.view = "GiftDeeds";
-                }
-            }
+            //    if (Session["doctype"].ToString() == "POA" || Session["doctype"].ToString() == "GiftDeeds")
+            //    {
+            //        ViewBag.view = "POA";
+            //        ViewBag.view = "GiftDeeds";
+            //    }
+            //}
 
             
             // check type 

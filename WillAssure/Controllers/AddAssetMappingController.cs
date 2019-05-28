@@ -208,22 +208,22 @@ namespace WillAssure.Controllers
             }
             string d = "";
 
-            //if (type == "Testator")
-            //{
+            if (type == "Testator")
+            {
                 d = "select a.aiid, a.bpId , a.First_Name from BeneficiaryDetails a inner join TestatorDetails b on a.tId = b.tId inner join users c on b.uId=c.uId where c.uId = " + Convert.ToInt32(Session["uuid"]) + " ";
-            //}
-            //else if (type == "SuperAdmin")
-            //{
-            //    d = "select a.aiid, a.bpId , a.First_Name from BeneficiaryDetails a inner join TestatorDetails b on a.tId = b.tId  ";
-            //}
-            //else
-            //{
-                
-            //    d = "select a.aiid, a.bpId , a.First_Name from BeneficiaryDetails a inner join TestatorDetails b on a.tId = b.tId inner join users c on b.uId=c.uId where c.Linked_user = " + Convert.ToInt32(Session["uuid"]) + " ";
-            //}
+            }
+            else if (type == "SuperAdmin")
+            {
+                d = "select a.aiid, a.bpId , a.First_Name from BeneficiaryDetails a inner join TestatorDetails b on a.tId = b.tId  ";
+            }
+            else
+            {
+
+                d = "select a.aiid, a.bpId , a.First_Name from BeneficiaryDetails a inner join TestatorDetails b on a.tId = b.tId inner join users c on b.uId=c.uId where c.Linked_user = " + Convert.ToInt32(Session["uuid"]) + " ";
+            }
 
 
-           
+
 
 
             string data = "<option value=''>--Select--</option>";
@@ -329,15 +329,25 @@ namespace WillAssure.Controllers
             string ddlassetcat = "";
             con.Open();
             string query3 = "";
-            if (Session["Type"].ToString() != "Testator" || Session["Type"].ToString() != "DistributorAdmin")
+
+            if (Session["Type"] != null)
             {
-                 query3 = "select ac.*,at.AssetsType as AssetsType from AssetsCategory ac " +
-               "left join assetstype at on at.atId=ac.atId";
+                if (Session["Type"].ToString() != "Testator" || Session["Type"].ToString() != "DistributorAdmin")
+                {
+                    query3 = "select ac.*,at.AssetsType as AssetsType from AssetsCategory ac " +
+                  "left join assetstype at on at.atId=ac.atId";
+                }
+                else
+                {
+                    query3 = "select c.amId , b.atId , b.AssetsType as AssetsType , c.AssetsCategory  from assetinformation a inner join assetstype b on a.atId=b.atId inner join assetscategory c on a.amId=c.amId where a.tid =" + testatorid + "";
+                }
             }
             else
             {
-                query3 = "select c.amId , b.atId , b.AssetsType as AssetsType , c.AssetsCategory  from assetinformation a inner join assetstype b on a.atId=b.atId inner join assetscategory c on a.amId=c.amId where a.tid =" + testatorid + "";
+                RedirectToAction("LoginPageIndex", "LoginPage");
             }
+
+           
 
             
             SqlDataAdapter da3 = new SqlDataAdapter(query3, con);

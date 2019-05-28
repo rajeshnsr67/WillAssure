@@ -1,5 +1,4 @@
-﻿@model WillAssure.Models.TestatorFormModel
-
+﻿﻿@model WillAssure.Models.TestatorFormModel
 
 @{
     /**/
@@ -7,11 +6,11 @@
     ViewBag.Title = "AddTestatorPageContent";
 }
 <style>
+
     ul.menu li {
         display: inline;
     }
 </style>
-
 @if (Session["Type"] == null || Session["Type"].ToString() == "")
 {
     <script>
@@ -26,12 +25,9 @@
 @*Main Content*@
 <div class="content-wrapper">
     <div class="container-fluid">
-
         <div class="row pt-2 pb-2">
-
             <div class="col-sm-3">
                 <div class="btn-group float-sm-right">
-
                     <div class="dropdown-menu">
                         <a href="javaScript:void();" class="dropdown-item">Action</a>
                         <a href="javaScript:void();" class="dropdown-item">Another action</a>
@@ -43,75 +39,69 @@
             </div>
         </div>
         <!-- End Breadcrumb-->
-
         <div class="row">
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
 
 
-
-
                         @*@if (Session["doctype"] != null)
-                            {
-                                if (Session["doctype"].ToString() == "POA" || Session["doctype"].ToString() == "GiftDeeds")
-                                {
-                                    <h5>
-                                        <ul id="menu" class="menu" style="font-weight:bold;">
+        {
+            if (Session["doctype"].ToString() == "POA" || Session["doctype"].ToString() == "GiftDeeds")
+            {
+                <h5>
+                    <ul id="menu" class="menu" style="font-weight:bold;">
 
-                                            <a href="@Url.Action("AddTestatorsFormIndex","AddTestatorsForm")"><li style="color:#5e72e4">Donor ></li></a>
-                                            <li style="color:#e1e1e1">Donee ></li>
-                                            <li style="color:#e1e1e1">Gift ></li>
-                                            <li style="color:#e1e1e1">Asset Mapping ></li>
-                                            <li style="color:#e1e1e1">Witness Appointment ></li>
-
-
+                        <a href="@Url.Action("AddTestatorsFormIndex","AddTestatorsForm")"><li style="color:#5e72e4">Donor ></li></a>
+                        <li style="color:#e1e1e1">Donee ></li>
+                        <li style="color:#e1e1e1">Gift ></li>
+                        <li style="color:#e1e1e1">Asset Mapping ></li>
+                        <li style="color:#e1e1e1">Witness Appointment ></li>
 
 
 
-                                        </ul>
-                                    </h5>
-                                }
-                                else
-                                {
-                                    <h5>
-                                        <ul id="menuforwill" class="menu" style="font-weight:bold;">
-
-                                            <li style="color:#5e72e4">Testator  ></li>
-                                            <li style="color:#e1e1e1">Testator Family ></li>
-                                            <li style="color:#e1e1e1">Beneficiary ></li>
-                                            <li style="color:#e1e1e1">AssetInformation ></li>
-                                            <li style="color:#e1e1e1">Liabilites></li>
-                                            <li style="color:#e1e1e1">PetCare ></li>
-                                            <li style="color:#e1e1e1">Mapping ></li>
-                                            <li style="color:#e1e1e1">Nominee ></li>
-                                            <li style="color:#e1e1e1">Appointees > </li>
 
 
-                                        </ul>
-                                    </h5>
-                                }
-                            }
-                            else
-                            {
-                                <h5>
-                                    <ul id="menuforwill" class="menu" style="font-weight:bold;">
+                    </ul>
+                </h5>
+            }
+            else
+            {
+                <h5>
+                    <ul id="menuforwill" class="menu" style="font-weight:bold;">
 
-                                        <li style="color:#5e72e4">Testator ></li>
-                                        <li style="color:#e1e1e1">Testator Family ></li>
-                                        <li style="color:#e1e1e1">Beneficiary ></li>
-                                        <li style="color:#e1e1e1">AssetInformation ></li>
-                                        <li style="color:#e1e1e1">Mapping ></li>
-                                        <li style="color:#e1e1e1">Nominee ></li>
-                                        <li style="color:#e1e1e1">Appointees > </li>
-
-
-                                    </ul>
-                                </h5>
-                            }*@
+                        <li style="color:#5e72e4">Testator  ></li>
+                        <li style="color:#e1e1e1">Testator Family ></li>
+                        <li style="color:#e1e1e1">Beneficiary ></li>
+                        <li style="color:#e1e1e1">AssetInformation ></li>
+                        <li style="color:#e1e1e1">Liabilites></li>
+                        <li style="color:#e1e1e1">PetCare ></li>
+                        <li style="color:#e1e1e1">Mapping ></li>
+                        <li style="color:#e1e1e1">Nominee ></li>
+                        <li style="color:#e1e1e1">Appointees > </li>
 
 
+                    </ul>
+                </h5>
+            }
+        }
+        else
+        {
+            <h5>
+                <ul id="menuforwill" class="menu" style="font-weight:bold;">
 
+                    <li style="color:#5e72e4">Testator ></li>
+                    <li style="color:#e1e1e1">Testator Family ></li>
+                    <li style="color:#e1e1e1">Beneficiary ></li>
+                    <li style="color:#e1e1e1">AssetInformation ></li>
+                    <li style="color:#e1e1e1">Mapping ></li>
+                    <li style="color:#e1e1e1">Nominee ></li>
+                    <li style="color:#e1e1e1">Appointees > </li>
+
+
+                </ul>
+            </h5>
+        }*@
 
 
                         <br />
@@ -128,26 +118,12 @@
                                         <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
                                         <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
                                         <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
-
                                     </ul>
                                 </div>
                             </div>
                         </div>
 
-                        @if (Session["doctype"] != null)
-                        {
-                            if (Session["doctype"].ToString() == "POA" || Session["doctype"].ToString() == "GiftDeeds")
-                            {
-
-                                <div class="card-title text-primary">Add Donor Details</div>
-                            }
-                            else
-                            {
-                                <div class="card-title text-primary">Add Testators Details</div>
-                            }
-                        }
-
-
+                        <div class="card-title text-primary">Add Client Details</div>
 
 
 
@@ -161,7 +137,6 @@
                                     <select id="ddlDistributor" class="form-control input-shadow validate[required]">
                                         <option value="">--Select Distributor--</option>
                                     </select>
-
                                 </div>
                             </div>
                             <hr class="div_rd">
@@ -171,43 +146,30 @@
                                 <div class="col-sm-1"></div>
                                 <div class="col-sm-2"> <label for="input-1"><i class="fa fa-user-circle-o  " aria-hidden="true"></i>Personal Details</label></div>
                                 <div class="col-sm-3">
-
                                     <div class="form-group">
-
 
                                         @Html.TextBoxFor(m => m.First_Name, new { @class = "form-control input-shadow validate[required] text-input", @id = "txtFirstName", @placeholder = "Enter First Name", @autocomplete = "off" })
                                     </div>
                                 </div>
-
                                 <div class="col-sm-3">
-
                                     <div class="form-group">
-
 
                                         @Html.TextBoxFor(m => m.Middle_Name, new { @class = "form-control input-shadow validate[required] text-input", @id = "txtmiddlename", @placeholder = "Enter Middle Name", @autocomplete = "off" })
                                     </div>
                                 </div>
                                 <div class="col-sm-3">
-
                                     <div class="form-group">
-
 
                                         @Html.TextBoxFor(m => m.Last_Name, new { @class = "form-control input-shadow validate[required] text-input", @id = "txtLastName", @placeholder = "Enter Last Name", @autocomplete = "off" })
                                     </div>
                                 </div>
-
                             </div>
                             <div class="row">
 
-
-
                                 <div class="col-sm-1"></div>
                                 <div class="col-sm-2"> <label for="input-1"></label></div>
-
                                 <div class="col-sm-3">
-
                                     <div class="form-group">
-
 
                                         <div id="datepicker" class="input-group date" data-date-format="dd-mm-yyyy">
                                             <input class="form-control input-shadow validate[required]" type="text" id="DOB" name="DOB" autocomplete="off" placeholder="Select Date Of Birth" />
@@ -216,62 +178,44 @@
                                     </div>
                                 </div>
 
-
                                 <div class="col-sm-3">
-
                                     <div class="form-group">
-
 
                                         @Html.TextBoxFor(m => m.Occupation, new { @class = "form-control input-shadow validate[required] text-input", @id = "txtoccupation", @placeholder = "Enter Occupation", @autocomplete = "off" })
                                     </div>
                                 </div>
 
-
                                 <div class="col-sm-3">
-
                                     <div class="form-group">
-
 
                                         @Html.TextBoxFor(m => m.Mobile, new { @class = "form-control input-shadow validate[required,custom[Mobile],maxSize[10]]text - input", @id = "txtmobile", @onchange = "gettxtmobile(this.value)", @placeholder = "Enter Mobile Number", @autocomplete = "off" })
                                     </div>
                                 </div>
-
                                 <div class="col-sm-3"></div>
                                 <div class="col-sm-3">
-
                                     <div class="form-group">
-
 
                                         @Html.TextBoxFor(m => m.Email, new { @class = "form-control input-shadow validate[required,custom[email]] text-input", @id = "txtEmail", @onchange = "gettxtemail(this.value)", @placeholder = "Enter Email", @autocomplete = "off" })
                                     </div>
                                 </div>
-
                                 @if (Session["Type"].ToString() != "Testator")
                                 {
                                     <div class="col-sm-3">
                                         <div class="form-group">
-
                                             @Html.DropDownListFor(x => x.material_status_txt, new SelectListItem[]{
                                             new SelectListItem() {Text = "--Select--", Value=""},
                                            new SelectListItem() {Text = "Married", Value="Married"},
                                            new SelectListItem() {Text = "UnMarried", Value="UnMarried"}}, new { @class = "form-control input-shadow validate[required]", @id = "ddlmaritalstatus" })
-
                                             @Html.HiddenFor(m => m.material_status_id, new { id = "material_status_id" })
                                             @Html.HiddenFor(m => m.material_status_txt, new { id = "material_status_txt" })
-
                                         </div>
                                     </div>
                                 }
 
 
 
-
-
-
                                 <div class="col-sm-3">
-
                                     <div class="form-group">
-
                                         @Html.DropDownListFor(x => x.Religiontext, new SelectListItem[]{
                                  new SelectListItem() {Text = "--Select--", Value=""},
                                  new SelectListItem() {Text = "Buddhism", Value="Buddhism"},
@@ -282,20 +226,15 @@
                                  new SelectListItem() {Text = "Sikhism", Value="Sikhism"},
 
                                  new SelectListItem() {Text = "Zoroastrian", Value="Zoroastrian"}}, new { @class = "form-control input-shadow validate[required]", @id = "ddlreligion" })
-
                                         @Html.HiddenFor(m => m.ReligionId, new { id = "ReligionId" })
                                         @Html.HiddenFor(m => m.Religiontext, new { id = "Religiontext" })
 
-
                                     </div>
                                 </div>
-
                                 <div class="col-sm-3"></div>
-
 
                                 <div class="col-sm-3">
                                     <div class="form-group">
-
 
                                         <select class="form-control input-shadow validate[required]" name="Gendertext" id="ddlgender">
                                             <option value="">--Select--</option>
@@ -303,43 +242,30 @@
                                             <option value="Female">Female</option>
                                             <option value="TransGender">TransGender</option>
                                         </select>
-
                                         @Html.HiddenFor(m => m.GenderId, new { id = "GenderId" })
                                         @Html.HiddenFor(m => m.Gendertext, new { id = "Gendertext" })
                                     </div>
                                 </div>
 
-
-
                             </div>
 
                             <div class="row">
 
-
-
                                 <div class="col-sm-1"></div>
                                 <div class="col-sm-2"> <label for="input-1"><i class="fa fa-map-marker" aria-hidden="true"></i>Contact Details</label></div>
 
-
                                 <div class="col-sm-3">
-
                                     <div class="form-group">
-
                                         <select id="ddlcountry" class="form-control input-shadow validate[required]">
                                             <option value="">--Select Country--</option>
                                         </select>
                                         @Html.HiddenFor(m => m.countryid, new { id = "countryid" })
                                         @Html.HiddenFor(m => m.countrytext, new { id = "countrytext" })
-
                                     </div>
-
                                 </div>
 
-
                                 <div class="col-sm-3">
-
                                     <div class="form-group">
-
 
                                         <select id="ddlstate" class="form-control input-shadow validate[required]">
                                             <option value="">--Select State--</option>
@@ -350,45 +276,32 @@
                                 </div>
 
 
-
-
                                 <div class="col-sm-3">
-
                                     <div class="form-group">
-
                                         <select id="ddlcity" onchange="ddlcity(value)" class="form-control input-shadow validate[required]">
                                             <option value="">--Select City--</option>
                                         </select>
                                         @Html.HiddenFor(m => m.cityid, new { id = "cityid" })
                                         @Html.HiddenFor(m => m.citytext, new { id = "citytext" })
-
                                     </div>
-
                                 </div>
-
 
                             </div>
                             <div class="row">
                                 <div class="col-sm-3"></div>
 
-
                                 <div class="col-sm-3">
-
                                     <div class="form-group">
-
 
                                         @Html.TextBoxFor(m => m.Pin, new { @class = "form-control input-shadow validate[required,custom[PinCode]] text-input", @id = "txtComanyName", @placeholder = "Enter Pin", @autocomplete = "off" })
                                     </div>
                                 </div>
-
                             </div>
 
                             <div class="row">
                                 <div class="col-sm-3"></div>
                                 <div class="col-sm-9">
-
                                     <div class="form-group">
-
 
                                         @Html.TextAreaFor(m => m.Address1, new { @class = "form-control input-shadow validate[required] text-input", @id = "txtaddress1", @placeholder = "Enter Address 1", @autocomplete = "off" })
                                     </div>
@@ -397,9 +310,7 @@
                             <div class="row">
                                 <div class="col-sm-3"></div>
                                 <div class="col-sm-9">
-
                                     <div class="form-group">
-
 
                                         @Html.TextAreaFor(m => m.Address2, new { @class = "form-control input-shadow  text-input", @id = "txtaddress2", @placeholder = "Enter Address 2", @autocomplete = "off" })
                                     </div>
@@ -407,17 +318,13 @@
                             </div>
 
                             <div class="row">
-
                                 <div class="col-sm-3"></div>
                                 <div class="col-sm-9">
-
                                     <div class="form-group">
-
 
                                         @Html.TextAreaFor(m => m.Address3, new { @class = "form-control input-shadow  text-input", @id = "txtaddress3", @placeholder = "Enter Address 3", @autocomplete = "off" })
                                     </div>
                                 </div>
-
                             </div>
 
 
@@ -427,49 +334,36 @@
 
                             <div class="row">
 
-
-
                                 <div class="col-sm-1"></div>
                                 <div class="col-sm-2"> <label for="input-1"><i class="fa fa-id-card-o" aria-hidden="true"></i>Identity Proof</label></div>
 
-
                                 <div class="col-sm-3">
                                     <div class="form-group">
-
                                         @Html.DropDownListFor(x => x.Identity_Proof, new SelectListItem[]{
                                    new SelectListItem() {Text = "--Select Identity Proof--", Value=""},
                                    new SelectListItem() {Text = "Aadhaar Card", Value="1"},
                                    new SelectListItem() {Text = "Passport", Value="2"},
                                    new SelectListItem() {Text = "Driving Licences", Value="3"},
                                    new SelectListItem() {Text = "Pan Card", Value="4"}}, new { @class = "form-control input-shadow validate[required]", @id = "ddlidentityproof", @onchange = "getIdentityselection(this.options[this.selectedIndex].innerHTML)" })
-
                                         @Html.HiddenFor(m => m.Identity_Proof_txt, new { id = "Identity_Proof_txt" })
                                     </div>
                                 </div>
 
-
-
                                 <div class="col-sm-3">
                                     <div class="form-group">
-
                                         <div id="appendtxt">  </div>
-
                                         @*@Html.TextBoxFor(m => m.Identity_Proof_Value, new { @class = "form-control input-shadow validate[required] text-input", @id = "txtIdentityProofValue", @placeholder = "Enter Identity Proof Value", @autocomplete = "off" })*@
                                     </div>
                                 </div>
 
-
-
                                 <div class="col-sm-3">
                                     <div class="form-group">
-
                                         @Html.DropDownListFor(x => x.Identity_Proof, new SelectListItem[]{
                                    new SelectListItem() {Text = "--Select Identity Proof--", Value=""},
                                    new SelectListItem() {Text = "Aadhaar Card", Value="1"},
                                    new SelectListItem() {Text = "Passport", Value="2"},
                                    new SelectListItem() {Text = "Driving Licences", Value="3"},
                                    new SelectListItem() {Text = "Pan Card", Value="4"}}, new { @class = "form-control input-shadow validate[required]", @id = "ddlidentityproof", @onchange = "getAltIdentityselection(this.options[this.selectedIndex].innerHTML)" })
-
                                         @Html.HiddenFor(m => m.Alt_Identity_Proof, new { id = "Alt_Identity_Proof" })
                                     </div>
                                 </div>
@@ -478,9 +372,7 @@
                                 <div class="col-sm-3"></div>
                                 <div class="col-sm-3">
                                     <div class="form-group">
-
                                         <div id="appendtxt2">  </div>
-
                                         @*@Html.TextBoxFor(m => m.Identity_Proof_Value, new { @class = "form-control input-shadow validate[required] text-input", @id = "txtIdentityProofValue", @placeholder = "Enter Identity Proof Value", @autocomplete = "off" })*@
                                     </div>
                                 </div>
@@ -497,22 +389,17 @@
 
 
                             <div class="row">
-
                                 <div class="col-sm-1"></div>
                                 <div class="col-sm-2"> <label for="input-1">Status</label></div>
 
-
                                 <div class="col-sm-3">
-
                                     <div class="form-group">
-
                                         @Html.DropDownListFor(x => x.active, new SelectListItem[]{
                                        new SelectListItem() {Text = "--Select--", Value=""},
                                        new SelectListItem() {Text = "Active", Value="Active"},
                                        new SelectListItem() {Text = "Inactive", Value="2"}}, new { @class = "form-control input-shadow validate[required]" })
                                     </div>
                                 </div>
-
                             </div>
 
 
@@ -528,45 +415,14 @@
 
                             <hr class="div_rd">
 
-
-                            if (Session["doctype"] != null)
-                            {
-                                if (Session["doctype"].ToString() == "POA" || Session["doctype"].ToString() == "GiftDeeds")
-                                {
-
-
-                                    <div class="form-group" style="float:right;">
-                                        <button type="submit" id="alert-success" formaction="InsertTestatorFormData" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i>Add Donor</button>
-                                        <a href="@Url.Action("AddBeneficiaryIndex","AddBeneficiary")"><button type="button" id="btnnext" style="display:" class="btn btn-danger shadow-primary px-5">Next&nbsp;&nbsp;<i class="icon-arrow-right-circle"></i></button></a>
-                                    </div>
-
-                                }
-                                else
-                                {
-
-
-
-                                    <div class="form-group" style="float:right;">
-                                        <button type="submit" id="alert-success" formaction="InsertTestatorFormData" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i>Add Testator</button>
-
-                                    </div>
-                                }
-                            }
-                            else
-                            {
-
-
-
-                                <div class="form-group" style="float:right;">
-                                    <button type="submit" id="alert-success" formaction="InsertTestatorFormData" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i>Add Testator</button>
-
-                                </div>
-                            }
+                            <div class="form-group" style="float:right;">
+                                <button type="submit" id="alert-success" formaction="InsertTestatorFormData" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i>Submit</button>
+                               
+                            </div>
+                         
 
 
                         }
-
-
 
                         <button type="button" style="display:none;" id="successcheck" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
                         <button type='button' id='btncreate' style="display:none;" class='btn btn-success' data-toggle='modal' data-target='.primarymodal'>Create Document</button>
@@ -576,16 +432,10 @@
                         <button type="button" style="display:none;" id="testatorlinkcheck" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
 
 
-
-
-
                     </div>
                     @*end*@
 
-
-
                     @*document popup*@
-
                     <div class="modal fade primarymodal">
                         <div class="modal-dialog">
                             <div class="modal-content border-primary" style="width:196%; position:relative; right:38%">
@@ -601,18 +451,13 @@
                                     <div class="modal-body">
                                         @Html.HiddenFor(m => m.tId, new { @id = "tId" })
 
-
                                         <div class="row">
-
-                     
 
                                             <div class="col-sm-3">
                                                 <label style="line-height:41px;">Document Type</label>
-
                                             </div>
                                             <div class="col-sm-3">
                                                 <div class="form-group">
-
                                                     <br />
                                                     <label class="checkbox-inline">
                                                         <input type="checkbox" value="Will" class="checkone radio validate[required]" name="radio1">Will
@@ -630,17 +475,13 @@
                                                         <input type="checkbox" value="Living Will" class="checkfive radio validate[required]" name="radio1">Living Will
                                                     </label>
 
-
-
                                                 </div>
                                                 @Html.HiddenFor(m => m.Document_Created_By_ID, new { id = "Document_Created_By_ID" })
                                                 @Html.HiddenFor(m => m.Document_Created_By_txt, new { id = "Document_Created_By_txt" })
                                             </div>
 
-
                                             <div class="col-sm-3">
                                                 <label style="line-height:41px;">Category</label>
-
                                             </div>
                                             <div class="col-sm-3">
                                                 @Html.DropDownListFor(x => x.documentcategory, new SelectListItem[]{
@@ -648,22 +489,15 @@
                                                 new SelectListItem() {Text = "Quick", Value="Quick"},
                                                 new SelectListItem() {Text = "Detailed", Value="Detailed"}}, new { @class = "form-control input-shadow validate[required]", id = "DDLAmtPaidBY2", @disabled = "disabled" })
 
-
                                             </div>
-
-
-
 
 
                                         </div>
                                         <hr class="div_rd">
-
                                         <div class="row">
-
 
                                             <div class="col-sm-3">
                                                 <label style="line-height:41px;">Document Created By</label>
-
                                             </div>
                                             <div class="col-sm-3">
                                                 @Html.DropDownListFor(x => x.Document_Created_By, new SelectListItem[]{
@@ -672,12 +506,9 @@
                                                  new SelectListItem() {Text = "Testator", Value="Testator"}}, new { @class = "form-control input-shadow validate[required]", @id = "ddldocumentcreatedby1" })
                                                 @Html.HiddenFor(m => m.Document_Created_By_ID, new { id = "Document_Created_By_ID" })
                                                 @Html.HiddenFor(m => m.Document_Created_By_txt, new { id = "Document_Created_By_txt" })
-
                                             </div>
-
                                             <div class="col-sm-3">
                                                 <label style="line-height:41px;">Amount Paid By</label>
-
                                             </div>
                                             <div class="col-sm-3">
                                                 @Html.DropDownListFor(x => x.Amt_Paid_By, new SelectListItem[]{
@@ -686,20 +517,14 @@
                                                 new SelectListItem() {Text = "Testator", Value="Testator"}}, new { @class = "form-control input-shadow validate[required]", id = "DDLAmtPaidBY3" })
                                                 @Html.HiddenFor(m => m.Amt_Paid_By_By_ID, new { id = "Amt_Paid_By_By_ID" })
                                                 @Html.HiddenFor(m => m.Amt_Paid_By_txt, new { id = "Amt_Paid_By_txt" })
-
                                             </div>
-
-
 
 
                                         </div>
                                         <hr class="div_rd">
-
                                         <div class="row">
-
                                             <div class="col-sm-3">
                                                 <label for="input-1">Enter Coupon Number</label>
-
                                             </div>
                                             <div class="col-sm-3">
                                                 @Html.TextBoxFor(m => m.txtCoupon, new { @class = "form-control input-shadow  text-input", @onblur = "blurFunction()", @id = "txtcoupon", @onchange = "checkcoupon(this.value)", @placeholder = "Enter Coupon Number", @autocomplete = "off" })
@@ -720,15 +545,15 @@
                                             $("#testatordocument").validationEngine();
 
 
-                                           
+
 
                                         });
 
-      
-                    
 
 
-                                        
+
+
+
                                     </script>
 
                                 }
@@ -737,10 +562,7 @@
                     </div>
 
 
-
-
                     @*end*@
-
 
                     @if (ViewBag.Type == "create")
                     {
@@ -771,7 +593,6 @@
                         </script>
 
                     }
-
                     <!--Start Back To Top Button-->
                     <a href="javaScript:void();" class="back-to-top"><i class="fa fa-angle-double-up"></i> </a>
                     <!--End Back To Top Button-->
@@ -790,7 +611,6 @@
 
                     }
 
-
                     @if (ViewBag.Message == "link")
                     {
                         <script>
@@ -806,8 +626,6 @@
                     }
 
 
-
-
                     @if (ViewBag.msg == "true")
                     {
                         <script>
@@ -821,8 +639,6 @@
                         </script>
 
                     }
-
-
 
                     <script>
 
@@ -886,7 +702,6 @@
 
 
                     </script>
-
                     <script>
 
 
@@ -975,10 +790,7 @@
                     @*end*@
 
 
-
-
                     @*for State dropdown*@
-
                     @*<script>
 
                             $(document).ready(function () {
@@ -997,7 +809,6 @@
 
 
                         </script>*@
-
                     <script>
     $("#ddlstate").change(function () {
         var value = $(this).children(":selected").attr("value");
@@ -1032,12 +843,7 @@
 
 
 
-
-
-
-
                     @*for city dropdown*@
-
                     @*<script>
 
                             $(document).ready(function () {
@@ -1056,7 +862,6 @@
 
 
                         </script>*@
-
                     <script>
                         $("#ddlcity").change(function () {
                             var value = $(this).children(":selected").attr("value");
@@ -1067,7 +872,6 @@
                         });
                     </script>
                     @*end*@
-
 
                     <script>
                         $("#ddldocumentcreatedby1").change(function () {
@@ -1115,7 +919,6 @@
 
                     </script>
 
-
                     <script>
                         $("#DDLAmtPaidBY3").change(function () {
                             var value = $(this).children(":selected").attr("value");
@@ -1129,7 +932,6 @@
                         });
                     </script>
 
-
                     <script type="text/javascript">
                         function updateParent() {
                             document.forms["PopUp"].submit();
@@ -1138,14 +940,11 @@
                         }
                     </script>
 
-
                     <script>
                         $(document).ready(function () {
                             $("#TestatorForm").validationEngine();
                         });
                     </script>
-
-
 
 
                     @*validation script*@
@@ -1179,7 +978,6 @@
 
                         }
                     </script>
-
                     <script>
                         function getAltIdentityselection(id) {
 
@@ -1210,9 +1008,7 @@
 
                         }
                     </script>
-
                     @*end*@
-
 
                     <script>
 
@@ -1243,8 +1039,6 @@
 
                     </script>
 
-
-
                     <script>
 
     	$(document).ready(function () {
@@ -1273,8 +1067,6 @@
     });
 
                     </script>
-
-
 
                     <script>
 
@@ -1365,9 +1157,6 @@
                     </script>
 
 
-
-
-
                     @if (ViewBag.hidelinkfordistributor == "true")
                     {
                         <script>
@@ -1376,10 +1165,6 @@
                         </script>
 
                     }
-
-
-
-
 
 
 

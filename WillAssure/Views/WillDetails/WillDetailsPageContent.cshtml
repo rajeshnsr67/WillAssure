@@ -27,46 +27,71 @@
         <!-- End Breadcrumb-->
         @*<div class="card-title text-primary">Will Details</div>*@
 
-
-        @if (Session["doctype"].ToString() == "POA" || Session["doctype"].ToString() == "GiftDeeds")
+        @if (Session["Type"] == null || Session["Type"].ToString() == "")
         {
-            <h5>
-                <ul id="menu" style="font-weight:bold;">
+            <script>
+                var NestId = data
+                var url = "/LoginPage/ViewLogout/";
+                window.location.href = url;
+            </script>
 
-                    <a href="@Url.Action("AddTestatorsFormIndex","AddTestatorsForm")"><li style="color:black;">Donor ></li></a>
-                    <a href="@Url.Action("AddBeneficiaryIndex","AddBeneficiary")"><li style="color:black">Donee ></li></a>
-                    <a href="@Url.Action("AddMainAssetsIndex","AddMainAssets")"><li style="color:black">Gift ></li></a>
-                    <a href="@Url.Action("AddAssetMappingIndex","AddAssetMapping")"><li style="color:black">Asset Mapping ></li></a>
-                    <a href="@Url.Action("AddAppointeesIndex","AddAppointees")"> <li style="color:black">Witness Appointment ></li></a>
-                    <a href="@Url.Action("WillDetailsIndex","WillDetails")"> <li style="color:">Document</li></a>
-                </ul>
-            </h5>
+        }
+
+
+
+        @if (Session["doctype"] != null)
+        {
+            if (Session["doctype"].ToString() == "POA" || Session["doctype"].ToString() == "GiftDeeds")
+            {
+                <h5>
+                    <ul id="menu" style="font-weight:bold;">
+
+                        <a href="@Url.Action("AddTestatorsFormIndex","AddTestatorsForm")"><li style="color:black;">Donor ></li></a>
+                        <a href="@Url.Action("AddBeneficiaryIndex","AddBeneficiary")"><li style="color:black">Donee ></li></a>
+                        <a href="@Url.Action("AddMainAssetsIndex","AddMainAssets")"><li style="color:black">Gift ></li></a>
+                        <a href="@Url.Action("AddAssetMappingIndex","AddAssetMapping")"><li style="color:black">Asset Mapping ></li></a>
+                        <a href="@Url.Action("AddAppointeesIndex","AddAppointees")"> <li style="color:black">Witness Appointment ></li></a>
+                        <a href="@Url.Action("WillDetailsIndex","WillDetails")"> <li style="color:">Document</li></a>
+                    </ul>
+                </h5>
+
+            }
+            else
+            {
+
+                <h5>
+                    <ul id="menu" style="font-weight:bold;">
+
+
+                        <a href="@Url.Action("AddTestatorsFormIndex","AddTestatorsForm")"><li style="color:black;">Testator></li></a>
+                        <a href="@Url.Action("AddTestatorFamilyIndex","AddTestatorFamily")"><li style="color:black;">Testator Family ></li></a>
+                        <a href="@Url.Action("AddBeneficiaryIndex","AddBeneficiary")"><li style="color:black;">Beneficiary ></li></a>
+                        <a href="@Url.Action("AddMainAssetsIndex","AddMainAssets")"><li style="color:black;">AssetInformation ></li></a>
+                        <a href="@Url.Action("AddLiabilitiesIndex","AddLiabilities")"><li style="color:black;">Liabilites></li></a>
+                        <a href="@Url.Action("AddPetCareIndex","AddPetCare")"><li style="color:black;">PetCare ></li></a>
+                        <a href="@Url.Action("AddAssetMappingIndex","AddAssetMapping")"><li style="color:black">Mapping ></li></a>
+                        <a href="@Url.Action("AddNomineeIndex","AddNominee")"><li style="color:black">Nominee ></li></a>
+                        <a href="@Url.Action("AddAppointeesIndex","AddAppointees")"><li style="color:black">Appointees > </li></a>
+                        <a href="@Url.Action("WillDetailsIndex","WillDetails")"> <li style="color:">Document</li></a>
+
+
+                    </ul>
+                </h5>
+
+
+            }
 
         }
         else
         {
-
-            <h5>
-                <ul id="menu" style="font-weight:bold;">
-
-
-                    <a href="@Url.Action("AddTestatorsFormIndex","AddTestatorsForm")"><li style="color:black;">Testator></li></a>
-                    <a href="@Url.Action("AddTestatorFamilyIndex","AddTestatorFamily")"><li style="color:black;">Testator Family ></li></a>
-                    <a href="@Url.Action("AddBeneficiaryIndex","AddBeneficiary")"><li style="color:black;">Beneficiary ></li></a>
-                    <a href="@Url.Action("AddMainAssetsIndex","AddMainAssets")"><li style="color:black;">AssetInformation ></li></a>
-                    <a href="@Url.Action("AddLiabilitiesIndex","AddLiabilities")"><li style="color:black;">Liabilites></li></a>
-                    <a href="@Url.Action("AddPetCareIndex","AddPetCare")"><li style="color:black;">PetCare ></li></a>
-                    <a href="@Url.Action("AddAssetMappingIndex","AddAssetMapping")"><li style="color:black">Mapping ></li></a>
-                    <a href="@Url.Action("AddNomineeIndex","AddNominee")"><li style="color:black">Nominee ></li></a>
-                    <a href="@Url.Action("AddAppointeesIndex","AddAppointees")"><li style="color:black">Appointees > </li></a>
-                    <a href="@Url.Action("WillDetailsIndex","WillDetails")"> <li style="color:">Document</li></a>
-
-
-                </ul>
-            </h5>
-
-
+            <script>
+                var NestId = data
+                var url = "/LoginPage/LoginPageIndex/";
+                window.location.href = url;
+            </script>
         }
+
+
 
 
 
