@@ -138,7 +138,7 @@
                                     new SelectListItem() {Text = "Aadhaar Card", Value="Aadhaar Card"},
                                    new SelectListItem() {Text = "Passport", Value="Passport"},
                                    new SelectListItem() {Text = "Driving Licences", Value="Driving Licences"},
-                                   new SelectListItem() {Text = "Pan Card", Value="Pan Card"}}, new { @class= "form-control input-shadow validate[required]", @id="ddlidentityproof" , @onchange= "getAltIdentityselection(this.options[this.selectedIndex].innerHTML)" })
+                                   new SelectListItem() {Text = "Pan Card", Value="Pan Card"}}, new { @class= "form-control input-shadow validate[required]", @id="ddlidentityproof11" , @onchange= "getAltIdentityselection(this.options[this.selectedIndex].innerHTML)" })
 
                                         @Html.HiddenFor(m => m.Alt_Identity_Proof, new { id = "Alt_Identity_Proof" })
                                     </div>
@@ -421,7 +421,7 @@
                                               new SelectListItem() {Text = "Aadhaar Card", Value="Aadhaar Card"},
                                        new SelectListItem() {Text = "Passport", Value="Passport"},
                                        new SelectListItem() {Text = "Driving Licences", Value="Driving Licences"},
-                                       new SelectListItem() {Text = "Pan Card", Value="Pan Card"}}, new { @class= "form-control input-shadow validate[required]", @id="ddlidentityproof" , @onchange= "altgetAltIdentityselection(this.options[this.selectedIndex].innerHTML)" })
+                                       new SelectListItem() {Text = "Pan Card", Value="Pan Card"}}, new { @class= "form-control input-shadow validate[required]", @id="ddlidentityproof22" , @onchange= "altgetAltIdentityselection(this.options[this.selectedIndex].innerHTML)" })
 
                                             @Html.HiddenFor(m => m.altAlt_Identity_Proof_Value, new { id = "altAlt_Identity_Proof_Value" })
                                         </div>
@@ -1060,6 +1060,14 @@
         }
 
 
+        var previousid = id;
+
+
+
+        $("#ddlidentityproof11").find("option[value='" + previousid + "']").hide();
+
+
+
     }
 
 
@@ -1276,6 +1284,15 @@
         if (id == "Pan Card") {
             $("#altappendtxt").empty().append("<input type='text' class='form-control input-shadow validate[required,custom[pannumber]] text-input' id='altIdentity_Proof_Value' name='altIdentity_Proof_Value' placeholder='Enter Pan Card' autocomplete='off'  />");
         }
+
+
+
+        var previousid = id;
+
+
+
+        $("#ddlidentityproof22").find("option[value='" + previousid + "']").hide();
+
 
 
     }

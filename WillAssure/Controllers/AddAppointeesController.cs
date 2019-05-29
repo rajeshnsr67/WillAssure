@@ -529,8 +529,28 @@ namespace WillAssure.Controllers
             cmd.Parameters.AddWithValue("@Occupation", AM.Occupation);
             cmd.Parameters.AddWithValue("@Relationship", AM.RelationshipTxt);
             cmd.Parameters.AddWithValue("@Address1", AM.Address1);
-            cmd.Parameters.AddWithValue("@Address2", AM.Address2);
-            cmd.Parameters.AddWithValue("@Address3", AM.Address3);
+            if (AM.Address2 != null || AM.Address2 == "")
+            {
+                cmd.Parameters.AddWithValue("@Address2", AM.Address2);
+            }
+            else
+            {
+                AM.Address2 = "None";
+                cmd.Parameters.AddWithValue("@Address2", AM.Address2);
+            }
+
+
+            if (AM.Address3 != null || AM.Address3 == "")
+            {
+                cmd.Parameters.AddWithValue("@Address3", AM.Address3);
+            }
+            else
+            {
+                AM.Address3 = "None";
+                cmd.Parameters.AddWithValue("@Address3", AM.Address3);
+            }
+
+          
             cmd.Parameters.AddWithValue("@City", AM.citytext);
             cmd.Parameters.AddWithValue("@State", AM.statetext);
             cmd.Parameters.AddWithValue("@Pin", AM.Pin);
@@ -661,8 +681,27 @@ namespace WillAssure.Controllers
                 cmdd.Parameters.AddWithValue("@Occupation", AM.altOccupation);
                 cmdd.Parameters.AddWithValue("@Relationship", AM.altRelationshipTxt);
                 cmdd.Parameters.AddWithValue("@Address1", AM.altAddress1);
-                cmdd.Parameters.AddWithValue("@Address2", AM.altAddress2);
-                cmdd.Parameters.AddWithValue("@Address3", AM.altAddress3);
+                if (AM.altAddress2 != null || AM.altAddress2 == "")
+                {
+                    cmdd.Parameters.AddWithValue("@Address2", AM.altAddress2);
+                }
+                else
+                {
+                    AM.altAddress2 = "None";
+                    cmdd.Parameters.AddWithValue("@Address2", AM.altAddress2);
+                }
+
+
+                if (AM.altAddress3 != null || AM.altAddress3 == "")
+                {
+                    cmdd.Parameters.AddWithValue("@Address3", AM.altAddress3);
+                }
+                else
+                {
+                    AM.altAddress3 = "None";
+                    cmdd.Parameters.AddWithValue("@Address3", AM.altAddress3);
+                }
+
                 cmdd.Parameters.AddWithValue("@City", AM.altcitytext);
                 cmdd.Parameters.AddWithValue("@State", AM.altstatetext);
                 cmdd.Parameters.AddWithValue("@Pin", AM.altPin);

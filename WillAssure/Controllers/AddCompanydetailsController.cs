@@ -332,7 +332,17 @@ namespace WillAssure.Controllers
                 companycmd.Parameters.AddWithValue("@ownerName", UFM.cownerName);
                 companycmd.Parameters.AddWithValue("@ownerMobileNo", UFM.cownerMobileNo);
                 companycmd.Parameters.AddWithValue("@Address1", UFM.cAddress1);
+            if (UFM.cAddress2 != "" || UFM.cAddress2 != null)
+            {
                 companycmd.Parameters.AddWithValue("@Address2", UFM.cAddress2);
+            }
+            else
+            {
+                UFM.cAddress2 = "None";
+                companycmd.Parameters.AddWithValue("@Address2", UFM.cAddress2);
+            }
+
+              
                 companycmd.Parameters.AddWithValue("@City", UFM.ccitytext);
                 companycmd.Parameters.AddWithValue("@State", UFM.cstatetext);
                 companycmd.Parameters.AddWithValue("@Pin", UFM.cPin);

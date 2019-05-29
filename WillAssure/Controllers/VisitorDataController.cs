@@ -33,7 +33,10 @@ namespace WillAssure.Controllers
             string refdistributor = response.Split('~')[5];
             string documenttype = response.Split('~')[6];
 
-
+            if (refdistributor == null)
+            {
+                refdistributor = "0";
+            }
           
 
                 con.Open();

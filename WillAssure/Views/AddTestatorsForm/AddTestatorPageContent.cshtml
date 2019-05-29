@@ -11,15 +11,7 @@
         display: inline;
     }
 </style>
-@if (Session["Type"] == null || Session["Type"].ToString() == "")
-{
-    <script>
-        var NestId = data
-        var url = "/LoginPage/ViewLogout/";
-        window.location.href = url;
-    </script>
 
-}
 
 
 @*Main Content*@
@@ -133,15 +125,39 @@
 
                             <div class="row">
                                 <div class="col-sm-1"></div><div class='col-sm-2'><label for='input-1' style="line-height:40px;"><i class="fa fa-user-circle-o  " aria-hidden="true"></i>Distributor</label></div>
-                                <div class='col-sm-3'>
-                                    <select id="ddlDistributor" class="form-control input-shadow validate[required]">
-                                        <option value="">--Select Distributor--</option>
-                                    </select>
-                                </div>
+                                                            <div class='col-sm-3'>
+                                                                @if (Session["Type"] != null)
+                                                                {
+                                                                    if (Session["Type"].ToString() != "DistributorAdmin")
+                                                                    {
+                                                                        <select id="ddlDistributor" class="form-control input-shadow validate[required]">
+                                                                            <option value="">--Select Distributor--</option>
+                                                                        </select>
+                                                                        @Html.HiddenFor(m => m.distributor_id, new { id = "distributor_id" })
+                                                                        @Html.HiddenFor(m => m.distributor_txt, new { id = "distributor_txt" })
+                                                                    }
+                                                                    else
+                                                                    {
+
+                                                                        <input type="text" class="form-control" id="distributor_txt" name="name" value="" />
+                                                                        <input type="text" class="form-control" id="distributor_id" style="display:none;" name="name" value="" />
+
+                                                                    }
+
+                                                                }
+                                                                else
+                                                                {
+                                                                    if (!Response.IsRequestBeingRedirected)
+                                                                    {
+                                                                        Response.Redirect("/LoginPage/LoginPageIndex");
+                                                                    }
+                                                                }
+
+
+                                                            </div>
                             </div>
                             <hr class="div_rd">
-                            @Html.HiddenFor(m => m.distributor_id, new { id = "distributor_id" })
-                            @Html.HiddenFor(m => m.distributor_txt, new { id = "distributor_txt" })
+                          
                             <div class="row">
                                 <div class="col-sm-1"></div>
                                 <div class="col-sm-2"> <label for="input-1"><i class="fa fa-user-circle-o  " aria-hidden="true"></i>Personal Details</label></div>
@@ -198,19 +214,30 @@
                                         @Html.TextBoxFor(m => m.Email, new { @class = "form-control input-shadow validate[required,custom[email]] text-input", @id = "txtEmail", @onchange = "gettxtemail(this.value)", @placeholder = "Enter Email", @autocomplete = "off" })
                                     </div>
                                 </div>
-                                @if (Session["Type"].ToString() != "Testator")
+                                @if (Session["Type"] != null)
                                 {
-                                    <div class="col-sm-3">
-                                        <div class="form-group">
-                                            @Html.DropDownListFor(x => x.material_status_txt, new SelectListItem[]{
-                                            new SelectListItem() {Text = "--Select--", Value=""},
-                                           new SelectListItem() {Text = "Married", Value="Married"},
-                                           new SelectListItem() {Text = "UnMarried", Value="UnMarried"}}, new { @class = "form-control input-shadow validate[required]", @id = "ddlmaritalstatus" })
-                                            @Html.HiddenFor(m => m.material_status_id, new { id = "material_status_id" })
-                                            @Html.HiddenFor(m => m.material_status_txt, new { id = "material_status_txt" })
+                                    if (Session["Type"].ToString() != "Testator")
+                                    {
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                @Html.DropDownListFor(x => x.material_status_txt, new SelectListItem[]{
+                                                new SelectListItem() {Text = "--Select--", Value=""},
+                                               new SelectListItem() {Text = "Married", Value="Married"},
+                                               new SelectListItem() {Text = "UnMarried", Value="UnMarried"}}, new { @class = "form-control input-shadow validate[required]", @id = "ddlmaritalstatus" })
+                                                @Html.HiddenFor(m => m.material_status_id, new { id = "material_status_id" })
+                                                @Html.HiddenFor(m => m.material_status_txt, new { id = "material_status_txt" })
+                                            </div>
                                         </div>
-                                    </div>
+                                    }
                                 }
+                                else
+                                {
+                                    if (!Response.IsRequestBeingRedirected)
+                                    {
+                                        Response.Redirect("/LoginPage/LoginPageIndex");
+                                    }
+                                }
+
 
 
 
@@ -341,10 +368,10 @@
                                     <div class="form-group">
                                         @Html.DropDownListFor(x => x.Identity_Proof, new SelectListItem[]{
                                    new SelectListItem() {Text = "--Select Identity Proof--", Value=""},
-                                   new SelectListItem() {Text = "Aadhaar Card", Value="1"},
-                                   new SelectListItem() {Text = "Passport", Value="2"},
-                                   new SelectListItem() {Text = "Driving Licences", Value="3"},
-                                   new SelectListItem() {Text = "Pan Card", Value="4"}}, new { @class = "form-control input-shadow validate[required]", @id = "ddlidentityproof", @onchange = "getIdentityselection(this.options[this.selectedIndex].innerHTML)" })
+                                   new SelectListItem() {Text = "Aadhaar Card", Value="Aadhaar Card"},
+                                   new SelectListItem() {Text = "Passport", Value="Passport"},
+                                   new SelectListItem() {Text = "Driving Licences", Value="Driving Licences"},
+                                   new SelectListItem() {Text = "Pan Card", Value="Pan Card"}}, new { @class = "form-control input-shadow validate[required]", @id = "ddlidentityproof", @onchange = "getIdentityselection(this.options[this.selectedIndex].innerHTML)" })
                                         @Html.HiddenFor(m => m.Identity_Proof_txt, new { id = "Identity_Proof_txt" })
                                     </div>
                                 </div>
@@ -360,10 +387,10 @@
                                     <div class="form-group">
                                         @Html.DropDownListFor(x => x.Identity_Proof, new SelectListItem[]{
                                    new SelectListItem() {Text = "--Select Identity Proof--", Value=""},
-                                   new SelectListItem() {Text = "Aadhaar Card", Value="1"},
-                                   new SelectListItem() {Text = "Passport", Value="2"},
-                                   new SelectListItem() {Text = "Driving Licences", Value="3"},
-                                   new SelectListItem() {Text = "Pan Card", Value="4"}}, new { @class = "form-control input-shadow validate[required]", @id = "ddlidentityproof", @onchange = "getAltIdentityselection(this.options[this.selectedIndex].innerHTML)" })
+                                   new SelectListItem() {Text = "Aadhaar Card", Value="Aadhaar Card"},
+                                   new SelectListItem() {Text = "Passport", Value="Passport"},
+                                   new SelectListItem() {Text = "Driving Licences", Value="Driving Licences"},
+                                   new SelectListItem() {Text = "Pan Card", Value="Pan Card"}}, new { @class = "form-control input-shadow validate[required]", @id = "ddlidentityproof1", @onchange = "getAltIdentityselection(this.options[this.selectedIndex].innerHTML)" })
                                         @Html.HiddenFor(m => m.Alt_Identity_Proof, new { id = "Alt_Identity_Proof" })
                                     </div>
                                 </div>
@@ -976,10 +1003,20 @@
                             }
 
 
+
+                            var previousid = $("#Identity_Proof_txt").val();
+                           
+                      
+                          
+                            $("#ddlidentityproof1").find("option[value='"+previousid+"']").remove();
+                            
+
                         }
                     </script>
                     <script>
                         function getAltIdentityselection(id) {
+
+                          
 
                             $("#Alt_Identity_Proof").val(id);
 
@@ -1049,6 +1086,12 @@
             url:"@Url.Action("BindDistributorDDL", "AddTestatorsForm")",
             success: function (data) {
                 $('#ddlDistributor').empty().append(data);
+
+                var res = data;
+                var distname = res.split("~")[0];
+                var distid = res.split("~")[1];
+                $("#distributor_txt").val(distname);
+                $("#distributor_id").val(distid);
             }
         });
 

@@ -119,8 +119,8 @@ namespace WillAssure.Controllers
 
             }
 
-            ViewBag.documentlink = "true";
-            ViewBag.collapse = "true";
+
+
 
             if (Session["Type"].ToString() != "DistributorAdmin")
             {
@@ -136,6 +136,11 @@ namespace WillAssure.Controllers
                     ViewBag.view = "GiftDeeds";
                 }
             }
+
+            ViewBag.documentlink = "true";
+            ViewBag.collapse = "true";
+
+          
 
             
             return View("/Views/EditTestatorFamily/EditTestatorFamilyPageContent.cshtml");

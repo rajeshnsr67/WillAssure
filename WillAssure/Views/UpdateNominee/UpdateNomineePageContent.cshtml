@@ -184,7 +184,7 @@
                                   new SelectListItem() {Text = "Aadhaar Card", Value="Aadhaar Card"},
                                    new SelectListItem() {Text = "Passport", Value="Passport"},
                                    new SelectListItem() {Text = "Driving Licences", Value="Driving Licences"},
-                                   new SelectListItem() {Text = "Pan Card", Value="Pan Card"}}, new { @class= "form-control input-shadow validate[required]", @id="ddlidentityproof" , @onchange= "getAltIdentityselection(this.options[this.selectedIndex].innerHTML)" })
+                                   new SelectListItem() {Text = "Pan Card", Value="Pan Card"}}, new { @class= "form-control input-shadow validate[required]", @id="ddlidentityproof1" , @onchange= "getAltIdentityselection(this.options[this.selectedIndex].innerHTML)" })
 
                                         @Html.HiddenFor(m => m.Alt_Identity_Proof, new { id = "Alt_Identity_Proof" })
                                     </div>
@@ -437,6 +437,11 @@
             $("#appendtxt").empty().append("<input type='text' class='form-control input-shadow validate[required,custom[pannumber]] text-input' id='Identity_Proof_Value' name='Identity_Proof_Value' placeholder='Enter Pan Card' autocomplete='off'  />");
         }
 
+        var previousid = id;
+
+
+
+        $("#ddlidentityproof1").find("option[value='" + previousid + "']").hide();
 
     }
 

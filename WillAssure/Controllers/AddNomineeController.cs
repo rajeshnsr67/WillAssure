@@ -341,8 +341,27 @@ namespace WillAssure.Controllers
                 cmd.Parameters.AddWithValue("@Alt_Identity_Proof", NM.Alt_Identity_Proof);
                 cmd.Parameters.AddWithValue("@Alt_Identity_Proof_Value", NM.Alt_Identity_Proof_Value);
                 cmd.Parameters.AddWithValue("@Address1", NM.Address1);
+            if (NM.Address2 != null || NM.Address2 != "")
+            {
                 cmd.Parameters.AddWithValue("@Address2", NM.Address2);
+            }
+            else
+            {
+                NM.Address2 = "None";
+                cmd.Parameters.AddWithValue("@Address2", NM.Address2);
+            }
+
+            if (NM.Address3 != null || NM.Address3 != "")
+            {
                 cmd.Parameters.AddWithValue("@Address3", NM.Address3);
+            }
+            else
+            {
+                NM.Address3 = "None";
+                cmd.Parameters.AddWithValue("@Address3", NM.Address3);
+            }
+
+           
                 cmd.Parameters.AddWithValue("@City", NM.citytext);
                 cmd.Parameters.AddWithValue("@State", NM.statetext);
                 cmd.Parameters.AddWithValue("@Pin", NM.Pin);

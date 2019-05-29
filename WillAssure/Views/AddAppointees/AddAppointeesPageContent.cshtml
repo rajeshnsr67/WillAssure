@@ -9,15 +9,7 @@
     }
 </style>
 @*Main Content*@
-@if (Session["Type"] == null)
-{
-    <script>
-        var NestId = data
-        var url = "/LoginPage/ViewLogout/";
-        window.location.href = url;
-    </script>
 
-}
 <div class="content-wrapper">
     <div class="container-fluid">
         <div class="row pt-2 pb-2">
@@ -102,11 +94,10 @@
                         else
 
                         {
-                                    <script>
-                                        var NestId = data
-                                        var url = "/LoginPage/LoginPageIndex/";
-                                        window.location.href = url;
-                                    </script> 
+                            if (!Response.IsRequestBeingRedirected)
+                            {
+                                Response.Redirect("/LoginPage/LoginPageIndex");
+                            }
                         }
                         <br />
                         <div class="col-12 12">
@@ -138,6 +129,13 @@
                                 <div class="card-title text-primary">Add Appointees</div>
                             }
                         }
+                        else
+                        {
+                            if (!Response.IsRequestBeingRedirected)
+                            {
+                                Response.Redirect("/LoginPage/LoginPageIndex");
+                            }
+                        }
                         @using (Html.BeginForm("InsertAppointeesFormData", null, FormMethod.Post, new { id = "DistributorForm" }))
                         {
 
@@ -166,11 +164,10 @@
                                                                 }
                                                                 else
                                                                 {
-                                                                    <script>
-                                                                        var NestId = data
-                                                                        var url = "/LoginPage/LoginPageIndex/";
-                                                                        window.location.href = url;
-                                                                    </script>
+                                                                    if (!Response.IsRequestBeingRedirected)
+                                                                    {
+                                                                        Response.Redirect("/LoginPage/LoginPageIndex");
+                                                                    }
                                                                 }
 
 
@@ -360,7 +357,7 @@
                                     new SelectListItem() {Text = "Aadhaar Card", Value="Aadhaar Card"},
                                    new SelectListItem() {Text = "Passport", Value="Passport"},
                                    new SelectListItem() {Text = "Driving Licences", Value="Driving Licences"},
-                                   new SelectListItem() {Text = "Pan Card", Value="Pan Card"}}, new { @class= "form-control input-shadow ", @id="ddlidentityproof" , @onchange= "getAltIdentityselection(this.options[this.selectedIndex].innerHTML)" })
+                                   new SelectListItem() {Text = "Pan Card", Value="Pan Card"}}, new { @class= "form-control input-shadow ", @id="ddlidentityproof11" , @onchange= "getAltIdentityselection(this.options[this.selectedIndex].innerHTML)" })
                                         @Html.HiddenFor(m => m.Alt_Identity_Proof, new { id = "Alt_Identity_Proof" })
                                     </div>
                                 </div>
@@ -592,7 +589,7 @@
                                               new SelectListItem() {Text = "Aadhaar Card", Value="Aadhaar Card"},
                                        new SelectListItem() {Text = "Passport", Value="Passport"},
                                        new SelectListItem() {Text = "Driving Licences", Value="Driving Licences"},
-                                       new SelectListItem() {Text = "Pan Card", Value="Pan Card"}}, new { @class= "form-control input-shadow", @id="ddlidentityproof" , @onchange= "altgetAltIdentityselection(this.options[this.selectedIndex].innerHTML)" })
+                                       new SelectListItem() {Text = "Pan Card", Value="Pan Card"}}, new { @class= "form-control input-shadow", @id="ddlidentityproof22" , @onchange= "altgetAltIdentityselection(this.options[this.selectedIndex].innerHTML)" })
                                             @Html.HiddenFor(m => m.altAlt_Identity_Proof_Value, new { id = "altAlt_Identity_Proof_Value" })
                                         </div>
                                     </div>
@@ -630,9 +627,42 @@
 
                             <div class="form-group" style="float:right">
                                 <button type="submit" id="btnDistributorformsubmit" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i>Add Appointees</button>
-                                <a href="@Url.Action("WillDetailsIndex","WillDetails" , new { NestId = Session["distid"].ToString() } )"><button type="button" id="btnnext" style="display:none;" class="btn btn-danger shadow-primary px-5">Next&nbsp;&nbsp;<i class="icon-arrow-right-circle"></i></button></a>
+
+                                @if (Session["distid"] != null)
+                                {
+                                    <a href="@Url.Action("WillDetailsIndex","WillDetails" , new { NestId = Session["distid"].ToString() } )"><button type="button" id="btnnext" style="display:none;" class="btn btn-danger shadow-primary px-5">Next&nbsp;&nbsp;<i class="icon-arrow-right-circle"></i></button></a>
+                                }
+                                else
+                                {
+                                    if (!Response.IsRequestBeingRedirected)
+                                    {
+                                        Response.Redirect("/LoginPage/LoginPageIndex");
+                                    }
+                                }
+
+
+
+
                                 <button type="button" style="display:none;" id="confirmtestatorfamily"></button>
-                                <input type="hidden" name="name" id="testid" value="@Session["distid"]" />
+
+                                @if (Session["distid"] != null)
+                                {
+                                    <input type="hidden" name="name" id="testid" value="@Session["distid"]" />
+                                }
+                                else
+                                {
+                                    if (!Response.IsRequestBeingRedirected)
+                                    {
+                                        Response.Redirect("/LoginPage/LoginPageIndex");
+                                    }
+                                }
+
+
+
+
+
+
+
                             </div>
                         }
 
@@ -887,6 +917,13 @@
                             }
 
 
+                            var previousid = id;
+
+
+
+                            $("#ddlidentityproof11").find("option[value='" + previousid + "']").hide();
+
+
                         }
 
 
@@ -1076,6 +1113,13 @@
                             if (id == "Pan Card") {
                                 $("#altappendtxt").empty().append("<input type='text' class='form-control input-shadow validate[required,custom[pannumber]] text-input' id='altIdentity_Proof_Value' name='altIdentity_Proof_Value' placeholder='Enter Pan Card' autocomplete='off'  />");
                             }
+
+
+                            var previousid = id;
+
+
+
+                            $("#ddlidentityproof22").find("option[value='" + previousid + "']").hide();
 
 
                         }

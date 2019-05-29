@@ -266,8 +266,7 @@ namespace WillAssure.Controllers
                 if (dt2.Rows.Count > 0)
                 {
 
-                    for (int i = 0; i < dt2.Rows.Count; i++)
-                    {
+                   
                         WillDetailModel WDM2 = new WillDetailModel();
 
                         WDM2.BeneficiaryName = dt2.Rows[0]["First_Name"].ToString();
@@ -292,7 +291,7 @@ namespace WillAssure.Controllers
 
                         list2.Add(WDM2);
 
-                    }
+                    
 
                     ViewBag.beneficiary = list2;
 
@@ -425,17 +424,22 @@ namespace WillAssure.Controllers
                 if (dt6.Rows.Count > 0)
                 {
 
+                for (int i = 0; i < dt6.Rows.Count; i++)
+                {
+                    WillDetailModel WDM5 = new WillDetailModel();
+                    WDM5.bmassettype = dt6.Rows[i]["AssetsType"].ToString();
+
+                    WDM5.bmassetcat = dt6.Rows[i]["AssetsCategory"].ToString();
+                    WDM5.bmschemename = dt6.Rows[i]["SchemeName"].ToString();
+                    WDM5.bminstrumentname = dt6.Rows[i]["InstrumentName"].ToString();
+                    WDM5.bmproportion = dt6.Rows[i]["Proportion"].ToString();
+                    list6.Add(WDM5);
+                }
                 
-                        WillDetailModel WDM5 = new WillDetailModel();
-                        WDM5.bmassettype = dt6.Rows[0]["AssetsType"].ToString();
-
-                        WDM5.bmassetcat = dt6.Rows[0]["AssetsCategory"].ToString();
-                        WDM5.bmschemename = dt6.Rows[0]["SchemeName"].ToString();
-                        WDM5.bminstrumentname = dt6.Rows[0]["InstrumentName"].ToString();
-                        WDM5.bmproportion = dt6.Rows[0]["Proportion"].ToString();
+                     
 
 
-                        list6.Add(WDM5);
+                        
 
                     
                     ViewBag.BeneficiaryMapping = list6;

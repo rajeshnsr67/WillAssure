@@ -208,19 +208,13 @@ namespace WillAssure.Controllers
             }
             string d = "";
 
-            if (type == "Testator")
-            {
-                d = "select a.aiid, a.bpId , a.First_Name from BeneficiaryDetails a inner join TestatorDetails b on a.tId = b.tId inner join users c on b.uId=c.uId where c.uId = " + Convert.ToInt32(Session["uuid"]) + " ";
-            }
-            else if (type == "SuperAdmin")
-            {
-                d = "select a.aiid, a.bpId , a.First_Name from BeneficiaryDetails a inner join TestatorDetails b on a.tId = b.tId  ";
-            }
-            else
-            {
-
-                d = "select a.aiid, a.bpId , a.First_Name from BeneficiaryDetails a inner join TestatorDetails b on a.tId = b.tId inner join users c on b.uId=c.uId where c.Linked_user = " + Convert.ToInt32(Session["uuid"]) + " ";
-            }
+            
+                d = "select a.aiid, a.bpId , a.First_Name from BeneficiaryDetails a inner join TestatorDetails b on a.tId = b.tId inner join users c on b.uId=c.uId where a.fetchid = " + Convert.ToInt32(Session["uuid"]) + " ";
+            
+         
+              
+           
+         
 
 
 
@@ -334,13 +328,9 @@ namespace WillAssure.Controllers
             {
                 if (Session["Type"].ToString() != "Testator" || Session["Type"].ToString() != "DistributorAdmin")
                 {
-                    query3 = "select ac.*,at.AssetsType as AssetsType from AssetsCategory ac " +
-                  "left join assetstype at on at.atId=ac.atId";
+                    query3 = "select ac.*,at.AssetsType as AssetsType from AssetsCategory ac left join assetstype at on at.atId=ac.atId inner join AssetInformation d on d.amId=ac.amId where d.uId = "+Session["uuid"]+" ";
                 }
-                else
-                {
-                    query3 = "select c.amId , b.atId , b.AssetsType as AssetsType , c.AssetsCategory  from assetinformation a inner join assetstype b on a.atId=b.atId inner join assetscategory c on a.amId=c.amId where a.tid =" + testatorid + "";
-                }
+               
             }
             else
             {
@@ -435,19 +425,9 @@ namespace WillAssure.Controllers
             }
             string d = "";
 
-            if (type == "Testator")
-            {
-                d = "select a.aiid , a.atId , a.amId  , a.tid , a.docid , a.Json from  AssetInformation a inner join TestatorDetails b on a.tid=b.tId inner join users c on b.uId=c.uId where c.uId = " + Convert.ToInt32(Session["uuid"]) + " ";
-            }
-            else if (type == "SuperAdmin")
-            {
-                d = "select a.aiid , a.atId , a.amId  , a.tid , a.docid , a.Json from AssetInformation a inner join TestatorDetails b on a.tid=b.tId  ";
-            }
-            else
-            {
 
-                d = "select a.aiid , a.atId , a.amId  , a.tid , a.docid , a.Json from AssetInformation a inner join TestatorDetails b on a.tid=b.tId inner join users c on b.uId=c.uId where c.Linked_user = " + Convert.ToInt32(Session["uuid"]) + " ";
-            }
+                d = "select aiid , atId , amId  , tid , docid , Json from AssetInformation where  uid = "+Convert.ToInt32(Session["uuid"])+"  ";
+            
 
 
 
@@ -456,7 +436,7 @@ namespace WillAssure.Controllers
 
 
             con.Open();
-            string query3 = "select * from AssetInformation";
+            string query3 = "select * from AssetInformation where  uid = "+Convert.ToInt32(Session["uuid"])+"  ";
             SqlDataAdapter da3 = new SqlDataAdapter(query3, con);
             DataTable dt = new DataTable();
             da3.Fill(dt);
@@ -1060,7 +1040,7 @@ namespace WillAssure.Controllers
             string final = "";
             string bindddlname = "<option value=''>--Select--</option>";
             con.Open();
-            string query1 = "select aiid , Json from AssetInformation";
+            string query1 = "select aiid , Json from AssetInformation where  uid = "+Convert.ToInt32(Session["uuid"])+"";
             SqlDataAdapter da1 = new SqlDataAdapter(query1, con);
             DataTable dt1 = new DataTable();
             da1.Fill(dt1);

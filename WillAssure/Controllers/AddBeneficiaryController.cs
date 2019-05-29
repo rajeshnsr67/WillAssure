@@ -407,9 +407,32 @@ namespace WillAssure.Controllers
                 cmd.Parameters.AddWithValue("@Identity_proof_value", BM.Identity_proof_value);
                 cmd.Parameters.AddWithValue("@Alt_Identity_proof", BM.Alt_Identity_proof);
                 cmd.Parameters.AddWithValue("@Alt_Identity_proof_value", BM.Alt_Identity_proof_value);
+           
                 cmd.Parameters.AddWithValue("@Address1", BM.Address1);
+            if (BM.Address2 != null || BM.Address2 == "")
+            {
                 cmd.Parameters.AddWithValue("@Address2", BM.Address2);
+        
+            }
+            else
+            {
+                BM.Address2 = "None";
+                cmd.Parameters.AddWithValue("@Address2", BM.Address2);
+            }
+
+
+            if (BM.Address3 != null || BM.Address3 == "")
+            {
                 cmd.Parameters.AddWithValue("@Address3", BM.Address3);
+
+            }
+            else
+            {
+                BM.Address3 = "None";
+                cmd.Parameters.AddWithValue("@Address3", BM.Address3);
+            }
+
+          
                 cmd.Parameters.AddWithValue("@City", BM.City_txt);
                 cmd.Parameters.AddWithValue("@State", BM.State_txt);
                 cmd.Parameters.AddWithValue("@Pin", BM.Pin);
@@ -432,6 +455,15 @@ namespace WillAssure.Controllers
                 bpid = Convert.ToInt32(dt.Rows[0]["bpId"]);
             }
             con.Close();
+
+
+            con.Open();
+            string spup = "update BeneficiaryDetails set fetchid = "+Convert.ToInt32(Session["uuid"])+" ";
+            SqlCommand cmdup = new SqlCommand(spup,con);
+            cmdup.ExecuteNonQuery();
+            con.Close();
+
+
             //end
 
 
@@ -465,8 +497,28 @@ namespace WillAssure.Controllers
                 altcmd.Parameters.AddWithValue("@Alt_Identity_Proof", BM.altAlt_Identity_Proof);
                 altcmd.Parameters.AddWithValue("@Alt_Identity_Proof_Value", BM.altAlt_Identity_Proof_Value);
                 altcmd.Parameters.AddWithValue("@Address1", BM.altAddress1);
-                altcmd.Parameters.AddWithValue("@Address2", BM.altAddress2);
-                altcmd.Parameters.AddWithValue("@Address3", BM.altAddress3);
+                if (BM.Address2 != null || BM.Address2 == "")
+                {
+                    altcmd.Parameters.AddWithValue("@Address2", BM.Address2);
+
+                }
+                else
+                {
+                    BM.Address2 = "None";
+                    altcmd.Parameters.AddWithValue("@Address2", BM.Address2);
+                }
+
+
+                if (BM.Address3 != null || BM.Address3 == "")
+                {
+                    altcmd.Parameters.AddWithValue("@Address3", BM.Address3);
+
+                }
+                else
+                {
+                    BM.Address3 = "None";
+                    altcmd.Parameters.AddWithValue("@Address3", BM.Address3);
+                }
                 altcmd.Parameters.AddWithValue("@City", BM.altcitytext);
                 altcmd.Parameters.AddWithValue("@State", BM.altstatetext);
                 altcmd.Parameters.AddWithValue("@Pin", BM.altPin);

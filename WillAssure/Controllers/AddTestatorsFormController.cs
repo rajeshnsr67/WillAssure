@@ -1282,64 +1282,116 @@ namespace WillAssure.Controllers
             }
 
             con.Close();
-            string data = "<option value=''>--Select Distributor--</option>";
-            con.Open();
-            string query = "select uId , First_Name from users where Linked_user = "+Convert.ToInt32(Session["uuid"])+ "   and Type = 'DistributorAdmin'   ";
-            SqlDataAdapter da = new SqlDataAdapter(query, con);
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-            con.Close();
-            
+            string data = "";
 
-            if (dt.Rows.Count > 0)
+            if (Session["Type"] != null)
             {
 
-
-                for (int i = 0; i < dt.Rows.Count; i++)
+                if (Session["Type"].ToString() != "DistributorAdmin")
                 {
+                    data = "<option value=''>--Select Distributor--</option>";
+                    con.Open();
+                    string query = "select uId , First_Name from users where Linked_user = " + Convert.ToInt32(Session["uuid"]) + "   and Type = 'DistributorAdmin'   ";
+                    SqlDataAdapter da = new SqlDataAdapter(query, con);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    con.Close();
 
 
-
-
-                    data = data + "<option value=" + dt.Rows[i]["uId"].ToString() + " >" + dt.Rows[i]["First_Name"].ToString() + "</option>";
-
-
-
-                }
-
-
-
-
-            }
-            else
-            {
-
-                con.Open();
-                string query2 = "select uId , First_Name from users where uId = " + Convert.ToInt32(Session["uuid"]) + "  ";
-                SqlDataAdapter da2 = new SqlDataAdapter(query2, con);
-                DataTable dt2 = new DataTable();
-                da2.Fill(dt2);
-                con.Close();
-              
-
-                if (dt2.Rows.Count > 0)
-                {
-
-
-                    for (int i = 0; i < dt2.Rows.Count; i++)
+                    if (dt.Rows.Count > 0)
                     {
 
 
+                        for (int i = 0; i < dt.Rows.Count; i++)
+                        {
 
 
-                        data = data + "<option value=" + dt2.Rows[i]["uId"].ToString() + " >" + dt2.Rows[i]["First_Name"].ToString() + "</option>";
+
+
+                            data = data + "<option value=" + dt.Rows[i]["uId"].ToString() + " >" + dt.Rows[i]["First_Name"].ToString() + "</option>";
+
+
+
+                        }
+
 
 
 
                     }
-                }
+                    else
+                    {
+
+                        con.Open();
+                        string query2 = "select uId , First_Name from users where uId = " + Convert.ToInt32(Session["uuid"]) + "  ";
+                        SqlDataAdapter da2 = new SqlDataAdapter(query2, con);
+                        DataTable dt2 = new DataTable();
+                        da2.Fill(dt2);
+                        con.Close();
+
+
+                        if (dt2.Rows.Count > 0)
+                        {
+
+
+                            for (int i = 0; i < dt2.Rows.Count; i++)
+                            {
+
+
+
+
+                                data = data + "<option value=" + dt2.Rows[i]["uId"].ToString() + " >" + dt2.Rows[i]["First_Name"].ToString() + "</option>";
+
+
+
+                            }
+                        }
+
+                    }
 
                 }
+                else
+                {
+
+                    con.Open();
+                    string query = "select uId , First_Name from users where uId = " + Convert.ToInt32(Session["uuid"]) + "  ";
+                    SqlDataAdapter da = new SqlDataAdapter(query, con);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    con.Close();
+
+
+                    if (dt.Rows.Count > 0)
+                    {
+
+
+                        for (int i = 0; i < dt.Rows.Count; i++)
+                        {
+
+
+
+
+                            data = dt.Rows[i]["First_Name"].ToString() + "~" + dt.Rows[i]["uId"].ToString();
+
+
+
+                        }
+
+
+
+
+                    }
+
+                }
+
+            }
+            else
+            {
+                RedirectToAction("LoginPageIndex", "LoginPage");
+            }
+
+
+          
+
 
             return data;
         }

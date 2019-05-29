@@ -10,15 +10,7 @@
 </style>
 
 
-@if (Session["Type"] == null || Session["Type"].ToString() == "")
-{
-    <script>
-        var NestId = data
-        var url = "/LoginPage/ViewLogout/";
-        window.location.href = url;
-    </script>
 
-}
 
 <div class="content-wrapper">
     <div class="container-fluid">
@@ -112,11 +104,10 @@
                         else
                         {
 
-                            <script>
-                                var NestId = data
-                                var url = "/LoginPage/LoginPageIndex/";
-                                window.location.href = url;
-                            </script>
+                            if (!Response.IsRequestBeingRedirected)
+                            {
+                                Response.Redirect("/LoginPage/LoginPageIndex");
+                            }
 
 
 
@@ -157,27 +148,52 @@
 
                             }
                         }
+                        else
+                        {
+                            if (!Response.IsRequestBeingRedirected)
+                            {
+                                Response.Redirect("/LoginPage/LoginPageIndex");
+                            }
+                        }
 
                         @using (Html.BeginForm("InsertBeneficiaryData", null, FormMethod.Post, new { id = "BeneficiaryForm" }))
 
                         {
                             <div class="row">
                                 <div class="col-sm-1"></div><div class='col-sm-2'><label for='input-1' style="line-height:40px;"><i class="fa fa-user-circle-o  " aria-hidden="true"></i>Testator</label></div>
-                                <div class='col-sm-3'>
-                                    @if (Session["Type"].ToString() == "DistributorAdmin" || Session["Type"].ToString() == "SuperAdmin")
-                                    {
-                                        if (Session["disttestator"] != null || Session["distid"] != null)
-                                        {
-                                            <input type="text" readonly="true" name="ddltestatorname" class="form-control" value="@Session["disttestator"].ToString()" />
-                                            <input type="hidden" name="ddltid" id="tid" value="@Session["distid"].ToString()" />
-                                        }
+                                                            <div class='col-sm-3'>
+                                                                @if (Session["Type"] != null)
+                                                                {
+                                                                    if (Session["Type"].ToString() == "DistributorAdmin" || Session["Type"].ToString() == "SuperAdmin")
+                                                                    {
+                                                                        if (Session["disttestator"] != null || Session["distid"] != null)
+                                                                        {
+                                                                            <input type="text" readonly="true" name="ddltestatorname" class="form-control" value="@Session["disttestator"].ToString()" />
+                                                                            <input type="hidden" name="ddltid" id="tid" value="@Session["distid"].ToString()" />
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            if (!Response.IsRequestBeingRedirected)
+                                                                            {
+                                                                                Response.Redirect("/LoginPage/LoginPageIndex");
+                                                                            }
+                                                                        }
 
-                                    }
+                                                                    }
+                                                                }
+                                                                else
+                                                                {
+                                                                    if (!Response.IsRequestBeingRedirected)
+                                                                    {
+                                                                        Response.Redirect("/LoginPage/LoginPageIndex");
+                                                                    }
+                                                                }
 
 
 
 
-                                </div>
+
+                                                            </div>
 
                             </div>
 
@@ -417,7 +433,7 @@
                                    new SelectListItem() {Text = "Aadhaar Card", Value="Aadhaar Card"},
                                    new SelectListItem() {Text = "Passport", Value="Passport"},
                                    new SelectListItem() {Text = "Driving Licences", Value="Driving Licences"},
-                                   new SelectListItem() {Text = "Pan Card", Value="Pan Card"}}, new { @class= "form-control input-shadow", @id="ddlidentityproof" , @onchange= "AltIdentityselection(this.options[this.selectedIndex].innerHTML)" })
+                                   new SelectListItem() {Text = "Pan Card", Value="Pan Card"}}, new { @class= "form-control input-shadow", @id="ddlidentityproof22", @onchange= "AltIdentityselection(this.options[this.selectedIndex].innerHTML)" })
 
                                         @Html.HiddenFor(m => m.Alt_Identity_proof, new { id = "Alt_Identity_proof" })
                                     </div>
@@ -679,7 +695,7 @@
                                        new SelectListItem() {Text = "Aadhaar Card", Value="Aadhaar Card"},
                                        new SelectListItem() {Text = "Passport", Value="Passport"},
                                        new SelectListItem() {Text = "Driving Licences", Value="Driving Licences"},
-                                       new SelectListItem() {Text = "Pan Card", Value="Pan Card"}}, new { @class= "form-control input-shadow validate[required]", @onchange= "altgetIdentityselection(this.options[this.selectedIndex].innerHTML)" })
+                                       new SelectListItem() {Text = "Pan Card", Value="Pan Card"}}, new { @class= "form-control input-shadow validate[required]", @id="seconddl" , @onchange= "altgetIdentityselection(this.options[this.selectedIndex].innerHTML)" })
 
                                         </div>
                                     </div>
@@ -704,7 +720,7 @@
                                        new SelectListItem() {Text = "Aadhaar Card", Value="Aadhaar Card"},
                                        new SelectListItem() {Text = "Passport", Value="Passport"},
                                        new SelectListItem() {Text = "Driving Licences", Value="Driving Licences"},
-                                       new SelectListItem() {Text = "Pan Card", Value="Pan Card"}}, new { @class= "form-control input-shadow ", @id="altddlidentityproof" , @onchange= "altgetAltIdentityselection(this.options[this.selectedIndex].innerHTML)" })
+                                       new SelectListItem() {Text = "Pan Card", Value="Pan Card"}}, new { @class= "form-control input-shadow ", @id="altddlidentityproof1" , @onchange= "altgetAltIdentityselection(this.options[this.selectedIndex].innerHTML)" })
 
                                             @Html.HiddenFor(m => m.altAlt_Identity_Proof, new { id = "altAlt_Identity_Proof" })
                                         </div>
@@ -767,12 +783,10 @@
                             }
                             else
                             {
-                                <div class="form-group" style="float:right">
-                                    <button type="submit" id="btnBeneficiaryformsubmit" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i>Add Beneficiary</button>
-
-                                    <a href="@Url.Action("AddMainAssetsIndex","AddMainAssets")"><button type="button" id="btnnext" style="display:none" class="btn btn-danger shadow-primary px-5">Next&nbsp;&nbsp;<i class="icon-arrow-right-circle"></i></button></a>
-
-                                </div>
+                                if (!Response.IsRequestBeingRedirected)
+                                {
+                                    Response.Redirect("/LoginPage/LoginPageIndex");
+                                }
                             }
 
 
@@ -1084,6 +1098,13 @@
         }
 
 
+        var previousid = id;
+       
+
+
+        $("#ddlidentityproof22").find("option[value='" + previousid + "']").hide();
+
+
     }
 </script>
 
@@ -1385,6 +1406,14 @@
         if (id == "Pan Card") {
             $("#altappendtxt").empty().append("<input type='text' class='form-control input-shadow validate[required,custom[pannumber]] text-input' id='altIdentity_Proof_Value' name='altIdentity_Proof_Value' placeholder='Enter Pan Card' autocomplete='off'  />");
         }
+
+
+
+        var previousid = id;
+
+
+
+        $("#altddlidentityproof1").find("option[value='" + previousid + "']").hide();
 
 
     }

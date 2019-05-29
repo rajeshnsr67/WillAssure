@@ -9,15 +9,7 @@
         display: inline;
     }
 </style>
-@if (Session["Type"] == null || Session["Type"].ToString() == "")
-{
-    <script>
-        var NestId = data
-        var url = "/LoginPage/ViewLogout/";
-        window.location.href = url;
-    </script>
 
-}
 @*Main Content*@
 <div class="content-wrapper">
     <div class="container-fluid">
@@ -98,11 +90,10 @@
                                             }
                                             else
                                             {
-                                                <script>
-                                                    var NestId = data
-                                                    var url = "/LoginPage/LoginPageIndex/";
-                                                    window.location.href = url;
-                                                </script>
+                                                if (!Response.IsRequestBeingRedirected)
+                                                {
+                                                    Response.Redirect("/LoginPage/LoginPageIndex");
+                                                }
                                             }
                                         }
                                         else
@@ -114,11 +105,10 @@
                                     }
                                     else
                                     {
-                                        <script>
-                                            var NestId = data
-                                            var url = "/LoginPage/LoginPageIndex/";
-                                            window.location.href = url;
-                                        </script>
+                                        if (!Response.IsRequestBeingRedirected)
+                                        {
+                                            Response.Redirect("/LoginPage/LoginPageIndex");
+                                        }
                                     }
 
 
@@ -307,7 +297,7 @@
             </div>
             <button type="button" id="btnRoleformsubmitSUCCESS" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
             <button type="button" id="btncheckliabilities" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
-
+            <button type="button" style="display:none" id="confirmtestatorfamily"></button>
         </div>
 
 
@@ -336,6 +326,11 @@
 
 
         });
+
+
+        $("#confirmtestatorfamily").on("click", function () { });
+
+        $("#confirmtestatorfamily").click();
 
     });
 
@@ -617,3 +612,42 @@
 
 </script>
 
+
+
+
+
+<script>
+    $("#confirmtestatorfamily").click(function () {
+        $("#btnnext").show();
+        swal({
+
+            text: 'Do You Like To Add Liabilities!',
+            icon: 'warning',
+            buttons: true,
+            dangerMode: true,
+            buttons: ['No', 'Yes']
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+
+
+
+                } else {
+
+
+
+
+
+                    var url = "/AddPetCare/AddPetCareIndex/";
+                    window.location.href = url;
+
+
+
+
+                }
+            });
+
+    });
+
+
+</script>

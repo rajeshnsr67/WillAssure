@@ -10,15 +10,7 @@
     }
 </style>
 
-@if (Session["Type"] == null || Session["Type"].ToString() == "")
-{
-    <script>
-        var NestId = data
-        var url = "/LoginPage/ViewLogout/";
-        window.location.href = url;
-    </script>
 
-}
 
 
 @*Main Content*@
@@ -96,11 +88,10 @@
                             }
                             else
                             {
-                                    <script>
-                                        var NestId = data
-                                        var url = "/LoginPage/LoginPageIndex/";
-                                        window.location.href = url;
-                                    </script>
+                                if (!Response.IsRequestBeingRedirected)
+                                {
+                                    Response.Redirect("/LoginPage/LoginPageIndex");
+                                }
                             }
 
 
@@ -135,11 +126,34 @@
 
                             <div class="row">
                                 <div class="col-sm-1"></div><div class='col-sm-2'><label for='input-1' style="line-height:40px;"><i class="fa fa-user-circle-o" aria-hidden="true"></i>Testator</label></div>
-                                <div class='col-sm-3'>
+                                                            <div class='col-sm-3'>
+
+                                                                @if (Session["disttestator"] != null)
+                                                                {
+                                                                    <input type="text" readonly="true" name="ddltestatorname" class="form-control" value="@Session["disttestator"].ToString()" />
+                                                                }
+                                                                else
+                                                                {
+                                                                    if (!Response.IsRequestBeingRedirected)
+                                                                    {
+                                                                        Response.Redirect("/LoginPage/LoginPageIndex");
+                                                                    }
+                                                                }
+
+                                                                @if (Session["distid"] != null)
+                                                                {
+
+                                                                    <input type="hidden" name="ddltid" id="tid" value="@Session["distid"].ToString()" />
+                                                                }
+                                                                else
+                                                                {
+                                                                    if (!Response.IsRequestBeingRedirected)
+                                                                    {
+                                                                        Response.Redirect("/LoginPage/LoginPageIndex");
+                                                                    }
+                                                                }
 
 
-                                    <input type="text" readonly="true" name="ddltestatorname" class="form-control" value="@Session["disttestator"].ToString()" />
-                                    <input type="hidden" name="ddltid" id="tid" value="@Session["distid"].ToString()" />
 
 
 
@@ -147,7 +161,9 @@
 
 
 
-                                </div>
+
+
+                                                            </div>
 
                             </div>
                             <hr class="div_rd">
@@ -408,10 +424,10 @@
 
                                         @Html.DropDownListFor(x => x.Identity_Proof, new SelectListItem[]{
                                    new SelectListItem() {Text = "--Select Identity Proof--", Value=""},
-                                   new SelectListItem() {Text = "Aadhaar Card", Value="1"},
-                                   new SelectListItem() {Text = "Passport", Value="2"},
-                                   new SelectListItem() {Text = "Driving Licences", Value="3"},
-                                   new SelectListItem() {Text = "Pan Card", Value="4"}}, new { @class = "form-control input-shadow ", @id = "ddlidentityproof", @onchange = "getAltIdentityselection(this.options[this.selectedIndex].innerHTML)" })
+                                   new SelectListItem() {Text = "Aadhaar Card", Value="Aadhaar Card"},
+                                   new SelectListItem() {Text = "Passport", Value="Passport"},
+                                   new SelectListItem() {Text = "Driving Licences", Value="Driving Licences"},
+                                   new SelectListItem() {Text = "Pan Card", Value="Pan Card"}}, new { @class = "form-control input-shadow ", @id = "ddlidentityproof1", @onchange = "getAltIdentityselection(this.options[this.selectedIndex].innerHTML)" })
 
                                         @Html.HiddenFor(m => m.Alt_Identity_Proof, new { id = "Alt_Identity_Proof" })
                                     </div>
@@ -793,6 +809,12 @@
                                 $("#appendtxt").empty().append("<input type='text' class='form-control input-shadow validate[required,custom[pannumber]] text-input' id='Identity_Proof_Value' name='Identity_Proof_Value' placeholder='Enter Pan Card' autocomplete='off'  />");
                             }
 
+
+                            var previousid = id;
+
+                          
+
+                            $("#ddlidentityproof1").find("option[value='" + previousid + "']").hide();
 
                         }
                     </script>

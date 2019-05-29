@@ -26,21 +26,21 @@ namespace WillAssure.Controllers
             ViewBag.collapse = "true";
             ViewBag.cod = "true";
 
-           
-            
+
+
             //if (NestId == 0)
             //{
-                int getid = Convert.ToInt32(Session["uuid"]);
-                con.Open();
-                string qq26 = "select tId from TestatorDetails where uId = " + Convert.ToInt32(Session["uuid"]) + " ";
-                SqlDataAdapter daa26 = new SqlDataAdapter(qq26, con);
-                DataTable dtt26 = new DataTable();
-                daa26.Fill(dtt26);
-                if (dtt26.Rows.Count > 0)
-                {
-                    NestId = Convert.ToInt32(dtt26.Rows[0]["tId"]);
-                }
-                con.Close();
+            int getid = Convert.ToInt32(Session["uuid"]);
+            con.Open();
+            string qq26 = "select tId from TestatorDetails where uId = " + Convert.ToInt32(Session["uuid"]) + " ";
+            SqlDataAdapter daa26 = new SqlDataAdapter(qq26, con);
+            DataTable dtt26 = new DataTable();
+            daa26.Fill(dtt26);
+            if (dtt26.Rows.Count > 0)
+            {
+                NestId = Convert.ToInt32(dtt26.Rows[0]["tId"]);
+            }
+            con.Close();
             //}
 
             // check type 
@@ -136,7 +136,7 @@ namespace WillAssure.Controllers
                 con.Close();
                 //end
 
-             
+
             }
             else
             {
@@ -206,10 +206,10 @@ namespace WillAssure.Controllers
 
             if (dt.Rows.Count > 0)
             {
-                       TFM.tId = NestId;
+                TFM.tId = NestId;
 
-               
-                      TFM.First_Name = dt.Rows[0]["First_Name"].ToString();
+
+                TFM.First_Name = dt.Rows[0]["First_Name"].ToString();
                 if (Session["Type"] != null)
                 {
                     if (Session["Type"].ToString() == "DistributorAdmin" || Session["Type"].ToString() == "SuperAdmin" || Session["Type"].ToString() == "Testator")
@@ -222,31 +222,32 @@ namespace WillAssure.Controllers
                 {
                     RedirectToAction("LoginPageIndex", "LoginPage");
                 }
-                  
-                       TFM.Last_Name =  dt.Rows[0]["Last_Name"].ToString();
-                       TFM.Middle_Name = dt.Rows[0]["Middle_Name"].ToString();
-              
-                       
-                       TFM.Occupation = dt.Rows[0]["Occupation"].ToString();
-                       TFM.Mobile = dt.Rows[0]["Mobile"].ToString();
-                       TFM.Email = dt.Rows[0]["Email"].ToString();
-                       TFM.material_status_txt = dt.Rows[0]["maritalStatus"].ToString();
-                       TFM.Religiontext = dt.Rows[0]["Religion"].ToString();
-                       TFM.RelationshipTxt = dt.Rows[0]["RelationShip"].ToString();
-                       TFM.Identity_Proof = dt.Rows[0]["Identity_Proof"].ToString();
-                       TFM.Identity_proof_Value = dt.Rows[0]["Identity_proof_Value"].ToString();
-                       TFM.Alt_Identity_Proof = dt.Rows[0]["Alt_Identity_Proof"].ToString();
-                       TFM.Alt_Identity_proof_Value =     dt.Rows[0]["Alt_Identity_proof_Value"].ToString();
-                       TFM.Gendertext = dt.Rows[0]["Gender"].ToString();
-                       TFM.Address1 = dt.Rows[0]["Address1"].ToString();
-                       TFM.Address2 = dt.Rows[0]["Address2"].ToString();
-                       TFM.Address3 = dt.Rows[0]["Address3"].ToString();
-                       TFM.citytext = dt.Rows[0]["City"].ToString();
-                       TFM.statetext = dt.Rows[0]["State"].ToString();
-                       TFM.countrytext = dt.Rows[0]["Country"].ToString();
-                       TFM.Pin = dt.Rows[0]["Pin"].ToString();
-                       TFM.active = dt.Rows[0]["active"].ToString();
-                       TFM.uId = Convert.ToInt32(dt.Rows[0]["uId"]);
+
+                TFM.Last_Name = dt.Rows[0]["Last_Name"].ToString();
+                TFM.Dob = Convert.ToDateTime(dt.Rows[0]["DOB"]).ToString("dd-MM-yyyy");
+                TFM.Middle_Name = dt.Rows[0]["Middle_Name"].ToString();
+
+
+                TFM.Occupation = dt.Rows[0]["Occupation"].ToString();
+                TFM.Mobile = dt.Rows[0]["Mobile"].ToString();
+                TFM.Email = dt.Rows[0]["Email"].ToString();
+                TFM.material_status_txt = dt.Rows[0]["maritalStatus"].ToString();
+                TFM.Religiontext = dt.Rows[0]["Religion"].ToString();
+                TFM.RelationshipTxt = dt.Rows[0]["RelationShip"].ToString();
+                TFM.Identity_Proof = dt.Rows[0]["Identity_Proof"].ToString();
+                TFM.Identity_proof_Value = dt.Rows[0]["Identity_proof_Value"].ToString();
+                TFM.Alt_Identity_Proof = dt.Rows[0]["Alt_Identity_Proof"].ToString();
+                TFM.Alt_Identity_proof_Value = dt.Rows[0]["Alt_Identity_proof_Value"].ToString();
+                TFM.Gendertext = dt.Rows[0]["Gender"].ToString();
+                TFM.Address1 = dt.Rows[0]["Address1"].ToString();
+                TFM.Address2 = dt.Rows[0]["Address2"].ToString();
+                TFM.Address3 = dt.Rows[0]["Address3"].ToString();
+                TFM.citytext = dt.Rows[0]["City"].ToString();
+                TFM.statetext = dt.Rows[0]["State"].ToString();
+                TFM.countrytext = dt.Rows[0]["Country"].ToString();
+                TFM.Pin = dt.Rows[0]["Pin"].ToString();
+                TFM.active = dt.Rows[0]["active"].ToString();
+                TFM.uId = Convert.ToInt32(dt.Rows[0]["uId"]);
 
 
                 TFM.tempemailotp = dt.Rows[0]["Email_OTP"].ToString();
@@ -264,7 +265,7 @@ namespace WillAssure.Controllers
 
         public ActionResult UpdatingTestatorFormData(TestatorFormModel TFM)
         {
-
+            ViewBag.collapse = "true";
 
             // check type 
             string typ5 = "";
@@ -595,9 +596,17 @@ namespace WillAssure.Controllers
 
 
             con.Open();
+            DateTime dat;
+            if (TFM.Dobb != null || TFM.Dobb == "")
+            {
+                 dat = DateTime.ParseExact(TFM.Dobb, "dd-MM-yyyy", CultureInfo.InvariantCulture);
+            }
+            else
+            {
+                 dat = DateTime.ParseExact(TFM.Dob, "dd-MM-yyyy", CultureInfo.InvariantCulture);
+            }
+            
 
-            DateTime dat = DateTime.ParseExact(TFM.Dobb, "dd-MM-yyyy", CultureInfo.InvariantCulture);
-          
             SqlCommand cmd = new SqlCommand("SP_CRUDTestatorDetails", con);
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@condition", "update");
@@ -632,7 +641,7 @@ namespace WillAssure.Controllers
             {
                 cmd.Parameters.AddWithValue("@active", "Active");
             }
-           
+
             cmd.Parameters.AddWithValue("@Contact_Verification", "");
             cmd.Parameters.AddWithValue("@Email_Verification", "");
             cmd.Parameters.AddWithValue("@Mobile_Verification_Status", "");
@@ -654,8 +663,8 @@ namespace WillAssure.Controllers
             {
                 cmd.Parameters.AddWithValue("@Mobile_OTP", TFM.tempmobileotp);
             }
-            
-           
+
+
             cmd.Parameters.AddWithValue("@uid", "");
 
             cmd.ExecuteNonQuery();
@@ -669,7 +678,7 @@ namespace WillAssure.Controllers
 
             if (TFM.EmailOTP != null)
             {
-                string query2 = "update users set First_Name= '" + TFM.First_Name + "' , Last_Name='" + TFM.Last_Name + "' ,  Middle_Name='" + TFM.Middle_Name + "' , DOB = '" + dat + "' , Mobile = '" + TFM.Mobile + "' ,  eMail = '" + TFM.Email + "' , Address1='" + TFM.Address1 + "' , Address2='" + TFM.Address2 + "' , Address3 = '" + TFM.Address3 + "' , City='" + TFM.citytext + "' ,State= '" + TFM.statetext + "' , Pin='" + TFM.Pin + "' , Designation = '2'   where uId = " + TFM.uId + "     ";
+                string query2 = "update users set First_Name= '" + TFM.First_Name + "' , Last_Name='" + TFM.Last_Name + "' ,  Middle_Name='" + TFM.Middle_Name + "' , DOB = '" + Convert.ToDateTime(dat).ToString("dd-MM-yyyy") + "' , Mobile = '" + TFM.Mobile + "' ,  eMail = '" + TFM.Email + "' , Address1='" + TFM.Address1 + "' , Address2='" + TFM.Address2 + "' , Address3 = '" + TFM.Address3 + "' , City='" + TFM.citytext + "' ,State= '" + TFM.statetext + "' , Pin='" + TFM.Pin + "' , Designation = '2'   where uId = " + TFM.uId + "     ";
                 SqlCommand cdd = new SqlCommand(query2, con);
                 cdd.ExecuteNonQuery();
                 con.Close();
@@ -677,19 +686,19 @@ namespace WillAssure.Controllers
             else
             {
 
-                string query2 = "update users set First_Name= '" + TFM.First_Name + "' , Last_Name='" + TFM.Last_Name + "' ,  Middle_Name='" + TFM.Middle_Name + "' , DOB = '" + dat + "' , Mobile = '" + TFM.Mobile + "' ,  eMail = '" + TFM.Email + "' , Address1='" + TFM.Address1 + "' , Address2='" + TFM.Address2 + "' , Address3 = '" + TFM.Address3 + "' , City='" + TFM.citytext + "' ,State= '" + TFM.statetext + "' , Pin='" + TFM.Pin + "' , Designation = '1'   where uId = " + TFM.uId + "     ";
+                string query2 = "update users set First_Name= '" + TFM.First_Name + "' , Last_Name='" + TFM.Last_Name + "' ,  Middle_Name='" + TFM.Middle_Name + "' , DOB = '" + Convert.ToDateTime(dat).ToString("dd-MM-yyyy") + "' , Mobile = '" + TFM.Mobile + "' ,  eMail = '" + TFM.Email + "' , Address1='" + TFM.Address1 + "' , Address2='" + TFM.Address2 + "' , Address3 = '" + TFM.Address3 + "' , City='" + TFM.citytext + "' ,State= '" + TFM.statetext + "' , Pin='" + TFM.Pin + "' , Designation = '1'   where uId = " + TFM.uId + "     ";
                 SqlCommand cdd = new SqlCommand(query2, con);
                 cdd.ExecuteNonQuery();
                 con.Close();
 
             }
 
-          
 
 
 
-            
-          
+
+
+
 
 
 
@@ -931,7 +940,7 @@ namespace WillAssure.Controllers
 
 
 
-       
+
 
 
     }

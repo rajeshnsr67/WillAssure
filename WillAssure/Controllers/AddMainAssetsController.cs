@@ -212,51 +212,20 @@ namespace WillAssure.Controllers
 
 
 
-        public string GenerateColumns()
-        {
-            string final = "";
+        //public string GenerateColumns()
+        //{
+        //    string final = "";
 
-            con.Open();
-            SqlCommand cmd = new SqlCommand("SP_AssetColumns", con);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-            con.Close();
-            string data = "";
+        //    con.Open();
+        //    SqlCommand cmd = new SqlCommand("SP_AssetColumns", con);
+        //    SqlDataAdapter da = new SqlDataAdapter(cmd);
+        //    DataTable dt = new DataTable();
+        //    da.Fill(dt);
+        //    con.Close();
+        //    string data = "";
 
-            if (dt.Rows.Count > 0)
-            {
-
-
-
-
-
-
-
-                data = data + "<option value=''>--Select--</option><option value='1' >" + dt.Rows[0]["DueDate"].ToString() + "</option>" +
-                data + "<option value='2' >" + dt.Rows[0]["CurrentStatus"].ToString() + "</option>" +
-                data + "<option value='3' >" + dt.Rows[0]["IssuedBy"].ToString() + "</option>" +
-                data + "<option value='4' >" + dt.Rows[0]["Location"].ToString() + "</option>" +
-                data + "<option value='5' >" + dt.Rows[0]["Identifier"].ToString() + "</option>" +
-                data + "<option value='6' >" + dt.Rows[0]["assetsValue"].ToString() + "</option>" +
-                data + "<option value='7' >" + dt.Rows[0]["CertificateNumber"].ToString() + "</option>" +
-                data + "<option value='8' >" + dt.Rows[0]["PropertyDescription"].ToString() + "</option>" +
-                data + "<option value='9' >" + dt.Rows[0]["Qty"].ToString() + "</option>" +
-                data + "<option value='10' >" + dt.Rows[0]["Weight"].ToString() + "</option>" +
-                data + "<option value='11' >" + dt.Rows[0]["OwnerShip"].ToString() + "</option>" +
-                data + "<option value='12' >" + dt.Rows[0]["Remark"].ToString() + "</option>" +
-                data + "<option value='13' >" + dt.Rows[0]["Nomination"].ToString() + "</option>" +
-                data + "<option value='14' >" + dt.Rows[0]["NomineeDetails"].ToString() + "</option>" +
-                data + "<option value='15' >" + dt.Rows[0]["Name"].ToString() + "</option>" +
-                data + "<option value='16' >" + dt.Rows[0]["RegisteredAddress"].ToString() + "</option>" +
-                data + "<option value='17' >" + dt.Rows[0]["PermanentAddress"].ToString() + "</option>" +
-                data + "<option value='18' >" + dt.Rows[0]["Identity_proof"].ToString() + "</option>" +
-                data + "<option value='19' >" + dt.Rows[0]["Identity_proof_value"].ToString() + "</option>" +
-                data + "<option value='20' >" + dt.Rows[0]["Alt_Identity_proof"].ToString() + "</option>" +
-                data + "<option value='21' >" + dt.Rows[0]["Alt_Identity_proof_value"].ToString() + "</option>" +
-                data + "<option value='22' >" + dt.Rows[0]["Phone"].ToString() + "</option>" +
-                data + "<option value='23' >" + dt.Rows[0]["Mobile"].ToString() + "</option>" +
-                data + "<option value='24' >" + dt.Rows[0]["Amount"].ToString() + "</option>";
+        //    if (dt.Rows.Count > 0)
+        //    {
 
 
 
@@ -264,40 +233,30 @@ namespace WillAssure.Controllers
 
 
 
-            }
-
-
-
-
-
-            con.Open();
-            string query = "select * from AssetsCategory";
-            SqlDataAdapter da2 = new SqlDataAdapter(query, con);
-            DataTable dt2 = new DataTable();
-            da2.Fill(dt2);
-            con.Close();
-            string data2 = "";
-
-            if (dt2.Rows.Count > 0)
-            {
-
-
-
-
-
-
-
-                for (int i = 0; i < dt2.Rows.Count; i++)
-                {
-
-
-
-
-                    data2 = data2 + "<option value=" + dt2.Rows[i]["amId"].ToString() + " >" + dt2.Rows[i]["AssetsCategory"].ToString() + "</option>";
-
-
-
-                }
+        //        data = data + "<option value=''>--Select--</option><option value='1' >" + dt.Rows[0]["DueDate"].ToString() + "</option>" +
+        //        data + "<option value='2' >" + dt.Rows[0]["CurrentStatus"].ToString() + "</option>" +
+        //        data + "<option value='3' >" + dt.Rows[0]["IssuedBy"].ToString() + "</option>" +
+        //        data + "<option value='4' >" + dt.Rows[0]["Location"].ToString() + "</option>" +
+        //        data + "<option value='5' >" + dt.Rows[0]["Identifier"].ToString() + "</option>" +
+        //        data + "<option value='6' >" + dt.Rows[0]["assetsValue"].ToString() + "</option>" +
+        //        data + "<option value='7' >" + dt.Rows[0]["CertificateNumber"].ToString() + "</option>" +
+        //        data + "<option value='8' >" + dt.Rows[0]["PropertyDescription"].ToString() + "</option>" +
+        //        data + "<option value='9' >" + dt.Rows[0]["Qty"].ToString() + "</option>" +
+        //        data + "<option value='10' >" + dt.Rows[0]["Weight"].ToString() + "</option>" +
+        //        data + "<option value='11' >" + dt.Rows[0]["OwnerShip"].ToString() + "</option>" +
+        //        data + "<option value='12' >" + dt.Rows[0]["Remark"].ToString() + "</option>" +
+        //        data + "<option value='13' >" + dt.Rows[0]["Nomination"].ToString() + "</option>" +
+        //        data + "<option value='14' >" + dt.Rows[0]["NomineeDetails"].ToString() + "</option>" +
+        //        data + "<option value='15' >" + dt.Rows[0]["Name"].ToString() + "</option>" +
+        //        data + "<option value='16' >" + dt.Rows[0]["RegisteredAddress"].ToString() + "</option>" +
+        //        data + "<option value='17' >" + dt.Rows[0]["PermanentAddress"].ToString() + "</option>" +
+        //        data + "<option value='18' >" + dt.Rows[0]["Identity_proof"].ToString() + "</option>" +
+        //        data + "<option value='19' >" + dt.Rows[0]["Identity_proof_value"].ToString() + "</option>" +
+        //        data + "<option value='20' >" + dt.Rows[0]["Alt_Identity_proof"].ToString() + "</option>" +
+        //        data + "<option value='21' >" + dt.Rows[0]["Alt_Identity_proof_value"].ToString() + "</option>" +
+        //        data + "<option value='22' >" + dt.Rows[0]["Phone"].ToString() + "</option>" +
+        //        data + "<option value='23' >" + dt.Rows[0]["Mobile"].ToString() + "</option>" +
+        //        data + "<option value='24' >" + dt.Rows[0]["Amount"].ToString() + "</option>";
 
 
 
@@ -305,7 +264,22 @@ namespace WillAssure.Controllers
 
 
 
-            }
+        //    }
+
+
+
+
+
+        //    con.Open();
+        //    string query = "select * from AssetsCategory";
+        //    SqlDataAdapter da2 = new SqlDataAdapter(query, con);
+        //    DataTable dt2 = new DataTable();
+        //    da2.Fill(dt2);
+        //    con.Close();
+        //    string data2 = "";
+
+        //    if (dt2.Rows.Count > 0)
+        //    {
 
 
 
@@ -313,13 +287,39 @@ namespace WillAssure.Controllers
 
 
 
-            final = "<div class='col-sm-4'><div class='form-group'><label for='input-1'>Select Asset</label><select id='ddlasset' class='form-control input-shadow'  onChange='getassetcat(this.value)'><option value='0' >--Select--</option>" + data2 + "</select></div></div>            <div class='col-sm-4'><div class='form-group'><label for='input-1'>Select Asset</label><select id='ddlasset' class='form-control input-shadow'  onChange='getassetcolumntext(this.options[this.selectedIndex].innerHTML)'><option value='0' >--Select--</option>" + data + "</select></div></div>   <div class='col-sm-4'><div class='form-group'><label for='input-1'>Values</label><input type='text' class='form-control input-shadow'  onchange=bar2(this.value)  placeholder='Enter Value For Your Asset'/></div></div>";
+        //        for (int i = 0; i < dt2.Rows.Count; i++)
+        //        {
 
 
 
 
-            return final;
-        }
+        //            data2 = data2 + "<option value=" + dt2.Rows[i]["amId"].ToString() + " >" + dt2.Rows[i]["AssetsCategory"].ToString() + "</option>";
+
+
+
+        //        }
+
+
+
+
+
+
+
+        //    }
+
+
+
+
+
+
+
+        //    final = "<div class='col-sm-4'><div class='form-group'><label for='input-1'>Select Asset</label><select id='ddlasset' class='form-control input-shadow'  onChange='getassetcat(this.value)'><option value='0' >--Select--</option>" + data2 + "</select></div></div>            <div class='col-sm-4'><div class='form-group'><label for='input-1'>Select Asset</label><select id='ddlasset' class='form-control input-shadow'  onChange='getassetcolumntext(this.options[this.selectedIndex].innerHTML)'><option value='0' >--Select--</option>" + data + "</select></div></div>   <div class='col-sm-4'><div class='form-group'><label for='input-1'>Values</label><input type='text' class='form-control input-shadow'  onchange=bar2(this.value)  placeholder='Enter Value For Your Asset'/></div></div>";
+
+
+
+
+        //    return final;
+        //}
 
         public String BindAssetCategoryDDL()
         {
@@ -1129,7 +1129,7 @@ namespace WillAssure.Controllers
                 string json = JsonConvert.SerializeObject(dd);
                 int amid = Convert.ToInt32(TempData["amid"]);
                 con.Open();
-                string query = "insert into AssetInformation (atId,amId,Json,tid) values (" + TempData["atid"] + " , " + amid + " ,'" + json + "' , " + ttid + ")";
+                string query = "insert into AssetInformation (atId,amId,Json,tid,uId) values (" + TempData["atid"] + " , " + amid + " ,'" + json + "' , " + ttid + " , "+Convert.ToInt32(Session["uuid"])+")";
                 SqlCommand cmd = new SqlCommand(query, con);
                 cmd.ExecuteNonQuery();
                 con.Close();

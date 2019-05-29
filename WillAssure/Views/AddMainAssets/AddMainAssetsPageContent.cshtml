@@ -11,15 +11,7 @@
     }
 </style>
 
-@if (Session["Type"] == null || Session["Type"].ToString() == "")
-{
-    <script>
-        var NestId = data
-        var url = "/LoginPage/ViewLogout/";
-        window.location.href = url;
-    </script>
 
-}
 @*Main Content*@
 <div class="content-wrapper">
     <div class="container-fluid">
@@ -115,11 +107,10 @@
                         }
                         else
                         {
-                            <script>
-                                var NestId = data
-                                var url = "/LoginPage/LoginPageIndex/";
-                                window.location.href = url;
-                            </script>
+                            if (!Response.IsRequestBeingRedirected)
+                            {
+                                Response.Redirect("/LoginPage/LoginPageIndex");
+                            }
                         }
 
 
@@ -155,11 +146,10 @@
                         }
                         else
                         {
-                            <script>
-                                var NestId = data
-                                var url = "/LoginPage/LoginPageIndex/";
-                                window.location.href = url;
-                            </script>
+                            if (!Response.IsRequestBeingRedirected)
+                            {
+                                Response.Redirect("/LoginPage/LoginPageIndex");
+                            }
                         }
 
 
@@ -194,11 +184,10 @@
                                     }
                                     else
                                     {
-                                        <script>
-                                            var NestId = data
-                                            var url = "/LoginPage/LoginPageIndex/";
-                                            window.location.href = url;
-                                        </script>
+                                        if (!Response.IsRequestBeingRedirected)
+                                        {
+                                            Response.Redirect("/LoginPage/LoginPageIndex");
+                                        }
 
                                     }
 
@@ -296,11 +285,10 @@
                             }
                             else
                             {
-                                <script>
-                                    var NestId = data
-                                    var url = "/LoginPage/LoginPageIndex/";
-                                    window.location.href = url;
-                                </script>
+                                if (!Response.IsRequestBeingRedirected)
+                                {
+                                    Response.Redirect("/LoginPage/LoginPageIndex");
+                                }
                             }
 
 
@@ -395,7 +383,7 @@
 
 
     });
-    $("#btnadd").click(function () {
+    @*$("#btnadd").click(function () {
           $.ajax({
             type: "POST",
             url:"@Url.Action("GenerateColumns", "AddMainAssets")",
@@ -403,7 +391,7 @@
                 $('#binddata').append(data);
             }
         });
-    });
+    });*@
     function getassetcolumntext(text) {
 
         $("#column").append("" + text + ",");

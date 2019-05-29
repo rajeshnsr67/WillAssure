@@ -10,15 +10,7 @@
     }
 </style>
 
-@if (Session["Type"] == null || Session["Type"].ToString() == "" || Session["doctype"] == null || Session["doctype"].ToString() == "")
-{
-    <script>
-        var NestId = data
-        var url = "/LoginPage/ViewLogout/";
-        window.location.href = url;
-    </script>
 
-}
 @*Main Content*@
 <div class="content-wrapper">
     <div class="container-fluid">
@@ -111,11 +103,10 @@
                             }
                             else
                             {
-                                <script>
-                                    var NestId = data
-                                    var url = "/LoginPage/LoginPageIndex/";
-                                    window.location.href = url;
-                                </script>
+                                if (!Response.IsRequestBeingRedirected)
+                                {
+                                    Response.Redirect("/LoginPage/LoginPageIndex");
+                                }
                             }
                             <br>
                             <div class="col-12 12">
@@ -219,13 +210,51 @@
                             <input type='hidden' id='txttotalval' name='name' value='100' />
 
 
-                            <input type='hidden' id='assettypeidforliablities' name='name' value='@Session["assettypeidforliablities"]' />
-                            <input type='hidden' id='assetcategoryidforliablities' name='name' value='@Session["assetcategoryidforliablities"]' />
-                            <input type='hidden' id='totalliablities' name='name' value='@Session["totalliablities"]' />
+                       
+                                <input type='hidden' id='assettypeidforliablities' name='name' value='@Session["assettypeidforliablities"]' />
+                            
+                         
 
-                            <input type='hidden' id='assettypeidforpetcare' name='name' value='@Session["assettypeidforpetcare"]' />
-                            <input type='hidden' id='assetcategoryidforpetcare' name='name' value='@Session["assetcategoryidforpetcare"]' />
-                            <input type='hidden' id='totalpetcare' name='name' value='@Session["totalpetcare"]' />
+
+
+                         
+                                <input type='hidden' id='assetcategoryidforliablities' name='name' value='@Session["assetcategoryidforliablities"]' />
+                      
+
+
+
+
+                        
+                                <input type='hidden' id='totalliablities' name='name' value='@Session["totalliablities"]' />
+                         
+
+
+
+
+                                <input type='hidden' id='assettypeidforpetcare' name='name' value='@Session["assettypeidforpetcare"]' />
+                         
+
+
+
+                        
+                                <input type='hidden' id='assetcategoryidforpetcare' name='name' value='@Session["assetcategoryidforpetcare"]' />
+                          
+                         
+
+
+
+                         
+                                <input type='hidden' id='totalpetcare' name='name' value='@Session["totalpetcare"]' />
+                          
+
+
+
+
+
+
+
+
+
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div id="accordion8">
@@ -264,15 +293,14 @@
                             }
                             else
                             {
-                                <script>
-                                    var NestId = data
-                                    var url = "/LoginPage/LoginPageIndex/";
-                                    window.location.href = url;
-                                </script>
+                                if (!Response.IsRequestBeingRedirected)
+                                {
+                                    Response.Redirect("/LoginPage/LoginPageIndex");
+                                }
                             }
 
 
-                            }
+
 
 
                             @*<div class="card-body" id="fetchdata">
@@ -1175,9 +1203,9 @@
             var schemename = $("#schemename" + btnidentify + "").find(":selected").text();
             var instrument = $("#DDLAssetColumn" + btnidentify + "").find(":selected").text();
             var proportion = $("#txtproportion" + btnidentify + "").val();
-            var tid = $("#ddltid").val();
+            var tid = $("#tid").val();
 
-
+            alert(tid)
 
             if (radioValue == "Single") {
 
