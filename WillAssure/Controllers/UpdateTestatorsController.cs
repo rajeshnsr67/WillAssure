@@ -627,8 +627,25 @@ namespace WillAssure.Controllers
             cmd.Parameters.AddWithValue("@Alt_Identity_proof_Value", TFM.Alt_Identity_proof_Value);
             cmd.Parameters.AddWithValue("@Gender", TFM.Gendertext);
             cmd.Parameters.AddWithValue("@Address1", TFM.Address1);
-            cmd.Parameters.AddWithValue("@Address2", TFM.Address2);
-            cmd.Parameters.AddWithValue("@Address3", TFM.Address3);
+            if (TFM.Address2 != null)
+            {
+                cmd.Parameters.AddWithValue("@Address2", TFM.Address2);
+            }
+            else
+            {
+                TFM.Address2 = "None";
+                cmd.Parameters.AddWithValue("@Address2", TFM.Address2);
+            }
+
+            if (TFM.Address3 != null)
+            {
+                cmd.Parameters.AddWithValue("@Address3", TFM.Address3);
+            }
+            else
+            {
+                TFM.Address3 = "None";
+                cmd.Parameters.AddWithValue("@Address3", TFM.Address3);
+            }
             cmd.Parameters.AddWithValue("@City", TFM.citytext);
             cmd.Parameters.AddWithValue("@State", TFM.statetext);
             cmd.Parameters.AddWithValue("@Country", TFM.countrytext);

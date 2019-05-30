@@ -169,7 +169,7 @@
                                                                         if (Session["disttestator"] != null || Session["distid"] != null)
                                                                         {
                                                                             <input type="text" readonly="true" name="ddltestatorname" class="form-control" value="@Session["disttestator"].ToString()" />
-                                                                            <input type="hidden" name="ddltid" id="tid" value="@Session["distid"].ToString()" />
+                                                                            <input type="text" name="ddltid" id="tid" style="display:none;" value="@Session["distid"].ToString()" />
                                                                         }
                                                                         else
                                                                         {
@@ -1331,7 +1331,7 @@
          $("#btnnext").show();
         swal({
 
-            text: 'Testator Data Already Exists Do You Want To Add More!',
+            text: 'Your Beneficiary Data Submitted Successfully Do You Want To Add More ?',
             icon: 'warning',
             buttons: true,
             dangerMode: true,

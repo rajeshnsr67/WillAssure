@@ -1999,7 +1999,7 @@ namespace WillAssure.Controllers
                         cc1.ExecuteNonQuery();
                         con.Close();
                     }
-                    if (TFM.documenttype == "GiftDeedsLivingWill")
+                    if (TFM.documenttype == "GiftdeedsLivingWill")
                     {
 
                         con.Open();
@@ -2008,7 +2008,7 @@ namespace WillAssure.Controllers
                         cc1.ExecuteNonQuery();
                         con.Close();
                     }
-            if (TFM.documenttype == "WillCodocilPOAGiftDeedsLivingWill")
+            if (TFM.documenttype == "WillCodocilPOAGiftdeedsLivingWill")
             {
 
                 con.Open();
@@ -2058,7 +2058,7 @@ namespace WillAssure.Controllers
                 con.Close();
             }
 
-            if (TFM.documenttype == "LivingWillGiftDeeds")
+            if (TFM.documenttype == "LivingWillGiftdeeds")
             {
 
                 con.Open();
@@ -2069,7 +2069,7 @@ namespace WillAssure.Controllers
             }
 
 
-            if (TFM.documenttype == "WillGiftDeeds")
+            if (TFM.documenttype == "WillGiftdeeds")
             {
 
                 con.Open();
@@ -2079,7 +2079,7 @@ namespace WillAssure.Controllers
                 con.Close();
             }
 
-            if (TFM.documenttype == "GiftDeedsPOA")
+            if (TFM.documenttype == "GiftdeedsPOA")
             {
 
                 con.Open();
@@ -2097,7 +2097,7 @@ namespace WillAssure.Controllers
                 cc1.ExecuteNonQuery();
                 con.Close();
             }
-            if (TFM.documenttype == "WillGiftDeedsCodocil")
+            if (TFM.documenttype == "WillGiftdeedsCodocil")
             {
 
                 con.Open();
@@ -2107,7 +2107,7 @@ namespace WillAssure.Controllers
                 con.Close();
             }
 
-            if (TFM.documenttype == "WillGiftDeedsLivingWill")
+            if (TFM.documenttype == "WillGiftdeedsLivingWill")
             {
 
                 con.Open();

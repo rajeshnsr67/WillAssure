@@ -464,6 +464,15 @@ namespace WillAssure.Controllers
             //    ViewBag.message = "link";
             //}
 
+
+            //con.Open();
+            //string lastvisit = "insert into PageActive () values ";
+            //SqlCommand cmdv = new SqlCommand(lastvisit,con);
+            //cmdv.ExecuteNonQuery();
+            //con.Close();
+
+
+
             ModelState.Clear();
 
             return View("~/Views/AddTestatorFamily/AddTestatorFamilyPageContent.cshtml");
@@ -648,6 +657,10 @@ namespace WillAssure.Controllers
 
         public int CheckTestatorUsers(string value , string checkstatus)
         {
+
+
+
+
             int check = 0;
             if (checkstatus != "true")
             {

@@ -422,7 +422,7 @@ namespace WillAssure.Controllers
                     con.Close();
                 }
 
-                if (documenttype == "POAGiftDeedsLivingWill")
+                if (documenttype == "POAGiftdeedsLivingWill")
                 {
 
                     con.Open();

@@ -23,6 +23,7 @@ namespace WillAssure.Controllers
         public ActionResult AddPetCareIndex()
         {
             ViewBag.collapse = "true";
+            
             // check type 
             string typ = "";
             con.Open();
@@ -285,7 +286,11 @@ namespace WillAssure.Controllers
                 Session["totalpetcare"] = PM.Proportion;
                 Session["assettypeidforpetcare"] = PM.assettypeid;
                 Session["assetcategoryidforpetcare"] = PM.assetCategoryid;
-                ViewBag.Message = "Verified";
+
+
+            Session["assetcategoryidforliablities"] = "";
+            Session["assetcategorynameforliablities"] = "";
+            ViewBag.Message = "Verified";
                 ModelState.Clear();
 
 
@@ -537,16 +542,38 @@ namespace WillAssure.Controllers
         public string FilterProporion()
         {
             string msg = "";
-            int response = Convert.ToInt32(Request["send"]);
-            int liabilitiesproportion = Convert.ToInt32(Session["totalliablities"]);
-            if (liabilitiesproportion > response)
+            string response = Request["send"].ToString();
+            int value = Convert.ToInt32(response.Split('~')[0]);
+            var assetcat = response.Split('~')[1];
+
+            if (Session["totalliablities"] != null)
             {
+                int liabilitiesproportion = Convert.ToInt32(Session["totalliablities"]);
+
+                if (Session["assetcategorynameforliablities"] != null && Session["assetcategorynameforliablities"].ToString() != "")
+                {
+                    if (Session["assetcategorynameforliablities"].ToString() == assetcat)
+                    {
+                        if (liabilitiesproportion > value)
+                        {
+
+                        }
+                        else
+                        {
+                            msg = "true";
+                        }
+
+                    }
+                }
+                
 
             }
-            else
-            {
-                msg = "true";
-            }
+
+
+
+
+
+
 
 
             return msg;

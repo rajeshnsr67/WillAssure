@@ -434,31 +434,41 @@
 
                                  }
                                  if ($("#assetcategoryidforliablities").val() == "") {
-                                     liability_proportion = totalval;
+                                     //skip value for liabilities     
+                                     liability_proportion = 0;
                                      // $("#tempone").val(totalval);
 
                                  }
-
+                                 
 
                                  if (parseInt($("#assetcategoryidforpetcare").val()) == parseInt(data[i].assetcatid)) {
                                      var petcareid = $("#totalpetcare").val();
-
+                                    
                                      //var cal = parseInt(totalval) - parseInt(petcareid);
                                      var cal = parseInt(petcareid);
                                      petcare_proportion = cal;
                                  }
                                  if ($("#assetcategoryidforpetcare").val() == "") {
-
-                                     petcare_proportion = totalval;
+                                     //skip value for petcare 
+                                     petcare_proportion = 0;
 
                                  }
-
+                                 console.log(liability_proportion + '=' + petcare_proportion);
                                  if (parseInt(liability_proportion) == 0 && parseInt(petcare_proportion) == 0) {
                                      total_liability_petcare_proportion = 0;
+                                     
                                  } else {
-                                     total_liability_petcare_proportion = parseInt(totalval) - (parseInt(liability_proportion) + parseInt(petcare_proportion));   // (parseInt(liability_proportion) + parseInt(petcare_proportion));
+                                     if (parseInt(liability_proportion) == 100 && parseInt(petcare_proportion) == 100) {
+                                         total_liability_petcare_proportion = parseInt(totalval);   // 100
+                                     } else if (parseInt(liability_proportion) != 100 && parseInt(petcare_proportion) == 100) {
+                                         total_liability_petcare_proportion = parseInt(totalval) - parseInt(liability_proportion);   // 100
+                                     } else if (parseInt(liability_proportion) == 100 && parseInt(petcare_proportion) != 100) {
+                                         total_liability_petcare_proportion = parseInt(totalval) - parseInt(petcare_proportion);   // 100
+                                     } else {
+                                         total_liability_petcare_proportion = parseInt(totalval) - (parseInt(liability_proportion) + parseInt(petcare_proportion));   // (parseInt(liability_proportion) + parseInt(petcare_proportion));
+                                     }
                                  }
-
+                                 
                                  var res = "";
                                  res += "<div class='card mb-2 border border-danger' id='accparent'>";
 
@@ -470,9 +480,9 @@
                                  res += "<div id='accordio" + data[i].assetcatid + "' class='collapse  accordiondiv' data-parent='#accordion8'";
                                  //res +="<div id='test'></div>";
                                  res += "<div class='card-body'>";
-                                 res += "<input type='hidden' id='liability_proportion_" + data[i].assetcatid + " ' name='name' value='" + liability_proportion + "' />";
-                                 res += "<input type='hidden' id='petcare_proportion_" + data[i].assetcatid + "' name='name' value='" + petcare_proportion + "' />";
-                                 res += "<input type='hidden' class='total_liability_petcare_proportion' id='total_liability_petcare_proportion_" + data[i].assetcatid + "' name='name' value='" + total_liability_petcare_proportion + "' />";
+                                 res += "<input type='text' id='liability_proportion_" + data[i].assetcatid + " ' name='name' value='" + liability_proportion + "' />";
+                                 res += "<input type='text' id='petcare_proportion_" + data[i].assetcatid + "' name='name' value='" + petcare_proportion + "' />";
+                                 res += "<input type='text' class='total_liability_petcare_proportion' id='total_liability_petcare_proportion_" + data[i].assetcatid + "' name='name' value='" + total_liability_petcare_proportion + "' />";
                                  res += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class='col-sm-3' id='type'>";
                                  res += "<div class='form-group'>";
                                  res += "<label for='input-1'>Type</label>";
@@ -753,7 +763,9 @@
         $(document).on('keyup', '.proportioninput', function () {
             var $rowdiv = $(this).closest('.rowdiv');
             var $prevdiv = $rowdiv.prev('.rowdiv');
-
+            var parentaccordionid = $rowdiv.parent('div').parent('div').attr('id');
+            
+            
             var rr = $(this).attr('id');
             var f = rr.replace('txtproportion', '');
             // var temp = $("#txttotalval").val();
@@ -779,16 +791,38 @@
                 if (temp != "100") {
                    // alert('1st');
                     var x = prevtotalinputval - proportionvalue;
-                    $rowdiv.find('.totalinput').val(x);
+                    if (parseInt(proportionvalue) > prevtotalinputval) {
+                        alert('proportion value cannot be greater than ' + prevtotalinputval);
+                        $(this).val('');
+                        $rowdiv.find('.totalinput').val('');
+                    } else {
+                        $rowdiv.find('.totalinput').val(x);
+                    }
+                   
                 }
 
 
                 if (temp == "100") {
                  // alert('2nd');
                     var x = parseInt(temp) - proportionvalue;
-                    $rowdiv.find('.totalinput').val(x);
+                    if (parseInt(proportionvalue) > parseInt(temp)) {
+                        alert('proportion value cannot be greater than ' + parseInt(temp));
+                        $(this).val('');
+                        $rowdiv.find('.totalinput').val('');
+                    } else {
+                        $rowdiv.find('.totalinput').val(x);
+                    }
+                   
                 }
-
+            if ($rowdiv.find('.totalinput').val() != "") {
+            if ($rowdiv.find('.totalinput').val() > 0) {
+                $('#' + parentaccordionid).find('#btnmappingsubmit').attr("disabled", "disabled");
+            } else {
+                $('#' + parentaccordionid).find('#btnmappingsubmit').removeAttr("disabled");
+                }
+            } else {
+                $('#' + parentaccordionid).find('#btnmappingsubmit').attr("disabled", "disabled");
+            }
 
                /* var x = prevtotalinputval - proportionvalue;
                 $rowdiv.find('.totalinput').val(x);*/
@@ -1205,7 +1239,7 @@
             var proportion = $("#txtproportion" + btnidentify + "").val();
             var tid = $("#tid").val();
 
-            alert(tid)
+
 
             if (radioValue == "Single") {
 
@@ -1228,7 +1262,7 @@
                     $.ajax({
 
                         type: "POST",
-                        url: "../AddAssetMapping/InsertSingleAssetMappeddata",
+                        url:"@Url.Action("InsertSingleAssetMappeddata", "AddAssetMapping")",
                         data: { "send": "" + data + "" },
                         success: function (data) {
 
@@ -1267,7 +1301,7 @@
                     $.ajax({
 
                         type: "POST",
-                        url: "../AddAssetMapping/InsertMultipleAssetMappeddata",
+                        url:"@Url.Action("InsertMultipleAssetMappeddata", "AddAssetMapping")",
                         data: { data: data, assettype: assettype, assetcat: assetcat, tid: tid, btnidentify: btnidentify },
                         success: function (data) {
                             $("#btnmainassetsuccess").on("click", function () { });
@@ -1434,7 +1468,7 @@ function getDDLTestator(value) {
             $("#btnnext").show();
             swal({
 
-                text: 'Testator Data Already Exists Do You Want To Add More!',
+                text: 'Your Mapping Data Submitted Successfully Do You Want To Add More ?',
                 icon: 'warning',
                 buttons: true,
                 dangerMode: true,

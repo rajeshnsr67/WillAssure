@@ -341,7 +341,7 @@ namespace WillAssure.Controllers
                 cmd.Parameters.AddWithValue("@Alt_Identity_Proof", NM.Alt_Identity_Proof);
                 cmd.Parameters.AddWithValue("@Alt_Identity_Proof_Value", NM.Alt_Identity_Proof_Value);
                 cmd.Parameters.AddWithValue("@Address1", NM.Address1);
-            if (NM.Address2 != null || NM.Address2 != "")
+            if (NM.Address2 != null)
             {
                 cmd.Parameters.AddWithValue("@Address2", NM.Address2);
             }
@@ -351,7 +351,7 @@ namespace WillAssure.Controllers
                 cmd.Parameters.AddWithValue("@Address2", NM.Address2);
             }
 
-            if (NM.Address3 != null || NM.Address3 != "")
+            if (NM.Address3 != null)
             {
                 cmd.Parameters.AddWithValue("@Address3", NM.Address3);
             }

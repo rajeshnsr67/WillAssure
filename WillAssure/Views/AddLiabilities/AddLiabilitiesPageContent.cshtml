@@ -243,7 +243,7 @@
                                 <div class="col-sm-6">
 
                                     <div class="form-group">
-                                        <label for="input-1">Financial Assets</label>
+                                        <label for="input-1">Asset Type</label>
 
 
 
@@ -259,7 +259,7 @@
                                 <div class="col-sm-6">
 
                                     <div class="form-group">
-                                        <label for="input-1">Non Financial Asset</label>
+                                        <label for="input-1">Asset Category</label>
 
                                         <select id="ddlAssetCategory" class="form-control input-shadow validate[required]">
                                             <option value="">--Select--</option>
@@ -588,7 +588,7 @@
         $.ajax({
 
             type: "POST",
-            url: "@Url.Action("FilterProporion", "AddPetCare")",
+            url: "@Url.Action("FilterProporion", "AddLiabilities")",
             data: { "send": "" + value+  ""},
             success: function (data) {
 

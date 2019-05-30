@@ -24,7 +24,7 @@ namespace WillAssure.Controllers
         // GET: AddLiabilities
         public ActionResult AddLiabilitiesIndex()
         {
-
+           
             ViewBag.collapse = "true";
             // check type 
             string typ = "";
@@ -284,8 +284,9 @@ namespace WillAssure.Controllers
             cmd.ExecuteNonQuery();
             con.Close();
             Session["totalliablities"] = LM.Proportion;
-            Session["assettypeidforliablities"] = LM.assettypeid;
+            
             Session["assetcategoryidforliablities"] = LM.assetCategoryid;
+            Session["assetcategorynameforliablities"] = LM.assetCategorytext;
             ViewBag.Message = "Verified";
             ModelState.Clear();
 
@@ -601,16 +602,22 @@ namespace WillAssure.Controllers
         public string FilterProporion()
         {
             string msg = "";
+            int liabilitiesproportion = 0;
             int response = Convert.ToInt32(Request["send"]);
-            int liabilitiesproportion = Convert.ToInt32(Session["totalpetcare"]);
-            if (liabilitiesproportion > response)
+            if (Session["totalpetcare"].ToString() != "" || Session["totalpetcare"] == null)
             {
+                 liabilitiesproportion = Convert.ToInt32(Session["totalpetcare"]);
 
+                if (liabilitiesproportion > response)
+                {
+
+                }
+                else
+                {
+                    msg = "true";
+                }
             }
-            else
-            {
-                msg = "true";
-            }
+          
 
 
             return msg;
