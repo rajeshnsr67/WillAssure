@@ -128,31 +128,14 @@
                                 <div class="col-sm-1"></div><div class='col-sm-2'><label for='input-1' style="line-height:40px;"><i class="fa fa-user-circle-o" aria-hidden="true"></i>Testator</label></div>
                                                             <div class='col-sm-3'>
 
-                                                                @if (Session["disttestator"] != null)
-                                                                {
+                                                               
                                                                     <input type="text" readonly="true" name="ddltestatorname" class="form-control" value="@Session["disttestator"].ToString()" />
-                                                                }
-                                                                else
-                                                                {
-                                                                    if (!Response.IsRequestBeingRedirected)
-                                                                    {
-                                                                        Response.Redirect("/LoginPage/LoginPageIndex");
-                                                                    }
-                                                                }
-
-                                                                @if (Session["distid"] != null)
-                                                                {
+                                                            
 
                                                                     <input type="hidden" name="ddltid" id="tid" value="@Session["distid"].ToString()" />
-                                                                }
-                                                                else
-                                                                {
-                                                                    if (!Response.IsRequestBeingRedirected)
-                                                                    {
-                                                                        Response.Redirect("/LoginPage/LoginPageIndex");
-                                                                    }
-                                                                }
-
+                                                               
+                                                                 
+                                                                 
 
 
 
@@ -785,8 +768,10 @@
                     <script>
                         function getIdentityselection(id) {
 
-                            $("#Identity_Proof_txt").val(id);
+                          var a =  $("#Identity_Proof_txt").val(id);
 
+                            $("#ddlidentityproof1").find("option[value='" + a + "']").removeAttr("disabled");
+                           
 
                             if (id == "Aadhaar Card") {
                                 $("#appendtxt").empty().append("<input type='text' class='form-control input-shadow validate[required,custom[adharCard]] text-input' id='Identity_Proof_Value' name='Identity_Proof_Value' placeholder='Enter Aadhaar Card' autocomplete='off'  />");
@@ -814,7 +799,7 @@
 
                           
 
-                            $("#ddlidentityproof1").find("option[value='" + previousid + "']").hide();
+                            $("#ddlidentityproof1").find("option[value='" + previousid + "']").attr("disabled", "disabled");
 
                         }
                     </script>
