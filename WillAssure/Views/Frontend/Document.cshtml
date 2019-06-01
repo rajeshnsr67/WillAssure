@@ -1,0 +1,125 @@
+﻿﻿@model WillAssure.Models.TestatorFormModel
+@{
+    /**/
+
+    Layout = "~/Views/Shared/Willassure_LayoutPage.cshtml";
+}
+@{
+    ViewBag.Title = "Document";
+}
+
+@*document popup*@
+<div class="modal fade primarymodal">
+    <div class="modal-dialog">
+        <div class="modal-content border-primary" style="width:196%; position:relative; right:38%">
+            <div class="modal-header bg-primary">
+                <h5 class="modal-title text-white">Create Document</h5>
+                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            @using (Html.BeginForm(null, null, FormMethod.Post, new { name = "PopUp", id = "testatordocument" }))
+            {
+                <textarea id="documenttype" name="documenttype" style="display:none;"></textarea>
+                <div class="modal-body">
+                    @Html.HiddenFor(m => m.tId, new { @id = "tId" })
+
+                    <div class="row">
+
+                        <div class="col-sm-3">
+                            <label style="line-height:41px;">Document Type</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <br />
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" value="Will" class="checkone radio validate[required]" name="radio1">Will
+                                </label>
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" value="Codocil" class="checktwo radio validate[required]" name="radio1">Codocil
+                                </label>
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" value="POA" class="checkthree radio validate[required]" name="radio1">POA
+                                </label>
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" value="Giftdeeds" class="checkfour radio validate[required]" name="radio1">Giftdeeds
+                                </label>
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" value="LivingWill" class="checkfive radio validate[required]" name="radio1">Living Will
+                                </label>
+
+                            </div>
+                            @Html.HiddenFor(m => m.Document_Created_By_ID, new { id = "Document_Created_By_ID" })
+                            @Html.HiddenFor(m => m.Document_Created_By_txt, new { id = "Document_Created_By_txt" })
+                        </div>
+
+                        <div class="col-sm-3">
+                            <label style="line-height:41px;">Category</label>
+                        </div>
+                        <div class="col-sm-3">
+                            @Html.DropDownListFor(x => x.documentcategory, new SelectListItem[]{
+                            new SelectListItem() {Text = "--Select--", Value=""},
+                            new SelectListItem() {Text = "Quick", Value="Quick"},
+                            new SelectListItem() {Text = "Detailed", Value="Detailed"}}, new { @class = "form-control input-shadow validate[required]", id = "DDLAmtPaidBY2", @disabled = "disabled" })
+
+                        </div>
+
+
+                    </div>
+                    <hr class="div_rd">
+                    <div class="row">
+
+                        <div class="col-sm-3">
+                            <label style="line-height:41px;">Document Created By</label>
+                        </div>
+                        <div class="col-sm-3">
+                            @Html.DropDownListFor(x => x.Document_Created_By, new SelectListItem[]{
+                             new SelectListItem() {Text = "--Select--", Value=""},
+                             new SelectListItem() {Text = "Distributor", Value="Distributor"},
+                             new SelectListItem() {Text = "Testator", Value="Testator"}}, new { @class = "form-control input-shadow validate[required]", @id = "ddldocumentcreatedby1" })
+                            @Html.HiddenFor(m => m.Document_Created_By_ID, new { id = "Document_Created_By_ID" })
+                            @Html.HiddenFor(m => m.Document_Created_By_txt, new { id = "Document_Created_By_txt" })
+                        </div>
+                        <div class="col-sm-3">
+                            <label style="line-height:41px;">Amount Paid By</label>
+                        </div>
+                        <div class="col-sm-3">
+                            @Html.DropDownListFor(x => x.Amt_Paid_By, new SelectListItem[]{
+                            new SelectListItem() {Text = "--Select--", Value=""},
+                            new SelectListItem() {Text = "Distributor", Value="Distributor"},
+                            new SelectListItem() {Text = "Testator", Value="Testator"}}, new { @class = "form-control input-shadow validate[required]", id = "DDLAmtPaidBY3" })
+                            @Html.HiddenFor(m => m.Amt_Paid_By_By_ID, new { id = "Amt_Paid_By_By_ID" })
+                            @Html.HiddenFor(m => m.Amt_Paid_By_txt, new { id = "Amt_Paid_By_txt" })
+                        </div>
+
+
+                    </div>
+                    <hr class="div_rd">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <label for="input-1">Enter Coupon Number</label>
+                        </div>
+                        <div class="col-sm-3">
+                            @Html.TextBoxFor(m => m.txtCoupon, new { @class = "form-control input-shadow  text-input", @onblur = "blurFunction()", @id = "txtcoupon", @onchange = "checkcoupon(this.value)", @placeholder = "Enter Coupon Number", @autocomplete = "off" })
+                            <span style="color:red; display:none" id="lblerrmsg">Invalid Coupon Number</span>
+                            <span style="color:green; display:none" id="lblerrsuccess">Coupon Number Applied</span>
+                            <span style="color:red; display:none" id="lblerr">Numbers Only</span>
+                            <span style="color:red; display:none" id="lblexpire">Coupon Number Has Been Expired</span>
+                        </div>
+                    </div>
+                    <hr class="div_rd">
+                    <div class="form-group">
+                        <button type="submit" id="alert-success" formaction="insertDocumentDetails" class="btn btn-primary shadow-primary px-5 btnpop"><i class="icon-lock"></i>Submit</button>
+                    </div>
+                </div>
+
+           
+
+            }
+        </div>
+    </div>
+</div>
+
+
+@*end*@
+

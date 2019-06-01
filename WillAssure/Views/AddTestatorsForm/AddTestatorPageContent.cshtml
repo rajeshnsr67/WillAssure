@@ -978,6 +978,8 @@
                     <script>
                         function getIdentityselection(id) {
 
+                            $("#Alt_Identity_Proof option:disabled").removeAttr('disabled');
+
                             $("#Identity_Proof_txt").val(id);
 
 
@@ -1008,7 +1010,7 @@
                            
                       
                           
-                            $("#ddlidentityproof1").find("option[value='"+previousid+"']").remove();
+                            $("#Alt_Identity_Proof").find("option[value='" + previousid + "']").attr("disabled", "disabled");
                             
 
                         }

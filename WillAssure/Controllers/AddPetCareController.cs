@@ -546,7 +546,7 @@ namespace WillAssure.Controllers
             int value = Convert.ToInt32(response.Split('~')[0]);
             var assetcat = response.Split('~')[1];
 
-            if (Session["totalliablities"] != null)
+            if (Session["totalliablities"] != null && Session["totalliablities"].ToString() != "")
             {
                 int liabilitiesproportion = Convert.ToInt32(Session["totalliablities"]);
 

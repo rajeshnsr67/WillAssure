@@ -583,21 +583,21 @@
                                 <button type="submit" id="btnUserformsubmit" formaction="GetUserFormData" class="btn btn-primary shadow-primary px-5"><i class="icon-lock"></i>Add Users</button>
                                 <a href="@Url.Action("AddDistributorIndex","AddDistributor")"><button type="button" class="btn btn-danger" style="display:none;" id="btncompanyadd">Add Company</button></a>
 
-                                @if (Session["upcompanyid"] != null)
-                                {
+                                @*@if (Session["upcompanyid"] != null)
+                                {*@
                                     <a href="@Url.Action("UpdateDistributorIndex","UpdateDistributor",new { @NestId = Session["upcompanyid"]})"><button type="button" class="btn btn-danger" style="display:none;" id="btncompanyupdate">Update Company</button></a>
-                                }
-                                else
-                                {
-                                    if (!Response.IsRequestBeingRedirected)
-                                    {
-                                        Response.Redirect("/LoginPage/LoginPageIndex");
-                                    }
-                                }
+                                    @* }
+            else
+             {
+                 if (!Response.IsRequestBeingRedirected)
+                 {
+                     Response.Redirect("/LoginPage/LoginPageIndex");
+                 }
+             }*@
 
 
 
-                            </div>
+                                </div>
                         }
                     </div>
                 </div>

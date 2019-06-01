@@ -2134,6 +2134,24 @@ namespace WillAssure.Controllers
                 cc1.ExecuteNonQuery();
                 con.Close();
             }
+            if (TFM.documenttype == "WillLivingWill")
+            {
+
+                con.Open();
+                string qq1 = "update users set Will = '1' , Codocil = '0' , POA = '0' , Giftdeeds='0', LivingWill='1' where uId = " + distid + " ";
+                SqlCommand cc1 = new SqlCommand(qq1, con);
+                cc1.ExecuteNonQuery();
+                con.Close();
+            }
+            if (TFM.documenttype == "LivingWillWill")
+            {
+
+                con.Open();
+                string qq1 = "update users set Will = '1' , Codocil = '0' , POA = '0' , Giftdeeds='0', LivingWill='1' where uId = " + distid + " ";
+                SqlCommand cc1 = new SqlCommand(qq1, con);
+                cc1.ExecuteNonQuery();
+                con.Close();
+            }
 
 
             if (TFM.documentcategory == "Quick")

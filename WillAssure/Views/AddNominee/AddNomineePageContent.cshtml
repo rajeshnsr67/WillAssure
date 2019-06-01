@@ -496,6 +496,9 @@
                     @*validation script*@
                     <script>
                         function getIdentityselection(id) {
+
+                            $("#ddlidentityproof1 option:disabled").removeAttr('disabled');
+
                             if (id == "Aadhaar Card") {
                                 $("#appendtxt").empty().append("<input type='text' class='form-control input-shadow validate[required,custom[adharCard]] text-input' id='Identity_Proof_Value' name='Identity_Proof_Value' placeholder='Enter Aadhaar Card' autocomplete='off'  />");
                             }
@@ -521,7 +524,7 @@
 
 
 
-                            $("#ddlidentityproof1").find("option[value='" + previousid + "']").hide();
+                            $("#ddlidentityproof1").find("option[value='" + previousid + "']").attr("disabled", "disabled");
                         }
                     </script>
 

@@ -373,7 +373,7 @@
 
         $(document).ready(function () {
 
-
+           
 
 
 
@@ -400,6 +400,7 @@
                              //   console.log(JSON.stringify(atId_group));
                              var assettypehtmlelem = "<h6 class='text-uppercase'>" + AssetsType + "</h6><hr>";
                              $("#accordion8").append(assettypehtmlelem);
+                          
                              for (var i = 0; i < atId_group.length; i++) {
 
                                  var liability_proportion = petcare_proportion = total_liability_petcare_proportion =0;
@@ -460,9 +461,9 @@
                                  res += "<div id='accordio" + data[i].assetcatid + "' class='collapse  accordiondiv' data-parent='#accordion8'";
                                  //res +="<div id='test'></div>";
                                  res += "<div class='card-body'>";
-                                 res += "<input type='text' id='liability_proportion_" + data[i].assetcatid + " ' name='name' value='" + liability_proportion + "' />";
-                                 res += "<input type='text' id='petcare_proportion_" + data[i].assetcatid + "' name='name' value='" + petcare_proportion + "' />";
-                                 res += "<input type='text' class='total_liability_petcare_proportion' id='total_liability_petcare_proportion_" + data[i].assetcatid + "' name='name' value='" + total_liability_petcare_proportion + "' />";
+                                 res += "<input type='hidden' id='liability_proportion_" + data[i].assetcatid + " ' name='name' value='" + liability_proportion + "' />";
+                                 res += "<input type='hidden' id='petcare_proportion_" + data[i].assetcatid + "' name='name' value='" + petcare_proportion + "' />";
+                                 res += "<input type='hidden' class='total_liability_petcare_proportion' id='total_liability_petcare_proportion_" + data[i].assetcatid + "' name='name' value='" + total_liability_petcare_proportion + "' />";
                                  res += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class='col-sm-3' id='type'>";
                                  res += "<div class='form-group'>";
                                  res += "<label for='input-1'>Type</label>";
@@ -783,8 +784,9 @@
 
 
                 if (temp == "100") {
-                 // alert('2nd');
-                    var x = parseInt(temp) - proportionvalue;
+                // alert('2nd');
+                  
+                    var x = parseInt(prevtotalinputval) - proportionvalue;
                     if (parseInt(proportionvalue) > parseInt(temp)) {
                         alert('proportion value cannot be greater than ' + parseInt(temp));
                         $(this).val('');

@@ -1,0 +1,195 @@
+﻿@{
+    Layout = "~/Views/Shared/Willassure_LayoutPage.cshtml";
+}
+
+@{
+    ViewBag.Title = "Regn";
+}
+
+
+<section class="flat-row page-careers">
+    <div class="container">
+
+        <div class="careers-open" style="padding-top: 70px">
+            <div class="title-section text-center">
+                <h1 class="title">Apply For Document</h1>
+                <div class="sub-title">
+                    Plase request to create document which you wants to create.
+                </div>
+            </div>
+            <div class="info-apply">
+
+                <div class="row">
+                    <style type="text/css">
+                        .contactform span.title-form {
+                            color: #4d4d4d
+                        }
+
+                        input[type="text"] {
+                            margin-bottom: 15px;
+                        }
+
+                        .form-group {
+                            margin-bottom: 0px;
+                        }
+
+                        .radio-inline {
+                            margin-right: 15px;
+                        }
+
+                        .wrap-formrequest {
+                            border: 1px solid #ddd;
+                            border-radius: 10px;
+                            padding: 15px
+                        }
+                    </style>
+                    <div class="col-lg-2 col-md-2">
+                    </div>
+                    <div class="col-lg-8 col-md-8">
+                        <div class="wrap-formrequest">
+                            <form>
+                                <textarea id="documenttype" name="documenttype" style="display:none;"></textarea>
+
+                                <div class="form-group col-sm-12">
+                                    <div class="col-sm-12"><label for="email" style="font-weight: 700; font-size: 16px">Name:</label></div>
+                                    <div class="col-sm-3" style="float: left;"><input type="text" class="form-control input-shadow" id="txtfirstname" onchange="clearlblerror1()" placeholder="First Name"><span style="color:red; display:none" id="lblerror1">*Required</span></div>
+                                    <div class="col-sm-4" style="float: left;"><input type="text" class="form-control input-shadow" id="txtmiddlename" onchange="lblerror12()" placeholder="Middle Name"><span style="color:red; display:none" id="lblerror12">*Required</span></div>
+                                    <div class="col-sm-4" style="float: left;"><input type="text" class="form-control input-shadow" id="txtlastname" onchange="lblerror13()" placeholder="Last Name"><span style="color:red; display:none" id="lblerror13">*Required</span></div>
+                                </div>
+                                <div class="form-group col-sm-6" style="float: left;">
+                                    <div class="col-sm-12"><label for="email" style="font-weight: 700; font-size: 16px">Contact No:</label></div>
+                                    <div class="col-sm-12" style="float: left;"><input type="text" class="form-control input-shadow" id="txtcontact" onchange="check()" placeholder="Mobile No"><span style="color:red;display:none" id="lblerror2">*Required</span><span id="error" style="color: Red; display: none">*Invalid Mobile</span></div>
+
+                                </div>
+                                <div class="form-group col-sm-6" style="float: left;">
+                                    <div class="col-sm-12"><label for="email" style="font-weight: 700; font-size: 16px">Email Id:</label></div>
+                                    <div class="col-sm-12" style="float: left;"><input type="text" class="form-control input-shadow" id="txtemail" onchange="lblerror3()" placeholder="Email Id" required><span style="color:red;display:none" id="lblerror3">*Required</span><span style="color:red;display:none" id="lblemailerr">*Invalid Email</span><span style="color:red;display:none" id="lbldup">*Email ID Already Register</span></div>
+
+                                </div>
+                                <div class="form-group col-sm-12" style="float: left;">
+
+                                    <div class="col-sm-12"><label for="email" id="lblrefdist" style="font-weight: 700; font-size: 16px; ">Ref Distributer:</label></div>
+                                    <form>
+
+                                        <label class='radio-inline'>
+
+                                            <input type='radio' id='getvalone' class="" name='optradio' value='Single' checked>Distributor
+
+                                        </label>
+                                        <label class='radio-inline'>
+
+                                            <input type='radio' id='getvaltwo' class="" name='optradio' value='Multiple'>No Distributor
+
+                                        </label>
+
+                                    </form>
+                                    <div class="col-sm-12" style="float: left;">
+                                        <div class="row">
+
+                                            <div class='col-sm-4'>
+                                                <select id="ddlDistributor" class="form-control input-shadow validate[required]"></select>
+                                                <span style="color:red;display:none" id="lblerror4">*Required</span>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+
+                                </div>
+                                <div class="form-group col-sm-12" style="float: left;">
+                                    <div class="col-sm-12"><label for="email" style="font-weight: 700; font-size: 16px">Select Doument which you wants to create</label></div>
+                                    <div class="col-sm-12" style="float: left;">
+                                        <label class="checkbox-inline">
+                                            <input type="checkbox" id="checkone" class="chk" value="Will">Will
+                                        </label>
+                                        <label class="checkbox-inline">
+                                            <input type="checkbox" id="checktwo" class="chk" value="Codocil">Codocil
+                                        </label>
+                                        <label class="checkbox-inline">
+                                            <input type="checkbox" id="checkthree" class="chk" value="POA">POA
+                                        </label>
+                                        <label class="checkbox-inline">
+                                            <input type="checkbox" id="checkfour" class="chk" value="Giftdeeds">Gift Deeds
+                                        </label>
+                                        <label class="checkbox-inline">
+                                            <input type="checkbox" id="checkfive" class="chk" value="LivingWill">Living Will
+                                        </label>
+                                    </div>
+                                    <span style="color:red;display:none" id="lblcheck">*Required</span>
+                                </div>
+
+                                <!--<div class="col-sm-12" style="float: left;" id="documentpricing">
+
+                                </div>-->
+
+
+
+
+                                <div class="col-sm-12 text-right" style="float: left;">
+                                    <button type="button" id="btnsubmit" class="btn btn-success ">Submit</button>
+                                </div>
+                            </form>
+                            <button style="display:none;" class="btn btn-outline-primary btn-block m-1" id="btnotp" data-toggle="modal" data-target="#primarymodal">Primary</button>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+<!--Primary Modal -->
+
+<div class="modal fade" id="primarymodal">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content border-primary">
+            <div class="modal-header bg-primary">
+                <h5 class="modal-title text-white">Please Enter OTP For Login</h5>
+                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+
+
+                    <div class="row">
+                        <div class="col-sm-6">
+
+                            <div class="form-group">
+                                <label for="input-1">Enter OTP:</label>
+                                <input type="text" name="name" id="txtotp" onchange="checkotpentered(this.value)" class="form-control input-shadow" value="" />
+                                <span style="color:green;display:none" id="lblsuccess">Verified</span>
+                                <span style="color:red;display:none" id="lblfailed">Failed</span>
+                                <span style="color:red; white-space:nowrap;" id="lblerror"></span>
+                            </div>
+                        </div>
+
+
+
+
+                    </div>
+
+
+
+                    <div class="form-group">
+                        <input type="button" id="btnverifyotp" style="color:white;" name="name" class="btn btn-success" value="Verify OTP" />
+                        <a href=""><button type="button" class="btn btn-danger">Cancel</button></a>
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+<!--End Modal -->

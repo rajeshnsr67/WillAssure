@@ -1052,7 +1052,7 @@
     function getIdentityselection(id) {
 
         $("#Identity_Proof_txt").val(id);
-
+        $("#ddlidentityproof22 option:disabled").removeAttr('disabled');
 
         if (id == "Aadhaar Card") {
             $("#appendtxt").empty().append("<input type='text' class='form-control input-shadow validate[required,custom[adharCard]] text-input' id='Identity_proof_value' name='Identity_proof_value' placeholder='Enter Aadhaar Card' autocomplete='off'  />");
@@ -1080,7 +1080,8 @@
        
 
 
-        $("#ddlidentityproof22").find("option[value='" + previousid + "']").hide();
+    
+        $("#ddlidentityproof22").find("option[value='" + previousid + "']").attr("disabled", "disabled");
 
 
     }
@@ -1362,7 +1363,7 @@
 <script>
     function altgetIdentityselection(id) {
 
-
+        $("#altddlidentityproof1 option:disabled").removeAttr('disabled');
 
         if (id == "Aadhaar Card") {
             $("#altappendtxt").empty().append("<input type='text' class='form-control input-shadow validate[required,custom[adharCard]] text-input' id='altIdentity_Proof_Value' name='altIdentity_Proof_Value' placeholder='Enter Aadhaar Card' autocomplete='off'  />");
@@ -1391,7 +1392,8 @@
 
 
 
-        $("#altddlidentityproof1").find("option[value='" + previousid + "']").hide();
+      
+        $("#altddlidentityproof1").find("option[value='" + previousid + "']").attr("disabled", "disabled");
 
 
     }

@@ -227,26 +227,98 @@ namespace WillAssure.Controllers
                 TFM.Dob = Convert.ToDateTime(dt.Rows[0]["DOB"]).ToString("dd-MM-yyyy");
                 TFM.Middle_Name = dt.Rows[0]["Middle_Name"].ToString();
 
-
-                TFM.Occupation = dt.Rows[0]["Occupation"].ToString();
+                if (dt.Rows[0]["Occupation"].ToString() != "none")
+                {
+                    TFM.Occupation = dt.Rows[0]["Occupation"].ToString();
+                }
+                
                 TFM.Mobile = dt.Rows[0]["Mobile"].ToString();
                 TFM.Email = dt.Rows[0]["Email"].ToString();
-                TFM.material_status_txt = dt.Rows[0]["maritalStatus"].ToString();
-                TFM.Religiontext = dt.Rows[0]["Religion"].ToString();
-                TFM.RelationshipTxt = dt.Rows[0]["RelationShip"].ToString();
-                TFM.Identity_Proof = dt.Rows[0]["Identity_Proof"].ToString();
-                TFM.Identity_proof_Value = dt.Rows[0]["Identity_proof_Value"].ToString();
-                TFM.Alt_Identity_Proof = dt.Rows[0]["Alt_Identity_Proof"].ToString();
-                TFM.Alt_Identity_proof_Value = dt.Rows[0]["Alt_Identity_proof_Value"].ToString();
-                TFM.Gendertext = dt.Rows[0]["Gender"].ToString();
-                TFM.Address1 = dt.Rows[0]["Address1"].ToString();
-                TFM.Address2 = dt.Rows[0]["Address2"].ToString();
-                TFM.Address3 = dt.Rows[0]["Address3"].ToString();
-                TFM.citytext = dt.Rows[0]["City"].ToString();
-                TFM.statetext = dt.Rows[0]["State"].ToString();
-                TFM.countrytext = dt.Rows[0]["Country"].ToString();
-                TFM.Pin = dt.Rows[0]["Pin"].ToString();
-                TFM.active = dt.Rows[0]["active"].ToString();
+
+                if (dt.Rows[0]["maritalStatus"].ToString() != "none")
+                {
+                    TFM.material_status_txt = dt.Rows[0]["maritalStatus"].ToString();
+                }
+
+                if (dt.Rows[0]["Religion"].ToString() != "none")
+                {
+                    TFM.Religiontext = dt.Rows[0]["Religion"].ToString();
+                }
+
+                if (dt.Rows[0]["RelationShip"].ToString() != "none")
+                {
+                    TFM.RelationshipTxt = dt.Rows[0]["RelationShip"].ToString();
+                }
+
+
+                if (dt.Rows[0]["Identity_Proof"].ToString() != "none")
+                {
+                    TFM.Identity_Proof = dt.Rows[0]["Identity_Proof"].ToString();
+                }
+
+
+                if (dt.Rows[0]["Identity_proof_Value"].ToString() != "none")
+                {
+                    TFM.Identity_proof_Value = dt.Rows[0]["Identity_proof_Value"].ToString();
+                }
+
+                if (dt.Rows[0]["Alt_Identity_Proof"].ToString() != "none")
+                {
+                    TFM.Alt_Identity_Proof = dt.Rows[0]["Alt_Identity_Proof"].ToString();
+                }
+
+
+                if (dt.Rows[0]["Alt_Identity_proof_Value"].ToString() != "none")
+                {
+                    TFM.Alt_Identity_proof_Value = dt.Rows[0]["Alt_Identity_proof_Value"].ToString();
+                }
+
+                if (dt.Rows[0]["Gender"].ToString() != "none")
+                {
+                    TFM.Gendertext = dt.Rows[0]["Gender"].ToString();
+                }
+
+                if (dt.Rows[0]["Address1"].ToString() != "none")
+                {
+                    TFM.Address1 = dt.Rows[0]["Address1"].ToString();
+                }
+
+                if (dt.Rows[0]["Address2"].ToString() != "none")
+                {
+                    TFM.Address2 = dt.Rows[0]["Address2"].ToString();
+                }
+
+                if (dt.Rows[0]["Address3"].ToString() != "none")
+                {
+                    TFM.Address3 = dt.Rows[0]["Address3"].ToString();
+                }
+
+                if (dt.Rows[0]["City"].ToString() != "none")
+                {
+                    TFM.citytext = dt.Rows[0]["City"].ToString();
+                }
+
+                if (dt.Rows[0]["State"].ToString() != "none")
+                {
+                    TFM.statetext = dt.Rows[0]["State"].ToString();
+                }
+
+                if (dt.Rows[0]["Country"].ToString() != "none")
+                {
+                    TFM.countrytext = dt.Rows[0]["Country"].ToString();
+                }
+
+                if (dt.Rows[0]["Pin"].ToString() != "none")
+                {
+                    TFM.Pin = dt.Rows[0]["Pin"].ToString();
+                }
+
+                if (dt.Rows[0]["active"].ToString() != "none")
+                {
+                    TFM.active = dt.Rows[0]["active"].ToString();
+                }
+
+                
                 TFM.uId = Convert.ToInt32(dt.Rows[0]["uId"]);
 
 
@@ -768,11 +840,71 @@ namespace WillAssure.Controllers
 
 
 
-        public String BindStateDDL()
+        //public String BindStateDDL()
+        //{
+
+        //    string response = Request["statename"].ToString();
+
+        //    con.Open();
+        //    string query = "select distinct * from tbl_state order by statename asc  ";
+        //    SqlDataAdapter da = new SqlDataAdapter(query, con);
+        //    DataTable dt = new DataTable();
+        //    da.Fill(dt);
+        //    con.Close();
+        //    string data = "";
+
+        //    if (dt.Rows.Count > 0)
+        //    {
+
+
+        //        for (int i = 0; i < dt.Rows.Count; i++)
+        //        {
+
+
+
+
+        //            data = data + "<option value=" + dt.Rows[i]["state_id"].ToString() + " >" + dt.Rows[i]["statename"].ToString() + "</option>";
+
+
+
+        //        }
+
+
+
+
+        //    }
+
+        //    return data;
+
+        //}
+
+
+
+        public string UpdateStateBind()
         {
 
+            string response = Request["sender"].ToString();
+
+            // country id
+            string query2 = "select distinct  CountryID , CountryName from country_tbl where CountryName = '" + response + "'  ";
+            SqlDataAdapter da2 = new SqlDataAdapter(query2, con);
+            DataTable dt2 = new DataTable();
+            da2.Fill(dt2);
+            int countryid = 0;
+            if (dt2.Rows.Count > 0)
+            {
+                countryid = Convert.ToInt32(dt2.Rows[0]["CountryID"]);
+            }
+
+
+            //end
+
+
+
+
+
             con.Open();
-            string query = "select distinct * from tbl_state order by statename asc  ";
+            string query = "select distinct * from tbl_state where country_id = " + countryid + "  ";
             SqlDataAdapter da = new SqlDataAdapter(query, con);
             DataTable dt = new DataTable();
             da.Fill(dt);
@@ -802,7 +934,10 @@ namespace WillAssure.Controllers
 
             return data;
 
+
+
         }
+
 
 
 

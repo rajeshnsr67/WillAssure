@@ -31,14 +31,15 @@ namespace WillAssure.Controllers
 
 
         public ActionResult frontendindex()
-       {
 
-           
-
+        {
 
 
 
-            return RedirectToAction("index.html", "WillAssureFrontend");
+
+
+
+            return View("~/Views/Frontend/Index.cshtml");
         }
 
 
@@ -72,6 +73,7 @@ namespace WillAssure.Controllers
                 Session["Type"] = dt.Rows[0]["Type"].ToString();
                 Session["willchk"] = dt.Rows[0]["Will"].ToString();
                 Session["ComparerrId"] = Convert.ToInt32(dt.Rows[0]["rId"]);
+                Session["displayname"] = dt.Rows[0]["First_Name"].ToString();
                 con.Open();
                string query2 = "select * from roles where rId = "+ Session["rId"] + " ";
                SqlDataAdapter da2 = new SqlDataAdapter(query2,con);
@@ -169,7 +171,7 @@ namespace WillAssure.Controllers
                             }
                             else
                             {
-                                return RedirectToAction("DashBoardIndex", "DashBoard");
+                                return RedirectToAction("DocumentIndex", "Frontend" , new { displayname = Session["displayname"].ToString() });
                             }
 
 
@@ -334,7 +336,20 @@ namespace WillAssure.Controllers
             Session["documentamount"] = "";
 
 
+          
+
+
             return View("~/Views/LoginPage/LoginPageContent.cshtml");
+        }
+
+
+
+        public ActionResult LogoutFrontend()
+        {
+            Session["displayname"] = "";
+            ViewBag.enableMultipleSelect = "false";
+
+            return RedirectToAction("Index", "Frontend");
         }
 
 

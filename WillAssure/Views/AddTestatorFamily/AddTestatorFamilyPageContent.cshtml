@@ -767,10 +767,10 @@
                     @*validation script*@
                     <script>
                         function getIdentityselection(id) {
+                            $("#ddlidentityproof1 option:disabled").removeAttr('disabled');
+                          //var a =  $("#Identity_Proof_txt").val(id);
 
-                          var a =  $("#Identity_Proof_txt").val(id);
-
-                            $("#ddlidentityproof1").find("option[value='" + a + "']").removeAttr("disabled");
+                            //$("#ddlidentityproof1").find("option[value='" + a + "']").removeAttr("disabled");
                            
 
                             if (id == "Aadhaar Card") {
@@ -798,7 +798,7 @@
                             var previousid = id;
 
                           
-
+                          
                             $("#ddlidentityproof1").find("option[value='" + previousid + "']").attr("disabled", "disabled");
 
                         }

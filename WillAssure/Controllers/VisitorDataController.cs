@@ -18,9 +18,9 @@ namespace WillAssure.Controllers
         public static string connectionString = ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString;
         SqlConnection con = new SqlConnection(connectionString);
         // GET: VisitorData
-        public string VisitorDataIndex()
+        public string VisitorDataIndex(string displayname)
         {
-
+            ViewBag.name = displayname;
            
             string msg1 = "Records Inserted SuccessFully";
             string response = Request["send"].ToString();
@@ -541,6 +541,24 @@ namespace WillAssure.Controllers
                     cc1.ExecuteNonQuery();
                     con.Close();
                 }
+            if (documenttype == "WillLivingWill")
+            {
+
+                con.Open();
+                string qq1 = "update users set Will = '1' , Codocil = '0' , POA = '0' , Giftdeeds='0', LivingWill='1' where uId = " + userid + " ";
+                SqlCommand cc1 = new SqlCommand(qq1, con);
+                cc1.ExecuteNonQuery();
+                con.Close();
+            }
+            if (documenttype == "LivingWillWill")
+            {
+
+                con.Open();
+                string qq1 = "update users set Will = '1' , Codocil = '0' , POA = '0' , Giftdeeds='0', LivingWill='1' where uId = " + userid + " ";
+                SqlCommand cc1 = new SqlCommand(qq1, con);
+                cc1.ExecuteNonQuery();
+                con.Close();
+            }
 
 
             con.Open();
@@ -1067,6 +1085,15 @@ namespace WillAssure.Controllers
 
 
             return status;
+        }
+
+
+
+        public ActionResult  getdisplayname()
+        {
+            string getname = ViewBag.name;
+
+            return View("");
         }
 
 

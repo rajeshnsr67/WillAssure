@@ -13,6 +13,7 @@ namespace WillAssure
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
             routes.IgnoreRoute("{WebForm}.aspx/{*pathInfo}");
+            routes.IgnoreRoute("{WebForm}.master/{*pathInfo}");
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
