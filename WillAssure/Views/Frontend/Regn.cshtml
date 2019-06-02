@@ -6,7 +6,7 @@
     ViewBag.Title = "Regn";
 }
 
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 <section class="flat-row page-careers">
     <div class="container">
 
@@ -193,3 +193,424 @@
     </div>
 </div>
 <!--End Modal -->
+
+
+
+
+<script>
+
+
+
+
+                                       function checkotpentered(value) {
+
+                                           var data = $("#txtotp").val();
+
+                                           $.ajax({
+
+                                               type: "POST",
+                                               url: "../VisitorData/checkenteredOTP",
+                                               data: { "send": "" + data + "" },
+                                               success: function (data) {
+
+                                                   if (data == "true") {
+                                                       $("#lblsuccess").show();
+                                                       $("#lblfailed").hide();
+                                                       $("#btnverifyotp").removeAttr("disabled");
+                                                   }
+
+                                                   if (data == "false") {
+                                                       $("#lblfailed").show();
+                                                       $("#lblsuccess").hide();
+                                                       $("#btnverifyotp").attr("disabled", true);
+                                                   }
+
+
+                                               }
+                                           });
+
+
+                                       }
+
+
+                                       function clearlblerror1() {
+
+                                           $("#lblerror1").hide();
+                                       }
+                                       function lblerror2() {
+
+                                           $("#lblerror2").hide();
+                                           $("#error").hide();
+
+
+                                       }
+
+                                       function lblerror3() {
+
+                                           $("#lblerror3").hide();
+
+                                           var email_reg = /^([\w-\.]+@@([\w-]+\.)+[\w-]{2,4})?$/;
+
+                                           var emailinput = $('#txtemail').val();
+                                           if (email_reg.test(emailinput) == false) {
+
+                                               $("#lblemailerr").show();
+                                           }
+
+                                           if (email_reg.test(emailinput) == true) {
+
+                                               $("#lblemailerr").hide();
+                                           }
+
+                                           var data = $("#txtemail").val();
+
+                                           $.ajax({
+
+                                               type: "POST",
+                                               url: "../VisitorData/checkemailduplicate",
+                                               data: { "send": "" + data + "" },
+                                               success: function (data) {
+
+                                                   if (data == "true") {
+
+                                                       $("#lbldup").hide();
+                                                   }
+
+                                                   if (data == "false") {
+                                                       $("#lbldup").show();
+                                                       $("#txtemail").val("");
+                                                   }
+
+
+                                               }
+                                           });
+
+
+
+
+                                       }
+                                       function lblerror4() {
+
+                                           $("#lblerror4").hide();
+                                       }
+                                       function lblerror12() {
+
+                                           $("#lblerror12").hide();
+                                       }
+                                       function lblerror13() {
+
+                                           $("#lblerror13").hide();
+                                       }
+
+
+                                       $(document).ready(function () {
+                                           $("#lblerror1").hide();
+                                           $("#lblerror2").hide();
+                                           $("#lblerror3").hide();
+                                           $("#lblerror4").hide();
+                                           $("#lblerror12").hide();
+                                           $("#lblerror13").hide();
+
+
+                                       });
+
+
+                                       $("#btnsubmit").click(function () {
+
+
+
+
+                                           if ($(".chk").prop("checked") == false || $(".chk").prop("checked") == false || $(".chk").prop("checked") == false || $(".chk").prop("checked") == false || $(".chk").prop("checked") == false) {
+                                               $("#lblcheck").show();
+                                           }
+
+                                           if ($("#getvalone").is(':checked')) {
+                                               if ($("#ddlDistributor").val() == "") {
+                                                   $("#lblerror4").show();
+                                               }
+                                           }
+
+
+
+                                           if ($("#txtfirstname").val() == "") {
+                                               $("#lblerror1").show();
+                                           }
+
+                                           if ($("#txtmiddlename").val() == "") {
+                                               $("#lblerror12").show();
+                                           }
+
+
+                                           if ($("#txtlastname").val() == "") {
+                                               $("#lblerror13").show();
+                                           }
+
+                                           if ($("#txtcontact").val() == "") {
+                                               $("#lblerror2").show();
+                                           }
+                                           if ($("#txtemail").val() == "") {
+
+
+
+
+                                               $("#lblerror3").show();
+                                           }
+
+                                           else {
+
+                                               var data = $("#txtfirstname").val() + "~" + $("#txtmiddlename").val() + "~" + $("#txtlastname").val() + "~" + $("#txtcontact").val() + "~" + $("#txtemail").val() + "~" + $("#ddlDistributor").val() + "~" + $("#documenttype").val();
+
+
+                                               $.ajax({
+
+                                                   type: "POST",
+                                                   url: "../VisitorData/VisitorDataIndex",
+                                                   data: { "send": "" + data + "" },
+                                                   success: function (data) {
+
+                                                       alert(data);
+
+
+
+
+                                                       $('#primarymodal').modal('show');
+
+
+                                                       $("#txtfirstname").val("");
+                                                       $("#txtmiddlename").val("");
+                                                       $("#txtlastname").val("");
+                                                       $("#txtcontact").val("");
+                                                       $("#txtemail").val("");
+                                                       $("#ddlDistributor").val("");
+
+
+
+                                                       $("#checkone").prop("checked", false);
+                                                       $("#checktwo").prop("checked", false);
+                                                       $("#checkthree").prop("checked", false);
+                                                       $("#checkfour").prop("checked", false);
+                                                       $("#checkfive").prop("checked", false);
+
+
+                                                       $("#lblsuccess").hide();
+                                                       $("#lblfailed").hide();
+
+
+
+
+                                                   }
+
+
+                                               });
+
+
+                                           }
+
+
+
+
+                                       });
+
+
+
+
+
+
+
+
+
+                                       //$(document).ready(function () {
+
+
+                                       //    $.ajax({
+
+                                       //        type: "POST",
+                                       //        url: "../VisitorData/binddocument",
+                                       //        success: function (data) {
+
+                                       //            $("#documentpricing").append(data);
+
+
+                                       //        }
+                                       //    });
+
+
+
+
+
+
+                                       //});
+
+
+
+                                       $("#btnverifyotp").click(function () {
+
+                                           var x = $("#txtotp").val();
+
+
+                                           $.ajax({
+
+                                               type: "POST",
+                                               url: "../VisitorData/checkOTP",
+                                               data: { "send": "" + x + "" },
+                                               success: function (data) {
+
+                                                   alert(data);
+
+                                                   $('#primarymodal').modal('hide');
+                                                   $("#txtotp").val("");
+                                               }
+                                           });
+
+
+
+                                       });
+
+
+
+
+
+
+                                       $(document).ready(function () {
+
+
+                                           $.ajax({
+
+                                               type: "POST",
+                                               url: "../VisitorData/BindDistributorDDL",
+                                               success: function (data) {
+
+                                                   $("#ddlDistributor").append(data);
+
+
+                                               }
+                                           });
+
+
+
+
+
+
+                                       });
+
+</script>
+
+
+
+<script>
+
+
+    $("#checkone").click(function () {
+
+
+        if ($("#checkone").is(":checked")) {
+            var x = $("#checkone").val();
+            $("#documenttype").append(x);
+
+            $('#DDLAmtPaidBY2').prop('disabled', false);
+        }
+        else {
+
+            $('#DDLAmtPaidBY2').prop('disabled', true);
+        }
+
+        $("#lblcheck").hide();
+
+    });
+
+
+
+
+    $("#checktwo").click(function () {
+
+
+
+        if ($("#checktwo").is(":checked")) {
+            var x = $("#checktwo").val();
+            $("#documenttype").append(x);
+            $('#DDLAmtPaidBY2').prop('disabled', false);
+        }
+
+        $("#lblcheck").hide();
+
+    });
+
+
+
+    $("#checkthree").click(function () {
+
+        if ($("#checkthree").is(":checked")) {
+            var x = $("#checkthree").val();
+            $("#documenttype").append(x);
+            $('#DDLAmtPaidBY2').prop('disabled', false);
+        }
+    });
+
+
+    $("#checkfour").click(function () {
+
+        if ($("#checkfour").is(":checked")) {
+            var x = $("#checkfour").val();
+            $("#documenttype").append(x);
+            $('#DDLAmtPaidBY2').prop('disabled', false);
+        }
+
+        $("#lblcheck").hide();
+
+
+    });
+
+
+    $("#checkfive").click(function () {
+
+        if ($("#checkfive").is(":checked")) {
+            var x = $("#checkfive").val();
+            $("#documenttype").append(x);
+            $('#DDLAmtPaidBY2').prop('disabled', false);
+        }
+
+        $("#lblcheck").hide();
+
+
+    });
+
+
+
+    $(document).on("change", "#getvalone", function () {
+
+        $("#ddlDistributor").show();
+
+
+    });
+
+    $(document).on("change", "#getvaltwo", function () {
+
+        $("#ddlDistributor").hide();
+        $("#lblerror4").hide();
+
+    });
+
+</script>
+
+
+<script type="text/javascript">
+    function check() {
+
+
+
+        var mobilereg = /[1-9]{1}[0-9]{9}/;
+
+        var mobileinput = $('#txtcontact').val();
+        if (mobilereg.test(mobileinput) == false) {
+
+            $("#error").show();
+        }
+
+        if (mobilereg.test(mobileinput) == true) {
+
+            $("#error").hide();
+            $("#lblerror2").hide();
+        }
+
+    }
+</script>

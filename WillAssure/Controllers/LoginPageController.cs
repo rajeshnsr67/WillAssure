@@ -167,7 +167,8 @@ namespace WillAssure.Controllers
 
                             if (Convert.ToInt32(paydtt.Rows[0]["PaymentStatus"]) == 1)
                             {
-                                return RedirectToAction("EnableDocumentLinks", "DashBoard");
+                                //  return RedirectToAction("EnableDocumentLinks", "DashBoard");
+                                return RedirectToAction("DocumentIndex", "Frontend", new { displayname = Session["displayname"].ToString() });
                             }
                             else
                             {

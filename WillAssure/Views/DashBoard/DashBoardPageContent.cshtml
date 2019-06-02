@@ -39,7 +39,7 @@
 
         @*@if (Session["documentamount"] != null)
         {*@
-            <input type="hidden" name="name" id="test" value="@Session["documentamount"]" />
+           
          
         @*else
         {
@@ -222,7 +222,7 @@
         <button type="button" id="btnOTPCheckFAILED" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
         <button style="display:none;" class="btn btn-outline-primary btn-block m-1" id="btnotp" data-toggle="modal" data-target="#primarymodal">Primary</button>
 
-        <button style="display:none;" class="btn btn-outline-primary btn-block m-1" id="btnpay" data-toggle="modal" data-target="#primarymodal2">Primary</button>
+        
     </div>
 
 
@@ -423,90 +423,3 @@
 
 
 
-
-
-@*payment integration script*@
-
-<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-<script>
-    var v = parseInt($("#test").val()) * 100;
-
-    var options = {
-        "key": "rzp_test_GMBr5S3CwTimPr",
-        "amount": "" + v + "", /// The amount is shown in currency subunits. Actual amount is ₹599.
-        "name": "WillAssure",
-        "order_id": "", // Pass the order ID if you are using Razorpay Orders.
-        "currency": "INR", // Optional. Same as the Order currency
-        "description": "Purchase Description",
-        "image": "/assets/images/logo-icon.png",
-        "handler": function (response) {
-            //alert(response.razorpay_payment_id);
-
-            var url = "/DashBoard/EnableDocumentLinks";
-            window.location.href = url;
-        },
-        "prefill": {
-            "name": "Gaurav Kumar",
-            "email": "test@test.com"
-        },
-        "notes": {
-            "address": "Hello World"
-        },
-        "theme": {
-            "color": "#F37254"
-        }
-    };
-    var rzp1 = new Razorpay(options);
-
-    document.getElementById('rzp-button1').onclick = function (e) {
-        rzp1.open();
-        e.preventDefault();
-
-
-    }
-
-
-    $("#btnpay").click(function () {
-
-        $('#btnpay').dialog('close');
-        return false;
-
-    });
-
-</script>
-
-
-
-@if (ViewBag.PaymentLink == "true")
-{
-    <script>
-
-        $(document).one('ready', function () {
-
-            $("#btnpay").on("click", function () { });
-
-            $("#btnpay").click(); //trigger event after listening to it.
-        })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    </script>
-
-    ViewBag.PaymentLink = "false";
-
-}
-
-
-@*end*@

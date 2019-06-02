@@ -41,7 +41,7 @@ namespace WillAssure.Controllers
 
                 con.Open();
 
-                string query = "insert into VisitorInfo (First_Name,Middle_Name,Last_Name,Mobile,Email,RefDist,documenttype,uid) values ('" + name + "' , '" + middlename + "' , '" + lastname + "' , '" + contactno + "' , '" + emailid + "' , '" + refdistributor + "' , '" + documenttype + "', 0)";
+                string query = "insert into VisitorInfo (First_Name,Middle_Name,Last_Name,Mobile,Email,RefDist,documenttype,uid,paymentstatus) values ('" + name + "' , '" + middlename + "' , '" + lastname + "' , '" + contactno + "' , '" + emailid + "' , '" + refdistributor + "' , '" + documenttype + "', 0 , 0)";
                 SqlCommand cmd = new SqlCommand(query, con);
                 cmd.ExecuteNonQuery();
                 con.Close();
@@ -75,9 +75,28 @@ namespace WillAssure.Controllers
                 con.Close();
 
 
+            // get laster visitor id
+                con.Open();
+                string getvid = "select top 1 vid from visitorinfo order by vid desc";
+                SqlDataAdapter datvid = new SqlDataAdapter(getvid, con);
+                DataTable dtvid = new DataTable();
+                datvid.Fill(dtvid);
+                int vid = 0;
+                if (dtvid.Rows.Count > 0)
+                {
+                    vid = Convert.ToInt32(dtvid.Rows[0]["vid"]);
+                }
+                con.Close();
 
 
-                if (documenttype == "WillCodocilPOA")
+            con.Open();
+            string qqt = "update visitorinfo set uid = "+userid+" where vid = "+vid+" ";
+            SqlCommand qqcmd = new SqlCommand(qqt, con);
+            qqcmd.ExecuteNonQuery();
+            con.Close();
+
+
+            if (documenttype == "WillCodocilPOA")
                 {
 
 
@@ -561,7 +580,7 @@ namespace WillAssure.Controllers
             }
 
 
-            con.Open();
+                con.Open();
                 string query3 = "insert into TestatorDetails (First_Name,Middle_Name,Last_Name,Mobile,Email,uid ,DOB,Occupation,maritalStatus,RelationShip,Religion,Identity_Proof,Identity_proof_Value,Alt_Identity_Proof,Alt_Identity_proof_Value,Gender,Address1,Address2,Address3,City ,State,Country ,Pin,active) values ('" + name + "' , '" + middlename + "' , '" + lastname + "' , '" + contactno + "' , '" + emailid + "' , " + userid + " , GETDATE() ,'none' ,'none' ,'none' ,'none' ,'none' ,'none' ,'none' ,'none' ,'none' ,'none' ,'none' ,'none' ,'none' ,'none' ,'none' ,'none' ,'no' )    ";
                 SqlCommand cmd3 = new SqlCommand(query3, con);
                 cmd3.ExecuteNonQuery();

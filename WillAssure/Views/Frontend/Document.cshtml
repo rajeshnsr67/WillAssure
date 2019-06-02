@@ -8,6 +8,12 @@
     ViewBag.Title = "Document";
 }
 
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+<input type="hidden" name="name" id="test" value="@Session["documentamount"]" />
+<input type="button" style="display:none;" id='btncreate' data-toggle='modal' data-target='.primarymodal' name="name" value="create" />
+<button style="display:none;" class="btn btn-outline-primary btn-block m-1" id="btnotp" data-toggle="modal" data-target="#primarymodal">Primary</button>
 @*document popup*@
 <div class="modal fade primarymodal">
     <div class="modal-dialog">
@@ -113,7 +119,7 @@
                     </div>
                 </div>
 
-           
+
 
             }
         </div>
@@ -122,4 +128,258 @@
 
 
 @*end*@
+
+
+
+<button style="display:none;" class="btn btn-outline-primary btn-block m-1" id="btnpay" data-toggle="modal" data-target="#primarymodal2">Primary</button>
+@*payment popup*@
+<div class="modal fade" id="primarymodal2">
+    <div class="modal-dialog">
+        <div class="modal-content border-primary">
+            <div class="modal-header bg-primary">
+                <h5 class="modal-title text-white">Payment</h5>
+                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+
+
+                <div class="row">
+                    <div class="col-sm-6">
+
+                        <div class="form-group">
+                            <label for="input-1" style="white-space: nowrap;">Click On The Below Button For Payment :</label>
+                            <button id="rzp-button1" class="btn btn-danger">Pay</button>
+
+                        </div>
+
+
+
+
+                    </div>
+
+
+
+
+
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@*end*@
+
+
+
+
+
+
+
+
+@*payment integration script*@
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+    var v = parseInt($("#test").val()) * 100;
+
+    var options = {
+        "key": "rzp_test_GMBr5S3CwTimPr",
+        "amount": "" + v + "", /// The amount is shown in currency subunits. Actual amount is ₹599.
+        "name": "WillAssure",
+        "order_id": "", // Pass the order ID if you are using Razorpay Orders.
+        "currency": "INR", // Optional. Same as the Order currency
+        "description": "Purchase Description",
+        "image": "/assets/images/logo-icon.png",
+        "handler": function (response) {
+            //alert(response.razorpay_payment_id);
+
+            var url = "/DashBoard/EnableDocumentLinks";
+            window.location.href = url;
+        },
+        "prefill": {
+            "name": "Gaurav Kumar",
+            "email": "test@test.com"
+        },
+        "notes": {
+            "address": "Hello World"
+        },
+        "theme": {
+            "color": "#F37254"
+        }
+    };
+    var rzp1 = new Razorpay(options);
+
+    document.getElementById('rzp-button1').onclick = function (e) {
+        rzp1.open();
+        e.preventDefault();
+
+
+    }
+
+
+    $("#btnpay").click(function () {
+
+        $('#btnpay').dialog('close');
+        return false;
+
+    });
+
+</script>
+
+
+
+@if (ViewBag.PaymentLink == "true")
+{
+    <script>
+
+        $(document).ready(function () {
+
+
+            $("#btnpay").on("click", function () { });
+
+            $("#btnpay").click(); //trigger event after listening to it.
+        })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+
+    ViewBag.PaymentLink = "false";
+
+}
+
+
+@*end*@
+
+
+
+
+        @if (ViewBag.create == "true")
+    {
+        <script>
+
+            $(document).ready(function () {
+
+
+                $("#btncreate").on("click", function () { });
+
+                $("#btncreate").click(); //trigger event after listening to it.
+            })
+
+      </script>
+
+    
+    }
+
+
+
+        <script>
+
+
+
+            $(".checkone").click(function () {
+
+                if ($(".checkone").is(":checked")) {
+                    var x = $(".checkone").val();
+                    $("#documenttype").append(x);
+
+                    $('#DDLAmtPaidBY2').prop('disabled', false);
+                }
+                else {
+
+                    $('#DDLAmtPaidBY2').prop('disabled', true);
+                }
+
+
+
+            });
+
+
+
+
+            $(".checktwo").click(function () {
+
+
+
+                if ($(".checktwo").is(":checked")) {
+                    var x = $(".checktwo").val();
+                    $("#documenttype").append(x);
+                    $('#DDLAmtPaidBY2').prop('disabled', false);
+                }
+
+
+
+            });
+
+
+
+            $(".checkthree").click(function () {
+
+                if ($(".checkthree").is(":checked")) {
+                    var x = $(".checkthree").val();
+                    $("#documenttype").append(x);
+                    $('#DDLAmtPaidBY2').prop('disabled', false);
+                }
+
+
+
+
+            });
+
+            $(".checkfour").click(function () {
+
+                if ($(".checkfour").is(":checked")) {
+                    var x = $(".checkfour").val();
+                    $("#documenttype").append(x);
+                    $('#DDLAmtPaidBY2').prop('disabled', false);
+                }
+
+
+
+
+            });
+
+
+            $(".checkfive").click(function () {
+
+                if ($(".checkfive").is(":checked")) {
+                    var x = $(".checkfive").val();
+                    $("#documenttype").append(x);
+                    $('#DDLAmtPaidBY2').prop('disabled', false);
+                }
+
+
+
+
+            });
+
+
+
+
+
+
+
+        </script>
+
+
 

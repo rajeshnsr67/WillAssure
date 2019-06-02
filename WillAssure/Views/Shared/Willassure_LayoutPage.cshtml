@@ -138,11 +138,11 @@
                                             }
                                             else
                                             {
-
+                                                // id='btncreate' data-toggle='modal' data-target='.primarymodal'
                                                 <li style="white-space:nowrap;">
                                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Document<b class="caret"></b></a>
                                                     <ul class="dropdown-menu multi-level">
-                                                        <li><a href="#" id='btncreate' data-toggle='modal' data-target='.primarymodal'>Create Document</a></li>
+                                                        <li><a href="@Url.Action("checkpaymentstatus","Frontend")" >Create Document</a></li>
                                                         <li><a href="#">Completed Document</a></li>
                                                         <li><a href="#">Incompleted Document</a></li>
 
@@ -180,6 +180,7 @@
         <div>
             @RenderBody()
         </div>
+
         <!-- Footer -->
         <footer class="footer widget-footer">
             <div class="container">
