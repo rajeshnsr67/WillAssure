@@ -336,8 +336,9 @@ namespace WillAssure.Controllers
             // on dashboard
             Session["documentamount"] = "";
 
+            Session["displayname"] = "";
 
-          
+
 
 
             return View("~/Views/LoginPage/LoginPageContent.cshtml");

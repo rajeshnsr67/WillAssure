@@ -508,81 +508,256 @@ namespace WillAssure.Controllers
 
 
             AM.documentId =0;
-
-            con.Open();
-            SqlCommand cmd = new SqlCommand("SP_CRUDAppointees",con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@condition", "insert");
-            cmd.Parameters.AddWithValue("@documentId", AM.documentId);
-            cmd.Parameters.AddWithValue("@Type", AM.Typetxt);
-            cmd.Parameters.AddWithValue("@subType", AM.subTypetxt);
-            cmd.Parameters.AddWithValue("@Name", AM.Name);
-            cmd.Parameters.AddWithValue("@middleName", AM.middleName);
-            cmd.Parameters.AddWithValue("@Surname", AM.Surname);
-            cmd.Parameters.AddWithValue("@Identity_proof", AM.Identity_Proof);
-            cmd.Parameters.AddWithValue("@Identity_proof_value", AM.Identity_Proof_Value);
-            cmd.Parameters.AddWithValue("@Alt_Identity_proof", AM.Alt_Identity_Proof);
-            cmd.Parameters.AddWithValue("@Alt_Identity_proof_value", AM.Alt_Identity_Proof_Value);
-            DateTime dat = DateTime.ParseExact(AM.Dob, "dd-MM-yyyy", CultureInfo.InvariantCulture);
-            cmd.Parameters.AddWithValue("@DOB", dat);
-            cmd.Parameters.AddWithValue("@Gender", AM.Gender);
-            cmd.Parameters.AddWithValue("@Occupation", AM.Occupation);
-            cmd.Parameters.AddWithValue("@Relationship", AM.RelationshipTxt);
-            cmd.Parameters.AddWithValue("@Address1", AM.Address1);
-            if (AM.Address2 != null || AM.Address2 == "")
-            {
-                cmd.Parameters.AddWithValue("@Address2", AM.Address2);
-            }
-            else
-            {
-                AM.Address2 = "None";
-                cmd.Parameters.AddWithValue("@Address2", AM.Address2);
-            }
-
-
-            if (AM.Address3 != null || AM.Address3 == "")
-            {
-                cmd.Parameters.AddWithValue("@Address3", AM.Address3);
-            }
-            else
-            {
-                AM.Address3 = "None";
-                cmd.Parameters.AddWithValue("@Address3", AM.Address3);
-            }
-
-          
-            cmd.Parameters.AddWithValue("@City", AM.citytext);
-            cmd.Parameters.AddWithValue("@State", AM.statetext);
-            cmd.Parameters.AddWithValue("@Pin", AM.Pin);
-            cmd.Parameters.AddWithValue("@tid", AM.ddltid);
-            cmd.ExecuteNonQuery();
-            con.Close();
-
-
             int appid = 0;
             // latest appointees
             int apid = 0;
-            con.Open();
-            string query = "select top 1 * from Appointees order by apId desc";
-            SqlDataAdapter da2 = new SqlDataAdapter(query, con);
-            DataTable dt2 = new DataTable();
-            da2.Fill(dt2);
-            if (dt2.Rows.Count > 0)
+            if (Session["doctype"].ToString() == "Will")
             {
-                appid = Convert.ToInt32(dt2.Rows[0]["apId"]);
-                apid = 1; // for yes
+                con.Open();
+                SqlCommand cmd = new SqlCommand("SP_CRUDAppointees", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@condition", "insert");
+                cmd.Parameters.AddWithValue("@documentId", AM.documentId);
+                cmd.Parameters.AddWithValue("@Type", AM.Typetxt);
+                cmd.Parameters.AddWithValue("@subType", AM.subTypetxt);
+                cmd.Parameters.AddWithValue("@Name", AM.Name);
+                cmd.Parameters.AddWithValue("@middleName", AM.middleName);
+                cmd.Parameters.AddWithValue("@Surname", AM.Surname);
+                cmd.Parameters.AddWithValue("@Identity_proof", AM.Identity_Proof);
+                cmd.Parameters.AddWithValue("@Identity_proof_value", AM.Identity_Proof_Value);
+                cmd.Parameters.AddWithValue("@Alt_Identity_proof", AM.Alt_Identity_Proof);
+                cmd.Parameters.AddWithValue("@Alt_Identity_proof_value", AM.Alt_Identity_Proof_Value);
+                DateTime dat = DateTime.ParseExact(AM.Dob, "dd-MM-yyyy", CultureInfo.InvariantCulture);
+                cmd.Parameters.AddWithValue("@DOB", dat);
+                cmd.Parameters.AddWithValue("@Gender", AM.Gender);
+                cmd.Parameters.AddWithValue("@Occupation", AM.Occupation);
+                cmd.Parameters.AddWithValue("@Relationship", AM.RelationshipTxt);
+                cmd.Parameters.AddWithValue("@Address1", AM.Address1);
+                if (AM.Address2 != null || AM.Address2 == "")
+                {
+                    cmd.Parameters.AddWithValue("@Address2", AM.Address2);
+                }
+                else
+                {
+                    AM.Address2 = "None";
+                    cmd.Parameters.AddWithValue("@Address2", AM.Address2);
+                }
+
+
+                if (AM.Address3 != null || AM.Address3 == "")
+                {
+                    cmd.Parameters.AddWithValue("@Address3", AM.Address3);
+                }
+                else
+                {
+                    AM.Address3 = "None";
+                    cmd.Parameters.AddWithValue("@Address3", AM.Address3);
+                }
+
+
+                cmd.Parameters.AddWithValue("@City", AM.citytext);
+                cmd.Parameters.AddWithValue("@State", AM.statetext);
+                cmd.Parameters.AddWithValue("@Pin", AM.Pin);
+                cmd.Parameters.AddWithValue("@tid", AM.ddltid);
+                cmd.ExecuteNonQuery();
+                con.Close();
+
+
+             
+                con.Open();
+                string query = "select top 1 * from Appointees order by apId desc";
+                SqlDataAdapter da2 = new SqlDataAdapter(query, con);
+                DataTable dt2 = new DataTable();
+                da2.Fill(dt2);
+                if (dt2.Rows.Count > 0)
+                {
+                    appid = Convert.ToInt32(dt2.Rows[0]["apId"]);
+                    apid = 1; // for yes
+                }
+                else
+                {
+                    apid = 2; //for no
+                }
+                con.Close();
+
+
+
+                //end
+
+
+                con.Open();
+                string qt = "update Appointees set doctype = 'Will'  where  apId = "+apid+"";
+                SqlCommand cmdt = new SqlCommand(qt,con);
+                cmdt.ExecuteNonQuery();
+                con.Close();
+
+
             }
-            else
+
+
+
+
+            if (Session["doctype"].ToString() == "POA")
             {
-                apid = 2; //for no
+                con.Open();
+                SqlCommand cmd = new SqlCommand("SP_CRUDAppointees", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@condition", "insert");
+                cmd.Parameters.AddWithValue("@documentId", AM.documentId);
+                cmd.Parameters.AddWithValue("@Type", AM.Typetxt);
+                cmd.Parameters.AddWithValue("@subType", AM.subTypetxt);
+                cmd.Parameters.AddWithValue("@Name", AM.Name);
+                cmd.Parameters.AddWithValue("@middleName", AM.middleName);
+                cmd.Parameters.AddWithValue("@Surname", AM.Surname);
+                cmd.Parameters.AddWithValue("@Identity_proof", AM.Identity_Proof);
+                cmd.Parameters.AddWithValue("@Identity_proof_value", AM.Identity_Proof_Value);
+                cmd.Parameters.AddWithValue("@Alt_Identity_proof", AM.Alt_Identity_Proof);
+                cmd.Parameters.AddWithValue("@Alt_Identity_proof_value", AM.Alt_Identity_Proof_Value);
+                DateTime dat = DateTime.ParseExact(AM.Dob, "dd-MM-yyyy", CultureInfo.InvariantCulture);
+                cmd.Parameters.AddWithValue("@DOB", dat);
+                cmd.Parameters.AddWithValue("@Gender", AM.Gender);
+                cmd.Parameters.AddWithValue("@Occupation", AM.Occupation);
+                cmd.Parameters.AddWithValue("@Relationship", AM.RelationshipTxt);
+                cmd.Parameters.AddWithValue("@Address1", AM.Address1);
+                if (AM.Address2 != null || AM.Address2 == "")
+                {
+                    cmd.Parameters.AddWithValue("@Address2", AM.Address2);
+                }
+                else
+                {
+                    AM.Address2 = "None";
+                    cmd.Parameters.AddWithValue("@Address2", AM.Address2);
+                }
+
+
+                if (AM.Address3 != null || AM.Address3 == "")
+                {
+                    cmd.Parameters.AddWithValue("@Address3", AM.Address3);
+                }
+                else
+                {
+                    AM.Address3 = "None";
+                    cmd.Parameters.AddWithValue("@Address3", AM.Address3);
+                }
+
+
+                cmd.Parameters.AddWithValue("@City", AM.citytext);
+                cmd.Parameters.AddWithValue("@State", AM.statetext);
+                cmd.Parameters.AddWithValue("@Pin", AM.Pin);
+                cmd.Parameters.AddWithValue("@tid", AM.ddltid);
+                cmd.ExecuteNonQuery();
+                con.Close();
+
+
+               
+                con.Open();
+                string query = "select top 1 * from Appointees order by apId desc";
+                SqlDataAdapter da2 = new SqlDataAdapter(query, con);
+                DataTable dt2 = new DataTable();
+                da2.Fill(dt2);
+                if (dt2.Rows.Count > 0)
+                {
+                    appid = Convert.ToInt32(dt2.Rows[0]["apId"]);
+                    apid = 1; // for yes
+                }
+                else
+                {
+                    apid = 2; //for no
+                }
+                con.Close();
+
+
+
+                //end
+                con.Open();
+                string qt = "update Appointees set doctype = 'POA'  where  apId = " + apid + "";
+                SqlCommand cmdt = new SqlCommand(qt, con);
+                cmdt.ExecuteNonQuery();
+                con.Close();
+
             }
-            con.Close();
 
 
 
-            //end
+            if (Session["doctype"].ToString() == "Giftdeeds")
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand("SP_CRUDAppointees", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@condition", "insert");
+                cmd.Parameters.AddWithValue("@documentId", AM.documentId);
+                cmd.Parameters.AddWithValue("@Type", AM.Typetxt);
+                cmd.Parameters.AddWithValue("@subType", AM.subTypetxt);
+                cmd.Parameters.AddWithValue("@Name", AM.Name);
+                cmd.Parameters.AddWithValue("@middleName", AM.middleName);
+                cmd.Parameters.AddWithValue("@Surname", AM.Surname);
+                cmd.Parameters.AddWithValue("@Identity_proof", AM.Identity_Proof);
+                cmd.Parameters.AddWithValue("@Identity_proof_value", AM.Identity_Proof_Value);
+                cmd.Parameters.AddWithValue("@Alt_Identity_proof", AM.Alt_Identity_Proof);
+                cmd.Parameters.AddWithValue("@Alt_Identity_proof_value", AM.Alt_Identity_Proof_Value);
+                DateTime dat = DateTime.ParseExact(AM.Dob, "dd-MM-yyyy", CultureInfo.InvariantCulture);
+                cmd.Parameters.AddWithValue("@DOB", dat);
+                cmd.Parameters.AddWithValue("@Gender", AM.Gender);
+                cmd.Parameters.AddWithValue("@Occupation", AM.Occupation);
+                cmd.Parameters.AddWithValue("@Relationship", AM.RelationshipTxt);
+                cmd.Parameters.AddWithValue("@Address1", AM.Address1);
+                if (AM.Address2 != null || AM.Address2 == "")
+                {
+                    cmd.Parameters.AddWithValue("@Address2", AM.Address2);
+                }
+                else
+                {
+                    AM.Address2 = "None";
+                    cmd.Parameters.AddWithValue("@Address2", AM.Address2);
+                }
 
 
+                if (AM.Address3 != null || AM.Address3 == "")
+                {
+                    cmd.Parameters.AddWithValue("@Address3", AM.Address3);
+                }
+                else
+                {
+                    AM.Address3 = "None";
+                    cmd.Parameters.AddWithValue("@Address3", AM.Address3);
+                }
+
+
+                cmd.Parameters.AddWithValue("@City", AM.citytext);
+                cmd.Parameters.AddWithValue("@State", AM.statetext);
+                cmd.Parameters.AddWithValue("@Pin", AM.Pin);
+                cmd.Parameters.AddWithValue("@tid", AM.ddltid);
+                cmd.ExecuteNonQuery();
+                con.Close();
+
+
+               
+                con.Open();
+                string query = "select top 1 * from Appointees order by apId desc";
+                SqlDataAdapter da2 = new SqlDataAdapter(query, con);
+                DataTable dt2 = new DataTable();
+                da2.Fill(dt2);
+                if (dt2.Rows.Count > 0)
+                {
+                    appid = Convert.ToInt32(dt2.Rows[0]["apId"]);
+                    apid = 1; // for yes
+                }
+                else
+                {
+                    apid = 2; //for no
+                }
+                con.Close();
+
+
+
+                //end
+                con.Open();
+                string qt = "update Appointees set doctype = 'Giftdeeds'  where  apId = " + apid + "";
+                SqlCommand cmdt = new SqlCommand(qt, con);
+                cmdt.ExecuteNonQuery();
+                con.Close();
+
+            }
 
             // dropdown selection
             int AppointmentofGuardian = 0;

@@ -22,6 +22,7 @@ namespace WillAssure.Controllers
         // GET: AddMainAssets
         public ActionResult AddMainAssetsIndex()
         {
+            ViewBag.view = "Will";
             ViewBag.collapse = "true";
             // check type 
             string typ = "";
@@ -1122,36 +1123,127 @@ namespace WillAssure.Controllers
                 
                 dd.Add(obj.Nomination, radio3.ToString());
             }
-
-
-            //if (Session["tid"] != null)
-            //{
-                string json = JsonConvert.SerializeObject(dd);
-                int amid = Convert.ToInt32(TempData["amid"]);
-                con.Open();
-                string query = "insert into AssetInformation (atId,amId,Json,tid,uId) values (" + TempData["atid"] + " , " + amid + " ,'" + json + "' , " + ttid + " , "+Convert.ToInt32(Session["uuid"])+")";
-                SqlCommand cmd = new SqlCommand(query, con);
-                cmd.ExecuteNonQuery();
-                con.Close();
-
-
-                con.Open();
-                string query2 = "select top 1 * from AssetInformation order by aiid desc";
-                SqlDataAdapter da = new SqlDataAdapter(query2,con);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
             if (Session["aiid"] == null)
             {
                 RedirectToAction("LoginPageIndex", "LoginPage");
             }
+
+            //if (Session["tid"] != null)
+            //{
+
+            if (Session["doctype"].ToString() == "Will")
+            {
+                string json = JsonConvert.SerializeObject(dd);
+                int amid = Convert.ToInt32(TempData["amid"]);
+                con.Open();
+                string query = "insert into AssetInformation (atId,amId,Json,tid,uId) values (" + TempData["atid"] + " , " + amid + " ,'" + json + "' , " + ttid + " , " + Convert.ToInt32(Session["uuid"]) + ")";
+                SqlCommand cmd = new SqlCommand(query, con);
+                cmd.ExecuteNonQuery();
+                con.Close();
+
+                con.Open();
+                string query2 = "select top 1 * from AssetInformation order by aiid desc";
+                SqlDataAdapter da = new SqlDataAdapter(query2, con);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+
                 if (dt.Rows.Count > 0)
                 {
-                 
+
                     Session["aiid"] = Convert.ToInt32(dt.Rows[0]["aiid"]);
 
                 }
-
                 con.Close();
+
+                con.Open();
+                string query22 = "update AssetInformation set doctype = 'Will' where aiid = "+ Session["aiid"] + "  ";
+                SqlCommand cmd22 = new SqlCommand(query22, con);
+                cmd22.ExecuteNonQuery();
+                con.Close();
+
+
+
+               
+            }
+
+
+
+
+
+            if (Session["doctype"].ToString() == "POA")
+            {
+                string json = JsonConvert.SerializeObject(dd);
+                int amid = Convert.ToInt32(TempData["amid"]);
+                con.Open();
+                string query = "insert into AssetInformation (atId,amId,Json,tid,uId) values (" + TempData["atid"] + " , " + amid + " ,'" + json + "' , " + ttid + " , " + Convert.ToInt32(Session["uuid"]) + ")";
+                SqlCommand cmd = new SqlCommand(query, con);
+                cmd.ExecuteNonQuery();
+                con.Close();
+
+                con.Open();
+                string query2 = "select top 1 * from AssetInformation order by aiid desc";
+                SqlDataAdapter da = new SqlDataAdapter(query2, con);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+
+                if (dt.Rows.Count > 0)
+                {
+
+                    Session["aiid"] = Convert.ToInt32(dt.Rows[0]["aiid"]);
+
+                }
+                con.Close();
+
+                con.Open();
+                string query22 = "update AssetInformation set doctype = 'POA' where aiid = " + Session["aiid"] + "  ";
+                SqlCommand cmd22 = new SqlCommand(query22, con);
+                cmd22.ExecuteNonQuery();
+                con.Close();
+            }
+
+
+
+
+
+            if (Session["doctype"].ToString() == "Giftdeeds")
+            {
+                string json = JsonConvert.SerializeObject(dd);
+                int amid = Convert.ToInt32(TempData["amid"]);
+                con.Open();
+                string query = "insert into AssetInformation (atId,amId,Json,tid,uId) values (" + TempData["atid"] + " , " + amid + " ,'" + json + "' , " + ttid + " , " + Convert.ToInt32(Session["uuid"]) + ")";
+                SqlCommand cmd = new SqlCommand(query, con);
+                cmd.ExecuteNonQuery();
+                con.Close();
+
+                con.Open();
+                string query2 = "select top 1 * from AssetInformation order by aiid desc";
+                SqlDataAdapter da = new SqlDataAdapter(query2, con);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+
+                if (dt.Rows.Count > 0)
+                {
+
+                    Session["aiid"] = Convert.ToInt32(dt.Rows[0]["aiid"]);
+
+                }
+                con.Close();
+
+
+
+                con.Open();
+                string query22 = "update AssetInformation set doctype = 'Giftdeeds' where aiid = " + Session["aiid"] + "  ";
+                SqlCommand cmd22 = new SqlCommand(query22, con);
+                cmd22.ExecuteNonQuery();
+                con.Close();
+            }
+
+
+
+
+
+
+            con.Close();
                 ModelState.Clear();
 
                 ViewBag.Message = "Verified";

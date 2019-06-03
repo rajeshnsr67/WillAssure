@@ -38,45 +38,123 @@
         <br />
 
         @*@if (Session["documentamount"] != null)
-        {*@
-           
-         
+            {*@
+
+
         @*else
-        {
-            if (!Response.IsRequestBeingRedirected)
             {
-                Response.Redirect("/LoginPage/LoginPageIndex");
-            }
-        }*@
+                if (!Response.IsRequestBeingRedirected)
+                {
+                    Response.Redirect("/LoginPage/LoginPageIndex");
+                }
+            }*@
 
 
         @*@if (Session["Type"] == null)
-        {
-            <script>
-                var url = "/LoginPage/LoginPageIndex/";
-                window.location.href = url;
-            </script>
+            {
+                <script>
+                    var url = "/LoginPage/LoginPageIndex/";
+                    window.location.href = url;
+                </script>
 
-        }*@
+            }*@
 
 
         @if (Session["Type"] != null)
         {
             if (Session["Type"].ToString() != "Testator")
             {
-            <div class="row">
+                <div class="row">
 
 
 
-                @if (Session["Type"].ToString() != "DistributorAdmin")
-                {
+                    @if (Session["Type"].ToString() != "DistributorAdmin")
+                    {
+                        <div class="col-sm-4">
+                            <div class="card gradient-blooker">
+                                <div class="card-body">
+                                    <div class="media align-items-center">
+                                        <div class="media-body">
+                                            <p class="text-white">Total Distributor Register</p>
+                                            <h4 class="text-white line-height-5">@ViewBag.TotalDistributorAdmin</h4>
+                                        </div>
+                                        <div class="w-circle-icon rounded-circle border border-white">
+                                            <i class="fa fa-users text-white"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+
+
+
                     <div class="col-sm-4">
+                        <div class="card gradient-scooter">
+                            <div class="card-body">
+                                <div class="media align-items-center">
+                                    <div class="media-body">
+                                        <p class="text-white">Total Testator Register</p>
+                                        <h4 class="text-white line-height-5">@ViewBag.TotalTestator</h4>
+                                    </div>
+                                    <div class="w-circle-icon rounded-circle border border-white">
+                                        <i class="fa fa-users text-white"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    @if (Session["Type"].ToString() == "SuperAdmin")
+                    {
+                        <div class="col-sm-4">
+                            <div class="card gradient-bloody">
+                                <div class="card-body">
+                                    <div class="media align-items-center">
+                                        <div class="media-body">
+                                            <p class="text-white">Total Visitor Register</p>
+                                            <h4 class="text-white line-height-5">@ViewBag.TotalVisitor</h4>
+                                        </div>
+                                        <div class="w-circle-icon rounded-circle border border-white">
+                                            <i class="fa fa-users text-white"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+
+
+                    <div class="col-sm-3">
+                        <div class="card gradient-ohhappiness">
+                            <div class="card-body">
+                                <div class="media align-items-center">
+                                    <div class="media-body">
+                                        <p class="text-white">Total Will</p>
+                                        <h4 class="text-white line-height-5">@ViewBag.Will</h4>
+                                    </div>
+                                    <div class="w-circle-icon rounded-circle border border-white">
+                                        <i class="fa fa-users text-white"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="col-sm-3">
                         <div class="card gradient-blooker">
                             <div class="card-body">
                                 <div class="media align-items-center">
                                     <div class="media-body">
-                                        <p class="text-white">Total Distributor Register</p>
-                                        <h4 class="text-white line-height-5">@ViewBag.TotalDistributorAdmin</h4>
+                                        <p class="text-white">Total Codocil </p>
+                                        <h4 class="text-white line-height-5">@ViewBag.Codocil</h4>
                                     </div>
                                     <div class="w-circle-icon rounded-circle border border-white">
                                         <i class="fa fa-users text-white"></i>
@@ -85,38 +163,16 @@
                             </div>
                         </div>
                     </div>
-                }
-              
 
 
 
-                <div class="col-sm-4">
-                    <div class="card gradient-scooter">
-                        <div class="card-body">
-                            <div class="media align-items-center">
-                                <div class="media-body">
-                                    <p class="text-white">Total Testator Register</p>
-                                    <h4 class="text-white line-height-5">@ViewBag.TotalTestator</h4>
-                                </div>
-                                <div class="w-circle-icon rounded-circle border border-white">
-                                    <i class="fa fa-users text-white"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-
-                @if (Session["Type"].ToString() == "SuperAdmin")
-                {
-                    <div class="col-sm-4">
+                    <div class="col-sm-3">
                         <div class="card gradient-bloody">
                             <div class="card-body">
                                 <div class="media align-items-center">
                                     <div class="media-body">
-                                        <p class="text-white">Total Visitor Register</p>
-                                        <h4 class="text-white line-height-5">@ViewBag.TotalVisitor</h4>
+                                        <p class="text-white">Total POA </p>
+                                        <h4 class="text-white line-height-5">@ViewBag.POA</h4>
                                     </div>
                                     <div class="w-circle-icon rounded-circle border border-white">
                                         <i class="fa fa-users text-white"></i>
@@ -125,88 +181,32 @@
                             </div>
                         </div>
                     </div>
-                }
-              
-
-
-                <div class="col-sm-3">
-                    <div class="card gradient-ohhappiness">
-                        <div class="card-body">
-                            <div class="media align-items-center">
-                                <div class="media-body">
-                                    <p class="text-white">Total Will</p>
-                                    <h4 class="text-white line-height-5">@ViewBag.Will</h4>
-                                </div>
-                                <div class="w-circle-icon rounded-circle border border-white">
-                                    <i class="fa fa-users text-white"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
 
 
-
-                <div class="col-sm-3">
-                    <div class="card gradient-blooker">
-                        <div class="card-body">
-                            <div class="media align-items-center">
-                                <div class="media-body">
-                                    <p class="text-white">Total Codocil </p>
-                                    <h4 class="text-white line-height-5">@ViewBag.Codocil</h4>
-                                </div>
-                                <div class="w-circle-icon rounded-circle border border-white">
-                                    <i class="fa fa-users text-white"></i>
+                    <div class="col-sm-3">
+                        <div class="card gradient-blooker">
+                            <div class="card-body">
+                                <div class="media align-items-center">
+                                    <div class="media-body">
+                                        <p class="text-white">Total GiftDeeds </p>
+                                        <h4 class="text-white line-height-5">@ViewBag.GiftDeeds</h4>
+                                    </div>
+                                    <div class="w-circle-icon rounded-circle border border-white">
+                                        <i class="fa fa-users text-white"></i>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
+
+
+
+
+
+
                 </div>
-
-
-
-                <div class="col-sm-3">
-                    <div class="card gradient-bloody">
-                        <div class="card-body">
-                            <div class="media align-items-center">
-                                <div class="media-body">
-                                    <p class="text-white">Total POA </p>
-                                    <h4 class="text-white line-height-5">@ViewBag.POA</h4>
-                                </div>
-                                <div class="w-circle-icon rounded-circle border border-white">
-                                    <i class="fa fa-users text-white"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-
-                <div class="col-sm-3">
-                    <div class="card gradient-blooker">
-                        <div class="card-body">
-                            <div class="media align-items-center">
-                                <div class="media-body">
-                                    <p class="text-white">Total GiftDeeds </p>
-                                    <h4 class="text-white line-height-5">@ViewBag.GiftDeeds</h4>
-                                </div>
-                                <div class="w-circle-icon rounded-circle border border-white">
-                                    <i class="fa fa-users text-white"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-
-
-
-
-
-            </div>
             }
         }
         else
@@ -221,8 +221,8 @@
 
         <button type="button" id="btnOTPCheckFAILED" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
         <button style="display:none;" class="btn btn-outline-primary btn-block m-1" id="btnotp" data-toggle="modal" data-target="#primarymodal">Primary</button>
+        <button id="btnwillsuccess" style="display:none;"></button>
 
-        
     </div>
 
 
@@ -336,6 +336,21 @@
 
 
 @*end*@
+
+
+@if (ViewBag.completion == "true")
+{
+    <script>
+        $(document).ready(function () {
+            $("#btnwillsuccess").on("click", function () { });
+
+            $("#btnwillsuccess").click(); //trigger event after listening to it.
+        });
+       
+    </script>
+}
+
+
 @if (ViewBag.documentbtn1 == "true")
 {
 

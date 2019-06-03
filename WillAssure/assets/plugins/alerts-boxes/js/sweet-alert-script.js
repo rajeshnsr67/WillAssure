@@ -45,6 +45,12 @@
 
      
      // roles
+     
+
+     $("#btnwillsuccess").click(function () {
+         swal("Failed", "Will Already Have Been Created...!", "warning");
+     });
+
 
 
      $("#btncheckExists").click(function () {

@@ -366,6 +366,34 @@ namespace WillAssure.Controllers
 
 
 
+        public ActionResult Makepayment()
+        {
+
+            // make payment done
+            con.Open();
+            string qp = "update testatordetails set PaymentStatus = 1 where uId = " + Convert.ToInt32(Session["uuid"]) + "";
+            SqlCommand cmq = new SqlCommand(qp, con);
+            cmq.ExecuteNonQuery();
+            con.Close();
+
+
+            con.Open();
+            string qp1 = "update visitorinfo set paymentstatus = 1 where uId = " + Convert.ToInt32(Session["uuid"]) + "";
+            SqlCommand cmq1 = new SqlCommand(qp1, con);
+            cmq1.ExecuteNonQuery();
+            con.Close();
+
+
+            //end
+
+
+            return RedirectToAction("DashBoardIndex", "DashBoard");
+
+
+        }
+
+
+
 
         public ActionResult insertDocumentDetails(TestatorFormModel TFM)
         {
@@ -1117,6 +1145,40 @@ namespace WillAssure.Controllers
 
                 con.Open();
                 string qq1 = "update users set Will = '1' , Codocil = '0' , POA = '0' , Giftdeeds='0', LivingWill='1' where uId = " + distid + " ";
+                SqlCommand cc1 = new SqlCommand(qq1, con);
+                cc1.ExecuteNonQuery();
+                con.Close();
+            }
+
+
+            if (TFM.documenttype == "WillPOAGiftdeeds")
+            {
+
+                con.Open();
+                string qq1 = "update users set Will = '1' , Codocil = '0' , POA = '1' , Giftdeeds='1', LivingWill='0' where uId = " + distid + " ";
+                SqlCommand cc1 = new SqlCommand(qq1, con);
+                cc1.ExecuteNonQuery();
+                con.Close();
+            }
+
+
+            if (TFM.documenttype == "POAWillGiftdeeds")
+            {
+
+                con.Open();
+                string qq1 = "update users set Will = '1' , Codocil = '0' , POA = '1' , Giftdeeds='1', LivingWill='0' where uId = " + distid + " ";
+                SqlCommand cc1 = new SqlCommand(qq1, con);
+                cc1.ExecuteNonQuery();
+                con.Close();
+            }
+
+
+
+            if (TFM.documenttype == "GiftdeedsPOAWill")
+            {
+
+                con.Open();
+                string qq1 = "update users set Will = '1' , Codocil = '0' , POA = '1' , Giftdeeds='1', LivingWill='0' where uId = " + distid + " ";
                 SqlCommand cc1 = new SqlCommand(qq1, con);
                 cc1.ExecuteNonQuery();
                 con.Close();

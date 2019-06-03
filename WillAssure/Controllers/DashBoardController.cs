@@ -16,9 +16,13 @@ namespace WillAssure.Controllers
         public static string connectionString = ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString;
         SqlConnection con = new SqlConnection(connectionString);
         // GET: DashBoard
-        public ActionResult DashBoardIndex()
+        public ActionResult DashBoardIndex(string msg)
         {
 
+            if (msg == "willcreated")
+            {
+                ViewBag.completion = "true";
+            }
 
 
             con.Open();
@@ -30,8 +34,8 @@ namespace WillAssure.Controllers
 
             if (paydtt.Rows.Count > 0)
             {
-                //if (Convert.ToInt32(paydtt.Rows[0]["PaymentStatus"]) == 1)
-                //{
+                if (Convert.ToInt32(paydtt.Rows[0]["PaymentStatus"]) == 1)
+                {
 
 
                     // check will status
@@ -127,14 +131,14 @@ namespace WillAssure.Controllers
 
                     ViewBag.create = "true";
 
-                //}
-                //else
-                //{
+                }
+                else
+                {
 
-                //    ViewBag.PaymentLink = "true";
+                    ViewBag.PaymentLink = "true";
 
 
-                //}
+                }
             }
 
             

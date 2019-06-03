@@ -1215,11 +1215,17 @@ namespace WillAssure.Controllers
             con.Close();
 
 
-            con.Open();
-            string query = "insert into BeneficiaryAssets (AssetType_ID , AssetCategory_ID , Beneficiary_ID , SchemeName , InstrumentName , Proportion , tid ) values   (  "+assettype+" , "+assetcat+", " + beneficiary + " , '" + schemename + "' , '" + instrument + "' , '" + proportion + "' , " + Convert.ToInt32(tid) + ") ";
-            SqlCommand cmd = new SqlCommand(query, con);
-            cmd.ExecuteNonQuery();
-            con.Close();
+         
+         
+                con.Open();
+                string query = "insert into BeneficiaryAssets (AssetType_ID , AssetCategory_ID , Beneficiary_ID , SchemeName , InstrumentName , Proportion , tid , doctype) values   (  " + assettype + " , " + assetcat + ", " + beneficiary + " , '" + schemename + "' , '" + instrument + "' , '" + proportion + "' , " + Convert.ToInt32(tid) + " , '"+ Session["doctype"].ToString() + "') ";
+                SqlCommand cmd = new SqlCommand(query, con);
+                cmd.ExecuteNonQuery();
+                con.Close();
+
+
+            
+         
 
             ModelState.Clear();
             return View("~/Views/AddAssetMapping/AddAssetMappingPageContent.cshtml");
@@ -1291,7 +1297,7 @@ namespace WillAssure.Controllers
                 {
                     con.Open();
                     result[i].ToString();
-                    string query = "insert into BeneficiaryAssets (Beneficiary_ID,SchemeName,InstrumentName,Proportion , tid , AssetType_ID , AssetCategory_ID) values (" + result[i].ToString() + "," + Convert.ToInt32(tid) + " , "+assettyp+" , "+btnidentify+")";
+                    string query = "insert into BeneficiaryAssets (Beneficiary_ID,SchemeName,InstrumentName,Proportion , tid , AssetType_ID , AssetCategory_ID , doctype) values (" + result[i].ToString() + "," + Convert.ToInt32(tid) + " , "+assettyp+" , "+btnidentify+" , '"+ Session["doctype"].ToString() + "')";
                     SqlCommand cmd = new SqlCommand(query,con);
                     cmd.ExecuteNonQuery();
                     con.Close();

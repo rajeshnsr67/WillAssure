@@ -22,8 +22,8 @@ namespace WillAssure.Controllers
         // GET: AddTestatorFamily
         public ActionResult AddTestatorFamilyIndex()
         {
-           
 
+            ViewBag.view = "Will";
             ViewBag.collapse = "true";
             // check type 
             string typ = "";

@@ -21,6 +21,7 @@ namespace WillAssure.Controllers
         // GET: AddBeneficiary
         public ActionResult AddBeneficiaryIndex()
         {
+            ViewBag.view = "Will";
             ViewBag.collapse = "true";
             // check type fsdf
             string typ = "";
@@ -389,7 +390,9 @@ namespace WillAssure.Controllers
             //BM.aid = Convert.ToInt32(Session["aiid"]);
             //BM.tid = Convert.ToInt32(Session["tid"]);
                 BM.aid = 0;
-
+                int bpid = 0;
+            if (Session["doctype"].ToString() == "Will")
+            {
                 con.Open();
                 SqlCommand cmd = new SqlCommand("SP_CRUDBeneficiaryDetails", con);
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
@@ -407,32 +410,32 @@ namespace WillAssure.Controllers
                 cmd.Parameters.AddWithValue("@Identity_proof_value", BM.Identity_proof_value);
                 cmd.Parameters.AddWithValue("@Alt_Identity_proof", BM.Alt_Identity_proof);
                 cmd.Parameters.AddWithValue("@Alt_Identity_proof_value", BM.Alt_Identity_proof_value);
-           
+
                 cmd.Parameters.AddWithValue("@Address1", BM.Address1);
-            if (BM.Address2 != null || BM.Address2 == "")
-            {
-                cmd.Parameters.AddWithValue("@Address2", BM.Address2);
-        
-            }
-            else
-            {
-                BM.Address2 = "None";
-                cmd.Parameters.AddWithValue("@Address2", BM.Address2);
-            }
+                if (BM.Address2 != null || BM.Address2 == "")
+                {
+                    cmd.Parameters.AddWithValue("@Address2", BM.Address2);
+
+                }
+                else
+                {
+                    BM.Address2 = "None";
+                    cmd.Parameters.AddWithValue("@Address2", BM.Address2);
+                }
 
 
-            if (BM.Address3 != null || BM.Address3 == "")
-            {
-                cmd.Parameters.AddWithValue("@Address3", BM.Address3);
+                if (BM.Address3 != null || BM.Address3 == "")
+                {
+                    cmd.Parameters.AddWithValue("@Address3", BM.Address3);
 
-            }
-            else
-            {
-                BM.Address3 = "None";
-                cmd.Parameters.AddWithValue("@Address3", BM.Address3);
-            }
+                }
+                else
+                {
+                    BM.Address3 = "None";
+                    cmd.Parameters.AddWithValue("@Address3", BM.Address3);
+                }
 
-          
+
                 cmd.Parameters.AddWithValue("@City", BM.City_txt);
                 cmd.Parameters.AddWithValue("@State", BM.State_txt);
                 cmd.Parameters.AddWithValue("@Pin", BM.Pin);
@@ -443,28 +446,191 @@ namespace WillAssure.Controllers
                 con.Close();
 
 
-            // get latest bpid with filter
-            int bpid = 0;
-            con.Open();
-            string qq = "select top 1 * from BeneficiaryDetails order by bpId desc";
-            SqlDataAdapter da = new SqlDataAdapter(qq,con);
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-            if (dt.Rows.Count > 0)
-            {
-                bpid = Convert.ToInt32(dt.Rows[0]["bpId"]);
+                // get latest bpid with filter
+                bpid = 0;
+                con.Open();
+                string qq = "select top 1 * from BeneficiaryDetails order by bpId desc";
+                SqlDataAdapter da = new SqlDataAdapter(qq, con);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                if (dt.Rows.Count > 0)
+                {
+                    bpid = Convert.ToInt32(dt.Rows[0]["bpId"]);
+                }
+                con.Close();
+
+
+                con.Open();
+                string spup = "update BeneficiaryDetails set fetchid = " + Convert.ToInt32(Session["uuid"]) + "  , doctype = 'Will' where  bpid = "+bpid+" ";
+                SqlCommand cmdup = new SqlCommand(spup, con);
+                cmdup.ExecuteNonQuery();
+                con.Close();
+
+
+                //end
             }
-            con.Close();
 
 
-            con.Open();
-            string spup = "update BeneficiaryDetails set fetchid = "+Convert.ToInt32(Session["uuid"])+" ";
-            SqlCommand cmdup = new SqlCommand(spup,con);
-            cmdup.ExecuteNonQuery();
-            con.Close();
+            if (Session["doctype"].ToString() == "POA")
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand("SP_CRUDBeneficiaryDetails", con);
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@condition", "insert");
+                cmd.Parameters.AddWithValue("@First_Name ", BM.First_Name);
+                cmd.Parameters.AddWithValue("@Last_Name", BM.Last_Name);
+                cmd.Parameters.AddWithValue("@Middle_Name", BM.Middle_Name);
+                DateTime dat = DateTime.ParseExact(BM.Dob, "dd-MM-yyyy", CultureInfo.InvariantCulture);
+                cmd.Parameters.AddWithValue("@DOB", dat);
+                cmd.Parameters.AddWithValue("@Mobile", BM.Mobile);
+                cmd.Parameters.AddWithValue("@Relationship", BM.RelationshipTxt);
+                cmd.Parameters.AddWithValue("@Marital_Status", "none");
+                cmd.Parameters.AddWithValue("@Religion", "none");
+                cmd.Parameters.AddWithValue("@Identity_proof", BM.Identity_proof);
+                cmd.Parameters.AddWithValue("@Identity_proof_value", BM.Identity_proof_value);
+                cmd.Parameters.AddWithValue("@Alt_Identity_proof", BM.Alt_Identity_proof);
+                cmd.Parameters.AddWithValue("@Alt_Identity_proof_value", BM.Alt_Identity_proof_value);
+
+                cmd.Parameters.AddWithValue("@Address1", BM.Address1);
+                if (BM.Address2 != null || BM.Address2 == "")
+                {
+                    cmd.Parameters.AddWithValue("@Address2", BM.Address2);
+
+                }
+                else
+                {
+                    BM.Address2 = "None";
+                    cmd.Parameters.AddWithValue("@Address2", BM.Address2);
+                }
 
 
-            //end
+                if (BM.Address3 != null || BM.Address3 == "")
+                {
+                    cmd.Parameters.AddWithValue("@Address3", BM.Address3);
+
+                }
+                else
+                {
+                    BM.Address3 = "None";
+                    cmd.Parameters.AddWithValue("@Address3", BM.Address3);
+                }
+
+
+                cmd.Parameters.AddWithValue("@City", BM.City_txt);
+                cmd.Parameters.AddWithValue("@State", BM.State_txt);
+                cmd.Parameters.AddWithValue("@Pin", BM.Pin);
+                cmd.Parameters.AddWithValue("@aid", BM.aid);
+                cmd.Parameters.AddWithValue("@tid", BM.ddltid);
+                cmd.Parameters.AddWithValue("@beneficiary_type", "none");
+                cmd.ExecuteNonQuery();
+                con.Close();
+
+
+                // get latest bpid with filter
+                 bpid = 0;
+                con.Open();
+                string qq = "select top 1 * from BeneficiaryDetails order by bpId desc";
+                SqlDataAdapter da = new SqlDataAdapter(qq, con);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                if (dt.Rows.Count > 0)
+                {
+                    bpid = Convert.ToInt32(dt.Rows[0]["bpId"]);
+                }
+                con.Close();
+
+
+                con.Open();
+                string spup = "update BeneficiaryDetails set fetchid = " + Convert.ToInt32(Session["uuid"]) + "  , doctype = 'POA' where  bpid = " + bpid + " ";
+                SqlCommand cmdup = new SqlCommand(spup, con);
+                cmdup.ExecuteNonQuery();
+                con.Close();
+
+
+                //end
+            }
+
+
+            if (Session["doctype"].ToString() == "Giftdeeds")
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand("SP_CRUDBeneficiaryDetails", con);
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@condition", "insert");
+                cmd.Parameters.AddWithValue("@First_Name ", BM.First_Name);
+                cmd.Parameters.AddWithValue("@Last_Name", BM.Last_Name);
+                cmd.Parameters.AddWithValue("@Middle_Name", BM.Middle_Name);
+                DateTime dat = DateTime.ParseExact(BM.Dob, "dd-MM-yyyy", CultureInfo.InvariantCulture);
+                cmd.Parameters.AddWithValue("@DOB", dat);
+                cmd.Parameters.AddWithValue("@Mobile", BM.Mobile);
+                cmd.Parameters.AddWithValue("@Relationship", BM.RelationshipTxt);
+                cmd.Parameters.AddWithValue("@Marital_Status", "none");
+                cmd.Parameters.AddWithValue("@Religion", "none");
+                cmd.Parameters.AddWithValue("@Identity_proof", BM.Identity_proof);
+                cmd.Parameters.AddWithValue("@Identity_proof_value", BM.Identity_proof_value);
+                cmd.Parameters.AddWithValue("@Alt_Identity_proof", BM.Alt_Identity_proof);
+                cmd.Parameters.AddWithValue("@Alt_Identity_proof_value", BM.Alt_Identity_proof_value);
+
+                cmd.Parameters.AddWithValue("@Address1", BM.Address1);
+                if (BM.Address2 != null || BM.Address2 == "")
+                {
+                    cmd.Parameters.AddWithValue("@Address2", BM.Address2);
+
+                }
+                else
+                {
+                    BM.Address2 = "None";
+                    cmd.Parameters.AddWithValue("@Address2", BM.Address2);
+                }
+
+
+                if (BM.Address3 != null || BM.Address3 == "")
+                {
+                    cmd.Parameters.AddWithValue("@Address3", BM.Address3);
+
+                }
+                else
+                {
+                    BM.Address3 = "None";
+                    cmd.Parameters.AddWithValue("@Address3", BM.Address3);
+                }
+
+
+                cmd.Parameters.AddWithValue("@City", BM.City_txt);
+                cmd.Parameters.AddWithValue("@State", BM.State_txt);
+                cmd.Parameters.AddWithValue("@Pin", BM.Pin);
+                cmd.Parameters.AddWithValue("@aid", BM.aid);
+                cmd.Parameters.AddWithValue("@tid", BM.ddltid);
+                cmd.Parameters.AddWithValue("@beneficiary_type", "none");
+                cmd.ExecuteNonQuery();
+                con.Close();
+
+
+                // get latest bpid with filter
+                
+                con.Open();
+                string qq = "select top 1 * from BeneficiaryDetails order by bpId desc";
+                SqlDataAdapter da = new SqlDataAdapter(qq, con);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                if (dt.Rows.Count > 0)
+                {
+                    bpid = Convert.ToInt32(dt.Rows[0]["bpId"]);
+                }
+                con.Close();
+
+
+                con.Open();
+                string spup = "update BeneficiaryDetails set fetchid = " + Convert.ToInt32(Session["uuid"]) + "  , doctype = 'Giftdeeds' where  bpid = " + bpid + " ";
+                SqlCommand cmdup = new SqlCommand(spup, con);
+                cmdup.ExecuteNonQuery();
+                con.Close();
+
+
+                //end
+            }
+
+
 
 
             if (BM.check == "true")
