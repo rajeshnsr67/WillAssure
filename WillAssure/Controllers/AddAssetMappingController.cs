@@ -207,7 +207,21 @@ namespace WillAssure.Controllers
 
             }
 
-       
+
+
+            int tid = 0;
+            string ck2 = "select tId from TestatorDetails where uId =" + Convert.ToInt32(Session["uuid"]) + "";
+            SqlDataAdapter cda2 = new SqlDataAdapter(ck2, con);
+            DataTable cdt2 = new DataTable();
+            cda2.Fill(cdt2);
+      
+            if (cdt2.Rows.Count > 0)
+            {
+                tid = Convert.ToInt32(cdt2.Rows[0]["tId"]);
+
+            }
+
+
 
 
 
@@ -215,17 +229,21 @@ namespace WillAssure.Controllers
 
 
 
-            d = " select tb.tid,us.Type ,  concat(bd.first_name, '  ', '(benefi)') as name ";
-            d += " from users us  inner join users b ON us.uId = b.linked_user ";
-            d += " left outer join  testatorDetails tb on b.uid = tb.uId ";
-            d += " left outer join testatorFamily tf on tb.tid = tf.tid ";
-            d += " left outer join BeneficiaryDetails bd on tb.tid = bd.tid ";
-            d += " where b.linked_user = " + Convert.ToInt32(Session["uuid"]) + " and tb.tid = " + Convert.ToInt32(Session["distid"]) + "  and tb.tid is not null    and bd.first_name is not null ";
-            d += " union select   tb.tid,us.Type ,  concat(tf.First_Name, '  ', '(FAMILY)') as name ";
-            d += " from users us  inner join users b ON us.uId = b.linked_user ";
-            d += " left outer join   testatorDetails tb  on b.uid = tb.uId ";
-            d += " left outer join testatorFamily tf on tb.tId = tf.tid where ";
-            d += " b.linked_user = " + Convert.ToInt32(Session["uuid"]) + "  and tb.tid = " + Convert.ToInt32(Session["distid"]) + "   and tb.tid is not null and tf.first_name is not null ";
+            //d = " select tb.tid,us.Type ,  concat(bd.first_name, '  ', '(benefi)') as name ";
+            //d += " from users us  inner join users b ON us.uId = b.linked_user ";
+            //d += " left outer join  testatorDetails tb on b.uid = tb.uId ";
+            //d += " left outer join testatorFamily tf on tb.tid = tf.tid ";
+            //d += " left outer join BeneficiaryDetails bd on tb.tid = bd.tid ";
+            //d += " where b.linked_user = " + Convert.ToInt32(Session["uuid"]) + " and tb.tid = " + Convert.ToInt32(Session["distid"]) + "  and tb.tid is not null    and bd.first_name is not null ";
+            //d += " union select   tb.tid,us.Type ,  concat(tf.First_Name, '  ', '(FAMILY)') as name ";
+            //d += " from users us  inner join users b ON us.uId = b.linked_user ";
+            //d += " left outer join   testatorDetails tb  on b.uid = tb.uId ";
+            //d += " left outer join testatorFamily tf on tb.tId = tf.tid where ";
+            //d += " b.linked_user = " + Convert.ToInt32(Session["uuid"]) + "  and tb.tid = " + Convert.ToInt32(Session["distid"]) + "   and tb.tid is not null and tf.first_name is not null ";
+
+
+
+            d = "select * from BeneficiaryDetails where tId = "+tid+"";
 
 
 
@@ -251,7 +269,7 @@ namespace WillAssure.Controllers
                 for (int i = 0; i < dt1.Rows.Count; i++)
                 {
 
-                    data = data + "<option value=" + dt1.Rows[i]["tId"] + ">" + dt1.Rows[i]["name"] + "</option>";
+                    data = data + "<option value=" + dt1.Rows[i]["tId"] + ">" + dt1.Rows[i]["First_Name"] + "</option>";
 
                 }
 

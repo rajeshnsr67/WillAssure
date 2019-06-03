@@ -175,6 +175,12 @@ namespace WillAssure.Controllers
 
             con.Close();
 
+
+
+
+
+
+
         
                    
               
@@ -458,6 +464,63 @@ namespace WillAssure.Controllers
                 con.Close();
 
                 ViewBag.message = "Verified";
+
+
+            con.Open();
+            SqlCommand cmd2 = new SqlCommand("SP_CRUDBeneficiaryDetails", con);
+            cmd2.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd2.Parameters.AddWithValue("@condition", "insert");
+            cmd2.Parameters.AddWithValue("@First_Name ", TFM.First_Name);
+            cmd2.Parameters.AddWithValue("@Last_Name", TFM.Last_Name);
+            cmd2.Parameters.AddWithValue("@Middle_Name", TFM.Middle_Name);
+            
+            cmd2.Parameters.AddWithValue("@DOB", dat);
+            cmd2.Parameters.AddWithValue("@Mobile", "None");
+            cmd2.Parameters.AddWithValue("@Relationship", "none");
+            cmd2.Parameters.AddWithValue("@Marital_Status", "none");
+            cmd2.Parameters.AddWithValue("@Religion", "none");
+            cmd2.Parameters.AddWithValue("@Identity_proof", TFM.Identity_Proof);
+            cmd2.Parameters.AddWithValue("@Identity_proof_value", TFM.Identity_Proof_Value);
+            cmd2.Parameters.AddWithValue("@Alt_Identity_proof", TFM.Alt_Identity_Proof);
+            cmd2.Parameters.AddWithValue("@Alt_Identity_proof_value", TFM.Alt_Identity_Proof_Value);
+
+            cmd2.Parameters.AddWithValue("@Address1", TFM.Address1);
+            if (TFM.Address2 != null || TFM.Address2 == "")
+            {
+                cmd2.Parameters.AddWithValue("@Address2", TFM.Address2);
+
+            }
+            else
+            {
+                TFM.Address2 = "None";
+                cmd2.Parameters.AddWithValue("@Address2", TFM.Address2);
+            }
+
+
+            if (TFM.Address3 != null || TFM.Address3 == "")
+            {
+                cmd2.Parameters.AddWithValue("@Address3", TFM.Address3);
+
+            }
+            else
+            {
+                TFM.Address3 = "None";
+                cmd2.Parameters.AddWithValue("@Address3", TFM.Address3);
+            }
+
+
+            cmd2.Parameters.AddWithValue("@City", TFM.City_txt);
+            cmd2.Parameters.AddWithValue("@State", TFM.State_txt);
+            cmd2.Parameters.AddWithValue("@Pin", TFM.Pin);
+            cmd2.Parameters.AddWithValue("@aid", 0);
+            cmd2.Parameters.AddWithValue("@tid", TFM.ddltid);
+            cmd2.Parameters.AddWithValue("@beneficiary_type", "none");
+            cmd2.ExecuteNonQuery();
+            con.Close();
+
+
+
+
             //}
             //else
             //{

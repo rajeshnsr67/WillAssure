@@ -168,14 +168,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-sm-3">
 
-                                    <div class="form-group">
-
-
-                                        @Html.TextBoxFor(m => m.Last_Name, new { @class = "form-control input-shadow validate[required] text-input", @id = "txtLastName", @placeholder = "Enter Last Name", @autocomplete = "off", alert = "LabourCost is requried" })
-                                    </div>
-                                </div>
 
 
 
@@ -189,6 +182,17 @@
                                 </div>
 
 
+
+                                <div class="col-sm-3">
+
+                                    <div class="form-group">
+
+
+                                        @Html.TextBoxFor(m => m.Last_Name, new { @class = "form-control input-shadow validate[required] text-input", @id = "txtLastName", @placeholder = "Enter Last Name", @autocomplete = "off", alert = "LabourCost is requried" })
+                                    </div>
+                                </div>
+
+
                                 <div class="col-sm-3"></div>
                                 <div class="col-sm-3">
 
@@ -196,9 +200,13 @@
 
 
                                         <div id="datepicker" class="input-group date" data-date-format="dd-mm-yyyy">
-                                            <input class="form-control input-shadow validate[required]" type="text" id="DOB" name="DOB" autocomplete="off" placeholder="Select Date Of Birth" />
+                                            <input class="form-control input-shadow validate[required]" type="text" id="DOB" name="DOB"  onchange="validateDOB(this.value)" autocomplete="off" placeholder="Select Date Of Birth" />
                                             <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                                         </div>
+                                        <span style="color:red; display:none;" id="datemsg">Invalid Date Of Birth</span>
+
+
+
                                     </div>
                                 </div>
 
@@ -474,6 +482,7 @@
                                 <a href="@Url.Action("AddBeneficiaryIndex", "AddBeneficiary")"><button type="button" id="btnnext" style="display:none;" class="btn btn-danger shadow-primary px-5">Next&nbsp;&nbsp;<i class="icon-arrow-right-circle"></i></button></a>
                             </div>
                         }
+                        
 
 
                         <button type="button" id="btntestatorfamilysubmitSUCCESS" style="display:none;" class="btnpopup btn btn-primary shadow-primary px-5"><i class="icon-lock"></i></button>
@@ -494,6 +503,26 @@
 
 
                     <script>
+
+
+                        function validateDOB(value) {
+
+                          
+
+                            var today = new Date();
+                            var birthDate = new Date(value);
+                            var age = today.getFullYear() - birthDate.getFullYear();
+
+                            if (age > 18) {
+                                $("#datemsg").hide();
+                            }
+                            else {
+                                $("#datemsg").show();
+                            }
+
+
+
+                        }
 
 
     $('input[type="checkbox"]').click(function () {

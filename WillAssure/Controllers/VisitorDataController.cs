@@ -22,7 +22,7 @@ namespace WillAssure.Controllers
         {
             ViewBag.name = displayname;
            
-            string msg1 = "Records Inserted SuccessFully";
+            string msg1 = "Records Inserted SuccessFully Please Check Your Email For OTP";
             string response = Request["send"].ToString();
 
             string name = response.Split('~')[0];
@@ -597,9 +597,8 @@ namespace WillAssure.Controllers
 
 
 
-
-                //generate MOBILE OTP
-                string MobileOTP = "";
+            //generate MOBILE OTP
+            string MobileOTP = "";
                 MobileOTP = String.Empty;
                 string[] saAllowedCharacters = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "0" };
                 int iOTPLength = 5;
@@ -697,6 +696,23 @@ namespace WillAssure.Controllers
 
 
 
+            // document master
+
+
+
+            con.Open();
+            string q1 = "insert into documentMaster (tId,templateId,IsUpdatetable,uId,pId,created_by,testator_type,couponId,adminVerification) values (" + testatorid + " , 0 ,  'Yes' ,   " + userid + " , 1 , 0 , 0 , 0  , 2)";
+            SqlCommand c = new SqlCommand(q1, con);
+            c.ExecuteNonQuery();
+            con.Close();
+
+            con.Close();
+
+
+
+
+
+            //end
 
 
 
@@ -705,8 +721,7 @@ namespace WillAssure.Controllers
 
 
 
-
-                int ruleid = 0;
+            int ruleid = 0;
 
                 con.Open();
                 string getrule = "select top 1 wdId from documentRules order by wdId desc";
@@ -745,7 +760,7 @@ namespace WillAssure.Controllers
 
 
                 con.Open();
-                string qq22 = "insert into documentRules (tid,documentType) values (" + testatorid + " , '" + documenttype + "')";
+                string qq22 = "insert into documentRules (tid,documentType,category) values (" + testatorid + " , '" + documenttype + "' , 1 )";
                 SqlCommand cmddd22 = new SqlCommand(qq22, con);
                 cmddd22.ExecuteNonQuery();
                 con.Close();
@@ -753,34 +768,32 @@ namespace WillAssure.Controllers
 
 
 
-                //end
+            //end
 
 
-                // mobile OTP
+            // mobile OTP
 
-                //HttpWebRequest Req = (HttpWebRequest)WebRequest.Create("http://167.86.89.78:7412/api/mt/SendSMS?user=rnarvadeempire&password=microlan@123&senderid=RNDEVE&channel=Trans&DCS=0&flashsms=0&number=" + contactno + "&text=OTP for Will Assure Verification is : " + MobileOTP + "+sms&route=1051");
-                //HttpWebResponse Resp = (HttpWebResponse)Req.GetResponse();
-                //System.IO.StreamReader respStreamReader = new System.IO.StreamReader(Resp.GetResponseStream());
-                //string responseString = respStreamReader.ReadToEnd();
-                //respStreamReader.Close();
-                //Resp.Close();
-
-
-
+            //HttpWebRequest Req = (HttpWebRequest)WebRequest.Create("http://167.86.89.78:7412/api/mt/SendSMS?user=rnarvadeempire&password=microlan@123&senderid=RNDEVE&channel=Trans&DCS=0&flashsms=0&number=" + contactno + "&text=OTP for Will Assure Verification is : " + MobileOTP + "+sms&route=1051");
+            //HttpWebResponse Resp = (HttpWebResponse)Req.GetResponse();
+            //System.IO.StreamReader respStreamReader = new System.IO.StreamReader(Resp.GetResponseStream());
+            //string responseString = respStreamReader.ReadToEnd();
+            //respStreamReader.Close();
+            //Resp.Close();
 
 
 
-                //END
 
 
 
-            
+            //END
 
 
 
             
 
-            
+
+
+
 
             return msg1;
             
@@ -990,7 +1003,7 @@ namespace WillAssure.Controllers
 
 
 
-            string message = "Please Check Mail Id For Login Credentitals";
+            string message = "Please Check Your Email ID For Credentials";
 
 
 

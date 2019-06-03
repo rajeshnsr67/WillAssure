@@ -211,9 +211,11 @@
                                     <div class="form-group">
 
                                         <div id="datepicker1" class="input-group date" data-date-format="dd-mm-yyyy">
-                                            <input class="form-control input-shadow validate[required]" type="text" id="DOB" name="DOB" autocomplete="off" placeholder="Select Date Of Birth" />
+                                            <input class="form-control input-shadow validate[required]" type="text" onchange="validateDOB(this.value)" id="DOB" name="DOB" autocomplete="off" placeholder="Select Date Of Birth" />
                                             <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                                         </div>
+
+                                        <span style="color:red; display:none;" id="datemsg">Invalid Date Of Birth</span>
                                     </div>
                                 </div>
                                 <div class="col-sm-3"></div>
@@ -471,9 +473,11 @@
                                         <div class="form-group">
 
                                             <div id="datepicker2" class="input-group date" data-date-format="dd-mm-yyyy">
-                                                <input class="form-control input-shadow validate[required]" type="text" id="DOB2" name="altDOB" autocomplete="off" placeholder="Select Date Of Birth" />
+                                                <input class="form-control input-shadow validate[required]" type="text" id="DOB2" onchange="validateDOB2(this.value)" name="altDOB" autocomplete="off" placeholder="Select Date Of Birth" />
                                                 <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                                             </div>
+
+                                            <span style="color:red; display:none;" id="datemsg2">Invalid Date Of Birth</span>
                                         </div>
                                     </div>
                                 </div>
@@ -657,6 +661,50 @@
 
 
                     <script>
+
+
+                        function validateDOB(value) {
+
+
+
+                            var today = new Date();
+                            var birthDate = new Date(value);
+                            var age = today.getFullYear() - birthDate.getFullYear();
+
+                            if (age > 18) {
+                                $("#datemsg").hide();
+                            }
+                            else {
+                                $("#datemsg").show();
+                            }
+
+
+
+                        }
+
+
+
+
+
+                        function validateDOB2(value) {
+
+
+
+                            var today = new Date();
+                            var birthDate = new Date(value);
+                            var age = today.getFullYear() - birthDate.getFullYear();
+
+                            if (age > 18) {
+                                $("#datemsg2").hide();
+                            }
+                            else {
+                                $("#datemsg2").show();
+                            }
+
+
+
+                        }
+
 
     $(document).ready(function () {
 

@@ -31,7 +31,7 @@
             <br />
            
               <CR:CrystalReportViewer ID="CrystalReportViewer1" runat="server" AutoDataBind="true" EnableDatabaseLogonPrompt="False" EnableParameterPrompt="False" ReportSourceID="CrystalReportSource1" Visible="true" ToolPanelView="None" />
-        <CR:CrystalReportSource ID="CrystalReportSource1" runat="server" Visible="true">
+       <CR:CrystalReportSource ID="CrystalReportSource1" runat="server" Visible="true">
             <Report FileName="~/CrystalReports/WillTestator1.rpt">
             </Report>
         </CR:CrystalReportSource>

@@ -53,5 +53,94 @@ namespace WillAssure.Models
         public string chek { get; set; }
 
 
+
+
+        // beneficiary property
+
+
+
+        public int benebpId { get; set; }
+
+        public string beneFirst_Name { get; set; }
+
+        public string beneLast_Name { get; set; }
+
+        public string beneMiddle_Name { get; set; }
+
+        public string beneDob { get; set; }
+
+        public string beneMobile { get; set; }
+
+        public string beneRelationship { get; set; }
+        public int beneRelationshipId { get; set; }
+        public string beneRelationshipTxt { get; set; }
+
+        public string beneMarital_Status { get; set; }
+        public string beneMarital_Status_TXT { get; set; }
+        public int beneMarital_Status_ID { get; set; }
+
+        public string beneReligion { get; set; }
+        public string beneReligion_txt { get; set; }
+        public int beneReligion_id { get; set; }
+
+        public string beneIdentity_proof { get; set; }
+        public string beneIdentity_proof_txt { get; set; }
+        public int beneIdentity_proof_id { get; set; }
+
+
+        public string beneIdentity_proof_value { get; set; }
+
+        public string beneAlt_Identity_proof { get; set; }
+
+        public string beneAlt_Identity_proof_value { get; set; }
+
+        public string beneAddress1 { get; set; }
+
+        public string beneAddress2 { get; set; }
+
+        public string beneAddress3 { get; set; }
+
+
+        public string beneCity { get; set; }
+        public string beneCity_txt { get; set; }
+        public int beneCity_id { get; set; }
+
+
+
+        public string beneState { get; set; }
+        public string beneState_txt { get; set; }
+        public int beneState_id { get; set; }
+
+
+
+
+        public string benePin { get; set; }
+
+        public int beneaid { get; set; }
+
+        public int benetid { get; set; }
+
+        public string benedateCreated { get; set; }
+
+        public int benecreatedBy { get; set; }
+        public string benecreatedBy_txt { get; set; }
+        public int benecreatedBy_id { get; set; }
+
+        public int benedocumentId { get; set; }
+
+        public string benebeneficiary_type { get; set; }
+        public string benebeneficiary_type_txt { get; set; }
+        public int benebeneficiary_type_id { get; set; }
+
+
+
+        public int beneddltid { get; set; }
+        public string beneddltestatorname { get; set; }
+
+
+
+
+
+
     };
 };

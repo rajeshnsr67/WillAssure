@@ -604,19 +604,35 @@ namespace WillAssure.Controllers
             string msg = "";
             int liabilitiesproportion = 0;
             int response = Convert.ToInt32(Request["send"]);
-            if (Session["totalpetcare"].ToString() != "" || Session["totalpetcare"] == null)
+
+
+            if (Session["totalpetcare"] != null)
             {
-                 liabilitiesproportion = Convert.ToInt32(Session["totalpetcare"]);
-
-                if (liabilitiesproportion > response)
+                if (Session["totalpetcare"].ToString() != "")
                 {
+                    liabilitiesproportion = Convert.ToInt32(Session["totalpetcare"]);
 
-                }
-                else
-                {
-                    msg = "true";
+                    if (liabilitiesproportion > response)
+                    {
+
+                    }
+                    else
+                    {
+                        msg = "true";
+                    }
                 }
             }
+            else
+            {
+                if (!Response.IsRequestBeingRedirected)
+                {
+                    Response.Redirect("/LoginPage/LoginPageIndex");
+                }
+            }
+
+
+
+           
           
 
 

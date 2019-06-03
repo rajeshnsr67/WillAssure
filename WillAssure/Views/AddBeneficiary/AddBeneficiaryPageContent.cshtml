@@ -196,6 +196,15 @@
                                         @Html.TextBoxFor(m => m.First_Name, new { @class = "form-control input-shadow validate[required] text-input", @id = "txtFirst_Name", @placeholder = "Enter First Name", @autocomplete = "off" })
                                     </div>
                                 </div>
+
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+
+                                        @Html.TextBoxFor(m => m.Middle_Name, new { @class = "form-control input-shadow validate[required] text-input", @id = "txtMiddle_Name", @placeholder = "Enter Middle Name", @autocomplete = "off" })
+                                    </div>
+                                </div>
+
+
                                 <div class="col-sm-3">
                                     <div class="form-group">
 
@@ -203,12 +212,7 @@
                                         @Html.TextBoxFor(m => m.Last_Name, new { @class = "form-control input-shadow validate[required] text-input", @id = "txtLast_Name", @placeholder = "Enter Last Name", @autocomplete = "off" })
                                     </div>
                                 </div>
-                                <div class="col-sm-3">
-                                    <div class="form-group">
 
-                                        @Html.TextBoxFor(m => m.Middle_Name, new { @class = "form-control input-shadow validate[required] text-input", @id = "txtMiddle_Name", @placeholder = "Enter Middle Name", @autocomplete = "off" })
-                                    </div>
-                                </div>
 
                                 <div class="col-sm-3"></div>
                                 <div class="col-sm-3">
@@ -217,9 +221,11 @@
 
 
                                         <div id="datepicker2" class="input-group date" data-date-format="dd-mm-yyyy">
-                                            <input class="form-control input-shadow validate[required]" type="text" id="DOB" name="Dob" autocomplete="off" placeholder="Select Date Of Birth" />
+                                            <input class="form-control input-shadow validate[required]" type="text" id="DOB" name="Dob" onchange="validateDOB(this.value)" autocomplete="off" placeholder="Select Date Of Birth" />
                                             <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                                         </div>
+
+                                        <span style="color:red; display:none;" id="datemsg">Invalid Date Of Birth</span>
                                     </div>
                                 </div>
 
@@ -245,36 +251,36 @@
 
 
                                 @*<div class="col-sm-6">
-                    <div class="form-group">
-                        <label for="input-3">Marital Status</label>
-                        @Html.DropDownListFor(x => x.Marital_Status, new SelectListItem[]{
-                        new SelectListItem() {Text = "--Select--", Value=""},
-                        new SelectListItem() {Text = "Married", Value="Married"},
-                        new SelectListItem() {Text = "UnMarried", Value="UnMarried"}} , new { @class= "form-control input-shadow validate[required]", @id = "ddlMarital_Status" })
-                        @Html.HiddenFor(m => m.Marital_Status_TXT, new { @id = "Marital_Status_TXT" })
-                        @Html.HiddenFor(m => m.Marital_Status_ID, new { @id = "Marital_Status_ID" })
-                    </div>
-                </div>
+            <div class="form-group">
+                <label for="input-3">Marital Status</label>
+                @Html.DropDownListFor(x => x.Marital_Status, new SelectListItem[]{
+                new SelectListItem() {Text = "--Select--", Value=""},
+                new SelectListItem() {Text = "Married", Value="Married"},
+                new SelectListItem() {Text = "UnMarried", Value="UnMarried"}} , new { @class= "form-control input-shadow validate[required]", @id = "ddlMarital_Status" })
+                @Html.HiddenFor(m => m.Marital_Status_TXT, new { @id = "Marital_Status_TXT" })
+                @Html.HiddenFor(m => m.Marital_Status_ID, new { @id = "Marital_Status_ID" })
+            </div>
+        </div>
 
 
 
-                <div class="col-sm-6">
-                    <div class="form-group">
-                        <label for="input-3">Religion</label>
-                        @Html.DropDownListFor(x => x.Religion, new SelectListItem[]{
-                 new SelectListItem() {Text = "--Select--", Value=""},
-                 new SelectListItem() {Text = "Buddhism", Value="Buddhism"},
-                 new SelectListItem() {Text = "Christians", Value="Christians"},
-                 new SelectListItem() {Text = "Hinduism", Value="Hinduism"},
-                 new SelectListItem() {Text = "Islam", Value="Islam"},
-                 new SelectListItem() {Text = "Jainism", Value="Jainism"},
-                 new SelectListItem() {Text = "Sikhism", Value="Sikhism"},
+        <div class="col-sm-6">
+            <div class="form-group">
+                <label for="input-3">Religion</label>
+                @Html.DropDownListFor(x => x.Religion, new SelectListItem[]{
+         new SelectListItem() {Text = "--Select--", Value=""},
+         new SelectListItem() {Text = "Buddhism", Value="Buddhism"},
+         new SelectListItem() {Text = "Christians", Value="Christians"},
+         new SelectListItem() {Text = "Hinduism", Value="Hinduism"},
+         new SelectListItem() {Text = "Islam", Value="Islam"},
+         new SelectListItem() {Text = "Jainism", Value="Jainism"},
+         new SelectListItem() {Text = "Sikhism", Value="Sikhism"},
 
-                 new SelectListItem() {Text = "Zoroastrian", Value="Zoroastrian"}}, new { @class = "form-control input-shadow validate[required]", @id = "ddlReligion" })
-                        @Html.HiddenFor(m => m.Religion_txt, new { @id = "Religion_txt" })
-                        @Html.HiddenFor(m => m.Religion_id, new { @id = "Religion_id" })
-                    </div>
-                </div>*@
+         new SelectListItem() {Text = "Zoroastrian", Value="Zoroastrian"}}, new { @class = "form-control input-shadow validate[required]", @id = "ddlReligion" })
+                @Html.HiddenFor(m => m.Religion_txt, new { @id = "Religion_txt" })
+                @Html.HiddenFor(m => m.Religion_id, new { @id = "Religion_id" })
+            </div>
+        </div>*@
 
 
 
@@ -520,7 +526,7 @@
                                         <div class="form-group">
 
 
-                                            @Html.TextBoxFor(m => m.altLast_Name, new { @class = "form-control input-shadow validate[required] text-input", @id = "lastname", @placeholder = "Enter Last Name", @autocomplete = "off", alert = "LabourCost is requried" })
+                                            @Html.TextBoxFor(m => m.altMiddle_Name, new { @class = "form-control input-shadow validate[required] text-input", @id = "middlename", @placeholder = "Enter Middle Name", @autocomplete = "off", alert = "LabourCost is requried" })
                                         </div>
                                     </div>
 
@@ -529,9 +535,11 @@
                                         <div class="form-group">
 
 
-                                            @Html.TextBoxFor(m => m.altMiddle_Name, new { @class = "form-control input-shadow validate[required] text-input", @id = "middlename", @placeholder = "Enter Middle Name", @autocomplete = "off", alert = "LabourCost is requried" })
+                                            @Html.TextBoxFor(m => m.altLast_Name, new { @class = "form-control input-shadow validate[required] text-input", @id = "lastname", @placeholder = "Enter Last Name", @autocomplete = "off", alert = "LabourCost is requried" })
                                         </div>
                                     </div>
+
+
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-3"></div>
@@ -541,9 +549,11 @@
 
 
                                             <div id="datepicker1" class="input-group date" data-date-format="dd-mm-yyyy">
-                                                <input class="form-control input-shadow validate[required]" type="text" id="DOB" name="altDob" autocomplete="off" placeholder="Select Date Of Birth" />
+                                                <input class="form-control input-shadow validate[required]" type="text" id="DOB" onchange="validateDOB2(this.value)" name="altDob" autocomplete="off" placeholder="Select Date Of Birth" />
                                                 <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                                             </div>
+
+                                            <span style="color:red; display:none;" id="datemsg2">Invalid Date Of Birth</span>
                                         </div>
                                     </div>
 
@@ -793,6 +803,49 @@
 
 
 <script>
+
+    function validateDOB2(value) {
+
+
+
+        var today = new Date();
+        var birthDate = new Date(value);
+        var age = today.getFullYear() - birthDate.getFullYear();
+
+        if (age > 18) {
+            $("#datemsg2").hide();
+        }
+        else {
+            $("#datemsg2").show();
+        }
+
+
+
+    }
+
+
+
+    function validateDOB(value) {
+
+
+
+        var today = new Date();
+        var birthDate = new Date(value);
+        var age = today.getFullYear() - birthDate.getFullYear();
+
+        if (age > 18) {
+            $("#datemsg").hide();
+        }
+        else {
+            $("#datemsg").show();
+        }
+
+
+
+    }
+
+
+
         $("#ddlMarital_Status").change(function () {
         var value = $(this).children(":selected").attr("value");
             var text = $("#ddlMarital_Status option:selected").html();

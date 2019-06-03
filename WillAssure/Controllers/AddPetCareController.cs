@@ -546,28 +546,45 @@ namespace WillAssure.Controllers
             int value = Convert.ToInt32(response.Split('~')[0]);
             var assetcat = response.Split('~')[1];
 
-            if (Session["totalliablities"] != null && Session["totalliablities"].ToString() != "")
+
+
+            if (Session["totalliablities"] != null)
             {
-                int liabilitiesproportion = Convert.ToInt32(Session["totalliablities"]);
-
-                if (Session["assetcategorynameforliablities"] != null && Session["assetcategorynameforliablities"].ToString() != "")
+                if (Session["totalliablities"].ToString() != "")
                 {
-                    if (Session["assetcategorynameforliablities"].ToString() == assetcat)
+                    int liabilitiesproportion = Convert.ToInt32(Session["totalliablities"]);
+
+                    if (Session["assetcategorynameforliablities"] != null && Session["assetcategorynameforliablities"].ToString() != "")
                     {
-                        if (liabilitiesproportion > value)
+                        if (Session["assetcategorynameforliablities"].ToString() == assetcat)
                         {
+                            if (liabilitiesproportion > value)
+                            {
+
+                            }
+                            else
+                            {
+                                msg = "true";
+                            }
 
                         }
-                        else
-                        {
-                            msg = "true";
-                        }
-
                     }
+
+
                 }
-                
+
 
             }
+            else
+            {
+                if (!Response.IsRequestBeingRedirected)
+                {
+                    Response.Redirect("/LoginPage/LoginPageIndex");
+                }
+            }
+
+
+
 
 
 

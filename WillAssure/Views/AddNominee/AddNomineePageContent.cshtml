@@ -158,15 +158,6 @@
                                     </div>
                                 </div>
 
-                                <div class="col-sm-3">
-
-                                    <div class="form-group">
-
-
-                                        @Html.TextBoxFor(m => m.Last_Name, new { @class = "form-control input-shadow validate[required] text-input", @id = "txtlastname", @placeholder = "Last Name", @autocomplete = "off", alert = "LabourCost is requried" })
-                                    </div>
-                                </div>
-
 
                                 <div class="col-sm-3">
 
@@ -177,6 +168,18 @@
                                     </div>
                                 </div>
 
+                                <div class="col-sm-3">
+
+                                    <div class="form-group">
+
+
+                                        @Html.TextBoxFor(m => m.Last_Name, new { @class = "form-control input-shadow validate[required] text-input", @id = "txtlastname", @placeholder = "Last Name", @autocomplete = "off", alert = "LabourCost is requried" })
+                                    </div>
+                                </div>
+
+
+
+
                                 <div class="col-sm-3"></div>
                                 <div class="col-sm-3">
 
@@ -184,9 +187,11 @@
 
 
                                         <div id="datepicker" class="input-group date" data-date-format="dd-mm-yyyy">
-                                            <input class="form-control input-shadow validate[required]" type="text" id="DOB" name="DOB" autocomplete="off" placeholder="Select Date Of Birth" />
+                                            <input class="form-control input-shadow validate[required]" onchange="validateDOB(this.value)" type="text" id="DOB" name="DOB" autocomplete="off" placeholder="Select Date Of Birth" />
                                             <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                                         </div>
+
+                                        <span style="color:red; display:none;" id="datemsg">Invalid Date Of Birth</span>
                                     </div>
                                 </div>
 
@@ -440,6 +445,26 @@
 
 
                     <script>
+
+
+                        function validateDOB(value) {
+
+
+
+                            var today = new Date();
+                            var birthDate = new Date(value);
+                            var age = today.getFullYear() - birthDate.getFullYear();
+
+                            if (age > 18) {
+                                $("#datemsg").hide();
+                            }
+                            else {
+                                $("#datemsg").show();
+                            }
+
+
+
+                        }
 
 
           $(document).ready(function () {
