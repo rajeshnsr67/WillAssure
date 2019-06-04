@@ -145,7 +145,7 @@
                                                         <ul class="dropdown-menu multi-level">
 
                                                             <li><a href="@Url.Action("checkpaymentstatus","Frontend")">Create Document</a></li>
-                                                            <li><a href="#">Completed Document</a></li>
+                                                            <li><a href="@Url.Action("CompletedDocumentIndex","CompletedDocument")">Completed Document</a></li>
                                                             <li><a href="@Url.Action("DashBoardIndex","DashBoard" , new {NestId = Convert.ToInt32(Session["uuid"]) } )">Incompleted Document</a></li>
 
                                                         </ul>

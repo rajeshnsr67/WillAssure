@@ -586,7 +586,7 @@ namespace WillAssure.Controllers
 
 
                 con.Open();
-                string qt = "update Appointees set doctype = 'Will'  where  apId = "+apid+"";
+                string qt = "update Appointees set doctype = 'Will'  where  apId = "+ Convert.ToInt32(dt2.Rows[0]["apId"]) + "";
                 SqlCommand cmdt = new SqlCommand(qt,con);
                 cmdt.ExecuteNonQuery();
                 con.Close();

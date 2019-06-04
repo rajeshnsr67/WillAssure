@@ -16,13 +16,153 @@ namespace WillAssure.Controllers
         public static string connectionString = ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString;
         SqlConnection con = new SqlConnection(connectionString);
         // GET: DashBoard
-        public ActionResult DashBoardIndex(string msg)
+        public ActionResult DashBoardIndex( )
         {
 
-            if (msg == "willcreated")
+            int testatorid = 0;
+
+
+            con.Open();
+            string query1t = "select tId from  TestatorDetails where  uId = " + Convert.ToInt32(Session["uuid"]) + " ";
+            SqlDataAdapter da1t = new SqlDataAdapter(query1t, con);
+            DataTable dt1t = new DataTable();
+            da1t.Fill(dt1t);
+            if (dt1t.Rows.Count > 0)
             {
-                ViewBag.completion = "true";
+                testatorid = Convert.ToInt32(dt1t.Rows[0]["tId"]);
+            
+
             }
+            con.Close();
+
+            con.Open();
+            string query2 = "select Will , Codocil , POA , Giftdeeds , LivingWill  from users where uId =  " + Convert.ToInt32(Session["uuid"]) + " ";
+            SqlDataAdapter da2 = new SqlDataAdapter(query2, con);
+            DataTable dt2 = new DataTable();
+            da2.Fill(dt2);
+            con.Close();
+
+            if (Convert.ToInt32(dt2.Rows[0]["Will"]) == 1)
+            {
+                
+                // for appointees 
+
+                con.Open();
+                string qchk008 = "select * from Appointees where tid = " + testatorid + " and doctype='Will'  ";
+                SqlDataAdapter chk008da = new SqlDataAdapter(qchk008, con);
+                DataTable chk008dt = new DataTable();
+                chk008da.Fill(chk008dt);
+                con.Close();
+
+                if (chk008dt.Rows.Count > 0)
+                {
+
+
+                    ViewBag.Willbtn = "true";
+                }
+               
+
+                //end
+            }
+
+
+
+            if (Convert.ToInt32(dt2.Rows[0]["POA"]) == 1)
+            {
+
+                // for appointees 
+
+                con.Open();
+                string qchk008 = "select * from Appointees where tid = " + testatorid + " and doctype='POA'  ";
+                SqlDataAdapter chk008da = new SqlDataAdapter(qchk008, con);
+                DataTable chk008dt = new DataTable();
+                chk008da.Fill(chk008dt);
+                con.Close();
+
+                if (chk008dt.Rows.Count > 0)
+                {
+
+
+                    ViewBag.POAbtn = "true";
+                }
+
+
+                //end
+            }
+
+
+            if (Convert.ToInt32(dt2.Rows[0]["Giftdeeds"]) == 1)
+            {
+
+                // for appointees 
+
+                con.Open();
+                string qchk008 = "select * from Appointees where tid = " + testatorid + " and doctype='Giftdeeds'  ";
+                SqlDataAdapter chk008da = new SqlDataAdapter(qchk008, con);
+                DataTable chk008dt = new DataTable();
+                chk008da.Fill(chk008dt);
+                con.Close();
+
+                if (chk008dt.Rows.Count > 0)
+                {
+
+
+                    ViewBag.Giftdeedsbtn = "true";
+                }
+
+
+                //end
+            }
+
+
+            if (Convert.ToInt32(dt2.Rows[0]["LivingWill"]) == 1)
+            {
+
+                // for appointees 
+
+                con.Open();
+                string qchk008 = "select * from Appointees where tid = " + testatorid + " and doctype='LivingWill'  ";
+                SqlDataAdapter chk008da = new SqlDataAdapter(qchk008, con);
+                DataTable chk008dt = new DataTable();
+                chk008da.Fill(chk008dt);
+                con.Close();
+
+                if (chk008dt.Rows.Count > 0)
+                {
+
+
+                    ViewBag.LivingWillbtn = "true";
+                }
+
+
+                //end
+            }
+
+
+
+            if (Convert.ToInt32(dt2.Rows[0]["Codocil"]) == 1)
+            {
+
+                // for appointees 
+
+                con.Open();
+                string qchk008 = "select * from Appointees where tid = " + testatorid + " and doctype='Codocil'  ";
+                SqlDataAdapter chk008da = new SqlDataAdapter(qchk008, con);
+                DataTable chk008dt = new DataTable();
+                chk008da.Fill(chk008dt);
+                con.Close();
+
+                if (chk008dt.Rows.Count > 0)
+                {
+
+
+                    ViewBag.Codocilbtn = "true";
+                }
+
+
+                //end
+            }
+
 
 
             con.Open();

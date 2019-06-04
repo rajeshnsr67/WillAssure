@@ -742,6 +742,8 @@
             return true;
         }
         $(document).on('keyup', '.proportioninput', function () {
+             
+            
             var $rowdiv = $(this).closest('.rowdiv');
             var $prevdiv = $rowdiv.prev('.rowdiv');
             var parentaccordionid = $rowdiv.parent('div').parent('div').attr('id');

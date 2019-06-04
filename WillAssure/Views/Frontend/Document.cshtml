@@ -26,7 +26,7 @@
             </div>
             @using (Html.BeginForm(null, null, FormMethod.Post, new { name = "PopUp", id = "testatordocument" }))
             {
-                <textarea id="documenttype" name="documenttype" style="display:NONE;"></textarea>
+                <textarea id="documenttype" name="documenttype" style="display:none;"></textarea>
                 <div class="modal-body">
                     @Html.HiddenFor(m => m.tId, new { @id = "tId" })
 
@@ -57,8 +57,8 @@
 
                                 <br />
                                 <span style="color:red;display:none;" id="documentmsg1">Please Complete Will Document First...!</span>
-                                <span style="color:red;display:none;" id="documentmsg2">Please Complete POA Document First...!</span>
-                                <span style="color:red;display:none;" id="documentmsg3">Please Complete GiftDeeds Document First...!</span>
+                                <span style="color:red;display:none;" id="documentmsg2">Please Complete Codocil Document First...!</span>
+                                <span style="color:red;display:none;" id="documentmsg3">Please Complete LivingWill Document First...!</span>
                             </div>
                             @Html.HiddenFor(m => m.Document_Created_By_ID, new { id = "Document_Created_By_ID" })
                             @Html.HiddenFor(m => m.Document_Created_By_txt, new { id = "Document_Created_By_txt" })
@@ -258,15 +258,16 @@
 
             $(".checkone").click(function () {
 
+
                 if ($(".checkone").is(":checked")) {
-
-
+                    $("#documentmsg2").hide();
+                    $("#documentmsg3").hide();
                      $.ajax({
 
             type: "POST",
             url:"@Url.Action("checkwilldocument", "Frontend")",
             success: function (data) {
-
+                var x = $(".checkone").val();
                 if (data == "false") {
 
                     $("#documentmsg1").show();
@@ -284,7 +285,7 @@
 
 
 
-                    var x = $(".checkone").val();
+                    
                    
 
                     $('#DDLAmtPaidBY2').prop('disabled', false);
@@ -302,15 +303,29 @@
 
 
             $(".checktwo").click(function () {
+                var x = $(".checktwo").val();
+                $("#documentmsg1").hide();
+ $.ajax({
 
+            type: "POST",
+            url:"@Url.Action("checkcodocildocument", "Frontend")",
+            success: function (data) {
 
+                if (data == "false") {
 
-                if ($(".checktwo").is(":checked")) {
-                    $("#documentmsg1").hide();
-                    var x = $(".checktwo").val();
-                    $("#documenttype").empty().append(x);
-                    $('#DDLAmtPaidBY2').prop('disabled', false);
+                    $("#documentmsg2").show();
+                    $("#documentmsg3").hide();
+                    $('.checktwo').prop('checked', false);
                 }
+                else {
+                    $("#documentmsg2").hide();
+                    $("#documenttype").empty().append(x);
+                }
+
+
+                }
+        });
+
 
 
 
@@ -319,9 +334,10 @@
 
 
             $(".checkthree").click(function () {
-
+                $("#documentmsg2").hide();
                 if ($(".checkthree").is(":checked")) {
                     $("#documentmsg1").hide();
+                    $("#documentmsg3").hide();
                     var x = $(".checkthree").val();
                     $("#documenttype").append(x);
                     $('#DDLAmtPaidBY2').prop('disabled', false);
@@ -333,8 +349,9 @@
             });
 
             $(".checkfour").click(function () {
-
-
+                $("#documentmsg2").hide();
+                $("#documentmsg1").hide();
+                $("#documentmsg3").hide();
                 if ($(".checkfour").is(":checked")) {
                     $("#documentmsg1").hide();
                     var x = $(".checkfour").val();
@@ -349,13 +366,28 @@
 
 
             $(".checkfive").click(function () {
+                $("#documentmsg1").hide();
+                $("#documentmsg2").hide();
+                var x = $(".checkfive").val();
+              $.ajax({
 
-                if ($(".checkfive").is(":checked")) {
-                    $("#documentmsg1").hide();
-                    var x = $(".checkfive").val();
-                    $("#documenttype").empty().append(x);
-                    $('#DDLAmtPaidBY2').prop('disabled', false);
+            type: "POST",
+            url:"@Url.Action("checklivindocument", "Frontend")",
+            success: function (data) {
+
+                if (data == "false") {
+
+                    $("#documentmsg3").show();
+                    $('.checkfive').prop('checked', false);
                 }
+                else {
+                    $("#documentmsg3").hide();
+                    $("#documenttype").empty().append(x);
+                }
+
+
+                }
+        });
 
 
 

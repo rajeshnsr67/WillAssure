@@ -36,7 +36,7 @@ namespace WillAssure.Controllers
             ViewBag.enablelivingwill = "true";
 
             con.Open();
-            string query = "insert into living_Will (Conditions,TreatmentDecline) values ('"+CM.conditions+"' , '"+CM.treatmentdecline+"')";
+            string query = "insert into living_Will (Conditions,TreatmentDecline,uId) values ('"+CM.conditions+"' , '"+CM.treatmentdecline+"' , "+Convert.ToInt32(Session["uuid"])+"   )";
             SqlCommand cmd = new SqlCommand(query,con);
             cmd.ExecuteNonQuery();
 

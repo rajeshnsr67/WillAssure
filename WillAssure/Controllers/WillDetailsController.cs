@@ -217,7 +217,7 @@ namespace WillAssure.Controllers
                         WDM1.TestatorName = dt.Rows[0]["First_Name"].ToString();
                         WDM1.TestatorLastName = dt.Rows[0]["Last_Name"].ToString();
                         WDM1.TestatorMiddleName = dt.Rows[0]["Middle_Name"].ToString();
-                        WDM1.TestatorDOB = dt.Rows[0]["DOB"].ToString();
+                        WDM1.TestatorDOB = Convert.ToDateTime(dt.Rows[0]["DOB"]).ToString("dd-MM-yyyy");
                         WDM1.TestatorOccupation = dt.Rows[0]["Occupation"].ToString();
                         WDM1.TestatorMobile = dt.Rows[0]["Mobile"].ToString();
                         WDM1.TestatorEmail = dt.Rows[0]["Email"].ToString();
@@ -273,8 +273,8 @@ namespace WillAssure.Controllers
 
                         WDM2.BeneficiaryLastName = dt2.Rows[0]["Last_Name"].ToString();
                         WDM2.BeneficiaryMiddleName = dt2.Rows[0]["Middle_Name"].ToString();
-                        WDM2.BeneficiaryDOB = dt2.Rows[0]["DOB"].ToString();
-                        WDM2.BeneficiaryMobile = dt2.Rows[0]["Mobile"].ToString();
+                        WDM2.BeneficiaryDOB = Convert.ToDateTime(dt2.Rows[0]["DOB"]).ToString("dd-MM-yyyy");
+                WDM2.BeneficiaryMobile = dt2.Rows[0]["Mobile"].ToString();
                         WDM2.BeneficiaryRelationship = dt2.Rows[0]["Relationship"].ToString();
                         WDM2.BeneficiaryMartialStatus = dt2.Rows[0]["Marital_Status"].ToString();
                         WDM2.BeneficiaryReligion = dt2.Rows[0]["Religion"].ToString();
@@ -339,7 +339,7 @@ namespace WillAssure.Controllers
                         WDM4.appointeesIdentityproofvalue = dt4.Rows[0]["Identity_Proof_Value"].ToString();
                         WDM4.appointeesaltidentityproof = dt4.Rows[0]["Alt_Identity_Proof"].ToString();
                         WDM4.appointeesaltidentityproofvalue = dt4.Rows[0]["Alt_Identity_Proof_Value"].ToString();
-                        WDM4.appointeesDOB = dt4.Rows[0]["DOB"].ToString();
+                        WDM4.appointeesDOB = Convert.ToDateTime(dt4.Rows[0]["DOB"]).ToString("dd-MM-yyyy");
                         WDM4.appointeesGender = dt4.Rows[0]["Gender"].ToString();
                         WDM4.appointeesOccupation = dt4.Rows[0]["Occupation"].ToString();
                         WDM4.appointeesrelationship = dt4.Rows[0]["Relationship"].ToString();
@@ -385,7 +385,7 @@ namespace WillAssure.Controllers
 
                         WDM3.tflastname = dt5.Rows[0]["Last_Name"].ToString();
                         WDM3.tfmiddlename = dt5.Rows[0]["Middle_Name"].ToString();
-                        WDM3.tfdob = dt5.Rows[0]["DOB"].ToString();
+                        WDM3.tfdob = Convert.ToDateTime(dt5.Rows[0]["DOB"]).ToString("dd-MM-yyyy");
                         WDM3.tfmaritalstatus = dt5.Rows[0]["Marital_Status"].ToString();
                         WDM3.tfreligion = dt5.Rows[0]["Religion"].ToString();
                         WDM3.tfrelationship = dt5.Rows[0]["Relationship"].ToString();
@@ -477,8 +477,8 @@ namespace WillAssure.Controllers
                         ABM.altbenelastname = dt7.Rows[0]["Last_Name"].ToString();
                         ABM.altbenemiddlename = dt7.Rows[0]["Middle_Name"].ToString();
 
-                        ABM.altbenedob = dt7.Rows[0]["DOB"].ToString();
-                        ABM.altbenemobile = dt7.Rows[0]["Mobile"].ToString();
+                        ABM.altbenedob = Convert.ToDateTime(dt7.Rows[0]["DOB"]).ToString("dd-MM-yyyy");
+                ABM.altbenemobile = dt7.Rows[0]["Mobile"].ToString();
                         ABM.altbenerelationship = dt7.Rows[0]["Relationship"].ToString();
                         ABM.altbenemaritalstatus = dt7.Rows[0]["Marital_Status"].ToString();
                         ABM.altbenereligion = dt7.Rows[0]["Religion"].ToString();
@@ -524,8 +524,8 @@ namespace WillAssure.Controllers
                         NM.nomfirstname = dt8.Rows[0]["First_Name"].ToString();
                         NM.nomlastname = dt8.Rows[0]["Last_Name"].ToString();
                         NM.nommiddlename = dt8.Rows[0]["Middle_Name"].ToString();
-                        NM.nomdob = dt8.Rows[0]["DOB"].ToString();
-                        NM.nommobile = dt8.Rows[0]["Mobile"].ToString();
+                        NM.nomdob = Convert.ToDateTime(dt8.Rows[0]["DOB"]).ToString("dd-MM-yyyy");
+                NM.nommobile = dt8.Rows[0]["Mobile"].ToString();
                         NM.nomrelationship = dt8.Rows[0]["Relationship"].ToString();
                         NM.nommaritalstatus = dt8.Rows[0]["Marital_Status"].ToString();
                         NM.nomreligion = dt8.Rows[0]["Religion"].ToString();
@@ -585,9 +585,9 @@ namespace WillAssure.Controllers
                         Am.altappaltidentityproof = dt9.Rows[0]["Alt_Identity_Proof"].ToString();
                         Am.altappaltidentityproofvalue = dt9.Rows[0]["Alt_Identity_Proof_Value"].ToString();
 
-                        Am.altappdob = dt9.Rows[0]["DOB"].ToString();
+                        Am.altappdob = Convert.ToDateTime(dt9.Rows[0]["DOB"]).ToString("dd-MM-yyyy");
 
-                        Am.altappgender = dt9.Rows[0]["Gender"].ToString();
+                Am.altappgender = dt9.Rows[0]["Gender"].ToString();
                         Am.altappoccupation = dt9.Rows[0]["Occupation"].ToString();
                         Am.altapprelationship = dt9.Rows[0]["Relationship"].ToString();
                         Am.altappaddress1 = dt9.Rows[0]["Address1"].ToString();

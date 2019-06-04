@@ -152,7 +152,7 @@
 
 
                                     <div class="form-group">
-
+                                        <label for="input-1">First Name</label>
                                         <input type="hidden" id="txtcheck" value="" name="name" />
                                         @Html.TextBoxFor(m => m.First_Name, new { @class = "form-control input-shadow validate[required] text-input", @id = "txtfirstname", @placeholder = "First Name", @autocomplete = "off", alert = "LabourCost is requried" })
                                     </div>
@@ -163,7 +163,7 @@
 
                                     <div class="form-group">
 
-
+                                        <label for="input-1">Middle Name</label>
                                         @Html.TextBoxFor(m => m.Middle_Name, new { @class = "form-control input-shadow validate[required] text-input", @id = "txtmiddlename", @placeholder = "Middle Name", @autocomplete = "off", alert = "LabourCost is requried" })
                                     </div>
                                 </div>
@@ -171,7 +171,7 @@
                                 <div class="col-sm-3">
 
                                     <div class="form-group">
-
+                                        <label for="input-1">Last Name</label>
 
                                         @Html.TextBoxFor(m => m.Last_Name, new { @class = "form-control input-shadow validate[required] text-input", @id = "txtlastname", @placeholder = "Last Name", @autocomplete = "off", alert = "LabourCost is requried" })
                                     </div>
@@ -185,7 +185,7 @@
 
                                     <div class="form-group">
 
-
+                                        <label for="input-1">Date Of Birth</label>
                                         <div id="datepicker" class="input-group date" data-date-format="dd-mm-yyyy">
                                             <input class="form-control input-shadow validate[required]" onchange="validateDOB(this.value)" type="text" id="DOB" name="DOB" autocomplete="off" placeholder="Select Date Of Birth" />
                                             <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
@@ -199,7 +199,7 @@
 
                                     <div class="form-group">
 
-
+                                        <label for="input-1">Mobile</label>
                                         @Html.TextBoxFor(m => m.Mobile, new { @class = "form-control input-shadow required validate[required,custom[Mobile],maxSize[10]]", @id = "txtmobile", @placeholder = "Enter Mobile", @autocomplete = "off", alert = "LabourCost is requried" })
                                     </div>
                                 </div>
@@ -208,7 +208,7 @@
 
                                     <div class="form-group">
 
-
+                                        <label for="input-1">Relation</label>
                                         <select id="ddlrelation" class="form-control input-shadow validate[required]">
                                             <option value="">--Select--</option>
                                         </select>
@@ -221,7 +221,7 @@
                                 <div class="col-sm-3">
 
                                     <div class="form-group">
-
+                                        <label for="input-1">Marital Status</label>
 
                                         @Html.DropDownListFor(x => x.Marital_Status, new SelectListItem[]{
                                             new SelectListItem() {Text = "--Select--", Value=""},
@@ -233,7 +233,7 @@
                                 <div class="col-sm-3">
 
                                     <div class="form-group">
-
+                                        <label for="input-1">Religion</label>
 
                                         @Html.DropDownListFor(x => x.Religion, new SelectListItem[]{
                                      new SelectListItem() {Text = "--Select--", Value=""},
@@ -263,7 +263,7 @@
 
                                     <div class="form-group">
 
-
+                                        <label for="input-1">State</label>
                                         <select id="ddlstate" class="form-control input-shadow validate[required]">
                                             <option value="">--Select State--</option>
                                         </select>
@@ -275,7 +275,7 @@
                                 <div class="col-sm-3">
 
                                     <div class="form-group">
-
+                                        <label for="input-1">City</label>
                                         <select id="ddlcity" class="form-control input-shadow validate[required]">
                                             <option value="">--Select City--</option>
                                         </select>
@@ -287,7 +287,7 @@
 
                                     <div class="form-group">
 
-
+                                        <label for="input-1">Pin</label>
                                         @Html.TextBoxFor(m => m.Pin, new { @class = "form-control input-shadow required validate[required,custom[integer],maxSize[6]]", @id = "txtpin", @placeholder = "Enter Pin", @autocomplete = "off", alert = "LabourCost is requried" })
                                     </div>
                                 </div>
@@ -309,7 +309,7 @@
 
                                     <div class="form-group">
 
-
+                                        <label for="input-1">Address 1</label>
                                         @Html.TextAreaFor(m => m.Address1, new { @class = "form-control input-shadow validate[required] text-input", @id = "txtaddress1", @placeholder = "Enter Address 1", @autocomplete = "off", alert = "LabourCost is requried" })
                                     </div>
                                 </div>
@@ -319,7 +319,7 @@
 
                                     <div class="form-group">
 
-
+                                        <label for="input-1">Address 2</label>
                                         @Html.TextAreaFor(m => m.Address2, new { @class = "form-control input-shadow  text-input", @id = "txtaddress2", @placeholder = "Enter Address 2", @autocomplete = "off", alert = "LabourCost is requried" })
                                     </div>
                                 </div>
@@ -329,7 +329,7 @@
 
                                     <div class="form-group">
 
-
+                                        <label for="input-1">Address 3</label>
                                         @Html.TextAreaFor(m => m.Address3, new { @class = "form-control input-shadow  text-input", @id = "txtaddress3", @placeholder = "Enter Address 3", @autocomplete = "off", alert = "LabourCost is requried" })
                                     </div>
                                 </div>
@@ -345,7 +345,7 @@
 
                                 <div class="col-sm-3">
                                     <div class="form-group">
-
+                                        <label for="input-1">Identity Proof</label>
                                         @Html.DropDownListFor(x => x.Identity_Proof, new SelectListItem[]{
                                    new SelectListItem() {Text = "--Select Identity Proof--", Value=""},
                                    new SelectListItem() {Text = "Aadhaar Card", Value="Aadhaar Card"},
@@ -361,7 +361,7 @@
                                 <div class="col-sm-3">
                                     <div class="form-group">
 
-                                        <div id="appendtxt">  @Html.TextBoxFor(m => m.Identity_Proof_Value, new { @class = "form-control input-shadow validate[required] text-input", @id = "txtidentityproof", @placeholder = "Enter Aadhaar Card", @autocomplete = "off" })</div>
+                                        <div id="appendtxt">  @Html.TextBoxFor(m => m.Identity_Proof_Value, new { @class = "form-control input-shadow validate[required] text-input", @id = "txtidentityproof", @placeholder = "Enter Aadhaar Card", @style="display:none;" , @autocomplete = "off" })</div>
 
 
                                     </div>
@@ -369,7 +369,7 @@
 
                                 <div class="col-sm-3">
                                     <div class="form-group">
-
+                                        <label for="input-1">Alt Identity Proof</label>
                                         @Html.DropDownListFor(x => x.Identity_Proof, new SelectListItem[]{
                                    new SelectListItem() {Text = "--Select Identity Proof--", Value=""},
                                    new SelectListItem() {Text = "Aadhaar Card", Value="Aadhaar Card"},

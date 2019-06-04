@@ -1,0 +1,115 @@
+﻿
+@{
+    ViewBag.Title = "Completeddocumentpagecontent";
+}
+
+
+
+@*Main Content*@
+<div class="content-wrapper">
+    <div class="container-fluid">
+
+        <div class="row pt-2 pb-2">
+
+            <div class="col-sm-3">
+                <div class="btn-group float-sm-right">
+
+                    <div class="dropdown-menu">
+                        <a href="javaScript:void();" class="dropdown-item">Action</a>
+                        <a href="javaScript:void();" class="dropdown-item">Another action</a>
+                        <a href="javaScript:void();" class="dropdown-item">Something else here</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="javaScript:void();" class="dropdown-item">Separated link</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group col-3 text-capitalize">
+            <i class="fa fa-home text-dark"></i><a href="@Url.Action("Index","Frontend")"> WillAssure</a>
+        </div>
+
+        <!-- End Breadcrumb-->
+        <center>
+            <a href="@Url.Action("Report.aspx", "page" , new { NestId = ViewBag.testatorid })" id="documentbtn1" style="display:none;"><button type="button" class="btn btn-primary btn-round waves-effect waves-light m-1">Will</button></a>
+            <a href="@Url.Action("Report.aspx","page", new { NestId = ViewBag.testatorid })" id="documentbtn2" style="display:none;"> <button type="button" class="btn btn-success btn-round waves-effect waves-light m-1">Codocil</button></a>
+            <a href="@Url.Action("Report.aspx","page", new { NestId = ViewBag.testatorid } )" id="documentbtn3" style="display:none;"><button type="button" class="btn btn-info btn-round waves-effect waves-light m-1">POA</button></a>
+            <a href="@Url.Action("Report.aspx","page", new { NestId = ViewBag.testatorid })" id="documentbtn4" style="display:none;"><button type="button" class="btn btn-danger btn-round waves-effect waves-light m-1">Gift Deeds</button></a>
+            <a href="@Url.Action("Report.aspx","page", new { NestId = ViewBag.testatorid })" id="documentbtn5" style="display:none;"><button type="button" class="btn btn-warning btn-round waves-effect waves-light m-1">Living Will</button></a>
+        </center>
+        <br />
+        <br />
+
+
+
+
+
+
+
+
+    </div>
+
+
+</div>
+@*end*@
+
+
+
+
+
+
+
+@if (ViewBag.documentbtn1 == "true")
+{
+
+    <script>
+
+        $("#documentbtn1").removeAttr("style");
+
+    </script>
+
+}
+@if (ViewBag.documentbtn2 == "true")
+{
+
+    <script>
+
+        $("#documentbtn2").removeAttr("style");
+
+    </script>
+
+}
+@if (ViewBag.documentbtn3 == "true")
+{
+
+    <script>
+
+        $("#documentbtn3").removeAttr("style");
+
+    </script>
+
+}
+@if (ViewBag.documentbtn4 == "true")
+{
+
+    <script>
+
+        $("#documentbtn4").removeAttr("style");
+
+    </script>
+
+}
+
+@if (ViewBag.documentbtn5 == "true")
+{
+
+    <script>
+
+        $("#documentbtn5").removeAttr("style");
+
+    </script>
+
+}
+
+
+
+

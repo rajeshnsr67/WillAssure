@@ -47,6 +47,10 @@
      // roles
      
 
+     $("#btnCHECK").click(function () {
+         swal("Failed", "Asset Category Already Mapped Please Select Another Category...!", "warning");
+     });
+
      $("#btnwillsuccess").click(function () {
          swal("Failed", "Will Already Have Been Created...!", "warning");
      });

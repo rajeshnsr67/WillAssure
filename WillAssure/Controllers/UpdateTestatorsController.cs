@@ -372,7 +372,7 @@ namespace WillAssure.Controllers
 
                 // for beneficiary
                 con.Open();
-                string qchk002 = "select a.bpId , a.First_Name , a.Last_Name , a.Middle_Name , a.DOB , a.Mobile , a.Relationship , a.Marital_Status , a.Religion , a.Identity_proof , a.Identity_proof_value , a.Alt_Identity_proof , a.Alt_Identity_proof_value , a.Address1 , a.Address2 , a.Address3 , a.City , a.State , a.Pin , a.aiid , a.tId , a.dateCreated , a.createdBy , a.documentId , a.beneficiary_type from BeneficiaryDetails a inner join TestatorDetails b on a.tId=b.tId where b.tId = " + NestId + "";
+                string qchk002 = "select a.bpId , a.First_Name , a.Last_Name , a.Middle_Name , a.DOB , a.Mobile , a.Relationship , a.Marital_Status , a.Religion , a.Identity_proof , a.Identity_proof_value , a.Alt_Identity_proof , a.Alt_Identity_proof_value , a.Address1 , a.Address2 , a.Address3 , a.City , a.State , a.Pin , a.aiid , a.tId , a.dateCreated , a.createdBy , a.documentId , a.beneficiary_type from BeneficiaryDetails a inner join TestatorDetails b on a.tId=b.tId where b.tId = " + NestId + "  and a.doctype = 'Will'";
                 SqlDataAdapter chk002da = new SqlDataAdapter(qchk002, con);
                 DataTable chk002dt = new DataTable();
                 chk002da.Fill(chk002dt);
@@ -392,7 +392,7 @@ namespace WillAssure.Controllers
 
                 // for assetinformation
                 con.Open();
-                string qchk003 = "select a.aiid , a.atId , a.amId , a.tid , a.docid , a.Json from AssetInformation a inner join TestatorDetails b on a.tid=b.tId where b.tId = " + NestId + "   ";
+                string qchk003 = "select a.aiid , a.atId , a.amId , a.tid , a.docid , a.Json from AssetInformation a inner join TestatorDetails b on a.tid=b.tId where b.tId = " + NestId + " and a.doctype='Will'   ";
                 SqlDataAdapter chk003da = new SqlDataAdapter(qchk003, con);
                 DataTable chk003dt = new DataTable();
                 chk003da.Fill(chk003dt);
@@ -410,49 +410,7 @@ namespace WillAssure.Controllers
 
 
 
-                // for liabilities
-
-                //con.Open();
-                //string qchk004 = "select * from Liabilities where tid = " + NestId + "   ";
-                //SqlDataAdapter chk004da = new SqlDataAdapter(qchk004, con);
-                //DataTable chk004dt = new DataTable();
-                //chk004da.Fill(chk004dt);
-                //con.Close();
-
-                //if (chk004dt.Rows.Count > 0)
-                //{
-
-                //}
-                //else
-                //{
-                //    return RedirectToAction("AddLiabilitiesIndex", "AddLiabilities");
-                //}
-
-                //end
-
-
-
-
-                // for petcare
-
-                //con.Open();
-                //string qchk005 = "select * from PetCare where tid = " + NestId + "   ";
-                //SqlDataAdapter chk005da = new SqlDataAdapter(qchk005, con);
-                //DataTable chk005dt = new DataTable();
-                //chk005da.Fill(chk005dt);
-                //con.Close();
-
-                //if (chk005dt.Rows.Count > 0)
-                //{
-
-                //}
-                //else
-                //{
-                //    return RedirectToAction("AddPetCareIndex", "AddPetCare");
-                //}
-
-                //end
-
+               
 
 
 
@@ -460,7 +418,7 @@ namespace WillAssure.Controllers
                 // for asset mapping 
 
                 con.Open();
-                string qchk006 = "select a.Beneficiary_Asset_ID , a.AssetType_ID , a.AssetCategory_ID , a.SchemeName , a.InstrumentName , a.Beneficiary_ID , a.Proportion , a.tid from BeneficiaryAssets a inner join TestatorDetails b on a.tid=b.tId where b.tId = " + NestId + "";
+                string qchk006 = "select a.Beneficiary_Asset_ID , a.AssetType_ID , a.AssetCategory_ID , a.SchemeName , a.InstrumentName , a.Beneficiary_ID , a.Proportion , a.tid from BeneficiaryAssets a inner join TestatorDetails b on a.tid=b.tId where b.tId = " + NestId + " and a.doctype='Will' ";
                 SqlDataAdapter chk006da = new SqlDataAdapter(qchk006, con);
                 DataTable chk006dt = new DataTable();
                 chk006da.Fill(chk006dt);
@@ -510,7 +468,7 @@ namespace WillAssure.Controllers
                 // for appointees 
 
                 con.Open();
-                string qchk008 = "select * from Appointees where tid = " + NestId + " ";
+                string qchk008 = "select * from Appointees where tid = " + NestId + " and doctype='Will'  ";
                 SqlDataAdapter chk008da = new SqlDataAdapter(qchk008, con);
                 DataTable chk008dt = new DataTable();
                 chk008da.Fill(chk008dt);
@@ -539,6 +497,236 @@ namespace WillAssure.Controllers
 
 
 
+
+
+
+
+
+            // POA DOCUMENT
+            if (Session["doctype"].ToString() == "POA")
+            {
+               
+
+                // for beneficiary
+                con.Open();
+                string qchk002 = "select a.bpId , a.First_Name , a.Last_Name , a.Middle_Name , a.DOB , a.Mobile , a.Relationship , a.Marital_Status , a.Religion , a.Identity_proof , a.Identity_proof_value , a.Alt_Identity_proof , a.Alt_Identity_proof_value , a.Address1 , a.Address2 , a.Address3 , a.City , a.State , a.Pin , a.aiid , a.tId , a.dateCreated , a.createdBy , a.documentId , a.beneficiary_type from BeneficiaryDetails a inner join TestatorDetails b on a.tId=b.tId where b.tId = " + NestId + " and a.doctype = 'POA'";
+                SqlDataAdapter chk002da = new SqlDataAdapter(qchk002, con);
+                DataTable chk002dt = new DataTable();
+                chk002da.Fill(chk002dt);
+                con.Close();
+                if (chk002dt.Rows.Count > 0)
+                {
+
+                }
+                else
+                {
+                    return RedirectToAction("AddBeneficiaryIndex", "AddBeneficiary");
+                }
+                //end
+
+
+
+
+                // for assetinformation
+                con.Open();
+                string qchk003 = "select a.aiid , a.atId , a.amId , a.tid , a.docid , a.Json from AssetInformation a inner join TestatorDetails b on a.tid=b.tId where b.tId = " + NestId + " and a.doctype = 'POA'   ";
+                SqlDataAdapter chk003da = new SqlDataAdapter(qchk003, con);
+                DataTable chk003dt = new DataTable();
+                chk003da.Fill(chk003dt);
+                con.Close();
+                if (chk003dt.Rows.Count > 0)
+                {
+
+                }
+                else
+                {
+                    return RedirectToAction("AddMainAssetsIndex", "AddMainAssets");
+                }
+
+                //end
+
+
+
+
+
+
+
+
+                // for asset mapping 
+
+                con.Open();
+                string qchk006 = "select a.Beneficiary_Asset_ID , a.AssetType_ID , a.AssetCategory_ID , a.SchemeName , a.InstrumentName , a.Beneficiary_ID , a.Proportion , a.tid from BeneficiaryAssets a inner join TestatorDetails b on a.tid=b.tId where b.tId = " + NestId + " and a.doctype = 'POA'";
+                SqlDataAdapter chk006da = new SqlDataAdapter(qchk006, con);
+                DataTable chk006dt = new DataTable();
+                chk006da.Fill(chk006dt);
+                con.Close();
+
+                if (chk006dt.Rows.Count > 0)
+                {
+
+                }
+                else
+                {
+                    return RedirectToAction("AddAssetMappingIndex", "AddAssetMapping");
+                }
+
+                //end
+
+
+
+
+
+
+                
+
+
+
+
+
+                // for appointees 
+
+                con.Open();
+                string qchk008 = "select * from Appointees where tid = " + NestId + " and  doctype = 'POA'";
+                SqlDataAdapter chk008da = new SqlDataAdapter(qchk008, con);
+                DataTable chk008dt = new DataTable();
+                chk008da.Fill(chk008dt);
+                con.Close();
+
+                if (chk008dt.Rows.Count > 0)
+                {
+
+
+                    return RedirectToAction("DashBoardIndex", "DashBoard", new { msg = "willcreated" });
+                }
+                else
+                {
+                    return RedirectToAction("AddAppointeesIndex", "AddAppointees");
+                }
+
+                //end
+
+
+
+
+            }
+
+            //END
+
+
+
+
+
+
+
+            // Giftdeeds DOCUMENT
+            if (Session["doctype"].ToString() == "Giftdeeds")
+            {
+
+
+                // for beneficiary
+                con.Open();
+                string qchk002 = "select a.bpId , a.First_Name , a.Last_Name , a.Middle_Name , a.DOB , a.Mobile , a.Relationship , a.Marital_Status , a.Religion , a.Identity_proof , a.Identity_proof_value , a.Alt_Identity_proof , a.Alt_Identity_proof_value , a.Address1 , a.Address2 , a.Address3 , a.City , a.State , a.Pin , a.aiid , a.tId , a.dateCreated , a.createdBy , a.documentId , a.beneficiary_type from BeneficiaryDetails a inner join TestatorDetails b on a.tId=b.tId where b.tId = " + NestId + " and a.doctype = 'Giftdeeds'";
+                SqlDataAdapter chk002da = new SqlDataAdapter(qchk002, con);
+                DataTable chk002dt = new DataTable();
+                chk002da.Fill(chk002dt);
+                con.Close();
+                if (chk002dt.Rows.Count > 0)
+                {
+
+                }
+                else
+                {
+                    return RedirectToAction("AddBeneficiaryIndex", "AddBeneficiary");
+                }
+                //end
+
+
+
+
+                // for assetinformation
+                con.Open();
+                string qchk003 = "select a.aiid , a.atId , a.amId , a.tid , a.docid , a.Json from AssetInformation a inner join TestatorDetails b on a.tid=b.tId where b.tId = " + NestId + " and a.doctype = 'Giftdeeds'   ";
+                SqlDataAdapter chk003da = new SqlDataAdapter(qchk003, con);
+                DataTable chk003dt = new DataTable();
+                chk003da.Fill(chk003dt);
+                con.Close();
+                if (chk003dt.Rows.Count > 0)
+                {
+
+                }
+                else
+                {
+                    return RedirectToAction("AddMainAssetsIndex", "AddMainAssets");
+                }
+
+                //end
+
+
+
+
+
+
+
+
+                // for asset mapping 
+
+                con.Open();
+                string qchk006 = "select a.Beneficiary_Asset_ID , a.AssetType_ID , a.AssetCategory_ID , a.SchemeName , a.InstrumentName , a.Beneficiary_ID , a.Proportion , a.tid from BeneficiaryAssets a inner join TestatorDetails b on a.tid=b.tId where b.tId = " + NestId + " and a.doctype = 'Giftdeeds'";
+                SqlDataAdapter chk006da = new SqlDataAdapter(qchk006, con);
+                DataTable chk006dt = new DataTable();
+                chk006da.Fill(chk006dt);
+                con.Close();
+
+                if (chk006dt.Rows.Count > 0)
+                {
+
+                }
+                else
+                {
+                    return RedirectToAction("AddAssetMappingIndex", "AddAssetMapping");
+                }
+
+                //end
+
+
+
+
+
+
+
+
+
+
+
+
+                // for appointees 
+
+                con.Open();
+                string qchk008 = "select * from Appointees where tid = " + NestId + " and  doctype = 'Giftdeeds'";
+                SqlDataAdapter chk008da = new SqlDataAdapter(qchk008, con);
+                DataTable chk008dt = new DataTable();
+                chk008da.Fill(chk008dt);
+                con.Close();
+
+                if (chk008dt.Rows.Count > 0)
+                {
+
+
+                    return RedirectToAction("DashBoardIndex", "DashBoard", new { msg = "willcreated" });
+                }
+                else
+                {
+                    return RedirectToAction("AddAppointeesIndex", "AddAppointees");
+                }
+
+                //end
+
+
+
+
+            }
+
+            //END
 
 
 

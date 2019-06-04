@@ -26,6 +26,10 @@
                 </div>
             </div>
         </div>
+        <div class="form-group col-3 text-capitalize">
+            <i class="fa fa-home text-dark"></i><a href="@Url.Action("Index","Frontend")"> WillAssure</a>
+        </div>
+
         <!-- End Breadcrumb-->
         <center>
             <a href="@Url.Action("EnableDocumentLinks","DashBoard", new { doctype = "Will" })" id="documentbtn1" style="display:none;"><button type="button" class="btn btn-primary btn-round waves-effect waves-light m-1">Will</button></a>
@@ -338,15 +342,56 @@
 @*end*@
 
 
-@if (ViewBag.completion == "true")
+@if (ViewBag.Willbtn == "true")
 {
     <script>
         $(document).ready(function () {
-            $("#btnwillsuccess").on("click", function () { });
-
-            $("#btnwillsuccess").click(); //trigger event after listening to it.
+            $("#documentbtn1").hide();
         });
-       
+
+    </script>
+}
+
+@if (ViewBag.POAbtn == "true")
+{
+    <script>
+        $(document).ready(function () {
+            $("#documentbtn3").hide();
+        });
+
+    </script>
+}
+
+
+@if (ViewBag.Giftdeedsbtn == "true")
+{
+    <script>
+        $(document).ready(function () {
+            $("#documentbtn4").hide();
+        });
+
+    </script>
+}
+
+
+@if (ViewBag.LivingWillbtn == "true")
+{
+    <script>
+        $(document).ready(function () {
+            $("#documentbtn5").hide();
+        });
+
+    </script>
+}
+
+
+@if (ViewBag.Codocilbtn == "true")
+{
+    <script>
+        $(document).ready(function () {
+            $("#documentbtn2").hide();
+        });
+
     </script>
 }
 

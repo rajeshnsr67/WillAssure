@@ -259,7 +259,7 @@ namespace WillAssure.Views.ViewDocument
                     rpt.SetParameterValue("percent", proportion);
 
 
-                    rpt.Load(Server.MapPath("\\CrystalReports\\WillTestator1.rpt"));
+                   
                     CrystalReportViewer1.ReportSource = rpt;
                     
                     CrystalReportViewer1.Zoom(125);
@@ -288,7 +288,7 @@ namespace WillAssure.Views.ViewDocument
                     rpt2.SetParameterValue("percent", proportion);
 
 
-                    rpt2.Load(Server.MapPath("\\CrystalReports\\WillTestator2.rpt"));
+                   
                     CrystalReportViewer1.ReportSource = rpt2;
                     CrystalReportViewer1.Zoom(125);
                     var path = Server.MapPath("~/GeneratedPdf/file.pdf");
@@ -315,7 +315,7 @@ namespace WillAssure.Views.ViewDocument
                     rpt3.SetParameterValue("percent", proportion);
 
 
-                    rpt3.Load(Server.MapPath("\\CrystalReports\\WillTestator3.rpt"));
+                    
                     CrystalReportViewer1.ReportSource = rpt3;
                     CrystalReportViewer1.Zoom(125);
                     var path = Server.MapPath("~/GeneratedPdf/file.pdf");
@@ -344,7 +344,7 @@ namespace WillAssure.Views.ViewDocument
                     rpt4.SetParameterValue("percent", proportion);
 
 
-                    rpt4.Load(Server.MapPath("\\CrystalReports\\WillTestator4.rpt"));
+                  
                     CrystalReportViewer1.ReportSource = rpt4;
                     CrystalReportViewer1.Zoom(125);
                     var path = Server.MapPath("~/GeneratedPdf/file.pdf");
@@ -371,7 +371,7 @@ namespace WillAssure.Views.ViewDocument
                     rpt5.SetParameterValue("benefname", mapbeneficiary);
                     rpt5.SetParameterValue("percent", proportion);
 
-                    rpt5.Load(Server.MapPath("\\CrystalReports\\WillTestator5.rpt"));
+                    
 
                     CrystalReportViewer1.ReportSource = rpt5;
                     CrystalReportViewer1.Zoom(125);
