@@ -401,7 +401,7 @@
 
                                 <div class="col-sm-3">
                                     <div class="form-group">
-
+                                        <label for="input-1">Identity Proof Value</label>
                                         <div id="appendtxt">  </div>
 
                                         @*@Html.TextBoxFor(m => m.Identity_Proof_Value, new { @class = "form-control input-shadow validate[required] text-input", @id = "txtIdentityProofValue", @placeholder = "Enter Identity Proof Value", @autocomplete = "off" })*@
@@ -428,7 +428,7 @@
                                 <div class="col-sm-3"></div>
                                 <div class="col-sm-3">
                                     <div class="form-group">
-
+                                        <label for="input-1">Alt Identity Proof Value</label>
                                         <div id="appendtxt2">  </div>
 
                                         @*@Html.TextBoxFor(m => m.Identity_Proof_Value, new { @class = "form-control input-shadow validate[required] text-input", @id = "txtIdentityProofValue", @placeholder = "Enter Identity Proof Value", @autocomplete = "off" })*@
@@ -458,19 +458,27 @@
 
                             <div class="row">
                                 <div class="col-sm-1"></div>
-                                <div class="col-sm-2"> <label for="input-1">Status</label></div>
 
 
-                                <div class="col-sm-3">
+                                @if (Session["Type"].ToString() != "Testator")
+                                {
+                                    <div class="col-sm-2"> <label for="input-1">Status</label></div>
 
-                                    <div class="form-group">
 
-                                        @Html.DropDownListFor(x => x.active, new SelectListItem[]{
-                                       new SelectListItem() {Text = "--Select--", Value=""},
-                                       new SelectListItem() {Text = "Active", Value="Active"},
-                                       new SelectListItem() {Text = "Inactive", Value="2"}}, new { @class = "form-control input-shadow validate[required]" })
+                                    <div class="col-sm-3">
+
+                                        <div class="form-group">
+
+                                            @Html.DropDownListFor(x => x.active, new SelectListItem[]{
+                                           new SelectListItem() {Text = "--Select--", Value=""},
+                                           new SelectListItem() {Text = "Active", Value="Active"},
+                                           new SelectListItem() {Text = "Inactive", Value="2"}}, new { @class = "form-control input-shadow validate[required]" })
+                                        </div>
                                     </div>
-                                </div>
+
+                                }
+
+
                             </div>
 
 

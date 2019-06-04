@@ -269,7 +269,7 @@ namespace WillAssure.Controllers
                 for (int i = 0; i < dt1.Rows.Count; i++)
                 {
 
-                    data = data + "<option value=" + dt1.Rows[i]["tId"] + ">" + dt1.Rows[i]["First_Name"] + "</option>";
+                    data = data + "<option value=" + dt1.Rows[i]["bpId"] + ">" + dt1.Rows[i]["First_Name"] + "</option>";
 
                 }
 

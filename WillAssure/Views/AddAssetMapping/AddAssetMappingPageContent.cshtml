@@ -928,20 +928,20 @@
             var lang_name = $('#' + id).val();
             var selectedtext = $("#" + id + " option:selected").text();
             var check = 'active';
-            //$(".beneficiaryclass").each(function () {
-            //    var myid = $(this).attr('id');
-            //    var myval = $('#' + myid).val();
-            //    if (id != myid) {
-            //        if (lang_name == myval && lang_name != '') {
-            //            alert(selectedtext + ' already exists');
-            //            $("#" + id).val('0');
-            //            check = 'inactive'
-            //        }
+            $(".beneficiaryclass").each(function () {
+                var myid = $(this).attr('id');
+                var myval = $('#' + myid).val();
+                if (id != myid) {
+                    if (lang_name == myval && lang_name != '') {
+                        alert(selectedtext + ' already exists');
+                        $("#" + id).val('0');
+                        check = 'inactive'
+                    }
 
-            //    }
+                }
 
 
-            //});
+            });
 
 
 
