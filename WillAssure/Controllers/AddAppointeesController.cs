@@ -260,9 +260,68 @@ namespace WillAssure.Controllers
             
                     ViewBag.view = "POA";
                     ViewBag.view = "GiftDeeds";
-           
-            
-            return View("/Views/AddAppointees/AddAppointeesPageContent.cshtml");
+
+
+
+
+
+
+
+
+
+
+            AppointeesModel Am = new AppointeesModel();
+          
+
+            con.Open();
+            string query = "select * from Appointees where apId = " + Session["distid"].ToString() + "";
+            SqlDataAdapter da = new SqlDataAdapter(query, con);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            con.Close();
+            string data = "";
+
+            if (dt.Rows.Count > 0)
+            {
+
+
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+
+
+                    Am.Typetxt = dt.Rows[i]["Type"].ToString();
+                    Am.subTypetxt = dt.Rows[i]["subType"].ToString();
+                    Am.Name = dt.Rows[i]["Name"].ToString();
+                    Am.middleName = dt.Rows[i]["middleName"].ToString();
+                    Am.Surname = dt.Rows[i]["Surname"].ToString();
+                    Am.Identity_Proof = dt.Rows[i]["Identity_Proof"].ToString();
+                    Am.Identity_Proof_Value = dt.Rows[i]["Identity_Proof_Value"].ToString();
+                    Am.Alt_Identity_Proof = dt.Rows[i]["Alt_Identity_Proof"].ToString();
+                    Am.Alt_Identity_Proof_Value = dt.Rows[i]["Alt_Identity_Proof_Value"].ToString();
+                    Am.Dob = dt.Rows[0]["DOB"].ToString();
+                    Am.Gender = dt.Rows[i]["Gender"].ToString();
+                    Am.Occupation = dt.Rows[i]["Occupation"].ToString();
+                    Am.RelationshipTxt = dt.Rows[i]["Relationship"].ToString();
+                    Am.Address1 = dt.Rows[i]["Address1"].ToString();
+                    Am.Address2 = dt.Rows[i]["Address2"].ToString();
+                    Am.Address3 = dt.Rows[i]["Address3"].ToString();
+                    Am.citytext = dt.Rows[i]["City"].ToString();
+                    Am.statetext = dt.Rows[i]["State"].ToString();
+                    Am.Pin = dt.Rows[i]["Pin"].ToString();
+
+
+
+
+                }
+            }
+
+
+
+
+
+
+
+            return View("/Views/AddAppointees/AddAppointeesPageContent.cshtml",Am);
         }
 
 

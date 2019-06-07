@@ -166,10 +166,59 @@ namespace WillAssure.Controllers
             con.Close();
 
 
-       
-                  
-            
-            return View("~/Views/AddNominee/AddNomineePageContent.cshtml");
+
+
+
+            NomineeModel NM = new NomineeModel();
+            con.Open();
+            string query = "select * from Nominee where tId = "+ Convert.ToInt32(Session["distid"]) + " ";
+            SqlDataAdapter da = new SqlDataAdapter(query, con);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            con.Close();
+
+
+            if (dt.Rows.Count > 0)
+            {
+
+
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                 
+                    NM.First_Name = dt.Rows[i]["First_Name"].ToString();
+                    NM.Last_Name = dt.Rows[i]["Last_Name"].ToString();
+                    NM.Middle_Name = dt.Rows[i]["Middle_Name"].ToString();
+                    NM.Dob = dt.Rows[0]["DOB"].ToString();
+                    NM.Mobile = dt.Rows[i]["Mobile"].ToString();
+                    NM.RelationshipTxt = dt.Rows[i]["Relationship"].ToString();
+                    NM.Marital_Status = dt.Rows[i]["Marital_Status"].ToString();
+                    NM.Religion = dt.Rows[i]["Religion"].ToString();
+                    NM.Identity_Proof = dt.Rows[i]["Identity_Proof"].ToString();
+                    NM.Identity_Proof_Value = dt.Rows[i]["Identity_Proof_Value"].ToString();
+                    NM.Alt_Identity_Proof = dt.Rows[i]["Alt_Identity_Proof"].ToString();
+                    NM.Alt_Identity_Proof_Value = dt.Rows[i]["Alt_Identity_Proof_Value"].ToString();
+                    NM.Address1 = dt.Rows[i]["Address1"].ToString();
+                    NM.Address2 = dt.Rows[i]["Address2"].ToString();
+                    NM.Address3 = dt.Rows[i]["Address3"].ToString();
+                    NM.citytext = dt.Rows[i]["City"].ToString();
+                    NM.statetext = dt.Rows[i]["State"].ToString();
+                    NM.Pin = dt.Rows[i]["Pin"].ToString();
+                    NM.aid = Convert.ToInt32(dt.Rows[i]["aiid"]);
+                    NM.tId = Convert.ToInt32(dt.Rows[i]["tId"]);
+
+                    NM.createdBy = dt.Rows[i]["createdBy"].ToString();
+                    NM.documentId = Convert.ToInt32(dt.Rows[i]["documentId"]);
+                    NM.Description_of_Assets = dt.Rows[i]["Description_of_Assets"].ToString();
+
+
+
+                }
+            }
+
+
+
+
+            return View("~/Views/AddNominee/AddNomineePageContent.cshtml",NM);
         }
 
 

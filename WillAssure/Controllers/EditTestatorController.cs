@@ -291,7 +291,7 @@ namespace WillAssure.Controllers
             if (Convert.ToInt32(Session["uuid"]) != 1)
             {
                 con.Open();
-                string query = "select * from TestatorDetails a   inner join users b on a.uId = b.uId  where b.Linked_user = "+Convert.ToInt32(Session["uuid"])+"  ";
+                string query = "select * from TestatorDetails a   inner join users b on a.uId = b.uId  where a.uId = " + Convert.ToInt32(Session["uuid"])+"  ";
                 SqlDataAdapter da = new SqlDataAdapter(query, con);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
@@ -957,35 +957,39 @@ namespace WillAssure.Controllers
 
         public string UpdateTestatorForm()
         {
-            string data = "";
 
-            if (Session["doctype"].ToString() == "Will")
-            {
+            string data = Request["send"].ToString();
 
-                int id = Convert.ToInt32(Request["send"]);
-                string type = "Will";
-                data = type + "~" + id;
-                
-            }
+         
+           
 
-            if (Session["doctype"].ToString() == "POA" || Session["doctype"].ToString() == "GiftDeeds")
-            {
+            //if (Session["doctype"].ToString() == "Will")
+            //{
 
-                int id = Convert.ToInt32(Request["send"]);
-                string type = "Will";
-                data = type + "~" + id;
-            }
+            //    int id = Convert.ToInt32(Request["send"]);
+            //    string type = "Will";
+            //    data = type + "~" + id;
+
+            //}
+
+            //if (Session["doctype"].ToString() == "POA" || Session["doctype"].ToString() == "GiftDeeds")
+            //{
+
+            //    int id = Convert.ToInt32(Request["send"]);
+            //    string type = "Will";
+            //    data = type + "~" + id;
+            //}
 
 
-            if (Session["doctype"].ToString() == "Codocil")
-            {
-                data = "Codocil";
-            }
+            //if (Session["doctype"].ToString() == "Codocil")
+            //{
+            //    data = "Codocil";
+            //}
 
-            if (Session["doctype"].ToString() == "LivingWill")
-            {
-                data = "LivingWill";
-            }
+            //if (Session["doctype"].ToString() == "LivingWill")
+            //{
+            //    data = "LivingWill";
+            //}
 
             return data;
         }

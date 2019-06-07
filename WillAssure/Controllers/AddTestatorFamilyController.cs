@@ -181,14 +181,67 @@ namespace WillAssure.Controllers
 
 
 
-        
-                   
-              
-
-            
 
 
-            return View("~/Views/AddTestatorFamily/AddTestatorFamilyPageContent.cshtml");
+
+
+            TestatorFamilyModel TFM = new TestatorFamilyModel();
+         
+
+
+
+            con.Open();
+            string query = "select * from testatorFamily where tId = " + Convert.ToInt32(Session["distid"]) + "";
+            SqlDataAdapter da = new SqlDataAdapter(query, con);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            con.Close();
+            string data = "";
+
+            if (dt.Rows.Count > 0)
+            {
+
+
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+
+                    TFM.First_Name = dt.Rows[i]["First_Name"].ToString();
+                    TFM.Last_Name = dt.Rows[i]["Last_Name"].ToString();
+                    TFM.Middle_Name = dt.Rows[i]["Middle_Name"].ToString();
+                    TFM.Dob = Convert.ToDateTime(dt.Rows[0]["DOB"]).ToString("dd-MM-yyyy");
+                    TFM.Marital_Status = dt.Rows[i]["Marital_Status"].ToString();
+                    TFM.Religion = dt.Rows[i]["Religion"].ToString();
+                    TFM.RelationshipTxt = dt.Rows[i]["Relationship"].ToString();
+                    TFM.Address1 = dt.Rows[i]["Address1"].ToString();
+                    TFM.Address2 = dt.Rows[i]["Address2"].ToString();
+                    TFM.Address3 = dt.Rows[i]["Address3"].ToString();
+                    TFM.City_txt = dt.Rows[i]["City"].ToString();
+                    TFM.State_txt = dt.Rows[i]["State"].ToString();
+                    TFM.Pin = dt.Rows[i]["Pin"].ToString();
+
+                    TFM.active = dt.Rows[i]["active"].ToString();
+                    TFM.Identity_Proof = dt.Rows[i]["Identity_Proof"].ToString();
+                    TFM.Identity_Proof_Value = dt.Rows[i]["Identity_Proof_Value"].ToString();
+                    TFM.Alt_Identity_Proof = dt.Rows[i]["Alt_Identity_Proof"].ToString();
+                    TFM.Alt_Identity_Proof_Value = dt.Rows[i]["Alt_Identity_Proof_Value"].ToString();
+                    TFM.Is_Informed_Person = dt.Rows[i]["Is_Informed_Person"].ToString();
+
+
+
+                }
+            }
+
+
+         
+
+
+
+
+
+
+
+
+            return View("~/Views/AddTestatorFamily/AddTestatorFamilyPageContent.cshtml", TFM);
         }
 
 
@@ -454,8 +507,22 @@ namespace WillAssure.Controllers
                 cmd.Parameters.AddWithValue("@State", TFM.State_txt);
                 cmd.Parameters.AddWithValue("@Pin", TFM.Pin);
                 cmd.Parameters.AddWithValue("@tId", TFM.ddltid);
+
+            if (TFM.active != null && TFM.active != "")
+            {
                 cmd.Parameters.AddWithValue("@active", TFM.active);
-                cmd.Parameters.AddWithValue("@Identity_Proof", TFM.Identity_Proof);
+            }
+            else
+            {
+                TFM.active = "Active";
+                cmd.Parameters.AddWithValue("@active", TFM.active);
+            }
+                
+
+
+
+
+            cmd.Parameters.AddWithValue("@Identity_Proof", TFM.Identity_Proof);
                 cmd.Parameters.AddWithValue("@Identity_Proof_Value", TFM.Identity_Proof_Value);
                 cmd.Parameters.AddWithValue("@Alt_Identity_Proof", TFM.Alt_Identity_Proof);
                 cmd.Parameters.AddWithValue("@Alt_Identity_Proof_Value", TFM.Alt_Identity_Proof_Value);
@@ -518,6 +585,28 @@ namespace WillAssure.Controllers
             cmd2.ExecuteNonQuery();
             con.Close();
 
+
+
+            int bpid = 0;
+            con.Open();
+            string qcheck = "select max(bpId) as bpId from BeneficiaryDetails ";
+            SqlDataAdapter dachk = new SqlDataAdapter(qcheck,con);
+            DataTable dtchk = new DataTable();
+            dachk.Fill(dtchk);
+            if (dtchk.Rows.Count > 0)
+            {
+                bpid = Convert.ToInt32(dtchk.Rows[0]["bpId"]);
+            }
+
+            con.Close();
+
+
+            con.Open();
+            string qu = "update BeneficiaryDetails set fetchid = 'TF' where  bpId = "+ bpid + "";
+            SqlCommand cmdu = new SqlCommand(qu,con);
+            cmdu.ExecuteNonQuery();
+
+            con.Close();
 
 
 

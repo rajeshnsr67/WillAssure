@@ -170,16 +170,55 @@ namespace WillAssure.Controllers
 
 
 
-            
-            
-
-        
-                 
-           
-            
 
 
-            return View("~/Views/AddBeneficiary/AddBeneficiaryPageContent.cshtml");
+
+            BeneficiaryModel BM = new BeneficiaryModel();
+
+            con.Open();
+            string query = "select * from BeneficiaryDetails where fetchid not in('TF') and tId  = '" + Convert.ToInt32(Session["distid"]) + "' ";
+            SqlDataAdapter da = new SqlDataAdapter(query, con);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            con.Close();
+
+
+            if (dt.Rows.Count > 0)
+            {
+
+                BM.bpId = Convert.ToInt32(Session["distid"]);
+                BM.First_Name = dt.Rows[0]["First_Name"].ToString();
+                BM.Last_Name = dt.Rows[0]["Last_Name"].ToString();
+                BM.Middle_Name = dt.Rows[0]["Middle_Name"].ToString();
+                BM.Dob = Convert.ToDateTime(dt.Rows[0]["DOB"]).ToString("dd-MM-yyyy");
+                BM.Mobile = dt.Rows[0]["Mobile"].ToString();
+                BM.RelationshipTxt = dt.Rows[0]["Relationship"].ToString();
+                BM.Marital_Status = dt.Rows[0]["Marital_Status"].ToString();
+                BM.Religion = dt.Rows[0]["Religion"].ToString();
+                BM.Identity_proof = dt.Rows[0]["Identity_proof"].ToString();
+                BM.Identity_proof_value = dt.Rows[0]["Identity_proof_value"].ToString();
+                BM.Alt_Identity_proof = dt.Rows[0]["Alt_Identity_proof"].ToString();
+                BM.Alt_Identity_proof_value = dt.Rows[0]["Alt_Identity_proof_value"].ToString();
+                BM.Address1 = dt.Rows[0]["Address1"].ToString();
+                BM.Address2 = dt.Rows[0]["Address2"].ToString();
+                BM.Address3 = dt.Rows[0]["Address3"].ToString();
+                BM.City_txt = dt.Rows[0]["City"].ToString();
+                BM.State_txt = dt.Rows[0]["State"].ToString();
+                BM.Pin = dt.Rows[0]["Pin"].ToString();
+                BM.aid = 0;
+                BM.tid = 0;
+                BM.createdBy = 0;
+                BM.documentId = 0;
+                BM.beneficiary_type = dt.Rows[0]["beneficiary_type"].ToString();
+
+            }
+
+
+
+
+
+
+            return View("~/Views/AddBeneficiary/AddBeneficiaryPageContent.cshtml", BM);
         }
 
 
@@ -780,7 +819,7 @@ namespace WillAssure.Controllers
             DataTable dt = new DataTable();
             da.Fill(dt);
             con.Close();
-            string data = "<option value='' >--Select--</option>";
+            string data = "";
 
             if (dt.Rows.Count > 0)
             {
@@ -973,16 +1012,16 @@ namespace WillAssure.Controllers
             if (checkstatus != "true")
             {
                 int Response = Convert.ToInt32(Request["send"]);
-                DataTable dt = new DataTable();
+               
                 if (Request["send"] != "")
                 {
                     // check for data exists or not for testator family
                     if (value != null)
                     {
                         con.Open();
-                        string query1 = "select a.bpId , a.First_Name , a.Last_Name , a.Middle_Name , a.DOB , a.Mobile , a.Relationship , a.Marital_Status , a.Religion , a.Identity_proof , a.Identity_proof_value , a.Alt_Identity_proof , a.Alt_Identity_proof_value , a.Address1 , a.Address2 , a.Address3 , a.City , a.State , a.Pin , a.aiid , a.tId , a.dateCreated , a.createdBy , a.documentId , a.beneficiary_type from BeneficiaryDetails a inner join TestatorDetails b on a.tId=b.tId where b.tId = " + value + "";
+                        string query1 = "select a.bpId , a.First_Name , a.Last_Name , a.Middle_Name , a.DOB , a.Mobile , a.Relationship , a.Marital_Status , a.Religion , a.Identity_proof , a.Identity_proof_value , a.Alt_Identity_proof , a.Alt_Identity_proof_value , a.Address1 , a.Address2 , a.Address3 , a.City , a.State , a.Pin , a.aiid , a.tId , a.dateCreated , a.createdBy , a.documentId , a.beneficiary_type from BeneficiaryDetails a inner join TestatorDetails b on a.tId=b.tId inner join BeneficiaryDetails c on b.tId=c.tId  where b.tId = "+value+" and c.fetchid not in('TF')  ";
                         SqlDataAdapter da = new SqlDataAdapter(query1, con);
-                        
+                        DataTable dt = new DataTable();
                         da.Fill(dt);
 
                         if (dt.Rows.Count > 0)

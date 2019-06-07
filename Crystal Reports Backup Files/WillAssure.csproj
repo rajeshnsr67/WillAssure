@@ -216,6 +216,7 @@
     <Compile Include="Controllers\ChangePasswordController.cs" />
     <Compile Include="Controllers\ChangeTemplateController.cs" />
     <Compile Include="Controllers\CodocilController.cs" />
+    <Compile Include="Controllers\CompletedDocumentController.cs" />
     <Compile Include="Controllers\CouponsAllotmentController.cs" />
     <Compile Include="Controllers\DashBoardController.cs" />
     <Compile Include="Controllers\DisplayCouponAllotedController.cs" />
@@ -1851,6 +1852,7 @@
     <Content Include="Views\Frontend\Privacypolicy.cshtml" />
     <Content Include="Views\Frontend\Regn.cshtml" />
     <Content Include="Views\Frontend\Services.cshtml" />
+    <Content Include="Views\CompletedDocument\Completeddocumentpagecontent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

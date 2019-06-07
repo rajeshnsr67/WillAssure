@@ -31,88 +31,12 @@ namespace WillAssure.Controllers
                     ViewBag.enableMultipleSelect = "true";
                 }
             }
-            
+          
             return View("~/Views/Frontend/Index.cshtml");
         }
 
 
         public ActionResult AboutUsIndex()
-        {
-            if (Session["displayname"].ToString() != "")
-            {
-                ViewBag.enableMultipleSelect = "true";
-            }
-            return View("~/Views/Frontend/Aboutus.cshtml");
-        }
-
-
-        public ActionResult ContactUsIndex()
-        {
-            if (Session["displayname"].ToString() != "")
-            {
-                ViewBag.enableMultipleSelect = "true";
-            }
-            return View("~/Views/Frontend/ContactUs.cshtml");
-        }
-
-
-
-        public ActionResult DisclaimerIndex()
-        {
-            if (Session["displayname"].ToString() != "")
-            {
-                ViewBag.enableMultipleSelect = "true";
-            }
-            return View("~/Views/Frontend/Disclaimer.cshtml");
-        }
-
-
-        public ActionResult DocumentIndex()
-        {
-            if (Session["displayname"].ToString() != "")
-            {
-                ViewBag.enableMultipleSelect = "true";
-            }
-
-            
-
-            return View("~/Views/Frontend/Document.cshtml");
-        }
-
-
-        public ActionResult FaqIndex()
-        {
-            if (Session["displayname"].ToString() != "")
-            {
-                ViewBag.enableMultipleSelect = "true";
-            }
-            return View("~/Views/Frontend/Faq.cshtml");
-        }
-
-
-
-        public ActionResult HowweworkIndex()
-        {
-            if (Session["displayname"].ToString() != "")
-            {
-                ViewBag.enableMultipleSelect = "true";
-            }
-            return View("~/Views/Frontend/Howwework.cshtml");
-        }
-
-
-
-        public ActionResult PrivacyPolicyIndex()
-        {
-            if (Session["displayname"].ToString() != "")
-            {
-                ViewBag.enableMultipleSelect = "true";
-            }
-            return View("~/Views/Frontend/Privacypolicy.cshtml");
-        }
-
-
-        public ActionResult RegnIndex()
         {
             if (Session["displayname"] != null)
             {
@@ -121,6 +45,131 @@ namespace WillAssure.Controllers
                     ViewBag.enableMultipleSelect = "true";
                 }
             }
+        
+           
+
+            return View("~/Views/Frontend/Aboutus.cshtml");
+        }
+
+
+        public ActionResult ContactUsIndex()
+        {
+
+            if (Session["displayname"] != null)
+            {
+                if (Session["displayname"].ToString() != "")
+                {
+                    ViewBag.enableMultipleSelect = "true";
+                }
+            }
+        
+
+          
+            return View("~/Views/Frontend/ContactUs.cshtml");
+        }
+
+
+
+        public ActionResult DisclaimerIndex()
+        {
+            if (Session["displayname"] != null)
+            {
+                if (Session["displayname"].ToString() != "")
+                {
+                    ViewBag.enableMultipleSelect = "true";
+                }
+            }
+        
+
+            return View("~/Views/Frontend/Disclaimer.cshtml");
+        }
+
+
+        public ActionResult DocumentIndex()
+        {
+
+            if (Session["displayname"] != null)
+            {
+
+                if (Session["displayname"].ToString() != "")
+                {
+                    ViewBag.enableMultipleSelect = "true";
+                }
+           
+
+
+            }
+        
+
+
+
+
+            return View("~/Views/Frontend/Document.cshtml");
+        }
+
+
+        public ActionResult FaqIndex()
+        {
+
+            if (Session["displayname"] != null)
+            {
+                if (Session["displayname"].ToString() != "")
+                {
+                    ViewBag.enableMultipleSelect = "true";
+                }
+            }
+        
+
+
+        
+            return View("~/Views/Frontend/Faq.cshtml");
+        }
+
+
+
+        public ActionResult HowweworkIndex()
+        {
+            if (Session["displayname"] != null)
+            {
+                if (Session["displayname"].ToString() != "")
+                {
+                    ViewBag.enableMultipleSelect = "true";
+                }
+            }
+          
+
+            return View("~/Views/Frontend/Howwework.cshtml");
+        }
+
+
+
+        public ActionResult PrivacyPolicyIndex()
+        {
+            if (Session["displayname"] != null)
+            {
+                if (Session["displayname"].ToString() != "")
+                {
+                    ViewBag.enableMultipleSelect = "true";
+                }
+            }
+          
+          
+            return View("~/Views/Frontend/Privacypolicy.cshtml");
+        }
+
+
+        public ActionResult RegnIndex()
+        {
+            if (Session["displayname"] != null)
+            {
+               
+                    if (Session["displayname"].ToString() != "")
+                    {
+                        ViewBag.enableMultipleSelect = "true";
+                    }
+                
+            }
+            
 
             
             return View("~/Views/Frontend/Regn.cshtml");
@@ -129,10 +178,17 @@ namespace WillAssure.Controllers
 
         public ActionResult ServicesIndex()
         {
-            if (Session["displayname"].ToString() != "")
+
+            if (Session["displayname"] != null)
             {
-                ViewBag.enableMultipleSelect = "true";
+                if (Session["displayname"].ToString() != "")
+                {
+                    ViewBag.enableMultipleSelect = "true";
+                }
+
             }
+          
+
             return View("~/Views/Frontend/Services.cshtml");
         }
 

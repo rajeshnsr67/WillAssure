@@ -16,7 +16,7 @@ namespace WillAssure.Controllers
         public static string connectionString = ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString;
         SqlConnection con = new SqlConnection(connectionString);
         // GET: DashBoard
-        public ActionResult DashBoardIndex( )
+        public ActionResult DashBoardIndex()
         {
 
             int testatorid = 0;
@@ -30,7 +30,7 @@ namespace WillAssure.Controllers
             if (dt1t.Rows.Count > 0)
             {
                 testatorid = Convert.ToInt32(dt1t.Rows[0]["tId"]);
-            
+
 
             }
             con.Close();
@@ -44,7 +44,7 @@ namespace WillAssure.Controllers
 
             if (Convert.ToInt32(dt2.Rows[0]["Will"]) == 1)
             {
-                
+
                 // for appointees 
 
                 con.Open();
@@ -60,7 +60,7 @@ namespace WillAssure.Controllers
 
                     ViewBag.Willbtn = "true";
                 }
-               
+
 
                 //end
             }
@@ -281,7 +281,7 @@ namespace WillAssure.Controllers
                 }
             }
 
-            
+
 
             string OTP = "";
             if (Session["LoginOTP"] != null)
@@ -456,14 +456,14 @@ namespace WillAssure.Controllers
             //end
 
 
-          
-                ViewBag.showtitle = "true";
-                ViewBag.documentlink = "true";
-            
-          
+
+            ViewBag.showtitle = "true";
+            ViewBag.documentlink = "true";
 
 
-            
+
+
+
 
 
             return View("~/Views/DashBoard/DashBoardPageContent.cshtml");
@@ -486,7 +486,7 @@ namespace WillAssure.Controllers
                 {
                     ViewBag.collapse = "true";
                     Session["doctype"] = "Will";
-                    return RedirectToAction("EditTestatorIndex", "EditTestator", new { doctype = doctype } );
+                    return RedirectToAction("EditTestatorIndex", "EditTestator", new { doctype = doctype });
                 }
 
                 if (doctype == "Codocil")
@@ -520,10 +520,10 @@ namespace WillAssure.Controllers
                     return RedirectToAction("EditTestatorIndex", "EditTestator", new { doctype = doctype });
                 }
             }
-          
-          
 
-                
+
+
+
 
             if (doctype != null)
             {
@@ -570,8 +570,8 @@ namespace WillAssure.Controllers
 
                 // make payment done
                 con.Open();
-                string qp = "update testatordetails set PaymentStatus = 1 where uId = "+Convert.ToInt32(Session["uuid"])+"";
-                SqlCommand cmq = new SqlCommand(qp,con);
+                string qp = "update testatordetails set PaymentStatus = 1 where uId = " + Convert.ToInt32(Session["uuid"]) + "";
+                SqlCommand cmq = new SqlCommand(qp, con);
                 cmq.ExecuteNonQuery();
                 con.Close();
 
@@ -708,7 +708,7 @@ namespace WillAssure.Controllers
 
 
 
-           
+
 
             }
 
@@ -832,18 +832,18 @@ namespace WillAssure.Controllers
                     con.Close();
 
 
-                 
+
 
                     con.Open();
 
                     string qq = "select a.Amt_Paid_By from Authorization_Rules a inner join TestatorDetails b on  a.Testator_Id=b.tId where b.Email_OTP = " + Session["enteredOTP"].ToString() + " ";
-                    SqlDataAdapter dda = new SqlDataAdapter(qq,con);
+                    SqlDataAdapter dda = new SqlDataAdapter(qq, con);
                     DataTable ddt = new DataTable();
                     dda.Fill(ddt);
                     string amtpaidby = "";
                     if (ddt.Rows.Count > 0)
                     {
-                       amtpaidby = ddt.Rows[0]["Amt_Paid_By"].ToString();
+                        amtpaidby = ddt.Rows[0]["Amt_Paid_By"].ToString();
                     }
                     con.Close();
 
@@ -855,7 +855,7 @@ namespace WillAssure.Controllers
                     }
                     else
                     {
-                      return  RedirectToAction("DashBoardIndex", "DashBoard");
+                        return RedirectToAction("DashBoardIndex", "DashBoard");
                     }
 
 
@@ -875,7 +875,7 @@ namespace WillAssure.Controllers
                 }
 
 
-               
+
 
 
 

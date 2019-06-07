@@ -170,6 +170,18 @@ namespace WillAssure.Controllers
             }
 
             con.Close();
+
+
+
+
+          
+
+
+
+
+
+
+
             TestatorFamilyModel TFM = new TestatorFamilyModel();
             TFM.fId = NestId;
 
@@ -218,6 +230,9 @@ namespace WillAssure.Controllers
             return View("~/Views/UpdateTestatorFamily/UpdateTestatorFamilyPageContent.cshtml",TFM);
         }
 
+
+
+        
 
 
         public String BindRelationDDL()
