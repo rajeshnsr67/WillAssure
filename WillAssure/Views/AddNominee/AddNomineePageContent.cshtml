@@ -183,16 +183,36 @@
                                 <div class="col-sm-3"></div>
                                 <div class="col-sm-3">
 
-                                    <div class="form-group">
 
-                                        <label for="input-1">Date Of Birth</label>
-                                        <div id="datepicker" class="input-group date" data-date-format="dd-mm-yyyy">
-                                            <input class="form-control input-shadow validate[required]" onchange="validateDOB(this.value)" type="text" id="DOB" name="DOB" autocomplete="off" placeholder="Select Date Of Birth" />
-                                            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                    @if (Model.Dob != null)
+                                    {
+                                        <div class="form-group">
+
+                                            <label for="input-1">Date Of Birth</label>
+                                            <div id="datepicker" class="input-group date" data-date-format="dd-mm-yyyy">
+                                                <input class="form-control input-shadow validate[required]" onchange="validateDOB(this.value)" type="text" id="DOB" value="@Model.Dob" name="DOB" autocomplete="off" placeholder="Select Date Of Birth" />
+                                                <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                            </div>
+
+                                            <span style="color:red; display:none;" id="datemsg">Invalid Date Of Birth</span>
                                         </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="form-group">
 
-                                        <span style="color:red; display:none;" id="datemsg">Invalid Date Of Birth</span>
-                                    </div>
+                                            <label for="input-1">Date Of Birth</label>
+                                            <div id="datepicker" class="input-group date" data-date-format="dd-mm-yyyy">
+                                                <input class="form-control input-shadow validate[required]" onchange="validateDOB(this.value)" type="text" id="DOB" name="DOB" autocomplete="off" placeholder="Select Date Of Birth" />
+                                                <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                            </div>
+
+                                            <span style="color:red; display:none;" id="datemsg">Invalid Date Of Birth</span>
+                                        </div>
+                                    }
+
+
+
                                 </div>
 
                                 <div class="col-sm-3">
@@ -206,15 +226,36 @@
 
                                 <div class="col-sm-3">
 
-                                    <div class="form-group">
 
-                                        <label for="input-1">Relation</label>
-                                        <select id="ddlrelation" class="form-control input-shadow validate[required]">
-                                            <option value="">--Select--</option>
-                                        </select>
-                                        @Html.HiddenFor(m => m.RelationshipId, new { id = "RelationshipId" })
-                                        @Html.HiddenFor(m => m.RelationshipTxt, new { id = "RelationshipTxt" })
-                                    </div>
+                                    @if (Model.RelationshipTxt != null)
+                                    {
+                                        <div class="form-group">
+
+                                            <label for="input-1">Relation</label>
+                                            <select id="ddlrelation" class="form-control input-shadow validate[required]">
+                                                <option value="">@Model.RelationshipTxt</option>
+                                            </select>
+                                            @Html.HiddenFor(m => m.RelationshipId, new { id = "RelationshipId" })
+                                            @Html.HiddenFor(m => m.RelationshipTxt, new { id = "RelationshipTxt" })
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="form-group">
+
+                                            <label for="input-1">Relation</label>
+                                            <select id="ddlrelation" class="form-control input-shadow validate[required]">
+                                                <option value="">--Select--</option>
+                                            </select>
+                                            @Html.HiddenFor(m => m.RelationshipId, new { id = "RelationshipId" })
+                                            @Html.HiddenFor(m => m.RelationshipTxt, new { id = "RelationshipTxt" })
+                                        </div>
+                                    }
+
+
+
+
+
                                 </div>
 
                                 <div class="col-sm-3"></div>
@@ -259,30 +300,71 @@
                                 <div class="col-sm-2"> <label for="input-1"><i class="fa fa-map-marker" aria-hidden="true"></i>Contact Details</label></div>
 
 
-                                <div class="col-sm-3">
 
-                                    <div class="form-group">
+                                @if (Model.statetext != null)
+                                {
+                                    <div class="col-sm-3">
 
-                                        <label for="input-1">State</label>
-                                        <select id="ddlstate" class="form-control input-shadow validate[required]">
-                                            <option value="">--Select State--</option>
-                                        </select>
-                                        @Html.HiddenFor(m => m.stateid, new { id = "stateid" })
-                                        @Html.HiddenFor(m => m.statetext, new { id = "statetext" })
+                                        <div class="form-group">
+
+                                            <label for="input-1">State</label>
+                                            <select id="ddlstate" class="form-control input-shadow validate[required]">
+                                                <option value="">@Model.statetext</option>
+                                            </select>
+                                            @Html.HiddenFor(m => m.stateid, new { id = "stateid" })
+                                            @Html.HiddenFor(m => m.statetext, new { id = "statetext" })
+                                        </div>
                                     </div>
-                                </div>
+                                }
+                                else
+                                {
+                                    <div class="col-sm-3">
 
-                                <div class="col-sm-3">
+                                        <div class="form-group">
 
-                                    <div class="form-group">
-                                        <label for="input-1">City</label>
-                                        <select id="ddlcity" class="form-control input-shadow validate[required]">
-                                            <option value="">--Select City--</option>
-                                        </select>
-                                        @Html.HiddenFor(m => m.cityid, new { id = "cityid" })
-                                        @Html.HiddenFor(m => m.citytext, new { id = "citytext" })
+                                            <label for="input-1">State</label>
+                                            <select id="ddlstate" class="form-control input-shadow validate[required]">
+                                                <option value="">--Select State--</option>
+                                            </select>
+                                            @Html.HiddenFor(m => m.stateid, new { id = "stateid" })
+                                            @Html.HiddenFor(m => m.statetext, new { id = "statetext" })
+                                        </div>
                                     </div>
-                                </div>
+                                }
+
+
+
+
+                                @if (Model.citytext != null)
+                                {
+                                    <div class="col-sm-3">
+
+                                        <div class="form-group">
+                                            <label for="input-1">City</label>
+                                            <select id="ddlcity" class="form-control input-shadow validate[required]">
+                                                <option value="">@Model.citytext</option>
+                                            </select>
+                                            @Html.HiddenFor(m => m.cityid, new { id = "cityid" })
+                                            @Html.HiddenFor(m => m.citytext, new { id = "citytext" })
+                                        </div>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="col-sm-3">
+
+                                        <div class="form-group">
+                                            <label for="input-1">City</label>
+                                            <select id="ddlcity" class="form-control input-shadow validate[required]">
+                                                <option value="">--Select City--</option>
+                                            </select>
+                                            @Html.HiddenFor(m => m.cityid, new { id = "cityid" })
+                                            @Html.HiddenFor(m => m.citytext, new { id = "citytext" })
+                                        </div>
+                                    </div>
+                                }
+
+
                                 <div class="col-sm-3">
 
                                     <div class="form-group">

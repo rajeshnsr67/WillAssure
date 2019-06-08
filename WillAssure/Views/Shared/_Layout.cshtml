@@ -1490,13 +1490,26 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
 <script>
+    //$(function () {
+    //    $("#datepicker").datepicker({
+    //        dateFormat: "dd/MM/yy",
+
+    //        endDate: '+0d',
+
+
+    //    });
+    //});
+
+
     $(function () {
-        $("#datepicker").datepicker({
-            dateFormat: "dd/MM/yy",
-
-            endDate: '+0d',
-
-
+        var startDate = new Date('1930-01-01');
+        var now = new Date();
+        var sDate = new Date(now.getFullYear() - 18, now.getMonth(), now.getDay());
+        var endDate = new Date(sDate.getFullYear + '-' + sDate.getMonth() + '-' + sDate.getDay());
+        $('#datepicker').datepicker({
+            //other option
+            startDate: startDate, //set start date
+            endDate: endDate //set end date
         });
     });
 

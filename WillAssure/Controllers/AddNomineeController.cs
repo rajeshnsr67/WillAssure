@@ -188,7 +188,7 @@ namespace WillAssure.Controllers
                     NM.First_Name = dt.Rows[i]["First_Name"].ToString();
                     NM.Last_Name = dt.Rows[i]["Last_Name"].ToString();
                     NM.Middle_Name = dt.Rows[i]["Middle_Name"].ToString();
-                    NM.Dob = dt.Rows[0]["DOB"].ToString();
+                    NM.Dob = Convert.ToDateTime(dt.Rows[0]["DOB"]).ToString("dd-MM-yyyy");
                     NM.Mobile = dt.Rows[i]["Mobile"].ToString();
                     NM.RelationshipTxt = dt.Rows[i]["Relationship"].ToString();
                     NM.Marital_Status = dt.Rows[i]["Marital_Status"].ToString();
@@ -448,7 +448,7 @@ namespace WillAssure.Controllers
             DataTable dt = new DataTable();
             da.Fill(dt);
             con.Close();
-            string data = "<option value=''>--Select State--</option>";
+            string data = "";
 
             if (dt.Rows.Count > 0)
             {
@@ -526,7 +526,7 @@ namespace WillAssure.Controllers
             DataTable dt = new DataTable();
             da.Fill(dt);
             con.Close();
-            string data = "<option value='' >--Select--</option>";
+            string data = "";
 
             if (dt.Rows.Count > 0)
             {

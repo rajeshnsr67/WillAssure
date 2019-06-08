@@ -361,20 +361,41 @@
                                     </div>
                                 </div>
 
+                                @if (Model.City_txt != null)
+                                {
 
-                                <div class="col-sm-3">
+                                    <div class="col-sm-3">
 
-                                    <div class="form-group">
-                                        <label for="input-1">City</label>
-                                        <select id="ddlcity" class="form-control input-shadow validate[required]">
-                                            <option value="">--Select City--</option>
-                                        </select>
-                                        @Html.HiddenFor(m => m.City_id, new { id = "cityid" })
-                                        @Html.HiddenFor(m => m.City_txt, new { id = "citytext" })
+                                        <div class="form-group">
+                                            <label for="input-1">City</label>
+                                            <select id="ddlcity" class="form-control input-shadow validate[required]">
+                                                <option value="">@Model.City_txt</option>
+                                            </select>
+                                            @Html.HiddenFor(m => m.City_id, new { id = "cityid" })
+                                            @Html.HiddenFor(m => m.City_txt, new { id = "citytext" })
+
+                                        </div>
 
                                     </div>
 
-                                </div>
+                                }
+                                else
+                                {
+                                    <div class="col-sm-3">
+
+                                        <div class="form-group">
+                                            <label for="input-1">City</label>
+                                            <select id="ddlcity" class="form-control input-shadow validate[required]">
+                                                <option value="">--Select City--</option>
+                                            </select>
+                                            @Html.HiddenFor(m => m.City_id, new { id = "cityid" })
+                                            @Html.HiddenFor(m => m.City_txt, new { id = "citytext" })
+
+                                        </div>
+
+                                    </div>
+                                }
+
 
                                 <div class="col-sm-3">
                                     <div class="form-group">
@@ -455,10 +476,10 @@
 
                                 <div class="col-sm-3">
                                     <div class="form-group">
+                                        <label for="input-1">Identity proof Value</label>
+                                        <div id="appendtxt"> @Html.TextBoxFor(m => m.Identity_proof_value, new { @class = "form-control input-shadow validate[required] text-input", @id = "txtIdentityProofValue", @placeholder = "Enter Identity Proof Value", @autocomplete = "off" })  </div>
 
-                                        <div id="appendtxt">  </div>
 
-                                        @*@Html.TextBoxFor(m => m.Identity_Proof_Value, new { @class = "form-control input-shadow validate[required] text-input", @id = "txtIdentityProofValue", @placeholder = "Enter Identity Proof Value", @autocomplete = "off" })*@
                                     </div>
                                 </div>
 
@@ -483,10 +504,10 @@
                                 <div class="col-sm-3"></div>
                                 <div class="col-sm-3">
                                     <div class="form-group">
+                                        <label for="input-1">Alt Identity proof Value</label>
+                                        <div id="appendtxt2"> @Html.TextBoxFor(m => m.Alt_Identity_proof_value, new { @class = "form-control input-shadow validate[required] text-input", @id = "txtIdentityProofValue", @placeholder = "Enter Identity Proof Value", @autocomplete = "off" }) </div>
 
-                                        <div id="appendtxt2">  </div>
 
-                                        @*@Html.TextBoxFor(m => m.Identity_Proof_Value, new { @class = "form-control input-shadow validate[required] text-input", @id = "txtIdentityProofValue", @placeholder = "Enter Identity Proof Value", @autocomplete = "off" })*@
                                     </div>
                                 </div>
 
@@ -1546,20 +1567,28 @@
 
 <script>
     $(function () {
+        var startDate = new Date('1930-01-01');
+        var now = new Date();
+        var sDate = new Date(now.getFullYear() - 18, now.getMonth(), now.getDay());
+        var endDate = new Date(sDate.getFullYear + '-' + sDate.getMonth() + '-' + sDate.getDay());
         $("#datepicker1").datepicker({
-            dateFormat: "dd/MM/yy",
-
-            endDate: '+0d',
+            //other option
+            startDate: startDate, //set start date
+            endDate: endDate //set end date
 
 
         });
     });
 
     $(function () {
+        var startDate = new Date('1930-01-01');
+        var now = new Date();
+        var sDate = new Date(now.getFullYear() - 18, now.getMonth(), now.getDay());
+        var endDate = new Date(sDate.getFullYear + '-' + sDate.getMonth() + '-' + sDate.getDay());
         $("#datepicker2").datepicker({
-            dateFormat: "dd/MM/yy",
-
-            endDate: '+0d',
+            //other option
+            startDate: startDate, //set start date
+            endDate: endDate //set end date
 
 
         });

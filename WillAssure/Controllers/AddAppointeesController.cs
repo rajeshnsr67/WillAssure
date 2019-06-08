@@ -298,7 +298,7 @@ namespace WillAssure.Controllers
                     Am.Identity_Proof_Value = dt.Rows[i]["Identity_Proof_Value"].ToString();
                     Am.Alt_Identity_Proof = dt.Rows[i]["Alt_Identity_Proof"].ToString();
                     Am.Alt_Identity_Proof_Value = dt.Rows[i]["Alt_Identity_Proof_Value"].ToString();
-                    Am.Dob = dt.Rows[0]["DOB"].ToString();
+                    Am.Dob = Convert.ToDateTime(dt.Rows[0]["DOB"]).ToString("dd-MM-yyyy");
                     Am.Gender = dt.Rows[i]["Gender"].ToString();
                     Am.Occupation = dt.Rows[i]["Occupation"].ToString();
                     Am.RelationshipTxt = dt.Rows[i]["Relationship"].ToString();

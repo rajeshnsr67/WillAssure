@@ -143,7 +143,47 @@ namespace WillAssure.Controllers
 
             con.Close();
 
-      
+
+            LiabilitiesModel lml = new LiabilitiesModel();
+            con.Open();
+            string querychk11 = "select * from Liabilities where tid = "+ Session["distid"].ToString() + " ";
+            SqlDataAdapter dachk11 = new SqlDataAdapter(querychk11, con);
+            DataTable dtchk11 = new DataTable();
+            dachk11.Fill(dtchk11);
+            if (dtchk11.Rows.Count > 0)
+            {
+                lml.Amount = Convert.ToInt32(dtchk11.Rows[0]["Amount"]);
+                lml.Name1  =  dtchk11.Rows[0]["Name"].ToString();
+                lml.address = dtchk11.Rows[0]["address"].ToString();
+                lml.citytext = dtchk11.Rows[0]["city"].ToString();
+                lml.statetext = dtchk11.Rows[0]["state"].ToString();
+                lml.pin = dtchk11.Rows[0]["pin"].ToString();
+                lml.Mobile =  dtchk11.Rows[0]["Mobile"].ToString();
+                lml.Details =  dtchk11.Rows[0]["Details"].ToString();
+
+                string qqchk = "select AssetsType from AssetsType where atId = " + dtchk11.Rows[0]["assettypeid"].ToString() + "   ";
+                SqlDataAdapter dachk = new SqlDataAdapter(qqchk,con);
+                DataTable dtchk = new DataTable();
+                dachk.Fill(dtchk);
+                if (dtchk.Rows.Count > 0)
+                {
+                   lml.assettypetext =  dtchk.Rows[0]["AssetsType"].ToString();
+                }
+
+                string qqchk2 = "select AssetsCategory from AssetsCategory where amId = " + dtchk11.Rows[0]["assetcategoryid"].ToString() + "   ";
+                SqlDataAdapter dachk2 = new SqlDataAdapter(qqchk2, con);
+                DataTable dtchk2 = new DataTable();
+                dachk2.Fill(dtchk2);
+                if (dtchk2.Rows.Count > 0)
+                {
+                    lml.assetCategorytext = dtchk2.Rows[0]["AssetsCategory"].ToString();
+                }
+
+                lml.Proportion = Convert.ToInt32(dtchk11.Rows[0]["Proportion"]);
+
+
+            }
+            con.Close();
                    
 
 
@@ -151,7 +191,7 @@ namespace WillAssure.Controllers
 
 
 
-            return View("~/Views/AddLiabilities/AddLiabilitiesPageContent.cshtml");
+            return View("~/Views/AddLiabilities/AddLiabilitiesPageContent.cshtml", lml);
         }
 
 
@@ -304,7 +344,7 @@ namespace WillAssure.Controllers
             DataTable dt = new DataTable();
             da.Fill(dt);
             con.Close();
-            string data = "<option value=''>--Select State--</option>";
+            string data = "";
 
             if (dt.Rows.Count > 0)
             {
